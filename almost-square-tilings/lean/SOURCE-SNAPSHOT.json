@@ -1,0 +1,31 @@
+{
+  "source_repo": "lean-proofs (private)",
+  "source_commit": "8e9e5f2b4402dbbdfbf7d0c45a3314ff635f21be",
+  "note": "AlmostSquares/*.lean are LeanProofs/AlmostSq/*.lean at this commit with imports renamed from LeanProofs.AlmostSq to AlmostSquares; Audit.lean and AlmostSquares.lean are new. gen_lean.py is friedman-almost-squares/verify/gen_lean.py made path-relative (decode_rect inlined); it regenerates Explicit.lean and Inflations.lean byte for byte and Reach.lean up to its header comment. Built in this layout on 8 October 2026: 3113 jobs; axiom audit standard except the three native_decide axioms for n = 16, 17, 19.",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_rev": "v4.34.0",
+  "files": {
+    "AlmostSquares.lean": "8bb7f4bb4e0953c73e2b6b4d2a7020cc86990e1aeec21a07bd382b7538271ad8",
+    "AlmostSquares/Audit.lean": "60999f814f034390910bc313e903df72aaad5ebad7344675ef442d7c9cf8db6f",
+    "AlmostSquares/Basic.lean": "fbcf4ea99be10079962e68ae8d30ead1a5a160c2668de5988707b36cc8327cf9",
+    "AlmostSquares/Bouwkamp.lean": "3acbc2d85008dcaa069a838765254e8afbc585597d817b4951cfb8872cf942e3",
+    "AlmostSquares/Classes.lean": "cbf25680bdfe13a7ae73b8b3aa3f6c7307978a7d1816cad7006b14f26acfb8f2",
+    "AlmostSquares/Counts.lean": "5162cb7580608d92578fdc1757ee200126192f597bb3bb666cc459a43529c3c0",
+    "AlmostSquares/Examples.lean": "645d76b917332f1d93513725ccab814396e3aabf4f3479618690df08f6f121f0",
+    "AlmostSquares/Explicit.lean": "95adc70d436542ffe183334e1515403e1853dd7b8c50e3a430619c0788e38bd5",
+    "AlmostSquares/Final.lean": "f34a25971cb150218c3f5a108823c46c53bc2d13db2d12601a2dbe8a466333a7",
+    "AlmostSquares/Inflation.lean": "58902eaf5026a891666b7385671e98ac5def8a4300aa788ddb1af2e5be0c8639",
+    "AlmostSquares/Inflations.lean": "761c5a7df08712a5c365b08be229ebd210a0e02c1353116ddd242ad8d019a1a8",
+    "AlmostSquares/Main.lean": "ae42ee7bd7474b84dc8b4c0895026673963e8e285e262312a51369b0e9c5c10a",
+    "AlmostSquares/No16.lean": "85bc88b2aa3c9918ed1028e554e90a7e21bf1f201b3d88517d5df81d8e9c67a9",
+    "AlmostSquares/No17.lean": "9fd0411424cd1b77d775db63d0852c633b19ee31d6a44d851894eb051035d2ab",
+    "AlmostSquares/No19.lean": "49895ae296826fa5364db2fa1c19bd1a64e069288678d54be9efd726dfd34d56",
+    "AlmostSquares/NoSmall.lean": "cf9c83e4037b554dd5de22ec4f1c95a8ee06149a4b9bfcf0a9b9cb85feec35c8",
+    "AlmostSquares/Parity.lean": "c53fb627619cbcd2fb602605479f40b77b04d0d8a5073202de4d61ac0262bfd2",
+    "AlmostSquares/Reach.lean": "9cce24e76fd3191c3d483a8df494a8f5ee42af2224e4f88f768041b340146ed6",
+    "AlmostSquares/Real.lean": "d1d0f1b7ff5b05fabf0bf30205e19c8bcc0d4791ba5010d7d603a258f98ddf4b",
+    "AlmostSquares/Scales.lean": "cca2de451deb92b4343fbb1e960dc7e559717b2046ffbaa184e24b8bede0c3b5",
+    "AlmostSquares/SearchFast.lean": "619009d403e32a6de9dc54232f01df93c7b77629e63f30cfc9e60312695e90c2",
+    "gen_lean.py": "6e92a94c3f53322f0c70840cd78140f39a83a93e7a9acba023f70d57775906e9"
+  }
+}
