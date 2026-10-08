@@ -1,0 +1,41 @@
+\begin{tikzpicture}[scale=2.2]
+\draw[thick] (-1.5259,-1) rectangle (1.5259,1);
+\draw[black!20] (-0.9194,0.3934) circle (0.6066);
+\draw[black!20] (0.2050,0.4790) circle (0.5210);
+\draw[black!20] (1.1222,0.5963) circle (0.4037);
+\draw[black!20] (0.9194,-0.3934) circle (0.6066);
+\draw[black!20] (-0.2050,-0.4790) circle (0.5210);
+\draw[black!20] (-1.1222,-0.5963) circle (0.4037);
+\draw[densely dashed, gray] (0,0) circle (1);
+\filldraw[fill=blue!10, draw=blue!70!black, thick] (0.0000,0.0000) -- (-1.0000,0.0000) -- (-0.9194,0.3934) -- cycle;
+\draw[green!50!black] (0.0000,0.0000) -- (0.0000,1.0000) (0.0000,0.0000) -- (0.2050,1.0000);
+\draw[densely dashed] (-1.5259,0) -- (1.5259,0);
+\draw[blue!70!black] (-0.9194,0.3934) -- (-1.1222,-0.5963);
+\fill (0.0000,0.0000) circle (0.9pt) node[below right, font=\small] {$O$};
+\fill (0.0000,1.0000) circle (0.9pt) node[above left, font=\small] {$U$};
+\fill (0.2050,1.0000) circle (0.9pt) node[above right, font=\small] {$B_t$};
+\fill (0.2008,0.9796) circle (0.9pt) node[right, font=\small] {$K$};
+\fill (-1.0000,0.0000) circle (0.9pt) node[below left, font=\small] {$E'$};
+\fill (-0.9194,0.3934) circle (0.9pt) node[above left, font=\small] {$A$};
+\end{tikzpicture}
+\qquad
+\begin{tikzpicture}
+\coordinate (M) at (0.000,0.000);
+\coordinate (K) at (2.186,-0.448);
+\coordinate (Bt) at (2.278,0.000);
+\filldraw[fill=orange!20, draw=orange!90!black, thick] (0.000,0.000) -- (2.186,-0.448) -- (2.278,0.000) -- cycle;
+\draw[orange!90!black, very thick] (0.000,0.000) -- (2.186,-0.448) node[midway, sloped, below, font=\scriptsize] {$UM$};
+\draw pic[draw, angle radius=10mm, "$\psi$", angle eccentricity=1.25, font=\scriptsize] {angle=K--M--Bt};
+\node[above left, font=\small] at (0.000,0.000) {$M$};
+\node[below right, font=\small] at (2.186,-0.448) {$K$};
+\node[above right, font=\small] at (2.278,0.000) {$B_t$};
+\coordinate (S) at (3.400,-0.200);
+\coordinate (S0) at (3.400,2.032);
+\coordinate (E) at (3.857,2.032);
+\filldraw[fill=orange!20, draw=orange!90!black, thick] (3.400,-0.200) -- (3.400,2.032) -- (3.857,2.032) -- cycle;
+\draw[orange!90!black, very thick] (3.400,-0.200) -- (3.400,2.032) node[midway, sloped, below, font=\scriptsize] {$UM$};
+\draw pic[draw, angle radius=10mm, "$\psi$", angle eccentricity=1.25, font=\scriptsize] {angle=E--S--S0};
+\node[below left, font=\small] at (3.400,-0.200) {$S$};
+\node[above left, font=\small] at (3.400,2.032) {$S_0$};
+\node[above right, font=\small] at (3.857,2.032) {$E'$};
+\end{tikzpicture}
