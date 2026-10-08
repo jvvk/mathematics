@@ -1,0 +1,29 @@
+{
+  "source_repo": "lean-proofs (private)",
+  "source_commit": "b9bb9f7a6dff403f9f710037fdc00847463aa466",
+  "note": "BalancedTernary/{TernCore,BT,Fam_*}.lean are LeanProofs/{TernCore,BT,Fam_*}.lean at this commit with imports renamed from LeanProofs to BalancedTernary; Audit.lean and BalancedTernary.lean are new. generator/ is guy-f31-bt/lean_gen with paths made relative; it regenerates all thirteen Fam_* files byte for byte. Built in this layout on 8 October 2026: 19 jobs, every axiom audit standard.",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib": "none (core library only)",
+  "files": {
+    "BalancedTernary.lean": "f9f0a7412adbddcf6b50fae7dfec3857e92a323f15ab18bf64de6278d6163138",
+    "BalancedTernary/Audit.lean": "86956f37125ad167fbdde26aff00f5201fd1af64a8c77e0d3cb1d327b62a0dbe",
+    "BalancedTernary/BT.lean": "875f0ed9a54757745425f050b441d569bd9d896039e35a3641f25ca4bba8c0c7",
+    "BalancedTernary/Fam_10_m11_4r2.lean": "5320cb716ffea3df82139ea69e0dd70f548775169721f61b49ed1eb7b7d24e6f",
+    "BalancedTernary/Fam_10_m19_4r2.lean": "13800ead8df051d55b5037399b27634eabf8f9e54f85f69bc11887877a49a2a5",
+    "BalancedTernary/Fam_16_p17_2r0.lean": "e166b3eb9a8346aa45b1424dd9477811bd49f8e3c3ccee59c58237553163531e",
+    "BalancedTernary/Fam_20_m19_4r2.lean": "f6edd269b6bc43e8978b0df066cd687dcd42256bcf5e443fe24f7ef4b7215133",
+    "BalancedTernary/Fam_40_p41_4r0.lean": "49b5941bd9e7b336aabd523319788401e0f0e79f685b3a93243b2212259ddd5e",
+    "BalancedTernary/Fam_4_m5.lean": "e4d50663a78b98eba693997cebd5b508b42cedf13f594114700917f1a724361e",
+    "BalancedTernary/Fam_4_p5.lean": "dd1eff2e44f4aadb7c43690f29303fc455f7862c5f2210875ee42cbd29583a97",
+    "BalancedTernary/Fam_5_m4_4r2.lean": "a4cbf3d74b148a84ec0695168bc365177ba501767eb99369196bc1561201815a",
+    "BalancedTernary/Fam_5_p4_4r0.lean": "cddc357aac6a04ac38498824ab0129d5a782ef5c4266e3c93452a0d89349f8fb",
+    "BalancedTernary/Fam_8_m17_2r0.lean": "66418315dca637a57a2db13550d105b29b708cac642f9a84e3f3dd8e84c37617",
+    "BalancedTernary/Fam_8_m7.lean": "eed0fa07ba8b8a420a636ec78dd6dfcc5ba487776687e76b3c014223904b571d",
+    "BalancedTernary/Fam_8_p17.lean": "25804ada91935dc2f1595afaaefec3261c16190bbf2c5be575de2b55d60524d0",
+    "BalancedTernary/Fam_8_p7.lean": "a3114645e71d6a75326bc99e6f5238150d60cb781297bac8bad278c4c7f96459",
+    "BalancedTernary/TernCore.lean": "c8bde6977abf3ccd026a8a315d0e310ea53a3f7233bc4f7256a70b359d795db6",
+    "generator/gen_lean.py": "644800b69e7beaa0008b8a6d6088e72ea7579b4d360d711ec1548efbf0b58dc3",
+    "generator/hyps.json": "242de399c16f246708524b1f79f015d4924e8cabd809e0f87ce3f0d9cbe03d81",
+    "generator/hyps2.json": "ef944222d28bd10f2e0bc4729a83dfa29db7d43d22f59399d69fdae088030287"
+  }
+}

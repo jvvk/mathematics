@@ -1,0 +1,6 @@
+name = "BalancedTernary"
+version = "1.0.0"
+defaultTargets = ["BalancedTernary"]
+
+[[lean_lib]]
+name = "BalancedTernary"
