@@ -2,10 +2,7 @@
 
 Orevkov and Pakovich proved that two lemniscates |P₁| = ρ₁ and |P₂| = ρ₂ of rational functions of degrees n₁, n₂ meet in at most 2n₁n₂ points when they meet in finitely many, that this is sharp for rational functions, and remarked that it does not seem sharp for polynomials. The paper proves that two polynomial lemniscates of degrees n₁, n₂ ≥ 2 with finitely many common points have at most 2n₁n₂ − 2 of them. The bound is attained for (n₁, n₂) = (2, 2) and (2, 3), so the maximum there is 6 and 10. In particular two distinct Cassini ovals, and two lemniscates of Bernoulli, meet in at most six points, which answers [Mathematics Stack Exchange question 1250327](https://math.stackexchange.com/q/1250327) (2015). The proof treats z and z̄ as independent variables: the 2n₁n₂ complex solutions, counted with multiplicity, have a weighted sum equal to −(n₁n₂/2)|c₁ − c₂|² ≤ 0, which forces two of them off the real locus.
 
-Preprint, 8 October 2026.
-
-**Status.** Every theorem, proposition, lemma and corollary is formally verified in Lean 4, except that the ten common points of the (2, 3) example are certified by interval arithmetic and rechecked by an independent program; the proofs have not yet been checked line by line by a human.
-**Origin.** The results and proofs were found with the AI system Claude (Anthropic), directed by the author.
+Preprint v1, 8 October 2026, not peer reviewed. Theorem 1, Corollaries 2 and 3 and every lemma are formally verified in Lean 4 (`lean/`, standard axioms only); the ten common points of the (2, 3) example are certified by interval arithmetic and rechecked by an independent program. The exposition has not yet been independently reviewed. The author used an AI tool (Claude, Anthropic) in this work, as described in the paper's acknowledgement, and is responsible for its content.
 
 ## Contents
 
