@@ -13,6 +13,7 @@ Papers and notes by Vamshi Jandhyala, each with the code that checks it. Every f
 | [Tiling almost-squares with smaller distinct almost-squares](almost-square-tilings/) | Paper | Preprint, 8 October 2026; not peer reviewed | Independent checker for every finite case; Lean (Theorem 1, every lemma and printed number; n = 16, 17, 19 by `native_decide`) |
 | [Two triangulations that share only their hull](two-triangulations-hull/) | Paper | Preprint, 8 October 2026 | Exact checker; exhaustive order-type search to n = 10; Lean (Theorem 2 assumes the n = 6 to 8 search) |
 | [Shuffle anti-squares of every even length from 24](shuffle-anti-squares/) | Paper | Preprint, 8 October 2026 | Lean (Theorems 2 and 4, Corollary 6, all examples); exhaustive searches each confirmed by a second, independent program |
+| [A randomized Pascal triangle whose average blows up](randomized-pascal-triangle/) | Note | Preprint, 8 October 2026; not peer reviewed | Lean (Theorem 1 and L_p = ∞ for p > 1 − 1/√2; Theorem 2 from a local inequality); that inequality by an exact certificate, checked by two independent programs |
 | [Six circles in a rectangle: a proof by pure geometry](six-circles-rectangle/) | Note | Preprint, 8 October 2026 | Every step checked numerically to 50 digits; Lean, step by step |
 | [Nine rectangles of equal perimeter, no two alike, in a square](equal-perimeter-rectangles/) | Note | Preprint, 8 October 2026 | Exact rational enumeration of every type to n = 9 by two independent programs; counts match OEIS A100664 |
 

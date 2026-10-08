@@ -1,0 +1,176 @@
+{
+  "planes": 41,
+  "rays": 251,
+  "certificates": {
+    "quarter": "all 1004 rational coefficients independently matched and nonnegative",
+    "low": "all 1004 rational coefficients independently matched and nonnegative"
+  },
+  "mutations": {
+    "excessive_growth": true,
+    "interval_extended_to_zero": true,
+    "variation_term_removed": true
+  },
+  "exact_triangle_controls": {
+    "0": [
+      {
+        "row": 1,
+        "states": 1,
+        "expected_sum": "2"
+      },
+      {
+        "row": 2,
+        "states": 1,
+        "expected_sum": "2"
+      },
+      {
+        "row": 3,
+        "states": 1,
+        "expected_sum": "4"
+      },
+      {
+        "row": 4,
+        "states": 1,
+        "expected_sum": "2"
+      },
+      {
+        "row": 5,
+        "states": 1,
+        "expected_sum": "4"
+      },
+      {
+        "row": 6,
+        "states": 1,
+        "expected_sum": "4"
+      }
+    ],
+    "29/125": [
+      {
+        "row": 1,
+        "states": 1,
+        "expected_sum": "2"
+      },
+      {
+        "row": 2,
+        "states": 2,
+        "expected_sum": "308/125"
+      },
+      {
+        "row": 3,
+        "states": 4,
+        "expected_sum": "65864/15625"
+      },
+      {
+        "row": 4,
+        "states": 26,
+        "expected_sum": "923884624/244140625"
+      },
+      {
+        "row": 5,
+        "states": 164,
+        "expected_sum": "23197374913568/3814697265625"
+      },
+      {
+        "row": 6,
+        "states": 2839,
+        "expected_sum": "51515115725046517952/7450580596923828125"
+      }
+    ],
+    "1/4": [
+      {
+        "row": 1,
+        "states": 1,
+        "expected_sum": "2"
+      },
+      {
+        "row": 2,
+        "states": 2,
+        "expected_sum": "5/2"
+      },
+      {
+        "row": 3,
+        "states": 4,
+        "expected_sum": "17/4"
+      },
+      {
+        "row": 4,
+        "states": 26,
+        "expected_sum": "253/64"
+      },
+      {
+        "row": 5,
+        "states": 164,
+        "expected_sum": "3217/512"
+      },
+      {
+        "row": 6,
+        "states": 2839,
+        "expected_sum": "237749/32768"
+      }
+    ],
+    "1/2": [
+      {
+        "row": 1,
+        "states": 1,
+        "expected_sum": "2"
+      },
+      {
+        "row": 2,
+        "states": 2,
+        "expected_sum": "3"
+      },
+      {
+        "row": 3,
+        "states": 4,
+        "expected_sum": "5"
+      },
+      {
+        "row": 4,
+        "states": 26,
+        "expected_sum": "27/4"
+      },
+      {
+        "row": 5,
+        "states": 164,
+        "expected_sum": "83/8"
+      },
+      {
+        "row": 6,
+        "states": 2839,
+        "expected_sum": "947/64"
+      }
+    ],
+    "1": [
+      {
+        "row": 1,
+        "states": 1,
+        "expected_sum": "2"
+      },
+      {
+        "row": 2,
+        "states": 1,
+        "expected_sum": "4"
+      },
+      {
+        "row": 3,
+        "states": 1,
+        "expected_sum": "8"
+      },
+      {
+        "row": 4,
+        "states": 1,
+        "expected_sum": "16"
+      },
+      {
+        "row": 5,
+        "states": 1,
+        "expected_sum": "32"
+      },
+      {
+        "row": 6,
+        "states": 1,
+        "expected_sum": "64"
+      }
+    ]
+  },
+  "success": true
+}

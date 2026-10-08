@@ -1,0 +1,22 @@
+{
+  "source_commit": "f10399e (lean-proofs; LeanProofs/RandPascal/* unchanged at HEAD dec69ba)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports RandPascal only)",
+    "CheckClaims.lean (new)",
+    "scripts/mutants.py (copy of lean-proofs scripts/randpascal_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "494fca54ddab70813fdd763426f4dd0a843c2c37f6e598b6069eb3da7b49942f",
+    "LeanProofs/RandPascal/Basic.lean": "d65aa43027188a549bd7f6f4ae9c61d010d1088b92479e93567a5554b1a6270c",
+    "LeanProofs/RandPascal/Bridge.lean": "70440cabdfd31c11e97517362425e07898e309e04e11ed2167219d3dbdaec4d0",
+    "LeanProofs/RandPascal/Main.lean": "d8dbff51aeaca3389b8bfb5b969e5b82bd1b0e809132522f4e9bb107d3ae8ac4",
+    "LeanProofs/RandPascal/Mean.lean": "d0b77d77bf58380b32a1061156b8b0f22798e15d7afa07e1a4f3f788b0f4546e",
+    "LeanProofs/RandPascal/Sums.lean": "a9557ec9e4e9cfb828a6054ba4966bc984ba51189f32f7c5b29482d2adb9bd2e",
+    "LeanProofs/RandPascal/TheoremA.lean": "cde6ae91840015d909833c334a70ee3eb8888e86d2105d2cb344abf20bc9ebe4",
+    "LeanProofs/RandPascal/TheoremB.lean": "886c67d192ff9ec7baffb4a5d6eb9cd0f599923f27a871d7cfc8535764b0d086",
+    "LeanProofs.lean": "5a66624a1cdea1f075d7e134d51f749ae2ef1b601aa80d943cd1ff59d6b921e9",
+    "scripts/mutants.py": "638fe62484a5dd17c144868ac52d274362b6589971449007dd68ae609e0ef069"
+  }
+}

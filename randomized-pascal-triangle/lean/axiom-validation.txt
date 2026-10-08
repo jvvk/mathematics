@@ -1,0 +1,20 @@
+RandPascal.theoremA {p : ℝ} (hp0 : 0 < p) (hp1 : p ≤ 1) (n : ℕ) :
+  RandPascal.lamA p ^ n ≤ RandPascal.Exp p n (RandPascal.S (n + 4))
+'RandPascal.theoremA' depends on axioms: [propext, Classical.choice, Quot.sound]
+RandPascal.one_lt_lamA {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (h : 2 * p ^ 2 - 4 * p + 1 < 0) : 1 < RandPascal.lamA p
+'RandPascal.one_lt_lamA' depends on axioms: [propext, Classical.choice, Quot.sound]
+RandPascal.meanN_diverges_A {p : ℝ} (hp0 : 0 < p) (hp1 : p ≤ 1) (h : 2 * p ^ 2 - 4 * p + 1 < 0) :
+  Filter.Tendsto (RandPascal.meanN p) Filter.atTop Filter.atTop
+'RandPascal.meanN_diverges_A' depends on axioms: [propext, Classical.choice, Quot.sound]
+RandPascal.theoremB {p : ℝ} (hp0 : 29 / 125 ≤ p) (hp1 : p ≤ 1) (hloc : RandPascal.LocalIneq RandPascal.mainCert p)
+  (n : ℕ) : (5001 / 5000) ^ n ≤ RandPascal.Exp p n (RandPascal.S (n + 4))
+'RandPascal.theoremB' depends on axioms: [propext, Classical.choice, Quot.sound]
+RandPascal.theoremB_quarter {p : ℝ} (hp0 : 1 / 4 ≤ p) (hp1 : p ≤ 1)
+  (hloc : RandPascal.LocalIneq RandPascal.quarterCert p) (n : ℕ) :
+  (51 / 50) ^ n ≤ RandPascal.Exp p n (RandPascal.S (n + 4))
+'RandPascal.theoremB_quarter' depends on axioms: [propext, Classical.choice, Quot.sound]
+RandPascal.meanN_diverges_B {p : ℝ} (hp0 : 29 / 125 ≤ p) (hp1 : p ≤ 1)
+  (hloc : RandPascal.LocalIneq RandPascal.mainCert p) : Filter.Tendsto (RandPascal.meanN p) Filter.atTop Filter.atTop
+'RandPascal.meanN_diverges_B' depends on axioms: [propext, Classical.choice, Quot.sound]
+RandPascal.bridge1 : RandPascal.Gloc RandPascal.mainCert (29 / 125) 1 0 0 0 = 6757339 / 18750000
+RandPascal.bridge5 : RandPascal.Gloc RandPascal.mainCert (29 / 125) 2 1 0 1 = 400627 / 9375000
