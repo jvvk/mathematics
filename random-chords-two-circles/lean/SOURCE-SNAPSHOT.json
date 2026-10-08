@@ -1,0 +1,21 @@
+{
+  "source_repo": "lean-proofs (private)",
+  "source_commit": "d0721174315a7a1af4b7d76770283a06f31f814f",
+  "note": "RandomChords/*.lean are LeanProofs/Chords at this commit, with imports renamed from LeanProofs.Chords to RandomChords; RandomChords.lean is new. Built in this layout on 8 October 2026: 2800 jobs, every axiom audit (29 results) standard; mutants.sh: 23 mutants rejected, the unchanged copy builds.",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_rev": "v4.34.0",
+  "files": {
+    "RandomChords/Audit.lean": "1fed2a8b1ea72b8af2c1e1ef40331eb46e580f88d43533cc1beeefe56adc45d2",
+    "RandomChords/Basic.lean": "dd9cd8550020a24ec2a5f6051a031e1d2e79498f79b3382e0a08cee0e4ecb7e9",
+    "RandomChords/Branches.lean": "4bfcb65ecbc0d32ee65e10a6a4aacc701aa82464adc9291546768da4928ed64f",
+    "RandomChords/Centres.lean": "57423e8916fbaaf2f038450c1dcd10a9f66313a04c14e9601a017b242d42a0e6",
+    "RandomChords/Corollaries.lean": "2c2d4b1bc0a1a8d20077ba3f8844f0e01a89636e45d27dbc767a724cc99ffa90",
+    "RandomChords/HitProb.lean": "3fd59a004ef681e217d2ee58042dfcce9a39bde3f5df8e64e4fb665ca8957157",
+    "RandomChords/Moments.lean": "c5e26c40a8942ad8d0c26218deba5472bca0227c49eb677263564437b687609a",
+    "RandomChords/Offsets.lean": "9f594d7e7d31c9e4469126bec7359161b2dac086981eedcd04a1e25b3913c335",
+    "RandomChords/OneCircle.lean": "9f8469ca23c2f3d9ddb822d2bca5e3b1f64852b447b471cf6bd3a21bf7cd4bcd",
+    "RandomChords/Remarks.lean": "263080b2581b10ebf6ad9f51b6aad720fef944586bd8c8482a133cff61338e09",
+    "RandomChords/TwoCircles.lean": "386cc0a0ac4458d52c93715d0cc39e7cd297aeaa0e785608c2605a73448c86d8",
+    "RandomChords.lean": "bbbadd21abd15df8da96b21cb9cba29e3f146247906f632af41aff1277eebe53"
+  }
+}
