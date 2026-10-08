@@ -1,0 +1,33 @@
+import EnclosingCopy.Enclosing.FullBoundaryLimit
+
+/-! Signature and standard-axiom audit for removal of boundary endpoint margins. -/
+#check Enclosing.exists_physicalSideStrip_enlargement
+#check Enclosing.exists_endpointRemainder_mass_bound
+#check Enclosing.exists_omittedBoundary_mass_bound
+#check Enclosing.exists_endpointHit_bound
+#check Enclosing.polygon_endpoint_trimming_tightness
+#check Enclosing.endpoint_protrusion_hit_limit_zero
+#check PoissonPP.event_probability_diff_le
+#check PoissonPP.iid_hit_real_le
+#check PoissonPP.poisson_add_event_diff_le_mass
+#check Enclosing.measurableSet_physicalBoundary_event
+#check Enclosing.physical_trimmed_config_agreement
+#check Enclosing.physical_trimmed_event_diff_le
+#check Enclosing.boundary_deleted_intensity_mass
+#check Enclosing.poisson_trimmed_event_diff_le
+#check Enclosing.polygon_full_boundary_event_limit
+#print axioms Enclosing.exists_physicalSideStrip_enlargement
+#print axioms Enclosing.exists_endpointRemainder_mass_bound
+#print axioms Enclosing.exists_omittedBoundary_mass_bound
+#print axioms Enclosing.exists_endpointHit_bound
+#print axioms Enclosing.polygon_endpoint_trimming_tightness
+#print axioms Enclosing.endpoint_protrusion_hit_limit_zero
+#print axioms PoissonPP.event_probability_diff_le
+#print axioms PoissonPP.iid_hit_real_le
+#print axioms PoissonPP.poisson_add_event_diff_le_mass
+#print axioms Enclosing.measurableSet_physicalBoundary_event
+#print axioms Enclosing.physical_trimmed_config_agreement
+#print axioms Enclosing.physical_trimmed_event_diff_le
+#print axioms Enclosing.boundary_deleted_intensity_mass
+#print axioms Enclosing.poisson_trimmed_event_diff_le
+#print axioms Enclosing.polygon_full_boundary_event_limit
