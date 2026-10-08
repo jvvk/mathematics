@@ -1,0 +1,15 @@
+{
+  "source_repo": "lean-proofs (private)",
+  "source_commit": "047c1b82bb01a020cf7b8d35374c6d44ed97a1c4",
+  "note": "MexSequence/{Basic,Arith,Main,Twins}.lean are LeanProofs/MexE27 at this commit, with imports renamed from LeanProofs.MexE27 to MexSequence; Audit.lean and MexSequence.lean are new. Built in this layout on 8 October 2026: 3098 jobs, every axiom audit standard; mutants.sh: ten mutants rejected, a comment-only control accepted.",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_rev": "v4.34.0",
+  "files": {
+    "MexSequence.lean": "0d626a27bc1d107367da361403683f8674abae0eb6ed324ddf75a12de1127f85",
+    "MexSequence/Arith.lean": "289887f7e6fe19d8a730698f2b2093529a3e37f2de7ec6aae43563a2eabe8cf1",
+    "MexSequence/Audit.lean": "f111ee65a2162071a329cf5a4f7c2b9536d47a6b40573298d13aab948cc9761f",
+    "MexSequence/Basic.lean": "92036a61e6901e772c88ba05e2ba928aa3a4f5bdd0276e18f0a34d27d63508d8",
+    "MexSequence/Main.lean": "c69903961cb23d87be33ae0946b6da58c05c858a6fd06b83d66cdeaea0e7c11b",
+    "MexSequence/Twins.lean": "5d7bf6d45babadcdb2e881ee44c71704bfd586393a54f94aebff0cf8a3ad8a23"
+  }
+}
