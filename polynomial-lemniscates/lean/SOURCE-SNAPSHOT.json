@@ -1,0 +1,30 @@
+{
+  "source_repository": "lean-proofs (private development repository)",
+  "source_commit": "3727f857b00f73be4acc81f3e6b8b5641f86a8b8",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [],
+  "files": {
+    "CheckClaims.lean": "39c421dfbeaeea6fab73e469b5eea80dccfacd712ed6e37be6da8be85f76142d",
+    "LeanProofs/Lemniscates/CaseI.lean": "6dc330b94fc7d699f8ac6d714f513209873a54b3961a21616bcbe091eeef8dbb",
+    "LeanProofs/Lemniscates/CaseII.lean": "8770ed31b532519edcbae82efcea050e1bc5e1d78757f5a16ea8c1ecd20ed9fc",
+    "LeanProofs/Lemniscates/CaseIIb.lean": "208b32e7043da95928d144e4a5a26581903cc20d332ac5c0c3e286b5bf8b39ef",
+    "LeanProofs/Lemniscates/Constancy.lean": "2dbfe01978a8421061295d3b1e2ddaa02b8b2a80ae55cd6c8c29e86a7f241718",
+    "LeanProofs/Lemniscates/Corollaries.lean": "f897bfaebeb35b5063d5a0a7ae643ff0103574c35d148b8871f30160df42af1b",
+    "LeanProofs/Lemniscates/Deform.lean": "cefb874d8464f7c0d767bb76b08c62cecfb9d887e5f1e6e4851702dc3b60be4a",
+    "LeanProofs/Lemniscates/Fibre.lean": "982d9c6ba994393a0c10fe12e4ecd7ad6db2cab07a83ca65855e6705f9beec59",
+    "LeanProofs/Lemniscates/GrowthGen.lean": "2586524b9ba51d763e83150cd9562a32192bc0da2aafc243de73febadabc8878",
+    "LeanProofs/Lemniscates/Integral.lean": "1ec690538a54abad7c88cc18c4fe1c60607fc64d21accb80532f50d89f1852ec",
+    "LeanProofs/Lemniscates/Level0.lean": "0bd17c0ee4f99ba0a21cd2d2c3e790f2ce1536edb9d623842cceb133075b0f41",
+    "LeanProofs/Lemniscates/Liouville.lean": "b182d4c857c872d15e425523c0425f8254b8ffdaf3733d7886674283aa1e2766",
+    "LeanProofs/Lemniscates/NoCommon.lean": "71cb7da1b54fdfdc7639ea81ac488e296d80a07f04b0e9ff63eedc2c8eb85093",
+    "LeanProofs/Lemniscates/Pairing.lean": "ef14afc192ac8226bd1aeb28e303645c45f89f276c1852f92edcbaf1b6839f59",
+    "LeanProofs/Lemniscates/ResTop.lean": "9d81eef4243815342f71127510044d9b609e8be91c759b1b8a35ad3f5912802a",
+    "LeanProofs/Lemniscates/TheoremA.lean": "c102887262f26ba82e8d42c6f148f1629a7af344e778d885f98c161fb624821a",
+    "LeanProofs/Lemniscates/TraceFormula.lean": "748f11d9150880ae77d99069af75c766368b3d4f37063d17e77f3d799a00c62e",
+    "LeanProofs.lean": "214868e30f304743fbc59718b17d71318abf02c0097de1d5c082603bdf0a4cb8",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "lean-toolchain": "8733782dc070a99b312039cda424f601b80f3be6f6f512627da5ba25adc27632"
+  }
+}

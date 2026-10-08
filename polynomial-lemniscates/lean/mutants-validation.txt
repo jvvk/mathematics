@@ -1,0 +1,20 @@
+rejected  Pairing: '(S.filter (fun p => σ p = p)).card ≤ 5 := by'
+rejected  Liouville: '(hb : ∀ z, ‖f z‖ ≤ A + B * ‖z‖)'
+rejected  TheoremA: 'hfin.toFinset.card ≤ 2 * P₁.natDegree * P₂.natDegree - 3 := by'
+rejected  Corollaries: '(F : Finset ℂ) (hF : ∀ z ∈ F, z ∈ oval a b ρ₁ ∧ z ∈ oval c d ρ₂) : F.c'
+rejected  Corollaries: 'theorem bernoulli_six : ∃ F : Finset ℂ, F.card = 7 ∧'
+rejected  Corollaries: '    M n₁ n₂ = 2 * n₁ * n₂ - 2 ↔ (n₁ = 2 ∧ n₂ = 2) ∨ (n₁ = 2 ∧ n₂ = 4) '
+rejected  CaseI: 'F.card ≤ 2 * f₁.natDegree * f₂.natDegree - 3 := by\n  set n₁'
+rejected  CaseI: 'S.card = f₁.natDegree * g₂.natDegree + f₂.natDegree * g₁.natDegree + 1'
+rejected  Level0: "      (D.f'.nextCoeff - D.f'.natDegree * m) * (-D.g.nextCoeff - D.g.na"
+rejected  Level0: '    finrank ℂ (RI f g) = f.natDegree + g.natDegree ∧'
+rejected  TraceFormula: 'theorem card_S : (S a b).card = finrank ℂ A + 1 := by'
+rejected  Fibre: '      (LinearMap.trace ℂ[X] S (Algebra.lmul ℂ[X] S x)).eval (c + 1) :='
+rejected  GrowthGen: "(hn : 1 ≤ f.natDegree) (hn' : 0 < f'.natDegree) (hg : IsCoprime g' g) "
+rejected  CaseII: '      g₁.natDegree * f₂.natDegree + g₂.natDegree * f₁.natDegree - 3 :='
+rejected  CaseIIb: '(h : ∀ t : ℝ, 0 < t → t < δ → t ^ p ≤ C * t ^ q) : q < p := by'
+rejected  CaseIIb: '    f₁ ^ f₁.natDegree = f₂ ^ f₂.natDegree := by\n  classical'
+rejected  Integral: '    (hg : IsCoprime g g)\n'
+rejected  Constancy: '    (τ D φ).eval c = (τ D φ).eval 1 := by'
+rejected  ResTop: '    M.det.coeff (∑ j, d j - 1) = (Matrix.of fun i j => (M i j).coeff ('
+19/19 rejected

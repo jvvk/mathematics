@@ -1,0 +1,2 @@
+dim 8 trace -(p1 - q1)*(s1 - t1)/2 want -(p1 - q1)*(s1 - t1)/2
+exit 0

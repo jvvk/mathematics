@@ -1,0 +1,241 @@
+Lemniscates.theoremA : ∀ (P₁ P₂ : Polynomial ℂ),
+  2 ≤ P₁.natDegree →
+    2 ≤ P₂.natDegree →
+      ∀ {ρ₁ ρ₂ : ℝ},
+        0 < ρ₁ →
+          0 < ρ₂ →
+            ∀ (hfin : {z | ‖Polynomial.eval z P₁‖ = ρ₁ ∧ ‖Polynomial.eval z P₂‖ = ρ₂}.Finite),
+              hfin.toFinset.card ≤ 2 * P₁.natDegree * P₂.natDegree - 2
+'Lemniscates.theoremA' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Lemniscates.oval_le_six : ∀ {a b c d : ℂ} {ρ₁ ρ₂ : ℝ},
+  0 < ρ₁ →
+    0 < ρ₂ →
+      Lemniscates.oval a b ρ₁ ≠ Lemniscates.oval c d ρ₂ →
+        ∀ (F : Finset ℂ), (∀ z ∈ F, z ∈ Lemniscates.oval a b ρ₁ ∧ z ∈ Lemniscates.oval c d ρ₂) → F.card ≤ 6
+'Lemniscates.oval_le_six' depends on axioms: [propext, Classical.choice, Quot.sound]
+Lemniscates.bernoulli_six : ∃ F, F.card = 6 ∧ ∀ z ∈ F, z ∈ Lemniscates.oval (-1) 1 1 ∧ z ∈ Lemniscates.oval 0 2 1
+'Lemniscates.bernoulli_six' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Lemniscates.M_eq_iff : ∀ {n₁ n₂ : ℕ},
+  2 ≤ n₁ → n₁ ≤ n₂ → (Lemniscates.M n₁ n₂ = 2 * n₁ * n₂ - 2 ↔ n₁ = 2 ∧ n₂ = 2 ∨ n₁ = 2 ∧ n₂ = 3)
+'Lemniscates.M_eq_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+Lemniscates.real_card_le : ∀ (m : ℂ) (S : Multiset (ℂ × ℂ)) {N : ℕ},
+  S.card = N →
+    3 ≤ N →
+      (∀ p ∈ S, Lemniscates.σ p ∈ S) →
+        ∀ {v : ℝ},
+          v ≤ 0 →
+            (Multiset.map (Lemniscates.φ m) S).sum = ↑v →
+              ∀ (F : Finset ℂ), (∀ z ∈ F, (z, (starRingEnd ℂ) z) ∈ S) → F.card ≤ N - 2
+'Lemniscates.real_card_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Lemniscates.TraceFormula.trace_eq : ∀ {A : Type u_1} [inst : CommRing A] [inst_1 : Algebra ℂ A]
+  [inst_2 : FiniteDimensional ℂ A] (a b : A) (P : Polynomial (Polynomial ℂ)),
+  (LinearMap.trace ℂ A) ((Algebra.lmul ℂ A) ((Polynomial.aevalAeval a b) P)) =
+    (Multiset.map (fun p => Polynomial.evalEval p.1 p.2 P) (Lemniscates.TraceFormula.S a b)).sum
+'Lemniscates.TraceFormula.trace_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Lemniscates.TraceFormula.mem_S_of_algHom : ∀ {A : Type u_1} [inst : CommRing A] [inst_1 : Algebra ℂ A]
+  [inst_2 : FiniteDimensional ℂ A] (a b : A) (ev : A →ₐ[ℂ] ℂ), (ev a, ev b) ∈ Lemniscates.TraceFormula.S a b
+'Lemniscates.TraceFormula.mem_S_of_algHom' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Lemniscates.no_common_prime : ∀ {f₁ f₂ g₁ g₂ : Polynomial ℂ},
+  0 < f₁.natDegree →
+    0 < f₂.natDegree →
+      IsCoprime f₁ f₂ →
+        g₁.Monic →
+          g₂.Monic →
+            0 < g₁.natDegree →
+              0 < g₂.natDegree →
+                IsCoprime g₁ g₂ →
+                  ∀ (c : ℂ) {r : ℂ},
+                    r ≠ 0 →
+                      ∀ {H : Polynomial (Polynomial ℂ)},
+                        Prime H → H ∣ Lemniscates.Fp f₁ g₁ c → H ∣ Lemniscates.Fp f₂ g₂ r → False
+'Lemniscates.no_common_prime' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Lemniscates.no_common_prime_zero : ∀ {f₁ f₂ g₁ g₂ : Polynomial ℂ},
+  0 < f₁.natDegree →
+    0 < f₂.natDegree →
+      IsCoprime f₁ f₂ →
+        g₁.Monic →
+          g₂.Monic →
+            0 < g₁.natDegree →
+              0 < g₂.natDegree →
+                IsCoprime g₁ g₂ →
+                  ∀ (c : ℂ) {H : Polynomial (Polynomial ℂ)},
+                    Prime H → H ∣ Lemniscates.Fp f₁ g₁ 0 → H ∣ Lemniscates.Fp f₂ g₂ c → False
+'Lemniscates.no_common_prime_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Lemniscates.ResTop.resultant_top : ∀ {K : Type u_1} [inst : CommRing K] (p q : Polynomial (Polynomial K))
+  (m n d₁ d₂ : ℕ) (pt qt : Polynomial K),
+  (∀ (k : ℕ), (p.coeff k).natDegree ≤ d₁) →
+    (∀ (k : ℕ), (q.coeff k).natDegree ≤ d₂) →
+      (∀ (k : ℕ), (p.coeff k).coeff d₁ = pt.coeff k) →
+        (∀ (k : ℕ), (q.coeff k).coeff d₂ = qt.coeff k) →
+          (p.resultant q m n).natDegree ≤ m * d₂ + n * d₁ ∧
+            (p.resultant q m n).coeff (m * d₂ + n * d₁) = pt.resultant qt m n
+'Lemniscates.ResTop.resultant_top' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Lemniscates.ResTop.resultant_subtop : ∀ {K : Type u_1} [inst : CommRing K] (p q : Polynomial (Polynomial K))
+  (m n d₁ d₂ : ℕ) (pt qt : Polynomial K) (e₁ e₂ : K),
+  1 ≤ m + n →
+    1 ≤ d₁ →
+      1 ≤ d₂ →
+        (∀ (k : ℕ), (p.coeff k).natDegree ≤ d₁) →
+          (∀ (k : ℕ), (q.coeff k).natDegree ≤ d₂) →
+            (∀ (k : ℕ), (p.coeff k).coeff d₁ = pt.coeff k) →
+              (∀ (k : ℕ), (q.coeff k).coeff d₂ = qt.coeff k) →
+                (∀ (k : ℕ), (p.coeff k).coeff (d₁ - 1) = e₁ * (p.coeff k).coeff d₁) →
+                  (∀ (k : ℕ), (q.coeff k).coeff (d₂ - 1) = e₂ * (q.coeff k).coeff d₂) →
+                    (p.resultant q m n).coeff (m * d₂ + n * d₁ - 1) = (↑m * e₂ + ↑n * e₁) * pt.resultant qt m n
+'Lemniscates.ResTop.resultant_subtop' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Lemniscates.Integral.exists_monic : ∀ {B : Type u_1} [inst : CommRing B] [inst_1 : Algebra ℂ B] (x y h : B)
+  (f g f' g' : Polynomial ℂ) (r : ℂ),
+  f.Monic →
+    f'.Monic →
+      0 < f.natDegree →
+        0 < f'.natDegree →
+          0 < g.natDegree →
+            IsCoprime g g' →
+              (Polynomial.aeval x) f * (Polynomial.aeval y) g = h →
+                (Polynomial.aeval x) f' * (Polynomial.aeval y) g' = (algebraMap ℂ B) r →
+                  ∃ p, p.Monic ∧ Polynomial.eval₂ (Polynomial.aeval h).toRingHom x p = 0
+'Lemniscates.Integral.exists_monic' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Lemniscates.Fibre.trace_fibre : ∀ {S : Type u_1} [inst : CommRing S] [inst_1 : Algebra (Polynomial ℂ) S]
+  [inst_2 : Algebra ℂ S] [IsScalarTower ℂ (Polynomial ℂ) S] [Module.Free (Polynomial ℂ) S]
+  [Module.Finite (Polynomial ℂ) S] (c : ℂ) (x : S),
+  (LinearMap.trace ℂ (S ⧸ Lemniscates.Fibre.J c))
+      ((Algebra.lmul ℂ (S ⧸ Lemniscates.Fibre.J c)) ((Ideal.Quotient.mk (Lemniscates.Fibre.J c)) x)) =
+    Polynomial.eval c ((LinearMap.trace (Polynomial ℂ) S) ((Algebra.lmul (Polynomial ℂ) S) x))
+'Lemniscates.Fibre.trace_fibre' depends on axioms: [propext, Classical.choice, Quot.sound]
+Lemniscates.Deform.fibre_multiset : ∀ (D : Lemniscates.Deform.Data) (c : ℂ),
+  ∃ S,
+    S.card = Module.finrank (Polynomial ℂ) (Lemniscates.Deform.M D) ∧
+      (∀ (φ : Polynomial (Polynomial ℂ)),
+          (Multiset.map (fun p => Polynomial.evalEval p.1 p.2 φ) S).sum =
+            Polynomial.eval c (Lemniscates.Deform.τ D φ)) ∧
+        (∀ p ∈ S,
+            Polynomial.evalEval p.1 p.2 (Lemniscates.Fp D.f D.g c) = 0 ∧
+              Polynomial.evalEval p.1 p.2 (Lemniscates.Fp D.f' D.g' D.r) = 0) ∧
+          ∀ (zz ww : ℂ),
+            Polynomial.evalEval zz ww (Lemniscates.Fp D.f D.g c) = 0 →
+              Polynomial.evalEval zz ww (Lemniscates.Fp D.f' D.g' D.r) = 0 → (zz, ww) ∈ S
+'Lemniscates.Deform.fibre_multiset' depends on axioms: [propext, Classical.choice, Quot.sound]
+Lemniscates.GrowthGen.growth_level : ∀ (f g f' g' : Polynomial ℂ) (r : ℂ),
+  f.Monic →
+    g.Monic →
+      f'.Monic →
+        g'.Monic →
+          2 ≤ f.natDegree →
+            2 ≤ g.natDegree →
+              0 < f'.natDegree →
+                0 < g'.natDegree →
+                  IsCoprime f' f →
+                    IsCoprime g' g →
+                      ∀ (m m' : ℂ),
+                        ∃ A B,
+                          ∀ (c Z W : ℂ),
+                            Polynomial.eval Z f * Polynomial.eval W g = c →
+                              Polynomial.eval Z f' * Polynomial.eval W g' = r → ‖(Z - m) * (W - m')‖ ≤ A + B * √‖c‖
+'Lemniscates.GrowthGen.growth_level' depends on axioms: [propext, Classical.choice, Quot.sound]
+Lemniscates.GrowthGen.growth_zero : ∀ (f₁ g₁ f₂ g₂ : Polynomial ℂ),
+  f₁.Monic →
+    g₁.Monic →
+      f₂.Monic →
+        g₂.Monic →
+          0 < f₁.natDegree →
+            0 < g₁.natDegree →
+              2 ≤ f₂.natDegree →
+                2 ≤ g₂.natDegree →
+                  IsCoprime f₁ f₂ →
+                    IsCoprime g₁ g₂ →
+                      ∀ (m m' : ℂ),
+                        ∃ A B,
+                          ∀ (d Z W : ℂ),
+                            Polynomial.eval Z f₁ * Polynomial.eval W g₁ = 0 →
+                              Polynomial.eval Z f₂ * Polynomial.eval W g₂ = d → ‖(Z - m) * (W - m')‖ ≤ A + B * √‖d‖
+'Lemniscates.GrowthGen.growth_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+Lemniscates.Deform.tau_const : ∀ (D : Lemniscates.Deform.Data) (φ : Polynomial (Polynomial ℂ)) (A B : ℝ),
+  (∀ (c Z W : ℂ),
+      Polynomial.eval Z D.f * Polynomial.eval W D.g = c →
+        Polynomial.eval Z D.f' * Polynomial.eval W D.g' = D.r → ‖Polynomial.evalEval Z W φ‖ ≤ A + B * √‖c‖) →
+    ∀ (c : ℂ), Polynomial.eval c (Lemniscates.Deform.τ D φ) = Polynomial.eval 0 (Lemniscates.Deform.τ D φ)
+'Lemniscates.Deform.tau_const' depends on axioms: [propext, Classical.choice, Quot.sound]
+Lemniscates.Level0.level0 : ∀ (D : Lemniscates.Deform.Data),
+  D.r = 0 →
+    ∀ (m m' : ℂ),
+      Module.finrank ℂ (Lemniscates.Deform.Q D 0) = D.f'.natDegree * D.g.natDegree + D.f.natDegree * D.g'.natDegree ∧
+        (LinearMap.trace ℂ (Lemniscates.Deform.Q D 0))
+            ((Algebra.lmul ℂ (Lemniscates.Deform.Q D 0)) ((Lemniscates.Deform.mkQ D 0) (Lemniscates.Level0.φ m m'))) =
+          (-D.f'.nextCoeff - ↑D.f'.natDegree * m) * (-D.g.nextCoeff - ↑D.g.natDegree * m') +
+            (-D.f.nextCoeff - ↑D.f.natDegree * m) * (-D.g'.nextCoeff - ↑D.g'.natDegree * m')
+'Lemniscates.Level0.level0' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Lemniscates.CaseI.trace_identity : ∀ {f₁ f₂ g₁ g₂ : Polynomial ℂ},
+  Lemniscates.CaseI.Hyp f₁ f₂ g₁ g₂ →
+    ∀ (r₁ r₂ : ℂ),
+      r₂ ≠ 0 →
+        ∀ (m m' : ℂ),
+          ∃ S,
+            S.card = f₁.natDegree * g₂.natDegree + f₂.natDegree * g₁.natDegree ∧
+              (Multiset.map (fun p => (p.1 - m) * (p.2 - m')) S).sum =
+                  (-f₁.nextCoeff - ↑f₁.natDegree * m) * (-g₂.nextCoeff - ↑g₂.natDegree * m') +
+                    (-f₂.nextCoeff - ↑f₂.natDegree * m) * (-g₁.nextCoeff - ↑g₁.natDegree * m') ∧
+                (∀ p ∈ S,
+                    Polynomial.eval p.1 f₁ * Polynomial.eval p.2 g₁ = r₁ ∧
+                      Polynomial.eval p.1 f₂ * Polynomial.eval p.2 g₂ = r₂) ∧
+                  ∀ (Z W : ℂ),
+                    Polynomial.eval Z f₁ * Polynomial.eval W g₁ = r₁ →
+                      Polynomial.eval Z f₂ * Polynomial.eval W g₂ = r₂ → (Z, W) ∈ S
+'Lemniscates.CaseI.trace_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Lemniscates.CaseI.caseI : ∀ {f₁ f₂ : Polynomial ℂ},
+  f₁.Monic →
+    f₂.Monic →
+      2 ≤ f₁.natDegree →
+        2 ≤ f₂.natDegree →
+          IsCoprime f₁ f₂ →
+            ∀ {r₁ r₂ : ℝ},
+              r₂ ≠ 0 →
+                ∀ (F : Finset ℂ),
+                  (∀ z ∈ F, ‖Polynomial.eval z f₁‖ ^ 2 = r₁ ∧ ‖Polynomial.eval z f₂‖ ^ 2 = r₂) →
+                    F.card ≤ 2 * f₁.natDegree * f₂.natDegree - 2
+'Lemniscates.CaseI.caseI' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Lemniscates.CaseII.R_natDegree_le : ∀ {f₁ f₂ g₁ g₂ : Polynomial ℂ} (r₁ r₂ : ℂ),
+  f₁.Monic →
+    f₂.Monic →
+      2 ≤ f₁.natDegree →
+        2 ≤ f₂.natDegree →
+          1 ≤ g₁.natDegree →
+            g₁.resultant g₂ = 0 →
+              (Lemniscates.CaseII.R f₁ f₂ g₁ g₂ r₁ r₂).natDegree ≤
+                g₁.natDegree * f₂.natDegree + g₂.natDegree * f₁.natDegree - 2
+'Lemniscates.CaseII.R_natDegree_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Lemniscates.CaseII.count_of_R_ne_zero : ∀ {f₁ f₂ : Polynomial ℂ} {r₁ r₂ : ℝ},
+  f₁.Monic →
+    f₂.Monic →
+      2 ≤ f₁.natDegree →
+        2 ≤ f₂.natDegree →
+          ∀ {ζ : ℂ},
+            Polynomial.eval ζ f₁ = 0 →
+              Polynomial.eval ζ f₂ = 0 →
+                Lemniscates.CaseII.R f₁ f₂ (Lemniscates.CaseI.conjP f₁) (Lemniscates.CaseI.conjP f₂) ↑r₁ ↑r₂ ≠ 0 →
+                  ∀ (F : Finset ℂ),
+                    (∀ z ∈ F, ‖Polynomial.eval z f₁‖ ^ 2 = r₁ ∧ ‖Polynomial.eval z f₂‖ ^ 2 = r₂) →
+                      F.card ≤ 2 * f₁.natDegree * f₂.natDegree - 2
+'Lemniscates.CaseII.count_of_R_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Lemniscates.CaseII.pow_eq : ∀ {f₁ f₂ : Polynomial ℂ},
+  f₁.Monic →
+    f₂.Monic →
+      0 < f₁.natDegree →
+        0 < f₂.natDegree →
+          ∀ {r₁ r₂ : ℝ},
+            0 < r₁ →
+              0 < r₂ →
+                Lemniscates.CaseII.R f₁ f₂ (Lemniscates.CaseI.conjP f₁) (Lemniscates.CaseI.conjP f₂) ↑r₁ ↑r₂ = 0 →
+                  f₁ ^ f₂.natDegree = f₂ ^ f₁.natDegree
+'Lemniscates.CaseII.pow_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Lemniscates.CaseII.empty_of_R_eq_zero : ∀ {f₁ f₂ : Polynomial ℂ},
+  f₁.Monic →
+    f₂.Monic →
+      0 < f₁.natDegree →
+        0 < f₂.natDegree →
+          ∀ {r₁ r₂ : ℝ},
+            0 < r₁ →
+              0 < r₂ →
+                Lemniscates.CaseII.R f₁ f₂ (Lemniscates.CaseI.conjP f₁) (Lemniscates.CaseI.conjP f₂) ↑r₁ ↑r₂ = 0 →
+                  {z | ‖Polynomial.eval z f₁‖ ^ 2 = r₁ ∧ ‖Polynomial.eval z f₂‖ ^ 2 = r₂}.Finite →
+                    {z | ‖Polynomial.eval z f₁‖ ^ 2 = r₁ ∧ ‖Polynomial.eval z f₂‖ ^ 2 = r₂} = ∅
+'Lemniscates.CaseII.empty_of_R_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]

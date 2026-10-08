@@ -1,0 +1,7 @@
+n=(2,2) r symbolic=True dim=8 trace=-87/32 want=-87/32 OK
+n=(2,2) r symbolic=True dim=8 trace=46/9 want=46/9 OK
+n=(2,2) r symbolic=False dim=8 trace=5/6 want=5/6 OK
+n=(2,2) r symbolic=False dim=8 trace=57/16 want=57/16 OK
+n=(2,3) r symbolic=False dim=12 trace=2875/192 want=2875/192 OK
+n=(3,3) r symbolic=False dim=18 trace=17/16 want=17/16 OK
+exit 0

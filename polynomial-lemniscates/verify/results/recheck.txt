@@ -1,0 +1,5 @@
+(2,2): 8 complex solutions, 6 real points; trace (-2.0 + 0.0j) vs -(n1 n2/2)|c1-c2|^2 = -2.0
+(2,2) sigma-pair (1/2 -+ t, 1/2 +- t), t^2 = 5/4 + sqrt2: each -(5/4 + sqrt2); real part 1/2 + 2 sqrt2: OK
+(2,3): 12 complex solutions, 10 real points; trace (-0.03 + 0.0j) vs -(n1 n2/2)|c1-c2|^2 = -0.03
+M(2,2)=6, M(2,3)=10, M(2,4)=12, M(3,3)=12; M = 2 n1 n2 - 2 for 2 <= n1 <= n2 < 60 only at (2,2), (2,3): OK
+ALL PASS
