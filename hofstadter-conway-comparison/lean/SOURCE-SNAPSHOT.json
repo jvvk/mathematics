@@ -1,0 +1,18 @@
+{
+  "source_repo": "lean-proofs (private)",
+  "source_commit": "c6dcd06f80d72f574c609c139d9934e0f1bcf431",
+  "note": "HofstadterConway/*.lean are LeanProofs/HofConway at this commit, with imports renamed from LeanProofs.HofConway to HofstadterConway; HofstadterConway.lean is new. Built in this layout on 8 October 2026: 3101 jobs, every axiom audit (22 results) standard or a subset; mutants.sh: sixteen mutants rejected, the unchanged copy builds.",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_rev": "v4.34.0",
+  "files": {
+    "HofstadterConway/Audit.lean": "2805fc65270e7cefaa5d2ea864627b4581bf1c250338a62833f13a15099b0562",
+    "HofstadterConway/Basic.lean": "a186d494fa72fb7f62896f049778e1ff196069a85050ca3b03a3e2320755c991",
+    "HofstadterConway/Blocks.lean": "9d33b58bb7a618c79d6f238c5747c34f1b506dd32a99f6599c0c5bc28b4993da",
+    "HofstadterConway/Corollary.lean": "34dae103dee51fb679d5031a707ac514eb6d842f697aa063186f3778ff324dd7",
+    "HofstadterConway/Key.lean": "4a01a4abd00cde451962a2f04547e2555300bd1478c0e1237152f6807875d4b8",
+    "HofstadterConway/Main.lean": "01098711e38decff9590be6c4b38a6830e6affe5ecfe1e329193df1576720bcf",
+    "HofstadterConway/Ops.lean": "d7e2d71c6e0dc62f5bd04a62473b30327dd860739374a19adf5c11fb38d4ea5b",
+    "HofstadterConway/Tee.lean": "abfbd8fbbb658db675274b83e564f09f9ef9860548d4078c37e89a14c6885baa",
+    "HofstadterConway.lean": "b2496602a317a2e1f3265a17d2fc0e10c3c8e02bfb85212055aa8aa61f600d6e"
+  }
+}
