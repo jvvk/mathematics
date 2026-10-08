@@ -1,0 +1,65 @@
+{
+  "total_row_words": 339296,
+  "by_n": [
+    {
+      "n": 2,
+      "row_words": 0
+    },
+    {
+      "n": 3,
+      "row_words": 0
+    },
+    {
+      "n": 4,
+      "row_words": 6
+    },
+    {
+      "n": 5,
+      "row_words": 14
+    },
+    {
+      "n": 6,
+      "row_words": 48
+    },
+    {
+      "n": 7,
+      "row_words": 104
+    },
+    {
+      "n": 8,
+      "row_words": 307
+    },
+    {
+      "n": 9,
+      "row_words": 651
+    },
+    {
+      "n": 10,
+      "row_words": 1666
+    },
+    {
+      "n": 11,
+      "row_words": 3530
+    },
+    {
+      "n": 12,
+      "row_words": 8320
+    },
+    {
+      "n": 13,
+      "row_words": 17600
+    },
+    {
+      "n": 14,
+      "row_words": 39670
+    },
+    {
+      "n": 15,
+      "row_words": 83706
+    },
+    {
+      "n": 16,
+      "row_words": 183674
+    }
+  ]
+}

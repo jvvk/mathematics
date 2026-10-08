@@ -1,0 +1,736 @@
+\documentclass[12pt]{article}
+\usepackage[amsmath]{e-jc}
+\usepackage{tikz,booktabs}
+\definecolor{extraTwo}{RGB}{165,45,35}
+\definecolor{legLetter}{RGB}{35,80,150}
+
+\numberwithin{theorem}{section}
+\numberwithin{equation}{section}
+
+\DeclareMathOperator{\Des}{Des}
+\DeclareMathOperator{\rows}{rows}
+\DeclareMathOperator{\cols}{cols}
+
+% Initial-review metadata: publisher dates and DOI are assigned after acceptance.
+\makeatletter
+\def\the@dateline{Manuscript prepared 8 October 2026\\[0.5ex]\copy@right}
+\renewcommand{\ps@plain}{%
+  \let\@mkboth\@gobbletwo
+  \let\@oddhead\@empty\let\@evenhead\@empty
+  \def\@oddfoot{\hfil\thepage\hfil}\let\@evenfoot\@oddfoot}
+\makeatother
+\pagestyle{plain}
+\hypersetup{pdftitle={Descent sets of a permutation and its inverse: almost every pair occurs},pdfauthor={Vamshi Jandhyala}}
+\MSC{05A05, 05A16, 05E05, 60C05}
+\Copyright{The author. Released under the CC BY license (International 4.0).}
+
+\title{Descent sets of a permutation and its inverse:\\ almost every pair occurs}
+
+\author{Vamshi Jandhyala}
+\authortext{}{London, United Kingdom.}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+For a permutation $w$ of $\{1,\dots,n\}$ let $D(w)$ be its descent set. Stanley asked for the number
+$f(n)$ of pairs $(S,T)$ of subsets of $\{1,\dots,n-1\}$ that arise as $(D(w),D(w^{-1}))$, and in particular
+for the growth rate $L=\lim f(n)^{1/n}$, which lies between $2$ and $4$. We prove that almost every pair
+arises: $1-f(n)/4^{n-1}\le 6e^{-n/150}$ for every $n\ge1$, so $L=4$, and an elementary obstruction shows that the rate $1/150$ cannot be improved beyond $\log(4/3)$. The pairs that violate a necessary condition of Gale--Ryser type have proportion $(3/4)^{n+O(\log^2n)}$, so the rate is exactly $\log(4/3)$ if a dominance-order criterion for occurrence, supported by computation, is correct. For a typical pair the proof
+constructs two standard Young tableaux of a common shape, a hook with a second row, whose descent sets are
+$S$ and $T$, and then applies the Robinson--Schensted correspondence. We also find the asymptotics of the
+number $g(n)$ of permutations $w$ such that $w$ and $w^{-1}$ are both alternating, confirming a prediction of
+Stanley: $g(n)=\frac{16}{\pi^2}\bigl(\frac{4}{\pi^2}\bigr)^n n!\,\bigl(1+\frac{\pi^4}{48n}+O(n^{-2})\bigr)$.
+Every result proved here has been formally verified in the Lean proof assistant. Finally, we give computational
+evidence that $(S,T)$ arises exactly when two intervals in dominance order meet, although the Schur supports
+of ribbons are often not intervals, and we confirm Gessel's conjecture on the largest class
+$\#\{w:D(w)=S,\,D(w^{-1})=T\}$ for $n\le22$.
+\end{abstract}
+
+\section{Introduction}
+
+How strongly does the descent pattern of a permutation constrain the descent pattern of its inverse? Small examples show substantial restrictions, yet we shall prove that almost every pair of patterns becomes possible as the number of entries grows.
+
+Write $[n]=\{1,\dots,n\}$ and, for $w=w_1\cdots w_n\in S_n$, let $D(w)=\{i\in[n-1]: w_i>w_{i+1}\}$. The
+descent set of the inverse can be read off $w$ itself: $i\in D(w^{-1})$ exactly when the value $i+1$ appears
+to the left of the value $i$ in $w$. Take $n=3$. The six
+permutations give the pairs
+\begin{gather*}
+123\mapsto(\emptyset,\emptyset),\quad 132\mapsto(\{2\},\{2\}),\quad 213\mapsto(\{1\},\{1\}),\\
+231\mapsto(\{2\},\{1\}),\quad 312\mapsto(\{1\},\{2\}),\quad 321\mapsto(\{1,2\},\{1,2\}),
+\end{gather*}
+so only $6$ of the $16$ pairs of subsets of $\{1,2\}$ occur. Let $f(n)$ be the number of pairs $(S,T)$ of
+subsets of $[n-1]$ for which some $w\in S_n$ has $D(w)=S$ and $D(w^{-1})=T$. The first values,
+\[
+1,\ 2,\ 6,\ 22,\ 94,\ 426,\ 1938,\ 8724,\ 38724,\ 169438,\ 731390,\ 3119052,\ 13162228,
+\]
+form OEIS A380394 \cite{oeisA380394}.
+
+Stanley \cite{stanleyMO} asked what can be said about $f(n)$, and in particular about the limit
+\[
+L=\lim_{n\to\infty}f(n)^{1/n}.
+\] The limit exists because $f$ is supermultiplicative, as Zach Hunter observed in a comment on \cite{stanleyMO}: placing a permutation of
+$[n]$ before a permutation of $\{n+1,\dots,n+m\}$ creates no descent at position $n$ in either the
+permutation or its inverse, so $f(n+m)\ge f(n)f(m)$. There are $4^{n-1}$ candidate pairs of subsets, so $f(n)\le 4^{n-1}$, and every pair $(S,S)$
+occurs, so $2\le L\le4$. The values $f(n)^{1/n}$ grow slowly, reaching only $3.53$ at $n=13$, and
+Stanley asked whether $L<4$. It is not. The proportion $f(n)/4^{n-1}$ is only $0.785$ at $n=13$, but it tends
+to $1$ exponentially fast.
+
+\begin{theorem}\label{thm:density}
+For every $n\ge1$,
+\[
+1-\frac{f(n)}{4^{n-1}}\le 6e^{-n/150}.
+\]
+In particular $L=4$.
+\end{theorem}
+
+The bound $L=4$ alone has a three-line proof (Proposition~\ref{prop:hooks}): every pair with $|S|=|T|$
+occurs, and there are $\binom{2n-2}{n-1}$ such pairs. Theorem~\ref{thm:density} needs more, because a
+uniformly random pair has $\bigl||S|-|T|\bigr|$ of order $\sqrt n$. The tool is an explicit family of
+tableau shapes, a hook with a second row of length $b$, together with a rule that fills the ascending runs of
+$S$ (and of $T$) so that the descent set comes out right and both tableaux have the same shape.
+Figure~\ref{fig:example} shows the outcome for one pair with $n=14$, and Section~\ref{sec:density} gives the
+construction.
+The rate $1/150$ is not the true one. If $T$ contains $|S|+1$ consecutive integers then $(S,T)$ cannot occur,
+and counting such pairs gives $1-f(n)/4^{n-1}\ge(3^{n-1}-1)/4^{n-1}$ (Remark~\ref{rem:rate}). This obstruction
+already has the full exponential rate of a Gale--Ryser condition that every occurring pair satisfies
+(Theorem~\ref{thm:grrate}), so the rate is exactly $\log(4/3)$ if the dominance criterion of
+Section~\ref{sec:criterion} is correct (Corollary~\ref{cor:rate}).
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=0.50]
+\newcommand{\cell}[3]{\draw (#1,-#2) rectangle ++(1,-1); \node at (#1+0.5,-#2-0.5) {\scriptsize #3};}
+\begin{scope}
+\node at (3.5,1.0) {$Q$, descent set $S$};
+\foreach \x/\v in {0/1,1/2,2/3,3/4,4/5,5/7,6/13} {\cell{\x}{0}{\v}}
+\foreach \x/\v in {0/6,1/10,2/11} {\cell{\x}{1}{\v}}
+\cell{0}{2}{8} \cell{0}{3}{9} \cell{0}{4}{12} \cell{0}{5}{14}
+\end{scope}
+\begin{scope}[xshift=11cm]
+\node at (3.5,1.0) {$P$, descent set $T$};
+\foreach \x/\v in {0/1,1/2,2/5,3/6,4/8,5/9,6/12} {\cell{\x}{0}{\v}}
+\foreach \x/\v in {0/3,1/10,2/13} {\cell{\x}{1}{\v}}
+\cell{0}{2}{4} \cell{0}{3}{7} \cell{0}{4}{11} \cell{0}{5}{14}
+\end{scope}
+\end{tikzpicture}
+\caption{Two standard Young tableaux of shape $(7,3,1,1,1,1)$ built by the construction of
+Section~\ref{sec:density} for $S=\{5,7,8,11,13\}$ and $T=\{2,3,6,9,10,12,13\}$. Here $i$ is a descent when
+$i+1$ sits in a lower row. Inverse RSK gives $w=1\,4\,5\,7\,14\,11\,13\,10\,6\,8\,9\,3\,12\,2$, with
+$D(w)=S$ and $D(w^{-1})=T$.}
+\label{fig:example}
+\end{figure}
+
+Stanley also considered the size of the largest class, $\beta_n(S,T)=\#\{w\in S_n: D(w)=S,\ D(w^{-1})=T\}$.
+Gessel conjectured (see \cite{stanleyMO}) that the maximum is attained when $S=T=\{1,3,5,\dots\}\cap[n-1]$,
+that is, when $w$ and $w^{-1}$ are both alternating. Let $g(n)$ be the number of such $w$ (OEIS A007999
+\cite{oeisA007999}). Starting from a generating function he had found earlier \cite{stanleyAlt}, Stanley
+predicted \cite{stanleyMO} that $g(n)\sim c\,n!\,(\pi^2/4)^{-n}$. We confirm this, with the constant and the
+next term.
+
+The number of ordinary alternating permutations is the Euler number $E_n$. If inversion imposed no further dependence, the baseline count would be $E_n^2/n!$.
+
+\begin{theorem}\label{thm:alt}
+\[
+g(n)=\frac{E_n^2}{n!}\Bigl(1+\frac{\pi^4}{48\,n}+O(n^{-2})\Bigr)
+=\frac{16}{\pi^2}\Bigl(\frac{4}{\pi^2}\Bigr)^{n}n!\,\Bigl(1+\frac{\pi^4}{48\,n}+O(n^{-2})\Bigr).
+\]
+\end{theorem}
+
+In words: of the $E_n^2$ pairs $(u,v)$ of alternating permutations, a proportion close to $1/n!$ satisfies
+$v=u^{-1}$, as if the two were independent, and the first correction is $\pi^4/(48n)$. We have also checked
+Gessel's conjecture itself for $n\le22$ (Remark~\ref{rem:gessel}).
+
+Section~\ref{sec:criterion} turns to the exact set of pairs. Computation for $n\le20$ supports a simple
+criterion in terms of dominance order (Conjecture~\ref{conj:criterion}), and we explain why it does not
+follow from known results on the supports of ribbon Schur functions. Section~\ref{sec:verification}
+describes a formal verification in Lean of every result proved here, and the computations.
+
+\section{Tableaux and row words}\label{sec:prelim}
+
+The task is to give two prescribed descent sets a common tableau shape, so we first translate descents into the relative rows of successive entries. We use English notation. A standard Young tableau (SYT) of shape $\lambda\vdash n$ has descent set
+$\Des(P)=\{i\in[n-1]: i+1 \text{ lies in a strictly lower row of } P \text{ than } i\}$. The
+Robinson--Schensted correspondence $w\mapsto(P(w),Q(w))$ is a bijection from $S_n$ to pairs of SYT of a common
+shape, with $D(w)=\Des(Q(w))$ and $D(w^{-1})=\Des(P(w))$; see \cite[Section~7.23]{ec2}. Hence:
+
+\begin{lemma}\label{lem:reduce}
+A pair $(S,T)$ occurs if and only if some shape $\lambda\vdash n$ has an SYT with descent set $S$ and an SYT
+with descent set $T$.
+\end{lemma}
+
+To construct a tableau we need only choose the row of each successive entry. For example, the first seven entries of $Q$ in Figure~\ref{fig:example} occupy rows $1,1,1,1,1,2,1$. Encode an SYT $P$ by its \emph{row word} $r_1r_2\cdots r_n$, where $r_i$ is the row of
+$P$ containing $i$. A word in the positive integers is the row word of an SYT exactly when it is a lattice
+word: to keep columns increasing, in every prefix, and for every $k\ge2$, the letter $k$ occurs at most as often as the letter $k-1$. The
+shape is the vector of letter counts. In this language
+\[
+\Des(P)=\{i: r_{i+1}>r_i\}.
+\]
+Thus a descent means a move to a lower row. To prescribe exactly these moves, split the entries at the desired descents; within each piece the row numbers must not increase. For instance $S=\{2,4\}$ on five entries gives the pieces $12\mid34\mid5$. Write $S\subseteq[n-1]$ as the set of breaks between the ascending runs $R_0,R_1,\dots,R_{|S|}$, which are the
+maximal intervals of $[n]$ containing no break; thus $R_j$ starts at $1$ if $j=0$ and at $s+1$ if $s$ is the
+$j$-th smallest element of $S$. A lattice word has descent set $S$ exactly when it is weakly decreasing along
+every run and strictly increases from the last letter of each run to the first letter of the next.
+
+\begin{proposition}\label{prop:hooks}
+Every pair $(S,T)$ with $|S|=|T|$ occurs. Consequently $f(n)\ge\binom{2n-2}{n-1}\ge 4^{n-1}/(2n-1)$, and
+$L=4$.
+\end{proposition}
+
+\begin{proof}
+Let $|S|=k$. The word with the letter $1$ on $R_0$ and, on each later run $R_j$, the letter $j+1$ followed
+by $1$'s is a lattice word of shape $(n-k,1^k)$ with descent set $S$. The same shape serves $T$, so
+Lemma~\ref{lem:reduce} applies. Summing over $k$ gives $\sum_k\binom{n-1}{k}^2=\binom{2n-2}{n-1}$, the
+largest of the $2n-1$ coefficients of $(1+x)^{2n-2}$, so at least $4^{n-1}/(2n-1)$.
+\end{proof}
+
+\begin{remark}\label{rem:elementary}
+The pairs with $|S|=|T|$ can also be realised without tableaux, by a permutation made of a decreasing and an
+increasing sequence that share one entry, the \emph{pivot}. The increasing and decreasing permutations handle $|S|=0$ and $|S|=n-1$, respectively, so suppose $0<k=|S|=|T|<n-1$ and fix a position $p$
+and a value $v$. Mark the position $p$, each $s\in S$ with $s<p$, and $s+1$ for each $s\in S$ with $s\ge p$.
+Mark values in the same way, using $v$ and $T$. Put the marked values into the marked positions in
+decreasing order and the other values into the other positions in increasing order. If $p$ and $v$ are
+chosen so that the value $v$ lands at position $p$, with exactly the unmarked values below $v$ placed before it,
+then a descent occurs before the pivot exactly at marked positions and from the pivot onwards exactly before
+marked positions, so $D(w)=S$; interchanging positions and values gives $D(w^{-1})=T$. A suitable $(p,v)$ is
+a common vertex of two lattice paths in a $(n-1-k)\times k$ rectangle, one built from $S$ and one from $T$,
+which must cross. For $S=\{1,3\}$ and $T=\{1,4\}$ this gives $w=52314$. The details are in the author's
+answer to Stanley's question \cite{answerMO}.
+\end{remark}
+
+\section{Almost every pair occurs}\label{sec:density}
+
+We enlarge the hook construction by giving both tableaux the same second row. For the smaller descent set, extra $2$'s are placed inside existing runs; for the larger one, more runs begin with $2$. Figure~\ref{fig:words} shows both operations. To preserve the lattice condition, we first accumulate $1$'s in the early positions and reserve the extra $2$'s for later runs.
+
+Fix $n$, put $m=\lfloor n/2\rfloor$, and for $b\ge1$, $c\ge0$ with $n-c-b\ge b$ let
+\[
+\lambda(c,b)=(n-c-b,\ b,\ 1^c),
+\]
+a hook with a second row of length $b$. A row word of this shape uses the letter $1$ for the first row, the
+letter $2$ for the second row, and each of the \emph{leg letters} $3,4,\dots,c+2$ once. For $X\subseteq[n-1]$
+with runs $R_0,\dots,R_{|X|}$, we need runs that begin after this early reserve has been formed. Call $R_j$ \emph{late} if $j\ge2$ and $R_j$ starts at a position greater than
+$m$. The early positions that do not start a run will carry $1$'s; count them by putting
+\[
+A(X)=\#\bigl([1,m-1]\setminus X\bigr),
+\]
+which is the number of positions $p\in[2,m]$ that do not start a run. This is the early stock of $1$'s available to balance the eventual second-row letters.
+
+For the pair in Figure~\ref{fig:example}, $s=5$, $t=7$, $c=s-1=4$ and $b=t-s+1=3$.
+The runs of $S$ are $12345\mid67\mid8\mid9\,10\,11\mid12\,13\mid14$.
+Putting two extra $2$'s at entries $10,11$ gives the top word in Figure~\ref{fig:words}.
+For $T$, the runs beginning at $10$ and $13$ can start with $2$, because their predecessors end with $1$.
+Both words have seven $1$'s, three $2$'s and one of each leg letter $3,4,5,6$; hence both have shape $(7,3,1^4)$.
+\begin{figure}[ht]
+\centering\input{figs/rowwords}
+\caption{The construction behind Figure~\ref{fig:example}. Vertical bars mark the prescribed run breaks;
+the dashed line is the midpoint $m=7$. Blue entries are the leg letters. Red entries are the two extra
+second-row letters: inside a run for $S$, at the start of two runs for $T$. The grey early positions carry
+$1$'s and protect the lattice condition. The displayed words are the rows of $Q$ and $P$, respectively.}
+\label{fig:words}
+\end{figure}
+
+
+\begin{lemma}[extra twos]\label{lem:extra}
+Let $|S|\ge1$, $c=|S|-1$, and $b\ge1$ with $n-c-b\ge b$. Suppose $A(S)\ge b$ and
+$\sum_{R_j\ \mathrm{late}}(|R_j|-1)\ge b-1$. Then some SYT of shape $\lambda(c,b)$ has descent set $S$.
+\end{lemma}
+
+\begin{proof}
+As in the top word of Figure~\ref{fig:words}, choose integers $0\le k_j\le|R_j|-1$ for the late runs with $\sum k_j=b-1$, and put $k_j=0$ for the other
+$j$. Fill $R_0$ with $1$'s, fill $R_1$ with a $2$ followed by $1$'s, and fill each $R_j$ with $j\ge2$ by the
+next unused leg letter, then $k_j$ letters $2$, then $1$'s.
+
+Each run is weakly decreasing. Across a break the word strictly increases, from $1$ to the $2$ that starts
+$R_1$, or into a leg letter, which exceeds every earlier letter. So the descent set is $S$. There are
+$|S|-1=c$ leg letters, used once each in increasing order, and the first of them occurs after the $2$ that
+starts $R_1$. This settles the lattice condition for the letters $k\ge3$. There are $1+(b-1)=b$ letters $2$.
+
+It remains to compare the letters $1$ and $2$. Up to position $m$ the only possible $2$ is the first letter
+of $R_1$, which is preceded by the nonempty run $R_0$ of $1$'s. Every longer prefix contains at most $b$
+letters $2$ and at least $A(S)\ge b$ letters $1$, because every position in $[2,m]$ that does not start a run
+carries a $1$. The shape is $\lambda(c,b)$.
+\end{proof}
+
+\begin{lemma}[two-started runs]\label{lem:twostart}
+Let $|T|=c+b$ with $c\ge0$, $b\ge1$ and $n-c-b\ge b$. Suppose $A(T)\ge b$ and at least $b-1$ late runs $R_j$
+of $T$ have $|R_{j-1}|\ge2$. Then some SYT of shape $\lambda(c,b)$ has descent set $T$.
+\end{lemma}
+
+\begin{proof}
+As in the bottom word of Figure~\ref{fig:words}, fill $R_0$ with $1$'s. Fill $R_1$, and $b-1$ late runs $R_j$ with $|R_{j-1}|\ge2$, with a $2$ followed by
+$1$'s. Fill every other $R_j$ with $j\ge2$ with the next leg letter followed by $1$'s. A run of length at
+least $2$ ends in $1$, so each run that starts with a $2$ follows a $1$, and the word increases across every
+break. The rest of the argument is as for Lemma~\ref{lem:extra}: there are $|T|-b=c$ leg letters and $b$
+letters $2$.
+\end{proof}
+
+\begin{corollary}\label{cor:pair}
+Let $1\le s=|S|<t=|T|$, $c=s-1$, $b=t-s+1$ and $n-c-b\ge b$. If $S$ satisfies the hypotheses of
+Lemma~\ref{lem:extra} and $T$ those of Lemma~\ref{lem:twostart}, then $(S,T)$ occurs.
+\end{corollary}
+
+\begin{proof}
+As $|T|=c+b$, the two lemmas give tableaux of the same shape $\lambda(c,b)$, and Lemma~\ref{lem:reduce}
+applies.
+\end{proof}
+
+We use the bounded-difference inequality in the following form \cite{hoeffding,mcdiarmid}. Let $F$ be a
+function of independent fair bits $\xi_1,\dots,\xi_N$, and suppose that changing any one bit changes $F$ by
+at most $1$. In words, either tail at distance $t$ from the mean is bounded exponentially in $t^2/N$. For $t>0$
+\begin{equation}\label{eq:mcd}
+\Pr\bigl(F-\mathbb{E}F\ge t\bigr)\le e^{-2t^2/N},\qquad \Pr\bigl(F-\mathbb{E}F\le -t\bigr)\le e^{-2t^2/N}.
+\end{equation}
+
+\begin{proof}[Proof of Theorem~\ref{thm:density}]
+If $n<240$ then $6e^{-n/150}>6e^{-1.6}>1$ and there is nothing to prove, so let $n\ge240$. Let $S,T$ be
+independent and uniform among subsets of $[n-1]$, so that the indicators of $1,\dots,n-1$ in $S$ (and in
+$T$) are independent fair bits. Then $f(n)/4^{n-1}$ is the probability that $(S,T)$ occurs, and we bound the
+probability of failure. To supply late capacity, count run starts whose preceding run has length at least two. For $X\subseteq[n-1]$ define
+\[
+G(X)=\#\{i\in[m+2,n-1]: i\in X,\ i-1\notin X\}.
+\]
+It counts late starts immediately preceded by a nonbreak and then a break, so the preceding run has length at least two. This one count controls both lemmas.
+\begin{itemize}
+\item Every $i$ counted by $G(X)$ starts a run at $i+1>m$ whose predecessor contains $i-1$ and $i$. That run
+has index at least $2$ unless $i=\min X$. So at least $G(X)-1$ late runs follow a run of length at least $2$.
+\item Let $R_j$ be a late run with $|R_{j-1}|\ge2$. Unless $R_j$ is the first late run, $R_{j-1}$ is itself
+late and contributes $|R_{j-1}|-1\ge1$ to $\sum_{\mathrm{late}}(|R_k|-1)$. Distinct $j$ give distinct
+predecessors, so $\sum_{\mathrm{late}}(|R_k|-1)\ge G(X)-2$.
+\end{itemize}
+Only the difference of the two sizes matters, so we ask for it directly. Consider the events
+\[
+\mathcal{D}:\ \bigl||S|-|T|\bigr|\le\tfrac{n}{12},\qquad
+\mathcal{A}(X):\ A(X)\ge\tfrac n{12}+1,\qquad
+\mathcal{G}(X):\ G(X)\ge\tfrac n{12}+2,
+\]
+for $X\in\{S,T\}$. Suppose all five hold. If $|S|=|T|$ then $(S,T)$ occurs by Proposition~\ref{prop:hooks}. The events are
+symmetric in $S$ and $T$, and $w\mapsto w^{-1}$ exchanges the roles of $S$ and $T$, so we may assume
+$s=|S|<t=|T|$. As $G(S)\ge1$ we have $s\ge1$, and $b=t-s+1\le n/12+1$. This gives $b\le A(S)$ and $b\le A(T)$, while
+$b-1\le n/12\le G(S)-2$ and $b-1\le G(T)-1$, so by the two bullet points the hypotheses of
+Lemmas~\ref{lem:extra} and~\ref{lem:twostart} hold. For the shape, note that $T$ misses the $A(T)$ points of
+$[1,m-1]\setminus T$ and, for each $i$ counted by $G(T)$, the point $i-1\in[m+1,n-2]$. Hence
+$t\le n-1-A(T)-G(T)\le\tfrac{5n}{6}-4$, and
+$c+2b=t+(t-s)+1\le\tfrac{5n}{6}-4+\tfrac{n}{12}+1<n$, so $n-c-b\ge b$. Corollary~\ref{cor:pair} shows that $(S,T)$ occurs.
+
+It remains to bound the probability that one of the five events fails, using~\eqref{eq:mcd}.
+\begin{itemize}
+\item $|S|+(n-1-|T|)$ counts the elements of $S$ and of the complement of $T$, so it is a sum of $2(n-1)$
+fair bits with mean $n-1$, and $|S|-|T|$ is this sum minus $n-1$. Each tail of $\mathcal{D}$ has probability
+at most $e^{-2(n/12)^2/(2(n-1))}\le e^{-n/144}$.
+\item $A(X)$ is a sum of $m-1\le n/2$ fair bits with mean $(m-1)/2\ge(n-3)/4$. If $\mathcal{A}(X)$ fails then
+$A(X)$ is below its mean by more than $n/6-7/4$, which has probability at most
+$e^{-4(n/6-7/4)^2/n}\le e^{-n/150}$.
+\item For $G(X)$ we count changes instead. Let $C(X)$ be the number of $i\in[m+2,n-1]$ such that exactly one of
+$i-1$ and $i$ lies in $X$. Along $[m+1,n-1]$ the rises counted by $G(X)$ and the opposite changes alternate, so
+$C(X)\le2G(X)+1$. Replacing the bit of each $i\in[m+2,n-1]$ by the indicator of a change at $i$, and keeping the
+other bits, is a bijection of $\{0,1\}^{n-1}$, because $X$ can be read back from left to right. So $C(X)$ is a
+sum of $n-m-2\le n/2$ fair bits, with mean at least $n/4-1$. If $\mathcal{G}(X)$ fails then $C(X)<n/6+5$, which
+is below the mean by more than $n/12-6$. This has probability at most $e^{-4(n/12-6)^2/n}\le e^{-n/150}$,
+because $n\ge240$.
+\end{itemize}
+A union bound over the five events, with two tails for $\mathcal{D}$, gives
+$1-f(n)/4^{n-1}\le6e^{-n/150}$.
+\end{proof}
+
+The change count is what improves on a direct use of~\eqref{eq:mcd} for $G(X)$, which treats each late bit as
+able to move $G(X)$ by one and so overstates its variance by a factor of four.
+
+\begin{remark}\label{rem:rate}
+The construction does better than the theorem guarantees. With $20000$ samples at each size and pseudorandom seed $11$, it
+certifies approximately $0.80$, $0.93$, $0.986$ and $0.9995$ of uniformly random pairs at $n=50,100,200,400$.
+At $n=400$ there are $11$ failures; the estimated failure probability is $0.00055$, with a $95\%$ Wilson interval approximately $[0.00031,0.00098]$, so relative sampling uncertainty is substantial. The supplementary output gives exact counts and
+binomial confidence intervals. Its own limit is structural: hooks with one extra row can absorb a size
+difference $\bigl||S|-|T|\bigr|$ of only a small fraction of $n$. With exact large-deviation rates in place of~\eqref{eq:mcd},
+the best balance of the three kinds of event used above gives a rate of about $1/100$.
+
+In the other direction, the exact rate is governed by a necessary condition of Gale--Ryser type.
+
+\end{remark}
+
+Why should runs and blocks of consecutive integers compete? If $D(w)=S$, the positions of $w$ split into
+ascending runs, one more than $|S|$. If $D(w^{-1})=T$ and $i\in T$, then the value $i+1$ stands to the left of $i$,
+so a block of consecutive values linked by $T$ appears in $w$ from right to left. A run lists its values from left
+to right in increasing order, so it can take at most one value from each block. Take $w=563412$, with
+$D(w)=D(w^{-1})=\{2,4\}$. Its runs are $56$, $34$, $12$, and the blocks are $\{1\}$, $\{2,3\}$, $\{4,5\}$, $\{6\}$.
+Recording which run meets which block gives the $0$--$1$ matrix
+\[
+\begin{array}{c|cccc}
+ & \{1\} & \{2,3\} & \{4,5\} & \{6\}\\\hline
+56 & 0&0&1&1\\
+34 & 0&1&1&0\\
+12 & 1&1&0&0
+\end{array}
+\]
+whose row sums are the run lengths $(2,2,2)$ and whose column sums are the block lengths $(1,2,2,1)$. A pair
+$(S,T)$ can therefore occur only if a $0$--$1$ matrix with these row and column sums exists, and the easy half of
+the Gale--Ryser theorem gives inequalities that such a matrix forces. For $S=\varnothing$ and $T=\{1\}$ there is one run of length $6$ and the blocks are $\{1,2\}$ and four
+singletons; the run would need two entries from $\{1,2\}$, so the pair never occurs.
+
+For $X\subseteq[n-1]$ let $\alpha(X)$ be the composition of $n$ formed by the lengths of the ascending runs, and
+let $\delta(X)$ be the composition formed by the lengths of the maximal blocks $\{v,v+1,\dots,v+\ell-1\}$ of
+consecutive integers with $v,\dots,v+\ell-2\in X$. In the example, $\alpha(\{2,4\})=(2,2,2)$ and
+$\delta(\{2,4\})=(1,2,2,1)$. For a composition $\gamma$ and $k\ge1$ let
+$\operatorname{top}_k(\gamma)$ be the sum of its $k$ largest parts, or of all its parts if there are fewer than $k$.
+
+\begin{lemma}\label{lem:gr}
+If $(S,T)$ occurs, then for every $k\ge1$
+\begin{equation}\label{eq:gr}
+\operatorname{top}_k\bigl(\alpha(S)\bigr)\le\sum_j\min\bigl(k,\delta_j(T)\bigr)
+\quad\text{and}\quad
+\operatorname{top}_k\bigl(\alpha(T)\bigr)\le\sum_j\min\bigl(k,\delta_j(S)\bigr).
+\end{equation}
+\end{lemma}
+
+In words: the left side of the first inequality is the number of positions covered by the $k$ longest runs, and the
+right side is the largest number of entries that $k$ runs can take when each takes at most one value per block.
+
+\begin{proof}
+Let $D(w)=S$ and $D(w^{-1})=T$. As above, a run and a block of $\delta(T)$ share at most one entry, and the
+$0$--$1$ matrix recording which runs meet which blocks has row sums $\alpha(S)$ and column sums $\delta(T)$. Any
+$k$ rows therefore contain at most $\sum_j\min(k,\delta_j(T))$ ones. This is the first inequality; the second is
+the first one for $w^{-1}$.
+\end{proof}
+
+The consecutive-integer obstruction is the case $k=|S|+1$: if $T$ contains $|S|+1$ consecutive integers, then
+$\delta(T)$ has a part longer than $|S|+1$, while $\operatorname{top}_{|S|+1}(\alpha(S))=n$. Counting the pairs
+with $\{1,\dots,|S|+1\}\subseteq T$, and their images under $(S,T)\mapsto(T,S)$, gives
+\[
+f(n)\le 4^{n-1}-3^{n-1}+1,\qquad\text{equivalently}\qquad 1-\frac{f(n)}{4^{n-1}}\ge\frac{3^{n-1}-1}{4^{n-1}},
+\]
+with equality at $n=2$. The next theorem shows that this obstruction already has the full exponential rate of
+condition~\eqref{eq:gr}.
+
+\begin{theorem}\label{thm:grrate}
+Let $P_n$ be the proportion of pairs $(S,T)$ of subsets of $[n-1]$ that violate~\eqref{eq:gr}. Then
+\[
+\frac{3^{n-1}-1}{4^{n-1}}\le P_n\le
+\Bigl(4n^3+2^{m-1}\binom nm^2\Bigr)\Bigl(\frac34\Bigr)^{n-1}+\frac{4n^m}{2^{n}},
+\qquad m=\lceil2\log_2n\rceil+1,
+\]
+so $P_n=(3/4)^{n+O(\log^2 n)}$. Every pair counted by $P_n$ fails to occur, so $1-f(n)/4^{n-1}\ge P_n$.
+\end{theorem}
+
+The factor in front of $(3/4)^{n-1}$ is $n^{O(\log n)}$, and the last term is smaller still, so only $(3/4)^n$
+matters at exponential scale. The lower bound shows where $3/4$ comes from: a set $S$ with $r-1$ elements has
+probability $\binom{n-1}{r-1}2^{1-n}$, a block of length $r+1$ at a given place in $T$ costs a factor $2^{-r}$,
+and $\sum_r\binom{n-1}{r-1}2^{1-n}2^{-r}$ is of order $(3/4)^{n}$. The proof shows that every failure pays in the
+same way: failing at $k$ forces blocks of $T$ longer than $k$, with total excess $e$, and $S$ with at most $k+e-1$
+runs. For large $k$ the long blocks are rare enough to sum over directly. For $k$ below $m\approx2\log_2n$ the
+failure forces the $m$ longest runs of $S$ to cover more positions than $T$ has blocks, and a union bound over the
+possible runs costs only $n^{O(\log n)}$. Both union bounds rest on one observation. A family of $a$ disjoint
+intervals of $\{1,\dots,n\}$ is determined by its $a$ first and $a$ last elements, so there are at most
+$\binom na^2$ families; and an interval $\{v,\dots,v+\ell-1\}$ is a run of $S$ only if none of $v,\dots,v+\ell-2$
+lies in $S$, and a block of $T$ only if all of them lie in $T$, each with probability $2^{1-\ell}$. Intervals
+in a family are disjoint, so the probability that they are all runs, or all blocks, is at most $2^{a-L}$, where $L$
+is their total length.
+
+\begin{proof}
+The lower bound is the count above. For the upper bound let $S,T$ be independent and uniform, and write
+$\alpha=\alpha(S)$ with $r$ parts and $\delta=\delta(T)$ with $q$ parts; both are uniform compositions of $n$.
+Three counts follow.
+\begin{itemize}
+\item $\sum_{u\ge1}2^{-u}\Pr(r\le u)=\sum_r\Pr(r)\,2^{1-r}=2^{2-n}\sum_r\binom{n-1}{r-1}2^{-r}=(3/4)^{n-1}$, and in
+the same way $\sum_q\Pr(q)\,2^{-q}=\tfrac12(3/4)^{n-1}$.
+\item Write $E_k(\delta)=\sum_j(\delta_j-k)_+$, the total excess of the parts of $\delta$ over $k$. If
+$E_k(\delta)\ge e$, the $a\ge1$ parts longer than $k$ have total length $E_k(\delta)+ak\ge e+ak$. By the
+observation above, using $\binom na\le n^a$ and a geometric series, whenever $n^2 2^{1-k}\le\tfrac12$
+\[
+\Pr\bigl(E_k(\delta)\ge e\bigr)\le\sum_{a\ge1}\binom na^2 2^{a-e-ak}\le 4n^2\,2^{-k-e}.
+\]
+\item Likewise, if $r\ge m$ and $\operatorname{top}_m(\alpha)\ge x$, the $m$ longest parts of $\alpha$ have total
+length at least $x$, so $\Pr\bigl(r\ge m,\ \operatorname{top}_m(\alpha)\ge x\bigr)\le2^m\binom nm^2 2^{-x}$.
+\end{itemize}
+Since $\sum_j\min(k,\delta_j)=n-E_k(\delta)$, the first inequality of~\eqref{eq:gr} fails at $k$ exactly when
+$\operatorname{top}_k(\alpha)+E_k(\delta)>n$. Two consequences follow. As the $r-k$ smallest parts of $\alpha$ are
+at least $1$, $\operatorname{top}_k(\alpha)\le n-(r-k)$ when $k<r$, so $e=E_k(\delta)$ satisfies $e\ge1$ and
+$r\le k+e-1$; when $k\ge r$ the same holds because $\operatorname{top}_k(\alpha)=n$. In particular $k<n$, since
+$E_k(\delta)=0$ for $k\ge n$. And as $E_k(\delta)\le E_1(\delta)=n-q$, also $\operatorname{top}_k(\alpha)>q$.
+
+Because $\alpha$ and $\delta$ are independent, if the failure occurs at some $k$ with $m<k<n$, then $n^2
+2^{1-k}\le\tfrac12$, and the first consequence and the second and first counts bound its probability by
+$\sum_{k}\sum_{e\ge1}4n^2 2^{-k-e}\Pr(r\le k+e-1)\le 2n^3(3/4)^{n-1}$. If it occurs at some $k\le m$, the second
+consequence gives $r<m$, an event of probability at most $n^m2^{1-n}$, or $\operatorname{top}_m(\alpha)\ge q+1$
+with $r\ge m$, whose probability is at most $\sum_q\Pr(q)\,2^{m}\binom nm^2 2^{-q-1}=2^{m-2}\binom nm^2(3/4)^{n-1}$.
+Exchanging $S$ and $T$ treats the second inequality of~\eqref{eq:gr} in the same way, which doubles the bound.
+\end{proof}
+
+\begin{corollary}\label{cor:rate}
+If Conjecture~\ref{conj:criterion} holds, then $1-f(n)/4^{n-1}=P_n=(3/4)^{n+O(\log^2n)}$.
+\end{corollary}
+
+\begin{proof}
+Conjecture~\ref{conj:criterion} says that~\eqref{eq:gr} is also sufficient (Section~\ref{sec:criterion}), so the
+pairs that fail to occur are exactly those counted by $P_n$.
+\end{proof}
+
+Exact computation suggests the finer order. The probability that the first inequality of~\eqref{eq:gr} fails
+can be computed by summing over pairs of partitions, because $\alpha(S)$ and $\delta(T)$ are independent uniform
+compositions. Twice it, $0.05309$ at $n=20$, matches $1-f(20)/4^{19}$ to the digits shown, and for $n\le44$ its
+ratio to $(3/4)^n$ grows roughly linearly, from $10.7$ at $n=24$ to $20.4$ at $n=44$.
+
+\begin{conjecture}\label{conj:rate}
+$\bigl(1-f(n)/4^{n-1}\bigr)/\bigl(n(3/4)^n\bigr)$ is bounded above and below by positive constants.
+\end{conjecture}
+
+\section{Doubly alternating permutations}\label{sec:alt}
+
+Let $g(n)$ count the $w\in S_n$ with $D(w)=D(w^{-1})=\{1,3,5,\dots\}\cap[n-1]$. Stanley
+\cite[Theorem~3.1]{stanleyAlt} proved
+\begin{equation}\label{eq:stanley}
+\sum_{n\ge0}g(n)x^n=\sum_{k\ge0}E_{2k+1}^2\frac{u^{2k+1}}{(2k+1)!}
++\frac{1}{\sqrt{1-x^2}}\sum_{k\ge0}E_{2k}^2\frac{u^{2k}}{(2k)!},\qquad u=\tfrac12\log\tfrac{1+x}{1-x}.
+\end{equation}
+The odd and even sums separate the two parities of $n$; substitution of $u=x+x^3/3+\cdots$ mixes earlier Euler-number terms into each coefficient. Gessel and Zhuang~\cite[Section~2.4]{gesselZhuang} rederive this generating function through symmetric functions. Our contribution here is the asymptotic expansion, rather than a new generating function.
+
+The series $\sum_m E_m^2u^m/m!$ has radius of convergence $0$, so singularity analysis does not apply
+directly. A direct comparison of coefficients does. The term indexed by $m=n$ supplies the leading value $E_n^2/n!$, the term $m=n-2$ supplies the $1/n$ correction, and factorial decay bounds the sum of all earlier terms uniformly.
+
+\begin{proof}[Proof of Theorem~\ref{thm:alt}]
+Put $a_m=E_m^2/m!$ and $\rho=4/\pi^2$. Since $u=x+x^3/3+x^5/5+\cdots$ is odd, \eqref{eq:stanley} reads
+\[
+g(n)=\sum_{0\le j\le n/2}a_{n-2j}\,c_{n,n-2j},\qquad c_{n,m}=\begin{cases}[x^n]\,u^m,& n\text{ odd},\\
+[x^n]\,(1-x^2)^{-1/2}u^m,& n\text{ even}.\end{cases}
+\]
+Here $j$ measures how far the Euler-number index is below $n$, and $c_{n,m}$ is the weight contributed by the substitution.
+
+\emph{Coefficients.} Coefficientwise $u\le x(1-x^2)^{-1}$ and $(1-x^2)^{-1/2}\le(1-x^2)^{-1}$, so for
+$m=n-2j$
+\[
+c_{n,m}\le[x^n]\,x^m(1-x^2)^{-m-1}=\binom{m+j}{j}\le\frac{n^j}{j!}.
+\]
+Thus the substitution weight grows at most like $n^j/j!$, which will be dominated by the loss of $2j$ factorial factors. For the two leading weights, $c_{n,n}=1$ and $c_{n,n-2}=\frac{n-2}{3}+\frac{[n\text{ even}]}{2}$.
+
+\emph{Euler numbers.} From the partial fractions of $\sec z+\tan z$,
+$E_m/m!=2(2/\pi)^{m+1}\sigma_m$ with $\sigma_m=\sum_{k\ge0}(-1)^{k(m+1)}(2k+1)^{-m-1}$; see
+\cite{stanleySurvey}. For $m=0$ the series is the alternating sum $\sigma_0=\pi/4$, and $a_0=1$.
+For even $m\ge2$ the alternating-series estimate gives $1-3^{-m-1}\le\sigma_m\le1$.
+For odd $m\ge1$ all terms are positive and $1\le\sigma_m\le\sigma_1=\pi^2/8$.
+Consequently $\pi/4\le\sigma_m\le\pi^2/8$ for every $m\ge0$. Also, for $m\ge1$,
+\[
+|\sigma_m-1|\le\sum_{k\ge1}(2k+1)^{-m-1}
+\le 3^{-m-1}+\int_1^\infty(2x+1)^{-m-1}\,dx
+=3^{-m-1}+\frac{3^{-m}}{2m}=O(3^{-m}).
+\]
+The integral bounds all terms after the first omitted term, uniformly in $m$.
+Hence $a_m=4\rho^{m+1}m!\,\sigma_m^2$, and with $K=(\pi/2)^2$,
+\[
+\frac{a_{n-2j}}{a_n}\le K\rho^{-2j}\,\frac{(n-2j)!}{n!}.
+\]
+Apart from a fixed factor and an exponential factor in $j$, this ratio is the reciprocal of $2j$ successive factorial factors.
+
+\emph{Tail.} Write $R_n=\sum_{2\le j\le\lfloor n/2\rfloor}a_{n-2j}c_{n,n-2j}/a_n$.
+This is the total relative contribution discarded after the first two terms.
+If $n-2j\ge n/2$ then $(n-2j)!/n!\le(n/2)^{-2j}$.
+Putting $q_n=4/(\rho^2n)$, the sum of these terms is at most
+\[
+K\sum_{j\ge2}\frac{q_n^j}{j!}\le\frac{Kq_n^2e^{q_n}}2=O(n^{-2}).
+\]
+The last bound follows from $j!\ge2(j-2)!$ and sums the entire near tail.
+
+For the far tail put $M=\lfloor n/2\rfloor$.
+There are at most $n$ terms with $m=n-2j<n/2$, and each has
+$c_{n,m}\le\binom{m+j}{j}\le2^n$ and
+$a_m/a_n\le K\rho^{-n}M!/n!$, since $0<\rho<1$.
+For $n\ge2$, the $n-M$ factors in $n!/M!$ are all at least $n/2$, so the sum of the far tail is at most
+\[
+nK\left(\frac2\rho\right)^n\frac{M!}{n!}
+\le nK\left(\frac2\rho\sqrt{\frac2n}\right)^n.
+\]
+Its logarithm is $-\tfrac12n\log n+O(n)$, so it is $o(n^{-r})$ for every fixed $r>0$.
+Combining the two ranges proves $R_n=O(n^{-2})$, with a constant independent of $n$.
+
+\emph{Main terms.} The term $j=0$ is $a_n$. For $j=1$,
+$a_{n-2}/a_n=\sigma_{n-2}^2/(\rho^2\sigma_n^2\,n(n-1))=(1+O(3^{-n}))/(\rho^2n(n-1))$. Multiplying by
+$c_{n,n-2}=n/3+O(1)$ gives $1/(3\rho^2n)+O(n^{-2})=\pi^4/(48n)+O(n^{-2})$. Finally
+$a_n=4\rho^{n+1}n!\,\sigma_n^2=\frac{16}{\pi^2}\rho^n n!\,(1+O(3^{-n}))$.
+\end{proof}
+
+Numerically, $n\bigl(g(n)n!/E_n^2-1\bigr)$ equals $2.1130$, $2.0694$ and $2.0296$ at $n=40,80,159$, against
+$\pi^4/48=2.0294$.
+
+\begin{remark}\label{rem:gessel}
+By a theorem of Gessel \cite{gessel}, $\beta_n(S,T)=\langle r_\alpha,r_\beta\rangle$, where $r_\alpha$ and
+$r_\beta$ are the ribbon Schur functions of $S$ and $T$ (Section~\ref{sec:criterion}). Ribbon Schur functions
+are Schur positive, so the Cauchy--Schwarz inequality gives
+$\beta_n(S,T)^2\le\beta_n(S,S)\,\beta_n(T,T)$, and the maximum $M(n)$ of $\beta_n$ is attained on the
+diagonal \cite[Supplementary Problem~132(a)]{ec2second}. Moreover
+$\beta_n(S,S)=\sum_\lambda c_\lambda(S)^2$, where $c_\lambda(S)$ is the number of SYT of shape $\lambda$ with
+descent set $S$. We computed $\beta_n(S,S)$ for every $S\subseteq[n-1]$ with $n\le22$. For $4\le n\le22$ the
+maximum is attained only at $S=\{1,3,5,\dots\}\cap[n-1]$ and $S=\{2,4,6,\dots\}\cap[n-1]$, with common value
+$g(n)$, and every other value is at most $2g(n)/3$. By the equality case of Cauchy--Schwarz, every
+pair $(S,T)$ with $\beta_n(S,T)=M(n)$ then has both $S$ and $T$ alternating. So Gessel's conjecture holds for
+$n\le22$; for example $g(22)=4705365925872$. For $n\le8$ we confirmed this by enumerating $S_n$ directly. The computation also shows that
+$\beta_n(S,S)$ has local maxima away from the alternating sets, under the moves that add, delete or shift
+one element of $S$ by one position; for example $S=\{2,4,7,9\}$ at $n=11$, where $\beta_{11}(S,S)=1808$ while every neighbour gives at most $1751$. Thus strict ascent using only these add, delete and adjacent-shift moves can stop before reaching an alternating set. This obstructs that particular improvement strategy, without ruling out other local methods.
+\end{remark}
+
+\section{The exact set of pairs}\label{sec:criterion}
+
+To decide a particular pair, we need to know which shapes are available for each descent set.
+For example, $S=\{1,3\}$ on six entries has run lengths $\alpha=(1,2,3)$.
+Joining rows of these lengths, with successive rows overlapping in one column, gives its ribbon.
+Its sorted row lengths are $(3,2,1)$ and its sorted column lengths are $(2,2,1,1)$,
+whose transpose is $(4,2)$. The partition $(3,3)$ lies between $(3,2,1)$ and $(4,2)$ in dominance order,
+but does not occur in this ribbon's Schur support. Thus interval overlap is a necessary test whose possible
+sufficiency for pairs needs explanation, not an automatic consequence of full individual supports.
+
+Dominance order compares partial sums: $\mu\le\lambda$ means that the first $k$ parts of $\mu$ sum to
+at most those of $\lambda$, for every $k$. A ribbon Schur function $r_\alpha$ records the available shapes:
+the coefficient of $s_\lambda$ is the number of SYT of shape $\lambda$ with descent set $S$.
+Let $\alpha,\beta$ be the compositions of $n$ with descent sets $S,T$ and let $r_\alpha$ be the ribbon Schur
+function. By Gessel's theorem $(S,T)$ occurs if and only if $r_\alpha$ and $r_\beta$ share a Schur
+constituent. Every constituent $s_\lambda$ of $r_\alpha$ satisfies $\rows(\alpha)\le\lambda\le\cols(\alpha)^t$
+in dominance order, where $\rows(\alpha)$ and $\cols(\alpha)$ are the row and column lengths of the ribbon
+sorted into partitions \cite{mvw2012}. Dominance order on partitions of $n$ is a lattice, so the two intervals
+meet if and only if the join of the lower ends lies below the meet of the upper ends.
+
+\begin{conjecture}\label{conj:criterion}
+A pair $(S,T)$ occurs if and only if the dominance intervals
+\[
+[\rows(\alpha),\cols(\alpha)^t]\quad\text{and}\quad[\rows(\beta),\cols(\beta)^t]
+\]
+meet.
+\end{conjecture}
+
+In words, the conjecture asks whether overlapping ranges of allowable shapes always contain a shape actually available to both descent sets, despite gaps in individual supports.
+
+The condition is necessary. Because dominance order is a lattice, the two intervals meet exactly when
+$\rows(\alpha)\le\cols(\beta)^t$ and $\rows(\beta)\le\cols(\alpha)^t$; as $\rows(\alpha)$ and $\cols(\alpha)$ are
+$\alpha(S)$ and $\delta(S)$ sorted, this is condition~\eqref{eq:gr}, which Lemma~\ref{lem:gr} proves necessary.
+By Corollary~\ref{cor:rate}, the conjecture would also determine the exact rate in Theorem~\ref{thm:density}. We have checked sufficiency pair by
+pair for $n\le20$, comparing the criterion with the actual set of pairs, and found no disagreement; in
+particular the criterion reproduces A380394, including $f(13)=13162228$, and gives $f(20)=260283514168$. Sufficiency would follow at once if every ribbon had full
+support, meaning that every $\lambda$ in the interval occurs, but that is false. McNamara and van Willigenburg
+determined the support for one class of ribbons \cite{mvw2012}. Gaetz, Hardt and Sridhar studied when two
+ribbons have equal supports \cite{gaetz}, and Azenhas and Mamede classified the monotone ribbons with full
+support \cite{azenhas}. Both of these papers assume that every row of the ribbon has at least two boxes,
+whereas the ribbon of a uniformly random $S$ has about $n/4$ rows of length one. By direct computation, $4$ of
+the $32$ ribbons with $n=6$ fail to have full support (for instance $\alpha=(1,2,3)$ misses $(3,3)$), as do
+$544$ of the $1024$ ribbons with $n=11$. The missing partitions seem never to be the only common ones.
+Table~\ref{tab:split} shows how the pairs that occur are spread.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{ccccccc}
+\toprule
+$\bigl||S|-|T|\bigr|$ & $0$ & $1$ & $2$ & $3$ & $4$ & $5$\\
+\midrule
+$n=11$ & $1$ & $0.940$ & $0.702$ & $0.319$ & $0.056$ & $0.002$\\
+$n=12$ & $1$ & $0.966$ & $0.807$ & $0.481$ & $0.152$ & $0.015$\\
+\bottomrule
+\end{tabular}
+\caption{Proportion of pairs $(S,T)$ that occur, by $\bigl||S|-|T|\bigr|$.}
+\label{tab:split}
+\end{table}
+
+\section{Formal verification and computations}\label{sec:verification}
+
+Theorems~\ref{thm:density} and~\ref{thm:alt} have been verified in the Lean~4 proof assistant \cite{lean4}
+with the Mathlib library \cite{mathlib}, and the verified statements use only Lean's standard axioms. The
+formal proof of Theorem~\ref{thm:density} follows Section~\ref{sec:density} and gives the same bound. It
+proves Lemma~\ref{lem:reduce} in both directions with Fomin's growth diagrams \cite{fomin} in place of the
+insertion algorithm: the backward local rule turns two SYT of a common shape with descent sets $S$ and $T$
+into a permutation $w$ with $D(w)=S$ and $D(w^{-1})=T$, and the forward rule recovers such a pair of
+tableaux from any permutation. The formal proof of Theorem~\ref{thm:alt} does not assume
+\eqref{eq:stanley}: it proves Stanley's generating function from the definition of $g(n)$, and the series
+for $E_m/m!$ used above. Proposition~\ref{prop:hooks} is verified as well, through the construction of
+Remark~\ref{rem:elementary} with the pivot chosen by a discrete intermediate value argument. The lower bound
+$1-f(n)/4^{n-1}\ge(3^{n-1}-1)/4^{n-1}$ of Remark~\ref{rem:rate} is verified, and so is the
+inequality $\beta_n(S,T)^2\le\beta_n(S,S)\,\beta_n(T,T)$ of Remark~\ref{rem:gessel}, which the formal
+proof obtains from flag characters of $S_n$ rather than from ribbon Schur functions. So are Lemma~\ref{lem:gr}, the necessary direction of Conjecture~\ref{conj:criterion}, Theorem~\ref{thm:grrate},
+with its explicit bounds and with an explicit constant in the $O(\log^2n)$, and Corollary~\ref{cor:rate}. The
+formal proof of Theorem~\ref{thm:grrate} counts pairs instead of computing probabilities, and its two union
+bounds become one lemma: a family of $j$ blocks is recorded by its $j$ first and $j$ last positions, and these
+alone determine the positions inside the family, which gives the factor $\binom nj^2$. The Schur-function statements of Remark~\ref{rem:gessel} and
+Section~\ref{sec:criterion}, the sufficiency in Conjecture~\ref{conj:criterion}, and all computed values are
+not formally verified.
+
+All claims marked as computed were checked by computer. Each certificate produced by the construction of
+Section~\ref{sec:density} was verified as a lattice word of the stated shape with the stated descent set
+($339296$ row words for $n\le16$), and for $n\le9$ every certified pair was confirmed by enumeration. The failure probabilities in Remark~\ref{rem:rate} were computed in extended precision by summing over all pairs of partitions of $n$, and agree with the exact failure count at $n=20$. The supplementary archive contains the Lean sources with the pinned toolchain and Mathlib revision, a theorem-and-axiom driver, and the computation scripts with commands and saved outputs. The pairwise check compares tableau supports directly with dominance-interval intersections; it does not infer agreement merely from matching totals. A second program, sharing no code with the first, computes the Schur coefficients $c_\lambda(S)$ by a dynamic programme on Young's lattice; it repeated the pairwise check for every ordered pair with $n\le20$ and the diagonal maxima for $n\le22$. Every other number stated in the text was recomputed by separate code written for this purpose. Sampling output records seed $11$ and Wilson binomial confidence intervals. File hashes identify the exact source snapshot used for each check.
+
+\subsection*{Acknowledgements}
+
+The question is Richard Stanley's \cite{stanleyMO}. \emph{Status.} All proved results of this paper are formally verified in Lean~4 (Section~\ref{sec:verification}), and all computations
+were independently rechecked; the proofs have not yet been checked line by line by a human. \emph{Origin.} The results and
+proofs were found with the AI systems Claude (Anthropic) and Codex (OpenAI), directed by the author.
+
+\begin{thebibliography}{99}
+
+\bibitem{azenhas} O.~Azenhas and R.~Mamede.
+A classification of monotone ribbons with full Schur support with application to the classification of full
+equivalence classes. Preprint, 2018. \arxiv{1812.04705}.
+
+\bibitem{fomin} S.~Fomin.
+Schensted algorithms for dual graded graphs.
+\emph{J. Algebraic Combin.}, 4(1):5--45, 1995. \doi{10.1023/A:1022404807578}.
+
+\bibitem{gaetz} M.~Gaetz, W.~Hardt and S.~Sridhar.
+Support equalities among ribbon Schur functions.
+\emph{Electron. J. Combin.}, 26(3):\#P3.52, 2019. \doi{10.37236/8229}.
+
+\bibitem{gessel} I.~M.~Gessel.
+Multipartite $P$-partitions and inner products of skew Schur functions.
+In \emph{Combinatorics and Algebra}, volume~34 of \emph{Contemp. Math.}, pages 289--317.
+Amer. Math. Soc., Providence, RI, 1984. \doi{10.1090/conm/034/777705}.
+
+\bibitem{gesselZhuang} I.~M.~Gessel and Y.~Zhuang.
+Two-sided permutation statistics via symmetric functions.
+\emph{Forum Math. Sigma}, 12:e93, 2024. \doi{10.1017/fms.2024.89}.
+
+\bibitem{hoeffding} W.~Hoeffding.
+Probability inequalities for sums of bounded random variables.
+\emph{J. Amer. Statist. Assoc.}, 58(301):13--30, 1963. \doi{10.1080/01621459.1963.10500830}.
+
+\bibitem{answerMO} V.~Jandhyala.
+Answer to ``Descent sets and inverse descent sets of a permutation''.
+MathOverflow, 2026. \url{https://mathoverflow.net/a/515793}, accessed 8 October 2026.
+
+\bibitem{mcdiarmid} C.~McDiarmid.
+On the method of bounded differences.
+In \emph{Surveys in Combinatorics, 1989}, volume 141 of \emph{London Math. Soc. Lecture Note Ser.}, pages
+148--188. Cambridge Univ. Press, 1989. \doi{10.1017/CBO9781107359949.008}.
+
+\bibitem{mvw2012} P.~R.~W.~McNamara and S.~van Willigenburg.
+Maximal supports and Schur-positivity among connected skew shapes.
+\emph{European J. Combin.}, 33(6):1190--1206, 2012. \doi{10.1016/j.ejc.2012.02.001}.
+
+\bibitem{mathlib} The mathlib Community.
+The Lean mathematical library.
+In \emph{Proceedings of the 9th ACM SIGPLAN International Conference on Certified Programs and Proofs},
+pages 367--381, 2020. \doi{10.1145/3372885.3373824}.
+
+\bibitem{lean4} L.~de~Moura and S.~Ullrich.
+The Lean 4 theorem prover and programming language.
+In \emph{Automated Deduction, CADE 28}, volume 12699 of \emph{Lecture Notes in Comput. Sci.}, pages
+625--635. Springer, 2021. \doi{10.1007/978-3-030-79876-5_37}.
+
+\bibitem{oeisA007999} OEIS Foundation Inc.
+The On-Line Encyclopedia of Integer Sequences, sequence A007999. \url{https://oeis.org/A007999}, accessed 8 October 2026.
+
+\bibitem{oeisA380394} OEIS Foundation Inc.
+The On-Line Encyclopedia of Integer Sequences, sequence A380394. \url{https://oeis.org/A380394}, accessed 8 October 2026.
+
+\bibitem{ec2} R.~P.~Stanley.
+\emph{Enumerative Combinatorics, Volume 2}.
+Cambridge Univ. Press, Cambridge, 1999.
+
+\bibitem{ec2second} R.~P.~Stanley.
+\emph{Enumerative Combinatorics, Volume 2}. Second edition.
+Cambridge Univ. Press, Cambridge, 2023.
+
+\bibitem{stanleyAlt} R.~P.~Stanley.
+Alternating permutations and symmetric functions.
+\emph{J. Combin. Theory Ser. A}, 114(3):436--460, 2007. \doi{10.1016/j.jcta.2006.06.008}.
+
+\bibitem{stanleySurvey} R.~P.~Stanley.
+A survey of alternating permutations.
+In \emph{Combinatorics and Graphs}, volume 531 of \emph{Contemp. Math.}, pages 165--196.
+Amer. Math. Soc., Providence, RI, 2010. \doi{10.1090/conm/531/10466}.
+
+\bibitem{stanleyMO} R.~P.~Stanley.
+Descent sets and inverse descent sets of a permutation.
+MathOverflow question 486548, 2025. \url{https://mathoverflow.net/q/486548}, accessed 8 October 2026.
+
+\end{thebibliography}
+
+\end{document}

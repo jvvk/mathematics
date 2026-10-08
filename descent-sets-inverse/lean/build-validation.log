@@ -1,0 +1,113 @@
+LeanProofs.Stanley.Descent PASS
+LeanProofs.Stanley.Construct PASS
+LeanProofs.Stanley.Pivot PASS
+LeanProofs.Stanley.Count PASS
+LeanProofs.Stanley.Limit PASS
+LeanProofs.Stanley.Values PASS
+LeanProofs.Stanley.Growth PASS
+LeanProofs.Stanley.Fill PASS
+LeanProofs.Vendor.OAI.NumberTheory.JointDickman.Amplification.CutBounds PASS
+LeanProofs.Vendor.OAI.NumberTheory.JointDickman.Counting.SamplingSkeleton PASS
+LeanProofs.Vendor.OAI.NumberTheory.JointDickman.Counting.SamplingConcentration PASS
+LeanProofs.Vendor.OAI.NumberTheory.JointDickman.Amplification.FiniteHoeffding PASS
+LeanProofs.Vendor.OAI.NumberTheory.JointDickman.Amplification.FiniteProductMGF PASS
+LeanProofs.Vendor.OAI.NumberTheory.JointDickman.Probability.FiniteMcDiarmidDischarge PASS
+LeanProofs.Stanley.Density PASS
+LeanProofs.Stanley.AltBasic PASS
+LeanProofs.Stanley.Entringer PASS
+LeanProofs.Stanley.EulerSeries PASS
+LeanProofs.Stanley.Alternating PASS
+LeanProofs.Stanley.AltChecks PASS
+LeanProofs.Stanley.JointCount PASS
+LeanProofs.Stanley.EulerCount PASS
+LeanProofs.Stanley.CycleSeries PASS
+LeanProofs.Stanley.FlagCount PASS
+LeanProofs.Stanley.EnumerativeChecks PASS
+LeanProofs.Stanley.DoubleCoset PASS
+LeanProofs.Stanley.RibbonChar PASS
+LeanProofs.Stanley.Atoms PASS
+LeanProofs.Stanley.CycleLink PASS
+LeanProofs.Stanley.PermCycles PASS
+LeanProofs.Stanley.PermCount PASS
+LeanProofs.Stanley.StanleyProof PASS
+LeanProofs.Stanley.JointMultiplicity PASS
+LeanProofs.Stanley.MultiplicityChecks PASS
+LeanProofs.Stanley PASS
+Stanley.mem_pairs {n : ℕ} {S T : Finset ℕ} (hS : S ⊆ Finset.range (n - 1)) (hT : T ⊆ Finset.range (n - 1))
+  (hk : S.card = T.card) : (S, T) ∈ Stanley.pairs n
+'Stanley.mem_pairs' depends on axioms: [propext, Classical.choice, Quot.sound]
+Stanley.tendsto_f : Filter.Tendsto (fun n => ↑(Stanley.f n) ^ (1 / ↑n)) Filter.atTop (nhds 4)
+'Stanley.tendsto_f' depends on axioms: [propext, Classical.choice, Quot.sound]
+Stanley.Density.density_ratio {n : ℕ} (hn : 1 ≤ n) : 1 - ↑(Stanley.f n) / 4 ^ (n - 1) ≤ 6 * Real.exp (-↑n / 20000)
+'Stanley.Density.density_ratio' depends on axioms: [propext, Classical.choice, Quot.sound]
+Stanley.Alt.eulerSeries : Stanley.Alt.EulerSeries
+'Stanley.Alt.eulerSeries' depends on axioms: [propext, Classical.choice, Quot.sound]
+Stanley.Alt.stanleyGF : Stanley.Alt.StanleyGF
+'Stanley.Alt.stanleyGF' depends on axioms: [propext, Classical.choice, Quot.sound]
+Stanley.Alt.g_asymptotics :
+  ∃ C,
+    ∀ (n : ℕ),
+      1 ≤ n → |↑(Stanley.Alt.g n) * ↑n.factorial / ↑(Stanley.Alt.E n) ^ 2 - 1 - Real.pi ^ 4 / (48 * ↑n)| ≤ C / ↑n ^ 2
+'Stanley.Alt.g_asymptotics' depends on axioms: [propext, Classical.choice, Quot.sound]
+Stanley.Alt.g_asymptotics' :
+  ∃ C,
+    ∀ (n : ℕ),
+      1 ≤ n →
+        |↑(Stanley.Alt.g n) / (16 / Real.pi ^ 2 * (4 / Real.pi ^ 2) ^ n * ↑n.factorial) - 1 - Real.pi ^ 4 / (48 * ↑n)| ≤
+          C / ↑n ^ 2
+'Stanley.Alt.g_asymptotics'' depends on axioms: [propext, Classical.choice, Quot.sound]
+Stanley.beta_alternating (n : ℕ) : Stanley.beta n (Stanley.Alt.altS n) (Stanley.Alt.altS n) = Stanley.Alt.g n
+'Stanley.beta_alternating' depends on axioms: [propext, Classical.choice, Quot.sound]
+Stanley.beta_pos_iff_mem_pairs (n : ℕ) (S T : Finset ℕ) : 0 < Stanley.beta n S T ↔ (S, T) ∈ Stanley.pairs n
+'Stanley.beta_pos_iff_mem_pairs' depends on axioms: [propext, Classical.choice, Quot.sound]
+Stanley.Alt.beta_mul_factorial_eq (n : ℕ) (S T : Finset ℕ) :
+  ↑(Stanley.beta n S T) * ↑n.factorial = ∑ w, Stanley.Alt.ribbonCharacter n S w * Stanley.Alt.ribbonCharacter n T w
+'Stanley.Alt.beta_mul_factorial_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+Stanley.beta_sq_le_diagonal (n : ℕ) (S T : Finset ℕ) : Stanley.beta n S T ^ 2 ≤ Stanley.beta n S S * Stanley.beta n T T
+'Stanley.beta_sq_le_diagonal' depends on axioms: [propext, Classical.choice, Quot.sound]
+Stanley.beta_le_max_diagonal (n : ℕ) (S T : Finset ℕ) :
+  Stanley.beta n S T ≤ max (Stanley.beta n S S) (Stanley.beta n T T)
+'Stanley.beta_le_max_diagonal' depends on axioms: [propext, Classical.choice, Quot.sound]
+Stanley.exists_diagonal_maximum (n : ℕ) :
+  ∃ S ⊆ Finset.range (n - 1),
+    ∀ A ⊆ Finset.range (n - 1), ∀ B ⊆ Finset.range (n - 1), Stanley.beta n A B ≤ Stanley.beta n S S
+'Stanley.exists_diagonal_maximum' depends on axioms: [propext, Classical.choice, Quot.sound]
+Stanley.gessel_bound_iff_diagonal (n : ℕ) :
+  (∀ S ⊆ Finset.range (n - 1), ∀ T ⊆ Finset.range (n - 1), Stanley.beta n S T ≤ Stanley.Alt.g n) ↔
+    ∀ S ⊆ Finset.range (n - 1), Stanley.beta n S S ≤ Stanley.Alt.g n
+'Stanley.gessel_bound_iff_diagonal' depends on axioms: [propext, Classical.choice, Quot.sound]
+Stanley.exists_pair_attaining_g (n : ℕ) :
+  ∃ S ⊆ Finset.range (n - 1), ∃ T ⊆ Finset.range (n - 1), Stanley.beta n S T = Stanley.Alt.g n
+'Stanley.exists_pair_attaining_g' depends on axioms: [propext, Classical.choice, Quot.sound]
+Stanley.beta_zero_empty : Stanley.beta 0 ∅ ∅ = 1
+'Stanley.beta_zero_empty' depends on axioms: [propext, Classical.choice, Quot.sound]
+Stanley.beta_four_alternating : Stanley.beta 4 {0, 2} {0, 2} = 2
+'Stanley.beta_four_alternating' depends on axioms: [propext, Classical.choice, Quot.sound]
+Stanley.beta_four_mixed : Stanley.beta 4 {0} {1} = 1
+'Stanley.beta_four_mixed' depends on axioms: [propext, Classical.choice, Quot.sound]
+Stanley.beta_four_middle : Stanley.beta 4 {1} {1} = 2
+'Stanley.beta_four_middle' depends on axioms: [propext, Classical.choice, Quot.sound]
+Stanley.beta_four_strict : Stanley.beta 4 {0} {1} ^ 2 < Stanley.beta 4 {0} {0} * Stanley.beta 4 {1} {1}
+'Stanley.beta_four_strict' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+AUDIT PASSED: 35 source modules; 20 standard-axiom theorem checks.
+
+# 2026-10-08 isolated rebuild (source commit d811d08)
+lake build LeanProofs: Build completed successfully (3871 jobs)
+lake env lean CheckClaims.lean: exit 0, 15 axiom reports, all [propext, Classical.choice, Quot.sound]
+
+# 2026-10-08 (b) isolated rebuild (Stanley sources identical at 53cd60b and 09400c2)
+lake build LeanProofs: Build completed successfully (3873 jobs)
+lake env lean CheckClaims.lean: exit 0, 19 axiom reports, all [propext, Classical.choice, Quot.sound]
+
+# 2026-10-08 (c) isolated rebuild with Contingency, MatrixCriterion, DominanceNecessity
+lake build LeanProofs: Build completed successfully (3876 jobs)
+lake env lean CheckClaims.lean: exit 0, 21 axiom reports, all [propext, Classical.choice, Quot.sound]
+
+# 2026-10-08 (d) isolated rebuild with GaleRyserRate (Theorem 3.6, Corollary 3.7)
+lake build LeanProofs: Build completed successfully (3878 jobs)
+lake env lean CheckClaims.lean: exit 0, 25 axiom reports, all [propext, Classical.choice, Quot.sound]
+
+# 2026-10-08 (e) isolated rebuild after the pedagogy pass (Theorem 3.6 bound without the factor 2)
+lake build LeanProofs: Build completed successfully (3878 jobs)
+lake env lean CheckClaims.lean: exit 0, 25 axiom reports, all [propext, Classical.choice, Quot.sound]

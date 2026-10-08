@@ -1,0 +1,116 @@
+{
+  "cpp_independent_cross_check": {
+    "n": 8,
+    "pair_counts_compared_with_permutations": 16384
+  },
+  "alternating_cycle_identity_cross_check": [
+    {
+      "n": 1,
+      "g_from_cycle_identity": 1
+    },
+    {
+      "n": 2,
+      "g_from_cycle_identity": 1
+    },
+    {
+      "n": 3,
+      "g_from_cycle_identity": 1
+    },
+    {
+      "n": 4,
+      "g_from_cycle_identity": 2
+    },
+    {
+      "n": 5,
+      "g_from_cycle_identity": 3
+    },
+    {
+      "n": 6,
+      "g_from_cycle_identity": 8
+    },
+    {
+      "n": 7,
+      "g_from_cycle_identity": 19
+    },
+    {
+      "n": 8,
+      "g_from_cycle_identity": 64
+    },
+    {
+      "n": 9,
+      "g_from_cycle_identity": 213
+    },
+    {
+      "n": 10,
+      "g_from_cycle_identity": 880
+    },
+    {
+      "n": 11,
+      "g_from_cycle_identity": 3717
+    },
+    {
+      "n": 12,
+      "g_from_cycle_identity": 18288
+    },
+    {
+      "n": 13,
+      "g_from_cycle_identity": 92935
+    },
+    {
+      "n": 14,
+      "g_from_cycle_identity": 531440
+    },
+    {
+      "n": 15,
+      "g_from_cycle_identity": 3147495
+    },
+    {
+      "n": 16,
+      "g_from_cycle_identity": 20525168
+    },
+    {
+      "n": 17,
+      "g_from_cycle_identity": 138638825
+    },
+    {
+      "n": 18,
+      "g_from_cycle_identity": 1015694832
+    },
+    {
+      "n": 19,
+      "g_from_cycle_identity": 7700244745
+    },
+    {
+      "n": 20,
+      "g_from_cycle_identity": 62623847536
+    }
+  ],
+  "majorization_cycle_identity_cross_check": [
+    {
+      "n": 20,
+      "g_from_cycle_identity": 62623847536,
+      "weak_majorization_failures": 0
+    },
+    {
+      "n": 21,
+      "g_from_cycle_identity": 526317901451,
+      "weak_majorization_failures": 0
+    },
+    {
+      "n": 22,
+      "g_from_cycle_identity": 4705365925872,
+      "weak_majorization_failures": 0
+    }
+  ],
+  "matrix_witnesses": {
+    "verified_permutation_witnesses": 50,
+    "minimum_n": 22,
+    "maximum_n": 52,
+    "initial_timeouts": 1,
+    "timeouts_resolved_on_retry": 1
+  },
+  "singleton_construction": {
+    "constructed_permutations_checked": 31953,
+    "maximum_n": 16
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "seed": 11,
+  "generator": "Python random.Random (Mersenne Twister)",
+  "results": [
+    {
+      "n": 12,
+      "samples": 20000,
+      "certified": 7708,
+      "failures": 12292,
+      "certified_proportion": 0.3854,
+      "failure_95pct_Wilson": [
+        0.6078335536180398,
+        0.621322431717901
+      ]
+    },
+    {
+      "n": 13,
+      "samples": 20000,
+      "certified": 7760,
+      "failures": 12240,
+      "certified_proportion": 0.388,
+      "failure_95pct_Wilson": [
+        0.605225672081541,
+        0.6187313118418916
+      ]
+    },
+    {
+      "n": 20,
+      "samples": 20000,
+      "certified": 11269,
+      "failures": 8731,
+      "certified_proportion": 0.56345,
+      "failure_95pct_Wilson": [
+        0.42968933636596407,
+        0.44343503300955556
+      ]
+    },
+    {
+      "n": 50,
+      "samples": 20000,
+      "certified": 15984,
+      "failures": 4016,
+      "certified_proportion": 0.7992,
+      "failure_95pct_Wilson": [
+        0.19530577953982953,
+        0.20640913483614348
+      ]
+    },
+    {
+      "n": 100,
+      "samples": 20000,
+      "certified": 18553,
+      "failures": 1447,
+      "certified_proportion": 0.92765,
+      "failure_95pct_Wilson": [
+        0.06884111656274722,
+        0.07602313187603907
+      ]
+    },
+    {
+      "n": 200,
+      "samples": 20000,
+      "certified": 19718,
+      "failures": 282,
+      "certified_proportion": 0.9859,
+      "failure_95pct_Wilson": [
+        0.012556778462801633,
+        0.01582984217652084
+      ]
+    },
+    {
+      "n": 400,
+      "samples": 20000,
+      "certified": 19989,
+      "failures": 11,
+      "certified_proportion": 0.99945,
+      "failure_95pct_Wilson": [
+        0.00030714858193327043,
+        0.00098467623450964
+      ]
+    }
+  ]
+}

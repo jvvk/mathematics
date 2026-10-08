@@ -1,0 +1,20 @@
+PASS f13_root: 3.52891114888841
+PASS f13_ratio: 0.7845299243927002
+PASS block_bound_eq_n2: f(2)=2=4^1-3^1+1
+PASS fail20: 0.05309409162146039
+PASS example_52314: ({1, 3}, {1, 4})
+PASS n3_pairs: six pairs
+PASS figure1_rsk: (True, True)
+PASS figure2_words: ([1, 1, 1, 1, 1, 2, 1, 3, 4, 2, 2, 5, 1, 6], [1, 1, 2, 3, 1, 1, 4, 1, 1, 2, 5, 1, 2, 6])
+PASS nonfull_support_n6: 4 (paper 4)
+PASS nonfull_support_n11: 544 (paper 544)
+PASS ribbon_123_misses_33: [(3, 2, 1), (4, 1, 1), (4, 2)]
+PASS table_n11: [1.0, 0.94, 0.702, 0.319, 0.056, 0.002] f=731390
+PASS table_n12: [1.0, 0.966, 0.807, 0.481, 0.152, 0.015] f=3119052
+PASS local_max_1808_1751: (1808, 1751)
+PASS gessel_max_n4_11: maxima only at alternating sets, values = A007999
+PASS euler_small: [1, 1, 1, 2, 5, 16, 61, 272, 1385, 7936, 50521]
+PASS g_small: [1, 1, 1, 1, 2, 3, 8, 19, 64, 213, 880, 3717]
+PASS g_numerics: {40: 2.113, 80: 2.0694, 159: 2.0296}
+PASS sampling: ({12: 0.3854, 13: 0.388, 20: 0.56345, 50: 0.7992, 100: 0.92765, 200: 0.9859, 400: 0.99945}, 11, [0.00030714858193327043, 0.00098467623450964])
+ALL PASS

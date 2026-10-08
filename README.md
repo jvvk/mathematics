@@ -4,6 +4,7 @@ Papers and notes by Vamshi Jandhyala, each with the code that checks it. Every f
 
 | Result | Kind | Status | Verified |
 |---|---|---|---|
+| [Descent sets of a permutation and its inverse: almost every pair occurs](descent-sets-inverse/) | Paper | Preprint, 8 October 2026; not peer reviewed | Lean (every proved result: Theorems 1.1, 1.2 and 3.6, Lemma 2.1 both ways, Lemma 3.5, Corollary 3.7); every stated number by independent programs |
 | [Does the smallest enclosing copy fit? Random points in a convex polygon](smallest-enclosing-copy/) | Paper | Preprint, 8 October 2026; not peer reviewed | Lean (every theorem, lemma and corollary); numerical values by independent programs |
 | [A mex sequence that is not ultimately periodic](mex-sequence-not-periodic/) | Paper | Preprint, 8 October 2026; not peer reviewed | Lean (every lemma and theorem, by two routes); every quoted number by an exact checker |
 | [Two triangulations that share only their hull](two-triangulations-hull/) | Paper | Preprint, 8 October 2026 | Exact checker; exhaustive order-type search to n = 10; Lean (Theorem 2 assumes the n = 6 to 8 search) |

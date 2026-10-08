@@ -1,0 +1,148 @@
+{
+  "by_n": [
+    {
+      "n": 2,
+      "maximum": 1,
+      "second": 0,
+      "maximisers": [
+        0,
+        1
+      ],
+      "brute_checked": true
+    },
+    {
+      "n": 3,
+      "maximum": 1,
+      "second": 0,
+      "maximisers": [
+        0,
+        2,
+        1,
+        3
+      ],
+      "brute_checked": true
+    },
+    {
+      "n": 4,
+      "maximum": 2,
+      "second": 1,
+      "maximisers": [
+        2,
+        5
+      ],
+      "brute_checked": true
+    },
+    {
+      "n": 5,
+      "maximum": 3,
+      "second": 2,
+      "maximisers": [
+        10,
+        5
+      ],
+      "brute_checked": true
+    },
+    {
+      "n": 6,
+      "maximum": 8,
+      "second": 4,
+      "maximisers": [
+        10,
+        21
+      ],
+      "brute_checked": true
+    },
+    {
+      "n": 7,
+      "maximum": 19,
+      "second": 12,
+      "maximisers": [
+        42,
+        21
+      ],
+      "brute_checked": true
+    },
+    {
+      "n": 8,
+      "maximum": 64,
+      "second": 30,
+      "maximisers": [
+        42,
+        85
+      ],
+      "brute_checked": true
+    },
+    {
+      "n": 9,
+      "maximum": 213,
+      "second": 111,
+      "maximisers": [
+        170,
+        85
+      ],
+      "brute_checked": false
+    },
+    {
+      "n": 10,
+      "maximum": 880,
+      "second": 400,
+      "maximisers": [
+        170,
+        341
+      ],
+      "brute_checked": false
+    },
+    {
+      "n": 11,
+      "maximum": 3717,
+      "second": 1808,
+      "maximisers": [
+        682,
+        341
+      ],
+      "brute_checked": false
+    },
+    {
+      "n": 12,
+      "maximum": 18288,
+      "second": 8203,
+      "maximisers": [
+        682,
+        1365
+      ],
+      "brute_checked": false
+    },
+    {
+      "n": 13,
+      "maximum": 92935,
+      "second": 42768,
+      "maximisers": [
+        2730,
+        1365
+      ],
+      "brute_checked": false
+    },
+    {
+      "n": 14,
+      "maximum": 531440,
+      "second": 236799,
+      "maximisers": [
+        2730,
+        5461
+      ],
+      "brute_checked": false
+    }
+  ],
+  "local_maximum": {
+    "n": 11,
+    "S": [
+      2,
+      4,
+      7,
+      9
+    ],
+    "value": 1808,
+    "largest_neighbour": 1751,
+    "moves": "toggle or adjacent shift"
+  }
+}

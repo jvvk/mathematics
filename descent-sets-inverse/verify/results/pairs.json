@@ -1,0 +1,561 @@
+[
+  {
+    "n": 1,
+    "pairs_checked": 1,
+    "f": 1,
+    "noninterval_supports": 0,
+    "size_difference": {
+      "0": {
+        "total": 1,
+        "realised": 1,
+        "proportion": 1.0
+      }
+    }
+  },
+  {
+    "n": 2,
+    "pairs_checked": 4,
+    "f": 2,
+    "noninterval_supports": 0,
+    "size_difference": {
+      "0": {
+        "total": 2,
+        "realised": 2,
+        "proportion": 1.0
+      },
+      "1": {
+        "total": 2,
+        "realised": 0,
+        "proportion": 0.0
+      }
+    }
+  },
+  {
+    "n": 3,
+    "pairs_checked": 16,
+    "f": 6,
+    "noninterval_supports": 0,
+    "size_difference": {
+      "0": {
+        "total": 6,
+        "realised": 6,
+        "proportion": 1.0
+      },
+      "1": {
+        "total": 8,
+        "realised": 0,
+        "proportion": 0.0
+      },
+      "2": {
+        "total": 2,
+        "realised": 0,
+        "proportion": 0.0
+      }
+    }
+  },
+  {
+    "n": 4,
+    "pairs_checked": 64,
+    "f": 22,
+    "noninterval_supports": 0,
+    "size_difference": {
+      "0": {
+        "total": 20,
+        "realised": 20,
+        "proportion": 1.0
+      },
+      "1": {
+        "total": 30,
+        "realised": 2,
+        "proportion": 0.06666666666666667
+      },
+      "2": {
+        "total": 12,
+        "realised": 0,
+        "proportion": 0.0
+      },
+      "3": {
+        "total": 2,
+        "realised": 0,
+        "proportion": 0.0
+      }
+    }
+  },
+  {
+    "n": 5,
+    "pairs_checked": 256,
+    "f": 94,
+    "noninterval_supports": 0,
+    "size_difference": {
+      "0": {
+        "total": 70,
+        "realised": 70,
+        "proportion": 1.0
+      },
+      "1": {
+        "total": 112,
+        "realised": 24,
+        "proportion": 0.21428571428571427
+      },
+      "2": {
+        "total": 56,
+        "realised": 0,
+        "proportion": 0.0
+      },
+      "3": {
+        "total": 16,
+        "realised": 0,
+        "proportion": 0.0
+      },
+      "4": {
+        "total": 2,
+        "realised": 0,
+        "proportion": 0.0
+      }
+    }
+  },
+  {
+    "n": 6,
+    "pairs_checked": 1024,
+    "f": 426,
+    "noninterval_supports": 4,
+    "size_difference": {
+      "0": {
+        "total": 252,
+        "realised": 252,
+        "proportion": 1.0
+      },
+      "1": {
+        "total": 420,
+        "realised": 170,
+        "proportion": 0.40476190476190477
+      },
+      "2": {
+        "total": 240,
+        "realised": 4,
+        "proportion": 0.016666666666666666
+      },
+      "3": {
+        "total": 90,
+        "realised": 0,
+        "proportion": 0.0
+      },
+      "4": {
+        "total": 20,
+        "realised": 0,
+        "proportion": 0.0
+      },
+      "5": {
+        "total": 2,
+        "realised": 0,
+        "proportion": 0.0
+      }
+    }
+  },
+  {
+    "n": 7,
+    "pairs_checked": 4096,
+    "f": 1938,
+    "noninterval_supports": 10,
+    "size_difference": {
+      "0": {
+        "total": 924,
+        "realised": 924,
+        "proportion": 1.0
+      },
+      "1": {
+        "total": 1584,
+        "realised": 928,
+        "proportion": 0.5858585858585859
+      },
+      "2": {
+        "total": 990,
+        "realised": 86,
+        "proportion": 0.08686868686868687
+      },
+      "3": {
+        "total": 440,
+        "realised": 0,
+        "proportion": 0.0
+      },
+      "4": {
+        "total": 132,
+        "realised": 0,
+        "proportion": 0.0
+      },
+      "5": {
+        "total": 24,
+        "realised": 0,
+        "proportion": 0.0
+      },
+      "6": {
+        "total": 2,
+        "realised": 0,
+        "proportion": 0.0
+      }
+    }
+  },
+  {
+    "n": 8,
+    "pairs_checked": 16384,
+    "f": 8724,
+    "noninterval_supports": 40,
+    "size_difference": {
+      "0": {
+        "total": 3432,
+        "realised": 3432,
+        "proportion": 1.0
+      },
+      "1": {
+        "total": 6006,
+        "realised": 4382,
+        "proportion": 0.7296037296037297
+      },
+      "2": {
+        "total": 4004,
+        "realised": 888,
+        "proportion": 0.2217782217782218
+      },
+      "3": {
+        "total": 2002,
+        "realised": 22,
+        "proportion": 0.01098901098901099
+      },
+      "4": {
+        "total": 728,
+        "realised": 0,
+        "proportion": 0.0
+      },
+      "5": {
+        "total": 182,
+        "realised": 0,
+        "proportion": 0.0
+      },
+      "6": {
+        "total": 28,
+        "realised": 0,
+        "proportion": 0.0
+      },
+      "7": {
+        "total": 2,
+        "realised": 0,
+        "proportion": 0.0
+      }
+    }
+  },
+  {
+    "n": 9,
+    "pairs_checked": 65536,
+    "f": 38724,
+    "noninterval_supports": 106,
+    "size_difference": {
+      "0": {
+        "total": 12870,
+        "realised": 12870,
+        "proportion": 1.0
+      },
+      "1": {
+        "total": 22880,
+        "realised": 19024,
+        "proportion": 0.8314685314685315
+      },
+      "2": {
+        "total": 16016,
+        "realised": 6292,
+        "proportion": 0.39285714285714285
+      },
+      "3": {
+        "total": 8736,
+        "realised": 536,
+        "proportion": 0.06135531135531135
+      },
+      "4": {
+        "total": 3640,
+        "realised": 2,
+        "proportion": 0.0005494505494505495
+      },
+      "5": {
+        "total": 1120,
+        "realised": 0,
+        "proportion": 0.0
+      },
+      "6": {
+        "total": 240,
+        "realised": 0,
+        "proportion": 0.0
+      },
+      "7": {
+        "total": 32,
+        "realised": 0,
+        "proportion": 0.0
+      },
+      "8": {
+        "total": 2,
+        "realised": 0,
+        "proportion": 0.0
+      }
+    }
+  },
+  {
+    "n": 10,
+    "pairs_checked": 262144,
+    "f": 169438,
+    "noninterval_supports": 252,
+    "size_difference": {
+      "0": {
+        "total": 48620,
+        "realised": 48620,
+        "proportion": 1.0
+      },
+      "1": {
+        "total": 87516,
+        "realised": 78630,
+        "proportion": 0.898464280817222
+      },
+      "2": {
+        "total": 63648,
+        "realised": 35732,
+        "proportion": 0.5614002011060835
+      },
+      "3": {
+        "total": 37128,
+        "realised": 6260,
+        "proportion": 0.16860590390002156
+      },
+      "4": {
+        "total": 17136,
+        "realised": 196,
+        "proportion": 0.011437908496732025
+      },
+      "5": {
+        "total": 6120,
+        "realised": 0,
+        "proportion": 0.0
+      },
+      "6": {
+        "total": 1632,
+        "realised": 0,
+        "proportion": 0.0
+      },
+      "7": {
+        "total": 306,
+        "realised": 0,
+        "proportion": 0.0
+      },
+      "8": {
+        "total": 36,
+        "realised": 0,
+        "proportion": 0.0
+      },
+      "9": {
+        "total": 2,
+        "realised": 0,
+        "proportion": 0.0
+      }
+    }
+  },
+  {
+    "n": 11,
+    "pairs_checked": 1048576,
+    "f": 731390,
+    "noninterval_supports": 544,
+    "size_difference": {
+      "0": {
+        "total": 184756,
+        "realised": 184756,
+        "proportion": 1.0
+      },
+      "1": {
+        "total": 335920,
+        "realised": 315880,
+        "proportion": 0.9403429387949512
+      },
+      "2": {
+        "total": 251940,
+        "realised": 176894,
+        "proportion": 0.7021274906723823
+      },
+      "3": {
+        "total": 155040,
+        "realised": 49448,
+        "proportion": 0.318937048503612
+      },
+      "4": {
+        "total": 77520,
+        "realised": 4364,
+        "proportion": 0.05629514963880289
+      },
+      "5": {
+        "total": 31008,
+        "realised": 48,
+        "proportion": 0.0015479876160990713
+      },
+      "6": {
+        "total": 9690,
+        "realised": 0,
+        "proportion": 0.0
+      },
+      "7": {
+        "total": 2280,
+        "realised": 0,
+        "proportion": 0.0
+      },
+      "8": {
+        "total": 380,
+        "realised": 0,
+        "proportion": 0.0
+      },
+      "9": {
+        "total": 40,
+        "realised": 0,
+        "proportion": 0.0
+      },
+      "10": {
+        "total": 2,
+        "realised": 0,
+        "proportion": 0.0
+      }
+    }
+  },
+  {
+    "n": 12,
+    "pairs_checked": 4194304,
+    "f": 3119052,
+    "noninterval_supports": 1358,
+    "size_difference": {
+      "0": {
+        "total": 705432,
+        "realised": 705432,
+        "proportion": 1.0
+      },
+      "1": {
+        "total": 1293292,
+        "realised": 1248808,
+        "proportion": 0.9656040553873371
+      },
+      "2": {
+        "total": 994840,
+        "realised": 802908,
+        "proportion": 0.8070724940693981
+      },
+      "3": {
+        "total": 639540,
+        "realised": 307898,
+        "proportion": 0.4814366575976483
+      },
+      "4": {
+        "total": 341088,
+        "realised": 51692,
+        "proportion": 0.15155033305188104
+      },
+      "5": {
+        "total": 149226,
+        "realised": 2310,
+        "proportion": 0.015479876160990712
+      },
+      "6": {
+        "total": 52668,
+        "realised": 4,
+        "proportion": 7.5947444368497e-05
+      },
+      "7": {
+        "total": 14630,
+        "realised": 0,
+        "proportion": 0.0
+      },
+      "8": {
+        "total": 3080,
+        "realised": 0,
+        "proportion": 0.0
+      },
+      "9": {
+        "total": 462,
+        "realised": 0,
+        "proportion": 0.0
+      },
+      "10": {
+        "total": 44,
+        "realised": 0,
+        "proportion": 0.0
+      },
+      "11": {
+        "total": 2,
+        "realised": 0,
+        "proportion": 0.0
+      }
+    }
+  },
+  {
+    "n": 13,
+    "pairs_checked": 16777216,
+    "f": 13162228,
+    "noninterval_supports": 2612,
+    "size_difference": {
+      "0": {
+        "total": 2704156,
+        "realised": 2704156,
+        "proportion": 1.0
+      },
+      "1": {
+        "total": 4992288,
+        "realised": 4894712,
+        "proportion": 0.9804546532571838
+      },
+      "2": {
+        "total": 3922512,
+        "realised": 3449464,
+        "proportion": 0.8794017711099418
+      },
+      "3": {
+        "total": 2615008,
+        "realised": 1644816,
+        "proportion": 0.6289908099707534
+      },
+      "4": {
+        "total": 1470942,
+        "realised": 425004,
+        "proportion": 0.2889332142259858
+      },
+      "5": {
+        "total": 692208,
+        "realised": 43200,
+        "proportion": 0.062408986894112756
+      },
+      "6": {
+        "total": 269192,
+        "realised": 876,
+        "proportion": 0.003254182888050165
+      },
+      "7": {
+        "total": 85008,
+        "realised": 0,
+        "proportion": 0.0
+      },
+      "8": {
+        "total": 21252,
+        "realised": 0,
+        "proportion": 0.0
+      },
+      "9": {
+        "total": 4048,
+        "realised": 0,
+        "proportion": 0.0
+      },
+      "10": {
+        "total": 552,
+        "realised": 0,
+        "proportion": 0.0
+      },
+      "11": {
+        "total": 48,
+        "realised": 0,
+        "proportion": 0.0
+      },
+      "12": {
+        "total": 2,
+        "realised": 0,
+        "proportion": 0.0
+      }
+    }
+  }
+]
