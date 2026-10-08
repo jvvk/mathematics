@@ -1,0 +1,51 @@
+Spans.length_cmp {m : ℕ} {l : Fin (m + 1) → ℝ} {a : Fin m → ℝ} (h : Spans.Admissible l a) (hopt : Spans.Optimal l a)
+  (hm : 1 ≤ m) {i j : Fin (m + 1)} (hij : i ≠ j) :
+  0 < (l i - l j) * (Real.cos (Spans.θ a ↑i - (Spans.Z l a).arg) - Real.cos (Spans.θ a ↑j - (Spans.Z l a).arg))
+'Spans.length_cmp' depends on axioms: [propext, Classical.choice, Quot.sound]
+Spans.turn_cmp {m : ℕ} {l : Fin (m + 1) → ℝ} {a : Fin m → ℝ} (h : Spans.Admissible l a) (hopt : Spans.Optimal l a)
+  (hm : 1 ≤ m) {k : ℕ} (hk : k + 1 < m) :
+  (Spans.ext a k - Spans.ext a (k + 1)) * (Spans.θ a k + Spans.θ a (k + 2) - 2 * (Spans.Z l a).arg) < 0
+'Spans.turn_cmp' depends on axioms: [propext, Classical.choice, Quot.sound]
+Spans.lengths_unimodal {m : ℕ} {l : Fin (m + 1) → ℝ} {a : Fin m → ℝ} (h : Spans.Admissible l a)
+  (hopt : Spans.Optimal l a) (hm : 1 ≤ m) :
+  ∃ k, (∀ (i j : Fin (m + 1)), i < j → j ≤ k → l i < l j) ∧ ∀ (i j : Fin (m + 1)), k ≤ i → i < j → l j < l i
+'Spans.lengths_unimodal' depends on axioms: [propext, Classical.choice, Quot.sound]
+Spans.shortest_at_end {m : ℕ} {l : Fin (m + 1) → ℝ} {a : Fin m → ℝ} (h : Spans.Admissible l a)
+  (hopt : Spans.Optimal l a) (hm : 1 ≤ m) {s : Fin (m + 1)} (hs : ∀ (j : Fin (m + 1)), j ≠ s → l s < l j) :
+  ↑s = 0 ∨ ↑s = m
+'Spans.shortest_at_end' depends on axioms: [propext, Classical.choice, Quot.sound]
+Spans.half_lt_arg {m : ℕ} {l : Fin (m + 1) → ℝ} {a : Fin m → ℝ} (h : Spans.Admissible l a) (hopt : Spans.Optimal l a)
+  (hm : 1 ≤ m) (h0 : l 0 < l (Fin.last m)) : Spans.T a / 2 < (Spans.Z l a).arg
+Spans.endpoint_arg {m : ℕ} {l : Fin (m + 2) → ℝ} {a : Fin (m + 1) → ℝ} (h : Spans.Admissible l a)
+  (hopt : Spans.Optimal l a) : 2 * (Spans.Z l a).arg < Spans.T a + Spans.ext a 0
+'Spans.endpoint_arg' depends on axioms: [propext, Classical.choice, Quot.sound]
+Spans.last_second_shortest {m : ℕ} {l : Fin (m + 2) → ℝ} {a : Fin (m + 1) → ℝ} (h : Spans.Admissible l a)
+  (hopt : Spans.Optimal l a) (hmin : ∀ (j : Fin (m + 2)), j ≠ 0 → l 0 < l j) {j : Fin (m + 2)} (hj0 : j ≠ 0)
+  (hjl : j ≠ Fin.last (m + 1)) : l (Fin.last (m + 1)) < l j
+'Spans.last_second_shortest' depends on axioms: [propext, Classical.choice, Quot.sound]
+Spans.turns_valley {m : ℕ} {l : Fin (m + 1) → ℝ} {a : Fin m → ℝ} (h : Spans.Admissible l a) (hopt : Spans.Optimal l a)
+  (hm : 1 ≤ m) :
+  ∃ z < m,
+    (∀ i < z, Spans.ext a (i + 1) < Spans.ext a i) ∧ ∀ (i : ℕ), z ≤ i → i + 1 < m → Spans.ext a i < Spans.ext a (i + 1)
+'Spans.turns_valley' depends on axioms: [propext, Classical.choice, Quot.sound]
+Spans.longest_at_smallest_turn {m : ℕ} {l : Fin (m + 1) → ℝ} {a : Fin m → ℝ} (h : Spans.Admissible l a)
+  (hopt : Spans.Optimal l a) (hm : 1 ≤ m) {z : ℕ} (hzm : z < m) (hdesc : ∀ i < z, Spans.ext a (i + 1) < Spans.ext a i)
+  (hasc : ∀ (i : ℕ), z ≤ i → i + 1 < m → Spans.ext a i < Spans.ext a (i + 1)) {k : Fin (m + 1)}
+  (hk : ∀ (j : Fin (m + 1)), j ≠ k → l j < l k) : ↑k = z ∨ ↑k = z + 1
+'Spans.longest_at_smallest_turn' depends on axioms: [propext, Classical.choice, Quot.sound]
+Spans.first_turn_descends {m : ℕ} {l : Fin (m + 1) → ℝ} {a : Fin m → ℝ} (h : Spans.Admissible l a)
+  (hopt : Spans.Optimal l a) (hm : 1 ≤ m) (hm2 : 2 ≤ m) (h0 : l 0 < l (Fin.last m)) : Spans.ext a 1 < Spans.ext a 0
+Spans.last_turn_ascends {m : ℕ} {l : Fin (m + 2) → ℝ} {a : Fin (m + 1) → ℝ} (h : Spans.Admissible l a)
+  (hopt : Spans.Optimal l a) (hm3 : 2 ≤ m) (hmin : ∀ (j : Fin (m + 2)), j ≠ 0 → l 0 < l j) :
+  Spans.ext a (m - 1) < Spans.ext a m
+'Spans.last_turn_ascends' depends on axioms: [propext, Classical.choice, Quot.sound]
+Spans.a4_eq_three :
+  (∀ (l : Fin 4 → ℝ) (a : Fin 3 → ℝ),
+      Spans.Admissible l a →
+        Spans.Optimal l a → (∀ (j : Fin 4), j ≠ 0 → l 0 < l j) → Spans.P1 l a ∨ Spans.P2 l a ∨ Spans.P3 l a) ∧
+    (∀ (l : Fin 4 → ℝ) (a : Fin 3 → ℝ),
+        ¬(Spans.P1 l a ∧ Spans.P2 l a) ∧ ¬(Spans.P1 l a ∧ Spans.P3 l a) ∧ ¬(Spans.P2 l a ∧ Spans.P3 l a)) ∧
+      (∃ l a, Spans.Admissible l a ∧ Spans.T a ≤ Real.pi / 2 ∧ Spans.Optimal l a ∧ Spans.P1 l a) ∧
+        (∃ l a, Spans.Admissible l a ∧ Spans.T a ≤ Real.pi / 2 ∧ Spans.Optimal l a ∧ Spans.P2 l a) ∧
+          ∃ l a, Spans.Admissible l a ∧ Spans.T a ≤ Real.pi / 2 ∧ Spans.Optimal l a ∧ Spans.P3 l a
+'Spans.a4_eq_three' depends on axioms: [propext, Classical.choice, Quot.sound]

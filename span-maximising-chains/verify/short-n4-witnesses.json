@@ -1,0 +1,29 @@
+[
+  {
+    "lengths": [1, 2, 3, 4],
+    "tangent_numerators": [1, 2, 3],
+    "tangent_denominator": 10,
+    "p": [0, 2, 3, 1],
+    "q": [2, 0, 1],
+    "squared_distance_margin": "18132/143117",
+    "arrangements_checked": 72
+  },
+  {
+    "lengths": [2, 3, 4, 5],
+    "tangent_numerators": [1, 2, 4],
+    "tangent_denominator": 10,
+    "p": [0, 3, 2, 1],
+    "q": [2, 0, 1],
+    "squared_distance_margin": "1408/38077",
+    "arrangements_checked": 72
+  },
+  {
+    "lengths": [8, 9, 10, 32],
+    "tangent_numerators": [2, 3, 4],
+    "tangent_denominator": 20,
+    "p": [0, 2, 3, 1],
+    "q": [1, 0, 2],
+    "squared_distance_margin": "148404/537017",
+    "arrangements_checked": 72
+  }
+]

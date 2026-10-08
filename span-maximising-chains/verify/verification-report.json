@@ -1,0 +1,262 @@
+{
+  "witnesses": [
+    {
+      "n": 4,
+      "distinct_strict_optimizers": 3,
+      "structured_candidates_per_witness": 8,
+      "sweep_turn_orders_per_witness": 2,
+      "file_sha256": "6b423016671cd31e0508974a6a3b62473b03c330b1501fe266576565d8202fda"
+    },
+    {
+      "n": 5,
+      "distinct_strict_optimizers": 6,
+      "structured_candidates_per_witness": 32,
+      "sweep_turn_orders_per_witness": 4,
+      "file_sha256": "69edd17b1430b813d4f1e21de558a6c5da12933cf06038f973af47ad36fc196d"
+    },
+    {
+      "n": 6,
+      "distinct_strict_optimizers": 14,
+      "structured_candidates_per_witness": 128,
+      "sweep_turn_orders_per_witness": 8,
+      "file_sha256": "be815e19b6c58f94bb15bbcf4c94a938d8da158f0cbf4392d96687b74612ef75"
+    },
+    {
+      "n": 7,
+      "distinct_strict_optimizers": 31,
+      "structured_candidates_per_witness": 512,
+      "sweep_turn_orders_per_witness": 16,
+      "file_sha256": "05405361f7b50a3627d92497d611b49ab3d8bf01d8b1cca62fe5530347137768"
+    },
+    {
+      "n": 8,
+      "distinct_strict_optimizers": 70,
+      "structured_candidates_per_witness": 2048,
+      "sweep_turn_orders_per_witness": 32,
+      "file_sha256": "81237664bdc3c0514f956a101c2b032161edbbd14bd5ecdb5249ac72adce8921"
+    }
+  ],
+  "short_examples": {
+    "short_n4_unrestricted_certificates": [
+      {
+        "p": [
+          0,
+          2,
+          3,
+          1
+        ],
+        "q": [
+          2,
+          0,
+          1
+        ],
+        "arrangements_checked": 72,
+        "exact_margin": "18132/143117"
+      },
+      {
+        "p": [
+          0,
+          3,
+          2,
+          1
+        ],
+        "q": [
+          2,
+          0,
+          1
+        ],
+        "arrangements_checked": 72,
+        "exact_margin": "1408/38077"
+      },
+      {
+        "p": [
+          0,
+          2,
+          3,
+          1
+        ],
+        "q": [
+          1,
+          0,
+          2
+        ],
+        "arrangements_checked": 72,
+        "exact_margin": "148404/537017"
+      }
+    ],
+    "beyond_semicircle_example": {
+      "squared_spans": [
+        "26/85",
+        "4/5",
+        "234/85",
+        "58/17",
+        "180/17",
+        "914/85"
+      ],
+      "winning_p": [
+        1,
+        0,
+        2
+      ],
+      "winning_q": [
+        1,
+        0
+      ]
+    }
+  },
+  "unrestricted_sweep_audit": [
+    {
+      "case": "n=3,target=0.8",
+      "unrestricted_arrangements_checked": 6,
+      "approximate_total_turn": 0.7987445702218916,
+      "exact_objective_agreement": true
+    },
+    {
+      "case": "n=3,target=1.5",
+      "unrestricted_arrangements_checked": 6,
+      "approximate_total_turn": 1.5002881038653713,
+      "exact_objective_agreement": true
+    },
+    {
+      "case": "n=3,target=2.4",
+      "unrestricted_arrangements_checked": 6,
+      "approximate_total_turn": 2.400199541041637,
+      "exact_objective_agreement": true
+    },
+    {
+      "case": "n=3,target=3.05",
+      "unrestricted_arrangements_checked": 6,
+      "approximate_total_turn": 3.0506550325761737,
+      "exact_objective_agreement": true
+    },
+    {
+      "case": "n=4,target=0.8",
+      "unrestricted_arrangements_checked": 72,
+      "approximate_total_turn": 0.7990368421507283,
+      "exact_objective_agreement": true
+    },
+    {
+      "case": "n=4,target=1.5",
+      "unrestricted_arrangements_checked": 72,
+      "approximate_total_turn": 1.5000375494457163,
+      "exact_objective_agreement": true
+    },
+    {
+      "case": "n=4,target=2.4",
+      "unrestricted_arrangements_checked": 72,
+      "approximate_total_turn": 2.3995997684045367,
+      "exact_objective_agreement": true
+    },
+    {
+      "case": "n=4,target=3.05",
+      "unrestricted_arrangements_checked": 72,
+      "approximate_total_turn": 3.049091339217708,
+      "exact_objective_agreement": true
+    },
+    {
+      "case": "n=5,target=0.8",
+      "unrestricted_arrangements_checked": 1440,
+      "approximate_total_turn": 0.8001250938228331,
+      "exact_objective_agreement": true
+    },
+    {
+      "case": "n=5,target=1.5",
+      "unrestricted_arrangements_checked": 1440,
+      "approximate_total_turn": 1.5018437895101244,
+      "exact_objective_agreement": true
+    },
+    {
+      "case": "n=5,target=2.4",
+      "unrestricted_arrangements_checked": 1440,
+      "approximate_total_turn": 2.4016393159992973,
+      "exact_objective_agreement": true
+    },
+    {
+      "case": "n=5,target=3.05",
+      "unrestricted_arrangements_checked": 1440,
+      "approximate_total_turn": 3.0498987215772697,
+      "exact_objective_agreement": true
+    },
+    {
+      "case": "n=6,target=0.8",
+      "unrestricted_arrangements_checked": 43200,
+      "approximate_total_turn": 0.8000668255324627,
+      "exact_objective_agreement": true
+    },
+    {
+      "case": "n=6,target=1.5",
+      "unrestricted_arrangements_checked": 43200,
+      "approximate_total_turn": 1.4999790172803142,
+      "exact_objective_agreement": true
+    },
+    {
+      "case": "n=6,target=2.4",
+      "unrestricted_arrangements_checked": 43200,
+      "approximate_total_turn": 2.4005516245273686,
+      "exact_objective_agreement": true
+    },
+    {
+      "case": "n=6,target=3.05",
+      "unrestricted_arrangements_checked": 43200,
+      "approximate_total_turn": 3.0493092425678494,
+      "exact_objective_agreement": true
+    },
+    {
+      "case": "n=5,simultaneous-events",
+      "unrestricted_arrangements_checked": 1440,
+      "approximate_total_turn": 0.9991679144388552,
+      "exact_objective_agreement": true
+    },
+    {
+      "case": "n=6,simultaneous-events",
+      "unrestricted_arrangements_checked": 43200,
+      "approximate_total_turn": 2.9900595747348606,
+      "exact_objective_agreement": true
+    }
+  ],
+  "new_n7_unrestricted_certificates": [
+    {
+      "p": [
+        0,
+        2,
+        4,
+        6,
+        5,
+        3,
+        1
+      ],
+      "q": [
+        4,
+        3,
+        2,
+        0,
+        1,
+        5
+      ],
+      "arrangements_checked": 1814400,
+      "exact_margin": "1439410338948772856173327200000/9954778699984352270525668309"
+    },
+    {
+      "p": [
+        0,
+        2,
+        4,
+        6,
+        5,
+        3,
+        1
+      ],
+      "q": [
+        5,
+        4,
+        2,
+        0,
+        1,
+        3
+      ],
+      "arrangements_checked": 1814400,
+      "exact_margin": "14896398487350656917596288000/10687724629718810876634403429"
+    }
+  ],
+  "all_requested_checks_passed": true
+}

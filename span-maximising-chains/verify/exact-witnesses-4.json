@@ -1,0 +1,80 @@
+[
+  {
+    "p": [
+      0,
+      3,
+      2,
+      1
+    ],
+    "q": [
+      2,
+      0,
+      1
+    ],
+    "lengths": [
+      607,
+      676,
+      727,
+      1000
+    ],
+    "tangent_numerators": [
+      113,
+      178,
+      478
+    ],
+    "tangent_denominator": 1000,
+    "squared_distance_margin": "2057346831758730767892/80224425669026129"
+  },
+  {
+    "p": [
+      0,
+      2,
+      3,
+      1
+    ],
+    "q": [
+      1,
+      0,
+      2
+    ],
+    "lengths": [
+      286,
+      314,
+      319,
+      1000
+    ],
+    "tangent_numerators": [
+      234,
+      248,
+      312
+    ],
+    "tangent_denominator": 1000,
+    "squared_distance_margin": "115716792957284288/18747203874521"
+  },
+  {
+    "p": [
+      0,
+      2,
+      3,
+      1
+    ],
+    "q": [
+      2,
+      0,
+      1
+    ],
+    "lengths": [
+      130,
+      571,
+      739,
+      1000
+    ],
+    "tangent_numerators": [
+      179,
+      262,
+      304
+    ],
+    "tangent_denominator": 1000,
+    "squared_distance_margin": "18182828627459508348/362021811654113"
+  }
+]

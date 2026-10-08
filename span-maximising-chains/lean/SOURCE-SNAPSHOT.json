@@ -1,0 +1,23 @@
+{
+  "source_commit": "63e78ec (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports Spans only)",
+    "CheckClaims.lean (new)",
+    "scripts/mutants.py (copy of lean-proofs scripts/spans_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "036bf56b1568e6f10627fc71628fdf805b92a06af1e88b45bea183ac1f18469c",
+    "LeanProofs/Spans/Basic.lean": "17c32075dcac595de60280a29ebaa8fc3c47fb4e249df811d43c6054d8dea8d7",
+    "LeanProofs/Spans/Exchange.lean": "c0c8ffc4ff6bfa9c5388e6f3cf612834a50deb6ec6ad436956c543b895829048",
+    "LeanProofs/Spans/Main.lean": "9b27933c27cf2b1cc8d2a71aa8eb842cb5f8265e41c3ce69526ef59928c04998",
+    "LeanProofs/Spans/Moves.lean": "945fec40bd035830e63c4c03ee7d97d860417909bfc6161a8ca19ff59b75ab84",
+    "LeanProofs/Spans/N4.lean": "27af96b6a5a58fcc3d82a8407ba980d5fa53dd8becbacf7f5b417ad8d0f1be70",
+    "LeanProofs/Spans/Structure.lean": "82f966e9e401f7fb1b709bd792479990465100293a2593e1692534d38e3ffaec",
+    "LeanProofs/Spans/Support.lean": "82dadcf9f8db342b113e039edc56a3a28601aa6248f6f1dc9525da1beba1bc6a",
+    "LeanProofs/Spans/Witness.lean": "17a74761007904543181c1ed2e931a31eafeb32c5f58dd18b0a4676afa447952",
+    "LeanProofs.lean": "92e437ae107e2f68567fd63fbe193414827a77b767830145c4fa2e75edabdc89",
+    "scripts/mutants.py": "e1dec520166f0bf2acb2986e2989133caa6a51e13a39c838ba47ba3e24285623"
+  }
+}

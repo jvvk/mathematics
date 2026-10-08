@@ -1,0 +1,75 @@
+{
+  "whole_witness": {
+    "p": [
+      0,
+      2,
+      4,
+      3,
+      1
+    ],
+    "q": [
+      3,
+      1,
+      0,
+      2
+    ],
+    "lengths": [
+      320,
+      517,
+      522,
+      676,
+      1000
+    ],
+    "tangent_numerators": [
+      95,
+      166,
+      200,
+      240
+    ],
+    "tangent_denominator": 1000,
+    "squared_distance_margin": "2402525032258428000/89094775510897"
+  },
+  "recursive_parent": {
+    "p": [
+      0,
+      2,
+      3,
+      1
+    ],
+    "q": [
+      2,
+      0,
+      1
+    ]
+  },
+  "bare_core_optimum": {
+    "p": [
+      0,
+      3,
+      2,
+      1
+    ],
+    "q": [
+      2,
+      0,
+      1
+    ]
+  },
+  "core_lengths": [
+    517,
+    522,
+    676,
+    1000
+  ],
+  "core_tangent_numerators": [
+    95,
+    166,
+    200
+  ],
+  "denominator": 1000,
+  "whole_unrestricted_margin": "268363195168755640/89094775510897",
+  "whole_unrestricted_arrangements_checked": 1440,
+  "bare_core_unrestricted_margin": "28823813969960/134787860077",
+  "bare_core_unrestricted_arrangements_checked": 72,
+  "bare_core_improvement_over_inherited_order": "470313157304160/134787860077"
+}
