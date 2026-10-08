@@ -1,0 +1,14 @@
+n=1: tight pavings 1 (A298432 1), singular 0, dissections 1 (A100664 1), non-congruent 1 OK
+n=2: tight pavings 2 (A298432 2), singular 0, dissections 1 (A100664 1), non-congruent 0 OK
+n=3: tight pavings 6 (A298432 6), singular 0, dissections 2 (A100664 2), non-congruent 0 OK
+n=4: tight pavings 24 (A298432 24), singular 0, dissections 6 (A100664 6), non-congruent 0 OK
+n=5: tight pavings 118 (A298432 118), singular 0, dissections 16 (A100664 16), non-congruent 0 OK
+n=6: tight pavings 680 (A298432 680), singular 0, dissections 50 (A100664 50), non-congruent 0 OK
+n=7: tight pavings 4456 (A298432 4456), singular 0, dissections 177 (A100664 177), non-congruent 0 OK
+n=8: tight pavings 32512 (A298432 32512), singular 0, dissections 664 (A100664 664), non-congruent 0 OK
+n=9: tight pavings 260080 (A298432 260080), singular 0, dissections 2532 (A100664 2532), non-congruent 5 OK
+  side 72, perimeter 130: [(0, 4, 11, 72), (0, 55, 1, 11), (0, 64, 0, 1), (4, 22, 25, 72), (4, 55, 11, 25), (22, 55, 25, 57), (22, 72, 57, 72), (55, 64, 1, 57), (64, 72, 0, 57)]
+  side 84, perimeter 130: [(0, 10, 12, 67), (0, 48, 67, 84), (0, 53, 0, 12), (10, 48, 40, 67), (10, 53, 12, 34), (10, 69, 34, 40), (48, 69, 40, 84), (53, 84, 0, 34), (69, 84, 34, 84)]
+  side 86, perimeter 130: [(0, 12, 33, 86), (0, 35, 3, 33), (0, 62, 0, 3), (12, 35, 33, 75), (12, 66, 75, 86), (35, 62, 3, 41), (35, 66, 41, 75), (62, 86, 0, 41), (66, 86, 41, 86)]
+  side 161, perimeter 260: [(0, 6, 15, 139), (0, 108, 139, 161), (0, 115, 0, 15), (6, 33, 36, 139), (6, 115, 15, 36), (33, 108, 84, 139), (33, 115, 36, 84), (108, 161, 84, 161), (115, 161, 0, 84)]
+  side 165, perimeter 260: [(0, 8, 29, 151), (0, 101, 0, 29), (0, 116, 151, 165), (8, 53, 66, 151), (8, 101, 29, 66), (53, 116, 84, 151), (53, 165, 66, 84), (101, 165, 0, 66), (116, 165, 84, 165)]

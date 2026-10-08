@@ -1,0 +1,36 @@
+PASS five solutions recorded
+PASS sides 72, 84, 86, 161, 165
+PASS perimeters 130, 130, 130, 260, 260
+PASS side 72: nine pieces
+PASS side 72: pieces tile the square
+PASS side 72: every perimeter is 130
+PASS side 72: no two pieces congruent
+PASS side 72: all areas different (equivalent, given equal perimeters)
+PASS side 72: coordinates in lowest terms
+PASS side 84: nine pieces
+PASS side 84: pieces tile the square
+PASS side 84: every perimeter is 130
+PASS side 84: no two pieces congruent
+PASS side 84: all areas different (equivalent, given equal perimeters)
+PASS side 84: coordinates in lowest terms
+PASS side 86: nine pieces
+PASS side 86: pieces tile the square
+PASS side 86: every perimeter is 130
+PASS side 86: no two pieces congruent
+PASS side 86: all areas different (equivalent, given equal perimeters)
+PASS side 86: coordinates in lowest terms
+PASS side 161: nine pieces
+PASS side 161: pieces tile the square
+PASS side 161: every perimeter is 260
+PASS side 161: no two pieces congruent
+PASS side 161: all areas different (equivalent, given equal perimeters)
+PASS side 161: coordinates in lowest terms
+PASS side 165: nine pieces
+PASS side 165: pieces tile the square
+PASS side 165: every perimeter is 260
+PASS side 165: no two pieces congruent
+PASS side 165: all areas different (equivalent, given equal perimeters)
+PASS side 165: coordinates in lowest terms
+PASS introduction example valid
+PASS introduction example is the side-84 solution
+PASS three-piece example: x=1/4, y=1/2, s=5/4 solves the system

@@ -1,0 +1,12 @@
+\begin{tikzpicture}[scale=3]
+\filldraw[fill=blue!12] (0,0) rectangle (0.25,1);
+\filldraw[fill=orange!18] (0.25,0) rectangle (1,0.5);
+\filldraw[fill=green!14] (0.25,0.5) rectangle (1,1);
+\draw[line width=0.9pt] (0,0) rectangle (1,1);
+\node[font=\small] at (0.125,0.5) {$P_1$};
+\node[font=\small] at (0.625,0.25) {$P_3$};
+\node[font=\small] at (0.625,0.75) {$P_2$};
+\draw[|<->|,thin] (0,-0.08) -- node[below,font=\small] {$x$} (0.25,-0.08);
+\draw[|<->|,thin] (1.08,0) -- node[right,font=\small] {$y$} (1.08,0.5);
+\draw[|<->|,thin] (0,1.08) -- node[above,font=\small] {$1$} (1,1.08);
+\end{tikzpicture}

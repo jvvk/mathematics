@@ -1,0 +1,9 @@
+n=1: floorplans 1, singular 0, dissections 1 (A100664 1 OK), pairwise non-congruent 1
+n=2: floorplans 2, singular 0, dissections 1 (A100664 1 OK), pairwise non-congruent 0
+n=3: floorplans 6, singular 0, dissections 2 (A100664 2 OK), pairwise non-congruent 0
+n=4: floorplans 22, singular 0, dissections 6 (A100664 6 OK), pairwise non-congruent 0
+n=5: floorplans 92, singular 0, dissections 16 (A100664 16 OK), pairwise non-congruent 0
+n=6: floorplans 422, singular 0, dissections 50 (A100664 50 OK), pairwise non-congruent 0
+n=7: floorplans 2074, singular 0, dissections 177 (A100664 177 OK), pairwise non-congruent 0
+n=8: floorplans 10754, singular 0, dissections 664 (A100664 664 OK), pairwise non-congruent 0
+n=9: floorplans 58202, singular 0, dissections 2532 (A100664 2532 OK), pairwise non-congruent 5
