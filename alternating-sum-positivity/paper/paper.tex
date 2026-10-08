@@ -1,0 +1,216 @@
+\documentclass[11pt]{amsart}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amssymb,tikz}
+\usetikzlibrary{arrows.meta,positioning}
+\usepackage[hidelinks,pdftitle={Positivity of an Alternating Sum from Random Overlaps},pdfauthor={Vamshi Jandhyala}]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\coef}[1]{[#1]}
+
+\title[Positivity of an Alternating Sum]{Positivity of an Alternating Sum\\ from Random Overlaps in $\mathbb{C}^N$}
+\author{Vamshi Jandhyala}
+\subjclass[2020]{Primary 05A15; Secondary 05A19, 60E05, 82B20}
+\keywords{generating functions, positivity, alternating sums, finite differences, correlation inequalities}
+\date{Preprint, version 1, 8 October 2026. Not peer reviewed.}
+
+\begin{document}
+
+\begin{abstract}
+Abdesselam asked whether a certain triple sum of factorials with alternating signs, $L(u,a,b,n)$, is always nonnegative. The sums are the coefficients of a joint moment of overlaps of random unit vectors in $\mathbb{C}^N$, expanded in rising factorials of $N-1$, and their positivity would make that moment nonnegative for every real $N\ge1$, not only for integers. We prove the conjecture by finding a closed generating function: $L$ is a factorial multiple of a coefficient of $R^{u+1}(R-1)^{\nu}$, where $R=1/((1-z)^2-w^2)$ and $\nu=a+b-n$. Every coefficient of this series is visibly nonnegative. The same formula shows that $L>0$ exactly when $a$ is even and $n\ge a/2$, proves Peter Taylor's stronger conjecture that $L$ is a polynomial in $u$ with nonnegative coefficients, and recovers Abdesselam's evaluation of the extreme case $n=a+b$. Every result is formally verified in Lean.
+\end{abstract}
+
+\maketitle
+
+\noindent\emph{Status of this preprint.} Every result of this paper is formally verified in Lean~4 (Section~\ref{sec:remarks}), using only Lean's standard axioms; Abdesselam's identity~\eqref{eq:G} is taken from~\cite{MO}. This version has not yet been independently reviewed.
+
+\section{The question}
+
+A moment of overlaps of random unit vectors in $\mathbb{C}^N$ is a combination of certain alternating sums $L$, with nonnegative weights whenever $N\ge1$. If every $L$ is nonnegative, the moment is nonnegative for real $N$, not only for whole numbers. For nonnegative integers $u,a,b,n$ with $n\le a+b$, Abdesselam~\cite{MO} defined
+\begin{equation}\label{eq:L}
+L(u,a,b,n)=(u+a+b-n)!\sum_{i,k,\ell}(-1)^k\,\frac{A_{ik\ell}}{B_{ik\ell}},
+\end{equation}
+where
+\begin{align*}
+A_{ik\ell}&=(u+a+b-i)!\,(k+\ell)!\,(a+b-k-\ell)!\,(u+a+b-k-\ell)!,\\
+B_{ik\ell}&=i!\,(n-i)!\,k!\,(a-k)!\,\ell!\,(b-\ell)!\\
+&\qquad\times(a+b-k-\ell-i)!\,(k+\ell-n+i)!\,(u+a+b-k-\ell-i)!,
+\end{align*}
+summed over all integers $i,k,\ell$ for which every factorial has a nonnegative argument, and asked whether $L\ge0$ always.
+
+The sum comes from a moment. Let $v,w,\tilde v,\tilde w$ be independent uniform unit vectors in $\mathbb{C}^N$, put $X=|\langle v,w\rangle|^2$ and $Y=|\langle\tilde v,\tilde w\rangle|^2$, and let
+\[
+ G(u,a,b)=\E\bigl[X^uY^u(X-Y)^a(X+Y)^b\bigr].
+\]
+For even $a$ the integrand is nonnegative, so $G\ge0$; for odd $a$ it is antisymmetric in $X$ and $Y$, so $G=0$. Abdesselam showed that
+\begin{equation}\label{eq:G}
+ G(u,a,b)=\frac{a!\,b!}{(N)_{u+a+b}^2}\sum_{n=0}^{a+b}L(u,a,b,n)\,(N-1)_n,
+\end{equation}
+where $(x)_n=x(x+1)\cdots(x+n-1)$. The right side makes sense for every real $N$, so nonnegative $L$ would make $G\ge0$ for all real $N\ge1$. For whole numbers $N$ this is immediate from the integrand, so the content is the extension to real $N$. As Abdesselam notes, the case $u=0$ is the Ginibre inequality for the $\mathbb{CP}^{N-1}$ model with two sites, and he introduced the case $u>0$ in~\cite{Abd}. Positivity for real $N$ is in the spirit of Problem~3 of~\cite[Section~4]{Abd} and of the work of Binder and Rychkov on $O(N)$ symmetry with non-integer $N$~\cite{BR}. It does not settle Problem~1 there, which asks about $u\ne0$ on general graphs.
+
+The sign pattern makes positivity far from obvious. For $u=1$, $a=2$, $b=1$ the four values are
+\[
+ L(1,2,1,n)=0,\ 72,\ 48,\ 12\qquad(n=0,1,2,3),
+\]
+yet the sum for $n=1$ has terms of both signs. Before this note, the following were known on MathOverflow~\cite{MO}. Abdesselam evaluated the extreme case $n=a+b$. Fred Hucht showed that $L=0$ for odd $a$, from the antisymmetry of the summand under $k\mapsto a-k$. Peter Taylor rewrote~\eqref{eq:L} in binomial form, observed that its terms appear to give a polynomial in $u$ with nonnegative coefficients, and conjectured a formula for $L$ in the basis $\binom um$; Abdesselam remarked that he had seen positivity in this falling-factorial basis for similar quantities. Hucht expressed Taylor's inner sums as terminating ${}_3F_2$ series and guessed that they are positive. A short version of the proof below was posted as an answer~\cite{MOans}.
+
+\section{The generating function}
+
+Write $\nu=a+b-n$ for the distance of $n$ from its largest value, and put
+\[
+ R(w,z)=\frac1{(1-z)^2-w^2},
+\]
+a formal power series in $w$ and $z$. We write $\coef{w^az^b}F$ for the coefficient of $w^az^b$ in a series $F$, and use $\binom mr=0$ when $r<0$ or $r>m$.
+
+\begin{theorem}\label{thm:main}
+For all nonnegative integers $u,a,b,n$ with $n\le a+b$,
+\[
+ L(u,a,b,n)=\frac{(u+\nu)!^2}{\nu!}\,\coef{w^az^b}\,R^{\,u+1}(R-1)^{\nu}.
+\]
+\end{theorem}
+
+Read from left to right: the alternating triple sum on the left equals a positive factor times one coefficient of a product of powers of $R$. In the example above, $u=1$ and $\nu=3-n$. For $n=1$ the factor is $3!^2/2!=18$, and the lowest terms of $R-1$ are $2z+w^2$, so $(R-1)^2$ starts $4z^2+4zw^2+w^4$. Its coefficient of $w^2z$ is $4$, and $R^2$ has constant term $1$, so $L(1,2,1,1)=18\cdot4=72$. For $n=0$ we need $\nu=3$, but every term of $(R-1)^3$ has degree at least $3$ when $w^2$ and $z$ each count once, while $w^2z$ has degree $2$, so $L(1,2,1,0)=0$.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[node distance=5mm and 6mm,
+ box/.style={draw,rounded corners=2pt,align=center,inner sep=4pt,font=\small,minimum height=12mm}]
+\node[box] (A) {alternating\\triple sum $L$};
+\node[box,right=of A] (B) {double sum\\$\sum P_s\,c_{s,j}$};
+\node[box,right=of B] (C) {series in\\$\alpha=z-w$, $\beta=z+w$};
+\node[box,right=of C] (D) {$c_{s,j}=\Delta^\nu(fg)(0)$};
+\node[box,right=of D] (E) {$R^{u+1}(R-1)^\nu$};
+\draw[-{Stealth[length=4pt]}] (A)--node[above,font=\scriptsize]{1}(B);
+\draw[-{Stealth[length=4pt]}] (B)--node[above,font=\scriptsize]{2}(C);
+\draw[-{Stealth[length=4pt]}] (C)--node[above,font=\scriptsize]{3}(D);
+\draw[-{Stealth[length=4pt]}] (D)--node[above,font=\scriptsize]{4}(E);
+\end{tikzpicture}
+\caption{The four steps of the proof. Step~1 groups factorials into binomials. Step~2 sums over $a$ and $b$, which turns the only alternating factor into a product of powers of $z-w$ and $z+w$. Step~3 recognises the remaining sum as a finite difference of a product. Step~4 sums the resulting geometric-type series.}
+\label{fig:steps}
+\end{figure}
+
+\begin{proof}
+\emph{Step 1: binomials.} Put $s=k+\ell$, $j=a+b-s$ and $M=u+a+b$, so $M-n=u+\nu$. Group the factorials in~\eqref{eq:L} as
+\[
+\begin{gathered}
+ \frac{s!}{k!\,\ell!}=\binom sk,\qquad \frac{j!}{(a-k)!\,(b-\ell)!}=\binom j{a-k},\\
+ \frac{(M-s)!}{i!\,(M-s-i)!}=\binom{M-s}i,\qquad \frac{(M-i)!}{(n-i)!\,(u+\nu)!}=\binom{M-i}{n-i}.
+\end{gathered}
+\]
+What remains is $(u+\nu)!^2/\bigl((j-i)!\,(s-n+i)!\bigr)=\frac{(u+\nu)!^2}{\nu!}\binom\nu{j-i}$, since $(j-i)+(s-n+i)=\nu$. Hence
+\[
+ L=\frac{(u+\nu)!^2}{\nu!}\sum_{s+j=a+b}P_s\,c_{s,j},\qquad
+ P_s=\sum_k(-1)^k\binom sk\binom j{a-k}=\coef{t^a}(1-t)^s(1+t)^j,
+\]
+\[
+ c_{s,j}=\sum_i\binom\nu{j-i}\binom{u+j}i\binom{u+s+j-i}{s+j-\nu-i},
+\]
+where we used $M-s=u+j$ and $M-i=u+s+j-i$. The sign now sits only in $P_s$, and $c_{s,j}$ depends on $u,\nu,s,j$ but not on how $s+j$ splits into $a+b$.
+
+\emph{Step 2: sum over $a$ and $b$.} Hold $u$ and $\nu$ fixed and let $a,b$ vary, so $n=a+b-\nu$; put $\widehat L_{a,b}=\nu!\,L/(u+\nu)!^2$, and $\widehat L_{a,b}=0$ when $a+b<\nu$. For a polynomial $F$ of degree $m$, $\sum_{a+b=m}w^az^b\coef{t^a}F(t)=z^mF(w/z)$. With $F(t)=(1-t)^s(1+t)^j$ and $m=s+j$ this gives $(z-w)^s(z+w)^j$, so
+\[
+ \sum_{a,b\ge0}\widehat L_{a,b}\,w^az^b=\sum_{s,j\ge0}c_{s,j}\,\alpha^s\beta^j,\qquad \alpha=z-w,\quad\beta=z+w.
+\]
+(Step~3 shows $c_{s,j}=0$ when $s+j<\nu$, consistent with the convention.)
+
+\emph{Step 3: a finite difference.} Let $\Delta g(q)=g(q+1)-g(q)$, and put $f(q)=\binom{u+q+s}s$ and $g(q)=\binom{u+q+j}j$. Pascal's rule gives $\Delta^rf(q)=\binom{u+q+s}{s-r}$ and likewise for $g$. The product rule $\Delta^\nu(fg)(0)=\sum_r\binom\nu r\,\Delta^rg(0)\,\Delta^{\nu-r}f(r)$ reads
+\[
+ \Delta^\nu(fg)(0)=\sum_r\binom\nu r\binom{u+j}{j-r}\binom{u+r+s}{s-\nu+r},
+\]
+which is $c_{s,j}$ after the substitution $i=j-r$. Since $fg$ is a polynomial of degree $s+j$ in $q$, this vanishes when $s+j<\nu$. Expanding $\Delta^\nu$ directly instead,
+\[
+ c_{s,j}=\sum_{p=0}^\nu(-1)^p\binom\nu p\binom{u+\nu-p+s}s\binom{u+\nu-p+j}j.
+\]
+
+\emph{Step 4: sum the series.} For $m\ge0$, $\sum_{s,j}\binom{m+s}s\binom{m+j}j\alpha^s\beta^j=E^{-(m+1)}$ with $E=(1-\alpha)(1-\beta)$. Therefore
+\[
+ \sum_{s,j}c_{s,j}\,\alpha^s\beta^j=\sum_{p=0}^\nu(-1)^p\binom\nu p E^{-(u+\nu-p+1)}=E^{-(u+1)}\bigl(E^{-1}-1\bigr)^\nu.
+\]
+Finally $E=(1-z+w)(1-z-w)=(1-z)^2-w^2=1/R$.
+\end{proof}
+
+\section{Consequences}
+
+Everything below comes from the shape of $R$. As a series,
+\begin{equation}\label{eq:R}
+ R=\frac{(1-z)^{-2}}{1-w^2(1-z)^{-2}}=\sum_{h\ge0}w^{2h}(1-z)^{-2h-2},
+\end{equation}
+so $R$ has nonnegative coefficients and constant term $1$, and $R-1$ has nonnegative coefficients. Its terms of lowest degree are $2z+w^2$.
+
+\begin{corollary}\label{cor:pos}
+$L(u,a,b,n)\ge0$. More precisely, $L>0$ if $a$ is even and $n\ge a/2$, and $L=0$ otherwise.
+\end{corollary}
+
+\begin{proof}
+By~\eqref{eq:R}, $R^{u+1}(R-1)^\nu$ has nonnegative coefficients, and it is even in $w$, so $L=0$ for odd $a$ (as Hucht showed directly~\cite{MO}). Give $z$ and $w^2$ weight $1$ each. Every term of $(R-1)^\nu$ has weight at least $\nu$, so $L=0$ when $a/2+b<\nu$, that is, when $n<a/2$. Conversely, $(2z+w^2)^\nu$ contains every monomial $w^{2i}z^{\nu-i}$, $0\le i\le\nu$, with positive coefficient, and $R^{u+1}$ contains every monomial $w^{2h}z^m$ with positive coefficient. So every $w^az^b$ with $a$ even and weight $a/2+b\ge\nu$ has a positive coefficient.
+\end{proof}
+
+\begin{corollary}\label{cor:G}
+$G(u,a,b)$, defined by the right side of~\eqref{eq:G}, is nonnegative for every real $N\ge1$.
+\end{corollary}
+
+\begin{proof}
+For $N\ge1$ every factor $(N-1)_n$ and $(N)_{u+a+b}$ is nonnegative, and so is each $L$.
+\end{proof}
+
+\begin{corollary}[Taylor's conjecture]\label{cor:taylor}
+For fixed $a,b,n$, the ratio $\nu!\,L(u,a,b,n)/(u+\nu)!^2$ is a polynomial in $u$ with nonnegative coefficients.
+\end{corollary}
+
+\begin{proof}
+By~\eqref{eq:R}, $R^{u+1}=\sum_h\binom{u+h}h w^{2h}(1-z)^{-2(u+1+h)}$, so the coefficients at odd powers of $w$ vanish and
+\begin{equation}\label{eq:Rpow}
+ \coef{w^{2h}z^y}R^{u+1}=\binom{u+h}h\binom{2u+2h+1+y}y.
+\end{equation}
+Both factors are polynomials in $u$ with nonnegative coefficients: $\binom{u+h}h=(u+1)\cdots(u+h)/h!$ and $\binom{2u+2h+1+y}y=(2u+2h+2)\cdots(2u+2h+1+y)/y!$. The coefficient of $w^az^b$ in $R^{u+1}(R-1)^\nu$ is a sum of such polynomials times coefficients of $(R-1)^\nu$, which do not depend on $u$ and are nonnegative.
+\end{proof}
+
+The binomial basis is just as direct. Writing $R^{u+1}=R\,(1+(R-1))^u=\sum_m\binom um R\,(R-1)^m$ gives
+\[
+ L(u,a,b,n)=\frac{(u+\nu)!^2}{\nu!}\sum_{m\ge0}\binom um\,\coef{w^az^b}R\,(R-1)^{m+\nu},
+\]
+with every inner coefficient nonnegative. This is the formula Taylor conjectured: its inner coefficients are his inner sums. Indeed, $R-1=R(1-E)$ with $E=(1-z)^2-w^2=1/R$, so
+\[
+ R\,(R-1)^k=\frac{(1-E)^k}{E^{k+1}}=\sum_{N\ge k}\binom Nk(1-E)^N,\qquad 1-E=w^2+z(2-z).
+\]
+The coefficient of $w^az^b$ in $(1-E)^N$ is $\binom N{a/2}$ times the coefficient of $z^b$ in $z^d(2-z)^d$, where $d=N-a/2$, and that is $(-1)^{b-d}2^{2d-b}\binom d{b-d}$. With $k=m+\nu$ this gives Taylor's inner sum
+\[
+ \coef{w^az^b}R\,(R-1)^{m+\nu}=\sum_{b/2\le d\le b}(-1)^{b-d}\,2^{2d-b}\binom d{2d-b}\binom{a/2+d}d\binom{a/2+d}{m+\nu}.
+\]
+Hucht writes these sums, with $c=a/2+b$ and $\mu=m$, as $2^b\binom cb\binom c{\mu+\nu}$ times a terminating ${}_3F_2$ series, an identity that holds term by term after the substitution $d=b-t$. For $\mu+\nu\le c$, the range in which the binomial is nonzero, his ${}_3F_2$ values are therefore the inner sums divided by positive factors, and the weight argument of Corollary~\ref{cor:pos} with $u=0$ shows that they are positive. For $\mu+\nu>c$ his guess is not covered by this argument.
+
+The same expansion gives the degree that Taylor observed. Split $w^az^b$ into a monomial $w^{2h}z^y$ of $R^{u+1}$ and a monomial of $(R-1)^\nu$. By~\eqref{eq:Rpow} the first contributes a polynomial in $u$ of degree $h+y$ with leading coefficient $2^y/(h!\,y!)>0$. The second has weight at least $\nu$, so $(a/2-h)+(b-y)\ge\nu$, that is, $h+y\le n-a/2$. Equality holds when the second monomial is $w^{2i}z^{\nu-i}$ with $i=\max(0,\nu-b)$, whose coefficient in $(R-1)^\nu$ is positive by the proof of Corollary~\ref{cor:pos}. All contributions are nonnegative, so for even $a$ and $n\ge a/2$ the polynomial of Corollary~\ref{cor:taylor} has degree exactly $n-a/2$ in $u$.
+
+\begin{corollary}[Abdesselam's extreme case]
+For even $a$, $L(u,a,b,a+b)=u!^2\binom{2u+a+b+1}b\binom{u+a/2}{a/2}$.
+\end{corollary}
+
+\begin{proof}
+Here $\nu=0$, and~\eqref{eq:Rpow} with $h=a/2$ and $y=b$ gives $\binom{u+a/2}{a/2}\binom{2u+a+b+1}b$.
+\end{proof}
+
+\section{Remarks}\label{sec:remarks}
+
+The proof uses only binomial bookkeeping, one finite-difference identity and geometric series. It would be good to have a combinatorial meaning for the coefficients of $R^{u+1}(R-1)^\nu$, or a probabilistic one in terms of the overlaps $X$ and $Y$, which might explain directly why $G$ stays nonnegative for non-integer $N$. A natural next case is the analogous sum for real unit vectors, where $|\langle v,w\rangle|^2$ has a Beta$(\tfrac12,\tfrac{N-1}2)$ distribution in place of Beta$(1,N-1)$.
+
+Every identity above was checked in exact arithmetic against the triple sum~\eqref{eq:L}: Theorem~\ref{thm:main} for $u,\nu\le3$, $a\le6$, $b\le5$; the coefficients~\eqref{eq:Rpow}, Corollaries~\ref{cor:pos} and~\ref{cor:taylor}, the binomial-basis formula, the degree $n-a/2$ and the positivity of Hucht's ${}_3F_2$ values for $\mu+\nu\le c$ over similar ranges; and identity~\eqref{eq:G} as an identity of rational functions of $N$ for $u\le2$, $a\le4$, $b\le3$, with $X,Y$ independent Beta$(1,N-1)$ variables. Deliberately altered versions of the theorem are rejected by the same checks.
+
+Every result above is also proved in Lean~4 with the Mathlib library, along the route of this paper: the definition~\eqref{eq:L} with the question's ranges, Steps~1 to~4 (with power series in $w,z$ and the substitution $\alpha=z-w$, $\beta=z+w$), Theorem~\ref{thm:main}, the coefficients~\eqref{eq:Rpow}, Corollaries~\ref{cor:pos} to~\ref{cor:taylor}, the degree $n-a/2$, the binomial-basis formula with Taylor's inner sums, Hucht's ${}_3F_2$ identity and the positivity of his series for $\mu+\nu\le c$, and the extreme case. Only Abdesselam's identity~\eqref{eq:G} is taken as given. The proofs use no axioms beyond the standard ones of Lean and Mathlib, and seventeen deliberately altered statements are rejected by the proof checker. The Lean code and the exact-arithmetic checks are at
+\begin{center}\small\url{https://github.com/jvvk/mathematics/tree/main/alternating-sum-positivity}.\end{center}
+
+\section*{Acknowledgements}
+The proofs, text, verification program and Lean formalisation were developed with the AI assistant Claude (Anthropic), under the author's direction. The author thanks the participants in the MathOverflow discussion~\cite{MO}, in particular Abdelmalek Abdesselam for the question and its context, Peter Taylor for the binomial reformulation and the conjecture on coefficients, and Fred Hucht for the vanishing for odd $a$ and the ${}_3F_2$ form. The author is responsible for the contents.
+
+\begin{thebibliography}{9}
+\bibitem{Abd} A.~Abdesselam, \emph{Non-Abelian correlation inequalities and stable determinantal polynomials}, arXiv:2207.07603 (2022).
+\bibitem{BR} D.~J.~Binder and S.~Rychkov, \emph{Deligne categories in lattice models and quantum field theory, or making sense of $O(N)$ symmetry with non-integer $N$}, J. High Energy Phys. 2020, no.~4, article~117, \url{https://doi.org/10.1007/JHEP04(2020)117}.
+\bibitem{MO} A.~Abdesselam, \emph{Nonnegativity of an alternating combinatorial sum}, MathOverflow question 498232 (2025), with comments by P.~Taylor and others and an answer by F.~Hucht, \url{https://mathoverflow.net/q/498232} (accessed 8 October 2026).
+\bibitem{MOans} V.~Jandhyala, answer to MathOverflow question 498232, 6 October 2026, \url{https://mathoverflow.net/a/515762} (accessed 8 October 2026).
+\end{thebibliography}
+
+\end{document}

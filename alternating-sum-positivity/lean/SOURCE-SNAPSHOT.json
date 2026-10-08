@@ -1,0 +1,21 @@
+{
+  "source_repo": "lean-proofs (private)",
+  "source_commit": "d7ea581914e9d0e33b7b411a5448cfcccf3b0846",
+  "note": "AlternatingSum/*.lean are LeanProofs/Abdesselam at this commit, with imports renamed from LeanProofs.Abdesselam to AlternatingSum; AlternatingSum.lean is new. Built in this layout on 8 October 2026: 1731 jobs, every axiom audit standard; mutants.sh: seventeen mutants rejected, ten unchanged controls compiled.",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_rev": "v4.34.0",
+  "files": {
+    "AlternatingSum.lean": "9117f3b2e7e2adfd9490cd7535da32f7f3a9ac9e922e98d80923668963270956",
+    "AlternatingSum/Audit.lean": "aaecd9d266079025b28e451b8116cc53c88b5c7061037f7ece651cacdb541488",
+    "AlternatingSum/Binomial.lean": "ece6dca967445cca44c9c241188afa9402c37d8b49c2775729e9d703b12adbfd",
+    "AlternatingSum/Coeffs.lean": "4fa466848c9315b9ff7b084e3247d81fc2b24841a38f1cc325c785914d91dc92",
+    "AlternatingSum/Corollaries.lean": "448d91b054f1708c64792f4d4d19a9d33df0e5471037d231e4e49604a56a56f9",
+    "AlternatingSum/Hucht.lean": "f7d4e23f82cb43339941197a75cb404eabc1d9e5d623f9f1d4413e25be2d830d",
+    "AlternatingSum/Leibniz.lean": "64539a5c705cc437bdf8da4ec0ea5daa83b6c1c187c47b64a4c122828baa87cf",
+    "AlternatingSum/Main.lean": "2ed0e02634a0d9d2c88fef880a4822689c284c06ccc23056b878eb4d675dee33",
+    "AlternatingSum/Positivity.lean": "ffecc205b8a89ec45922c4659c7424eb1617a107d60b63ba840f6e8c1ff26bec",
+    "AlternatingSum/Series.lean": "a840c367dd1009c4dbaec75893ad88eb7e876a7510423dc1eaa95f59191c9ac0",
+    "AlternatingSum/Step1.lean": "a8a6bcf5111969905898b3a3b6e6cfca34aabd1f2cc805dc2db6f3e4132a0f83",
+    "AlternatingSum/Taylor.lean": "47aa3e9b7b5c8918ff0b3323c0600a936e1363b15e870e8f7e7015eff4465ca0"
+  }
+}

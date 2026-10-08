@@ -4,6 +4,7 @@ Papers and notes by Vamshi Jandhyala, each with the code that checks it. Every f
 
 | Result | Kind | Status | Verified |
 |---|---|---|---|
+| [Positivity of an alternating sum from random overlaps in C^N](alternating-sum-positivity/) | Paper | Preprint, 8 October 2026; not peer reviewed | Lean (Theorem 1, every corollary, Taylor's formula and Hucht's identity; standard axioms only); every identity by an exact checker |
 | [Polynomial lemniscates meet in at most 2n₁n₂ − 2 points](polynomial-lemniscates/) | Paper | Preprint, 8 October 2026; not peer reviewed | Lean (Theorem 1, Corollaries 2 and 3 and every lemma; standard axioms only); the ten points of the (2,3) example by interval arithmetic and an independent program |
 | [Descent sets of a permutation and its inverse: almost every pair occurs](descent-sets-inverse/) | Paper | Preprint, 8 October 2026; not peer reviewed | Lean (every proved result: Theorems 1.1, 1.2 and 3.6, Lemma 2.1 both ways, Lemma 3.5, Corollary 3.7); every stated number by independent programs |
 | [Does the smallest enclosing copy fit? Random points in a convex polygon](smallest-enclosing-copy/) | Paper | Preprint, 8 October 2026; not peer reviewed | Lean (every theorem, lemma and corollary); numerical values by independent programs |
