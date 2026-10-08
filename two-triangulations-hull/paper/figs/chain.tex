@@ -1,0 +1,32 @@
+\begin{tikzpicture}[]
+\path[fill=layerA!10] (0.000,0.000) -- (7.700,0.000) -- (3.080,2.255) -- cycle;
+\path[fill=gray!25] (0.000,0.000) -- (4.290,0.825) -- (7.700,0.000) -- cycle;
+\path[fill=layerB!15] (4.785,-1.320) -- (4.675,1.595) -- (6.105,1.430) -- cycle;
+\path[draw=layerB,line width=.7pt] (0.000,0.000) -- (1.760,1.485) -- (1.925,-1.210) -- cycle;
+\path[draw=layerB,line width=.7pt] (1.925,-1.210) -- (1.760,1.485) -- (4.675,1.595) -- cycle;
+\path[draw=layerB,line width=.7pt] (1.925,-1.210) -- (4.675,1.595) -- (4.785,-1.320) -- cycle;
+\path[draw=layerB,line width=.7pt] (4.785,-1.320) -- (4.675,1.595) -- (6.105,1.430) -- cycle;
+\path[draw=layerB,line width=.7pt] (4.785,-1.320) -- (6.105,1.430) -- (7.700,0.000) -- cycle;
+\draw[draw=layerA,line width=.8pt] (0.000,0.000) -- (3.080,2.255);
+\draw[draw=layerA,line width=.8pt] (3.080,2.255) -- (7.700,0.000);
+\draw[draw=layerA,line width=1.3pt] (4.290,0.825) -- (0.000,0.000);
+\draw[draw=layerA,line width=1.3pt] (4.290,0.825) -- (7.700,0.000);
+\draw[draw=layerA,line width=1.3pt] (4.290,0.825) -- (3.080,2.255);
+\draw[draw=layerA,line width=1.3pt] (0.000,0.000) -- (7.700,0.000);
+\node[vertex] at (0.000,0.000) {};
+\node[vertex] at (7.700,0.000) {};
+\node[vertex] at (3.080,2.255) {};
+\node[vertex] at (4.290,0.825) {};
+\node[vertex] at (1.760,1.485) {};
+\node[vertex] at (1.925,-1.210) {};
+\node[vertex] at (4.675,1.595) {};
+\node[vertex] at (4.785,-1.320) {};
+\node[vertex] at (6.105,1.430) {};
+\node[below left] at (0.000,0.000) {$x$};
+\node[below right] at (7.700,0.000) {$y$};
+\node[above] at (3.080,2.255) {$z$};
+\node[inner sep=1pt] at (3.872,1.100) {$p$};
+\node[inner sep=1pt,text=layerA] at (3.025,1.705) {$\alpha$};
+\node[fill=white,inner sep=1pt] at (4.070,-0.550) {$\beta$};
+\node[fill=white,inner sep=1pt] at (5.390,0.880) {$\gamma$};
+\end{tikzpicture}

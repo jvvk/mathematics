@@ -1,0 +1,55 @@
+{
+ "all_checks": "passed",
+ "section3_nine_points": "ok",
+ "section4_insertion": {
+  "good_pairs_n9": 12
+ },
+ "section5_example": {
+  "side_56_faces_of_B": [
+   "357",
+   "347",
+   "479",
+   "469"
+  ],
+  "new_good_pair": "56p,347",
+  "good_pairs_after_insertion": 20
+ },
+ "lemma2_figure": "ok",
+ "section6_formula": {
+  "point_sets_tested": 247,
+  "convex_pentagon_oct": 1
+ },
+ "certificates": {
+  "9": "ok",
+  "10": "ok",
+  "11": "ok",
+  "12": "ok",
+  "13": "ok",
+  "14": "ok",
+  "15": "ok",
+  "16": "ok",
+  "17": "ok"
+ },
+ "witnesses09": {
+  "count": 7,
+  "hull": 5,
+  "oct": 3,
+  "min_shared": 5,
+  "automorphisms": "trivial",
+  "section3_set_matches": 1
+ },
+ "section7_other_hulls": {
+  "convex_seed_h": "6..30",
+  "pentagon_fans": "ok",
+  "seven_points": "ok",
+  "good_pairs_seven": 2
+ },
+ "chains": {
+  "nine": "(156;479,347)",
+  "after_insertion": "(56p;347,47p)",
+  "convex_h6_chains": 0,
+  "hexagon_insertions_without_good_pair": 221,
+  "convex_chain_h": "7..30",
+  "seven": "(137;245,267)"
+ }
+}

@@ -1,0 +1,46 @@
+TwoTri.theorem1_geometric (n : ℕ) (hn : 9 ≤ n) :
+  (∃ P,
+      P.card = n ∧
+        (∀ a ∈ P, ∀ b ∈ P, ∀ c ∈ P, a ≠ b → a ≠ c → b ≠ c → ¬Collinear ℝ {a, b, c}) ∧
+          (TwoTri.hullEdges P).card = 5 ∧ ∃ A B, TwoTri.IsTriG P A ∧ TwoTri.IsTriG P B ∧ A ∩ B = TwoTri.hullEdges P) ∧
+    ∀ (P : Finset (ℝ × ℝ)),
+      P.card = n →
+        (∀ a ∈ P, ∀ b ∈ P, ∀ c ∈ P, a ≠ b → a ≠ c → b ≠ c → ¬Collinear ℝ {a, b, c}) →
+          ∀ (A B : Finset (Sym2 (ℝ × ℝ))), TwoTri.IsTriG P A → TwoTri.IsTriG P B → 5 ≤ (A ∩ B).card
+'TwoTri.theorem1_geometric' depends on axioms: [propext, Classical.choice, Quot.sound]
+def TwoTri.Inv.{u_1} : {K : Type u_1} →
+  [Field K] → [LinearOrder K] → Finset (K × K) → Finset (Sym2 (K × K)) → Finset (Sym2 (K × K)) → Prop :=
+fun {K} [Field K] [LinearOrder K] P A B =>
+  ∃ x y z b₁ b₂ b₃ t₁ t₂ t₃,
+    TwoTri.Face P A x y z ∧
+      TwoTri.Face P B b₁ b₂ b₃ ∧
+        TwoTri.Face P B t₁ t₂ t₃ ∧
+          (∀ (v : K × K), v = x ∨ v = y ∨ v = z → v ≠ b₁ ∧ v ≠ b₂ ∧ v ≠ b₃) ∧
+            (t₁ ≠ x ∧ t₁ ≠ y) ∧
+              (t₂ ≠ x ∧ t₂ ≠ y) ∧
+                (t₃ ≠ x ∧ t₃ ≠ y) ∧
+                  (∃ w, (w = t₁ ∨ w = t₂ ∨ w = t₃) ∧ w ≠ b₁ ∧ w ≠ b₂ ∧ w ≠ b₃) ∧
+                    (∃ s, 0 < s ∧ s < 1 ∧ TwoTri.InTri b₁ b₂ b₃ (TwoTri.lerp x y s)) ∧
+                      ∃ s, 0 < s ∧ s < 1 ∧ TwoTri.InTri t₁ t₂ t₃ (TwoTri.lerp x y s)
+TwoTri.step.{u_1} {K : Type u_1} [Field K] [LinearOrder K] [IsStrictOrderedRing K] {P : Finset (K × K)}
+  (hP : TwoTri.GenPos P) {A B : Finset (Sym2 (K × K))} (hA : TwoTri.IsTri P A) (hB : TwoTri.IsTri P B)
+  (hI : TwoTri.Inv P A B) :
+  ∃ p A' B',
+    p ∉ P ∧
+      TwoTri.GenPos (insert p P) ∧
+        TwoTri.IsTri (insert p P) A' ∧
+          TwoTri.IsTri (insert p P) B' ∧
+            TwoTri.hullEdges (insert p P) = TwoTri.hullEdges P ∧ A' ∩ B' = A ∩ B ∧ TwoTri.Inv (insert p P) A' B'
+'TwoTri.step' depends on axioms: [propext, Classical.choice, Quot.sound]
+TwoTri.regeneration.{u_1} {K : Type u_1} [Field K] [LinearOrder K] [IsStrictOrderedRing K] {P : Finset (K × K)}
+  (hP : TwoTri.GenPos P) (h7 : 7 ≤ P.card) {A B : Finset (Sym2 (K × K))} (hA : TwoTri.IsTri P A) (hB : TwoTri.IsTri P B)
+  (hAB : A ∩ B = TwoTri.hullEdges P) {x y z b₁ b₂ b₃ p : K × K} (hα : TwoTri.Face P A x y z)
+  (hβ : TwoTri.Face P B b₁ b₂ b₃) (hd : ∀ (w : K × K), TwoTri.VertexOf x y z w → ¬TwoTri.VertexOf b₁ b₂ b₃ w)
+  (hpα : TwoTri.InTri x y z p) (hpβ : TwoTri.InTri b₁ b₂ b₃ p) :
+  TwoTri.GoodPair (insert p P) (TwoTri.star A p x y z) (TwoTri.star B p b₁ b₂ b₃)
+'TwoTri.regeneration' depends on axioms: [propext, Classical.choice, Quot.sound]
+TwoTri.Hulls.theorem2 (hgap : TwoTri.Hulls.PentagonGap) {n h : ℕ} (h3 : 3 ≤ h) (hhn : h ≤ n) :
+  TwoTri.Hulls.HullOnly n h ↔ n = h ∨ 6 ≤ h ∨ h = 5 ∧ 9 ≤ n
+'TwoTri.Hulls.theorem2' depends on axioms: [propext, Classical.choice, Quot.sound]
+def TwoTri.Hulls.PentagonGap : Prop :=
+∀ (n : ℕ), 6 ≤ n → n ≤ 8 → ¬TwoTri.Hulls.HullOnly n 5
