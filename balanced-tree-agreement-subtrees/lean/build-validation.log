@@ -1,0 +1,508 @@
+⚠ [8924/8936] Built LeanProofs.BalancedMast.Basic (182s)
+warning: LeanProofs/BalancedMast/Basic.lean:82:14: `simp [subtrees] at h` is a flexible tactic modifying `h`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/BalancedMast/Basic.lean:82:14: Try this:
+  [apply] simp only [L_leaf, Finset.subset_singleton_iff] at h
+info: LeanProofs/BalancedMast/Basic.lean:82:36: `subst h`
+uses `h`, which was modified by the flexible tactic `simp` on line 82!
+warning: LeanProofs/BalancedMast/Basic.lean:82:14: `simp [subtrees] at h` is a flexible tactic modifying `h`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/BalancedMast/Basic.lean:82:14: Try this:
+  [apply] simp only [L_leaf, Finset.subset_singleton_iff] at h
+info: LeanProofs/BalancedMast/Basic.lean:82:45: `exact le_rfl`
+uses `h`, which was modified by the flexible tactic `simp` on line 82!
+warning: LeanProofs/BalancedMast/Basic.lean:92:14: `simp at h` is a flexible tactic modifying `h`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/BalancedMast/Basic.lean:92:25: `subst h`
+uses `h`, which was modified by the flexible tactic `simp` on line 92!
+warning: LeanProofs/BalancedMast/Basic.lean:137:5: Variable name `hc` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hc
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanProofs/BalancedMast/Basic.lean:157:18: `simp at hx` is a flexible tactic modifying `hx`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/BalancedMast/Basic.lean:157:30: `rcases hx with rfl | rfl | rfl`
+uses `hx`, which was modified by the flexible tactic `simp` on line 157!
+warning: LeanProofs/BalancedMast/Basic.lean:157:18: `simp at hx` is a flexible tactic modifying `hx`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/BalancedMast/Basic.lean:157:65: `assumption`
+uses `hx`, which was modified by the flexible tactic `simp` on line 157!
+warning: LeanProofs/BalancedMast/Basic.lean:157:18: `simp at hx` is a flexible tactic modifying `hx`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/BalancedMast/Basic.lean:157:65: `assumption`
+uses `hx`, which was modified by the flexible tactic `simp` on line 157!
+warning: LeanProofs/BalancedMast/Basic.lean:157:18: `simp at hx` is a flexible tactic modifying `hx`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/BalancedMast/Basic.lean:157:65: `assumption`
+uses `hx`, which was modified by the flexible tactic `simp` on line 157!
+warning: LeanProofs/BalancedMast/Basic.lean:224:0: `phylo_swap` does not use the following hypothesis in its type:
+  • [DecidableEq α] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+⚠ [8925/8936] Built LeanProofs.BalancedMast.Subst (204s)
+warning: LeanProofs/BalancedMast/Subst.lean:66:0: automatically included section variable(s) unused in theorem `BalancedMast.Tree.mem_subtrees_bind`:
+  [DecidableEq β]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq β] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: LeanProofs/BalancedMast/Subst.lean:66:0: `mem_subtrees_bind` does not use the following hypothesis in its type:
+  • [DecidableEq β] (#4)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: LeanProofs/BalancedMast/Subst.lean:82:0: automatically included section variable(s) unused in theorem `BalancedMast.Tree.bind_mem_subtrees`:
+  [DecidableEq α]
+  [DecidableEq β]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq α] [DecidableEq β] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: LeanProofs/BalancedMast/Subst.lean:85:14: `simp [subtrees] at h` is a flexible tactic modifying `h`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/BalancedMast/Subst.lean:85:36: `subst h`
+uses `h`, which was modified by the flexible tactic `simp` on line 85!
+warning: LeanProofs/BalancedMast/Subst.lean:85:14: `simp [subtrees] at h` is a flexible tactic modifying `h`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/BalancedMast/Subst.lean:85:45: `exact self_mem_subtrees _`
+uses `h`, which was modified by the flexible tactic `simp` on line 85!
+warning: LeanProofs/BalancedMast/Subst.lean:82:0: `bind_mem_subtrees` does not use the following hypotheses in its type:
+  • [DecidableEq α] (#3)
+  • [DecidableEq β] (#4)
+
+Consider removing these hypotheses and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: LeanProofs/BalancedMast/Subst.lean:93:0: automatically included section variable(s) unused in theorem `BalancedMast.Tree.block_mem_subtrees`:
+  [DecidableEq β]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq β] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: LeanProofs/BalancedMast/Subst.lean:96:15: `simp at hz` is a flexible tactic modifying `hz`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/BalancedMast/Subst.lean:96:27: `subst hz`
+uses `hz`, which was modified by the flexible tactic `simp` on line 96!
+warning: LeanProofs/BalancedMast/Subst.lean:96:15: `simp at hz` is a flexible tactic modifying `hz`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/BalancedMast/Subst.lean:96:37: `exact h`
+uses `hz`, which was modified by the flexible tactic `simp` on line 96!
+warning: LeanProofs/BalancedMast/Subst.lean:93:0: `block_mem_subtrees` does not use the following hypothesis in its type:
+  • [DecidableEq β] (#4)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+⚠ [8926/8936] Built LeanProofs.BalancedMast.Restrict (213s)
+warning: LeanProofs/BalancedMast/Restrict.lean:44:31: `if_true` has been deprecated: Use `ite_true` instead
+warning: LeanProofs/BalancedMast/Restrict.lean:47:31: `simp at hy` is a flexible tactic modifying `hy`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/BalancedMast/Restrict.lean:47:43: `subst hy`
+uses `hy`, which was modified by the flexible tactic `simp` on line 47!
+warning: LeanProofs/BalancedMast/Restrict.lean:47:31: `simp at hy` is a flexible tactic modifying `hy`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/BalancedMast/Restrict.lean:47:53: `exact hx`
+uses `hy`, which was modified by the flexible tactic `simp` on line 47!
+warning: LeanProofs/BalancedMast/Restrict.lean:213:16: `simp at hL` is a flexible tactic modifying `hL`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/BalancedMast/Restrict.lean:213:28: `subst hL`
+uses `hL`, which was modified by the flexible tactic `simp` on line 213!
+warning: LeanProofs/BalancedMast/Restrict.lean:213:16: `simp at hL` is a flexible tactic modifying `hL`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/BalancedMast/Restrict.lean:213:38: `exact Iso.leaf x`
+uses `hL`, which was modified by the flexible tactic `simp` on line 213!
+⚠ [8927/8936] Built LeanProofs.BalancedMast.Balanced (146s)
+warning: LeanProofs/BalancedMast/Balanced.lean:15:5: Ambiguous namespace `Tree`: it is interpreted as `_root_.BalancedMast.Tree` because this `open` occurs inside `namespace BalancedMast`, while `_root_.Tree` is silently not opened. Specify the namespace unambiguously, e.g. `_root_.BalancedMast.Tree`. The warning can sometimes also be addressed by moving the `open` outside of the surrounding `namespace`.
+
+Note: This linter can be disabled with `set_option linter.ambiguousOpen false`
+warning: LeanProofs/BalancedMast/Balanced.lean:24:0: automatically included section variable(s) unused in theorem `BalancedMast.Bal.length_labels`:
+  [DecidableEq α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: LeanProofs/BalancedMast/Balanced.lean:24:0: `Bal.length_labels` does not use the following hypothesis in its type:
+  • [DecidableEq α] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: LeanProofs/BalancedMast/Balanced.lean:32:0: automatically included section variable(s) unused in theorem `BalancedMast.Bal.bind`:
+  [DecidableEq β]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq β] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: LeanProofs/BalancedMast/Balanced.lean:32:0: `Bal.bind` does not use the following hypothesis in its type:
+  • [DecidableEq β] (#4)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: LeanProofs/BalancedMast/Balanced.lean:50:0: `Bal.map` does not use the following hypotheses in its type:
+  • [DecidableEq α] (#3)
+  • [DecidableEq β] (#4)
+
+Consider removing these hypotheses and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: LeanProofs/BalancedMast/Balanced.lean:54:0: `phylo_map` does not use the following hypothesis in its type:
+  • [DecidableEq β] (#4)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+⚠ [8928/8936] Built LeanProofs.BalancedMast.Grid (226s)
+warning: LeanProofs/BalancedMast/Grid.lean:25:0: automatically included section variable(s) unused in theorem `BalancedMast.Tree.mem_subtrees_of_mem_blocks`:
+  [DecidableEq α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: LeanProofs/BalancedMast/Grid.lean:28:12: `simp [blocks] at h` is a flexible tactic modifying `h`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/BalancedMast/Grid.lean:28:32: `subst h`
+uses `h`, which was modified by the flexible tactic `simp` on line 28!
+warning: LeanProofs/BalancedMast/Grid.lean:28:12: `simp [blocks] at h` is a flexible tactic modifying `h`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/BalancedMast/Grid.lean:28:41: `exact self_mem_subtrees _`
+uses `h`, which was modified by the flexible tactic `simp` on line 28!
+warning: LeanProofs/BalancedMast/Grid.lean:31:16: `simp [blocks] at h` is a flexible tactic modifying `h`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/BalancedMast/Grid.lean:31:36: `subst h`
+uses `h`, which was modified by the flexible tactic `simp` on line 31!
+warning: LeanProofs/BalancedMast/Grid.lean:31:16: `simp [blocks] at h` is a flexible tactic modifying `h`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/BalancedMast/Grid.lean:31:45: `exact self_mem_subtrees _`
+uses `h`, which was modified by the flexible tactic `simp` on line 31!
+warning: LeanProofs/BalancedMast/Grid.lean:25:0: `mem_subtrees_of_mem_blocks` does not use the following hypothesis in its type:
+  • [DecidableEq α] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: LeanProofs/BalancedMast/Grid.lean:38:0: automatically included section variable(s) unused in theorem `BalancedMast.Tree.blocks_bind`:
+  [DecidableEq α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: LeanProofs/BalancedMast/Grid.lean:38:0: `blocks_bind` does not use the following hypotheses in its type:
+  • [DecidableEq α] (#2)
+  • [DecidableEq β] (#4)
+
+Consider removing these hypotheses and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: LeanProofs/BalancedMast/Grid.lean:198:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: LeanProofs/BalancedMast/Grid.lean:236:6: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+⚠ [8929/8936] Built LeanProofs.BalancedMast.Lower (226s)
+warning: LeanProofs/BalancedMast/Lower.lean:13:5: Ambiguous namespace `Tree`: it is interpreted as `_root_.BalancedMast.Tree` because this `open` occurs inside `namespace BalancedMast`, while `_root_.Tree` is silently not opened. Specify the namespace unambiguously, e.g. `_root_.BalancedMast.Tree`. The warning can sometimes also be addressed by moving the `open` outside of the surrounding `namespace`.
+
+Note: This linter can be disabled with `set_option linter.ambiguousOpen false`
+warning: LeanProofs/BalancedMast/Lower.lean:47:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/BalancedMast/Lower.lean:56:0: automatically included section variable(s) unused in theorem `BalancedMast.Bal.eq_leaf`:
+  [DecidableEq α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: LeanProofs/BalancedMast/Lower.lean:56:0: `Bal.eq_leaf` does not use the following hypothesis in its type:
+  • [DecidableEq α] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: LeanProofs/BalancedMast/Lower.lean:59:0: automatically included section variable(s) unused in theorem `BalancedMast.Bal.eq_node`:
+  [DecidableEq α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: LeanProofs/BalancedMast/Lower.lean:59:0: `Bal.eq_node` does not use the following hypothesis in its type:
+  • [DecidableEq α] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+⚠ [8930/8936] Built LeanProofs.BalancedMast.TwoLevel (626s)
+warning: LeanProofs/BalancedMast/TwoLevel.lean:19:5: Ambiguous namespace `Tree`: it is interpreted as `_root_.BalancedMast.Tree` because this `open` occurs inside `namespace BalancedMast`, while `_root_.Tree` is silently not opened. Specify the namespace unambiguously, e.g. `_root_.BalancedMast.Tree`. The warning can sometimes also be addressed by moving the `open` outside of the surrounding `namespace`.
+
+Note: This linter can be disabled with `set_option linter.ambiguousOpen false`
+warning: LeanProofs/BalancedMast/TwoLevel.lean:25:0: automatically included section variable(s) unused in theorem `BalancedMast.mem_subtrees_trans`:
+  [DecidableEq α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: LeanProofs/BalancedMast/TwoLevel.lean:28:14: `simp [subtrees] at hU` is a flexible tactic modifying `hU`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/BalancedMast/TwoLevel.lean:28:37: `subst hU`
+uses `hU`, which was modified by the flexible tactic `simp` on line 28!
+warning: LeanProofs/BalancedMast/TwoLevel.lean:28:14: `simp [subtrees] at hU` is a flexible tactic modifying `hU`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/BalancedMast/TwoLevel.lean:28:47: `exact hV`
+uses `hU`, which was modified by the flexible tactic `simp` on line 28!
+warning: LeanProofs/BalancedMast/TwoLevel.lean:25:0: `mem_subtrees_trans` does not use the following hypothesis in its type:
+  • [DecidableEq α] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: LeanProofs/BalancedMast/TwoLevel.lean:36:0: automatically included section variable(s) unused in theorem `BalancedMast.sub_left`:
+  [DecidableEq α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: LeanProofs/BalancedMast/TwoLevel.lean:36:0: `sub_left` does not use the following hypothesis in its type:
+  • [DecidableEq α] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: LeanProofs/BalancedMast/TwoLevel.lean:39:0: automatically included section variable(s) unused in theorem `BalancedMast.sub_right`:
+  [DecidableEq α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: LeanProofs/BalancedMast/TwoLevel.lean:39:0: `sub_right` does not use the following hypothesis in its type:
+  • [DecidableEq α] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: LeanProofs/BalancedMast/TwoLevel.lean:42:0: automatically included section variable(s) unused in theorem `BalancedMast.sizeOf_le_of_mem_subtrees`:
+  [DecidableEq α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: LeanProofs/BalancedMast/TwoLevel.lean:44:14: `simp [subtrees] at h` is a flexible tactic modifying `h`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/BalancedMast/TwoLevel.lean:44:14: Try this:
+  [apply] simp only [leaf.sizeOf_spec, sizeOf_default, add_zero] at h
+info: LeanProofs/BalancedMast/TwoLevel.lean:44:36: `subst h`
+uses `h`, which was modified by the flexible tactic `simp` on line 44!
+warning: LeanProofs/BalancedMast/TwoLevel.lean:44:14: `simp [subtrees] at h` is a flexible tactic modifying `h`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/BalancedMast/TwoLevel.lean:44:14: Try this:
+  [apply] simp only [leaf.sizeOf_spec, sizeOf_default, add_zero] at h
+info: LeanProofs/BalancedMast/TwoLevel.lean:44:45: `exact le_rfl`
+uses `h`, which was modified by the flexible tactic `simp` on line 44!
+warning: LeanProofs/BalancedMast/TwoLevel.lean:42:0: `sizeOf_le_of_mem_subtrees` does not use the following hypothesis in its type:
+  • [DecidableEq α] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: LeanProofs/BalancedMast/TwoLevel.lean:53:77: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: LeanProofs/BalancedMast/TwoLevel.lean:52:0: `ne_of_mem_left` does not use the following hypothesis in its type:
+  • [DecidableEq α] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: LeanProofs/BalancedMast/TwoLevel.lean:56:81: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: LeanProofs/BalancedMast/TwoLevel.lean:55:0: `ne_of_mem_right` does not use the following hypothesis in its type:
+  • [DecidableEq α] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: LeanProofs/BalancedMast/TwoLevel.lean:56:81: Unused tactic linter: `omega` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: LeanProofs/BalancedMast/TwoLevel.lean:70:0: automatically included section variable(s) unused in theorem `BalancedMast.Bal.ht_eq`:
+  [DecidableEq α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: LeanProofs/BalancedMast/TwoLevel.lean:70:0: `Bal.ht_eq` does not use the following hypothesis in its type:
+  • [DecidableEq α] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: LeanProofs/BalancedMast/TwoLevel.lean:75:0: automatically included section variable(s) unused in theorem `BalancedMast.Bal.bal_sub`:
+  [DecidableEq α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: LeanProofs/BalancedMast/TwoLevel.lean:78:26: `simp at hu` is a flexible tactic modifying `hu`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/BalancedMast/TwoLevel.lean:78:26: Try this:
+  [apply] simp only [zero_tsub] at hu
+info: LeanProofs/BalancedMast/TwoLevel.lean:78:38: `subst hu`
+uses `hu`, which was modified by the flexible tactic `simp` on line 78!
+warning: LeanProofs/BalancedMast/TwoLevel.lean:75:0: `Bal.bal_sub` does not use the following hypothesis in its type:
+  • [DecidableEq α] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: LeanProofs/BalancedMast/TwoLevel.lean:87:0: automatically included section variable(s) unused in theorem `BalancedMast.Bal.sub_node`:
+  [DecidableEq α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: LeanProofs/BalancedMast/TwoLevel.lean:87:0: `Bal.sub_node` does not use the following hypothesis in its type:
+  • [DecidableEq α] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: LeanProofs/BalancedMast/TwoLevel.lean:100:0: `sub_mem_subtrees` does not use the following hypothesis in its type:
+  • [DecidableEq α] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: LeanProofs/BalancedMast/TwoLevel.lean:113:14: `simp [subtrees] at h` is a flexible tactic modifying `h`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/BalancedMast/TwoLevel.lean:113:36: `subst h`
+uses `h`, which was modified by the flexible tactic `simp` on line 113!
+warning: LeanProofs/BalancedMast/TwoLevel.lean:113:14: `simp [subtrees] at h` is a flexible tactic modifying `h`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/BalancedMast/TwoLevel.lean:113:45: `exact hS`
+uses `h`, which was modified by the flexible tactic `simp` on line 113!
+warning: LeanProofs/BalancedMast/TwoLevel.lean:111:0: `phylo_of_mem_subtrees` does not use the following hypothesis in its type:
+  • [DecidableEq α] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: LeanProofs/BalancedMast/TwoLevel.lean:127:4: `simp [subtrees] at hU` is a flexible tactic modifying `hU`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/BalancedMast/TwoLevel.lean:127:4: Try this:
+  [apply] simp only [ne_eq, not_lt_zero, imp_false, Decidable.not_not] at hU
+info: LeanProofs/BalancedMast/TwoLevel.lean:127:27: `subst hU`
+uses `hU`, which was modified by the flexible tactic `simp` on line 127!
+warning: LeanProofs/BalancedMast/TwoLevel.lean:127:4: `simp [subtrees] at hU` is a flexible tactic modifying `hU`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/BalancedMast/TwoLevel.lean:127:4: Try this:
+  [apply] simp only [ne_eq, not_lt_zero, imp_false, Decidable.not_not] at hU
+info: LeanProofs/BalancedMast/TwoLevel.lean:127:37: `exact ⟨Bal.leaf a, fun h => absurd rfl h⟩`
+uses `hU`, which was modified by the flexible tactic `simp` on line 127!
+warning: LeanProofs/BalancedMast/TwoLevel.lean:122:0: `Bal.of_mem_subtrees` does not use the following hypothesis in its type:
+  • [DecidableEq α] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: LeanProofs/BalancedMast/TwoLevel.lean:546:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+⚠ [8931/8936] Built LeanProofs.BalancedMast.CertOne (627s)
+warning: LeanProofs/BalancedMast/CertOne.lean:32:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/BalancedMast/CertOne.lean:79:4: exponent 9633 exceeds the threshold 256, exponentiation operation was not evaluated, use `set_option exponentiation.threshold <num>` to set a new threshold
+warning: LeanProofs/BalancedMast/CertOne.lean:88:4: exponent 4833 exceeds the threshold 256, exponentiation operation was not evaluated, use `set_option exponentiation.threshold <num>` to set a new threshold
+warning: LeanProofs/BalancedMast/CertOne.lean:100:20: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: LeanProofs/BalancedMast/CertOne.lean:125:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/BalancedMast/CertOne.lean:136:25: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/BalancedMast/CertOne.lean:136:25: Try this:
+  [apply] simp only [sub_self]
+info: LeanProofs/BalancedMast/CertOne.lean:136:31: `positivity`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 136!
+⚠ [8932/8936] Built LeanProofs.BalancedMast.Example (629s)
+warning: LeanProofs/BalancedMast/Example.lean:9:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/BalancedMast/Example.lean:18:5: Ambiguous namespace `Tree`: it is interpreted as `_root_.BalancedMast.Tree` because this `open` occurs inside `namespace BalancedMast`, while `_root_.Tree` is silently not opened. Specify the namespace unambiguously, e.g. `_root_.BalancedMast.Tree`. The warning can sometimes also be addressed by moving the `open` outside of the surrounding `namespace`.
+
+Note: This linter can be disabled with `set_option linter.ambiguousOpen false`
+warning: LeanProofs/BalancedMast/Example.lean:195:34: Variable name `j` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _j
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+ℹ [8933/8936] Built LeanProofs.BalancedMast.Main (166s)
+info: LeanProofs/BalancedMast/Main.lean:9:0: 'BalancedMast.Tree.iso_of_triples' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LeanProofs/BalancedMast/Main.lean:10:0: 'BalancedMast.Tree.agree_iff_restrict_iso' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LeanProofs/BalancedMast/Main.lean:12:0: 'BalancedMast.Tree.mast_bind_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LeanProofs/BalancedMast/Main.lean:13:0: 'BalancedMast.M_add_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LeanProofs/BalancedMast/Main.lean:14:0: 'BalancedMast.tendsto_beta' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LeanProofs/BalancedMast/Main.lean:16:0: 'BalancedMast.Tree.mast_le_of_cellsSmall' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LeanProofs/BalancedMast/Main.lean:17:0: 'BalancedMast.M_eleven' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LeanProofs/BalancedMast/Main.lean:18:0: 'BalancedMast.M_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LeanProofs/BalancedMast/Main.lean:19:0: 'BalancedMast.beta_le_five_elevenths' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LeanProofs/BalancedMast/Main.lean:21:0: 'BalancedMast.ansatz_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LeanProofs/BalancedMast/Main.lean:22:0: 'BalancedMast.certOne' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LeanProofs/BalancedMast/Main.lean:23:0: 'BalancedMast.M_lower_235' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LeanProofs/BalancedMast/Main.lean:25:0: 'BalancedMast.ansatz_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LeanProofs/BalancedMast/Main.lean:26:0: 'BalancedMast.M_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [8934/8936] Built LeanProofs.BalancedMast (213s)
+✔ [8935/8936] Built LeanProofs (226s)
+Build completed successfully (8936 jobs).

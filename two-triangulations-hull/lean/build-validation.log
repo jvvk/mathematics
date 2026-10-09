@@ -1,0 +1,433 @@
+✔ [3094/3126] Built LeanProofs.TwoTri.Count (4.4s)
+⚠ [3095/3126] Built LeanProofs.TwoTri.Orient (4.6s)
+warning: LeanProofs/TwoTri/Orient.lean:65:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/TwoTri/Orient.lean:68:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+⚠ [3096/3126] Built LeanProofs.TwoTri.Basic (2.4s)
+warning: LeanProofs/TwoTri/Basic.lean:66:14: This simp argument is unused:
+  Finset.mk_mem_sym2_iff
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [segs, and_assoc]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [3097/3126] Built LeanProofs.TwoTri.Cross (2.7s)
+warning: LeanProofs/TwoTri/Cross.lean:52:56: `simp at E1` is a flexible tactic modifying `E1`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/TwoTri/Cross.lean:52:68: `exact hc E1`
+uses `E1`, which was modified by the flexible tactic `simp` on line 52!
+warning: LeanProofs/TwoTri/Cross.lean:53:57: `simp at E1` is a flexible tactic modifying `E1`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/TwoTri/Cross.lean:53:69: `exact hd E1`
+uses `E1`, which was modified by the flexible tactic `simp` on line 53!
+warning: LeanProofs/TwoTri/Cross.lean:54:56: `simp at E2` is a flexible tactic modifying `E2`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/TwoTri/Cross.lean:54:68: `exact ha E2`
+uses `E2`, which was modified by the flexible tactic `simp` on line 54!
+warning: LeanProofs/TwoTri/Cross.lean:55:57: `simp at E2` is a flexible tactic modifying `E2`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/TwoTri/Cross.lean:55:69: `exact hb E2`
+uses `E2`, which was modified by the flexible tactic `simp` on line 55!
+⚠ [3098/3126] Built LeanProofs.TwoTri.Exit (3.1s)
+warning: LeanProofs/TwoTri/Exit.lean:21:0: `first_root` does not use the following hypothesis in its type:
+  • [Fintype ι] (#6)
+
+Consider replacing this hypothesis with the corresponding instance of `Finite` and using `Fintype.ofFinite` in the proof, or removing it entirely.
+
+Note: This linter can be disabled with `set_option linter.unusedFintypeInType false`
+✔ [3099/3126] Built LeanProofs.TwoTri.Faces (2.8s)
+⚠ [3100/3126] Built LeanProofs.TwoTri.Choose (3.6s)
+warning: LeanProofs/TwoTri/Choose.lean:18:0: `exists_delta` does not use the following hypothesis in its type:
+  • [DecidableEq ι] (#6)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: LeanProofs/TwoTri/Choose.lean:36:0: `exists_small` does not use the following hypothesis in its type:
+  • [DecidableEq ι] (#7)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+⚠ [3101/3126] Built LeanProofs.TwoTri.Insert (3.9s)
+warning: LeanProofs/TwoTri/Insert.lean:25:70: Variable name `hpP` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hpP
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanProofs/TwoTri/Insert.lean:28:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+✔ [3102/3126] Built LeanProofs.TwoTri.Preserve (3.6s)
+⚠ [3103/3126] Built LeanProofs.TwoTri.Regen (2.0s)
+warning: LeanProofs/TwoTri/Regen.lean:95:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/TwoTri/Regen.lean:97:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+✔ [3104/3126] Built LeanProofs.TwoTri.Hull (3.2s)
+⚠ [3105/3126] Built LeanProofs.TwoTri.Lower (2.7s)
+warning: LeanProofs/TwoTri/Lower.lean:121:34: This simp argument is unused:
+  orient_self23
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [ℓ, hcyc]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanProofs/TwoTri/Lower.lean:101:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+⚠ [3106/3126] Built LeanProofs.TwoTri.Step (5.1s)
+warning: LeanProofs/TwoTri/Step.lean:48:2: `simp at e0 e1 e2 e3` is a flexible tactic modifying `e0`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/TwoTri/Step.lean:48:2: Try this:
+  [apply] simp only [exists_and_left, Prod.exists] at e0 e1 e2 e3
+info: LeanProofs/TwoTri/Step.lean:53:2: `have hmyz : orient y z m = (1 - s₀) * orient x y z := by rw [hmdef, orient_lerp, ← orient_cyc]; simp`
+uses `e0`, which was modified by the flexible tactic `simp` on line 48!
+warning: LeanProofs/TwoTri/Step.lean:48:2: `simp at e0 e1 e2 e3` is a flexible tactic modifying `e3`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/TwoTri/Step.lean:48:2: Try this:
+  [apply] simp only [exists_and_left, Prod.exists] at e0 e1 e2 e3
+info: LeanProofs/TwoTri/Step.lean:53:2: `have hmyz : orient y z m = (1 - s₀) * orient x y z := by rw [hmdef, orient_lerp, ← orient_cyc]; simp`
+uses `e3`, which was modified by the flexible tactic `simp` on line 48!
+warning: LeanProofs/TwoTri/Step.lean:48:2: `simp at e0 e1 e2 e3` is a flexible tactic modifying `e1`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/TwoTri/Step.lean:48:2: Try this:
+  [apply] simp only [exists_and_left, Prod.exists] at e0 e1 e2 e3
+info: LeanProofs/TwoTri/Step.lean:53:2: `have hmyz : orient y z m = (1 - s₀) * orient x y z := by rw [hmdef, orient_lerp, ← orient_cyc]; simp`
+uses `e1`, which was modified by the flexible tactic `simp` on line 48!
+warning: LeanProofs/TwoTri/Step.lean:48:2: `simp at e0 e1 e2 e3` is a flexible tactic modifying `e2`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/TwoTri/Step.lean:48:2: Try this:
+  [apply] simp only [exists_and_left, Prod.exists] at e0 e1 e2 e3
+info: LeanProofs/TwoTri/Step.lean:53:2: `have hmyz : orient y z m = (1 - s₀) * orient x y z := by rw [hmdef, orient_lerp, ← orient_cyc]; simp`
+uses `e2`, which was modified by the flexible tactic `simp` on line 48!
+warning: LeanProofs/TwoTri/Step.lean:48:2: `simp at e0 e1 e2 e3` is a flexible tactic modifying `e2`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/TwoTri/Step.lean:48:2: Try this:
+  [apply] simp only [exists_and_left, Prod.exists] at e0 e1 e2 e3
+info: LeanProofs/TwoTri/Step.lean:55:2: `have hmzx : orient z x m = s₀ * orient x y z := by rw [hmdef, orient_lerp, orient_cyc z x y, orient_cyc x y z]; simp`
+uses `e2`, which was modified by the flexible tactic `simp` on line 48!
+warning: LeanProofs/TwoTri/Step.lean:48:2: `simp at e0 e1 e2 e3` is a flexible tactic modifying `e0`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/TwoTri/Step.lean:48:2: Try this:
+  [apply] simp only [exists_and_left, Prod.exists] at e0 e1 e2 e3
+info: LeanProofs/TwoTri/Step.lean:55:2: `have hmzx : orient z x m = s₀ * orient x y z := by rw [hmdef, orient_lerp, orient_cyc z x y, orient_cyc x y z]; simp`
+uses `e0`, which was modified by the flexible tactic `simp` on line 48!
+warning: LeanProofs/TwoTri/Step.lean:48:2: `simp at e0 e1 e2 e3` is a flexible tactic modifying `e3`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/TwoTri/Step.lean:48:2: Try this:
+  [apply] simp only [exists_and_left, Prod.exists] at e0 e1 e2 e3
+info: LeanProofs/TwoTri/Step.lean:55:2: `have hmzx : orient z x m = s₀ * orient x y z := by rw [hmdef, orient_lerp, orient_cyc z x y, orient_cyc x y z]; simp`
+uses `e3`, which was modified by the flexible tactic `simp` on line 48!
+warning: LeanProofs/TwoTri/Step.lean:48:2: `simp at e0 e1 e2 e3` is a flexible tactic modifying `e1`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/TwoTri/Step.lean:48:2: Try this:
+  [apply] simp only [exists_and_left, Prod.exists] at e0 e1 e2 e3
+info: LeanProofs/TwoTri/Step.lean:55:2: `have hmzx : orient z x m = s₀ * orient x y z := by rw [hmdef, orient_lerp, orient_cyc z x y, orient_cyc x y z]; simp`
+uses `e1`, which was modified by the flexible tactic `simp` on line 48!
+warning: LeanProofs/TwoTri/Step.lean:89:2: `simp at f0 f1 f2 f3 g0 g1 g2` is a flexible tactic modifying `g2`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/TwoTri/Step.lean:89:2: Try this:
+  [apply] simp only [exists_and_left, Prod.exists] at f0 f1 f2 f3 g0 g1 g2
+info: LeanProofs/TwoTri/Step.lean:92:2: `have hlq : ∀ u v : K × K, orient u v q = orient u v m + δ * (orient u v y - orient u v x) := by intro u v;
+  simp only [q, s₁, hmdef, orient_lerp']; ring`
+uses `g2`, which was modified by the flexible tactic `simp` on line 89!
+warning: LeanProofs/TwoTri/Step.lean:48:2: `simp at e0 e1 e2 e3` is a flexible tactic modifying `e1`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/TwoTri/Step.lean:48:2: Try this:
+  [apply] simp only [exists_and_left, Prod.exists] at e0 e1 e2 e3
+info: LeanProofs/TwoTri/Step.lean:92:2: `have hlq : ∀ u v : K × K, orient u v q = orient u v m + δ * (orient u v y - orient u v x) := by intro u v;
+  simp only [q, s₁, hmdef, orient_lerp']; ring`
+uses `e1`, which was modified by the flexible tactic `simp` on line 48!
+warning: LeanProofs/TwoTri/Step.lean:89:2: `simp at f0 f1 f2 f3 g0 g1 g2` is a flexible tactic modifying `g1`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/TwoTri/Step.lean:89:2: Try this:
+  [apply] simp only [exists_and_left, Prod.exists] at f0 f1 f2 f3 g0 g1 g2
+info: LeanProofs/TwoTri/Step.lean:92:2: `have hlq : ∀ u v : K × K, orient u v q = orient u v m + δ * (orient u v y - orient u v x) := by intro u v;
+  simp only [q, s₁, hmdef, orient_lerp']; ring`
+uses `g1`, which was modified by the flexible tactic `simp` on line 89!
+warning: LeanProofs/TwoTri/Step.lean:89:2: `simp at f0 f1 f2 f3 g0 g1 g2` is a flexible tactic modifying `f1`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/TwoTri/Step.lean:89:2: Try this:
+  [apply] simp only [exists_and_left, Prod.exists] at f0 f1 f2 f3 g0 g1 g2
+info: LeanProofs/TwoTri/Step.lean:92:2: `have hlq : ∀ u v : K × K, orient u v q = orient u v m + δ * (orient u v y - orient u v x) := by intro u v;
+  simp only [q, s₁, hmdef, orient_lerp']; ring`
+uses `f1`, which was modified by the flexible tactic `simp` on line 89!
+warning: LeanProofs/TwoTri/Step.lean:89:2: `simp at f0 f1 f2 f3 g0 g1 g2` is a flexible tactic modifying `f3`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/TwoTri/Step.lean:89:2: Try this:
+  [apply] simp only [exists_and_left, Prod.exists] at f0 f1 f2 f3 g0 g1 g2
+info: LeanProofs/TwoTri/Step.lean:92:2: `have hlq : ∀ u v : K × K, orient u v q = orient u v m + δ * (orient u v y - orient u v x) := by intro u v;
+  simp only [q, s₁, hmdef, orient_lerp']; ring`
+uses `f3`, which was modified by the flexible tactic `simp` on line 89!
+warning: LeanProofs/TwoTri/Step.lean:48:2: `simp at e0 e1 e2 e3` is a flexible tactic modifying `e2`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/TwoTri/Step.lean:48:2: Try this:
+  [apply] simp only [exists_and_left, Prod.exists] at e0 e1 e2 e3
+info: LeanProofs/TwoTri/Step.lean:92:2: `have hlq : ∀ u v : K × K, orient u v q = orient u v m + δ * (orient u v y - orient u v x) := by intro u v;
+  simp only [q, s₁, hmdef, orient_lerp']; ring`
+uses `e2`, which was modified by the flexible tactic `simp` on line 48!
+warning: LeanProofs/TwoTri/Step.lean:89:2: `simp at f0 f1 f2 f3 g0 g1 g2` is a flexible tactic modifying `f2`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/TwoTri/Step.lean:89:2: Try this:
+  [apply] simp only [exists_and_left, Prod.exists] at f0 f1 f2 f3 g0 g1 g2
+info: LeanProofs/TwoTri/Step.lean:92:2: `have hlq : ∀ u v : K × K, orient u v q = orient u v m + δ * (orient u v y - orient u v x) := by intro u v;
+  simp only [q, s₁, hmdef, orient_lerp']; ring`
+uses `f2`, which was modified by the flexible tactic `simp` on line 89!
+warning: LeanProofs/TwoTri/Step.lean:89:2: `simp at f0 f1 f2 f3 g0 g1 g2` is a flexible tactic modifying `f0`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/TwoTri/Step.lean:89:2: Try this:
+  [apply] simp only [exists_and_left, Prod.exists] at f0 f1 f2 f3 g0 g1 g2
+info: LeanProofs/TwoTri/Step.lean:92:2: `have hlq : ∀ u v : K × K, orient u v q = orient u v m + δ * (orient u v y - orient u v x) := by intro u v;
+  simp only [q, s₁, hmdef, orient_lerp']; ring`
+uses `f0`, which was modified by the flexible tactic `simp` on line 89!
+warning: LeanProofs/TwoTri/Step.lean:89:2: `simp at f0 f1 f2 f3 g0 g1 g2` is a flexible tactic modifying `g0`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/TwoTri/Step.lean:89:2: Try this:
+  [apply] simp only [exists_and_left, Prod.exists] at f0 f1 f2 f3 g0 g1 g2
+info: LeanProofs/TwoTri/Step.lean:92:2: `have hlq : ∀ u v : K × K, orient u v q = orient u v m + δ * (orient u v y - orient u v x) := by intro u v;
+  simp only [q, s₁, hmdef, orient_lerp']; ring`
+uses `g0`, which was modified by the flexible tactic `simp` on line 89!
+warning: LeanProofs/TwoTri/Step.lean:48:2: `simp at e0 e1 e2 e3` is a flexible tactic modifying `e0`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/TwoTri/Step.lean:48:2: Try this:
+  [apply] simp only [exists_and_left, Prod.exists] at e0 e1 e2 e3
+info: LeanProofs/TwoTri/Step.lean:92:2: `have hlq : ∀ u v : K × K, orient u v q = orient u v m + δ * (orient u v y - orient u v x) := by intro u v;
+  simp only [q, s₁, hmdef, orient_lerp']; ring`
+uses `e0`, which was modified by the flexible tactic `simp` on line 48!
+warning: LeanProofs/TwoTri/Step.lean:48:2: `simp at e0 e1 e2 e3` is a flexible tactic modifying `e3`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/TwoTri/Step.lean:48:2: Try this:
+  [apply] simp only [exists_and_left, Prod.exists] at e0 e1 e2 e3
+info: LeanProofs/TwoTri/Step.lean:92:2: `have hlq : ∀ u v : K × K, orient u v q = orient u v m + δ * (orient u v y - orient u v x) := by intro u v;
+  simp only [q, s₁, hmdef, orient_lerp']; ring`
+uses `e3`, which was modified by the flexible tactic `simp` on line 48!
+warning: LeanProofs/TwoTri/Step.lean:89:2: `simp at f0 f1 f2 f3 g0 g1 g2` is a flexible tactic modifying `f1`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/TwoTri/Step.lean:89:2: Try this:
+  [apply] simp only [exists_and_left, Prod.exists] at f0 f1 f2 f3 g0 g1 g2
+info: LeanProofs/TwoTri/Step.lean:95:2: `have hq : InTri b₁ b₂ b₃ q := by
+  refine ⟨?_, ?_, ?_⟩ <;> rw [hlq] <;> [rw [hmdef] at f0 ⊢; rw [hmdef] at f1 ⊢; rw [hmdef] at f2 ⊢] <;> linarith`
+uses `f1`, which was modified by the flexible tactic `simp` on line 89!
+warning: LeanProofs/TwoTri/Step.lean:89:2: `simp at f0 f1 f2 f3 g0 g1 g2` is a flexible tactic modifying `f2`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/TwoTri/Step.lean:89:2: Try this:
+  [apply] simp only [exists_and_left, Prod.exists] at f0 f1 f2 f3 g0 g1 g2
+info: LeanProofs/TwoTri/Step.lean:95:2: `have hq : InTri b₁ b₂ b₃ q := by
+  refine ⟨?_, ?_, ?_⟩ <;> rw [hlq] <;> [rw [hmdef] at f0 ⊢; rw [hmdef] at f1 ⊢; rw [hmdef] at f2 ⊢] <;> linarith`
+uses `f2`, which was modified by the flexible tactic `simp` on line 89!
+warning: LeanProofs/TwoTri/Step.lean:89:2: `simp at f0 f1 f2 f3 g0 g1 g2` is a flexible tactic modifying `f0`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/TwoTri/Step.lean:89:2: Try this:
+  [apply] simp only [exists_and_left, Prod.exists] at f0 f1 f2 f3 g0 g1 g2
+info: LeanProofs/TwoTri/Step.lean:95:2: `have hq : InTri b₁ b₂ b₃ q := by
+  refine ⟨?_, ?_, ?_⟩ <;> rw [hlq] <;> [rw [hmdef] at f0 ⊢; rw [hmdef] at f1 ⊢; rw [hmdef] at f2 ⊢] <;> linarith`
+uses `f0`, which was modified by the flexible tactic `simp` on line 89!
+warning: LeanProofs/TwoTri/Step.lean:89:2: `simp at f0 f1 f2 f3 g0 g1 g2` is a flexible tactic modifying `g0`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/TwoTri/Step.lean:89:2: Try this:
+  [apply] simp only [exists_and_left, Prod.exists] at f0 f1 f2 f3 g0 g1 g2
+info: LeanProofs/TwoTri/Step.lean:98:2: `have n1 : orient p b₁ q ≠ 0 := by rw [hlq]; exact g0`
+uses `g0`, which was modified by the flexible tactic `simp` on line 89!
+warning: LeanProofs/TwoTri/Step.lean:89:2: `simp at f0 f1 f2 f3 g0 g1 g2` is a flexible tactic modifying `g1`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/TwoTri/Step.lean:89:2: Try this:
+  [apply] simp only [exists_and_left, Prod.exists] at f0 f1 f2 f3 g0 g1 g2
+info: LeanProofs/TwoTri/Step.lean:99:2: `have n2 : orient p b₂ q ≠ 0 := by rw [hlq]; exact g1`
+uses `g1`, which was modified by the flexible tactic `simp` on line 89!
+warning: LeanProofs/TwoTri/Step.lean:89:2: `simp at f0 f1 f2 f3 g0 g1 g2` is a flexible tactic modifying `g2`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/TwoTri/Step.lean:89:2: Try this:
+  [apply] simp only [exists_and_left, Prod.exists] at f0 f1 f2 f3 g0 g1 g2
+info: LeanProofs/TwoTri/Step.lean:100:2: `have n3 : orient p b₃ q ≠ 0 := by rw [hlq]; exact g2`
+uses `g2`, which was modified by the flexible tactic `simp` on line 89!
+⚠ [3107/3126] Built LeanProofs.TwoTri.Cor (2.9s)
+warning: LeanProofs/TwoTri/Cor.lean:24:71: Variable name `s` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _s
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanProofs/TwoTri/Cor.lean:102:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+⚠ [3108/3126] Built LeanProofs.TwoTri.Transfer (2.6s)
+warning: LeanProofs/TwoTri/Transfer.lean:56:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+⚠ [3109/3126] Built LeanProofs.TwoTri.Nine (6.2s)
+warning: LeanProofs/TwoTri/Nine.lean:26:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/TwoTri/Nine.lean:30:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/TwoTri/Nine.lean:48:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+✔ [3110/3126] Built LeanProofs.TwoTri.Upper (2.1s)
+✔ [3111/3126] Built LeanProofs.TwoTri.Main (2.0s)
+⚠ [3112/3126] Built LeanProofs.TwoTri.Fidelity (2.9s)
+warning: LeanProofs/TwoTri/Fidelity.lean:1:1: * `-/`:
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+✔ [3113/3126] Built LeanProofs.TwoTri.FaceTools (2.0s)
+✔ [3114/3126] Built LeanProofs.TwoTri.Consec (4.7s)
+✔ [3115/3126] Built LeanProofs.TwoTri.Fan (8.3s)
+✔ [3116/3126] Built LeanProofs.TwoTri.SideFace (2.1s)
+⚠ [3117/3126] Built LeanProofs.TwoTri.EdgeCount (2.7s)
+warning: LeanProofs/TwoTri/EdgeCount.lean:342:10: Unused tactic linter: `(exfalso; linarith)` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: LeanProofs/TwoTri/EdgeCount.lean:342:10: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: LeanProofs/TwoTri/EdgeCount.lean:446:10: `if_neg` has been deprecated: Use `ite_eq_right` instead
+✔ [3118/3126] Built LeanProofs.TwoTri.Extend (3.1s)
+⚠ [3119/3126] Built LeanProofs.TwoTri.Oct (3.0s)
+warning: LeanProofs/TwoTri/Oct.lean:40:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/TwoTri/Oct.lean:77:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/TwoTri/Oct.lean:92:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/TwoTri/Oct.lean:142:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+⚠ [3120/3126] Built LeanProofs.TwoTri.Hulls (5.6s)
+warning: LeanProofs/TwoTri/Hulls.lean:1:1: * `-/`:
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+warning: LeanProofs/TwoTri/Hulls.lean:98:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/TwoTri/Hulls.lean:189:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/TwoTri/Hulls.lean:282:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/TwoTri/Hulls.lean:285:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/TwoTri/Hulls.lean:288:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/TwoTri/Hulls.lean:448:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/TwoTri/Hulls.lean:450:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+✔ [3121/3126] Built LeanProofs.TwoTri.Regen5 (3.1s)
+⚠ [3122/3126] Built LeanProofs.TwoTri.Regen5b (3.6s)
+warning: LeanProofs/TwoTri/Regen5b.lean:40:2: `simp at c0 c1 c2 c3` is a flexible tactic modifying `c2`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/TwoTri/Regen5b.lean:41:2: `have e2 : orient v p m = (1 - s) * orient u v p := by simp only [m]; unfold orient lerp; ring`
+uses `c2`, which was modified by the flexible tactic `simp` on line 40!
+warning: LeanProofs/TwoTri/Regen5b.lean:40:2: `simp at c0 c1 c2 c3` is a flexible tactic modifying `c0`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/TwoTri/Regen5b.lean:41:2: `have e2 : orient v p m = (1 - s) * orient u v p := by simp only [m]; unfold orient lerp; ring`
+uses `c0`, which was modified by the flexible tactic `simp` on line 40!
+warning: LeanProofs/TwoTri/Regen5b.lean:40:2: `simp at c0 c1 c2 c3` is a flexible tactic modifying `c3`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/TwoTri/Regen5b.lean:41:2: `have e2 : orient v p m = (1 - s) * orient u v p := by simp only [m]; unfold orient lerp; ring`
+uses `c3`, which was modified by the flexible tactic `simp` on line 40!
+warning: LeanProofs/TwoTri/Regen5b.lean:40:2: `simp at c0 c1 c2 c3` is a flexible tactic modifying `c1`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/TwoTri/Regen5b.lean:41:2: `have e2 : orient v p m = (1 - s) * orient u v p := by simp only [m]; unfold orient lerp; ring`
+uses `c1`, which was modified by the flexible tactic `simp` on line 40!
+warning: LeanProofs/TwoTri/Regen5b.lean:40:2: `simp at c0 c1 c2 c3` is a flexible tactic modifying `c0`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/TwoTri/Regen5b.lean:43:2: `have e3 : orient p u m = s * orient u v p := by simp only [m]; unfold orient lerp; ring`
+uses `c0`, which was modified by the flexible tactic `simp` on line 40!
+warning: LeanProofs/TwoTri/Regen5b.lean:40:2: `simp at c0 c1 c2 c3` is a flexible tactic modifying `c2`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/TwoTri/Regen5b.lean:43:2: `have e3 : orient p u m = s * orient u v p := by simp only [m]; unfold orient lerp; ring`
+uses `c2`, which was modified by the flexible tactic `simp` on line 40!
+warning: LeanProofs/TwoTri/Regen5b.lean:40:2: `simp at c0 c1 c2 c3` is a flexible tactic modifying `c1`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/TwoTri/Regen5b.lean:43:2: `have e3 : orient p u m = s * orient u v p := by simp only [m]; unfold orient lerp; ring`
+uses `c1`, which was modified by the flexible tactic `simp` on line 40!
+warning: LeanProofs/TwoTri/Regen5b.lean:40:2: `simp at c0 c1 c2 c3` is a flexible tactic modifying `c3`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/TwoTri/Regen5b.lean:43:2: `have e3 : orient p u m = s * orient u v p := by simp only [m]; unfold orient lerp; ring`
+uses `c3`, which was modified by the flexible tactic `simp` on line 40!
+warning: LeanProofs/TwoTri/Regen5b.lean:52:29: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/TwoTri/Regen5b.lean:52:29: Try this:
+  [apply] simp only [mul_zero, zero_add]
+info: LeanProofs/TwoTri/Regen5b.lean:52:35: `exact mul_pos hε hD`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 52!
+warning: LeanProofs/TwoTri/Regen5b.lean:118:5: Variable name `hy` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hy
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: LeanProofs/TwoTri/Regen5b.lean:170:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+⚠ [3123/3126] Built LeanProofs.TwoTri.Regen5c (4.3s)
+warning: LeanProofs/TwoTri/Regen5c.lean:113:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+⚠ [3124/3126] Built LeanProofs.TwoTri.Regen5d (1.9s)
+warning: LeanProofs/TwoTri/Regen5d.lean:1:1: * `-/`:
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+✔ [3125/3126] Built LeanProofs (1.6s)
+Build completed successfully (3126 jobs).

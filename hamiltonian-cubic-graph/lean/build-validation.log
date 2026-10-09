@@ -1,0 +1,5 @@
+# 2026-10-09 isolated build of this folder (copied to a fresh directory, no development cache)
+lake exe cache get: exit 0
+lake build LeanProofs: Build completed successfully (8926 jobs)
+lake env lean CheckClaims.lean: exit 0, 6 axiom reports, all within [propext, Classical.choice, Quot.sound]
+python3 scripts/mutants.py: 6 mutants, 6 killed (every mutant fails to compile)

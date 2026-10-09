@@ -1,0 +1,4 @@
+Fresh isolated build, 2026-10-08T18:16Z, copy of this folder in an empty directory:
+  lake exe cache get && lake build LeanProofs && lake env lean CheckClaims.lean
+Build completed successfully (3518 jobs).
+EXIT 0
