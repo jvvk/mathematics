@@ -1,0 +1,11 @@
+0 proper group=12 phi=(3)(1) g=perm01,sign--
+1 proper group=12 phi=(5)(1) g=perm01,sign--
+2 proper group=12 phi=(10)(1) g=perm01,sign--
+3 proper group=2x6 phi=(1,1)(0,1) g=perm01,sign--
+4 proper group=2x6 phi=(1,2)(0,1) g=perm01,sign--
+5 proper group=2x6 phi=(1,2)(0,1) g=perm01,sign--
+6 proper group=2x6 phi=(1,2)(0,1) g=perm01,sign--
+7 proper group=2x6 phi=(1,1)(0,1) g=perm01,sign--
+8 proper group=2x6 phi=(1,1)(0,1) g=perm01,sign--
+9 proper group=2x6 phi=(1,0)(0,1) g=perm01,sign--
+10 proper group=2x6 phi=(1,1)(0,1) g=perm01,sign--

@@ -1,0 +1,53 @@
+{
+  "omitted_set": "{4^(j+2): j >= 0}",
+  "sparse_check_last_N": 1000000,
+  "sparse_minimum_difference": 2,
+  "dense_checks": [
+    {
+      "h": 3,
+      "last_N": 512,
+      "minimum_difference": 2
+    },
+    {
+      "h": 4,
+      "last_N": 512,
+      "minimum_difference": 3
+    },
+    {
+      "h": 5,
+      "last_N": 512,
+      "minimum_difference": 4
+    },
+    {
+      "h": 6,
+      "last_N": 512,
+      "minimum_difference": 5
+    },
+    {
+      "h": 7,
+      "last_N": 512,
+      "minimum_difference": 6
+    },
+    {
+      "h": 8,
+      "last_N": 512,
+      "minimum_difference": 7
+    },
+    {
+      "h": 9,
+      "last_N": 512,
+      "minimum_difference": 8
+    },
+    {
+      "h": 10,
+      "last_N": 512,
+      "minimum_difference": 9
+    }
+  ],
+  "wrong_progression_R3_at_0_1_2": [
+    1,
+    3,
+    3
+  ],
+  "status": "all exact checks passed"
+}

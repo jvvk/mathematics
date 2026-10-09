@@ -1,0 +1,161 @@
+\documentclass[11pt]{amsart}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\N}{\mathbb{N}}
+
+\title{Deleting the Powers of Four: Strictly Increasing Representation Functions}
+\author{Vamshi Jandhyala}
+\address{London, United Kingdom}
+\email{vamshi.jandhyala@gmail.com}
+
+\begin{document}
+
+\begin{abstract}
+For $A\subseteq\N=\{0,1,2,\dots\}$ let $R_{A,h}(n)$ count the ordered $h$-tuples from $A$ with sum $n$. Sándor and Yang asked whether $R_{A,h}$ is strictly increasing when $A=\N\setminus\{4^{j+2}:j\ge0\}$. It is, for every $h\ge3$ and from $n=0$ on. Bell and Shallit's Theorem~1 already gives strict increase for all large $n$; the point here is the explicit bound $R_{A,3}(N)-R_{A,3}(N-1)\ge N+1-3m-m^2$, with $m$ the number of deleted elements up to $N$, which holds for every deleted set and is positive at every $N$ for the powers of four. The argument is the coefficient computation of Bell and Shallit's Theorem~2. We also record two facts about Sándor and Yang's Problem~1.4, which asks for densities $d<1$: no eventually periodic set of density strictly between $0$ and $1$ works, and any set that works has $A(N)\ge((N+1)(N+2)/2)^{1/3}$. The bound, the reduction to $h=3$ and Proposition~1 are formally verified in Lean~4.
+\end{abstract}
+
+\maketitle
+
+\section{The question}
+
+Write $R_{A,h}(n)$ for the number of ordered $h$-tuples $(a_1,\dots,a_h)\in A^h$ with $a_1+\dots+a_h=n$. For $A=\N$ every tuple counts and $R_{\N,3}(n)=\binom{n+2}{2}$, which increases. Delete a few elements and some tuples disappear. Can $R_{A,3}$ still increase strictly if infinitely many elements are deleted?
+
+For two summands it cannot: by a theorem of Erdős, Sárközy and Sós, $R_{A,2}$ is eventually increasing only when $A$ is cofinite~\cite{SY}. For three or more summands it can. Bell and Shallit~\cite{BS} proved that deleting any sufficiently sparse set $F$ leaves $R_{\N\setminus F,h}$ eventually strictly increasing for $h\ge3$, and showed that deleting $\{2^{j+2}-1:j\ge0\}=\{3,7,15,\dots\}$ gives strict increase from $n=0$. Sándor and Yang~\cite{SY} gave the example $\N\setminus\{2^j:j\ge10\}$ and wrote (Remark~1.3): \emph{it would be interesting to determine whether the set $\N\setminus\{4^{n+2}:n\ge0\}$ from Bell and Shallit also has this property.}
+
+Try it before reading on. The first deleted number is $16$. Up to $N=15$ nothing is missing and $R_{A,3}(N)=\binom{N+2}{2}$. At $N=16$ the three triples $(16,0,0)$, $(0,16,0)$, $(0,0,16)$ disappear, so $R_{A,3}(16)=153-3=150$, still above $R_{A,3}(15)=136$. The loss grows with each new power of four, but so does $N$. Figure~\ref{fig:diff} shows the race up to $300$: the loss stays in single digits.
+
+\begin{proposition}\label{prop:main}
+Let $A=\N\setminus\{4^{j+2}:j\ge0\}$. For every $h\ge3$ and every $n\ge0$, $R_{A,h}(n+1)>R_{A,h}(n)$.
+\end{proposition}
+
+Two remarks on sources. The set $\{4^{j+2}\}$ does not appear in the arXiv version of Bell and Shallit~\cite{BS}, whose explicit example is $\{2^{j+2}-1\}$, already settled there; so Remark~1.3 may have meant that set. Either way, Proposition~\ref{prop:main} answers the remark as printed. Second, in the text layer of the arXiv PDF of~\cite{SY} the exponent is flattened, and $\{4^{n+2}\}$ reads as $\{4n+2\}$. That progression gives a different answer, and it is the example of Section~\ref{sec:periodic}.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=0.92\textwidth,height=5.2cm,xmin=0,xmax=300,ymin=0,ymax=19,
+  xlabel={$N$},legend pos=north west,legend cell align=left,legend style={font=\small,draw=none,fill=none},
+  tick label style={font=\small},xtick={0,16,64,128,192,256,300},ytick={0,6,12,18}]
+\addplot[blue!70!black,thick,const plot] table[x=N,y expr=\thisrow{N}+1-\thisrow{d}] {figs/powers.dat};
+\addlegendentry{loss: $N+1-\bigl(R_{A,3}(N)-R_{A,3}(N-1)\bigr)$}
+\addplot[red!70!black,dashed,thick,const plot] table[x=N,y expr=\thisrow{N}+1-\thisrow{lb}] {figs/powers.dat};
+\addlegendentry{bound: $3m(N)+m(N)^2$}
+\end{axis}
+\end{tikzpicture}
+\caption{For $A=\N\setminus\{16,64,256,\dots\}$, how much smaller the increment of $R_{A,3}$ is than the increment $N+1$ for $A=\N$ (solid), and the upper bound $3m+m^2$ from Lemma~\ref{lem:bound} (dashed). The loss is at most $12$ up to $N=300$ while $N+1$ grows, so every increment is positive; the dips below the bound come from the terms $3r_{E,2}(N)$ and $r_{E,3}(N-1)$ at sums of powers of four.}
+\label{fig:diff}
+\end{figure}
+
+\section{The coefficient bound}
+
+Let $E=\N\setminus A$ be the deleted set, and write $m(N)=\#(E\cap[0,N])$ and $r_{E,k}(N)$ for the number of ordered $k$-tuples from $E$ with sum $N$, with $r_{E,k}(-1)=0$. In terms of generating functions, with $D(x)=\sum_{e\in E}x^e$ and $G(x)=\sum_{a\in A}x^a=(1-x)^{-1}-D(x)$, we have $\sum_n R_{A,h}(n)x^n=G(x)^h$, so the increments of $R_{A,3}$ are the coefficients of $(1-x)G(x)^3$. Expanding the cube and using $(1-x)\cdot(1-x)^{-1}=1$,
+\begin{equation}\label{eq:key}
+(1-x)G(x)^3=(1-x)^{-2}-3D(x)(1-x)^{-1}+3D(x)^2-(1-x)D(x)^3 .
+\end{equation}
+Read each term at $x^N$. The first is $N+1$, the increment of $\binom{N+2}{2}$, as if nothing were deleted. The second is $3m(N)$: one unit lost for each deleted element up to $N$, in each of the three positions. The third, $3r_{E,2}(N)$, adds back what was subtracted twice. The last is $r_{E,3}(N)-r_{E,3}(N-1)$.
+
+\begin{lemma}\label{lem:bound}
+For every $E\subseteq\N$ and every $N\ge1$,
+\[
+R_{A,3}(N)-R_{A,3}(N-1)\ \ge\ N+1-3m(N)-m(N)^2 .
+\]
+\end{lemma}
+
+\begin{proof}
+By~\eqref{eq:key}, the increment equals $N+1-3m(N)+3r_{E,2}(N)-r_{E,3}(N)+r_{E,3}(N-1)$. Drop the two nonnegative terms $3r_{E,2}(N)$ and $r_{E,3}(N-1)$. A triple from $E$ with sum $N$ is fixed by its first two entries, both in $E\cap[0,N]$, so $r_{E,3}(N)\le m(N)^2$.
+\end{proof}
+
+The case $h=3$ carries the rest. The coefficients of $(1-x)G^h$ are the increments of $R_{A,h}$, and
+\[
+(1-x)G(x)^h=\bigl((1-x)G(x)^3\bigr)\,G(x)^{h-3}.
+\]
+\begin{lemma}\label{lem:reduce}
+If $0\in A$ and $R_{A,3}(n+1)>R_{A,3}(n)$ for all $n\ge0$, then $R_{A,h}(n+1)>R_{A,h}(n)$ for all $h\ge3$ and $n\ge0$.
+\end{lemma}
+
+\begin{proof}
+Every coefficient of $F=(1-x)G^3$ is positive: the one at $x^0$ is $R_{A,3}(0)=1$ because $0\in A$, the others are the increments. The series $G^{h-3}$ has nonnegative coefficients and constant term $1$. So the coefficient of $x^{n+1}$ in $FG^{h-3}$ is at least $[x^{n+1}]F\cdot1>0$.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{prop:main}]
+By Lemma~\ref{lem:reduce} it suffices to take $h=3$. If $m=m(N)=0$ the bound of Lemma~\ref{lem:bound} is $N+1>0$. If $m\ge1$, the deleted elements up to $N$ are $4^2,\dots,4^{m+1}$, so $N\ge4^{m+1}$ and the bound is at least $4^{m+1}+1-3m-m^2$. This is $13$ at $m=1$, and going from $m$ to $m+1$ adds $3\cdot4^{m+1}-2m-4>0$.
+\end{proof}
+
+Nothing here is specific to powers of four. Lemma~\ref{lem:bound} gives strict increase from $0$ for any deleted set with $0\notin E$ and $3m(N)+m(N)^2\le N$ for all $N$. Deleting the powers of two from $2^{10}$ on, Sándor and Yang's own example, also satisfies this.
+
+\section{Two facts about Problem 1.4}\label{sec:periodic}
+
+The sets above have density $1$. Sándor and Yang ask (Problem~1.4) for which densities $d<1$ there is a set $A$ with $A(n)/n\to d$ and every $R_{A,h}$, $h\ge3$, strictly increasing. By Lemma~\ref{lem:reduce} this is a question about $R_{A,3}$ alone, together with $0\in A$.
+
+The first candidates to try are periodic. Take $A=\{n: n\not\equiv2\pmod 4\}$, of density $3/4$. Then $R_{A,3}$ begins $1,3,3,4,9,12,12,15,24,28,27,\dots$: it stalls at $n=2$ and $n=6$, and from $n=10$ on it drops at every $n\equiv2\pmod4$. This is general.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=0.92\textwidth,height=4.4cm,xmin=0.5,xmax=40.5,ymin=-40,ymax=58,
+  xlabel={$n$},tick label style={font=\small},xtick={2,6,10,14,18,22,26,30,34,38},ytick={-30,0,30},
+  ybar,bar width=4pt,axis x line*=bottom]
+\addplot[fill=blue!45,draw=blue!70!black] table[x=N,y=d] {figs/periodic.dat};
+\draw[gray] (axis cs:0.5,0) -- (axis cs:40.5,0);
+\end{axis}
+\end{tikzpicture}
+\caption{Increments $R_{A,3}(n)-R_{A,3}(n-1)$ for the periodic set $A=\{n:n\not\equiv2\pmod4\}$. The increments differ from class to class, and on the class $n\equiv2\pmod4$ (the labelled ticks) they are zero or negative and fall quadratically, like a negative multiple of $n^{2}$, as the proof of Proposition~\ref{prop:periodic} predicts.}
+\label{fig:periodic}
+\end{figure}
+
+\begin{proposition}\label{prop:periodic}
+Let $A\subseteq\N$ agree, outside a finite set, with a periodic set of density strictly between $0$ and $1$. Then for every $h\ge3$ there are infinitely many $n$ with $R_{A,h}(n+1)<R_{A,h}(n)$.
+\end{proposition}
+
+\begin{proof}
+Let $q$ be the period and $a_r\in\{0,1\}$ ($0\le r<q$) the indicator of residue $r$ in the periodic set. Let $c_s$ be the number of $h$-tuples $(r_1,\dots,r_h)$ of allowed residues with $r_1+\dots+r_h\equiv s\pmod q$. A fixed residue tuple with integer sum $T$ contributes $\binom{(n-T)/q+h-1}{h-1}$ representations of each $n\equiv T$, and the finitely many changes affect only $O(n^{h-2})$ representations. Hence
+\[
+R_{A,h}(n)=\frac{c_{n\bmod q}}{(h-1)!\,q^{h-1}}\,n^{h-1}+O(n^{h-2}).
+\]
+The sequence $(c_s)$ is the $h$-fold cyclic convolution of $(a_r)$, so its discrete Fourier transform at a $q$-th root of unity $\zeta$ is $\hat a(\zeta)^h$. If $(c_s)$ were constant then $\hat a(\zeta)=0$ for every $\zeta\ne1$, and $(a_r)$ would be constant, giving density $0$ or $1$. So $(c_s)$ is not constant, and going once around the cycle there is an $s$ with $c_{s+1}<c_s$ (indices mod $q$). For $n\equiv s$ the leading term of $R_{A,h}(n+1)-R_{A,h}(n)$ is $(c_{s+1}-c_s)n^{h-1}/((h-1)!q^{h-1})<0$, so the increment is negative for all large $n$ in that class.
+\end{proof}
+
+So a set answering Problem~1.4 with $0<d<1$ must be aperiodic, like Dombi's density-$1/2$ set, which Sándor and Yang found fails strictly at $n=23$~\cite{SY}. How sparse can it be?
+
+\begin{proposition}\label{prop:growth}
+If $R_{A,3}$ is strictly increasing from $n=0$, then $A(N)^3\ge(N+1)(N+2)/2$ for every $N$.
+\end{proposition}
+
+\begin{proof}
+Since $R_{A,3}(1)>R_{A,3}(0)\ge0$, the number $1$ has a representation, so $0\in A$ and $R_{A,3}(0)=1$. Strict increase then gives $R_{A,3}(n)\ge n+1$. Every triple with sum at most $N$ has its entries in $A\cap[0,N]$, so $A(N)^3\ge\sum_{n\le N}R_{A,3}(n)\ge\sum_{n\le N}(n+1)$.
+\end{proof}
+
+So $A(N)\gtrsim N^{2/3}$, which still allows density $0$; Problem~1.4 at $d=0$ is not settled by this.
+
+\begin{remark}
+Aperiodic candidates are easy to write down and hard to prove. One example: delete the blocks $[(4k)^2,(4k+1)^2-1]$ for $k\ge2$. The resulting set has density $3/4$ (the $k$-th block has length $8k+1$ and starts at $16k^2$), and an exact computation shows $R_{A,3}$ strictly increasing for $0\le n<262{,}144$. We have no proof that it stays increasing, so this is evidence, not a result.
+\end{remark}
+
+\section{Verification}
+
+Lemmas~\ref{lem:bound} and~\ref{lem:reduce} and Proposition~\ref{prop:main} are proved in Lean~4 with Mathlib~\cite{mathlib}, using only the standard axioms. There $R_{A,h}(N)$ is the coefficient of $x^N$ in $G^h$, identity~\eqref{eq:key} is a ring identity in the power series ring $\mathbb Z[[x]]$, and for $h=3$ the coefficient is shown to equal the number of ordered triples. Propositions~\ref{prop:periodic} and~\ref{prop:growth} are proved by hand only. Two programs check the statements numerically: one computes $R_{A,3}$, $R_{A,4}$ and $R_{A,5}$ by direct convolution up to $N=600$ and checks the bound of Lemma~\ref{lem:bound} at every $N$; the other checks the identity behind the bound through $N=10^6$ using only the deleted set. Code and Lean files are at~\cite{repo}.
+
+\section*{Acknowledgments}
+
+The proofs of Propositions~\ref{prop:main}, \ref{prop:periodic} and~\ref{prop:growth} were found with Codex (OpenAI), and the Lean proofs and the manuscript were written with Claude Opus~5.5 (Anthropic). The author is responsible for the content.
+
+\begin{thebibliography}{9}
+\bibitem{BS} J.~P.~Bell and J.~Shallit, \emph{Counterexamples to a conjecture of Dombi in additive number theory}, Acta Math. Hungar. \textbf{169} (2023), 562--565; arXiv:2212.12473 (theorem numbers as in arXiv v3).
+\bibitem{mathlib} The mathlib Community, \emph{The Lean mathematical library}, in: Proc. 9th ACM SIGPLAN Int. Conf. on Certified Programs and Proofs (CPP 2020), 367--381.
+\bibitem{SY} C.~Sándor and Q.-H.~Yang, \emph{On the monotonicity of higher-fold representation functions}, arXiv:2606.28849 (2026).
+\bibitem{repo} V.~Jandhyala, code and Lean proofs, \url{https://github.com/jvvk/mathematics/tree/main/powers-of-four-representations}.
+\end{thebibliography}
+
+\end{document}

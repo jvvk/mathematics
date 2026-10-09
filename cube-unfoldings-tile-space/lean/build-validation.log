@@ -1,0 +1,16 @@
+Isolated build 2026-10-09: fresh copy of lean/, lake exe cache get, lake build LeanProofs
+⚠ [8924/8929] Built LeanProofs.CubeUnfoldings.Quotients (136s)
+warning: LeanProofs/CubeUnfoldings/Quotients.lean:30:0: `tilesBy_ker_iff` does not use the following hypothesis in its type:
+warning: LeanProofs/CubeUnfoldings/Quotients.lean:30:0: `tilesBy_ker_iff` does not use the following hypothesis in its type:
+warning: LeanProofs/CubeUnfoldings/Quotients.lean:57:0: `existsUnique_iff_card` does not use the following hypothesis in its type:
+warning: LeanProofs/CubeUnfoldings/Quotients.lean:80:0: `tilesBy_ker_iff_card` does not use the following hypothesis in its type:
+warning: LeanProofs/CubeUnfoldings/Quotients.lean:85:0: `tiles_one_iff` does not use the following hypothesis in its type:
+warning: LeanProofs/CubeUnfoldings/Quotients.lean:94:0: `tiles_two_iff` does not use the following hypothesis in its type:
+warning: LeanProofs/CubeUnfoldings/Quotients.lean:133:0: `injOn_refl` does not use the following hypothesis in its type:
+warning: LeanProofs/CubeUnfoldings/Quotients.lean:133:0: `injOn_refl` does not use the following hypothesis in its type:
+warning: LeanProofs/CubeUnfoldings/Quotients.lean:142:0: `disjoint_refl_iff` does not use the following hypothesis in its type:
+✔ [8925/8929] Built LeanProofs.CubeUnfoldings.Example (132s)
+ℹ [8926/8929] Built LeanProofs.CubeUnfoldings.Main (166s)
+✔ [8927/8929] Built LeanProofs.CubeUnfoldings (160s)
+✔ [8928/8929] Built LeanProofs (174s)
+Build completed successfully (8929 jobs).

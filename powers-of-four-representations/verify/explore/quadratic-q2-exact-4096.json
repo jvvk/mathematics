@@ -1,0 +1,105 @@
+{
+  "q": 2,
+  "natural_density_proved": "1/2",
+  "checked_differences_n": [
+    0,
+    4095
+  ],
+  "method": "exact",
+  "method_details": {
+    "coefficient_bytes": 4,
+    "base": 4294967296,
+    "coefficient_upper_bound": 16785409
+  },
+  "minimum_difference": -584,
+  "nonpositive_difference_count": 891,
+  "first_failures": [
+    [
+      4,
+      0
+    ],
+    [
+      5,
+      -2
+    ],
+    [
+      6,
+      -4
+    ],
+    [
+      7,
+      -3
+    ],
+    [
+      15,
+      -3
+    ],
+    [
+      16,
+      -6
+    ],
+    [
+      17,
+      -6
+    ],
+    [
+      18,
+      -6
+    ],
+    [
+      19,
+      0
+    ],
+    [
+      28,
+      0
+    ]
+  ],
+  "observed_prefix_density": 0.5079326336343666,
+  "dyadic_windows": [
+    {
+      "first_n": 64,
+      "last_n": 127,
+      "minimum_ratio_index": 127,
+      "difference": -42,
+      "ratio_to_n_plus_1": -0.328125
+    },
+    {
+      "first_n": 128,
+      "last_n": 255,
+      "minimum_ratio_index": 128,
+      "difference": -36,
+      "ratio_to_n_plus_1": -0.27906976744186046
+    },
+    {
+      "first_n": 256,
+      "last_n": 511,
+      "minimum_ratio_index": 463,
+      "difference": -87,
+      "ratio_to_n_plus_1": -0.1875
+    },
+    {
+      "first_n": 512,
+      "last_n": 1023,
+      "minimum_ratio_index": 519,
+      "difference": -133,
+      "ratio_to_n_plus_1": -0.25576923076923075
+    },
+    {
+      "first_n": 1024,
+      "last_n": 2047,
+      "minimum_ratio_index": 1807,
+      "difference": -321,
+      "ratio_to_n_plus_1": -0.17754424778761063
+    },
+    {
+      "first_n": 2048,
+      "last_n": 4095,
+      "minimum_ratio_index": 2311,
+      "difference": -405,
+      "ratio_to_n_plus_1": -0.17517301038062283
+    }
+  ],
+  "seconds": 0.02468270802637562,
+  "infinite_monotonicity_status": "UNPROVED"
+}

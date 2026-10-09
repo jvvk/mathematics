@@ -1,0 +1,81 @@
+{
+  "q": 4,
+  "natural_density_proved": "3/4",
+  "checked_differences_n": [
+    0,
+    4095
+  ],
+  "method": "exact",
+  "method_details": {
+    "coefficient_bytes": 4,
+    "base": 4294967296,
+    "coefficient_upper_bound": 16785409
+  },
+  "minimum_difference": -2,
+  "nonpositive_difference_count": 4,
+  "first_failures": [
+    [
+      22,
+      0
+    ],
+    [
+      23,
+      -2
+    ],
+    [
+      24,
+      -1
+    ],
+    [
+      25,
+      0
+    ]
+  ],
+  "observed_prefix_density": 0.7617769099340981,
+  "dyadic_windows": [
+    {
+      "first_n": 64,
+      "last_n": 127,
+      "minimum_ratio_index": 104,
+      "difference": 4,
+      "ratio_to_n_plus_1": 0.0380952380952381
+    },
+    {
+      "first_n": 128,
+      "last_n": 255,
+      "minimum_ratio_index": 158,
+      "difference": 13,
+      "ratio_to_n_plus_1": 0.08176100628930817
+    },
+    {
+      "first_n": 256,
+      "last_n": 511,
+      "minimum_ratio_index": 287,
+      "difference": 40,
+      "ratio_to_n_plus_1": 0.1388888888888889
+    },
+    {
+      "first_n": 512,
+      "last_n": 1023,
+      "minimum_ratio_index": 823,
+      "difference": 114,
+      "ratio_to_n_plus_1": 0.1383495145631068
+    },
+    {
+      "first_n": 1024,
+      "last_n": 2047,
+      "minimum_ratio_index": 1999,
+      "difference": 210,
+      "ratio_to_n_plus_1": 0.105
+    },
+    {
+      "first_n": 2048,
+      "last_n": 4095,
+      "minimum_ratio_index": 3711,
+      "difference": 518,
+      "ratio_to_n_plus_1": 0.13954741379310345
+    }
+  ],
+  "seconds": 0.022537375043611974,
+  "infinite_monotonicity_status": "UNPROVED"
+}

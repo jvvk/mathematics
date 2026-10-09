@@ -1,0 +1,8 @@
+Isolated build 2026-10-09: fresh copy of lean/, lake exe cache get, lake build LeanProofs
+✔ [8924/8929] Built LeanProofs.SandorYang.Basic (139s)
+✔ [8925/8929] Built LeanProofs.SandorYang.Powers (187s)
+⚠ [8926/8929] Built LeanProofs.SandorYang.Main (114s)
+warning: LeanProofs/SandorYang/Main.lean:7:100: This line exceeds the 100 character limit, please shorten it!
+✔ [8927/8929] Built LeanProofs.SandorYang (145s)
+✔ [8928/8929] Built LeanProofs (180s)
+Build completed successfully (8929 jobs).

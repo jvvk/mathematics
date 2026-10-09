@@ -1,0 +1,92 @@
+{
+  "q": 8,
+  "natural_density_proved": "7/8",
+  "checked_differences_n": [
+    0,
+    65535
+  ],
+  "method": "exact",
+  "method_details": {
+    "coefficient_bytes": 5,
+    "base": 1099511627776,
+    "coefficient_upper_bound": 4295098369
+  },
+  "minimum_difference": 2,
+  "nonpositive_difference_count": 0,
+  "first_failures": [],
+  "observed_prefix_density": 0.8784198239162611,
+  "dyadic_windows": [
+    {
+      "first_n": 64,
+      "last_n": 127,
+      "minimum_ratio_index": 79,
+      "difference": 30,
+      "ratio_to_n_plus_1": 0.375
+    },
+    {
+      "first_n": 128,
+      "last_n": 255,
+      "minimum_ratio_index": 128,
+      "difference": 85,
+      "ratio_to_n_plus_1": 0.6589147286821705
+    },
+    {
+      "first_n": 256,
+      "last_n": 511,
+      "minimum_ratio_index": 287,
+      "difference": 139,
+      "ratio_to_n_plus_1": 0.4826388888888889
+    },
+    {
+      "first_n": 512,
+      "last_n": 1023,
+      "minimum_ratio_index": 607,
+      "difference": 309,
+      "ratio_to_n_plus_1": 0.5082236842105263
+    },
+    {
+      "first_n": 1024,
+      "last_n": 2047,
+      "minimum_ratio_index": 1086,
+      "difference": 599,
+      "ratio_to_n_plus_1": 0.5510579576816927
+    },
+    {
+      "first_n": 2048,
+      "last_n": 4095,
+      "minimum_ratio_index": 2479,
+      "difference": 1263,
+      "ratio_to_n_plus_1": 0.5092741935483871
+    },
+    {
+      "first_n": 4096,
+      "last_n": 8191,
+      "minimum_ratio_index": 7839,
+      "difference": 4097,
+      "ratio_to_n_plus_1": 0.5225765306122448
+    },
+    {
+      "first_n": 8192,
+      "last_n": 16383,
+      "minimum_ratio_index": 9889,
+      "difference": 5382,
+      "ratio_to_n_plus_1": 0.5441860465116279
+    },
+    {
+      "first_n": 16384,
+      "last_n": 32767,
+      "minimum_ratio_index": 16638,
+      "difference": 8540,
+      "ratio_to_n_plus_1": 0.5132519983172066
+    },
+    {
+      "first_n": 32768,
+      "last_n": 65535,
+      "minimum_ratio_index": 61887,
+      "difference": 30641,
+      "ratio_to_n_plus_1": 0.4951040589451913
+    }
+  ],
+  "seconds": 0.6372592090046965,
+  "infinite_monotonicity_status": "UNPROVED"
+}

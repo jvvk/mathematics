@@ -1,0 +1,35 @@
+@CubeUnfoldings.tilesBy_ker_iff : ∀ {V : Type u_1} {G : Type u_2} {β : Type u_3} [inst : AddCommGroup V]
+  [inst_1 : AddCommGroup G] [Fintype G] [DecidableEq G] {S : Finset β} {c : β → V} {φ : V →+ G},
+  Function.Surjective ⇑φ → (CubeUnfoldings.TilesBy S c φ.ker ↔ ∀ (g : G), ∃! b, b ∈ S ∧ φ (c b) = g)
+'CubeUnfoldings.tilesBy_ker_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CubeUnfoldings.tiles_one_iff : ∀ {V : Type u_1} {G : Type u_2} [inst : AddCommGroup V] [inst_1 : AddCommGroup G]
+  [inst_2 : Fintype G] [DecidableEq G] {P : Finset V} {φ : V →+ G},
+  Function.Surjective ⇑φ → (CubeUnfoldings.TilesBy P id φ.ker ↔ Set.InjOn ⇑φ ↑P ∧ P.card = Fintype.card G)
+'CubeUnfoldings.tiles_one_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CubeUnfoldings.tiles_two_iff : ∀ {V : Type u_1} {G : Type u_2} [inst : AddCommGroup V] [inst_1 : AddCommGroup G]
+  [inst_2 : Fintype G] [inst_3 : DecidableEq G] [DecidableEq V] {P Q : Finset V} {φ : V →+ G},
+  Function.Surjective ⇑φ →
+    Fintype.card G = P.card + Q.card →
+      (CubeUnfoldings.TilesTwo P Q φ.ker ↔
+        Set.InjOn ⇑φ ↑P ∧ Set.InjOn ⇑φ ↑Q ∧ Disjoint (Finset.image (⇑φ) P) (Finset.image (⇑φ) Q))
+'CubeUnfoldings.tiles_two_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CubeUnfoldings.tiles_refl_iff : ∀ {V : Type u_1} {G : Type u_2} [inst : AddCommGroup V] [inst_1 : AddCommGroup G]
+  [inst_2 : Fintype G] [inst_3 : DecidableEq G] [inst_4 : DecidableEq V] {P : Finset V} {φ : V →+ G},
+  Function.Surjective ⇑φ →
+    Fintype.card G = 2 * P.card →
+      Set.InjOn ⇑φ ↑P →
+        ∀ (t : V),
+          CubeUnfoldings.TilesTwo P (CubeUnfoldings.refl P t) φ.ker ↔ φ t ∉ Finset.image (⇑φ) P + Finset.image (⇑φ) P
+'CubeUnfoldings.tiles_refl_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+@CubeUnfoldings.exists_tiles_refl_iff : ∀ {V : Type u_1} {G : Type u_2} [inst : AddCommGroup V]
+  [inst_1 : AddCommGroup G] [inst_2 : Fintype G] [inst_3 : DecidableEq G] [inst_4 : DecidableEq V] {P : Finset V}
+  {φ : V →+ G},
+  Function.Surjective ⇑φ →
+    Fintype.card G = 2 * P.card →
+      Set.InjOn ⇑φ ↑P →
+        ((∃ t, CubeUnfoldings.TilesTwo P (CubeUnfoldings.refl P t) φ.ker) ↔
+          Finset.image (⇑φ) P + Finset.image (⇑φ) P ≠ Finset.univ)
+'CubeUnfoldings.exists_tiles_refl_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+CubeUnfoldings.example_five : CubeUnfoldings.TilesTwo CubeUnfoldings.P5
+  (CubeUnfoldings.refl CubeUnfoldings.P5 CubeUnfoldings.t5) CubeUnfoldings.φ5.ker
+'CubeUnfoldings.example_five' depends on axioms: [propext, Classical.choice, Quot.sound]

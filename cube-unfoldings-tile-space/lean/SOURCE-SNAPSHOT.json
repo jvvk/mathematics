@@ -1,0 +1,21 @@
+{
+  "source_commit": "3a84bc8 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports CubeUnfoldings only)",
+    "CheckClaims.lean (new)",
+    "scripts/mutants.py (copy of lean-proofs scripts/cubeunfoldings_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "eaff0936bd2d1976287ff47c2365c67a724fc05045088fa6d0d9697c45fc5ffa",
+    "LeanProofs/CubeUnfoldings/Example.lean": "1a6731030f33d4a1f47d832c898385d7805af08cdfe50ab09546131e20c19562",
+    "LeanProofs/CubeUnfoldings/Main.lean": "76034024dec28d32ade2b308a02a55a1d7ee6254d697432975cc70c485c9e73a",
+    "LeanProofs/CubeUnfoldings/Quotients.lean": "f12f99ff94ddbc44b2e0c43c4a5330d7dd4592ce03ce3e73f3f1cdb3de205243",
+    "LeanProofs/CubeUnfoldings.lean": "36d301db042358263e29c714b89bbc504f1bbef1d6c76be8ba52b8376d4b9530",
+    "LeanProofs.lean": "e5d635d955e8ece68ebb6f0fbfb999fbee37ab153b2d9845e1772215129a9b99",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutants.py": "03bf732207b2be7021047f3ed0a541f49051c2b5773aa8da87e07c4ab3fd2aa2"
+  }
+}

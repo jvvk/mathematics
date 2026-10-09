@@ -1,0 +1,24 @@
+SandorYang.key_identity : ∀ (E : Set ℕ) [inst : DecidablePred fun x => x ∈ E],
+  (1 - PowerSeries.X) * SandorYang.G E ^ 3 =
+    SandorYang.U ^ 2 - 3 * SandorYang.U * SandorYang.D E + 3 * SandorYang.D E ^ 2 -
+      (1 - PowerSeries.X) * SandorYang.D E ^ 3
+'SandorYang.key_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+SandorYang.diff_ge : ∀ (E : Set ℕ) [inst : DecidablePred fun x => x ∈ E] (n : ℕ),
+  ↑(n + 1) + 1 - 3 * ↑(SandorYang.m E (n + 1)) - ↑(SandorYang.m E (n + 1)) ^ 2 ≤
+    SandorYang.R E 3 (n + 1) - SandorYang.R E 3 n
+'SandorYang.diff_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
+SandorYang.R_three_eq_card : ∀ (E : Set ℕ) [inst : DecidablePred fun x => x ∈ E] (N : ℕ),
+  SandorYang.R E 3 N =
+    ↑{x ∈ (Finset.HasAntidiagonal.antidiagonal N).sigma fun p => Finset.HasAntidiagonal.antidiagonal p.1 |
+          x.snd.1 ∉ E ∧ x.snd.2 ∉ E ∧ x.fst.2 ∉ E}.card
+'SandorYang.R_three_eq_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+SandorYang.strictMono_of_three : ∀ (E : Set ℕ) [inst : DecidablePred fun x => x ∈ E],
+  0 ∉ E →
+    (∀ (n : ℕ), SandorYang.R E 3 n < SandorYang.R E 3 (n + 1)) →
+      ∀ (h : ℕ), 3 ≤ h → ∀ (n : ℕ), SandorYang.R E h n < SandorYang.R E h (n + 1)
+'SandorYang.strictMono_of_three' depends on axioms: [propext, Classical.choice, Quot.sound]
+SandorYang.R3_strictMono : ∀ (n : ℕ), SandorYang.R SandorYang.E4 3 n < SandorYang.R SandorYang.E4 3 (n + 1)
+'SandorYang.R3_strictMono' depends on axioms: [propext, Classical.choice, Quot.sound]
+SandorYang.R_strictMono : ∀ (h : ℕ),
+  3 ≤ h → ∀ (n : ℕ), SandorYang.R SandorYang.E4 h n < SandorYang.R SandorYang.E4 h (n + 1)
+'SandorYang.R_strictMono' depends on axioms: [propext, Classical.choice, Quot.sound]

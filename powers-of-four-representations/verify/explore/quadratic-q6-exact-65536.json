@@ -1,0 +1,92 @@
+{
+  "q": 6,
+  "natural_density_proved": "5/6",
+  "checked_differences_n": [
+    0,
+    65535
+  ],
+  "method": "exact",
+  "method_details": {
+    "coefficient_bytes": 5,
+    "base": 1099511627776,
+    "coefficient_upper_bound": 4295098369
+  },
+  "minimum_difference": 2,
+  "nonpositive_difference_count": 0,
+  "first_failures": [],
+  "observed_prefix_density": 0.8340174252712208,
+  "dyadic_windows": [
+    {
+      "first_n": 64,
+      "last_n": 127,
+      "minimum_ratio_index": 64,
+      "difference": 27,
+      "ratio_to_n_plus_1": 0.4153846153846154
+    },
+    {
+      "first_n": 128,
+      "last_n": 255,
+      "minimum_ratio_index": 167,
+      "difference": 55,
+      "ratio_to_n_plus_1": 0.3273809523809524
+    },
+    {
+      "first_n": 256,
+      "last_n": 511,
+      "minimum_ratio_index": 347,
+      "difference": 121,
+      "ratio_to_n_plus_1": 0.34770114942528735
+    },
+    {
+      "first_n": 512,
+      "last_n": 1023,
+      "minimum_ratio_index": 635,
+      "difference": 268,
+      "ratio_to_n_plus_1": 0.42138364779874216
+    },
+    {
+      "first_n": 1024,
+      "last_n": 2047,
+      "minimum_ratio_index": 1416,
+      "difference": 575,
+      "ratio_to_n_plus_1": 0.40578687367678196
+    },
+    {
+      "first_n": 2048,
+      "last_n": 4095,
+      "minimum_ratio_index": 3419,
+      "difference": 1486,
+      "ratio_to_n_plus_1": 0.43450292397660817
+    },
+    {
+      "first_n": 4096,
+      "last_n": 8191,
+      "minimum_ratio_index": 4439,
+      "difference": 1417,
+      "ratio_to_n_plus_1": 0.31914414414414416
+    },
+    {
+      "first_n": 8192,
+      "last_n": 16383,
+      "minimum_ratio_index": 9358,
+      "difference": 3774,
+      "ratio_to_n_plus_1": 0.403248210278876
+    },
+    {
+      "first_n": 16384,
+      "last_n": 32767,
+      "minimum_ratio_index": 16633,
+      "difference": 6351,
+      "ratio_to_n_plus_1": 0.38180834435493566
+    },
+    {
+      "first_n": 32768,
+      "last_n": 65535,
+      "minimum_ratio_index": 37873,
+      "difference": 13929,
+      "ratio_to_n_plus_1": 0.36777208639171993
+    }
+  ],
+  "seconds": 0.6331929590087384,
+  "infinite_monotonicity_status": "UNPROVED"
+}

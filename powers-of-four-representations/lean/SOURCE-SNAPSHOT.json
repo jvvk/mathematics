@@ -1,0 +1,21 @@
+{
+  "source_commit": "3a84bc8 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports SandorYang only)",
+    "CheckClaims.lean (new)",
+    "scripts/mutants.py (copy of lean-proofs scripts/sandoryang_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "28bf2257405e341fe9f5e598c92480566d1bae38133e5ab87a41fa83fbf8c2c7",
+    "LeanProofs/SandorYang/Basic.lean": "80d36cd5ca4fc658b83687f5dd7e7cdb45c3c7c78f857e5c478e8c7ae11980ed",
+    "LeanProofs/SandorYang/Main.lean": "4743ef23632a1f95635328830a49c631cc842f94ec16d2f561c44249a0e4a772",
+    "LeanProofs/SandorYang/Powers.lean": "4a0deac2842fd72fe973265f081b14bd110460c50969f17f33284cf391acd4be",
+    "LeanProofs/SandorYang.lean": "8dfebc28da594fb4cb1d0ab265a1fc0b917763b73fbf04af3ae24c3819ea3e03",
+    "LeanProofs.lean": "ee6e99d431f6ae36ad80ddc769d5ee80ae4d592cf546ca980fc8d04647ad642b",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutants.py": "eb71171630a693b56755a80083b01aaef9adf6dca7909383c84a4c5e96c87ac3"
+  }
+}

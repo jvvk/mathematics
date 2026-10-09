@@ -1,0 +1,208 @@
+\documentclass[11pt]{amsart}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{tileA}{RGB}{190,210,235}
+\definecolor{tileB}{RGB}{240,196,186}
+\tikzset{every picture/.style={line join=round,line cap=round}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+
+\title{Every Unfolding of the Six-Dimensional Cube Tiles Five-Space}
+\author{Vamshi Jandhyala}
+\address{London, United Kingdom}
+\email{vamshi.jandhyala@gmail.com}
+
+\begin{document}
+
+\begin{abstract}
+Cutting the boundary of the $d$-dimensional cube along ridges and unfolding it into $\R^{d-1}$ gives a polycube of $2d$ unit cells. All $11$ unfoldings of the ordinary cube tile the plane, all $261$ unfoldings of the four-dimensional cube are known to tile three-space, and J.~Firet showed on MathOverflow that each of the $9{,}694$ unfoldings of the five-dimensional cube tiles four-space by translates of $P$ and of its point reflection $-P$. We show that each of the $502{,}110$ unfoldings of the six-dimensional cube tiles five-space in the same way, with one copy of $P$ and one of $-P$ in every period, and we give independently checked certificates for every $d\le6$. We also record that for $d=4$ rotations suffice for a two-tile periodic tiling, and that $6{,}573$ of the $9{,}694$ unfoldings of the five-cube tile by translations of a sublattice of $\Z^4$ alone. The proof is a computation; every tiling comes with a certificate that can be checked by hand or by a few lines of code, and all certificates were checked by programs that share no code with the search. We conjecture that the point-reflection tiling exists in every dimension.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+The boundary of the cube $[0,1]^d$ consists of $2d$ facets, each a $(d-1)$-dimensional cube. Two facets meet in a ridge unless they are opposite. Cutting the boundary along all but $2d-1$ of the ridges, so that the facets remain joined in a tree, and unfolding the result into a hyperplane gives an \emph{unfolding} of the cube: a polycube in $\R^{d-1}$ made of $2d$ unit cells. For $d=3$ these are the $11$ familiar nets of the cube. The numbers of unfoldings for $d=2,3,4,5,6$ are $1$, $11$, $261$, $9{,}694$ and $502{,}110$ \cite{OEIS91159}, and DeSplinter, Devadoss, Readyhough and Wimberly proved that no unfolding of any cube overlaps itself \cite{DDRW}.
+
+Which unfoldings tile the space they are unfolded into? For the four-dimensional cube the question was asked on MathOverflow by Joseph O'Rourke in 2015 \cite{MO199097}, studied by Diaz and O'Rourke \cite{DO}, and settled in 2021 by Moritz Firsching, who found tilings of three-space by each of the $261$ unfoldings \cite{Firsching}. O'Rourke then asked whether the same holds in every dimension, and if not, up to which dimension \cite{MO392890}. Jelmer Firet answered the case $d=5$ \cite{Firet}. He first showed that the \emph{linear} unfoldings, those whose tree is a path, always tile by translations ($184$ of them for $d=5$), and then, using a linear form modulo $4d$ injective on $P$ and on a reflected copy, that every one of the $9{,}694$ unfoldings of the five-cube tiles four-space with $P$ and its all-axis flip $-P$; for $d=4$ his method with half-turns covers $248$ of the $261$, and all of them once reflections are allowed. A separate search found a tiling for one unfolding of the five-cube \cite{Tsi4D}. The six-cube, with $502{,}110$ unfoldings, was not treated.
+
+\begin{theorem}\label{thm:main}
+Let $d\le 6$ and let $P\subset\R^{d-1}$ be an unfolding of the $d$-cube. Then $\R^{d-1}$ is tiled by translates of $P$ and of $-P$ forming a periodic tiling whose period lattice contains exactly one translate of each. In particular every one of the $502{,}110$ unfoldings of the six-dimensional cube tiles five-space. (For $d=5$ this is Firet's theorem \cite{Firet}; we include independent certificates.)
+\end{theorem}
+
+When $d$ is odd the map $x\mapsto -x$ of $\R^{d-1}$ is a rotation. When $d$ is even it is a reflection. For $d=4$ each of the $116$ unfoldings that do not tile by translations of a sublattice of $\Z^3$ also admits a two-tile periodic tiling whose second tile is a rotated copy (Section~\ref{sec:results}), so rotations suffice there too; for $d=6$ we have not searched for rotation-only tilings. For $d=3$ the theorem includes the familiar fact that every net of the cube tiles the plane. Figure~\ref{fig:cube} shows two of the eleven nets, chosen among the four that do not tile by lattice translations, each tiling the plane with $P$ and $-P$; in the plane $-P$ is $P$ turned through half a turn.
+
+\begin{figure}[ht]
+\centering
+\begin{minipage}[c]{0.22\textwidth}\centering\input{figs/net1.tex}\end{minipage}%
+\begin{minipage}[c]{0.62\textwidth}\centering\input{figs/tiling1.tex}\end{minipage}\\[10pt]
+\begin{minipage}[c]{0.22\textwidth}\centering\input{figs/net6.tex}\end{minipage}%
+\begin{minipage}[c]{0.62\textwidth}\centering\input{figs/tiling6.tex}\end{minipage}
+\caption{Two nets of the cube that do not tile the plane by lattice translations (left) and their tilings by translates of $P$ (blue) and $-P$ (red) (right). The pictures are drawn from the certificates; the drawing program checks that no square is covered twice or missed.}
+\label{fig:cube}
+\end{figure}
+
+
+The proof is a finite computation, and Sections~\ref{sec:quotients} and~\ref{sec:search} explain why it is short. A periodic tiling by translates of a polycube is the same thing as a homomorphism from $\Z^{d-1}$ onto a finite abelian group that sends the cells of the tiles to distinct elements. Searching over homomorphisms to groups of order $4d$ replaces a search over tilings, and the whole computation takes under two minutes for $d=5$ and about an hour for $d=6$ on one processor core. Each tiling is recorded as a homomorphism and a translation vector, which is a certificate anyone can check.
+
+\begin{conjecture}\label{conj}
+For every $d\ge2$, every unfolding $P$ of the $d$-cube tiles $\R^{d-1}$ by translates of $P$ and $-P$.
+\end{conjecture}
+
+We have no proof of Conjecture~\ref{conj} even for $d=3$ other than inspection of the eleven cases. The next test is $d=7$, with $33{,}064{,}966$ unfoldings \cite{OEIS91159}.
+
+\section{Unfoldings as polycubes}\label{sec:unfold}
+
+Label the facets of $[0,1]^d$ by $\pm e_1,\dots,\pm e_d$, the outward normals. The \emph{facet graph} has these $2d$ vertices, with an edge between two facets whenever they are not opposite. An unfolding is determined by a spanning tree $T$ of the facet graph: the ridges between facets adjacent in $T$ stay uncut.
+
+The polycube of $T$ can be produced by rolling. Rest the cube on the floor $\R^{d-1}\times\{0\}$ with the facet $-e_d$ face down on the unit cell at the origin. Starting from this facet, walk through $T$. To pass from the facet on the floor to a neighbour $G$ in $T$, tip the cube over the ridge they share. The facet $G$ was facing one of the $2(d-1)$ horizontal directions, say $\pm e_k$; after the roll it lies face down on the cell next to the previous one in that direction. Returning along an edge of $T$ reverses the roll. The cells that are face down at some moment form the unfolding, one for each facet. Isometric polycubes give the same unfolding, so we identify polycubes that differ by an isometry of $\Z^{d-1}$, a signed permutation of the coordinates followed by a translation.
+
+Enumerating unfoldings this way needs no knowledge of the symmetry group of the cube. We generated every labelled spanning tree of the facet graph from its Pr\"ufer code, rolled it out, and kept one polycube from each isometry class. The numbers of labelled spanning trees agree with the matrix-tree theorem ($4$, $384$, $82{,}944$ and $32{,}768{,}000$ for $d=2,3,4,5$), and the numbers of isometry classes are $1$, $11$, $261$ and $9{,}694$, as they should be \cite{OEIS91159}. The numbers of classes containing a path are $1$, $4$, $24$ and $184$, which are Firet's counts of linear unfoldings \cite{Firet}; they appear in \cite{OEIS271215}. No polycube overlapped itself, as \cite{DDRW} guarantees.
+
+For $d=6$ there are about $2.07\times10^{10}$ labelled spanning trees, so we used a second method. The symmetry group of the cube permutes the $d$ pairs of opposite facets and swaps the two facets of each pair, so a spanning tree up to symmetry is the same as an abstract tree $T$ on $2d$ vertices together with a perfect matching of its vertices (the opposite pairs) that uses no edge of $T$, up to automorphisms of $T$. We took each of the $551$ trees on $12$ vertices, listed its admissible matchings, reduced them to canonical form with nauty \cite{nauty}, and rolled each class out as above. For $d=3,4,5$ this method gives exactly the same sets of polycubes as the first one. For $d=6$ it gives $502{,}110$ unfoldings, $1{,}911$ of them linear, in agreement with \cite{OEIS91159,OEIS271215}.
+
+A tiling of $\R^{m}$ by unit cubes with integer corners is a partition of $\Z^m$, the cube $v+[0,1]^m$ corresponding to the point $v$. Under $x\mapsto -x$ the cube $v+[0,1]^m$ goes to $(-v-\mathbf 1)+[0,1]^m$, a translate of the cube attached to $-v$. So the point reflection of a polycube $P$ is, up to translation, the set $-P=\{-v: v\in P\}$, and from now on we work with subsets of $\Z^m$.
+
+\section{Periodic tilings and finite quotients}\label{sec:quotients}
+
+Throughout, $m=d-1$, $N=2d$, and $P\subset\Z^m$ has $N$ elements.
+
+\begin{lemma}\label{lem:lattice}
+Let $L\subset\Z^m$ be a sublattice. The translates $P+\ell$, $\ell\in L$, tile $\Z^m$ if and only if the elements of $P$ lie in distinct cosets of $L$ and $[\Z^m:L]=N$.
+\end{lemma}
+
+\begin{proof}
+The translates tile if and only if every $x\in\Z^m$ can be written as $p+\ell$ in exactly one way, that is, if and only if every coset $x+L$ contains exactly one element of $P$. This says that $P$ is a set of coset representatives, which happens exactly when its elements lie in distinct cosets and there are $N$ cosets.
+\end{proof}
+
+The same argument, applied to two tiles, gives the criterion behind Theorem~\ref{thm:main}.
+
+\begin{lemma}\label{lem:two}
+Let $Q\subset\Z^m$ also have $N$ elements, let $L$ be a sublattice of index $2N$, and let $\phi\colon\Z^m\to\Z^m/L$ be the quotient map. The sets $P+\ell$ and $Q+\ell$, $\ell\in L$, tile $\Z^m$ if and only if $\phi$ is injective on $P$ and on $Q$ and $\phi(P)\cap\phi(Q)=\emptyset$. For $Q=-P+t$ the condition reads
+\[
+\phi(P)\ \sqcup\ \bigl(s-\phi(P)\bigr)=\Z^m/L,\qquad s=\phi(t).
+\]
+\end{lemma}
+
+Conversely, every homomorphism $\phi$ from $\Z^m$ onto an abelian group $G$ of order $2N$ has a kernel of index $2N$. A two-tile periodic tiling by $P$ and $-P$ therefore exists if and only if, for some such $G$ and $\phi$, the image $A=\phi(P)$ has $N$ elements and its reflection $s-A$ in some element $s$ is its complement. The group $G$ is generated by the images of $e_1,\dots,e_m$, so it has at most $m$ invariant factors. For $d=5$ the candidates are $\Z_{20}$ and $\Z_2\times\Z_{10}$, and there are $20^4$ homomorphisms to each, recorded by the images of the four basis vectors. For $d=6$ they are $\Z_{24}$, $\Z_2\times\Z_{12}$ and $\Z_2\times\Z_2\times\Z_6$. Only the onto ones count; a homomorphism whose image is a subgroup of index two is a lattice tiling of Lemma~\ref{lem:lattice} in disguise.
+
+The condition on $A$ has a simpler form. The set $s-A$ is disjoint from $A$ exactly when $s$ is not a sum $a+a'$ of two elements of $A$, and since $|s-A|=|A|=|G|/2$, disjoint means complementary.
+
+\begin{lemma}\label{lem:sumset}
+Let $\phi\colon\Z^m\to G$ be onto with $|G|=2N$, injective on $P$, and put $A=\phi(P)$. Then $P$ and $-P+t$ tile $\Z^m$ under $\ker\phi$ for some $t$ if and only if $A+A\ne G$; any $t$ with $\phi(t)\notin A+A$ will do.
+\end{lemma}
+
+Figure~\ref{fig:mechanism} shows the lemma at work on the first net of Figure~\ref{fig:cube}. With $\phi(x,y)=5x+y \bmod 12$ the six cells of $P$ go to $A=\{0,5,6,7,8,10\}$, which is injective. No two elements of $A$ add up to $9$, so $s=9$ is outside $A+A$. Then $9-A=\{1,2,3,4,9,11\}$ is exactly the other half of $\Z_{12}$, and any $t$ with $\phi(t)=9$, such as $t=(-1,2)$, places $-P+t$ on it. The two tiles together hit every element of $\Z_{12}$ once, which is Lemma~\ref{lem:two}, and the translates by $\ker\phi$ fill the plane as in Figure~\ref{fig:cube}.
+
+\begin{figure}[ht]
+\centering
+\input{figs/mechanism1.tex}
+\caption{The certificate behind a tiling. Each cell is labelled by $\phi(x,y)=5x+y\bmod 12$. The cells of $P$ (blue) take the values $A$, those of $-P+t$ (red) the values $9-A$, and the strip shows that the two sets split $\Z_{12}$.}
+\label{fig:mechanism}
+\end{figure}
+
+One more fact is used in the verification. When $N$ is squarefree, every abelian group of order $N$ is cyclic, so every sublattice of index $N$ is the kernel of $v\mapsto a\cdot v \bmod N$ for some $a\in\Z_N^m$. For $d=3$ and $d=5$ this reduces the lattice test of Lemma~\ref{lem:lattice} to a search over the $N^m$ vectors $a$.
+
+\section{The search}\label{sec:search}
+
+\emph{Lattice tilings.} For each unfolding we listed every sublattice of $\Z^m$ of index $N$ by its Hermite normal form, an upper triangular basis whose off-diagonal entries are reduced modulo the diagonal entries below them. There are $12$, $155$ and $2{,}340$ such lattices for $d=3,4,5$. Reducing each cell modulo the basis gives a canonical coset representative, and Lemma~\ref{lem:lattice} is then a check for repeats.
+
+\emph{Two-tile tilings.} For a fixed group $G$ and unfolding $P$ we computed, for every homomorphism $\phi$, the set $\phi(P)$ as a bit mask. A mask with $N$ bits set is kept together with a canonical form of its translation class in $G$. Given such a $\phi$, the second tile $gP+t$ for an isometry $g$ has image $(\phi\circ g)(P)+\phi(t)$, and $\phi\circ g$ is again one of the stored homomorphisms. So the search for the second tile is a table look-up: we need the translation class of $(\phi\circ g)(P)$ to equal that of the complement of $\phi(P)$. Restricting $g$ to $-I$ gives the tilings of Theorem~\ref{thm:main}; allowing all $2^m m!$ signed permutations gives the rotation-only tilings for $d=4$ mentioned in the introduction.
+
+For $d=5$ the enumeration and lattice test take about $12$ seconds and the point-reflection search over all $9{,}694$ unfoldings about $73$ seconds, on one core of a laptop. For $d=6$ we used Lemma~\ref{lem:sumset} directly: the images of $e_1,\dots,e_5$ are chosen one at a time, a choice is abandoned as soon as two cells that agree in the remaining coordinates receive the same partial image, and the search stops at the first $\phi$ with $A+A\ne G$. This takes about $7$ milliseconds per unfolding, and about an hour for all $502{,}110$.
+
+\section{Results}\label{sec:results}
+
+Table~\ref{tab:results} summarises the counts. The last column says which groups occur in the point-reflection tilings found.
+
+\begin{table}[ht]
+\centering\small
+\begin{tabular}{rrrrp{5.2cm}}
+\toprule
+$d$ & unfoldings & lattice & $P$ and $-P$ & groups $G$ used\\
+\midrule
+3 & 11 & 7 & 11 & $\Z_{12}$ (3), $\Z_2\times\Z_6$ (8)\\
+4 & 261 & 145 & 261 & $\Z_{16}$ (1), $\Z_2\times\Z_8$ (67), $\Z_4\times\Z_4$ (106), $\Z_2\times\Z_2\times\Z_4$ (87)\\
+5 & 9{,}694 & 6{,}573 & 9{,}694 & $\Z_{20}$ (1{,}002), $\Z_2\times\Z_{10}$ (8{,}692)\\
+6 & 502{,}110 & not run & 502{,}110 & $\Z_2\times\Z_{12}$ (92{,}149), $\Z_2\times\Z_2\times\Z_6$ (409{,}961)\\
+\bottomrule
+\end{tabular}
+\caption{Unfoldings of the $d$-cube that tile $\R^{d-1}$ by translations of a sublattice of $\Z^{d-1}$ alone, and by translates of $P$ and $-P$ with two tiles per period (for $d=5$ first shown by Firet \cite{Firet}). The groups were tried in a fixed order (non-cyclic first) and the first success is recorded, so the last column shows which group was found, not which groups work. All $184$ linear unfoldings of the five-cube are lattice tilers, as Firet's construction (coordinate sum modulo $2d$) shows.}
+\label{tab:results}
+\end{table}
+
+For $d=4$, where $-P$ is a mirror image, the $116$ unfoldings that do not tile by translations of a sublattice of $\Z^3$ each also tile with $P$ and a rotated copy $gP+t$, $\det g=1$, two tiles per period. Together with the $145$ lattice tilers this recovers Firsching's theorem that all $261$ tile three-space \cite{Firsching}, with the smallest possible period for the $116$.
+
+Figure~\ref{fig:cube} in the introduction shows the point-reflection tiling for two of the four nets of the ordinary cube that do not tile by lattice translations.
+
+
+\begin{example}\label{ex:five}
+One unfolding of the five-cube that does not tile by translations of a sublattice of $\Z^4$ has the ten cells
+\begin{gather*}
+(0,0,0,0),\ (1,0,0,0),\ (1,-1,0,0),\ (1,0,1,0),\ (1,1,1,0),\\
+(1,1,2,0),\ (1,0,-1,0),\ (1,0,0,1),\ (1,0,0,-1),\ (2,0,0,0).
+\end{gather*}
+Let $\phi\colon\Z^4\to\Z_2\times\Z_{10}$ be $\phi(x_1,x_2,x_3,x_4)=(x_2 \bmod 2,\ 4x_1+2x_3+x_4 \bmod 10)$, which is onto, and let $t=(-1,-1,0,-1)$. The images of the ten cells of $P$ are
+\[
+(0,0),(0,4),(1,4),(0,6),(1,6),(1,8),(0,2),(0,5),(0,3),(0,8),
+\]
+and the images of the ten cells of $-P+t$ are
+\[
+(1,5),(1,1),(0,1),(1,9),(0,9),(0,7),(1,3),(1,0),(1,2),(1,7).
+\]
+These twenty elements are all of $\Z_2\times\Z_{10}$, so by Lemma~\ref{lem:two} the translates of $P$ and $-P+t$ by $\ker\phi$ tile $\Z^4$.
+\end{example}
+
+\section{Verification}\label{sec:verify}
+
+Every claim above is a statement about explicit certificates, and each certificate was checked in more than one way.
+\begin{enumerate}
+\item \emph{Controls.} Both enumerations reproduce the known numbers of unfoldings and of linear unfoldings for $d\le6$, and agree polycube for polycube for $d\le5$; and the lattice enumeration gives the known numbers of sublattices of index $6$ in $\Z^2$, $8$ in $\Z^3$ and $10$ in $\Z^4$. The same search reproduces the known facts that all nets of the cube tile the plane and all unfoldings of the four-cube tile three-space.
+\item \emph{Independent checkers.} Lattice tilings for $d=3,5$ (where $N$ is squarefree) were re-derived by the cyclic-quotient method of Section~\ref{sec:quotients}, which shares no code with the Hermite normal form search; the two agree on every unfolding. For $d=4$ the negative direction (the $116$ non-lattice tilers) rests on the completeness of the Hermite normal form enumeration, which is checked by its count of $155$ sublattices of index $8$, and each stated lattice basis was checked directly (determinant $N$, and no difference of two cells in the lattice, by exact rational arithmetic). Two-tile certificates were checked by a separate program with its own group arithmetic: it confirms that $\phi$ is onto, finds $s$ and a vector $t$ with $\phi(t)=s$, checks that one point from each coset lies in exactly one tile, and computes $\det g$ to confirm the rotation-only claim for $d=4$. All $11$, $261$, $9{,}694$ and $502{,}110$ point-reflection certificates pass.
+\item \emph{Literal tilings.} For $25$ randomly chosen unfoldings of the five-cube, a third program placed every tile $P+\ell$ and $-P+t+\ell$ that meets the box $[0,4)^4$ and checked that each of its $256$ cells is covered exactly once.
+\item \emph{Mutants.} Each checker was run on deliberately corrupted certificates (a sign of the isometry flipped, one image under $\phi$ changed, one lattice entry changed, and for the $d=6$ search a sumset test that ignores the sums $a+a$) and rejected them, except where the corrupted certificate is itself valid, typically because the flipped image has order two, so that the homomorphism is unchanged.
+\item \emph{Formal proof.} Lemmas~\ref{lem:lattice}, \ref{lem:two} and~\ref{lem:sumset}, for a sublattice given as the kernel of a homomorphism onto a finite group (every sublattice of finite index is one), and the tiling of Example~\ref{ex:five} are proved in Lean~4 with Mathlib~\cite{mathlib}, using only the standard axioms. The finite checks of the example (that $\phi$ is injective on $P$ and that $\phi(t)$ is not in $A+A$) are done by the Lean kernel; the $502{,}110$ certificates for $d=6$ are checked by the programs above, not in Lean.
+\end{enumerate}
+Two errors in the search code were found by these checks and corrected before the counts above were produced: a group multiplication table built from a partly filled addition table, and, when lattice tilers were first included in the two-tile search, homomorphisms that were not onto. Both were detected because a checker rejected a certificate.
+
+The code, all certificates and the Lean proofs are available at \cite{repo}.
+
+\section{Remarks}
+
+The search tried $\Z_2\times\Z_{10}$ before $\Z_{20}$ for $d=5$ and found a solution in it for $8{,}692$ of the $9{,}694$ unfoldings; Firet reports that a linear form modulo $20$, that is $G=\Z_{20}$, works for all of them. That small groups suffice so uniformly hints that a construction from the tree exists. A proof of Conjecture~\ref{conj} would presumably construct $\phi$ from the tree $T$ directly, as Firet's argument does for paths, where the coordinate sum modulo $2d$ is a lattice tiling. We have not found such a construction.
+
+\section*{Acknowledgments}
+
+The question and its lower-dimensional answers come from the MathOverflow discussions~\cite{MO199097,MO392890}, in particular the contributions of Joseph O'Rourke, Moritz Firsching and Jelmer Firet. Claude Opus~5.5 (Anthropic) was used to write and run the search and verification code, to write the Lean proofs, to find the reformulation in Section~\ref{sec:quotients} (which is equivalent to Firet's linear-form method when $G$ is cyclic), and to draft the manuscript. The author is responsible for the content.
+
+\begin{thebibliography}{99}
+\bibitem{DDRW} K.~DeSplinter, S.~L.~Devadoss, J.~Readyhough and B.~Wimberly, \emph{Unfolding cubes: nets, packings, partitions, chords}, Electron. J. Combin. \textbf{27}(4) (2020), P4.41; arXiv:2007.13266.
+\bibitem{DO} G.~Diaz and J.~O'Rourke, \emph{Hypercube unfoldings that tile $\R^3$ and $\R^2$}, arXiv:1512.02086 (2015).
+\bibitem{Firet} J.~Firet, answer to \cite{MO392890}, \url{https://mathoverflow.net/a/393006} (2021, last edited June 2021).
+\bibitem{Firsching} M.~Firsching, answer to \cite{MO199097}, \url{https://mathoverflow.net/a/392828} (2021).
+\bibitem{MO199097} J.~O'Rourke, \emph{Which unfoldings of the hypercube tile 3-space: how to check for isometric space-fillers?}, MathOverflow question 199097 (2015), \url{https://mathoverflow.net/q/199097}.
+\bibitem{MO392890} J.~O'Rourke, \emph{Which unfoldings of the $d$-dimensional hypercube tile $(d-1)$-space?}, MathOverflow question 392890 (2021), \url{https://mathoverflow.net/q/392890}.
+\bibitem{mathlib} The mathlib Community, \emph{The Lean mathematical library}, in: Proc. 9th ACM SIGPLAN Int. Conf. on Certified Programs and Proofs (CPP 2020), 367--381.
+\bibitem{nauty} B.~D.~McKay and A.~Piperno, \emph{Practical graph isomorphism, II}, J. Symbolic Comput. \textbf{60} (2014), 94--112; arXiv:1301.1493.
+\bibitem{OEIS91159} OEIS Foundation, \emph{Number of distinct nets for the $n$-hypercube}, sequence A091159, \url{https://oeis.org/A091159}.
+\bibitem{OEIS271215} OEIS Foundation, \emph{Number of loop-free assembly graphs with $n$ rigid vertices}, sequence A271215, \url{https://oeis.org/A271215}; its terms count the linear unfoldings of the $n$-cube by \cite[Table~1]{DDRW}, as also tabulated in \cite{Firet}.
+\bibitem{Tsi4D} J.~Gehre, \emph{Tiling space in 4D with the unfoldings of 5D hypercubes}, \url{https://github.com/JoshuaGehre/Tsi4D} (2021).
+\bibitem{repo} V.~Jandhyala, code, certificates and Lean proofs, \url{https://github.com/jvvk/mathematics/tree/main/cube-unfoldings-tile-space}.
+\end{thebibliography}
+
+\end{document}
