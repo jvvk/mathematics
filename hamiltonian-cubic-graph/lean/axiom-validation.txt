@@ -1,0 +1,7 @@
+'CubicK23.card_V' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CubicK23.cubic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CubicK23.hamiltonian' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CubicK23.oddCycle_isCycle' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CubicK23.not_bipartite' depends on axioms: [propext, Classical.choice, Quot.sound]
+@no_cycle_nineteen : ∀ {u : V} (p : G.Walk u u), p.IsCycle → p.length ≠ 19
+'CubicK23.no_cycle_nineteen' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,0 +1,117 @@
+\documentclass[11pt]{amsart}
+\usepackage[margin=28mm]{geometry}
+\usepackage{amssymb,tikz,url}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\title{A Hamiltonian cubic graph with no cycle of length $n-1$}
+\author{Vamshi Jandhyala}
+\date{Preprint, 9 October 2026. Not peer reviewed.}
+
+\begin{document}
+\begin{abstract}
+Gordon Royle asked whether some non-bipartite Hamiltonian cubic graph on $n$ vertices has no cycle of
+length $n-1$, and reported that a computer found none on up to $24$ vertices. Replacing each vertex of
+$K_4$ by a copy of $K_{2,3}$ gives one on $20$ vertices. The proof is a two-line count of cycle edges
+in one block, and it applies to any Hamiltonian non-bipartite cubic graph in place of $K_4$. For the
+$20$-vertex graph every statement is formally verified in Lean.
+\end{abstract}
+\maketitle
+
+\section{The question}
+
+A cycle of length $n$ in a graph on $n$ vertices is Hamiltonian. In a bipartite graph every cycle has
+even length, so a Hamiltonian bipartite graph on $n$ vertices has no cycle of length $n-1$; the cube is
+an example. In 2017 Royle asked on MathOverflow~\cite{mo} whether a cubic graph can be Hamiltonian,
+not bipartite, and still have no cycle of length $n-1$, and reported that his computer found none on up
+to $24$ vertices. The question has had no answer there.
+
+\begin{theorem}\label{thm:main}
+Let $G$ be the graph obtained from $K_4$ by replacing each vertex by a copy of $K_{2,3}$, the three
+edges at that vertex being attached to the three vertices of the larger class. Then $G$ is a cubic
+graph on $20$ vertices that is Hamiltonian, is not bipartite, and has no cycle of length $19$.
+\end{theorem}
+
+\section{The construction}
+
+Start from any cubic graph $K$. Replace each vertex $v$ by a block $X_v$, a copy of $K_{2,3}$. Call
+its two vertices of degree three the \emph{inner} vertices and its three vertices of degree two the
+\emph{attachments}, and join the three attachments of $X_v$ to the three edges of $K$ at $v$, one each.
+Every vertex now has degree three, and the graph has $5|V(K)|$ vertices. With $K=K_4$ this is the
+graph of Theorem~\ref{thm:main}, drawn in Figure~\ref{fig:graph}.
+
+\begin{figure}[ht]
+\centering
+\input{fig_ham}\qquad\qquad
+\input{fig_odd}
+\caption{$K_4$ with each vertex replaced by $K_{2,3}$: inner vertices white, attachments black.
+Left, a Hamiltonian cycle. Right, a cycle of length nine.}\label{fig:graph}
+\end{figure}
+
+\emph{Hamiltonian.} Any two attachments $p$, $p'$ of a block are the ends of a path through all five
+of its vertices: $p$, an inner vertex, the third attachment, the other inner vertex, $p'$. Following a
+Hamiltonian cycle of $K$ and crossing each block by such a path gives a Hamiltonian cycle of the new
+graph (Figure~\ref{fig:graph}, left).
+
+\emph{Not bipartite.} Two attachments of a block are also joined by a path of length two through an
+inner vertex. Following a triangle of $K$ this way gives a cycle of length $3\cdot2+3=9$
+(Figure~\ref{fig:graph}, right).
+
+\section{No cycle of length \texorpdfstring{$n-1$}{n-1}}
+
+\begin{lemma}\label{lem:count}
+If $K$ is any cubic graph, the graph built from it has no cycle of length $n-1$.
+\end{lemma}
+
+\begin{proof}
+Suppose a cycle $C$ passes through every vertex except one, say $m$, which lies in the block $X$.
+The other four vertices of $X$ lie on $C$ and each has two edges of $C$. Count these eight edge-ends.
+An edge of $C$ with both ends in $X$ is counted twice and an edge of $C$ leaving $X$ once, so if $C$
+has $i$ edges inside $X$ and $e$ edges leaving it,
+\[
+2i+e=8.
+\]
+Every edge inside $X$ joins an inner vertex to an attachment, and an inner vertex has no neighbours
+outside $X$. So each inner vertex on $C$ contributes both of its $C$-edges to $i$, and no edge inside
+$X$ is counted from two inner vertices: $i$ is twice the number of inner vertices on $C$.
+
+If $m$ is an inner vertex, one inner vertex is on $C$, so $i=2$ and $e=4$. But only three edges leave
+$X$, one at each attachment. If $m$ is an attachment, both inner vertices are on $C$, so $i=4$ and
+$e=0$. Then $C$ never leaves $X$ and has at most five vertices, while $n-1\ge 19$. Either way we reach
+a contradiction.
+\end{proof}
+
+Theorem~\ref{thm:main} follows. The same argument applies to every bipartite block attached by three
+edges whose larger class carries the attachments; and replacing $K_4$ by any Hamiltonian cubic graph
+that is not bipartite, such as the triangular prism, gives further examples, on $30$ vertices for the
+prism.
+
+\begin{remark}
+The theorem disagrees with the search reported in the question, and we do not know how that search
+was restricted. Our graph has girth four and three-edge cuts that separate a block from the rest, so
+it lies outside the classes of cubic graphs most often searched, such as those of girth five or those
+that are cyclically $4$-edge-connected. Whether an example exists in those classes, and the least
+number of vertices of any example, we leave open.
+\end{remark}
+
+\section*{Verification and use of AI tools}
+
+For the $20$-vertex graph every statement of Theorem~\ref{thm:main} is formally verified in Lean~4
+with Mathlib (folder \path{lean}, standard axioms only). The theorem about cycles is proved for every
+cycle, in Mathlib's sense, by the count of Lemma~\ref{lem:count}; the finite facts about the fixed graph
+(its degrees, its neighbourhoods and the two cycles of Figure~\ref{fig:graph}) are checked by
+evaluation. Six deliberately wrong variants of the formal statements fail to compile. Independently,
+the program \path{verify/check_cycles.py} builds the graph separately and confirms by exhaustive search
+that deleting any one vertex leaves a non-Hamiltonian graph, with the cube and the prism as controls; it
+finds the same for the $30$-vertex example. The author used an AI tool (Claude, Anthropic) to find the
+example and write the formal proof, and is responsible for the content.
+
+\begin{thebibliography}{9}
+\bibitem{mo} G.~Royle, Is there a non-bipartite hamiltonian cubic graph on $n$ vertices with no
+$(n-1)$-cycle?, MathOverflow question 263706 (2017), \url{https://mathoverflow.net/q/263706},
+accessed 9 October 2026.
+\end{thebibliography}
+\end{document}

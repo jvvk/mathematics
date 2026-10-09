@@ -1,0 +1,18 @@
+{
+  "source_commit": "e255154 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports CubicK23 only)",
+    "CheckClaims.lean (new)",
+    "scripts/mutants.py (copy of lean-proofs scripts/mutants_cubick23.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "7ab839cfc27e8efdac0bf97050302380947d90cccc380c4981c01ced859201c3",
+    "LeanProofs.lean": "e31752b240ab272e348d238caa50c210e534ada8911d9bbc4c4e5e205c95026a",
+    "LeanProofs/CubicK23.lean": "a7acb53e823d7db17fa4eec94880a0874e2cf6135c20f3874d07b9969f1d6f6d",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "lean-toolchain": "8733782dc070a99b312039cda424f601b80f3be6f6f512627da5ba25adc27632",
+    "scripts/mutants.py": "1bd9bc56619452c243486b84270021142a8c4641e8f081d7d47423fd85a82095"
+  }
+}
