@@ -1,0 +1,62 @@
+@third_edge_meets_first : ∀ {α β : ℝ},
+  0 < α →
+    0 < β →
+      2 * α + β ≤ Real.pi →
+        α + 2 * β ≤ Real.pi →
+          ∃ s x,
+            0 ≤ s ∧
+              s ≤ 1 ∧ 0 ≤ x ∧ x ≤ 1 ∧ 1 - Real.cos α + s * Real.cos (α + β) = x ∧ Real.sin α - s * Real.sin (α + β) = 0
+'UnitHexagon.third_edge_meets_first' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnitHexagon.adjacent_turns' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnitHexagon.angle_sum_of_turns' depends on axioms: [propext, Classical.choice, Quot.sound]
+@projection : ∀ {V : Type u_1} [inst : NormedAddCommGroup V] [inst_1 : InnerProductSpace ℝ V] {X₀ X₁ X₂ X₃ : V},
+  ‖X₀ - X₁‖ = 1 → ‖X₁ - X₂‖ = 1 → ‖X₃ - X₂‖ = 1 → ‖X₀ - X₂‖ ≤ √2 → X₃ ≠ X₁ → X₀ ≠ X₁ → X₁ ∉ (convexHull ℝ) {X₀, X₂, X₃}
+'UnitHexagon.projection' depends on axioms: [propext, Classical.choice, Quot.sound]
+@four_hull : ∀ {α β γ : ℝ},
+  0 < α →
+    0 < β →
+      0 < γ →
+        α ≤ Real.pi / 2 →
+          β ≤ Real.pi / 2 →
+            γ ≤ Real.pi / 2 →
+              Real.pi < α + β + γ →
+                0 ≤ -P4x α β γ * 0 - -P4y α β γ * 1 →
+                  0 ≤ -Real.cos (α + β + γ) * -P4y α β γ - Real.sin (α + β + γ) * -P4x α β γ →
+                    α = Real.pi / 2 ∧ β = Real.pi / 2 ∧ γ = Real.pi / 2
+'UnitHexagon.four_hull' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnitHexagon.no_four_unit_hull_edges' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnitHexagon.S_gt_pi' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnitHexagon.endpoint_turns_not_both_straight' depends on axioms: [propext, Classical.choice, Quot.sound]
+@unit_pair_opposite : ∀ {a h : ℝ},
+  0 < a →
+    a < 1 →
+      0 < h →
+        a ^ 2 + h ^ 2 = 1 →
+          ∀ {x₁ y₁ x₂ y₂ : ℝ},
+            InT a h x₁ y₁ →
+              InT a h x₂ y₂ → ¬(x₁ = 0 ∧ y₁ = h) → ¬(x₂ = 0 ∧ y₂ = h) → (x₁ - x₂) ^ 2 + (y₁ - y₂) ^ 2 = 1 → x₁ * x₂ < 0
+'UnitHexagon.unit_pair_opposite' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnitHexagon.neighbours_close' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnitHexagon.unit_from_Z' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnitHexagon.angle_le_pi_div_three' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnitHexagon.no_polygon_avoiding_apex' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnitHexagon.no_path_through_apex' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnitHexagon.pocket_cost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnitHexagon.hexagon_reflex_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnitHexagon.two_disjoint_pairs_impossible' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnitHexagon.octagon_reflex_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnitHexagon.octagon_two_pockets' depends on axioms: [propext, Quot.sound]
+'UnitHexagon.turn_in_triangle' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnitHexagon.ray_order_reflex' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnitHexagon.simple_nonadjacent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnitHexagon.turns' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UnitHexagon.adjacent_meet' depends on axioms: [propext, Classical.choice, Quot.sound]
+sharp : ∀ (ε : ℝ),
+  0 < ε →
+    ∃ t,
+      0 < t ∧
+        t < 1 / 2 ∧
+          (∀ (i j : Fin 6), d2 (V t i) (V t j) < 2 + ε) ∧
+            (∀ (i : Fin 6), -ε < (V t i).1 ∧ (V t i).1 < 1 + ε ∧ -ε < (V t i).2 ∧ (V t i).2 < 1 + ε) ∧
+              ∀ (i : Fin 6), d2 (V t i) (1 / 2, 1 / 2) < 1 / 2 + ε
+'UnitHexagon.sharp' depends on axioms: [propext, Classical.choice, Quot.sound]

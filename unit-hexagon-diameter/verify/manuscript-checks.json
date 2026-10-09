@@ -1,0 +1,115 @@
+{
+  "median_corner_distance_negation": {
+    "result": "unsat"
+  },
+  "half_triangle_unit_pair_negation": {
+    "result": "unsat"
+  },
+  "final_ray_order_turn_negation": {
+    "result": "unsat"
+  },
+  "opposite_turn_chord_formula": {
+    "result": "exact identity verified"
+  },
+  "four_hull_edges_turn_formula": {
+    "result": "exact identity verified"
+  },
+  "four_hull_edges_endpoint_factorization": {
+    "result": "exact identity verified"
+  },
+  "sharpness_family_identities": {
+    "result": "exact identities verified"
+  },
+  "sharpness_family_exact_controls": [
+    {
+      "n": 6,
+      "unit": true,
+      "contained": false,
+      "distinct": true,
+      "crossing_edges": [],
+      "simple": true,
+      "t": "1/1000",
+      "bounding_square_side": 1.0026601306264973,
+      "turn_signs": [
+        1,
+        1,
+        1,
+        1,
+        -1,
+        1
+      ]
+    },
+    {
+      "n": 6,
+      "unit": true,
+      "contained": false,
+      "distinct": true,
+      "crossing_edges": [],
+      "simple": true,
+      "t": "1/100",
+      "bounding_square_side": 1.0259981198587302,
+      "turn_signs": [
+        1,
+        1,
+        1,
+        1,
+        -1,
+        1
+      ]
+    },
+    {
+      "n": 6,
+      "unit": true,
+      "contained": false,
+      "distinct": true,
+      "crossing_edges": [],
+      "simple": true,
+      "t": "1/20",
+      "bounding_square_side": 1.115403570864202,
+      "turn_signs": [
+        1,
+        1,
+        1,
+        1,
+        -1,
+        1
+      ]
+    },
+    {
+      "n": 6,
+      "unit": true,
+      "contained": false,
+      "distinct": true,
+      "crossing_edges": [],
+      "simple": true,
+      "t": "1/4",
+      "bounding_square_side": 1.4705882352941178,
+      "turn_signs": [
+        1,
+        1,
+        1,
+        1,
+        -1,
+        1
+      ]
+    },
+    {
+      "n": 6,
+      "unit": true,
+      "contained": false,
+      "distinct": true,
+      "crossing_edges": [],
+      "simple": true,
+      "t": "49/100",
+      "bounding_square_side": 1.7902588500927346,
+      "turn_signs": [
+        1,
+        1,
+        1,
+        1,
+        -1,
+        1
+      ]
+    }
+  ]
+}

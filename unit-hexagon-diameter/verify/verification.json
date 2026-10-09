@@ -1,0 +1,110 @@
+{
+  "odd_controls": [
+    {
+      "n": 5,
+      "unit": true,
+      "contained": true,
+      "distinct": true,
+      "crossing_edges": [],
+      "simple": true
+    },
+    {
+      "n": 7,
+      "unit": true,
+      "contained": true,
+      "distinct": true,
+      "crossing_edges": [],
+      "simple": true
+    },
+    {
+      "n": 9,
+      "unit": true,
+      "contained": true,
+      "distinct": true,
+      "crossing_edges": [],
+      "simple": true
+    },
+    {
+      "n": 11,
+      "unit": true,
+      "contained": true,
+      "distinct": true,
+      "crossing_edges": [],
+      "simple": true
+    }
+  ],
+  "square": {
+    "n": 4,
+    "unit": true,
+    "contained": true,
+    "distinct": true,
+    "crossing_edges": [],
+    "simple": true
+  },
+  "crossed_hexagon": {
+    "n": 6,
+    "unit": true,
+    "contained": true,
+    "distinct": true,
+    "crossing_edges": [
+      [
+        1,
+        5
+      ],
+      [
+        2,
+        4
+      ]
+    ],
+    "simple": false
+  },
+  "retraced_hexagon": {
+    "n": 6,
+    "unit": true,
+    "contained": true,
+    "distinct": false,
+    "crossing_edges": [
+      [
+        2,
+        4
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        3,
+        5
+      ]
+    ],
+    "simple": false
+  },
+  "opposite_quadrant_segments": {
+    "unit": true,
+    "disjoint": true,
+    "vertices": [
+      [
+        "0",
+        "0"
+      ],
+      [
+        "56/65",
+        "33/65"
+      ],
+      [
+        "9/65",
+        "1"
+      ],
+      [
+        "1",
+        "32/65"
+      ]
+    ]
+  },
+  "mixed_turn_chord_factorization": true,
+  "four_point_projection_negation": "unsat",
+  "square_model_control": "sat",
+  "pentagon_model_control": "sat",
+  "crossed_hexagon_model_control": "unsat",
+  "circle_intersection_identities": true
+}

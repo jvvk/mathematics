@@ -1,0 +1,6 @@
+{
+  "case": "hexagon with a square boundary edge",
+  "result": "unknown",
+  "seconds": 60.531661415996496,
+  "reason": "timeout"
+}

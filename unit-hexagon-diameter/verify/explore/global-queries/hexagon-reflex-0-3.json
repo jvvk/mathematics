@@ -1,0 +1,11 @@
+{
+  "n": 6,
+  "domain": "square",
+  "reflex": [
+    0,
+    3
+  ],
+  "result": "unknown",
+  "seconds": 60.6109578749747,
+  "reason": "timeout"
+}

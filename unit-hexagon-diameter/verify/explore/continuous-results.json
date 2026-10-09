@@ -1,0 +1,4010 @@
+[
+  {
+    "n": 3,
+    "restarts": 20,
+    "seed": 481326,
+    "seconds": 0.011917458032257855,
+    "runs": [
+      {
+        "restart": 0,
+        "success": true,
+        "valid": true,
+        "edge": 1.0352761804100876,
+        "error": 1.021405182655144e-14,
+        "min_nonadjacent_distance": 1.0,
+        "vertices": [
+          [
+            0.0,
+            1.0
+          ],
+          [
+            0.2679491924311232,
+            4.765773120204308e-16
+          ],
+          [
+            0.9999999999999999,
+            0.7320508075688783
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 1,
+        "success": true,
+        "valid": true,
+        "edge": 1.035276180410083,
+        "error": 2.220446049250313e-16,
+        "min_nonadjacent_distance": 1.0,
+        "vertices": [
+          [
+            0.26794919243112253,
+            1.0
+          ],
+          [
+            4.0195210460839675e-16,
+            1.3327603150663309e-17
+          ],
+          [
+            1.0,
+            0.26794919243112325
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 2,
+        "success": true,
+        "valid": true,
+        "edge": 1.0352761804110497,
+        "error": 2.0039525594484076e-12,
+        "min_nonadjacent_distance": 1.0,
+        "vertices": [
+          [
+            0.9999999999999996,
+            0.7320508075688797
+          ],
+          [
+            0.0,
+            1.0
+          ],
+          [
+            0.26794919243112336,
+            1.3034503735027746e-15
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 3,
+        "success": true,
+        "valid": true,
+        "edge": 1.0352761804100838,
+        "error": 3.552713678800501e-15,
+        "min_nonadjacent_distance": 1.0,
+        "vertices": [
+          [
+            0.9999999999999997,
+            0.7320508075688751
+          ],
+          [
+            0.0,
+            1.0
+          ],
+          [
+            0.26794919243111914,
+            4.4037670070868007e-17
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 4,
+        "success": true,
+        "valid": true,
+        "edge": 1.0352761804100825,
+        "error": 2.220446049250313e-16,
+        "min_nonadjacent_distance": 1.0,
+        "vertices": [
+          [
+            0.9999999999999994,
+            0.9999999999999999
+          ],
+          [
+            3.608699807540129e-16,
+            0.7320508075688761
+          ],
+          [
+            0.7320508075688781,
+            0.0
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 5,
+        "success": true,
+        "valid": true,
+        "edge": 1.0352761804100914,
+        "error": 2.353672812205332e-14,
+        "min_nonadjacent_distance": 1.0,
+        "vertices": [
+          [
+            0.0,
+            1.0
+          ],
+          [
+            0.26794919243112614,
+            0.0
+          ],
+          [
+            1.0,
+            0.732050807568889
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 6,
+        "success": true,
+        "valid": true,
+        "edge": 1.0352761804100832,
+        "error": 6.661338147750939e-16,
+        "min_nonadjacent_distance": 1.0,
+        "vertices": [
+          [
+            0.2679491924311222,
+            1.0
+          ],
+          [
+            3.464727833755044e-16,
+            0.0
+          ],
+          [
+            1.0,
+            0.26794919243112353
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 7,
+        "success": true,
+        "valid": true,
+        "edge": 1.0352761804100823,
+        "error": 2.220446049250313e-16,
+        "min_nonadjacent_distance": 1.0,
+        "vertices": [
+          [
+            0.732050807568876,
+            0.9999999999999999
+          ],
+          [
+            1.6736352105199084e-16,
+            0.2679491924311223
+          ],
+          [
+            0.9999999999999998,
+            9.175528126635269e-16
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 8,
+        "success": true,
+        "valid": true,
+        "edge": 1.0352761804101072,
+        "error": 5.062616992290714e-14,
+        "min_nonadjacent_distance": 1.0,
+        "vertices": [
+          [
+            0.267949192431123,
+            1.0
+          ],
+          [
+            0.0,
+            1.750537083657331e-16
+          ],
+          [
+            0.9999999999999999,
+            0.26794919243112186
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 9,
+        "success": true,
+        "valid": true,
+        "edge": 1.035276180410083,
+        "error": 2.220446049250313e-16,
+        "min_nonadjacent_distance": 1.0,
+        "vertices": [
+          [
+            9.551785665496275e-18,
+            1.0
+          ],
+          [
+            0.26794919243112186,
+            0.0
+          ],
+          [
+            0.9999999999999997,
+            0.7320508075688765
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 10,
+        "success": true,
+        "valid": true,
+        "edge": 1.0352761804100912,
+        "error": 1.887379141862766e-14,
+        "min_nonadjacent_distance": 1.0,
+        "vertices": [
+          [
+            0.0,
+            0.7320508075688779
+          ],
+          [
+            0.7320508075688812,
+            0.0
+          ],
+          [
+            1.0,
+            1.0
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 11,
+        "success": true,
+        "valid": true,
+        "edge": 1.0352761804100823,
+        "error": 2.220446049250313e-16,
+        "min_nonadjacent_distance": 1.0,
+        "vertices": [
+          [
+            0.9999999999999999,
+            0.7320508075688787
+          ],
+          [
+            6.6202930059814304e-18,
+            0.9999999999999986
+          ],
+          [
+            0.2679491924311252,
+            6.53158794592124e-17
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 12,
+        "success": true,
+        "valid": true,
+        "edge": 1.0352761804100832,
+        "error": 8.881784197001252e-16,
+        "min_nonadjacent_distance": 1.0,
+        "vertices": [
+          [
+            0.2679491924311231,
+            1.0
+          ],
+          [
+            0.0,
+            2.942887627414225e-16
+          ],
+          [
+            0.9999999999999999,
+            0.2679491924311222
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 13,
+        "success": true,
+        "valid": true,
+        "edge": 1.0352761804100832,
+        "error": 6.661338147750939e-16,
+        "min_nonadjacent_distance": 1.0,
+        "vertices": [
+          [
+            1.0,
+            0.7320508075688783
+          ],
+          [
+            0.0,
+            1.0
+          ],
+          [
+            0.2679491924311234,
+            2.935914220502904e-16
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 14,
+        "success": true,
+        "valid": true,
+        "edge": 1.03527618041008,
+        "error": 1.176836406102666e-14,
+        "min_nonadjacent_distance": 1.0,
+        "vertices": [
+          [
+            0.9999999999999998,
+            0.7320508075688896
+          ],
+          [
+            0.0,
+            1.0
+          ],
+          [
+            0.2679491924311305,
+            4.791614099348778e-16
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 15,
+        "success": true,
+        "valid": true,
+        "edge": 1.0352761804100836,
+        "error": 2.4424906541753444e-15,
+        "min_nonadjacent_distance": 1.0,
+        "vertices": [
+          [
+            0.7320508075688769,
+            1.0
+          ],
+          [
+            0.0,
+            0.26794919243112275
+          ],
+          [
+            0.9999999999999994,
+            0.0
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 16,
+        "success": true,
+        "valid": true,
+        "edge": 1.0352761804100832,
+        "error": 1.5543122344752192e-15,
+        "min_nonadjacent_distance": 1.0,
+        "vertices": [
+          [
+            1.0,
+            1.0
+          ],
+          [
+            1.0100068895420206e-16,
+            0.7320508075688793
+          ],
+          [
+            0.732050807568876,
+            5.666464482647501e-16
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 17,
+        "success": true,
+        "valid": true,
+        "edge": 1.0352761804100836,
+        "error": 2.220446049250313e-15,
+        "min_nonadjacent_distance": 1.0,
+        "vertices": [
+          [
+            0.7320508075688764,
+            1.0
+          ],
+          [
+            1.1914913693121728e-18,
+            0.26794919243112125
+          ],
+          [
+            1.0,
+            1.7028769236928178e-16
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 18,
+        "success": true,
+        "valid": true,
+        "edge": 1.0352761804101054,
+        "error": 1.1790568521519162e-13,
+        "min_nonadjacent_distance": 1.0,
+        "vertices": [
+          [
+            0.7320508075690112,
+            1.0
+          ],
+          [
+            1.0,
+            0.0
+          ],
+          [
+            2.5055451076026692e-14,
+            0.2679491924312327
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 19,
+        "success": true,
+        "valid": true,
+        "edge": 1.0352761804100825,
+        "error": 4.440892098500626e-16,
+        "min_nonadjacent_distance": 1.0,
+        "vertices": [
+          [
+            0.9999999999999999,
+            0.7320508075688773
+          ],
+          [
+            2.2907092085776497e-16,
+            0.9999999999999998
+          ],
+          [
+            0.26794919243112314,
+            2.0038902379415626e-16
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      }
+    ]
+  },
+  {
+    "n": 4,
+    "restarts": 20,
+    "seed": 481327,
+    "seconds": 0.11188204103382304,
+    "runs": [
+      {
+        "restart": 0,
+        "success": true,
+        "valid": true,
+        "edge": 1.0000000000000002,
+        "error": 1.1102230246251565e-15,
+        "min_nonadjacent_distance": 0.9999999999999997,
+        "vertices": [
+          [
+            0.9999999999999999,
+            1.0
+          ],
+          [
+            0.0,
+            0.9999999999999997
+          ],
+          [
+            3.7527360802562465e-16,
+            0.0
+          ],
+          [
+            1.0,
+            0.0
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 1,
+        "success": true,
+        "valid": true,
+        "edge": 0.9999999999995365,
+        "error": 2.970290680082144e-12,
+        "min_nonadjacent_distance": 0.9999999999980513,
+        "vertices": [
+          [
+            1.0,
+            0.9999999999992532
+          ],
+          [
+            0.0,
+            1.0
+          ],
+          [
+            0.0,
+            1.1940941560099567e-12
+          ],
+          [
+            0.9999999999980513,
+            0.0
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 2,
+        "success": true,
+        "valid": true,
+        "edge": 0.9999999999999116,
+        "error": 4.440892098500626e-16,
+        "min_nonadjacent_distance": 0.9999999999999117,
+        "vertices": [
+          [
+            0.9999999999999795,
+            6.640011213539807e-14
+          ],
+          [
+            0.9999999999999164,
+            0.9999999999999782
+          ],
+          [
+            4.53294434716291e-15,
+            0.9999999999999855
+          ],
+          [
+            6.761055233395633e-14,
+            7.36718965222192e-14
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 3,
+        "success": true,
+        "valid": false,
+        "edge": 1.1180339887418993,
+        "error": 1.3322676295501878e-14,
+        "min_nonadjacent_distance": 0.0,
+        "vertices": [
+          [
+            0.999999999991069,
+            0.4999999999999853
+          ],
+          [
+            0.0,
+            0.9999999999999554
+          ],
+          [
+            0.999999999991069,
+            0.4999999999999851
+          ],
+          [
+            0.0,
+            2.7347576936134183e-15
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 4,
+        "success": true,
+        "valid": true,
+        "edge": 0.999999999999874,
+        "error": 2.298161660974074e-13,
+        "min_nonadjacent_distance": 0.9999999999998369,
+        "vertices": [
+          [
+            0.9999999999999958,
+            0.9999999999999911
+          ],
+          [
+            8.527492047635268e-14,
+            0.9999999999998481
+          ],
+          [
+            1.9497842904032873e-15,
+            1.1227551508765667e-14
+          ],
+          [
+            0.9999999999999173,
+            2.250707862204355e-15
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 5,
+        "success": true,
+        "valid": true,
+        "edge": 1.0000000000000002,
+        "error": 4.440892098500626e-16,
+        "min_nonadjacent_distance": 1.0,
+        "vertices": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            1.0,
+            1.0
+          ],
+          [
+            0.0,
+            1.0
+          ],
+          [
+            7.756665630649167e-18,
+            0.0
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 6,
+        "success": true,
+        "valid": true,
+        "edge": 1.0000000000000009,
+        "error": 1.7763568394002505e-15,
+        "min_nonadjacent_distance": 1.0,
+        "vertices": [
+          [
+            0.0,
+            1.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0
+          ],
+          [
+            1.0,
+            1.0
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 7,
+        "success": true,
+        "valid": true,
+        "edge": 1.0000000000000104,
+        "error": 2.0872192862952943e-14,
+        "min_nonadjacent_distance": 1.0,
+        "vertices": [
+          [
+            1.0,
+            1.0
+          ],
+          [
+            0.0,
+            1.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 8,
+        "success": true,
+        "valid": true,
+        "edge": 1.000000000000056,
+        "error": 1.1257661469699087e-13,
+        "min_nonadjacent_distance": 0.9999999999999997,
+        "vertices": [
+          [
+            1.0,
+            0.9999999999999999
+          ],
+          [
+            3.834608173769294e-16,
+            0.9999999999999999
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.9999999999999997,
+            0.0
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 9,
+        "success": true,
+        "valid": true,
+        "edge": 0.9999999999996221,
+        "error": 7.451816941284051e-13,
+        "min_nonadjacent_distance": 0.999999999999499,
+        "vertices": [
+          [
+            0.9999999999999951,
+            0.9999999999999973
+          ],
+          [
+            4.1342984789897786e-16,
+            0.9999999999998508
+          ],
+          [
+            2.5186320339908095e-15,
+            1.4352783571840393e-15
+          ],
+          [
+            0.9999999999995015,
+            3.52964623203507e-13
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 10,
+        "success": true,
+        "valid": true,
+        "edge": 1.0000000000000009,
+        "error": 3.9968028886505635e-15,
+        "min_nonadjacent_distance": 0.9999999999999989,
+        "vertices": [
+          [
+            0.9999999999999998,
+            1.0
+          ],
+          [
+            0.0,
+            0.9999999999999989
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            1.0,
+            2.831167155041229e-16
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 11,
+        "success": true,
+        "valid": true,
+        "edge": 1.0000000000000002,
+        "error": 2.4424906541753444e-15,
+        "min_nonadjacent_distance": 0.999999999999999,
+        "vertices": [
+          [
+            6.684996337414447e-17,
+            0.9999999999999996
+          ],
+          [
+            1.0,
+            0.999999999999999
+          ],
+          [
+            1.0,
+            0.0
+          ],
+          [
+            2.074105881309385e-16,
+            0.0
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 12,
+        "success": true,
+        "valid": true,
+        "edge": 0.9999999999999993,
+        "error": 8.881784197001252e-16,
+        "min_nonadjacent_distance": 0.9999999999999989,
+        "vertices": [
+          [
+            1.0,
+            0.9999999999999996
+          ],
+          [
+            1.1656232174962338e-15,
+            0.9999999999999998
+          ],
+          [
+            0.0,
+            4.755480116964683e-16
+          ],
+          [
+            0.999999999999999,
+            2.3130012903051056e-16
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 13,
+        "success": true,
+        "valid": true,
+        "edge": 1.000000000000008,
+        "error": 1.887379141862766e-14,
+        "min_nonadjacent_distance": 0.9999999999999986,
+        "vertices": [
+          [
+            1.0667700474881925e-15,
+            0.9999999999999997
+          ],
+          [
+            7.973601239984914e-16,
+            5.486541404317349e-16
+          ],
+          [
+            0.9999999999999999,
+            0.0
+          ],
+          [
+            1.0,
+            0.9999999999999986
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 14,
+        "success": true,
+        "valid": true,
+        "edge": 1.0000000000002527,
+        "error": 5.064837438339964e-13,
+        "min_nonadjacent_distance": 0.9999999999999994,
+        "vertices": [
+          [
+            1.0,
+            0.9999999999999998
+          ],
+          [
+            3.763977940470051e-16,
+            1.0
+          ],
+          [
+            5.059122139240979e-16,
+            1.8465725223005123e-16
+          ],
+          [
+            1.0,
+            0.0
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 15,
+        "success": true,
+        "valid": true,
+        "edge": 1.0000000000000002,
+        "error": 8.881784197001252e-16,
+        "min_nonadjacent_distance": 0.9999999999999998,
+        "vertices": [
+          [
+            0.9999999999999999,
+            1.0
+          ],
+          [
+            0.0,
+            0.9999999999999998
+          ],
+          [
+            2.5005501524537605e-17,
+            0.0
+          ],
+          [
+            1.0,
+            1.5836722979852503e-17
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 16,
+        "success": true,
+        "valid": true,
+        "edge": 1.0000000000000033,
+        "error": 7.105427357601002e-15,
+        "min_nonadjacent_distance": 0.9999999999999998,
+        "vertices": [
+          [
+            1.0,
+            1.0
+          ],
+          [
+            9.335652759225277e-17,
+            0.9999999999999999
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.9999999999999999,
+            2.5068567915161375e-16
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 17,
+        "success": true,
+        "valid": true,
+        "edge": 1.0,
+        "error": 1.9984014443252818e-15,
+        "min_nonadjacent_distance": 0.999999999999999,
+        "vertices": [
+          [
+            1.0,
+            1.0
+          ],
+          [
+            9.531902584372707e-16,
+            0.9999999999999991
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            1.0,
+            9.31825971445707e-16
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 18,
+        "success": false,
+        "valid": false,
+        "edge": 1.1109278183417108,
+        "error": 6.488856883124505e-05,
+        "min_nonadjacent_distance": 0.0,
+        "vertices": [
+          [
+            0.9999947655476076,
+            0.0030356742106497914
+          ],
+          [
+            0.4925813948010578,
+            0.9913012979862944
+          ],
+          [
+            0.9999947655476076,
+            0.003035674210649798
+          ],
+          [
+            0.02048201572500191,
+            0.5272305607454785
+          ]
+        ],
+        "message": "Positive directional derivative for linesearch"
+      },
+      {
+        "restart": 19,
+        "success": true,
+        "valid": true,
+        "edge": 1.0000000000000226,
+        "error": 5.440092820663267e-14,
+        "min_nonadjacent_distance": 0.9999999999999954,
+        "vertices": [
+          [
+            1.0,
+            0.9999999999999954
+          ],
+          [
+            0.0,
+            1.0
+          ],
+          [
+            0.0,
+            2.9286772461884874e-15
+          ],
+          [
+            1.0,
+            0.0
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      }
+    ]
+  },
+  {
+    "n": 5,
+    "restarts": 20,
+    "seed": 481328,
+    "seconds": 0.3579126250115223,
+    "runs": [
+      {
+        "restart": 0,
+        "success": true,
+        "valid": true,
+        "edge": 0.647111423041744,
+        "error": 1.2945200467129325e-13,
+        "min_nonadjacent_distance": 0.6471114230416439,
+        "vertices": [
+          [
+            1.0,
+            0.5424231245838484
+          ],
+          [
+            0.5424231245840274,
+            1.0
+          ],
+          [
+            2.1025215866945158e-16,
+            0.6471114230417214
+          ],
+          [
+            1.2809189656632356e-16,
+            7.707022381969586e-17
+          ],
+          [
+            0.647111423041644,
+            0.0
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 1,
+        "success": true,
+        "valid": true,
+        "edge": 0.6471114230416041,
+        "error": 3.3345548544616577e-13,
+        "min_nonadjacent_distance": 0.647111423041425,
+        "vertices": [
+          [
+            1.0,
+            0.45757687541620545
+          ],
+          [
+            0.6471114230415977,
+            1.0
+          ],
+          [
+            1.1678731417648706e-15,
+            1.0
+          ],
+          [
+            0.0,
+            0.35288857695857495
+          ],
+          [
+            0.5424231245839499,
+            0.0
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 2,
+        "success": true,
+        "valid": true,
+        "edge": 1.00358377283932,
+        "error": 3.9968028886505635e-14,
+        "min_nonadjacent_distance": 1.0242570383702187e-12,
+        "vertices": [
+          [
+            0.02851679474487889,
+            0.3365322739277711
+          ],
+          [
+            0.9999999999999998,
+            0.5883273712065711
+          ],
+          [
+            0.08473717664883172,
+            0.9999999999999998
+          ],
+          [
+            6.764672675011953e-16,
+            9.650706717787612e-16
+          ],
+          [
+            0.9999999999999998,
+            0.08473717664897105
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 3,
+        "success": true,
+        "valid": true,
+        "edge": 0.647111423041547,
+        "error": 3.6098901645686965e-13,
+        "min_nonadjacent_distance": 0.6471114230414385,
+        "vertices": [
+          [
+            0.9999999999999988,
+            0.5424231245839174
+          ],
+          [
+            0.5424231245837775,
+            0.9999999999999997
+          ],
+          [
+            3.9731767709443693e-16,
+            0.6471114230415479
+          ],
+          [
+            1.4446939041758544e-16,
+            0.0
+          ],
+          [
+            0.6471114230414388,
+            8.415817109210742e-15
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 4,
+        "success": true,
+        "valid": true,
+        "edge": 0.6471114230417006,
+        "error": 4.440892098500626e-16,
+        "min_nonadjacent_distance": 0.6471114230417002,
+        "vertices": [
+          [
+            0.6471114230417008,
+            1.0
+          ],
+          [
+            1.3252688581203061e-16,
+            1.0
+          ],
+          [
+            2.4652125437941164e-17,
+            0.3528885769582998
+          ],
+          [
+            0.5424231245839367,
+            2.0200847710344832e-17
+          ],
+          [
+            1.0,
+            0.45757687541606296
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 5,
+        "success": true,
+        "valid": true,
+        "edge": 1.0035837728393322,
+        "error": 5.329070518200751e-15,
+        "min_nonadjacent_distance": 1.0053676754106655e-12,
+        "vertices": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.9152628233511229,
+            1.0
+          ],
+          [
+            0.0,
+            0.58832737120649
+          ],
+          [
+            0.9714832052551324,
+            0.3365322739276855
+          ],
+          [
+            0.0,
+            0.0847371766488844
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 6,
+        "success": true,
+        "valid": true,
+        "edge": 0.6471114230417006,
+        "error": 4.440892098500626e-16,
+        "min_nonadjacent_distance": 0.6471114230417002,
+        "vertices": [
+          [
+            0.4575768754160635,
+            1.0
+          ],
+          [
+            2.429025858631453e-16,
+            0.542423124583937
+          ],
+          [
+            0.3528885769582993,
+            0.0
+          ],
+          [
+            0.9999999999999999,
+            0.0
+          ],
+          [
+            1.0,
+            0.6471114230417002
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 7,
+        "success": true,
+        "valid": true,
+        "edge": 0.6471114230417006,
+        "error": 6.106226635438361e-16,
+        "min_nonadjacent_distance": 0.6471114230417,
+        "vertices": [
+          [
+            1.0,
+            0.6471114230417001
+          ],
+          [
+            0.4575768754160636,
+            0.9999999999999999
+          ],
+          [
+            0.0,
+            0.5424231245839373
+          ],
+          [
+            0.3528885769582996,
+            5.46884239223409e-16
+          ],
+          [
+            1.0,
+            0.0
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 8,
+        "success": true,
+        "valid": true,
+        "edge": 1.0000000000128657,
+        "error": 2.937650123158164e-13,
+        "min_nonadjacent_distance": 0.13301347822561035,
+        "vertices": [
+          [
+            0.9999949148099908,
+            0.9999999999999998
+          ],
+          [
+            0.0,
+            0.9968108966911248
+          ],
+          [
+            0.8669839869330928,
+            0.4984748991677429
+          ],
+          [
+            9.631632422187833e-09,
+            0.00013888488791423702
+          ],
+          [
+            1.0,
+            0.0
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 9,
+        "success": true,
+        "valid": true,
+        "edge": 0.6471114230416876,
+        "error": 3.58046925441613e-14,
+        "min_nonadjacent_distance": 0.6471114230416875,
+        "vertices": [
+          [
+            1.0,
+            0.45757687541608466
+          ],
+          [
+            0.6471114230416881,
+            0.9999999999999999
+          ],
+          [
+            6.402254778992754e-16,
+            0.9999999999999988
+          ],
+          [
+            0.0,
+            0.3528885769583058
+          ],
+          [
+            0.5424231245839504,
+            1.703014148801055e-16
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 10,
+        "success": false,
+        "valid": false,
+        "edge": 0.32468151902971293,
+        "error": 5.2145326098762546e-08,
+        "min_nonadjacent_distance": 0.0,
+        "vertices": [
+          [
+            0.4571968836587923,
+            0.49557445691182905
+          ],
+          [
+            0.6475061415526526,
+            0.7586343867463883
+          ],
+          [
+            0.8646714709904013,
+            0.9999999999075028
+          ],
+          [
+            0.8257399620788958,
+            0.6776609295762442
+          ],
+          [
+            0.5301345365503459,
+            0.8119575154586469
+          ]
+        ],
+        "message": "Iteration limit reached"
+      },
+      {
+        "restart": 11,
+        "success": true,
+        "valid": true,
+        "edge": 1.0035837728393249,
+        "error": 2.220446049250313e-16,
+        "min_nonadjacent_distance": 1.0487260923650352e-12,
+        "vertices": [
+          [
+            0.5883273712066174,
+            3.941115344692401e-16
+          ],
+          [
+            0.9999999999999996,
+            0.9152628233511729
+          ],
+          [
+            0.0,
+            1.0
+          ],
+          [
+            0.08473717664883045,
+            7.299432615735483e-16
+          ],
+          [
+            0.33653227392772445,
+            0.9714832052551025
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 12,
+        "success": true,
+        "valid": true,
+        "edge": 0.6471114230417,
+        "error": 6.661338147750939e-16,
+        "min_nonadjacent_distance": 0.6471114230416999,
+        "vertices": [
+          [
+            0.9999999999999997,
+            0.35288857695829967
+          ],
+          [
+            0.9999999999999994,
+            0.9999999999999996
+          ],
+          [
+            0.3528885769582995,
+            1.0
+          ],
+          [
+            1.1415319292600763e-16,
+            0.4575768754160637
+          ],
+          [
+            0.4575768754160628,
+            2.3144472791796257e-16
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 13,
+        "success": true,
+        "valid": true,
+        "edge": 1.0000000000000002,
+        "error": 1.7124079931818414e-12,
+        "min_nonadjacent_distance": 0.10253689410130315,
+        "vertices": [
+          [
+            0.10253689410130319,
+            0.4410895300864521
+          ],
+          [
+            0.9943186310788497,
+            0.8935553670233672
+          ],
+          [
+            0.0,
+            1.0
+          ],
+          [
+            7.7279855642455e-17,
+            9.694288138878709e-19
+          ],
+          [
+            1.0,
+            0.0
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 14,
+        "success": true,
+        "valid": true,
+        "edge": 0.6471114230416971,
+        "error": 1.1934897514720433e-14,
+        "min_nonadjacent_distance": 0.6471114230416957,
+        "vertices": [
+          [
+            1.0,
+            0.6471114230416963
+          ],
+          [
+            0.4575768754160709,
+            1.0
+          ],
+          [
+            0.0,
+            0.5424231245839406
+          ],
+          [
+            0.35288857695830433,
+            2.1314760419710392e-17
+          ],
+          [
+            1.0,
+            0.0
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 15,
+        "success": true,
+        "valid": true,
+        "edge": 0.6471114230414712,
+        "error": 6.575850974854802e-13,
+        "min_nonadjacent_distance": 0.6471114230414713,
+        "vertices": [
+          [
+            0.9999999999999998,
+            0.6471114230414718
+          ],
+          [
+            0.45757687541648306,
+            1.0
+          ],
+          [
+            1.86979042725723e-16,
+            0.5424231245841495
+          ],
+          [
+            0.35288857695848397,
+            1.4929606400014244e-16
+          ],
+          [
+            0.9999999999999999,
+            5.484589154100426e-16
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 16,
+        "success": true,
+        "valid": true,
+        "edge": 1.0000000660802726,
+        "error": 1.9761969838327786e-14,
+        "min_nonadjacent_distance": 0.06655613711130369,
+        "vertices": [
+          [
+            0.9999999999999984,
+            0.026964381583785356
+          ],
+          [
+            0.000363538937100508,
+            3.624309071150308e-16
+          ],
+          [
+            1.9262625298095253e-14,
+            0.9999999999999957
+          ],
+          [
+            0.3846724041545771,
+            0.07694676554246595
+          ],
+          [
+            0.7693448083091327,
+            0.9999999999999969
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 17,
+        "success": true,
+        "valid": true,
+        "edge": 1.0035837728392456,
+        "error": 3.519406988061746e-13,
+        "min_nonadjacent_distance": 1.2192904023391248e-12,
+        "vertices": [
+          [
+            1.0,
+            0.9152628233516165
+          ],
+          [
+            6.033365812562875e-17,
+            1.0
+          ],
+          [
+            0.08473717664956586,
+            9.145738625192678e-17
+          ],
+          [
+            0.3365322739284684,
+            0.9714832052550175
+          ],
+          [
+            0.5883273712073704,
+            0.0
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 18,
+        "success": true,
+        "valid": true,
+        "edge": 0.6471114230417006,
+        "error": 6.106226635438361e-16,
+        "min_nonadjacent_distance": 0.6471114230417001,
+        "vertices": [
+          [
+            0.5424231245839368,
+            1.0
+          ],
+          [
+            0.0,
+            0.647111423041701
+          ],
+          [
+            0.0,
+            4.745910940785263e-16
+          ],
+          [
+            0.6471114230417001,
+            0.0
+          ],
+          [
+            0.9999999999999997,
+            0.5424231245839367
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 19,
+        "success": true,
+        "valid": true,
+        "edge": 1.003583772839325,
+        "error": 4.440892098500626e-16,
+        "min_nonadjacent_distance": 1.0487468347108913e-12,
+        "vertices": [
+          [
+            0.9999999999999997,
+            1.0
+          ],
+          [
+            0.0,
+            0.9152628233511716
+          ],
+          [
+            0.971483205255102,
+            0.6634677260722789
+          ],
+          [
+            0.0,
+            0.4116726287933857
+          ],
+          [
+            0.9152628233511715,
+            4.1600972584580964e-16
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      }
+    ]
+  },
+  {
+    "n": 6,
+    "restarts": 20,
+    "seed": 481329,
+    "seconds": 0.9285518340184353,
+    "runs": [
+      {
+        "restart": 0,
+        "success": true,
+        "valid": true,
+        "edge": 0.5857864376269071,
+        "error": 3.6637359812630166e-15,
+        "min_nonadjacent_distance": 0.585786437626904,
+        "vertices": [
+          [
+            1.0,
+            1.0
+          ],
+          [
+            0.4142135623730953,
+            1.0
+          ],
+          [
+            7.16190264982417e-17,
+            0.5857864376269042
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.5857864376269046,
+            1.477934715129551e-16
+          ],
+          [
+            0.9999999999999998,
+            0.41421356237309603
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 1,
+        "success": true,
+        "valid": true,
+        "edge": 0.9999999999991258,
+        "error": 3.1086244689504383e-15,
+        "min_nonadjacent_distance": 1.1944334410440185e-12,
+        "vertices": [
+          [
+            1.0,
+            0.9999999999991255
+          ],
+          [
+            8.750313862936535e-13,
+            0.999999999999939
+          ],
+          [
+            0.6810137860578874,
+            0.2677294057531499
+          ],
+          [
+            3.341202431862281e-16,
+            0.9999999999991256
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.9999999999991243,
+            0.0
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 2,
+        "success": true,
+        "valid": true,
+        "edge": 0.9999999999984411,
+        "error": 1.6431300764452317e-14,
+        "min_nonadjacent_distance": 1.823146920581448e-12,
+        "vertices": [
+          [
+            1.0,
+            1.0
+          ],
+          [
+            1.5658508328919145e-12,
+            0.9999999999984396
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.9999999999984329,
+            0.0
+          ],
+          [
+            0.1417902918177164,
+            0.5132992273335797
+          ],
+          [
+            0.9999999999993694,
+            1.564251510199677e-12
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 3,
+        "success": true,
+        "valid": true,
+        "edge": 0.9999999999913991,
+        "error": 2.220446049250313e-16,
+        "min_nonadjacent_distance": 1.074224043060925e-11,
+        "vertices": [
+          [
+            1.0,
+            3.623503907466869e-15
+          ],
+          [
+            0.9999999999999952,
+            0.9999999999914028
+          ],
+          [
+            8.596058051377707e-12,
+            0.9999999999999976
+          ],
+          [
+            0.8002955520519345,
+            0.40039427173979636
+          ],
+          [
+            2.1547806532729463e-12,
+            0.9999999999914007
+          ],
+          [
+            8.600928787032989e-12,
+            1.4847452553619193e-15
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 4,
+        "success": true,
+        "valid": true,
+        "edge": 0.5857864376269121,
+        "error": 3.6914915568786455e-14,
+        "min_nonadjacent_distance": 0.5857864376268805,
+        "vertices": [
+          [
+            0.9999999999999932,
+            0.5857864376268805
+          ],
+          [
+            0.5857864376269137,
+            1.0
+          ],
+          [
+            1.694492730458026e-15,
+            0.9999999999999979
+          ],
+          [
+            0.0,
+            0.4142135623730858
+          ],
+          [
+            0.41421356237311463,
+            2.9568464175657367e-15
+          ],
+          [
+            1.0,
+            0.0
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 5,
+        "success": false,
+        "valid": false,
+        "edge": 0.7071112063239376,
+        "error": 3.693632877332931e-08,
+        "min_nonadjacent_distance": 0.0,
+        "vertices": [
+          [
+            0.9999999990141939,
+            1.281640033964111e-05
+          ],
+          [
+            0.5027242747948537,
+            0.5027285892786836
+          ],
+          [
+            4.234290711943694e-06,
+            0.9999999999999688
+          ],
+          [
+            0.5000094282434243,
+            0.499998935712077
+          ],
+          [
+            1.0541161231421102e-06,
+            1.0518180079717846e-06
+          ],
+          [
+            0.49999464420261364,
+            0.5000137196292277
+          ]
+        ],
+        "message": "Iteration limit reached"
+      },
+      {
+        "restart": 6,
+        "success": true,
+        "valid": true,
+        "edge": 0.9999999998986913,
+        "error": 2.220446049250313e-16,
+        "min_nonadjacent_distance": 1.0130858306061582e-10,
+        "vertices": [
+          [
+            0.9999999998986936,
+            0.9999999999999962
+          ],
+          [
+            2.2921304777426875e-15,
+            0.999999999898694
+          ],
+          [
+            3.642255801257408e-15,
+            2.715488326534297e-15
+          ],
+          [
+            0.9999999998986949,
+            1.2008636309047094e-15
+          ],
+          [
+            0.9999999998996839,
+            0.9999999998986925
+          ],
+          [
+            4.778470200208425e-05,
+            0.9902241562710802
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 7,
+        "success": true,
+        "valid": true,
+        "edge": 0.9999999999890609,
+        "error": 1.1102230246251565e-15,
+        "min_nonadjacent_distance": 2.4686598568722333e-13,
+        "vertices": [
+          [
+            1.0,
+            1.0
+          ],
+          [
+            1.0939340288590801e-11,
+            0.999999999989061
+          ],
+          [
+            0.0,
+            5.529686976965883e-17
+          ],
+          [
+            0.9999999999890606,
+            1.076071891237931e-11
+          ],
+          [
+            0.2750234645680466,
+            0.6887735644476262
+          ],
+          [
+            0.9999999999892307,
+            1.0939642109751348e-11
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 8,
+        "success": true,
+        "valid": true,
+        "edge": 0.999999999992561,
+        "error": 6.661338147750939e-16,
+        "min_nonadjacent_distance": 8.116398093458079e-12,
+        "vertices": [
+          [
+            0.08351429229455772,
+            0.40006742877971563
+          ],
+          [
+            0.9999999999958079,
+            7.438988671725623e-12
+          ],
+          [
+            0.9999999999925612,
+            1.0
+          ],
+          [
+            2.559609470663723e-16,
+            1.0
+          ],
+          [
+            0.0,
+            7.43938211603776e-12
+          ],
+          [
+            0.9999999999925607,
+            4.580308636958093e-16
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 9,
+        "success": true,
+        "valid": true,
+        "edge": 0.585786437626751,
+        "error": 2.750022431996513e-13,
+        "min_nonadjacent_distance": 0.585786437626751,
+        "vertices": [
+          [
+            0.9999999999999987,
+            0.9999999999999968
+          ],
+          [
+            0.4142135623732476,
+            1.0
+          ],
+          [
+            2.1085648173992628e-13,
+            0.5857864376268289
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.5857864376269857,
+            2.8029892000157547e-15
+          ],
+          [
+            1.0,
+            0.41421356237324575
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 10,
+        "success": true,
+        "valid": true,
+        "edge": 0.9999999999849645,
+        "error": 2.942091015256665e-13,
+        "min_nonadjacent_distance": 1.5068855561381443e-11,
+        "vertices": [
+          [
+            0.0,
+            0.9999999999999999
+          ],
+          [
+            1.5035093932001794e-11,
+            1.5035358273038464e-11
+          ],
+          [
+            0.9999999999999997,
+            0.0
+          ],
+          [
+            1.0,
+            0.9999999999849645
+          ],
+          [
+            0.9336405381326619,
+            0.0022042183788783145
+          ],
+          [
+            0.9999999999849644,
+            0.9999999999859644
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 11,
+        "success": true,
+        "valid": true,
+        "edge": 0.9999999999959496,
+        "error": 9.325873406851315e-15,
+        "min_nonadjacent_distance": 4.172599898120464e-12,
+        "vertices": [
+          [
+            0.9999999999969508,
+            4.050757724917352e-12
+          ],
+          [
+            0.9999999999959494,
+            1.0
+          ],
+          [
+            0.0,
+            0.9999999999959496
+          ],
+          [
+            1.9203072957605023e-16,
+            0.0
+          ],
+          [
+            0.9999999999959498,
+            4.1336344288809417e-19
+          ],
+          [
+            0.029088152325762978,
+            0.23943722360061012
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 12,
+        "success": true,
+        "valid": true,
+        "edge": 0.999999999990276,
+        "error": 2.220446049250313e-16,
+        "min_nonadjacent_distance": 1.2409684391322052e-11,
+        "vertices": [
+          [
+            1.0,
+            0.999999999990276
+          ],
+          [
+            0.378721518933236,
+            0.21641015259310198
+          ],
+          [
+            0.9999999999902759,
+            0.9999999999979859
+          ],
+          [
+            0.0,
+            0.9999999999902761
+          ],
+          [
+            0.0,
+            1.5547713573187647e-16
+          ],
+          [
+            0.9999999999902759,
+            1.1724444990943184e-17
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 13,
+        "success": true,
+        "valid": true,
+        "edge": 0.9999999999917674,
+        "error": 2.220446049250313e-16,
+        "min_nonadjacent_distance": 1.0224189823019805e-11,
+        "vertices": [
+          [
+            1.0,
+            0.9999999999917677
+          ],
+          [
+            0.4070209163541846,
+            0.19478213733464575
+          ],
+          [
+            0.9999999999917674,
+            0.9999999999978305
+          ],
+          [
+            0.0,
+            0.9999999999999998
+          ],
+          [
+            5.144961544903376e-16,
+            8.232419812147808e-12
+          ],
+          [
+            0.9999999999917679,
+            2.5801375000814385e-16
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 14,
+        "success": true,
+        "valid": false,
+        "edge": 0.999999999998174,
+        "error": 2.1391777238477516e-12,
+        "min_nonadjacent_distance": 0.0,
+        "vertices": [
+          [
+            0.9999999999999509,
+            0.9999999999985502
+          ],
+          [
+            0.36058024004309736,
+            0.2311421649112
+          ],
+          [
+            0.9999999999989471,
+            0.9999999999972289
+          ],
+          [
+            1.3226263132454425e-14,
+            0.9999999999981816
+          ],
+          [
+            2.565783583522114e-14,
+            2.5010580906521436e-14
+          ],
+          [
+            0.9999999999981072,
+            2.8159320768557187e-14
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 15,
+        "success": true,
+        "valid": true,
+        "edge": 0.9999999999980431,
+        "error": 4.3587355946783646e-13,
+        "min_nonadjacent_distance": 2.1943449503810226e-12,
+        "vertices": [
+          [
+            0.9999999999978252,
+            1.0
+          ],
+          [
+            0.0,
+            1.0
+          ],
+          [
+            1.461812085832569e-15,
+            2.1679838157595557e-12
+          ],
+          [
+            0.9999999999980189,
+            7.64649071062178e-18
+          ],
+          [
+            0.1258709669453066,
+            0.4856937652165209
+          ],
+          [
+            0.9999999999990163,
+            1.9561286426009454e-12
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 16,
+        "success": true,
+        "valid": true,
+        "edge": 0.585786437626901,
+        "error": 1.1102230246251565e-15,
+        "min_nonadjacent_distance": 0.5857864376269001,
+        "vertices": [
+          [
+            0.9999999999999969,
+            0.9999999999999919
+          ],
+          [
+            0.4142135623730958,
+            0.9999999999999892
+          ],
+          [
+            0.0,
+            0.5857864376269016
+          ],
+          [
+            6.369214463912252e-15,
+            6.512930269087935e-16
+          ],
+          [
+            0.5857864376269074,
+            3.7831217447533204e-16
+          ],
+          [
+            1.0,
+            0.4142135623730909
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 17,
+        "success": true,
+        "valid": true,
+        "edge": 0.9999999999988655,
+        "error": 1.1102230246251565e-15,
+        "min_nonadjacent_distance": 1.372851239590802e-12,
+        "vertices": [
+          [
+            0.9999999999988656,
+            0.9999999999996394
+          ],
+          [
+            1.566172956660035e-16,
+            0.9999999999988661
+          ],
+          [
+            0.0,
+            7.105955572782068e-16
+          ],
+          [
+            0.9999999999988649,
+            8.713495015660722e-17
+          ],
+          [
+            0.9999999999999996,
+            0.9999999999988656
+          ],
+          [
+            0.4362635469729022,
+            0.17404527271282463
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 18,
+        "success": true,
+        "valid": true,
+        "edge": 0.9999999996805516,
+        "error": 4.066524894597023e-12,
+        "min_nonadjacent_distance": 3.187693573663777e-10,
+        "vertices": [
+          [
+            0.9999999996842317,
+            3.189925238005374e-10
+          ],
+          [
+            1.0,
+            0.9999999999995457
+          ],
+          [
+            3.2148158758066753e-10,
+            0.9999999996804084
+          ],
+          [
+            2.666155144362712e-12,
+            0.0
+          ],
+          [
+            0.9999999996832178,
+            2.2477839044052997e-13
+          ],
+          [
+            5.044869057048595e-06,
+            0.0031764299660715836
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 19,
+        "success": true,
+        "valid": true,
+        "edge": 0.585786437626905,
+        "error": 2.220446049250313e-16,
+        "min_nonadjacent_distance": 0.5857864376269046,
+        "vertices": [
+          [
+            1.0,
+            0.9999999999999997
+          ],
+          [
+            0.4142135623730952,
+            1.0
+          ],
+          [
+            1.3409222114719544e-16,
+            0.5857864376269051
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.5857864376269047,
+            0.0
+          ],
+          [
+            1.0,
+            0.41421356237309465
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      }
+    ]
+  },
+  {
+    "n": 7,
+    "restarts": 20,
+    "seed": 481330,
+    "seconds": 3.920965957979206,
+    "runs": [
+      {
+        "restart": 0,
+        "success": true,
+        "valid": true,
+        "edge": 0.5086661900602958,
+        "error": 1.024402784821632e-12,
+        "min_nonadjacent_distance": 0.5086661900602815,
+        "vertices": [
+          [
+            0.9999999999999997,
+            0.5086661900602815
+          ],
+          [
+            0.8683475024121061,
+            1.0
+          ],
+          [
+            0.35968131235181033,
+            1.0
+          ],
+          [
+            0.0,
+            0.6403186876464656
+          ],
+          [
+            0.0,
+            0.13165249758616984
+          ],
+          [
+            0.4913338099396663,
+            0.0
+          ],
+          [
+            1.0,
+            0.0
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 1,
+        "success": true,
+        "valid": true,
+        "edge": 1.0000025304462157,
+        "error": 5.773159728050814e-15,
+        "min_nonadjacent_distance": 7.409097407245623e-12,
+        "vertices": [
+          [
+            0.932922773361031,
+            1.9191121603725277e-16
+          ],
+          [
+            0.9999999999999999,
+            0.9977503227587847
+          ],
+          [
+            1.026994463688034e-12,
+            0.9999999673726349
+          ],
+          [
+            0.9903482751313959,
+            0.8613805068155354
+          ],
+          [
+            0.0,
+            0.9999999673652973
+          ],
+          [
+            0.09536217768885487,
+            0.004554782553356159
+          ],
+          [
+            0.5190807212315425,
+            0.9103514798077117
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 2,
+        "success": true,
+        "valid": true,
+        "edge": 0.64711142302486,
+        "error": 1.6653345369377348e-16,
+        "min_nonadjacent_distance": 1.54655327527214e-10,
+        "vertices": [
+          [
+            0.9999999999999999,
+            0.5424231245528901
+          ],
+          [
+            0.5424231246387994,
+            0.9999999999999999
+          ],
+          [
+            0.0,
+            0.647111423156911
+          ],
+          [
+            0.5525292614746593,
+            0.9839565047946377
+          ],
+          [
+            8.050356104678447e-11,
+            0.64711142302486
+          ],
+          [
+            8.588569988528419e-17,
+            0.0
+          ],
+          [
+            0.6471114230248601,
+            0.0
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 3,
+        "success": false,
+        "valid": false,
+        "edge": 0.610418642784056,
+        "error": 5.636047184509607e-13,
+        "min_nonadjacent_distance": 0.0,
+        "vertices": [
+          [
+            0.624634998274747,
+            0.5186352371245916
+          ],
+          [
+            1.0,
+            1.0
+          ],
+          [
+            0.38958135721599607,
+            0.9999999867742765
+          ],
+          [
+            4.5090827928886426e-11,
+            0.5300667089542854
+          ],
+          [
+            0.3027213298529134,
+            4.165284216015135e-12
+          ],
+          [
+            0.6246349985362789,
+            0.5186352373078984
+          ],
+          [
+            0.974989621577541,
+            0.018772698631552703
+          ]
+        ],
+        "message": "Iteration limit reached"
+      },
+      {
+        "restart": 4,
+        "success": true,
+        "valid": false,
+        "edge": 0.6590040104082416,
+        "error": 6.765144000553391e-13,
+        "min_nonadjacent_distance": 0.0,
+        "vertices": [
+          [
+            0.5000000001618299,
+            0.5707142141926888
+          ],
+          [
+            1.0,
+            1.0
+          ],
+          [
+            0.5000000001512994,
+            0.570714214205214
+          ],
+          [
+            3.0259898118001763e-10,
+            1.0
+          ],
+          [
+            0.5000000001675328,
+            0.5707142142237849
+          ],
+          [
+            0.17049799498761434,
+            2.1362463974503126e-15
+          ],
+          [
+            0.829502005395856,
+            2.9351301184275645e-22
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 5,
+        "success": true,
+        "valid": true,
+        "edge": 0.6471114230390845,
+        "error": 2.390310172017962e-13,
+        "min_nonadjacent_distance": 9.886660896290013e-12,
+        "vertices": [
+          [
+            0.35288857696087683,
+            0.9999999999999993
+          ],
+          [
+            0.0,
+            0.45757687542071235
+          ],
+          [
+            0.45757687541149494,
+            3.5439549779834717e-12
+          ],
+          [
+            0.6848189376426284,
+            0.6058995287876073
+          ],
+          [
+            0.4575768754207249,
+            0.0
+          ],
+          [
+            0.9999999999999996,
+            0.352888576960972
+          ],
+          [
+            1.0,
+            0.9999999999999999
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 6,
+        "success": true,
+        "valid": true,
+        "edge": 0.9999999999991436,
+        "error": 4.505285033928885e-13,
+        "min_nonadjacent_distance": 8.29697421878647e-13,
+        "vertices": [
+          [
+            0.11469159021537569,
+            0.5349956779094568
+          ],
+          [
+            1.0,
+            0.9999999999999988
+          ],
+          [
+            8.300487690798734e-13,
+            0.9999999999992408
+          ],
+          [
+            0.18183124969379943,
+            0.01667025030517055
+          ],
+          [
+            3.3918554069819624e-15,
+            0.9999999999991483
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.9978276376522847,
+            0.0658787183820365
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 7,
+        "success": true,
+        "valid": true,
+        "edge": 0.6587892158127239,
+        "error": 1.7325030299275568e-13,
+        "min_nonadjacent_distance": 6.257400624542634e-11,
+        "vertices": [
+          [
+            0.5005929802952821,
+            0.5703537971530092
+          ],
+          [
+            0.99999999991986,
+            1.0
+          ],
+          [
+            0.5000001863448109,
+            0.5710438049216939
+          ],
+          [
+            1.0082638830038939e-07,
+            0.9999996830174249
+          ],
+          [
+            0.5000001863040715,
+            0.5710438048741986
+          ],
+          [
+            0.1715002566451035,
+            4.375491620748913e-15
+          ],
+          [
+            0.8302894724578272,
+            0.0
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 8,
+        "success": true,
+        "valid": true,
+        "edge": 0.9999999999926986,
+        "error": 1.5109025142123755e-12,
+        "min_nonadjacent_distance": 7.346320303103607e-12,
+        "vertices": [
+          [
+            1.0,
+            7.1138559902885295e-12
+          ],
+          [
+            0.9999999999937321,
+            1.0
+          ],
+          [
+            1.0724845728493947e-12,
+            0.9999999999999819
+          ],
+          [
+            0.9762850338802612,
+            0.7835108949392036
+          ],
+          [
+            0.0,
+            0.999999999992695
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.4999999999931785,
+            0.8660254037800555
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 9,
+        "success": true,
+        "valid": true,
+        "edge": 0.647111423039953,
+        "error": 7.029932191926491e-13,
+        "min_nonadjacent_distance": 1.4421748149064171e-11,
+        "vertices": [
+          [
+            1.0,
+            0.647111423039953
+          ],
+          [
+            0.45757687541928493,
+            1.0
+          ],
+          [
+            0.0,
+            0.5424231245896302
+          ],
+          [
+            0.35288857694634346,
+            0.0
+          ],
+          [
+            0.15126298313592543,
+            0.6148986207092126
+          ],
+          [
+            0.35288857696004733,
+            4.4934095208352224e-12
+          ],
+          [
+            1.0,
+            0.0
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 10,
+        "success": true,
+        "valid": true,
+        "edge": 0.9999999999984555,
+        "error": 1.1102230246251565e-15,
+        "min_nonadjacent_distance": 6.709423727609015e-10,
+        "vertices": [
+          [
+            8.861057646088093e-14,
+            0.999999999999922
+          ],
+          [
+            2.7833474253124985e-11,
+            1.4664432423530075e-12
+          ],
+          [
+            0.002167641207845049,
+            0.9999976506630196
+          ],
+          [
+            6.987742707635642e-10,
+            1.2089789461507736e-14
+          ],
+          [
+            0.9999999998578047,
+            4.0973785678911906e-05
+          ],
+          [
+            0.13395935533069533,
+            0.5000145751127695
+          ],
+          [
+            0.9999999999286444,
+            0.9999881763171535
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 11,
+        "success": false,
+        "valid": false,
+        "edge": 0.9837536200523487,
+        "error": 4.0802145218066244e-08,
+        "min_nonadjacent_distance": 0.0,
+        "vertices": [
+          [
+            0.016195359670354143,
+            0.9888299212839539
+          ],
+          [
+            0.9599623260460858,
+            0.7112058248042091
+          ],
+          [
+            0.0003827507819842757,
+            0.4944612079798546
+          ],
+          [
+            0.8651714767629856,
+            0.025513828861197085
+          ],
+          [
+            1.0,
+            0.9999841743760449
+          ],
+          [
+            0.8651714621959983,
+            0.02551383087669733
+          ],
+          [
+            0.9998855711586261,
+            1.0
+          ]
+        ],
+        "message": "Iteration limit reached"
+      },
+      {
+        "restart": 12,
+        "success": true,
+        "valid": true,
+        "edge": 0.6471114230411239,
+        "error": 1.6653345369377348e-16,
+        "min_nonadjacent_distance": 3.669136332668456e-12,
+        "vertices": [
+          [
+            0.9999999999999997,
+            0.5424231245858049
+          ],
+          [
+            0.5424231245828823,
+            0.9999999999999982
+          ],
+          [
+            8.07101685761613e-16,
+            0.6471114230411339
+          ],
+          [
+            3.0811386952180676e-15,
+            9.998644941699736e-15
+          ],
+          [
+            0.647111423041127,
+            2.9294528491104013e-13
+          ],
+          [
+            0.6022008414993052,
+            0.645551108353368
+          ],
+          [
+            0.6471114230447873,
+            5.475177483290305e-13
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 13,
+        "success": true,
+        "valid": true,
+        "edge": 0.9999999999993983,
+        "error": 1.2212453270876722e-15,
+        "min_nonadjacent_distance": 8.47786885319707e-13,
+        "vertices": [
+          [
+            0.9634596287360202,
+            0.7321464135095356
+          ],
+          [
+            0.24976180397314265,
+            0.03169269274881786
+          ],
+          [
+            2.1911891112882142e-16,
+            0.9999999999994025
+          ],
+          [
+            5.987411614832557e-13,
+            4.355398666756068e-15
+          ],
+          [
+            0.9999999999999969,
+            5.995814459816656e-13
+          ],
+          [
+            0.9999999999999998,
+            0.9999999999999978
+          ],
+          [
+            6.016424509909897e-13,
+            1.0
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 14,
+        "success": false,
+        "valid": false,
+        "edge": 0.6438782923251752,
+        "error": 7.367631925775386e-05,
+        "min_nonadjacent_distance": 0.0,
+        "vertices": [
+          [
+            0.6510149483823379,
+            0.7251886316263785
+          ],
+          [
+            0.0071443637269153005,
+            0.7302197339868328
+          ],
+          [
+            0.02807441824364257,
+            0.08662670232855747
+          ],
+          [
+            0.452074184465479,
+            0.5711946500243003
+          ],
+          [
+            0.02807333246965368,
+            0.0866271989454752
+          ],
+          [
+            0.4520586256014549,
+            0.5712082640376427
+          ],
+          [
+            0.9379331128961117,
+            0.14870715012078095
+          ]
+        ],
+        "message": "Iteration limit reached"
+      },
+      {
+        "restart": 15,
+        "success": true,
+        "valid": true,
+        "edge": 0.9999999999925067,
+        "error": 1.1102230246251565e-15,
+        "min_nonadjacent_distance": 7.749490752451178e-12,
+        "vertices": [
+          [
+            0.9999975910515257,
+            0.9978050339040766
+          ],
+          [
+            1.776977916293879e-15,
+            0.9999999999999989
+          ],
+          [
+            0.0,
+            7.492226286924663e-12
+          ],
+          [
+            0.2547214319250383,
+            0.9670144735822528
+          ],
+          [
+            7.493872735799055e-12,
+            5.518276352880221e-12
+          ],
+          [
+            1.0,
+            1.8811935295890984e-09
+          ],
+          [
+            0.13334068560199508,
+            0.4989004255653118
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 16,
+        "success": true,
+        "valid": true,
+        "edge": 0.6351463079622293,
+        "error": 1.1379786002407855e-14,
+        "min_nonadjacent_distance": 3.444955983556724e-11,
+        "vertices": [
+          [
+            0.37090639272196163,
+            0.8975310997815892
+          ],
+          [
+            0.9999999999999939,
+            0.810055012763644
+          ],
+          [
+            0.3939210164163029,
+            0.9999999999999978
+          ],
+          [
+            3.714972341314942e-15,
+            0.5017660536017136
+          ],
+          [
+            0.3894119412280899,
+            1.3206488102983501e-14
+          ],
+          [
+            0.9999999999998732,
+            0.17490870476729356
+          ],
+          [
+            0.9999999999952492,
+            0.8100550127295227
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 17,
+        "success": true,
+        "valid": true,
+        "edge": 0.9999999999999909,
+        "error": 1.3322676295501878e-15,
+        "min_nonadjacent_distance": 0.000808298085208444,
+        "vertices": [
+          [
+            0.6442460357857558,
+            0.05665697550599997
+          ],
+          [
+            0.9760651704638119,
+            1.0
+          ],
+          [
+            0.6195059873336656,
+            0.06572726202380051
+          ],
+          [
+            0.20949782163426756,
+            0.9778091136466672
+          ],
+          [
+            9.150361785637363e-15,
+            0.0
+          ],
+          [
+            1.0,
+            8.928033969569462e-15
+          ],
+          [
+            0.9768275644278694,
+            0.9997314830641552
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 18,
+        "success": true,
+        "valid": true,
+        "edge": 0.6468953633854423,
+        "error": 1.451561093546161e-12,
+        "min_nonadjacent_distance": 1.561648545932688e-10,
+        "vertices": [
+          [
+            0.9999999999592277,
+            0.6485968097957553
+          ],
+          [
+            0.37557228384909347,
+            0.8176046158975225
+          ],
+          [
+            1.0,
+            0.6485968099465037
+          ],
+          [
+            0.45687072515842897,
+            1.0
+          ],
+          [
+            3.643672056719974e-15,
+            0.5420231974618853
+          ],
+          [
+            0.35310687416609343,
+            1.5794426880743463e-15
+          ],
+          [
+            0.9999999999999886,
+            0.0017014464103582596
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 19,
+        "success": true,
+        "valid": true,
+        "edge": 0.6471114230394964,
+        "error": 6.725731083179198e-13,
+        "min_nonadjacent_distance": 1.1217460478406396e-11,
+        "vertices": [
+          [
+            0.9999999999999998,
+            1.0
+          ],
+          [
+            0.35288857696101394,
+            0.9999999999999998
+          ],
+          [
+            4.85579440898804e-12,
+            0.45757687541782155
+          ],
+          [
+            0.5817262509414739,
+            0.17412006601100874
+          ],
+          [
+            6.768641545164058e-17,
+            0.4575768754077093
+          ],
+          [
+            0.45757687542084746,
+            0.0
+          ],
+          [
+            1.0,
+            0.3528885769610233
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      }
+    ]
+  },
+  {
+    "n": 8,
+    "restarts": 20,
+    "seed": 481331,
+    "seconds": 9.721533833013382,
+    "runs": [
+      {
+        "restart": 0,
+        "success": true,
+        "valid": true,
+        "edge": 0.7069991882294603,
+        "error": 1.1102230246251565e-16,
+        "min_nonadjacent_distance": 6.104709880920451e-05,
+        "vertices": [
+          [
+            0.500097224805101,
+            0.5000549355083558
+          ],
+          [
+            1.0,
+            0.9999999999999998
+          ],
+          [
+            0.5000540580254066,
+            0.5000981023638214
+          ],
+          [
+            0.0,
+            0.9998918510336492
+          ],
+          [
+            0.4999027751629347,
+            0.49994678651004365
+          ],
+          [
+            3.248039206024586e-14,
+            1.7219864055259665e-06
+          ],
+          [
+            0.4999459419426415,
+            0.4999036196545712
+          ],
+          [
+            0.9999999999999998,
+            0.00010987101671150594
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 1,
+        "success": false,
+        "valid": false,
+        "edge": 0.7124126764477198,
+        "error": 1.1111395383789358e-06,
+        "min_nonadjacent_distance": 0.0,
+        "vertices": [
+          [
+            0.5965086622400312,
+            0.4128556204515205
+          ],
+          [
+            0.9999998231504754,
+            0.9999899484026882
+          ],
+          [
+            0.5358227002398538,
+            0.45955259655757424
+          ],
+          [
+            0.9999996445917854,
+            0.9999901017235897
+          ],
+          [
+            0.5001220050295763,
+            0.4923936336195614
+          ],
+          [
+            0.00024765333469177475,
+            0.9999933355311313
+          ],
+          [
+            0.5154469612696347,
+            0.5079552292592787
+          ],
+          [
+            0.01589093093918055,
+            4.2241072535894775e-05
+          ]
+        ],
+        "message": "Iteration limit reached"
+      },
+      {
+        "restart": 2,
+        "success": true,
+        "valid": true,
+        "edge": 0.9999999999812034,
+        "error": 1.3322676295501878e-15,
+        "min_nonadjacent_distance": 3.841663130581908e-12,
+        "vertices": [
+          [
+            1.0,
+            3.916579756356699e-15
+          ],
+          [
+            0.9999999999999983,
+            0.9999999999812073
+          ],
+          [
+            0.9464611529736142,
+            0.0014342325820376521
+          ],
+          [
+            0.9999999999821105,
+            0.9999999999821663
+          ],
+          [
+            9.071841910847491e-13,
+            0.9999999999849364
+          ],
+          [
+            0.9716839142996627,
+            0.7637154878910298
+          ],
+          [
+            0.0,
+            0.9999999999812034
+          ],
+          [
+            1.8797249366898055e-11,
+            0.0
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 3,
+        "success": false,
+        "valid": false,
+        "edge": 0.695986293410143,
+        "error": 8.550238302373891e-07,
+        "min_nonadjacent_distance": 0.0,
+        "vertices": [
+          [
+            0.502263148725899,
+            0.5023330282376026
+          ],
+          [
+            0.015311780775267052,
+            0.9996008944013928
+          ],
+          [
+            0.5024334200752503,
+            0.5024998350869428
+          ],
+          [
+            0.015311691491198196,
+            0.9996008070109205
+          ],
+          [
+            0.5021955380410328,
+            0.5022668248457659
+          ],
+          [
+            0.018263349197756077,
+            0.0020596155545600184
+          ],
+          [
+            0.512160966352765,
+            0.4924298016458681
+          ],
+          [
+            0.9994483578239447,
+            0.9893688773121381
+          ]
+        ],
+        "message": "Iteration limit reached"
+      },
+      {
+        "restart": 4,
+        "success": true,
+        "valid": true,
+        "edge": 0.5486143292489949,
+        "error": 3.9968028886505635e-15,
+        "min_nonadjacent_distance": 2.8057492878718522e-11,
+        "vertices": [
+          [
+            0.49738415540489317,
+            1.0
+          ],
+          [
+            0.0,
+            0.7685120214579486
+          ],
+          [
+            9.84708770835056e-12,
+            0.21989769220895342
+          ],
+          [
+            0.2914090818719249,
+            0.6847185493847336
+          ],
+          [
+            3.361805310829733e-11,
+            0.21989769219404817
+          ],
+          [
+            0.5026158446157963,
+            2.640299857620772e-17
+          ],
+          [
+            0.9999999999999996,
+            0.23148797858650752
+          ],
+          [
+            0.9999999999999999,
+            0.7801023078355024
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 5,
+        "success": true,
+        "valid": true,
+        "edge": 0.9999999998807894,
+        "error": 1.5241141682054149e-12,
+        "min_nonadjacent_distance": 9.86563608701702e-12,
+        "vertices": [
+          [
+            0.18854596468447699,
+            0.017935633882337466
+          ],
+          [
+            9.842123216662634e-12,
+            0.9999999998820858
+          ],
+          [
+            0.1797521283296997,
+            0.016288064340965247
+          ],
+          [
+            1.8639791735513562e-22,
+            0.9999999998810634
+          ],
+          [
+            1.1921053176549835e-10,
+            9.293184933929234e-16
+          ],
+          [
+            0.9999999999999999,
+            0.0
+          ],
+          [
+            0.9999999999999999,
+            0.999999999880786
+          ],
+          [
+            1.191370292804747e-10,
+            0.999999999903102
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 6,
+        "success": true,
+        "valid": true,
+        "edge": 0.5857864376224096,
+        "error": 2.7755575615628914e-16,
+        "min_nonadjacent_distance": 1.7900004505367462e-11,
+        "vertices": [
+          [
+            0.8872101397757585,
+            0.49771571566315653
+          ],
+          [
+            0.5857864376224097,
+            0.9999999999907895
+          ],
+          [
+            1.208275452668806e-16,
+            0.9999999999846517
+          ],
+          [
+            0.0,
+            0.4142135623622421
+          ],
+          [
+            0.41421356237759027,
+            0.0
+          ],
+          [
+            0.9999999999999998,
+            0.0
+          ],
+          [
+            1.0,
+            0.5857864376224093
+          ],
+          [
+            0.5857864376377582,
+            1.0
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 7,
+        "success": true,
+        "valid": true,
+        "edge": 0.585786437549835,
+        "error": 1.6653345369377348e-16,
+        "min_nonadjacent_distance": 2.5807861311637004e-10,
+        "vertices": [
+          [
+            0.9999999999999086,
+            0.9999999997369193
+          ],
+          [
+            0.41421356245007374,
+            0.9999999999999798
+          ],
+          [
+            0.9998912657342444,
+            0.9887138007679188
+          ],
+          [
+            0.4142135624451014,
+            0.9999999997419491
+          ],
+          [
+            3.4452931801092543e-15,
+            0.5857864375498504
+          ],
+          [
+            4.912231050631458e-14,
+            1.5418189084478505e-14
+          ],
+          [
+            0.5857864375498841,
+            3.615159366780163e-15
+          ],
+          [
+            0.9999999999999999,
+            0.4142135621870845
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 8,
+        "success": false,
+        "valid": false,
+        "edge": 0.5930897162618473,
+        "error": 2.65399930610144e-06,
+        "min_nonadjacent_distance": 0.0022552109960708735,
+        "vertices": [
+          [
+            0.3723063956462879,
+            0.2244039382818131
+          ],
+          [
+            0.6186706898151102,
+            0.7639037615590704
+          ],
+          [
+            0.04953588054563095,
+            0.9307608348019139
+          ],
+          [
+            0.17464153870725727,
+            0.35101378665866473
+          ],
+          [
+            0.04733232631334482,
+            0.9302808930075978
+          ],
+          [
+            2.9593790562509722e-05,
+            0.339080474289524
+          ],
+          [
+            0.48678085022645057,
+            0.00021660101587274585
+          ],
+          [
+            0.9457277760607723,
+            0.37588097386479774
+          ]
+        ],
+        "message": "Iteration limit reached"
+      },
+      {
+        "restart": 9,
+        "success": false,
+        "valid": false,
+        "edge": 0.6006857662703758,
+        "error": 8.325136510722864e-07,
+        "min_nonadjacent_distance": 0.0,
+        "vertices": [
+          [
+            0.6682362475310984,
+            1.0
+          ],
+          [
+            0.33420263430860253,
+            0.5007556338491411
+          ],
+          [
+            0.00016902102561849926,
+            0.9999999999862468
+          ],
+          [
+            0.3342026344238723,
+            0.5007556339262441
+          ],
+          [
+            0.002437631139009323,
+            1.3941187460510874e-16
+          ],
+          [
+            0.33420263408160433,
+            0.5007556336039346
+          ],
+          [
+            0.6659663868237838,
+            1.0606953613981158e-10
+          ],
+          [
+            0.9999999999963435,
+            0.49924436634485075
+          ]
+        ],
+        "message": "Positive directional derivative for linesearch"
+      },
+      {
+        "restart": 10,
+        "success": false,
+        "valid": false,
+        "edge": 0.8228460187748141,
+        "error": 7.180535962936219e-06,
+        "min_nonadjacent_distance": 0.0,
+        "vertices": [
+          [
+            0.1855996498557939,
+            0.08285017101286923
+          ],
+          [
+            0.9998929983392769,
+            0.20121018860783907
+          ],
+          [
+            0.8023824722646123,
+            0.9999999999999998
+          ],
+          [
+            4.501946096533351e-17,
+            0.8176324038862968
+          ],
+          [
+            0.09248215490217865,
+            8.096421241710877e-09
+          ],
+          [
+            0.012611759984417025,
+            0.8189605593204204
+          ],
+          [
+            0.19787600585210038,
+            0.017241948916174026
+          ],
+          [
+            0.9998929957167559,
+            0.2012102065344035
+          ]
+        ],
+        "message": "Iteration limit reached"
+      },
+      {
+        "restart": 11,
+        "success": true,
+        "valid": true,
+        "edge": 0.9999999997324153,
+        "error": 2.6212365611399946e-13,
+        "min_nonadjacent_distance": 1.0880740755748941e-12,
+        "vertices": [
+          [
+            0.9999999999999997,
+            0.9999999998007049
+          ],
+          [
+            0.9972454258032531,
+            3.7939149901897326e-06
+          ],
+          [
+            0.999999999732947,
+            0.9999999998014406
+          ],
+          [
+            5.302187176410472e-13,
+            0.9999999999887068
+          ],
+          [
+            0.8837082078270728,
+            0.5319617506061953
+          ],
+          [
+            1.8135874773447286e-16,
+            0.9999999999877562
+          ],
+          [
+            6.847511849654173e-11,
+            2.5533941533797e-10
+          ],
+          [
+            0.9999999998008915,
+            6.828981690535107e-11
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 12,
+        "success": true,
+        "valid": false,
+        "edge": 0.7064169834779863,
+        "error": 2.2498669594028797e-13,
+        "min_nonadjacent_distance": 0.0,
+        "vertices": [
+          [
+            0.9980410830038325,
+            0.9999999999871166
+          ],
+          [
+            0.4976997932181812,
+            0.5013181893284878
+          ],
+          [
+            2.5387391594694146e-22,
+            5.64263432537821e-08
+          ],
+          [
+            0.4990370453384704,
+            0.4999870381827256
+          ],
+          [
+            5.653352820012766e-08,
+            5.201589236557908e-15
+          ],
+          [
+            0.4991811925309685,
+            0.49984312340020465
+          ],
+          [
+            0.9990228883489181,
+            0.00066055793131355
+          ],
+          [
+            0.4991777599332949,
+            0.4998396862464271
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 13,
+        "success": false,
+        "valid": false,
+        "edge": 0.585786437626905,
+        "error": 5.889733145636455e-14,
+        "min_nonadjacent_distance": 0.0,
+        "vertices": [
+          [
+            0.9999999999999998,
+            0.5857864376269049
+          ],
+          [
+            0.5857864376269049,
+            0.9999999999999999
+          ],
+          [
+            3.0973883005814496e-15,
+            0.9999999997905988
+          ],
+          [
+            4.455095329495795e-16,
+            0.4142135621637442
+          ],
+          [
+            0.41421356495941125,
+            2.3769726078013053e-09
+          ],
+          [
+            0.6828868130238374,
+            0.5205386044826485
+          ],
+          [
+            0.41421356237309515,
+            3.7118855141194895e-09
+          ],
+          [
+            0.9999999999999999,
+            9.767176658777401e-17
+          ]
+        ],
+        "message": "Iteration limit reached"
+      },
+      {
+        "restart": 14,
+        "success": true,
+        "valid": true,
+        "edge": 0.5319515451400663,
+        "error": 6.725731083179198e-13,
+        "min_nonadjacent_distance": 1.487689708945974e-08,
+        "vertices": [
+          [
+            0.7721744452950111,
+            0.480838589306119
+          ],
+          [
+            0.8881221749979614,
+            0.999999999999987
+          ],
+          [
+            0.35617062985789516,
+            0.9999999999999657
+          ],
+          [
+            0.04644579047719332,
+            0.567515352586702
+          ],
+          [
+            3.487543296366616e-06,
+            0.03759502001265964
+          ],
+          [
+            0.531055466097597,
+            0.006671849885315773
+          ],
+          [
+            0.7721744318515793,
+            0.48083858293460363
+          ],
+          [
+            0.9999999999936903,
+            0.00014329808397366755
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 15,
+        "success": true,
+        "valid": true,
+        "edge": 0.5857864376254408,
+        "error": 2.7755575615628914e-16,
+        "min_nonadjacent_distance": 5.0211780356066525e-12,
+        "vertices": [
+          [
+            0.9999999999999997,
+            0.9999999999999999
+          ],
+          [
+            0.41421356237455886,
+            0.9999999999999987
+          ],
+          [
+            0.0,
+            0.5857864376304381
+          ],
+          [
+            0.5829140864741922,
+            0.6437253562936519
+          ],
+          [
+            4.966183641504651e-13,
+            0.5857864376254416
+          ],
+          [
+            0.0,
+            7.852180415657849e-16
+          ],
+          [
+            0.5857864376254406,
+            2.117162867337554e-16
+          ],
+          [
+            0.9999999999950012,
+            0.4142135623745591
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 16,
+        "success": true,
+        "valid": true,
+        "edge": 0.9999999999878681,
+        "error": 1.1102230246251565e-15,
+        "min_nonadjacent_distance": 4.9839432389584896e-12,
+        "vertices": [
+          [
+            1.0,
+            0.9999999999878676
+          ],
+          [
+            0.426502287435372,
+            0.1807928383621435
+          ],
+          [
+            0.9999999999959173,
+            0.9999999999907261
+          ],
+          [
+            8.049046954043501e-12,
+            0.9999999999914707
+          ],
+          [
+            0.40853386691044014,
+            0.08725683810554576
+          ],
+          [
+            0.0,
+            0.999999999987868
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.999999999987868,
+            0.0
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 17,
+        "success": true,
+        "valid": false,
+        "edge": 0.5857864376269067,
+        "error": 3.7192471324942744e-15,
+        "min_nonadjacent_distance": 0.0,
+        "vertices": [
+          [
+            1.0,
+            0.41421356237309315
+          ],
+          [
+            1.0,
+            1.0
+          ],
+          [
+            0.4142135623730935,
+            0.9999999999953125
+          ],
+          [
+            0.7485649963853406,
+            0.5190063731336088
+          ],
+          [
+            0.41421356237628043,
+            0.9999999999975278
+          ],
+          [
+            7.086409994432257e-13,
+            0.585786437626907
+          ],
+          [
+            0.0,
+            2.4567265828649676e-16
+          ],
+          [
+            0.585786437626905,
+            0.0
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 18,
+        "success": true,
+        "valid": true,
+        "edge": 0.99999999988566,
+        "error": 6.661338147750939e-16,
+        "min_nonadjacent_distance": 1.0090340023015883e-12,
+        "vertices": [
+          [
+            0.9999999998856597,
+            0.9999999998866601
+          ],
+          [
+            0.0,
+            0.9999999998936898
+          ],
+          [
+            6.301594622586935e-17,
+            8.029819306633991e-12
+          ],
+          [
+            0.9923349310420815,
+            0.12357744295384994
+          ],
+          [
+            9.99982987618126e-13,
+            1.9123666782963868e-16
+          ],
+          [
+            0.99999999988666,
+            1.0754140650115625e-16
+          ],
+          [
+            1.0,
+            0.9999999998856601
+          ],
+          [
+            0.9912544745142808,
+            3.8242839272525715e-05
+          ]
+        ],
+        "message": "Optimization terminated successfully"
+      },
+      {
+        "restart": 19,
+        "success": false,
+        "valid": true,
+        "edge": 0.999999999181229,
+        "error": 4.785180696131874e-09,
+        "min_nonadjacent_distance": 3.238805655057617e-10,
+        "vertices": [
+          [
+            4.410093035178553e-10,
+            0.9999999996212885
+          ],
+          [
+            1.2828075385307488e-16,
+            4.4006493739272734e-10
+          ],
+          [
+            0.9999999991812288,
+            3.703074136256083e-10
+          ],
+          [
+            0.6387427440663522,
+            0.9324661921298283
+          ],
+          [
+            0.9999999996947176,
+            5.692576525910488e-10
+          ],
+          [
+            0.6416120530869764,
+            0.9335727521530813
+          ],
+          [
+            0.9999999999970947,
+            6.853040361369078e-10
+          ],
+          [
+            0.999999999622233,
+            0.9999999998665311
+          ]
+        ],
+        "message": "Iteration limit reached"
+      }
+    ]
+  }
+]
