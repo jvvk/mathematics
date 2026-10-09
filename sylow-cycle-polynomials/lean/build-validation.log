@@ -1,0 +1,14 @@
+✔ [3094/3099] Built LeanProofs.StanleySylow.Question (18s)
+✔ [3095/3099] Built LeanProofs.StanleySylow.Sylow (7.8s)
+ℹ [3096/3099] Built LeanProofs.StanleySylow.Main (6.5s)
+info: LeanProofs/StanleySylow/Main.lean:5:0: 'StanleySylow.norm_sub_eval' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LeanProofs/StanleySylow/Main.lean:6:0: 'StanleySylow.monic_comp_quad' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LeanProofs/StanleySylow/Main.lean:7:0: 'StanleySylow.stanley_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LeanProofs/StanleySylow/Main.lean:8:0: 'StanleySylow.stanley_irreducible_rat' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LeanProofs/StanleySylow/Main.lean:9:0: 'StanleySylow.top_coeffs_agree' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LeanProofs/StanleySylow/Main.lean:10:0: 'StanleySylow.sylow_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LeanProofs/StanleySylow/Main.lean:11:0: 'StanleySylow.sylow_top_coeffs_agree' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LeanProofs/StanleySylow/Main.lean:12:0: 'StanleySylow.sylow_irreducible_rat' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [3097/3099] Built LeanProofs.StanleySylow (6.5s)
+✔ [3098/3099] Built LeanProofs (7.0s)
+Build completed successfully (3099 jobs).

@@ -1,0 +1,93 @@
+PASS  Sylow cycle polynomial n=1 (|G|=2) = wreath recurrence P_n  
+PASS    |G| = 2^(2^n - 1)  
+PASS  Sylow cycle polynomial n=2 (|G|=8) = wreath recurrence P_n  
+PASS    |G| = 2^(2^n - 1)  
+PASS    the question's f_2 is NOT the Sylow polynomial (index slip)  f_2(1) = 6 vs |G| = 8
+PASS  Sylow cycle polynomial n=3 (|G|=128) = wreath recurrence P_n  
+PASS    |G| = 2^(2^n - 1)  
+PASS    the question's f_3 is NOT the Sylow polynomial (index slip)  f_3(1) = 48 vs |G| = 128
+PASS  Sylow cycle polynomial n=4 (|G|=32768) = wreath recurrence P_n  
+PASS    |G| = 2^(2^n - 1)  
+PASS    the question's f_4 is NOT the Sylow polynomial (index slip)  f_4(1) = 2688 vs |G| = 32768
+PASS  f_1 = a_1 * T^0(Q)  
+PASS  f_2 = a_2 * T^1(Q)  
+PASS  f_3 = a_3 * T^2(Q)  
+PASS  f_4 = a_4 * T^3(Q)  
+PASS  f_5 = a_5 * T^4(Q)  
+PASS  f_6 = a_6 * T^5(Q)  
+PASS  f_7 = a_7 * T^6(Q)  
+PASS  f_8 = a_8 * T^7(Q)  
+PASS  n=3: f_n + a_n = A_n B_n, A_n/B_n = a^2 h(T^(n-3) Q), monic deg 2^(n-1)  
+PASS    top 2 coefficients of A_n and B_n agree  
+PASS  n=4: f_n + a_n = A_n B_n, A_n/B_n = a^2 h(T^(n-3) Q), monic deg 2^(n-1)  
+PASS    top 4 coefficients of A_n and B_n agree  
+PASS  n=5: f_n + a_n = A_n B_n, A_n/B_n = a^2 h(T^(n-3) Q), monic deg 2^(n-1)  
+PASS    top 8 coefficients of A_n and B_n agree  
+PASS  n=6: f_n + a_n = A_n B_n, A_n/B_n = a^2 h(T^(n-3) Q), monic deg 2^(n-1)  
+PASS    top 16 coefficients of A_n and B_n agree  
+PASS  n=7: f_n + a_n = A_n B_n, A_n/B_n = a^2 h(T^(n-3) Q), monic deg 2^(n-1)  
+PASS    top 32 coefficients of A_n and B_n agree  
+PASS  n=8: f_n + a_n = A_n B_n, A_n/B_n = a^2 h(T^(n-3) Q), monic deg 2^(n-1)  
+PASS    top 64 coefficients of A_n and B_n agree  
+PASS  A_3 irreducible over F_5 (deg 4)  
+PASS  B_3 irreducible over F_5 (deg 4)  
+PASS  A_4 irreducible over F_5 (deg 8)  
+PASS  B_4 irreducible over F_5 (deg 8)  
+PASS  A_5 irreducible over F_5 (deg 16)  
+PASS  B_5 irreducible over F_5 (deg 16)  
+PASS  A_6 irreducible over F_5 (deg 32)  
+PASS  B_6 irreducible over F_5 (deg 32)  
+PASS  A_7 irreducible over F_5 (deg 64)  
+PASS  B_7 irreducible over F_5 (deg 64)  
+PASS  A_8 irreducible over F_5 (deg 128)  
+PASS  B_8 irreducible over F_5 (deg 128)  
+PASS  Sylow n=2: P_n + |G| = (|G|/8) h_-(T^(n-2) q) h_+(T^(n-2) q)  
+PASS    h_-(T^0 q), deg 2, integral after scaling, irreducible mod 5  
+PASS    h_+(T^0 q), deg 2, integral after scaling, irreducible mod 5  
+PASS  Sylow n=3: P_n + |G| = (|G|/8) h_-(T^(n-2) q) h_+(T^(n-2) q)  
+PASS    h_-(T^1 q), deg 4, integral after scaling, irreducible mod 5  
+PASS    h_+(T^1 q), deg 4, integral after scaling, irreducible mod 5  
+PASS  Sylow n=4: P_n + |G| = (|G|/8) h_-(T^(n-2) q) h_+(T^(n-2) q)  
+PASS    h_-(T^2 q), deg 8, integral after scaling, irreducible mod 5  
+PASS    h_+(T^2 q), deg 8, integral after scaling, irreducible mod 5  
+PASS  Sylow n=5: P_n + |G| = (|G|/8) h_-(T^(n-2) q) h_+(T^(n-2) q)  
+PASS    h_-(T^3 q), deg 16, integral after scaling, irreducible mod 5  
+PASS    h_+(T^3 q), deg 16, integral after scaling, irreducible mod 5  
+PASS  Sylow n=6: P_n + |G| = (|G|/8) h_-(T^(n-2) q) h_+(T^(n-2) q)  
+PASS    h_-(T^4 q), deg 32, integral after scaling, irreducible mod 5  
+PASS    h_+(T^4 q), deg 32, integral after scaling, irreducible mod 5  
+PASS  Sylow n=7: P_n + |G| = (|G|/8) h_-(T^(n-2) q) h_+(T^(n-2) q)  
+PASS    h_-(T^5 q), deg 64, integral after scaling, irreducible mod 5  
+PASS    h_+(T^5 q), deg 64, integral after scaling, irreducible mod 5  
+PASS  Sylow n=8: P_n + |G| = (|G|/8) h_-(T^(n-2) q) h_+(T^(n-2) q)  
+PASS  composition lemma (iff) on 400 random cases  400/400
+PASS  critical values 3 (T), 1 (Q); orbit 3 -> 1 -> 1; h values nonsquare  
+PASS    discriminants of h_-, h_+ are -7 = 3, a nonsquare  
+PASS    mutant: critical value 2 gives a square somewhere  
+PASS  control: mod 3 some factor is reducible (5 is special)  
+PASS  control: mod 7 some factor is reducible (5 is special)  
+PASS  addendum p=2 n=1: f = p^e Phi^n, target = p^(p^n-1) H(Phi^n)  
+PASS    factor degrees over Q: [2]  expected [2]
+PASS  addendum p=2 n=2: f = p^e Phi^n, target = p^(p^n-1) H(Phi^n)  
+PASS    factor degrees over Q: [2, 2]  expected [2, 2]
+PASS  addendum p=2 n=3: f = p^e Phi^n, target = p^(p^n-1) H(Phi^n)  
+PASS    factor degrees over Q: [4, 4]  expected [4, 4]
+PASS  addendum p=2 n=4: f = p^e Phi^n, target = p^(p^n-1) H(Phi^n)  
+PASS  addendum p=3 n=1: f = p^e Phi^n, target = p^(p^n-1) H(Phi^n)  
+PASS    factor degrees over Q: [6]  expected [6]
+PASS  addendum p=3 n=2: f = p^e Phi^n, target = p^(p^n-1) H(Phi^n)  
+PASS    factor degrees over Q: [18]  expected [18]
+PASS  addendum p=3 n=3: f = p^e Phi^n, target = p^(p^n-1) H(Phi^n)  
+PASS    factor degrees over Q: [54]  expected [54]
+PASS  addendum p=5 n=1: f = p^e Phi^n, target = p^(p^n-1) H(Phi^n)  
+PASS    factor degrees over Q: [10, 10]  expected [10, 10]
+PASS  addendum p=5 n=2: f = p^e Phi^n, target = p^(p^n-1) H(Phi^n)  
+PASS    factor degrees over Q: [50, 50]  expected [50, 50]
+PASS  addendum p=5 n=3: f = p^e Phi^n, target = p^(p^n-1) H(Phi^n)  
+PASS    factor degrees over Q: [250, 250]  expected [250, 250]
+PASS  addendum p=7 n=1: f = p^e Phi^n, target = p^(p^n-1) H(Phi^n)  
+PASS    factor degrees over Q: [42]  expected [42]
+PASS  addendum p=7 n=2: f = p^e Phi^n, target = p^(p^n-1) H(Phi^n)  
+PASS    factor degrees over Q: [294]  expected [294]
+
+ALL PASS

@@ -1,0 +1,69 @@
+{
+  "all_n_proof": "ANSWER.md",
+  "finite_checks_are_not_the_proof": true,
+  "method": "original integer recurrence; independent Frobenius/gcd test; SymPy cross-check",
+  "controls_passed": 5,
+  "checks": [
+    {
+      "n": 3,
+      "degree_each": 4,
+      "factorization_identity": true,
+      "normalization_identity": true,
+      "irreducible_mod_5_each": [
+        true,
+        true
+      ]
+    },
+    {
+      "n": 4,
+      "degree_each": 8,
+      "factorization_identity": true,
+      "normalization_identity": true,
+      "irreducible_mod_5_each": [
+        true,
+        true
+      ]
+    },
+    {
+      "n": 5,
+      "degree_each": 16,
+      "factorization_identity": true,
+      "normalization_identity": true,
+      "irreducible_mod_5_each": [
+        true,
+        true
+      ]
+    },
+    {
+      "n": 6,
+      "degree_each": 32,
+      "factorization_identity": true,
+      "normalization_identity": true,
+      "irreducible_mod_5_each": [
+        true,
+        true
+      ]
+    },
+    {
+      "n": 7,
+      "degree_each": 64,
+      "factorization_identity": true,
+      "normalization_identity": true,
+      "irreducible_mod_5_each": [
+        true,
+        true
+      ]
+    },
+    {
+      "n": 8,
+      "degree_each": 128,
+      "factorization_identity": true,
+      "normalization_identity": true,
+      "irreducible_mod_5_each": [
+        true,
+        true
+      ]
+    }
+  ],
+  "critical_orbit_and_nonsquare_table": "passed"
+}

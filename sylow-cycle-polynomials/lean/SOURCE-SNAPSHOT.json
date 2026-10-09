@@ -1,0 +1,22 @@
+{
+  "source_commit": "9bc02ee (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports StanleySylow only)",
+    "CheckClaims.lean (new)",
+    "scripts/mutants.py (copy of lean-proofs scripts/stanleysylow_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "44ba270078b06cf68d24dc022bf5fda2e0a2dca31076f997e745a029f0a615c2",
+    "LeanProofs/StanleySylow/Main.lean": "11898c080676530c9d125eb17dee8d31cf8eefffe4655f5a47259c96f0891693",
+    "LeanProofs/StanleySylow/Question.lean": "186efa804e43d00f29177421cc3a871ae66891e9e9321c6fa338d62d0b3571c3",
+    "LeanProofs/StanleySylow/Sylow.lean": "73aece0785ad4b2342faed25eb9fa157dba70b0fd77f5e481f492467ccb2d7a8",
+    "LeanProofs/StanleySylow.lean": "25a564cd7e951c2784db7e9534d323240c38b00ecaa9398b3315323593c9ef2b",
+    "LeanProofs.lean": "66e8ef8f1f397d09f3ec0712e8b2f90780e8120caa518e27a126a293c3f0ea69",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "lean-toolchain": "8733782dc070a99b312039cda424f601b80f3be6f6f512627da5ba25adc27632",
+    "scripts/mutants.py": "1533c8cd479af087ae98ddeca95a9b50d1cb5f423c7989660cbf53aecf9f83ac"
+  }
+}

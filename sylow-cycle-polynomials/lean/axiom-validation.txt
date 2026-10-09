@@ -1,0 +1,25 @@
+@monic_comp_quad : ∀ {K : Type u_1} [inst : Field K],
+  2 ≠ 0 →
+    ∀ {G : K[X]},
+      G.Monic →
+        Irreducible G →
+          Even G.natDegree → ∀ (b c : K), ¬IsSquare (eval (c - b ^ 2 / 4) G) → Irreducible (G.comp (quad b c))
+'StanleySylow.norm_sub_eval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'StanleySylow.monic_comp_quad' depends on axioms: [propext, Classical.choice, Quot.sound]
+StanleySylow.sylow_factorization (n : ℕ) : AS n * BS n = Ps (n + 2) + C (a (n + 2))
+'StanleySylow.sylow_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]
+StanleySylow.sylow_factors_degree (n : ℕ) : (AS n).natDegree = 2 ^ (n + 1) ∧ (BS n).natDegree = 2 ^ (n + 1)
+StanleySylow.sylow_top_coeffs_agree (n i : ℕ) (hi : 2 ^ n < i) : (AS n).coeff i = (BS n).coeff i
+'StanleySylow.sylow_top_coeffs_agree' depends on axioms: [propext, Classical.choice, Quot.sound]
+StanleySylow.sylow_irreducible_mod5 (n : ℕ) : Irreducible (map reduce5 (AS n)) ∧ Irreducible (map reduce5 (BS n))
+StanleySylow.sylow_irreducible_rat (n : ℕ) :
+  Irreducible (map (algebraMap ℤ ℚ) (AS n)) ∧ Irreducible (map (algebraMap ℤ ℚ) (BS n))
+'StanleySylow.sylow_irreducible_rat' depends on axioms: [propext, Classical.choice, Quot.sound]
+StanleySylow.stanleyF_recurrence (n : ℕ) (hn : 1 ≤ n) : stanleyF (n + 1) = stanleyF n * (stanleyF n + C (stanley_a n))
+StanleySylow.stanley_factorization (n : ℕ) (hn : 3 ≤ n) : stanleyA n * stanleyB n = stanleyF n + C (stanley_a n)
+'StanleySylow.stanley_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]
+StanleySylow.top_coeffs_agree (n i : ℕ) (hi : 2 ^ (n + 1) < i) : (A n).coeff i = (B n).coeff i
+'StanleySylow.top_coeffs_agree' depends on axioms: [propext, Classical.choice, Quot.sound]
+StanleySylow.stanley_irreducible_rat (n : ℕ) (hn : 3 ≤ n) :
+  Irreducible (map (algebraMap ℤ ℚ) (stanleyA n)) ∧ Irreducible (map (algebraMap ℤ ℚ) (stanleyB n))
+'StanleySylow.stanley_irreducible_rat' depends on axioms: [propext, Classical.choice, Quot.sound]
