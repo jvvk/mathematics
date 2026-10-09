@@ -1,0 +1,60 @@
+@BalancedMast.Tree.agree_iff_restrict_iso : ∀ {α : Type u_1} [inst : DecidableEq α] {S T : BalancedMast.Tree α},
+  S.Phylo →
+    T.Phylo →
+      ∀ {Y : Finset α},
+        Y ⊆ S.L ∩ T.L →
+          Y.Nonempty →
+            (S.Agree T Y ↔
+              ∃ R R', BalancedMast.Tree.restrict Y S = some R ∧ BalancedMast.Tree.restrict Y T = some R' ∧ R.Iso R')
+'BalancedMast.Tree.agree_iff_restrict_iso' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BalancedMast.Tree.iso_of_triples' depends on axioms: [propext, Classical.choice, Quot.sound]
+@BalancedMast.Tree.mast_bind_le : ∀ {α : Type u_1} {β : Type u_2} [inst : DecidableEq α] [inst_1 : DecidableEq β]
+  {S T : BalancedMast.Tree α} {A B : α → BalancedMast.Tree β},
+  S.L = T.L →
+    S.BlocksDisjoint A →
+      (∀ z ∈ S.L, (A z).L = (B z).L) →
+        ∀ {K : ℕ}, (∀ z ∈ S.L, (A z).mast (B z) ≤ K) → (S.bind A).mast (T.bind B) ≤ S.mast T * K
+'BalancedMast.Tree.mast_bind_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+BalancedMast.M_add_le : ∀ (h k : ℕ), BalancedMast.M (h + k) ≤ BalancedMast.M h * BalancedMast.M k
+'BalancedMast.M_add_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+BalancedMast.tendsto_beta : Filter.Tendsto (fun m => Real.logb 2 ↑(BalancedMast.M m) / ↑m) Filter.atTop
+  (nhds BalancedMast.beta)
+'BalancedMast.tendsto_beta' depends on axioms: [propext, Classical.choice, Quot.sound]
+@BalancedMast.Tree.mast_le_of_cellsSmall : ∀ {α : Type u_1} [inst : DecidableEq α] {S T : BalancedMast.Tree α}
+  {dS dT : ℕ}, S.Phylo → T.Phylo → S.CellsSmall T dS dT → S.mast T ≤ 2 * max (2 ^ dS) (2 ^ dT)
+'BalancedMast.Tree.mast_le_of_cellsSmall' depends on axioms: [propext, Classical.choice, Quot.sound]
+BalancedMast.M_eleven : BalancedMast.M 11 ≤ 2 ^ 5
+'BalancedMast.M_eleven' depends on axioms: [propext, Classical.choice, Quot.sound]
+BalancedMast.M_upper : ∀ (m : ℕ), ↑(BalancedMast.M m) ≤ 2 ^ 10 * 2 ^ (5 * ↑m / 11)
+'BalancedMast.M_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+BalancedMast.beta_le_five_elevenths : BalancedMast.beta ≤ 5 / 11
+'BalancedMast.beta_le_five_elevenths' depends on axioms: [propext, Classical.choice, Quot.sound]
+@BalancedMast.ansatz_one : ∀ {α : Type u_1} [inst : DecidableEq α] {a c : ℝ},
+  0 < a →
+    0 ≤ c →
+      BalancedMast.CertOne a c →
+        ∀ (n h₁ h₂ : ℕ) (S T : BalancedMast.Tree α),
+          h₁ + h₂ = n →
+            BalancedMast.Bal h₁ S →
+              BalancedMast.Bal h₂ T →
+                S.Phylo → T.Phylo → BalancedMast.tt S T ^ a * 2 ^ (-(c * (↑h₁ + ↑h₂))) ≤ ↑(S.mast T)
+'BalancedMast.ansatz_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+BalancedMast.certOne : BalancedMast.CertOne (2 / 5) (33 / 400)
+'BalancedMast.certOne' depends on axioms: [propext, Classical.choice, Quot.sound]
+BalancedMast.M_lower_235 : ∀ (m : ℕ), 2 ^ (↑m * (47 / 200)) ≤ ↑(BalancedMast.M m)
+'BalancedMast.M_lower_235' depends on axioms: [propext, Classical.choice, Quot.sound]
+BalancedMast.CertTwo : ℝ → ℝ → Prop
+@BalancedMast.ansatz_two : ∀ {α : Type u_1} [inst : DecidableEq α] {a c : ℝ},
+  0 < a →
+    a ≤ 1 →
+      0 ≤ c →
+        BalancedMast.CertTwo a c →
+          ∀ (n h₁ h₂ : ℕ) (S T : BalancedMast.Tree α),
+            h₁ + h₂ = n →
+              BalancedMast.Bal h₁ S →
+                BalancedMast.Bal h₂ T →
+                  S.Phylo → T.Phylo → BalancedMast.tt S T ^ a * 2 ^ (-(c * (↑h₁ + ↑h₂))) ≤ ↑(S.mast T)
+'BalancedMast.ansatz_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+BalancedMast.M_lower : BalancedMast.CertTwo (2 / 5) (157 / 2000) →
+  ∀ (m : ℕ), 2 ^ (↑m * (243 / 1000)) ≤ ↑(BalancedMast.M m)
+'BalancedMast.M_lower' depends on axioms: [propext, Classical.choice, Quot.sound]

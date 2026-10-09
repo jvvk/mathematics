@@ -1,0 +1,28 @@
+{
+  "source_commit": "ff5d050 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports BalancedMast only)",
+    "CheckClaims.lean (new)",
+    "scripts/mutants.py (copy of lean-proofs scripts/balancedmast_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "44bb8f3011d054d241b653e04816593fcfb82a1ae646cf0057ffce48cf8cc672",
+    "LeanProofs.lean": "558d846f66ae5ea4224e618bce7db1af2d471ed86589b3e7c72399ecee632eb7",
+    "LeanProofs/BalancedMast.lean": "7c8060552f98958f9f36dee8b82e4d006252f246de928b05fd5a70c68a9c7eeb",
+    "LeanProofs/BalancedMast/Balanced.lean": "04c57fd6fac0b9eac7733e505bbda2818c5ac4a5b20aa21d03f954650be31b73",
+    "LeanProofs/BalancedMast/Basic.lean": "6b90d1a924d3f9f6ce175dbc1cd113a75f5967a677d40f6a415f962d959a4ef0",
+    "LeanProofs/BalancedMast/CertOne.lean": "40784c7b2cdbca73126c145688b5bf35cb3382b261e2851239b5ee2797f625b9",
+    "LeanProofs/BalancedMast/Example.lean": "1a770a78a3fa7fc38ed56a341e74548ea3a1fba8a5cba31d344693779378d583",
+    "LeanProofs/BalancedMast/Grid.lean": "9e0f5053fe654edb7649fb63adf9cff398214c56b1423128d2f32273c140a401",
+    "LeanProofs/BalancedMast/Lower.lean": "567f10406b12766dba0c9d9fcf78e4ac8ca8c2f58178c8bba5ab0ece3b54df06",
+    "LeanProofs/BalancedMast/Main.lean": "b74c73b5cb2e2a4fc3eccd9f4600967fae617f2858ff378fc55fca5c3dbe22ab",
+    "LeanProofs/BalancedMast/Restrict.lean": "ce9a4e0923b65fc48ed5f80116df438b1e5d6d5337f325304f22e33bc0760ff1",
+    "LeanProofs/BalancedMast/Subst.lean": "8c6c00e81cb190eb7a8173a81f62e1688cc830c074d138852f1ce91be5de5ef9",
+    "LeanProofs/BalancedMast/TwoLevel.lean": "f7364439fa0e63c78cb06e0ed99813849efde72a272c2be71da9d993a1bf7217",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutants.py": "90363b0024158b816fb6927d3c5b85c24d4f0c806de8a441f38660f7526a70f7"
+  }
+}
