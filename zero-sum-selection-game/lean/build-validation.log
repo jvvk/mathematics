@@ -1,0 +1,1193 @@
+⚠ [3094/3101] Built LeanProofs.ZeroSumGame.Dimension (63s)
+warning: LeanProofs/ZeroSumGame/Dimension.lean:60:0: `deletion_rank_lt` does not use the following hypothesis in its type:
+  • [Fintype I] (#2)
+
+Consider replacing this hypothesis with the corresponding instance of `Finite` and using `Fintype.ofFinite` in the proof, or removing it entirely.
+
+Note: This linter can be disabled with `set_option linter.unusedFintypeInType false`
+warning: LeanProofs/ZeroSumGame/Dimension.lean:122:10: `simp [E, Finset.mem_insert] at this` is a flexible tactic modifying `this`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Dimension.lean:122:10: Try this:
+  [apply] simp only [ne_eq] at this
+info: LeanProofs/ZeroSumGame/Dimension.lean:123:10: `exact this.1`
+uses `this`, which was modified by the flexible tactic `simp` on line 122!
+warning: LeanProofs/ZeroSumGame/Dimension.lean:129:10: `simp [E, Finset.mem_insert] at this` is a flexible tactic modifying `this`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Dimension.lean:130:10: `exact this.2`
+uses `this`, which was modified by the flexible tactic `simp` on line 129!
+warning: LeanProofs/ZeroSumGame/Dimension.lean:75:0: `incidence_rank_bound` does not use the following hypothesis in its type:
+  • [DecidableEq I] (#3)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: LeanProofs/ZeroSumGame/Dimension.lean:275:0: `winning_subspace_dimension_bound` does not use the following hypothesis in its type:
+  • [DecidableEq I] (#3)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: LeanProofs/ZeroSumGame/Dimension.lean:287:0: `rowSum_surjective` does not use the following hypothesis in its type:
+  • [DecidableEq I] (#3)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: LeanProofs/ZeroSumGame/Dimension.lean:292:0: `rowSum_ker_dimension` does not use the following hypothesis in its type:
+  • [DecidableEq I] (#3)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: LeanProofs/ZeroSumGame/Dimension.lean:353:0: `parameters_dimension` does not use the following hypothesis in its type:
+  • [DecidableEq I] (#3)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: LeanProofs/ZeroSumGame/Dimension.lean:367:0: `sharp_winning_subspace` does not use the following hypothesis in its type:
+  • [DecidableEq I] (#3)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: LeanProofs/ZeroSumGame/Dimension.lean:378:0: `sharp_dimension_theorem` does not use the following hypothesis in its type:
+  • [DecidableEq I] (#3)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: LeanProofs/ZeroSumGame/Dimension.lean:388:0: `winning_finite_union` does not use the following hypothesis in its type:
+  • [DecidableEq I] (#3)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: LeanProofs/ZeroSumGame/Dimension.lean:446:0: `winning_line_direction` does not use the following hypothesis in its type:
+  • [DecidableEq I] (#3)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: LeanProofs/ZeroSumGame/Dimension.lean:466:0: `winning_affine_family_dimension_bound` does not use the following hypothesis in its type:
+  • [DecidableEq I] (#3)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+✔ [3095/3101] Built LeanProofs.ZeroSumGame.Order3 (75s)
+✔ [3096/3101] Built LeanProofs.ZeroSumGame.TwoValued (75s)
+⚠ [3097/3101] Built LeanProofs.ZeroSumGame.Gaps (130s)
+warning: LeanProofs/ZeroSumGame/Gaps.lean:31:0: Please, add a comment explaining the need for modifying the maxHeartbeat limit, as in
+set_option maxHeartbeats 1000000 in
+-- reason for change
+...
+
+Note: This linter can be disabled with `set_option linter.style.maxHeartbeats false`
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:38:4: `simp [Pv, Qv] at hne h1 h2 ⊢` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroSumGame/Gaps.lean:39:4: `first
+| (exfalso; linarith)
+| (left; constructor <;> linarith)
+| (right; left; constructor <;> linarith)
+| (right; right; left; constructor <;> linarith)
+| (right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; left; constructor <;> linarith)
+| (right; right; right; right; right; right; right; right; constructor <;> linarith)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 38!
+warning: LeanProofs/ZeroSumGame/Gaps.lean:57:0: Please, add a comment explaining the need for modifying the maxHeartbeat limit, as in
+set_option maxHeartbeats 4000000 in
+-- reason for change
+...
+
+Note: This linter can be disabled with `set_option linter.style.maxHeartbeats false`
+warning: LeanProofs/ZeroSumGame/Gaps.lean:74:16: Unused tactic linter: `linarith` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+ℹ [3098/3101] Built LeanProofs.ZeroSumGame.Main (58s)
+info: LeanProofs/ZeroSumGame/Main.lean:6:0: 'ZeroSumGame.incidence_rank_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LeanProofs/ZeroSumGame/Main.lean:7:0: 'ZeroSumGame.winning_iff_hits' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LeanProofs/ZeroSumGame/Main.lean:8:0: 'ZeroSumGame.winning_finite_union' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LeanProofs/ZeroSumGame/Main.lean:9:0: 'ZeroSumGame.sharp_dimension_theorem' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LeanProofs/ZeroSumGame/Main.lean:10:0: 'ZeroSumGame.square_sharp_dimension' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LeanProofs/ZeroSumGame/Main.lean:11:0: 'ZeroSumGame.winning_affine_family_dimension_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LeanProofs/ZeroSumGame/Main.lean:12:0: 'ZeroSumGame.order3_criterion' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LeanProofs/ZeroSumGame/Main.lean:13:0: 'ZeroSumGame.collision' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LeanProofs/ZeroSumGame/Main.lean:14:0: 'ZeroSumGame.coll_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LeanProofs/ZeroSumGame/Main.lean:15:0: 'ZeroSumGame.three_values' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LeanProofs/ZeroSumGame/Main.lean:16:0: 'ZeroSumGame.order3_distinct' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LeanProofs/ZeroSumGame/Main.lean:17:0: 'ZeroSumGame.two_valued' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [3099/3101] Built LeanProofs.ZeroSumGame (43s)
+✔ [3100/3101] Built LeanProofs (51s)
+Build completed successfully (3101 jobs).

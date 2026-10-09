@@ -1,0 +1,21 @@
+PASS  3x3: literal game = criterion (two usable positions)  592704/592704
+PASS    mutant (one usable position) disagrees somewhere  116025 cases
+PASS  3x3 distinct entries: winning iff one of the five families  592704/592704, 404 winning
+PASS    every family member found is winning in the literal game  23 members
+PASS    mutant family (II with A = -h,-2h,-4h) is losing  10 instances
+PASS  3x3: maximal winning subspaces 99 (dim 5) + 576 (dim 4) + 432 (dim 3) = 1107  {3: 432, 4: 576, 5: 99}, 2226 spans
+PASS    maximum dimension = n(n+1)/2 - 1 = 5  
+PASS    random points of the components are winning (literal game)  
+PASS    the 1107 components form 12 orbits under permutations within rows  12 orbits
+PASS    every 5-dimensional component forces two equal entries in some row  99 components
+PASS    some 4-dimensional component has generically distinct rows  36 components
+PASS  two-valued rows: literal game = quantified sum formula  600/600
+PASS  subset-sum embedding: matrix wins iff the forall-exists sum holds  80/80, 35 true
+PASS    mutant (existential rows in the upper half) disagrees somewhere  15 cases
+PASS  family 'paired rows' is winning (orders (4, 6))  
+PASS  family 'Hall' is winning (orders (3, 4, 5))  
+PASS  family 'repeated value' is winning (orders (3, 4, 5))  
+PASS    parameter counts: paired r*n + r - 1 = n(n+1)/2 - 1; repeated (n-1) + sum(i-1) = n(n+1)/2 - 1  
+PASS    mutant (Hall row shifted by 1) loses  
+
+ALL PASS

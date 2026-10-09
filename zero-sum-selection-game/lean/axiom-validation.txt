@@ -1,0 +1,66 @@
+@ZeroSumGame.incidence_rank_bound : ∀ {I : Type u_1} [inst : Fintype I] [DecidableEq I] [Nonempty I] {N : I → ℕ}
+  (q : I → ℕ) (H : Set (ZeroSumGame.Transversal N)),
+  ZeroSumGame.Hits q H → ∑ i, q i + 1 ≤ Module.finrank ℝ ↥(ZeroSumGame.incidenceSpan H)
+'ZeroSumGame.incidence_rank_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+@ZeroSumGame.winning_iff_hits : ∀ {I : Type u_1} [inst : Fintype I] {N : I → ℕ} (k : I → ℕ),
+  (∀ (i : I), k i ≤ N i) →
+    ∀ (a : ZeroSumGame.Array N),
+      ZeroSumGame.Winning k a ↔ ZeroSumGame.Hits (fun i => N i - k i) (ZeroSumGame.zeroTransversals a)
+@ZeroSumGame.winning_finite_union : ∀ {I : Type u_1} [inst : Fintype I] [DecidableEq I] [Nonempty I] {N : I → ℕ}
+  (k : I → ℕ),
+  (∀ (i : I), k i ≤ N i) →
+    ∃ F, (∀ L ∈ F, Module.finrank ℝ ↥L ≤ ∑ i, k i - 1) ∧ {a | ZeroSumGame.Winning k a} = ⋃ L ∈ F, ↑L
+'ZeroSumGame.winning_finite_union' depends on axioms: [propext, Classical.choice, Quot.sound]
+@ZeroSumGame.sharp_dimension_theorem : ∀ {I : Type u_1} [inst : Fintype I] [DecidableEq I] [Nonempty I] {N : I → ℕ}
+  (k : I → ℕ),
+  (∀ (i : I), k i ≤ N i) →
+    (∀ (i : I), 0 < k i) →
+      (∀ (L : Submodule ℝ (ZeroSumGame.Array N)),
+          (∀ a ∈ L, ZeroSumGame.Winning k a) → Module.finrank ℝ ↥L ≤ ∑ i, k i - 1) ∧
+        ∃ L, (∀ a ∈ L, ZeroSumGame.Winning k a) ∧ Module.finrank ℝ ↥L = ∑ i, k i - 1
+'ZeroSumGame.sharp_dimension_theorem' depends on axioms: [propext, Classical.choice, Quot.sound]
+ZeroSumGame.square_sharp_dimension : ∀ (n : ℕ),
+  0 < n →
+    (∀ (L : Submodule ℝ (ZeroSumGame.Array fun x => n)),
+        (∀ a ∈ L, ZeroSumGame.Winning (fun i => ↑i + 1) a) → Module.finrank ℝ ↥L ≤ n * (n + 1) / 2 - 1) ∧
+      ∃ L, (∀ a ∈ L, ZeroSumGame.Winning (fun i => ↑i + 1) a) ∧ Module.finrank ℝ ↥L = n * (n + 1) / 2 - 1
+'ZeroSumGame.square_sharp_dimension' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ZeroSumGame.winning_affine_family_dimension_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+ZeroSumGame.order3_criterion : ∀ (a : ZeroSumGame.Array ZeroSumGame.N3),
+  ZeroSumGame.Winning ZeroSumGame.k3 a ↔ ∀ (i j₀ : Fin 3), ∃ j l, j ≠ j₀ ∧ a ⟨0, i⟩ + a ⟨1, j⟩ + a ⟨2, l⟩ = 0
+'ZeroSumGame.order3_criterion' depends on axioms: [propext, Classical.choice, Quot.sound]
+@ZeroSumGame.collision : ∀ {p q r s t : ℝ},
+  0 < p → 0 < q → 0 < r → 0 < s → ZeroSumGame.Two p q r s t → ZeroSumGame.Coll p q r s t
+'ZeroSumGame.collision' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ZeroSumGame.coll_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+@ZeroSumGame.three_values : ∀ {p q r s t₁ t₂ t₃ : ℝ},
+  0 < p →
+    0 < q →
+      0 < r →
+        0 < s →
+          ZeroSumGame.Coll p q r s t₁ →
+            ZeroSumGame.Coll p q r s t₂ →
+              ZeroSumGame.Coll p q r s t₃ → t₁ ≠ t₂ → t₁ ≠ t₃ → t₂ ≠ t₃ → ZeroSumGame.Fam p q r s
+@ZeroSumGame.order3_distinct : ∀ {a : Fin 3 → ℝ} {p q r s : ℝ},
+  0 < p →
+    0 < q →
+      0 < r →
+        0 < s →
+          Function.Injective a →
+            (ZeroSumGame.Winning ZeroSumGame.k3 (ZeroSumGame.mat a p q r s) ↔
+              ZeroSumGame.Fam p q r s ∧ ∀ (i : Fin 3), ZeroSumGame.Coll p q r s (-a i))
+'ZeroSumGame.order3_distinct' depends on axioms: [propext, Classical.choice, Quot.sound]
+@ZeroSumGame.two_valued : ∀ {I : Type u_1} [inst : Fintype I] {N : I → ℕ} (k : I → ℕ),
+  (∀ (i : I), k i ≤ N i) →
+    (∀ (i : I), 1 ≤ k i) →
+      ∀ (a : ZeroSumGame.Array N) (val : I → Bool → ℝ),
+        (∀ (i : I), val i true ≠ val i false) →
+          (∀ (i : I) (j : Fin (N i)), a ⟨i, j⟩ = val i true ∨ a ⟨i, j⟩ = val i false) →
+            (ZeroSumGame.Winning k a ↔
+              ∀ (E : I → Option Bool),
+                (∀ (i : I) (b : Bool), E i = some b → k i ≤ (ZeroSumGame.posOf a val i b).card) →
+                  (∀ (i : I),
+                      E i = none →
+                        (ZeroSumGame.posOf a val i true).card < k i ∧ (ZeroSumGame.posOf a val i false).card < k i) →
+                    ∃ c, (∀ (i : I) (b : Bool), E i = some b → c i = b) ∧ ∑ i, val i (c i) = 0)
+'ZeroSumGame.two_valued' depends on axioms: [propext, Classical.choice, Quot.sound]

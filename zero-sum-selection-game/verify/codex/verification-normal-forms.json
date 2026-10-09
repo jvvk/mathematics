@@ -1,0 +1,24 @@
+{
+  "component_dimension_counts": {
+    "3": 432,
+    "4": 576,
+    "5": 99
+  },
+  "components": 1107,
+  "normal_forms": 12,
+  "orbit_sizes_by_type": [
+    9,
+    54,
+    18,
+    18,
+    108,
+    108,
+    108,
+    108,
+    108,
+    216,
+    36,
+    216
+  ],
+  "passed": true
+}

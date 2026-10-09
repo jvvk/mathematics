@@ -1,0 +1,11 @@
+{
+  "distinct_integer_matrices": 42875,
+  "distinct_integer_winning_matrices": 143,
+  "integer_matrices": 592704,
+  "integer_winning_matrices": 20871,
+  "passed": true,
+  "random_rational_matrices": 20000,
+  "rational_gap_cases": 104976,
+  "shifted_rational_family_examples": 45,
+  "three_target_gap_cases": 368
+}

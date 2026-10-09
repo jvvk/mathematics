@@ -1,0 +1,14 @@
+{
+  "embedding_positional_checks": 180,
+  "exhaustive_binary_order_3": 15625,
+  "exhaustive_small_matrices": 1039,
+  "maximum_reduced_matrix_order": 24,
+  "passed": true,
+  "qbf_false_cases": 6,
+  "qbf_full_reduction_checks": 170,
+  "qbf_true_cases": 164,
+  "random_binary_matrices_orders_1_to_7": 700,
+  "random_rational_matrices_orders_4_5": 200,
+  "row_menu_cases": 630,
+  "targeted_winning_matrices": 2
+}

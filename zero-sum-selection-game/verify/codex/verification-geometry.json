@@ -1,0 +1,17 @@
+{
+  "irredundant_components_checked": 1107,
+  "literal_order_3_matrix_checks": 1000,
+  "literal_structural_examples": 3,
+  "order_1_components": 1,
+  "order_2_components": 4,
+  "order_3_components": 1107,
+  "order_3_dimension_counts": {
+    "3": 432,
+    "4": 576,
+    "5": 99
+  },
+  "order_3_row_permutation_orbits": 12,
+  "passed": true,
+  "sharp_dominant_constructions": 10,
+  "sharp_paired_constructions": 5
+}

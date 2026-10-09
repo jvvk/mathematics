@@ -1,0 +1,24 @@
+{
+  "source_commit": "5c09012 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports ZeroSumGame only)",
+    "CheckClaims.lean (new)",
+    "scripts/mutants.py (copy of lean-proofs scripts/zerosumgame_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "162aae78fd089e2b7c049cc52d4cb33fef77b8fdecdc6441cd33145413fd590f",
+    "LeanProofs/ZeroSumGame/Dimension.lean": "477f1c7c4f38f64e2c7eb3c76d4a10f19872940e4370f72b81ea7d04feaa2123",
+    "LeanProofs/ZeroSumGame/Gaps.lean": "2f59d85457b2d02d14fbf2a9fdd9560b6764c7c31f6682367e0b57c2bb042edd",
+    "LeanProofs/ZeroSumGame/Main.lean": "9e528d08c9d79ca208639b7e483b2cfc59a4b4463476dc1b37c1ebeee62294dc",
+    "LeanProofs/ZeroSumGame/Order3.lean": "d2bb4dfe1608c1798f19a1060ebd45c20a6ff315ed6631ad4f330cf7892b5876",
+    "LeanProofs/ZeroSumGame/TwoValued.lean": "19769d930a91e24a86bfbec8182fd8c135bc52f194fb27b9947558d167ced8b0",
+    "LeanProofs/ZeroSumGame.lean": "5826a7d49e77209854e6a86fed4e8e8907b340f9b40226c29d1d3fb35baa2856",
+    "LeanProofs.lean": "ffa105684beb82f55dd920017ac9aad0bf4def4daf877d68f2a893d10ea14a03",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "lean-toolchain": "8733782dc070a99b312039cda424f601b80f3be6f6f512627da5ba25adc27632",
+    "scripts/mutants.py": "f65beb4698190561b5d0adfa7effce63215457fc79ee0a2237adced0ed2141a5"
+  }
+}
