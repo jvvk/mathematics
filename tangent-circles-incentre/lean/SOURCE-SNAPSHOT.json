@@ -1,0 +1,21 @@
+{
+  "source_commit": "662ebb5 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports TangentCircles only)",
+    "CheckClaims.lean (new)",
+    "scripts/mutants.py (copy of lean-proofs scripts/tangentcircles_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "1a9cc545b92bb7ab409cbdefeabbaa5a83f5afb7a38926f761587a8785e20099",
+    "LeanProofs/TangentCircles/Chords.lean": "058eb602cfdd09624d21b3555004bdd35fac1fc908756b656ab6f85077018483",
+    "LeanProofs/TangentCircles/Crossing.lean": "e6e1eb9513f815be517b9b6cd89c9b46b13da9578f9a31915c85b71985dd2124",
+    "LeanProofs/TangentCircles/Incircle.lean": "3947aa803d91af87df0e8882757632c02da7d8ba691e9f384d764a2589efbf6e",
+    "LeanProofs/TangentCircles/Integral.lean": "c5b3313893856205599de401152a8cb55716397e880920c7cd4496787b90073d",
+    "LeanProofs/TangentCircles/Main.lean": "c1d11d52da485a4b1d42c011271e8c613b074d28f94a15cc0a6157e6b5e56af2",
+    "LeanProofs/TangentCircles/Sphere.lean": "e2005d0069c38cc66a0b04c926440c5df8a563d156b08422032685fa2761edd1",
+    "LeanProofs.lean": "f598823ee68ad1cf9f238df2fbae022def76bd2b4e0ad792022cd629df3a0f9b",
+    "scripts/mutants.py": "5538a2d3a6e5054fb3469ac5db301ba170f0aa26bbf9b383ba8d8f197b2fae65"
+  }
+}

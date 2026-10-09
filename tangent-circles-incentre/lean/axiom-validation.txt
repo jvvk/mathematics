@@ -1,0 +1,49 @@
+'TangentCircles.halfchord_A' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TangentCircles.halfchord_B' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TangentCircles.midpoints_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TangentCircles.product_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TangentCircles.tidy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TangentCircles.a_div' depends on axioms: [propext, Classical.choice, Quot.sound]
+@integral_g : ∀ {s : ℝ}, |s| < Real.pi / 2 → ∫ (η : ℝ) in -(Real.pi / 2 - |s|)..Real.pi / 2 - |s|, g s η = Real.pi
+'TangentCircles.hasDerivAt_u' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TangentCircles.integral_g' depends on axioms: [propext, Classical.choice, Quot.sound]
+@density_form : ∀ {a b z p q : ℝ},
+  0 < a →
+    0 < b →
+      0 < Real.cos p →
+        0 < Real.cos q →
+          z * Real.cos p = a * Real.sin p →
+            z * Real.cos q = b * Real.sin q →
+              (a + b) * Real.cos p * Real.cos q * Real.cos (p - q) / (a * b) = a / (a ^ 2 + z ^ 2) + b / (b ^ 2 + z ^ 2)
+'TangentCircles.density_form' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TangentCircles.cdf' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TangentCircles.half_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TangentCircles.half' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TangentCircles.tail' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TangentCircles.tangent_length' depends on axioms: [propext, Classical.choice, Quot.sound]
+@half_angles : ∀ {a b c ρ : ℝ},
+  0 < a →
+    0 < b →
+      0 < c →
+        0 < ρ →
+          ρ ^ 2 * (a + b + c) = a * b * c →
+            Real.arctan (ρ / a) + Real.arctan (ρ / b) + Real.arctan (ρ / c) = Real.pi / 2
+'TangentCircles.half_angles' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TangentCircles.rho_sq_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TangentCircles.miss_side' depends on axioms: [propext, Classical.choice, Quot.sound]
+@conclusion : ∀ {a b c ρ : ℝ},
+  0 < a →
+    0 < b →
+      0 < c →
+        0 < ρ →
+          ρ ^ 2 * (a + b + c) = a * b * c →
+            1 / 2 - (Real.arctan (ρ / a) + Real.arctan (ρ / b)) / Real.pi +
+                  (1 / 2 - (Real.arctan (ρ / b) + Real.arctan (ρ / c)) / Real.pi) +
+                (1 / 2 - (Real.arctan (ρ / c) + Real.arctan (ρ / a)) / Real.pi) =
+              1 / 2
+'TangentCircles.conclusion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TangentCircles.inner_arcs' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TangentCircles.fold_element' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TangentCircles.fold_pair' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TangentCircles.element_change' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TangentCircles.lune' depends on axioms: [propext, Classical.choice, Quot.sound]
