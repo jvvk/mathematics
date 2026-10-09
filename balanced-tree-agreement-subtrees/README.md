@@ -1,5 +1,13 @@
 # Agreement subtrees of balanced trees
 
+<!-- visual:start -->
+<p align="center"><img src="https://raw.githubusercontent.com/jvvk/jvvk/7ab9fcf4853a9c91b81bb5ed95a090aa42db4145/assets/balanced-mast.svg" width="760" alt="How much two balanced trees must share"></p>
+
+<p align="center"><b>Two balanced trees on n leaves always agree on at least n^0.243 leaves, and some on only n^(5/11); Martin and Thatte conjectured n^(1/2).</b><br><sub>Partial progress on an open problem · in Lean, except one certified inequality</sub></p>
+
+<p align="center"><sub><a href="paper">paper</a> · <a href="lean">Lean proof</a> · <a href="verify">code</a> · <a href="../">all results</a></sub></p>
+<!-- visual:end -->
+
 Two rooted binary trees on the same leaf labels agree on a set of labels when the subtrees they induce on
 it are the same. Let `M(n)` be the least possible size of the largest such set over all pairs of
 *balanced* trees on `n = 2^m` leaves. Martin and Thatte conjectured `M(n) ≥ √n`; Bordewich, Linz, Owen,
