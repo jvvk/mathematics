@@ -15,21 +15,25 @@
 \newcommand{\symbishop}{\textsf{\textbf{B}}}
 \newcommand{\symknight}{\textsf{\textbf{N}}}
 
-\title{Four problems from Erich Friedman's \emph{Math Magic}}
+\title{Seven problems from Erich Friedman's \emph{Math Magic}}
 \author{Vamshi Jandhyala}
-\date{Preprint, 9 October 2026. Not peer reviewed.}
+\date{Preprint v2, 9 October 2026 (v1 the same day had Sections 2--5). Not peer reviewed.}
 
 \begin{document}
 \begin{abstract}
 Erich Friedman's \emph{Math Magic} pages pose a problem each month and keep a list of the questions
-that remained open. We settle four of them. Two exact values for armies of bishops,
+that remained open. We settle four of them and make progress on three more. Two exact values for armies of bishops,
 $B(3,5)=5$ and $B(3,6)=8$, follow from a one-line lemma and an exhaustive count. Three colours of
 king with touch counts $(1,3,6)$, $(1,6,3)$ or $(2,3,4)$ admit no finite arrangement (unsolved
 problem 24), by a reduction to finite formulas with checkable refutations. Three of the
 6-point capture digraphs of unsolved problem 21 are not realised by any chess position. And one of
 the heptominoes of unsolved problem 15 can never be arranged in a square with equal row and column
-counts, by an explicit weighting. Every computation is reproduced by programs published with the
-paper.
+counts, by an explicit weighting. A cube tiled by one $k$-slab for each $k\le n$ has side at most
+$n(n+1)/2$, and none exists for $n=4,5,6$ (unsolved problem 6). One entry of the prime-signature
+table is misfiled and the smallest number in a cell marked unknown is found, while the two open
+cases have no solution below $10^{17}$ (unsolved problem 28). The optimal tournaments of unsolved
+problem 33 are computed exactly, improving two published values. Every computation is reproduced
+by programs published with the paper.
 \end{abstract}
 \maketitle
 
@@ -38,7 +42,7 @@ paper.
 Since 1998 Erich Friedman's \emph{Math Magic} has posed one problem a month, published the
 solutions readers sent in, and collected the questions they could not answer on a list of unsolved
 problems~\cite{unsolved}. The problems are recreational in flavour and often easy to state, which
-makes the open ones tantalising. This note settles four of them. As of 9 October 2026 the list still
+makes the open ones tantalising. This note settles four of them and makes progress on three more. As of 9 October 2026 the list still
 shows problems 15, 21 and 24 as open, and the March 2005 page on armies of bishops still asks for the
 two values we prove~\cite{bishops}.
 
@@ -59,6 +63,9 @@ Armies of bishops & March 2005 & $B(3,5)=5$, $B(3,6)=8$ & computer-certified\\
 Touch cycles (no.~24) & March 2015 & three triples impossible & computer-certified\\
 Capture digraphs (no.~21) & October 2013 & diagrams $q$, $r$, $s$ impossible & computer-certified\\
 Magic polyomino squares (no.~15) & May 2007 & heptomino $A$ impossible & proved\\
+Slab cubes (no.~6) & December 2001 & side $\le n(n+1)/2$; none for $n=4,5,6$ & proved; certified\\
+Prime signatures (no.~28) & February 2018 & cell $(4,41)$ misfiled; cell $(4,411)$ & proved\\
+Optimal tournaments (no.~33) & February 2020 & exact optima & computer-certified\\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -280,12 +287,120 @@ in place of $5$, no offset $d$, and a wrong profile. The other heptominoes on th
 For them the weighting method fails: a fractional relaxation of the placement problem is feasible on
 some larger squares, so no weights of this kind can exist there.
 
+
+\section{Slab cubes (unsolved problem 6)}\label{sec:slabs}
+
+A $k$-slab is a $k\times ik\times jk$ box for some positive integers $i,j$, in any orientation. Friedman
+asks which cubes can be tiled by one $k$-slab for each $k=1,\dots,n$~\cite{slabs}; the only known ones are
+the unit cube ($n=1$) and the $6\times6\times6$ cube ($n=3$), and he conjectures there are infinitely
+many. For example the $6^3$ cube is a $1\times6\times6$, a $2\times6\times6$ and a $3\times6\times6$
+slab side by side.
+
+\begin{proposition}[proved]
+A cube tiled by one $k$-slab for each $k\le n$ has side $s\le n(n+1)/2$, with equality only for $n=1$
+and $n=3$.
+\end{proposition}
+
+\begin{proof}
+A $k$-slab inside the cube has two sides at most $s$, so its volume is at most $ks^2$; hence
+$s^3\le s^2(1+\dots+n)$. Equality forces every slab to be a full $k\times s\times s$ layer, so $k$
+divides $s=n(n+1)/2$ for every $k\le n$. For $n=2$, $2\nmid3$. For $n\ge4$, $n-1$ would divide
+$n(n+1)$, which is $2$ modulo $n-1$, so $n-1\mid2$, impossible.
+\end{proof}
+
+\begin{proposition}[computer-certified]
+No cube is tiled by one $k$-slab for each $k\le n$ when $n=4$, $5$ or $6$.
+\end{proposition}
+
+\noindent By the volume bound and the first proposition, only sides with $\sum k^3\le s^3$ and
+$s\le n(n+1)/2$ need checking: $5\le s\le10$, $7\le s\le15$ and $8\le s\le 21$. Two programs decide
+every case, in different ways (\path{verify/slab-cubes}). The first lists every choice of slab sizes
+whose volumes add up to $s^3$ and refutes each with an exact-cover model in a constraint solver
+(\path{slabs.py}, \path{slabs_cube.py}; for $n=6$, $s=12$ there are 672 choices). The second uses no
+solver: it fills the cube in lexicographic order, where the first empty cell must be the corner of the
+slab covering it, tries every unused slab, size and orientation there, and prunes a branch unless the
+empty volume is still a sum of volumes of the unused slabs (\path{slab_search.py}). Both find tilings of
+the $6^3$ cube and of Friedman's smallest boxes $2\times2\times3$, $3\times5\times6$ and
+$4\times6\times7$, and both report no tiling for every side above. A weakened search that allows any
+$k\times i\times j$ box does tile the cubes of sides 5 and 6 with $n=4$, so the negative answers are not
+vacuous (\path{slab_mutant.py}). The search for $n=7$ ($10\le s\le
+28$) has not been run.
+
+\section{Prime signatures (unsolved problem 28)}\label{sec:primesig}
+
+The prime signature of $n$ is the multiset of exponents in its factorisation, written as a string:
+$12=2^2\cdot3$ has signature $21$. Friedman tabulates, for signatures $A$ and $B$ of total degree at most
+6, the smallest $n$ of signature $A$ with $n+1$ of signature $B$~\cite{primesig}. The cases $(A,B)=(22,32)$
+and $(32,32)$ are listed as open, with the conjecture that they have no solutions.
+
+\begin{proposition}[proved]
+The table's entry $n=1022303^4$ in cell $(A,B)=(4,41)$ is misfiled: $n+1=2\cdot17^4\cdot
+6538721797256344321$ with the last factor prime, so $n+1$ has signature $411$. Cell $(4,41)$ is empty,
+and $1022303^4$ is the smallest $n$ in cell $(4,411)$, which the table marks unknown.
+\end{proposition}
+
+\begin{proof}
+For odd $p$, $p^4+1\equiv2\pmod{16}$, so $2$ divides $p^4+1$ exactly once, and $p=2$ gives $17$.
+Signature $41$ would force $p^4+1=2q^4$, that is $x^2+1=2y^4$ with $x=p^2$; its only positive solutions
+are $x=1$ and $x=239$~\cite{ljunggren}, and neither is the square of a prime. Signature $411$ forces
+$p^4+1=2q^4r$ with $q\ne r$ odd primes, and $q^4\mid p^4+1$ requires $q\equiv1\pmod 8$. For every such
+$q<1022303$ the four roots of $x^4\equiv-1\pmod{q^4}$ were lifted from roots modulo $q$, and every prime
+$p<1022303$ in those classes was tested: none gives a prime cofactor $r$
+(\path{verify/prime-signatures/primesig_4_411.py}, seconds). The primality of the 19-digit factor is
+certified by a deterministic test valid below $2^{64}$.
+\end{proof}
+
+\noindent\emph{Evidence for the open cases.} No $n\le10^{17}$ has signature $22$ with $n+1$ of
+signature $32$, or signature $32$ with $n+1$ of signature $32$ (\path{primesig_pairs.py},
+\path{data/primesig_pairs_17.txt}). Every $p^aq^b\le10^{17}$ of the two shapes is listed, using primes up
+to $\sqrt{10^{17}/4}$ so that the numbers $4q^2$ are included; the lists agree with brute-force
+factorisation of every $n\le10^7$ (\path{test_primesig_pairs.py}), which also finds the control pair
+$675=3^35^2$, $676=2^213^2$. A first run took primes only to $\sqrt{X/8}$ and so missed some numbers $4q^2$;
+the test fails on that version, and the corrected run still finds no pair. All 650 published values were
+checked by factorisation (649 are correct, the exception being the entry above), and every value below
+$3\times10^6$ was confirmed smallest by a sieve (\path{primesig_table.py}).
+
+\section{Optimal tournaments (unsolved problem 33)}\label{sec:tournament}
+
+$K$ players are in a uniformly random order of ability, and the better player wins each game with
+probability $2/3$. $N$ games are scheduled adaptively, each chosen after seeing the earlier results, and
+then one guesses either the whole order (``rank'') or the best player (``winner'')~\cite{tournament}.
+Friedman tabulates the best probabilities readers found. For example with two players and one game,
+guessing that the winner is the better player is right with probability $2/3$; the tables record the
+best such probabilities for each $K$ and $N$.
+
+\begin{proposition}[computer-certified]
+The optimal probabilities that differ from the published table are:
+\begin{itemize}
+\item rank, $K=3$, $N=7$: $2992/6561$ (published $2944/6561$); rank, $K=4$, $N=7$: $1216/6561$
+(published $1136/6561$);
+\item rank, $K=5$: for $N=2$ the optimum is $2/135$ (the table prints $2/125$ beside the correct
+$1.48\%$); for $N=5$ it is $128/3645$, which the table's own schedule attains (published $16/405$);
+for $N=6$ it is $512/10935$ (published $64/1215$, which no schedule attains).
+\end{itemize}
+Every other entry with $K\le5$, $N\le7$ or $K=6$, $N\le6$ in the rank table, and with $K\le4$, $N\le12$,
+$K=5$, $N\le7$, $K=6$, $N\le6$ or $K=7$, $N\le4$ in the winner table, agrees with the published value,
+which is therefore optimal. In particular Knop's $1984/32805<1/13$ for rank, $K=5$, $N=7$ is optimal,
+consistent with Kopp's disproof of the conjecture that $1/13$ is attainable.
+\end{proposition}
+
+\noindent The likelihood of a set $H$ of results under an order $s$ is $2^{a(s,H)}/3^{|H|}$, where $a$
+counts the results consistent with $s$. So the optimum is an exact recursion over multisets of
+results: choose the next pair to maximise the expected value, and at the end guess the most likely
+order (\path{verify/tournaments/tournament.py}). A separate program, which carries the exact
+probability of the results under every order instead of the power-of-two count
+(\path{tournament_check.py}), agrees at $(K,N)=(3,7)$, $(4,7)$ and
+$(5,5)$; the extracted optimal schedule for $K=3$, $N=7$ (\path{data/tournament_rank_3_7.json}) re-scores
+to $2992/6561$, and simulating it agrees within sampling error. \path{tournament_table.py} compares
+every optimum with the published tables.
+
 \section*{Verification and use of AI tools}
 
 The searches, certificates and parts of the proofs were produced with AI coding assistants, Claude
 (Anthropic) and Codex (OpenAI), and then checked as each section describes. In particular the
 extreme-king reduction and DRUP certificates for touch cycles, and the finite weights for the
-heptomino on small squares, were first found by Codex. The author takes responsibility for every
+heptomino on small squares, were first found by Codex; the slab, prime-signature and tournament
+computations of Sections 6--8 were written with Claude. The author takes responsibility for every
 statement. All programs and data are in the folder that accompanies this paper; each section names
 its subfolder, and \path{README.md} gives the commands and running times.
 
@@ -301,6 +416,14 @@ digraphs of chess pieces), \url{https://erich-friedman.github.io/mathmagic/1013.
 9 October 2026.
 \bibitem{touch} E.~Friedman, \emph{Math Magic}, problem of the month, March 2015 (touching letters),
 \url{https://erich-friedman.github.io/mathmagic/0315.html}, accessed 9 October 2026.
+\bibitem{slabs} E.~Friedman, \emph{Math Magic}, problem of the month, December 2001 (slabs),
+\url{https://erich-friedman.github.io/mathmagic/1201.html}, accessed 9 October 2026.
+\bibitem{primesig} E.~Friedman, \emph{Math Magic}, problem of the month, February 2018 (prime
+signatures), \url{https://erich-friedman.github.io/mathmagic/0218.html}, accessed 9 October 2026.
+\bibitem{tournament} E.~Friedman, \emph{Math Magic}, problem of the month, February 2020 (tournaments),
+\url{https://erich-friedman.github.io/mathmagic/0220.html}, accessed 9 October 2026.
+\bibitem{ljunggren} W.~Ljunggren, Zur Theorie der Gleichung $x^2+1=Dy^4$, \emph{Avh. Norske Vid. Akad.
+Oslo I. Mat.-Naturv. Kl.} 1942, no.~5, 27~pp.
 \end{thebibliography}
 
 \end{document}
