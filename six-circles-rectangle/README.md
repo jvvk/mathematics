@@ -1,5 +1,13 @@
 # Six circles in a rectangle: a proof by pure geometry
 
+<!-- visual:start -->
+<p align="center"><img src="https://raw.githubusercontent.com/jvvk/jvvk/c7403d6bbbc7106e1780d8c34833854afcb0116f/assets/six-circles.svg" width="760" alt="Six circles in a rectangle"></p>
+
+<p align="center"><b>The red segment is exactly as long as the rectangle is tall: a proof by classical geometry alone.</b><br><sub>New proof of a known result · in lean, step by step</sub></p>
+
+<p align="center"><sub><a href="paper">paper</a> · <a href="lean">Lean proof</a> · <a href="verify">code</a> · <a href="../">all results</a></sub></p>
+<!-- visual:end -->
+
 A rectangle holds six circles, tangent wherever they look tangent. The segment joining the centres of the two largest circles is exactly as long as the rectangle is high. The note gives a proof using only tangent lengths, the angle bisector theorem, a homothety, equal tangents and isosceles triangles.
 
 The problem is Dan's, from Mathematics Stack Exchange ([question 5112314](https://math.stackexchange.com/q/5112314)) and MathOverflow ([question 515498](https://mathoverflow.net/q/515498)). A longer version of the proof is the author's [MathOverflow answer](https://mathoverflow.net/a/515659), whose figures are in [six-circles-rectangle](https://github.com/jvvk/six-circles-rectangle).

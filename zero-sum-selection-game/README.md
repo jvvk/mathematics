@@ -1,5 +1,13 @@
 # A zero-sum selection game on matrices
 
+<!-- visual:start -->
+<p align="center"><img src="https://raw.githubusercontent.com/jvvk/jvvk/c7403d6bbbc7106e1780d8c34833854afcb0116f/assets/zero-sum.svg" width="760" alt="A zero-sum selection game"></p>
+
+<p align="center"><b>Lev's question: the winning matrices form a union of subspaces of dimension n(n+1)/2 − 1, and recognising them is Π₂ᵖ-complete.</b><br><sub>Open problem settled · verified by computation · partly in lean; reduction by hand</sub></p>
+
+<p align="center"><sub><a href="paper">paper</a> · <a href="lean">Lean proof</a> · <a href="verify">code</a> · <a href="../">all results</a></sub></p>
+<!-- visual:end -->
+
 Two players play on a real `n × n` matrix. The Enemy selects `i` entries of row `i` for each `i`. Then You choose one selected entry in every row, and You win if your entries sum to zero. Vsevolod Lev asked on MathOverflow ([question 453809](https://mathoverflow.net/q/453809)) for a description of the winning matrices.
 
 The paper proves three results:

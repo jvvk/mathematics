@@ -1,5 +1,13 @@
 # Random chords of two circles and a third centre
 
+<!-- visual:start -->
+<p align="center"><img src="https://raw.githubusercontent.com/jvvk/jvvk/c7403d6bbbc7106e1780d8c34833854afcb0116f/assets/chords.svg" width="760" alt="Random lines past three circles"></p>
+
+<p align="center"><b>Lines AB and BC hit the third circle equally often, for every ratio of radii in geometric progression.</b><br><sub>Open problem settled · formally verified in Lean 4</sub></p>
+
+<p align="center"><sub><a href="paper">paper</a> · <a href="lean">Lean proof</a> · <a href="verify">code</a> · <a href="../">all results</a></sub></p>
+<!-- visual:end -->
+
 Three circles touch in a row with radii `a`, `b`, `c` in geometric progression. Choose `A` uniformly on the first circle and `B`, `C` uniformly on the second. Dan observed numerically, and asked on MathOverflow (question 499477) why, that the lines `AB` and `BC` meet the third circle with the same probability.
 
 The paper explains it through a fact about two circles. For independent uniform points `A`, `B` on two circles whose discs have disjoint interiors, the signed offsets of the line `AB` from the two centres, each divided by its radius, are independent with the arcsine law (Lemma 2). The proof is a change of variables over the four pairs of points on a line, whose contributions add to a constant because the half-chords cancel. From this, Theorem 4 decides exactly which points `O` on the line of centres see `AB` and the chord `BC` at the same distance in distribution: `O` is the second centre, or the circles touch and `|QO| = b(a + b)/a`. This answers Dan's question for every ratio, extends it to every circle about the third centre and to chains of circles, shows that the progression is necessary, and gives a single integral for the common hit probability.

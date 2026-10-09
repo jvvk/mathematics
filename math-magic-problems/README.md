@@ -1,5 +1,14 @@
 # Four problems from Erich Friedman's *Math Magic*
 
+<!-- visual:start -->
+<table>
+<tr><td width="50%" valign="top"><img src="https://raw.githubusercontent.com/jvvk/jvvk/c7403d6bbbc7106e1780d8c34833854afcb0116f/assets/bishops.svg" width="100%" alt="Three armies of bishops"><p><b>Three armies of bishops</b><br>Three armies of five bishops fit on a 5 × 5 board and three of eight on 6 × 6, and no more: Friedman's two values.<br><sub>Exhaustive count of diagonal labellings</sub></p></td><td width="50%" valign="top"><img src="https://raw.githubusercontent.com/jvvk/jvvk/c7403d6bbbc7106e1780d8c34833854afcb0116f/assets/capture.svg" width="100%" alt="Chess capture patterns"><p><b>Chess capture patterns</b><br>Friedman's capture digraphs q, r and s are not made by any chess position, on any board.<br><sub>Two independent solvers</sub></p></td></tr>
+<tr><td width="50%" valign="top"><img src="https://raw.githubusercontent.com/jvvk/jvvk/c7403d6bbbc7106e1780d8c34833854afcb0116f/assets/kings.svg" width="100%" alt="Kings that touch in a cycle"><p><b>Kings that touch in a cycle</b><br>Kings with touch counts (1,3,6), (1,6,3) or (2,3,4) admit no finite arrangement: Friedman's unsolved problem 24.<br><sub>DRUP certificates, independent Z3 check</sub></p></td><td width="50%" valign="top"><img src="https://raw.githubusercontent.com/jvvk/jvvk/c7403d6bbbc7106e1780d8c34833854afcb0116f/assets/heptomino.svg" width="100%" alt="A heptomino that never balances"><p><b>A heptomino that never balances</b><br>This heptomino never fills a square with equal row and column counts, in any size: one shape of Friedman's problem 15.<br><sub>Proof by hand, exact checker</sub></p></td></tr>
+</table>
+
+<p align="center"><sub><a href="paper">paper</a> · <a href="verify">code</a> · <a href="../">all results</a></sub></p>
+<!-- visual:end -->
+
 Erich Friedman's [Math Magic](https://erich-friedman.github.io/mathmagic/) poses a problem each month and keeps a [list of unsolved problems](https://erich-friedman.github.io/mathmagic/unsolved.html). As of 9 October 2026 the list shows problems 15, 21 and 24 as open, and the [March 2005 page](https://erich-friedman.github.io/mathmagic/0305.html) on armies of bishops asks for two exact values. The paper settles all four:
 
 - **Armies of bishops.** `B(3,5) = 5` and `B(3,6) = 8`: three armies of five bishops fit on a 5 × 5 board and three of eight on a 6 × 6 board, and no more. A placement is valid exactly when every diagonal carries one army, which turns the question into an exhaustive count over labellings of the diagonals.

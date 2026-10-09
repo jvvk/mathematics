@@ -1,5 +1,13 @@
 # A Hamiltonian cubic graph with no cycle of length n − 1
 
+<!-- visual:start -->
+<p align="center"><img src="https://raw.githubusercontent.com/jvvk/jvvk/c7403d6bbbc7106e1780d8c34833854afcb0116f/assets/cubic.svg" width="760" alt="A cubic graph with no (n−1)-cycle"></p>
+
+<p align="center"><b>Hamiltonian, not bipartite, and no cycle of length 19: an answer to Gordon Royle's question.</b><br><sub>Open problem settled · formally verified in Lean 4</sub></p>
+
+<p align="center"><sub><a href="paper">paper</a> · <a href="lean">Lean proof</a> · <a href="verify">code</a> · <a href="../">all results</a></sub></p>
+<!-- visual:end -->
+
 Gordon Royle asked on MathOverflow ([question 263706](https://mathoverflow.net/q/263706), 2017) whether a cubic graph on `n` vertices can be Hamiltonian, not bipartite, and have no cycle of length `n − 1`, and reported that his computer found none on up to 24 vertices.
 
 Yes, on 20 vertices: take `K₄` and replace each vertex by a copy of `K_{2,3}`, attaching the three edges at that vertex to the three vertices of the larger class (Theorem 1). The graph is cubic; it is Hamiltonian, since any two attachments of a block are joined by a path through all five of its vertices; and a triangle of `K₄` becomes a 9-cycle. It has no 19-cycle by a count of cycle edges in the block of the missing vertex: twice the edges inside plus the edges leaving is eight, and the edges inside are twice the inner vertices on the cycle. So either four edges leave through three attachments, or none leave and the cycle is trapped in five vertices. The argument works with any Hamiltonian non-bipartite cubic graph in place of `K₄` (the prism gives 30 vertices). Why the reported search missed the example is not known; it has girth 4 and 3-edge cuts.

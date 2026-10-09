@@ -1,5 +1,13 @@
 # Nine rectangles of equal perimeter, no two alike, in a square
 
+<!-- visual:start -->
+<p align="center"><img src="https://raw.githubusercontent.com/jvvk/jvvk/c7403d6bbbc7106e1780d8c34833854afcb0116f/assets/equal-perimeter.svg" width="760" alt="Equal perimeters, no two alike"></p>
+
+<p align="center"><b>A square splits into nine rectangles of equal perimeter, no two congruent; nine is the fewest, with exactly five solutions.</b><br><sub>Open problem settled · verified by computation · Exhaustive search, two independent programs</sub></p>
+
+<p align="center"><sub><a href="paper">paper</a> · <a href="verify">code</a> · <a href="../">all results</a></sub></p>
+<!-- visual:end -->
+
 Can a square be cut into rectangles that all have the same perimeter, with no two of them congruent? Yes: an 84 × 84 square can be cut into nine such rectangles, each of perimeter 130. The note proves that nine is the least possible number of pieces, and that up to rotation, reflection and scaling there are exactly five nine-piece dissections, in squares of side 72, 84, 86, 161 and 165. This answers [MathOverflow question 300255](https://mathoverflow.net/q/300255) and refutes a guess of R. Nandakumar ([arXiv:1307.3472](https://arxiv.org/abs/1307.3472), p. 5) that no such square exists.
 
 The proof is an exact enumeration. Equal perimeters turn each combinatorial type of dissection into a square linear system, with one equation per piece, so each type has at most one candidate. Every type with at most nine pieces is listed and solved over the rationals, by two programs that share no code.

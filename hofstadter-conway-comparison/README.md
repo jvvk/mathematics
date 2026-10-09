@@ -1,5 +1,13 @@
 # A comparison theorem for the Hofstadter–Conway $10,000 sequence and its alternating variant
 
+<!-- visual:start -->
+<p align="center"><img src="https://raw.githubusercontent.com/jvvk/jvvk/c7403d6bbbc7106e1780d8c34833854afcb0116f/assets/conway.svg" width="760" alt="Newman-Conway and its cousin"></p>
+
+<p align="center"><b>Alkan's alternating variant never strays further from n/2 than the Newman-Conway sequence.</b><br><sub>Open problem settled · formally verified in Lean 4</sub></p>
+
+<p align="center"><sub><a href="paper">paper</a> · <a href="lean">Lean proof</a> · <a href="verify">code</a> · <a href="../">all results</a></sub></p>
+<!-- visual:end -->
+
 The Hofstadter–Conway sequence `c(n) = c(c(n-1)) + c(n-c(n-1))` (OEIS A004001) and Alkan's companion `s(n) = n - s(s(n-1)) - s(n-s(n-1))` (OEIS A287422) both start `1, 1`, and on each dyadic block `[2^k, 2^(k+1)]` both `c(n) - n/2` and `s(n) - n/2` trace an arch; the arches of `c` are positive, those of `s` alternate in sign. Alkan conjectured on MathOverflow (question 366772), after checking every `n ≤ 2^32`, that the arches of `s` never rise above those of `c`:
 
 ```

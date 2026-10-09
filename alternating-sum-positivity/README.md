@@ -1,5 +1,13 @@
 # Positivity of an alternating sum from random overlaps in C^N
 
+<!-- visual:start -->
+<p align="center"><img src="https://raw.githubusercontent.com/jvvk/jvvk/c7403d6bbbc7106e1780d8c34833854afcb0116f/assets/alternating-sum.svg" width="760" alt="An alternating sum that is never negative"></p>
+
+<p align="center"><b>Abdesselam's sum L(u,a,b,n) is nonnegative, and Taylor's and Hucht's conjectures follow.</b><br><sub>Open problem settled · formally verified in Lean 4</sub></p>
+
+<p align="center"><sub><a href="paper">paper</a> · <a href="lean">Lean proof</a> · <a href="verify">code</a> · <a href="../">all results</a></sub></p>
+<!-- visual:end -->
+
 Abdesselam asked on MathOverflow (question 498232) whether a certain triple sum of factorials with alternating signs, `L(u,a,b,n)`, is always nonnegative. The sums are the coefficients of a joint moment of overlaps of random unit vectors in `C^N`, expanded in rising factorials of `N - 1`, so their positivity makes that moment nonnegative for every real `N ≥ 1`, not only for whole numbers.
 
 The answer is yes. `L` is a positive factorial multiple of the coefficient of `w^a z^b` in `R^(u+1) (R-1)^ν`, where `R = 1/((1-z)^2 - w^2)` and `ν = a + b - n` (Theorem 1), and every coefficient of that series is nonnegative. The same formula gives `L > 0` exactly when `a` is even and `n ≥ a/2`, proves Peter Taylor's conjectures from the MathOverflow thread (`L` is a polynomial in `u` with nonnegative coefficients, of degree `n - a/2`, given by his binomial-basis formula), shows that Fred Hucht's terminating ₃F₂ series are positive in the range where they appear (`μ + ν ≤ c`), and recovers Abdesselam's evaluation of the extreme case `n = a + b`. The result concerns the two-site case; it does not settle the open problems on general graphs in Abdesselam's arXiv:2207.07603.

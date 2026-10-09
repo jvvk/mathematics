@@ -1,5 +1,13 @@
 # Three tangent circles and a fair coin
 
+<!-- visual:start -->
+<p align="center"><img src="https://raw.githubusercontent.com/jvvk/jvvk/c7403d6bbbc7106e1780d8c34833854afcb0116f/assets/tangent-circles.svg" width="760" alt="Three circles and a fair coin"></p>
+
+<p align="center"><b>A triangle through random points on three touching circles contains the incentre with probability exactly 1/2, for all radii.</b><br><sub>Open problem settled · verified by computation · partly in lean; geometry by hand</sub></p>
+
+<p align="center"><sub><a href="paper">paper</a> · <a href="lean">Lean proof</a> · <a href="verify">code</a> · <a href="../">all results</a></sub></p>
+<!-- visual:end -->
+
 Three circles touch in pairs, and a triangle is formed by choosing one uniform random point on each. Dan asked on Mathematics Stack Exchange and MathOverflow ([question 498968](https://mathoverflow.net/q/498968)) why the triangle contains the incentre of the triangle of centres with probability `1/2`; the equal-radius case had been done by an integral, the unequal case only by simulation.
 
 The probability is `1/2` for all radii (Theorem 1). The key is a fact about two touching circles: a random chord joining them crosses the common tangent at a point from which the two centres are seen at an angle uniformly distributed on `(π/2, π)` (Theorem 2). Each side of the triangle then misses the incentre with probability equal to the opposite angle of the triangle of centres divided by `2π`, and these angles sum to `π`. A refinement maps the pair of random points to a uniform point on a sphere, on which each miss is a lune (Theorem 3). The proof of Theorem 2 is a computation; the intuitive proof that the question asked for remains open.

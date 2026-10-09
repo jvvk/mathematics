@@ -1,5 +1,13 @@
 # Six unit sticks and the diameter of a hexagon
 
+<!-- visual:start -->
+<p align="center"><img src="https://raw.githubusercontent.com/jvvk/jvvk/c7403d6bbbc7106e1780d8c34833854afcb0116f/assets/hexagon.svg" width="760" alt="Six matchsticks in a square"></p>
+
+<p align="center"><b>No simple loop of six unit sticks fits in a unit square: the six-stick case of an open parity question.</b><br><sub>Partial progress on an open problem · partly in lean</sub></p>
+
+<p align="center"><sub><a href="paper">paper</a> · <a href="lean">Lean proof</a> · <a href="verify">code</a> · <a href="../">all results</a></sub></p>
+<!-- visual:end -->
+
 Join six sticks of length one, end to end, into a closed loop that does not cross itself. JetfiRex asked on MathOverflow ([question 481323](https://mathoverflow.net/q/481323)) and Mathematics Stack Exchange ([question 4987974](https://math.stackexchange.com/q/4987974)) whether every simple unit polygon in the closed unit square, other than the square itself, must have an odd number of sides. Pentagons and heptagons fit; even numbers seem not to.
 
 Every simple unit hexagon has diameter greater than `√2`, the constant is sharp, and it is never attained (Theorem 1). So no simple unit hexagon fits in a closed unit square or a closed disk of radius `1/√2`, while one fits in any larger square or disk (Corollary 1). This settles the six-sided case of the question. For octagons, the two-reflex case is reduced to a single configuration (Proposition 2); eight or more sides remain open.

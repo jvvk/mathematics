@@ -1,5 +1,13 @@
 # Shuffle anti-squares of every even length from 24
 
+<!-- visual:start -->
+<p align="center"><img src="https://raw.githubusercontent.com/jvvk/jvvk/c7403d6bbbc7106e1780d8c34833854afcb0116f/assets/necklace.svg" width="760" alt="Necklaces no cut can split"></p>
+
+<p align="center"><b>Shuffle anti-squares exist in every even length from 24, as Grytczuk, Pawlik and Pleszczyński conjectured.</b><br><sub>Open problem settled · formally verified in Lean 4</sub></p>
+
+<p align="center"><sub><a href="paper">paper</a> · <a href="lean">Lean proof</a> · <a href="verify">code</a> · <a href="../">all results</a></sub></p>
+<!-- visual:end -->
+
 A binary word is a shuffle square if its letters can be coloured with two colours so that each colour, read in order, spells the same word: `1100` is one (both copies spell `10`), `0110` is not. An even word, with an even number of each letter, is a shuffle anti-square if none of its cyclic rotations is a shuffle square. Grytczuk, Pawlik and Pleszczyński found that the shortest anti-squares have length 24 and conjectured that they exist in every even length from 24 upward ([arXiv:2308.13882](https://arxiv.org/abs/2308.13882), Conjecture 1).
 
 The paper proves the conjecture with two explicit families,

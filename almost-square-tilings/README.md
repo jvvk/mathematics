@@ -1,5 +1,13 @@
 # Tiling almost-squares with smaller distinct almost-squares
 
+<!-- visual:start -->
+<p align="center"><img src="https://raw.githubusercontent.com/jvvk/jvvk/c7403d6bbbc7106e1780d8c34833854afcb0116f/assets/almost-squares.svg" width="760" alt="Almost-squares in almost-squares"></p>
+
+<p align="center"><b>Which k × (k+1) rectangles split into smaller distinct ones: exactly 4, 10, 12, 14, 15, 18 and every k ≥ 20. Friedman's conjecture.</b><br><sub>Open problem settled · formally verified in Lean 4</sub></p>
+
+<p align="center"><sub><a href="paper">paper</a> · <a href="lean">Lean proof</a> · <a href="verify">code</a> · <a href="../">all results</a></sub></p>
+<!-- visual:end -->
+
 An almost-square is a `k × (k+1)` rectangle. Erich Friedman asked for which `n` the `n × (n+1)` almost-square can be cut into almost-squares of distinct sizes, all smaller than `n` (Math Magic, Problem of the Month, May 2012), and conjectured that every `n ≥ 20` works.
 
 The answer: exactly when `n ∈ {4, 10, 12, 14, 15, 18}` or `n ≥ 20` (Theorem 1). The construction scales a perfect squared square and moves each cut line by an integer so that every square becomes an almost-square; one counting identity proves it correct and gives a parity lemma explaining why the squared square of side 112 reaches only even `n` and the one of side 110 only odd `n`. Explicit tilings cover the remaining `n` from 20 to 248, and an exhaustive search settles `n ≤ 19`.

@@ -1,5 +1,13 @@
 # Does the smallest enclosing copy fit? Random points in a convex polygon
 
+<!-- visual:start -->
+<p align="center"><img src="https://raw.githubusercontent.com/jvvk/jvvk/c7403d6bbbc7106e1780d8c34833854afcb0116f/assets/enclosing.svg" width="760" alt="Does the smallest copy fit?"></p>
+
+<p align="center"><b>For many random points in an equilateral triangle, the smallest enclosing copy fits inside with probability tending to 13/48, not 1/2.</b><br><sub>Open problem settled · formally verified in Lean 4</sub></p>
+
+<p align="center"><sub><a href="paper">paper</a> · <a href="lean">Lean proof</a> · <a href="verify">code</a> · <a href="../">all results</a></sub></p>
+<!-- visual:end -->
+
 Drop `n` random points into a disk and draw the smallest circle containing them: does it lie inside the disk? An answer on Mathematics Stack Exchange shows that the limiting probability is 1/2 ([question 4799757](https://math.stackexchange.com/q/4799757)). A follow-up on MathOverflow asked whether the same holds for a regular polygon and a smallest enclosing regular polygon, which may be rotated ([question 458571](https://mathoverflow.net/q/458571)).
 
 The answer is no. For `n` uniform points in a convex polygon `K`, the probability that some smallest similar copy of `K` containing them lies inside `K` converges to an explicit constant `p(K)`, given by a formula over a Poisson limit model (Theorems 1 and 10). For triangles the formula is explicit (Corollary 2): `p = 13/48` for the equilateral triangle, `7/24` for the right isosceles triangle, `29/96` for the 30-60-90 triangle. For the regular `q`-gon (Corollary 3),

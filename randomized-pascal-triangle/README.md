@@ -1,5 +1,13 @@
 # A randomized Pascal triangle whose average blows up
 
+<!-- visual:start -->
+<p align="center"><img src="https://raw.githubusercontent.com/jvvk/jvvk/c7403d6bbbc7106e1780d8c34833854afcb0116f/assets/pascal.svg" width="760" alt="A randomized Pascal triangle"></p>
+
+<p align="center"><b>The expected average blows up whenever p ≥ 0.232; whether it does for every p > 0 is open.</b><br><sub>Partial progress on an open problem · in lean</sub></p>
+
+<p align="center"><sub><a href="paper">paper</a> · <a href="lean">Lean proof</a> · <a href="verify">code</a> · <a href="../">all results</a></sub></p>
+<!-- visual:end -->
+
 Build Pascal's triangle, but let each interior entry be the sum of the two entries above it with probability `p` and their absolute difference otherwise. Does the expected average of all the entries tend to infinity? The question was asked on Mathematics Stack Exchange ([question 4972093](https://math.stackexchange.com/q/4972093)) and MathOverflow ([question 479618](https://mathoverflow.net/q/479618)); it was known for `p > 1/2`.
 
 The expected sum of row `n` is at least `λ(p)^n` with `λ(p) = p² + √(p⁴ + 4p(1 − p))`, which exceeds 1 exactly when `p > 1 − 1/√2 ≈ 0.293` (Theorem 1). The proof uses the row sum and the total variation of the row: the sum grows only when the row is rough, and coins that disagree keep it rough. A computer-assisted extension of the same idea, with an exact certificate, gives growth for `p ≥ 29/125 = 0.232` (Theorem 2). In both ranges the expected average tends to infinity. Whether it stays finite for any `p > 0` is open; simulations by Einar Rødland on the Stack Exchange thread suggest it diverges for every `p > 0`.

@@ -1,5 +1,13 @@
 # Counting cycles in a Sylow 2-subgroup
 
+<!-- visual:start -->
+<p align="center"><img src="https://raw.githubusercontent.com/jvvk/jvvk/c7403d6bbbc7106e1780d8c34833854afcb0116f/assets/sylow.svg" width="760" alt="Counting cycles in a Sylow 2-subgroup"></p>
+
+<p align="center"><b>The two factors Stanley observed are irreducible over the rationals at every level.</b><br><sub>Open problem settled · formally verified in Lean 4</sub></p>
+
+<p align="center"><sub><a href="paper">paper</a> · <a href="lean">Lean proof</a> · <a href="verify">code</a> · <a href="../">all results</a></sub></p>
+<!-- visual:end -->
+
 Count the permutations in a Sylow 2-subgroup of the symmetric group on `2^n` points by their number of cycles. Richard Stanley observed on MathOverflow ([question 489315](https://mathoverflow.net/q/489315)) that a closely related polynomial, after adding a power of 2, splits into two factors of equal degree that appear to be irreducible. Darij Grinberg and Max Alekseyev proved the factorization there; irreducibility was left open.
 
 Both factors are irreducible over `Q` for every `n` (Theorem 1 and its corollary). The recurrence printed in the question is one index off from the Sylow polynomials. The paper treats both families, and the same proof covers each. After scaling, both are iterates of the triangular-number map `T(x) = x(x+1)/2`. The factorization is a difference of two squares, `T(T(z)) + 1 = (z² − z + 2)(z² + 3z + 4)/8`. Irreducibility follows modulo 5: the critical orbit of `T` there is `3 → 1 → 1`, both factors take non-square values along it, and the quadratic case of Capelli's lemma applies at every step. The analogous question for odd primes stays open; the paper reduces it to iterates of `(x^p + (p−1)x)/p` and records small cases.

@@ -1,5 +1,13 @@
 # Which orders maximise the span of a chain?
 
+<!-- visual:start -->
+<p align="center"><img src="https://raw.githubusercontent.com/jvvk/jvvk/c7403d6bbbc7106e1780d8c34833854afcb0116f/assets/chains.svg" width="760" alt="The chain that reaches farthest"></p>
+
+<p align="center"><b>Every best chain has lengths rising then falling; exactly three orders occur for four segments, and the general count is open.</b><br><sub>Partial progress on an open problem · Shape theorem in Lean</sub></p>
+
+<p align="center"><sub><a href="paper">paper</a> · <a href="lean">Lean proof</a> · <a href="verify">code</a> · <a href="../">all results</a></sub></p>
+<!-- visual:end -->
+
 A planar chain has segments of given distinct lengths, each turning anticlockwise by one of given distinct angles; lengths and angles can be used in any order. Which orders put the end farthest from the start? Arthur Queiroz Moura asked on MathOverflow ([question 442949](https://mathoverflow.net/q/442949)), attributing the problem to Ronaldo Garcia, how many relative orders `a_n` can be optimal when the angles total at most `π/2`.
 
 When the angles total less than `π`, every optimal chain has strictly unimodal lengths with the two shortest at the ends, turns that fall and then rise, and its longest segment at the smallest turn (Theorem 1), confirming observations of Claude Chaunier; this gives an `O(n² log n 2ⁿ)` algorithm (Theorem 2). Exactly three orders occur for four segments (`a₄ = 3`), and an explicit recursive family shows `a_n ≥ b_n` for every `n`, where `b_n = 1, 3, 6, 14, 31, 70, 157, …` is OEIS A006356 (Theorems 3 and 4); in particular `a₇ ≥ 31`, two more than the list in the question. Equality `a_n = b_n` is conjectured and open.

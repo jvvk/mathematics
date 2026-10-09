@@ -1,5 +1,13 @@
 # Descent sets of a permutation and its inverse: almost every pair occurs
 
+<!-- visual:start -->
+<p align="center"><img src="https://raw.githubusercontent.com/jvvk/jvvk/c7403d6bbbc7106e1780d8c34833854afcb0116f/assets/descent-sets.svg" width="760" alt="Descent sets of a permutation and its inverse"></p>
+
+<p align="center"><b>Almost every pair of subsets occurs, so Stanley's growth rate is L = 4.</b><br><sub>Open problem settled · formally verified in Lean 4</sub></p>
+
+<p align="center"><sub><a href="paper">paper</a> · <a href="lean">Lean proof</a> · <a href="verify">code</a> · <a href="../">all results</a></sub></p>
+<!-- visual:end -->
+
 Richard Stanley asked how many pairs (S, T) of subsets of {1, …, n−1} arise as the descent sets of a permutation w of {1, …, n} and of its inverse, and what the growth rate L = lim f(n)^(1/n) is. The paper proves that almost every pair arises, 1 − f(n)/4^(n−1) ≤ 6e^(−n/150) for every n, so L = 4. An elementary obstruction (if T contains |S| + 1 consecutive integers, the pair cannot occur) gives f(n) ≤ 4^(n−1) − 3^(n−1) + 1, so the rate cannot exceed log(4/3). The pairs violating a necessary condition of Gale–Ryser type have proportion (3/4)^(n+O(log² n)), so the rate is exactly log(4/3) if a dominance-order criterion for occurrence, checked by computation for n ≤ 20, is correct. It also finds the asymptotics of the number of permutations w such that w and w⁻¹ are both alternating, g(n) = (16/π²)(4/π²)^n n! (1 + π⁴/(48n) + O(n⁻²)), confirming Stanley's prediction, and checks Gessel's conjecture on the largest class for n ≤ 22.
 
 The question is Stanley's ([MathOverflow question 486548](https://mathoverflow.net/q/486548)). The proof that L = 4 was first posted as the author's [MathOverflow answer](https://mathoverflow.net/a/515793) on 7 October 2026.

@@ -1,5 +1,13 @@
 # A mex sequence that is not ultimately periodic
 
+<!-- visual:start -->
+<p align="center"><img src="https://raw.githubusercontent.com/jvvk/jvvk/c7403d6bbbc7106e1780d8c34833854afcb0116f/assets/mex.svg" width="760" alt="A mex sequence that never repeats"></p>
+
+<p align="center"><b>Guy's question E27: the sequence from 1,1,1,0,1,0,1,1 is unbounded, so not ultimately periodic.</b><br><sub>Open problem settled · formally verified in Lean 4</sub></p>
+
+<p align="center"><sub><a href="paper">paper</a> · <a href="lean">Lean proof</a> · <a href="verify">code</a> · <a href="../">all results</a></sub></p>
+<!-- visual:end -->
+
 Start with a few nonnegative integers and keep appending the least nonnegative integer that is not a sum `a_i + a_{n-i}` of two terms whose indices add up to the last index `n` already written. In Section E27 of *Unsolved Problems in Number Theory*, Guy asks whether every such mex sequence is ultimately periodic.
 
 The answer is no. The mex sequence that starts `1,1,1,0,1,0,1,1` is unbounded (Theorem 1). Its zeros sit at the positions with remainder 0 or 3 modulo 5 (Lemma 1), and each zero copies an earlier value into the set whose least missing element is taken, so from the third block of five on, each block brings a value no earlier block had (Lemma 2). Appendix A gives every term: from `n = 15` on, moving 15 positions ahead adds 4 at the positions with remainder 1 or 2 modulo 5 and 0 elsewhere. The answer concerns Guy's question with ordinary addition; the variant with addition without carries (OEIS A067018), closest to the games that motivate it, is untouched.

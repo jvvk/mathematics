@@ -1,5 +1,13 @@
 # The 697 × 611 rectangle needs exactly fourteen squares
 
+<!-- visual:start -->
+<p align="center"><img src="https://raw.githubusercontent.com/jvvk/jvvk/c7403d6bbbc7106e1780d8c34833854afcb0116f/assets/squaring.svg" width="760" alt="697 × 611 in fourteen squares"></p>
+
+<p align="center"><b>The rectangle needs exactly fourteen squares, not seventeen, so it is not a counterexample to the minimal squaring conjecture.</b><br><sub>Open problem settled · verified by computation · Complete enumeration, checked against OEIS</sub></p>
+
+<p align="center"><sub><a href="paper">paper</a> · <a href="verify">code</a> · <a href="../">all results</a></sub></p>
+<!-- visual:end -->
+
 Write `f(m, n)` for the least number of integer-sided squares that tile an `m × n` rectangle. Scaling a tiling shows `f(tm, tn) ≤ f(m, n)`, and the minimal squaring conjecture says equality always holds. Answering the MathOverflow question [Tiling a rectangle with the smallest number of squares](https://mathoverflow.net/q/116382), Ed Pegg Jr [reported in 2017](https://mathoverflow.net/a/275053) that one possible counterexample remained among rectangles with sides at most 760: `697 × 611`, whose best known tiling used 17 squares, while `1394 × 1222` could be tiled with 16.
 
 The note shows `f(697, 611) = 14` (Theorem 1). The fourteen squares have sides 371, 326, 285, 240, 172, 68, 41, 37, 35, 35, 34, 34, 33 and 4; the tiling is compound and uses equal squares, so catalogues of simple perfect squared rectangles miss it. The lower bound is a complete enumeration of squared rectangles with at most 13 squares through the electrical networks of Brooks, Smith, Stone and Tutte, generated as quadrangulations by plantri. The same enumeration reproduces every value of OEIS [A219158](https://oeis.org/A219158) (all sides up to 388) that is at most 14. So `697 × 611` is not a counterexample, and `1394 × 1222` also needs at most 14 squares.

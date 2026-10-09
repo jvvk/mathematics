@@ -1,5 +1,13 @@
 # Two triangulations that share only their hull
 
+<!-- visual:start -->
+<p align="center"><img src="https://raw.githubusercontent.com/jvvk/jvvk/c7403d6bbbc7106e1780d8c34833854afcb0116f/assets/triangulations.svg" width="760" alt="Two triangulations, one outline"></p>
+
+<p align="center"><b>From nine points on, two triangulations can share nothing but the five outline edges, answering Rote.</b><br><sub>Open problem settled · formally verified in Lean 4</sub></p>
+
+<p align="center"><sub><a href="paper">paper</a> · <a href="lean">Lean proof</a> · <a href="verify">code</a> · <a href="../">all results</a></sub></p>
+<!-- visual:end -->
+
 Any two triangulations of a finite point set in the plane contain the edges of its convex hull. How few other edges must they share? For every n ≥ 9 there are n points in general position, with a pentagonal hull, whose two triangulations share nothing else; since five edges must always be shared once n ≥ 5, the minimum is exactly five. The construction starts from nine explicit points and inserts points one at a time, carrying along a *chain* (a face of one triangulation whose side passes through two suitable faces of the other) that makes the next insertion possible.
 
 Started from a convex polygon, the same construction settles every hull size: n points with h hull vertices admit two triangulations sharing only the hull exactly when n = h, or h ≥ 6, or h = 5 and n ≥ 9. The cases of a pentagonal hull with six to eight points rest on an exhaustive search over the order-type database of Aichholzer, Aurenhammer and Krasser.
