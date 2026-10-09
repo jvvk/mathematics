@@ -51,6 +51,18 @@ MUTANTS = [
      "    _ = lam ^ M := by field_simp; ring", "    _ = lam ^ (M + 1) := by field_simp; ring"),
     ("bridge value off by one", "Bridge.lean",
      "= 6757339 / 18750000 := by", "= 6757340 / 18750000 := by"),
+    ("certificate: interval starts at 28/125", "Cert/Local.lean",
+     "(hp : (29/125 : ℝ) ≤ p)", "(hp : (28/125 : ℝ) ≤ p)"),
+    ("certificate: Bernstein substitution 96/125 -> 97/125", "Cert/Local.lean",
+     "localExpect ((29/125 : ℝ)+(96/125 : ℝ)*q)", "localExpect ((29/125 : ℝ)+(97/125 : ℝ)*q)"),
+    ("coverage: first region proved by the wrong chunk", "Cert/Regions.lean",
+     "exact chunk0 a b c d ha hb hc hd h0 h1\n", "exact chunk1 a b c d ha hb hc hd h0 h1\n"),
+    ("bridge: correction 999/10000 -> 998/10000", "CertBridge.lean",
+     "inputCost a b c d + (999/10000 : ℝ)", "inputCost a b c d + (998/10000 : ℝ)"),
+    ("bridge: input V2 term order not flipped", "CertBridge.lean",
+     "abs_sub_comm c a, abs_sub_comm d b,", "abs_sub_comm c a,"),
+    ("Theorem B (full): 5001/5000 -> 5002/5000", "Full.lean",
+     "    (5001 / 5000 : ℝ) ^ n ≤ Exp p n (S (n + 4)) :=", "    (5002 / 5000 : ℝ) ^ n ≤ Exp p n (S (n + 4)) :="),
 ]
 
 
