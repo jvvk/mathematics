@@ -1,0 +1,74 @@
+{
+ "diagram": "u",
+ "board": "3x4",
+ "vertices": [
+  {
+   "vertex": 0,
+   "label": "top-left",
+   "piece": "R",
+   "square": "c2"
+  },
+  {
+   "vertex": 1,
+   "label": "top-right",
+   "piece": "N",
+   "square": "b4"
+  },
+  {
+   "vertex": 2,
+   "label": "right",
+   "piece": "B",
+   "square": "c3"
+  },
+  {
+   "vertex": 3,
+   "label": "bottom-right",
+   "piece": "R",
+   "square": "b3"
+  },
+  {
+   "vertex": 4,
+   "label": "bottom-left",
+   "piece": "N",
+   "square": "a1"
+  },
+  {
+   "vertex": 5,
+   "label": "left",
+   "piece": "K",
+   "square": "a2"
+  }
+ ],
+ "diagram_rows_top_to_bottom": [
+  ".. N1 ..",
+  ".. R3 B2",
+  "K5 .. R0",
+  "N4 .. .."
+ ],
+ "attacks": {
+  "0": [
+   2,
+   5
+  ],
+  "1": [
+   0,
+   5
+  ],
+  "2": [
+   1,
+   4
+  ],
+  "3": [
+   1,
+   2
+  ],
+  "4": [
+   0,
+   3
+  ],
+  "5": [
+   3,
+   4
+  ]
+ }
+}

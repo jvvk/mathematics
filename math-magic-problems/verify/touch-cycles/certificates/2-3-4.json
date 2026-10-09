@@ -1,0 +1,16 @@
+{
+  "triple": [
+    2,
+    3,
+    4
+  ],
+  "radius": 8,
+  "normal": [
+    1,
+    1
+  ],
+  "points": 145,
+  "variables": 435,
+  "clauses": 26362,
+  "proof_lines": 586
+}

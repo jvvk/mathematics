@@ -1,0 +1,306 @@
+\documentclass[11pt]{amsart}
+\usepackage[margin=28mm]{geometry}
+\usepackage{amssymb,booktabs}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newcommand{\symking}{\textsf{\textbf{K}}}
+\newcommand{\symqueen}{\textsf{\textbf{Q}}}
+\newcommand{\symrook}{\textsf{\textbf{R}}}
+\newcommand{\symbishop}{\textsf{\textbf{B}}}
+\newcommand{\symknight}{\textsf{\textbf{N}}}
+
+\title{Four problems from Erich Friedman's \emph{Math Magic}}
+\author{Vamshi Jandhyala}
+\date{Preprint, 9 October 2026. Not peer reviewed.}
+
+\begin{document}
+\begin{abstract}
+Erich Friedman's \emph{Math Magic} pages pose a problem each month and keep a list of the questions
+that remained open. We settle four of them. Two exact values for armies of bishops,
+$B(3,5)=5$ and $B(3,6)=8$, follow from a one-line lemma and an exhaustive count. Three colours of
+king with touch counts $(1,3,6)$, $(1,6,3)$ or $(2,3,4)$ admit no finite arrangement (unsolved
+problem 24), by a reduction to finite formulas with checkable refutations. Three of the
+6-point capture digraphs of unsolved problem 21 are not realised by any chess position. And one of
+the heptominoes of unsolved problem 15 can never be arranged in a square with equal row and column
+counts, by an explicit weighting. Every computation is reproduced by programs published with the
+paper.
+\end{abstract}
+\maketitle
+
+\section{Introduction}
+
+Since 1998 Erich Friedman's \emph{Math Magic} has posed one problem a month, published the
+solutions readers sent in, and collected the questions they could not answer on a list of unsolved
+problems~\cite{unsolved}. The problems are recreational in flavour and often easy to state, which
+makes the open ones tantalising. This note settles four of them. As of 9 October 2026 the list still
+shows problems 15, 21 and 24 as open, and the March 2005 page on armies of bishops still asks for the
+two values we prove~\cite{bishops}.
+
+The results are of two kinds, and we label them. A \emph{proved} statement has a proof a reader can
+follow by hand. A \emph{computer-certified} statement rests on a finite computation: an exhaustive
+count, or a solver's refutation of a finite formula. For each certified statement we say what was
+computed, why the finite computation implies the statement, and how it was checked independently.
+The programs are in the \path{verify} folder that accompanies this paper; each section names the
+subfolder.
+
+\begin{center}
+\small
+\begin{tabular}{@{}llll@{}}
+\toprule
+Problem & Source & Result & Kind\\
+\midrule
+Armies of bishops & March 2005 & $B(3,5)=5$, $B(3,6)=8$ & computer-certified\\
+Touch cycles (no.~24) & March 2015 & three triples impossible & computer-certified\\
+Capture digraphs (no.~21) & October 2013 & diagrams $q$, $r$, $s$ impossible & computer-certified\\
+Magic polyomino squares (no.~15) & May 2007 & heptomino $A$ impossible & proved\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Armies of bishops}\label{sec:bishops}
+
+Place $C$ armies of $k$ bishops each on an $N\times N$ board so that no bishop attacks a bishop of
+another army. A bishop attacks along diagonals and is blocked by the first piece in its way, of
+either army. Let $B(C,N)$ be the largest such $k$. Friedman's table~\cite{bishops} gives lower bounds
+for small $C$ and $N$, and asks whether $B(3,5)=5$ and $B(3,6)=8$. Figure~\ref{fig:bishops} shows
+three armies of eight on the $6\times6$ board. The question is whether nine is possible.
+
+\begin{figure}[ht]
+\centering
+\input{fig_bishops}
+\caption{Three armies of eight bishops (black, white, grey) on the $6\times 6$ board. Every
+diagonal that carries bishops carries only one army.}\label{fig:bishops}
+\end{figure}
+
+The figure suggests the right way to look at a placement: by diagonals, not by bishops.
+
+\begin{lemma}[proved]\label{lem:diag}
+A placement of armies is valid if and only if every diagonal containing bishops contains bishops of
+only one army.
+\end{lemma}
+
+\begin{proof}
+If a diagonal carries bishops of two armies, walk along it: somewhere a bishop of one army is
+followed, with nothing in between, by a bishop of the other, and these two attack each other.
+Conversely, an attack always runs along a diagonal between two bishops on it, so if every diagonal
+carries one army no bishop attacks another army.
+\end{proof}
+
+So blocking plays no part, and a placement is determined, up to which cells are used, by a label on
+each diagonal: the army it carries, or ``unused''. A bishop of army $i$ can stand on a cell exactly
+when both diagonals through the cell carry label $i$. Taking every such cell gives a valid placement
+by Lemma~\ref{lem:diag}, and removing bishops keeps a placement valid. Write $u_i(\lambda)$ for the number of cells whose two diagonals both carry label $i$ in the
+labelling $\lambda$. Hence
+\[
+B(C,N)=\max_{\lambda}\ \min_{1\le i\le C}\ u_i(\lambda).
+\]
+The right side is the size of the smallest army when every usable cell is filled, maximised over all
+ways of labelling the diagonals. A light square and a dark square never share a diagonal, so the
+light and dark diagonals can be labelled separately: for each colour we list the vectors of army sizes
+that its labellings achieve, then combine one vector from each colour.
+
+\begin{theorem}[computer-certified]\label{thm:bishops}
+$B(3,5)=5$ and $B(3,6)=8$.
+\end{theorem}
+
+\begin{proof}[Method]
+The lower bounds are the placements of Figure~\ref{fig:bishops} and of its $5\times5$ analogue in
+\path{verify/bishops/positions.json}, checked by a move-by-move attack simulator. For the upper
+bounds, with $C=3$ each diagonal takes one of four labels. On the $5\times5$ board the light squares
+lie on ten diagonals and the dark squares on eight, giving $4^{10}+4^{8}$ labellings; on the
+$6\times6$ board each colour has eleven, giving $2\cdot4^{11}$. The program
+\path{verify/bishops/check.py} lists them all and evaluates the formula above. The maxima are $5$ and
+$8$. The same program reproduces $B(3,3)=2$ and $B(3,4)=4$, and with two armies the values
+$B(2,5)=12$ and $B(2,6)=18$ in Friedman's table. In \path{mutants.py} a recoloured bishop is caught
+by the simulator, and a mutant that lets a bishop stand on a cell when only one of its diagonals
+matches its army gives a larger value for $B(3,5)$, so the count does depend on the lemma.
+\end{proof}
+
+\section{Touch cycles (unsolved problem 24)}\label{sec:touch}
+
+Place kings of three colours $A$, $B$, $C$ on the cells of the plane, at most one per cell. Two cells
+touch when they are king moves apart, that is, when their coordinates differ by at most one in each
+direction. Friedman~\cite{touch} asks for which triples $(a,b,c)$ there is a nonempty finite
+arrangement in which every $A$ touches exactly $a$ kings of colour $B$, every $B$ touches exactly $b$
+of colour $C$, and every $C$ touches exactly $c$ of colour $A$. Figure~\ref{fig:touch} shows one for
+$(1,1,6)$. The unsolved list gives $(1,3,6)$, $(1,6,3)$ and $(2,3,4)$ as unknown and conjectures that
+they do not exist.
+
+\begin{figure}[ht]
+\centering
+\input{fig_touch}
+\caption{A finite arrangement for $(a,b,c)=(1,1,6)$: every $A$ (white) touches one $B$ (black),
+every $B$ touches one $C$ (grey), and every $C$ touches six $A$'s.}\label{fig:touch}
+\end{figure}
+
+\begin{theorem}[computer-certified]\label{thm:touch}
+There is no nonempty finite arrangement for $(a,b,c)=(1,3,6)$, $(1,6,3)$ or $(2,3,4)$. Nor is there
+one for $(1,4,5)$.
+\end{theorem}
+
+\begin{proof}[Method]
+The idea is to look at an extreme king, where the arrangement must stop. Fix a direction $n$, namely
+$n=(0,1)$ for the first, second and fourth triples and $n=(1,1)$ for $(2,3,4)$. Given a finite
+arrangement, choose the occupied cell $p$ that maximises $n\cdot p$, breaking ties by the larger
+first coordinate, and translate so that $p$ is the origin. Then every cell $q$ with $n\cdot q>0$, or
+with $n\cdot q=0$ and positive first coordinate, is empty.
+
+Now restrict attention to the window $[-r,r]^2$. Every cell strictly inside it, with both
+coordinates of absolute value less than $r$, has all eight neighbours in the window, so the counting
+rule at that cell refers only to cells of the window. The restriction of the arrangement is therefore
+a solution of a finite problem: colour each window cell $A$, $B$, $C$ or empty, with the origin
+occupied, the half-plane beyond it empty, and the counting rule imposed at every occupied interior
+cell. That problem is unsatisfiable for $r=6$, $6$, $8$ and $4$ for the four triples in the order
+listed. So no finite arrangement exists.
+
+Each finite problem is written as a formula in conjunctive normal form, and the folder
+\path{verify/touch-cycles/certificates} holds the formula with a DRUP refutation found by a SAT
+solver. The checker \path{verify_drup.py}, which uses only the Python standard library, confirms
+all four refutations in about thirteen seconds. Trust then moves to the encoding, and that was
+checked separately: \path{touch_extreme.py} is an independently written encoding of the same window
+problem for the Z3 solver. It reports the four problems unsatisfiable at the same radii, and
+satisfiable for the controls $(1,2,3)$ and $(2,2,2)$, which do have finite arrangements.
+\end{proof}
+
+For $(1,4,5)$, which is not on the list, there is also a proof by hand
+(\path{HUMAN-PROOF-145.md}). For the three listed triples finiteness is essential: each has
+a doubly periodic arrangement on the whole plane, with periods $6\times6$, $8\times8$ and $6\times6$
+(\path{touch_torus.py}). A proof of Theorem~\ref{thm:touch} must therefore use the boundary of the
+arrangement, as the extreme-king argument does.
+
+\section{Capture digraphs (unsolved problem 21)}\label{sec:capture}
+
+Put chess pieces (kings, queens, rooks, bishops and knights, any number of each, colours ignored) on
+a board, and draw an arrow from piece $X$ to piece $Y$ when $X$ attacks $Y$; sliding pieces are
+blocked by the first piece in their way. Friedman~\cite{capture} asks which regular digraphs arise
+this way. For six vertices with two arrows in and two out at every vertex there are 23 digraphs up to
+isomorphism, which his page labels $a$ to $w$. Readers found positions for eighteen of them,
+DeVincentis showed that $f$ cannot be realised, and the author found a position for $u$ on a
+$3\times4$ board (Figure~\ref{fig:capture}, left). The diagrams $q$, $r$ and $s$ remained open, and
+the unsolved list conjectures that they are not capture graphs.
+
+\begin{figure}[ht]
+\centering
+\input{fig_capture}\qquad\qquad
+\input{fig_q}
+\caption{Left: a position on a $3\times4$ board whose capture graph is the 2-regular digraph $u$;
+each arrow is an attack. Right: the digraph $q$, which no position realises.}\label{fig:capture}
+\end{figure}
+
+\begin{theorem}[computer-certified]\label{thm:capture}
+The digraphs $q$, $r$ and $s$ are not the capture graph of any position, on a board of any size.
+\end{theorem}
+
+\begin{proof}[Method]
+A position on any finite board is also a position on the infinite board $\mathbb Z^2$ with the same
+attacks, so it is enough to rule out $\mathbb Z^2$. The program \path{src/digraphs.py} lists the
+2-regular digraphs on six vertices up to isomorphism and finds 23, matching Friedman's count. To tie
+the solver's numbering to his letters without reading arrows off pictures, the eighteen published
+positions were transcribed (\path{out/published_solutions.txt}) and their capture graphs
+computed; they cover eighteen distinct classes, and the five left over are exactly the five diagrams
+$f$, $q$, $r$, $s$, $u$ without a published position.
+
+Two models then decide every class. The first (\path{src/realize.py}) gives each piece unbounded
+integer coordinates and asks Z3, in linear integer arithmetic, for a position with exactly the
+required arrows; it enumerates the assignments of piece types to vertices, discarding only
+assignments that cannot work for a stated reason (two pieces of the same type attack each other
+symmetrically, for example). The second (\path{verify/second.py}) is written independently for
+the cvc5 solver, keeps the piece types as solver variables, and does no pruning. Both models find
+positions for 19 classes and prove the other four unrealisable: $f$, $q$, $r$ and $s$. Every
+position the solvers return is re-checked by a square-by-square simulator (\path{verify/check.py}),
+and the encodings are tested against that simulator on random positions, with deliberate mutants
+caught (\path{verify/test_*.py}).
+\end{proof}
+
+The result for $f$ agrees with DeVincentis. A proof of Theorem~\ref{thm:capture} by hand would still
+be welcome: after the pruning there are only 240, 60 and 60 type assignments to rule out for $q$,
+$r$ and $s$.
+
+\section{A heptomino that never balances (unsolved problem 15)}\label{sec:heptomino}
+
+Friedman's May 2007 problem~\cite{polyomino} asks how few copies of a given polyomino can be placed,
+without overlapping, in a square so that every row and every column contains the same positive number
+of covered cells. Rotations and reflections are allowed. For most small polyominoes some arrangement
+works. Unsolved problem 15 lists heptominoes for which none is known and conjectures that none exists.
+We settle the first of them, the shape $A$ of Figure~\ref{fig:heptomino}.
+
+\begin{figure}[ht]
+\centering
+\input{fig_heptomino}
+\caption{The heptomino $A$ with its row counts $P=(2,1,1,1,2)$ and column counts $Q=(1,5,1)$.}
+\label{fig:heptomino}
+\end{figure}
+
+\begin{theorem}[proved]\label{thm:heptomino}
+No arrangement of one or more copies of $A$ in an $n\times n$ square has the same positive number of
+covered cells in every row and every column.
+\end{theorem}
+
+\begin{proof}
+Give each column $x$ a weight $w_x$ and each row $y$ the same weight $w_y$, and give the cell $(x,y)$
+the weight $w_x+w_y$. The weight of a set of cells is then the sum, over columns, of the column's
+weight times the number of cells in it, plus the same sum over rows. For a balanced arrangement with
+$c$ covered cells in every row and column this is $2c\sum_x w_x$.
+
+Now weigh a single copy. The row counts of $A$ are $P=(2,1,1,1,2)$ and its column counts are
+$Q=(1,5,1)$. Both are palindromes, so in every rotation and reflection one direction sees $P$ across
+five consecutive lines and the other sees $Q$ across three. A copy therefore weighs
+$P\cdot(w_i,\dots,w_{i+4})+Q\cdot(w_j,\dots,w_{j+2})$ for some $i$ and $j$. Call these the $P$-windows
+and $Q$-windows of $w$. If every $P$-window is at least $-1$ and every $Q$-window is at least $1$, each
+copy weighs at least $0$, and so does any arrangement. If moreover $\sum w<0$, a balanced arrangement
+would weigh $2c\sum w<0$. It remains to find such weights for every $n\ge5$; a square of side less than
+five cannot hold $A$ at all.
+
+For $5\le n\le 9$ exact rational weights are listed in \path{verify/heptomino/exact-weights-A.jsonl}.
+For larger $n$ write $n=5K+m$ with $K\ge1$ and $5\le m\le 9$, and build $w$ from $K$ blocks of length
+five followed by a core:
+\[
+w=\bigl(a_KZ+d,\ \dots,\ a_1Z+d,\ C_m\bigr),\quad Z=(-5,1,0,-1,5),\quad
+d=\bigl(-\tfrac12,\tfrac12,0,\tfrac12,-\tfrac12\bigr),
+\]
+with $a_1=\tfrac72$, $a_{k+1}=5a_k$, and fixed cores $C_m$ of negative sum given in
+\path{shapeA_family.json}. Each block sums to zero, since $Z$ and $d$ do, so $\sum w=\sum C_m<0$. A
+window lying inside one block does not depend on its scale: $P\cdot Z=-10+1+0-1+10=0$, and the
+three $Q$-windows of $Z$ are $-5+5+0$, $1+0-1$ and $0-5+5$, all zero. Such windows meet the bounds
+through $d$. A window across the boundary between blocks of scales $5s$ and $s$ has
+the form $\alpha s+\delta$ with $\alpha>0$, and it meets its bound at $s=a_1$, hence at every larger
+scale. The windows that touch the core take finitely many values and are checked directly.
+\end{proof}
+
+The checker \path{verify/heptomino/check_shapeA.py} uses exact rational arithmetic and only the
+standard library. It verifies the window bounds and the negative sum explicitly for every side from 5
+to 400, checks the induction step symbolically, and rejects four mutants: a wrong core, the ratio $4$
+in place of $5$, no offset $d$, and a wrong profile. The other heptominoes on the list remain open.
+For them the weighting method fails: a fractional relaxation of the placement problem is feasible on
+some larger squares, so no weights of this kind can exist there.
+
+\section*{Verification and use of AI tools}
+
+The searches, certificates and parts of the proofs were produced with AI coding assistants, Claude
+(Anthropic) and Codex (OpenAI), and then checked as each section describes. In particular the
+extreme-king reduction and DRUP certificates for touch cycles, and the finite weights for the
+heptomino on small squares, were first found by Codex. The author takes responsibility for every
+statement. All programs and data are in the folder that accompanies this paper; each section names
+its subfolder, and \path{README.md} gives the commands and running times.
+
+\begin{thebibliography}{9}
+\bibitem{unsolved} E.~Friedman, \emph{Math Magic: unsolved problems},
+\url{https://erich-friedman.github.io/mathmagic/unsolved.html}, accessed 9 October 2026.
+\bibitem{bishops} E.~Friedman, \emph{Math Magic}, problem of the month, March 2005 (armies of bishops),
+\url{https://erich-friedman.github.io/mathmagic/0305.html}, accessed 9 October 2026.
+\bibitem{polyomino} E.~Friedman, \emph{Math Magic}, problem of the month, May 2007 (polyominoes in
+squares), \url{https://erich-friedman.github.io/mathmagic/0507.html}, accessed 9 October 2026.
+\bibitem{capture} E.~Friedman, \emph{Math Magic}, problem of the month, October 2013 (regular
+digraphs of chess pieces), \url{https://erich-friedman.github.io/mathmagic/1013.html}, accessed
+9 October 2026.
+\bibitem{touch} E.~Friedman, \emph{Math Magic}, problem of the month, March 2015 (touching letters),
+\url{https://erich-friedman.github.io/mathmagic/0315.html}, accessed 9 October 2026.
+\end{thebibliography}
+
+\end{document}

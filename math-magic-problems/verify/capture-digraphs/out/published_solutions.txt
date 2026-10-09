@@ -1,0 +1,20 @@
+# Published solutions for 2-regular digraphs on 6 points, transcribed from
+# https://erich-friedman.github.io/mathmagic/1013/6-2-<letter>.gif (o and i are .png), rows top to bottom.
+a K...K KK.KK
+b R.RR RR.R
+c Q..Q .BB. .RR.
+d R.B. K..K R.B.
+e RR.K K.RR
+g N...Q .RN.. .RB..
+h .RN. B... ...N .RB.
+i .NR. ..RN QK..
+j .K.R KN.. .... R..R
+k R..B. ..N.B R..B.
+l RN.. ...N ..B. R.R.
+m ..K. ..NK KN.. .K..
+n RBR RBR
+o ....Q ..... R..NR ..... R.B..
+p ..RQ .... B.N. RB..
+t .B.. R..N N..R ..B.
+v .R.N .BB. N.R.
+w .RN BB. .RN

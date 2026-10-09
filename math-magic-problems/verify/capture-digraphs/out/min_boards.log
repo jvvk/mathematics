@@ -1,0 +1,19 @@
+class0: 2x5: yes 2x5 .K KK .. KK .K 
+class1: 2x4: yes 2x4 KK .R R. KK 
+class2: 4x4: yes 4x4 R.K. ..NK .... RQ.. 
+class4: 4x4: yes 4x4 ..K. ..NK KN.. .K.. 
+class5: 3x4: yes 3x4 R.R ... KNK .B. 
+class6: 2x4: yes 2x4 RK .R .R RK 
+class7: 3x4: yes 3x4 .K. R.K .R. RK. 
+class8: 3x4: yes 3x4 .K. B.B ... RKR 
+class9: 3x4: yes 3x4 .RK ..R ..N QK. 
+class10: 4x4: yes 4x4 .RK. ...N BK.. .B.. 
+class11: 2x3: yes 2x3 RR BB RR 
+class12: 5x5: yes 5x5 ..R.Q ..N.. B.... ..... R.R.. 
+class13: 3x5: yes 3x5 Q.. ... .NB .RR N.. 
+class14: 3x4: yes 3x4 Q.. K.N .RR .N. 
+class18: 3x4: yes 3x4 Q.. K.N N.K ..Q 
+class19: 3x4: yes 3x4 ..N RB. .BR N.. 
+class20: 3x3: yes 3x3 .RN BB. .RN 
+class21: 3x4: yes 3x4 .N. BR. R.K ..N 
+class22: 4x4: yes 4x4 ..Q. N... R..N .KB. 

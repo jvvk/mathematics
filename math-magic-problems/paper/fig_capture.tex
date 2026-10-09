@@ -1,0 +1,33 @@
+\begin{tikzpicture}[scale=0.9]
+\fill[white] (0,0) rectangle (1,1);
+\fill[black!8] (0,1) rectangle (1,2);
+\fill[white] (0,2) rectangle (1,3);
+\fill[black!8] (0,3) rectangle (1,4);
+\fill[black!8] (1,0) rectangle (2,1);
+\fill[white] (1,1) rectangle (2,2);
+\fill[black!8] (1,2) rectangle (2,3);
+\fill[white] (1,3) rectangle (2,4);
+\fill[white] (2,0) rectangle (3,1);
+\fill[black!8] (2,1) rectangle (3,2);
+\fill[white] (2,2) rectangle (3,3);
+\fill[black!8] (2,3) rectangle (3,4);
+\draw (0,0) grid (3,4);
+\draw[-{Stealth[length=5pt]},black!60,line width=0.7pt,shorten >=9pt,shorten <=9pt,bend left=12] (2.5,3.5) to (0.5,2.5);
+\draw[-{Stealth[length=5pt]},black!60,line width=0.7pt,shorten >=9pt,shorten <=9pt,bend left=12] (2.5,3.5) to (1.5,1.5);
+\draw[-{Stealth[length=5pt]},black!60,line width=0.7pt,shorten >=9pt,shorten <=9pt,bend left=12] (0.5,2.5) to (2.5,2.5);
+\draw[-{Stealth[length=5pt]},black!60,line width=0.7pt,shorten >=9pt,shorten <=9pt,bend left=12] (0.5,2.5) to (0.5,1.5);
+\draw[-{Stealth[length=5pt]},black!60,line width=0.7pt,shorten >=9pt,shorten <=9pt,bend left=12] (2.5,2.5) to (2.5,3.5);
+\draw[-{Stealth[length=5pt]},black!60,line width=0.7pt,shorten >=9pt,shorten <=9pt,bend left=12] (2.5,2.5) to (1.5,1.5);
+\draw[-{Stealth[length=5pt]},black!60,line width=0.7pt,shorten >=9pt,shorten <=9pt,bend left=12] (0.5,1.5) to (2.5,3.5);
+\draw[-{Stealth[length=5pt]},black!60,line width=0.7pt,shorten >=9pt,shorten <=9pt,bend left=12] (0.5,1.5) to (1.5,0.5);
+\draw[-{Stealth[length=5pt]},black!60,line width=0.7pt,shorten >=9pt,shorten <=9pt,bend left=12] (1.5,1.5) to (0.5,1.5);
+\draw[-{Stealth[length=5pt]},black!60,line width=0.7pt,shorten >=9pt,shorten <=9pt,bend left=12] (1.5,1.5) to (1.5,0.5);
+\draw[-{Stealth[length=5pt]},black!60,line width=0.7pt,shorten >=9pt,shorten <=9pt,bend left=12] (1.5,0.5) to (0.5,2.5);
+\draw[-{Stealth[length=5pt]},black!60,line width=0.7pt,shorten >=9pt,shorten <=9pt,bend left=12] (1.5,0.5) to (2.5,2.5);
+\node[font=\large] at (2.5,3.5) {\symknight};
+\node[font=\large] at (0.5,2.5) {\symrook};
+\node[font=\large] at (2.5,2.5) {\symking};
+\node[font=\large] at (0.5,1.5) {\symbishop};
+\node[font=\large] at (1.5,1.5) {\symrook};
+\node[font=\large] at (1.5,0.5) {\symknight};
+\end{tikzpicture}
