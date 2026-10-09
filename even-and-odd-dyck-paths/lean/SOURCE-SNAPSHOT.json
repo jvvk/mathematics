@@ -1,0 +1,19 @@
+{
+  "source_commit": "18a3502 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports QNarayana only)",
+    "CheckClaims.lean (new)",
+    "scripts/mutants.py (copy of lean-proofs scripts/qnarayana_mutants.py, docstring title)"
+  ],
+  "files": {
+    "CheckClaims.lean": "0df843087717c47fca7fe59f7773a286af3a4ea4e9de8c6bca65124f658c14b8",
+    "LeanProofs.lean": "d03326611671b5b80b9a9f3e8ee0476dd0f55f5e7d2a7e99480fa422b31cc5ab",
+    "LeanProofs/QNarayana.lean": "d0cd002f1a92fc0a27aa949f1783c4e919b87476caedd4b21286b33e35f7b2ef",
+    "LeanProofs/QNarayana/Words.lean": "9a8cd36cbc90c716492f4c21cac0395b302bf4145f86c2edeea1a0f7ae046c65",
+    "LeanProofs/QNarayana/Bijection.lean": "efb9c264785fdf767b5bcfd4e2db83e5f9565914151b57d436d3a8f17e0f4861",
+    "LeanProofs/QNarayana/Dyck.lean": "69fe137f4d2fb478111d3b2a31c2e68773511a0692fc5fb498c2ba387c8a5c5e",
+    "scripts/mutants.py": "e441062c6fdb02d7057065468f4258e3a63941c3c6c85c03a3ea626a25fa0c2c"
+  }
+}

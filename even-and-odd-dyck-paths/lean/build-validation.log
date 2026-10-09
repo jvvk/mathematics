@@ -1,0 +1,6 @@
+# 2026-10-10 isolated build of this folder (copied to a fresh directory, no development cache)
+lake exe cache get: exit 0
+lake build LeanProofs: Build completed successfully (8929 jobs)
+lake env lean CheckClaims.lean: exit 0, 24 axiom reports, all within [propext, Classical.choice, Quot.sound]
+  (sgn_F uses only propext and Quot.sound); #eval rows [1, 10, 20, 10, 1], [1, 2, 4, 2, 1], [1, 2, 4, 2, 1], [1, 3, 6, 6, 3, 1]
+python3 scripts/mutants.py: 12 mutants, 0 problems (every mutant fails to compile)

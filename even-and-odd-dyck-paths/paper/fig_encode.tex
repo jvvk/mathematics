@@ -1,0 +1,22 @@
+\begin{tikzpicture}[line join=round]
+\draw[gray!25] (0,0) -- (4.5,0);
+\draw[thick,inkblue] (0.000,0.000) -- (0.450,0.450) -- (0.900,0.900) -- (1.350,0.450) -- (1.800,0.900) -- (2.250,1.350) -- (2.700,0.900) -- (3.150,0.450) -- (3.600,0.000) -- (4.050,0.450) -- (4.500,0.000);
+\fill[rust] (1.350,0.450) circle (1.6pt);
+\fill[rust] (3.600,0.000) circle (1.6pt);
+\node[font=\small,rust,below] at (1.350,0.400) {$(2,1)$};
+\node[font=\small,rust,below] at (3.600,-0.050) {$(4,4)$};
+\node[font=\small] at (2.25,-0.95) {\texttt{UUDUUDDDUD}, valleys at positions 3 and 8};
+\draw[->,gray] (4.9,0.5) -- (6.1,0.5);
+\draw[gray!25] (6.6,0.25) -- (9.6,0.25);
+\draw[thick,inkblue] (6.600,0.250) -- (7.350,1.000);
+\node[font=\scriptsize,gray] at (6.975,0.030) {$u$};
+\draw[thick,inkblue] (7.350,1.000) -- (8.100,0.250);
+\node[font=\scriptsize,gray] at (7.725,0.030) {$d$};
+\draw[thick,gray!60] (8.100,0.250) -- (8.850,0.250);
+\node[font=\scriptsize,gray] at (8.475,0.030) {$a$};
+\draw[ultra thick,rust] (8.850,0.250) -- (9.600,0.250);
+\node[font=\scriptsize,gray] at (9.225,0.030) {$b$};
+\fill (6.600,0.250) circle (1pt);
+\fill (9.600,0.250) circle (1pt);
+\node[font=\small] at (8.1,-0.95) {$U=\{2,4\}$, $D=\{1,4\}$};
+\end{tikzpicture}

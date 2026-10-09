@@ -1,0 +1,35 @@
+\begin{tikzpicture}[line join=round]
+\draw[gray!25] (0.0,0) -- (1.92,0);
+\draw[thick,inkblue] (0.000,0.000) -- (0.320,0.320) -- (0.640,0.640) -- (0.960,0.960) -- (1.280,0.640) -- (1.600,0.320) -- (1.920,-0.000);
+\node[font=\small] at (0.96,-0.42) {\texttt{UUUDDD}};
+\node[font=\footnotesize] at (0.96,-0.85) {$k=0$, $\maj=0$};
+\node[font=\footnotesize] at (0.96,-1.25) {sign $+$};
+\node[font=\footnotesize,rust] at (0.96,-1.65) {symmetric};
+\draw[gray!25] (2.9,0) -- (4.82,0);
+\draw[thick,inkblue] (2.900,0.000) -- (3.220,0.320) -- (3.540,0.640) -- (3.860,0.320) -- (4.180,0.640) -- (4.500,0.320) -- (4.820,0.000);
+\fill[rust] (3.860,0.320) circle (1.6pt);
+\node[font=\small] at (3.86,-0.42) {\texttt{UUDUDD}};
+\node[font=\footnotesize] at (3.86,-0.85) {$k=1$, $\maj=3$};
+\node[font=\footnotesize] at (3.86,-1.25) {sign $-$};
+\node[font=\footnotesize,rust] at (3.86,-1.65) {symmetric};
+\draw[gray!25] (5.8,0) -- (7.72,0);
+\draw[thick,inkblue] (5.800,0.000) -- (6.120,0.320) -- (6.440,0.640) -- (6.760,0.320) -- (7.080,0.000) -- (7.400,0.320) -- (7.720,0.000);
+\fill[rust] (7.080,0.000) circle (1.6pt);
+\node[font=\small] at (6.76,-0.42) {\texttt{UUDDUD}};
+\node[font=\footnotesize] at (6.76,-0.85) {$k=1$, $\maj=4$};
+\node[font=\footnotesize] at (6.76,-1.25) {sign $+$};
+\draw[gray!25] (8.7,0) -- (10.62,0);
+\draw[thick,inkblue] (8.700,0.000) -- (9.020,0.320) -- (9.340,0.000) -- (9.660,0.320) -- (9.980,0.640) -- (10.300,0.320) -- (10.620,0.000);
+\fill[rust] (9.340,0.000) circle (1.6pt);
+\node[font=\small] at (9.66,-0.42) {\texttt{UDUUDD}};
+\node[font=\footnotesize] at (9.66,-0.85) {$k=1$, $\maj=2$};
+\node[font=\footnotesize] at (9.66,-1.25) {sign $+$};
+\draw[gray!25] (11.6,0) -- (13.52,0);
+\draw[thick,inkblue] (11.600,0.000) -- (11.920,0.320) -- (12.240,0.000) -- (12.560,0.320) -- (12.880,0.000) -- (13.200,0.320) -- (13.520,0.000);
+\fill[rust] (12.240,0.000) circle (1.6pt);
+\fill[rust] (12.880,0.000) circle (1.6pt);
+\node[font=\small] at (12.559999999999999,-0.42) {\texttt{UDUDUD}};
+\node[font=\footnotesize] at (12.559999999999999,-0.85) {$k=2$, $\maj=6$};
+\node[font=\footnotesize] at (12.559999999999999,-1.25) {sign $+$};
+\node[font=\footnotesize,rust] at (12.559999999999999,-1.65) {symmetric};
+\end{tikzpicture}
