@@ -1,0 +1,16 @@
+{
+  "source_repo": "lean-proofs (private)",
+  "source_commit": "0625f3eb8c435662b5323c442217266576d80c9e",
+  "note": "SymmetricRatio/{Basic,Roots,Convex,Main,Bridge}.lean are LeanProofs/Haddou at this commit, with imports renamed from LeanProofs.Haddou to SymmetricRatio; Audit.lean and SymmetricRatio.lean are new. Built in this layout on 9 October 2026: 3185 jobs, 13 axiom audits standard; mutants.sh: eleven mutants rejected, five controls compile.",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_rev": "v4.34.0",
+  "files": {
+    "SymmetricRatio/Audit.lean": "ca3efc8ba193edf887d3aeed10d6de043d976473bfd6f247114038085bcd44ff",
+    "SymmetricRatio/Basic.lean": "d9fb209ee6a06271a2c48c5ee13f0c7e24c8a0f7c6feab619f5087df0419bcca",
+    "SymmetricRatio/Bridge.lean": "2ecd839cab84ed4a3b04bda4986182aa370629f990e3363275de7348b36e29a4",
+    "SymmetricRatio/Convex.lean": "dd19fc7966a655889c91ec3173f8c7886da99f3836f4138746273fedf31e727c",
+    "SymmetricRatio/Main.lean": "c2e95c9a9a2cb40840403ad3ac4aa6363b8952ffbcb6b7c57ac7d174ff819725",
+    "SymmetricRatio/Roots.lean": "328f559e908ae8d5df8872a8075393d2ab2c4ae827d6074bd9ce547c86733c3a",
+    "SymmetricRatio.lean": "5383452c57e7987238e34420f618a64afdf4b905b3d839059ec10bfd38ade694"
+  }
+}

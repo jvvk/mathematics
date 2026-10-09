@@ -1,0 +1,211 @@
+\documentclass[11pt]{amsart}
+\usepackage[a4paper,margin=2.7cm]{geometry}
+\usepackage{amssymb}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}[lemma]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\title[A ratio of complete homogeneous symmetric polynomials]{Monotonicity of a ratio of complete homogeneous symmetric polynomials}
+\author{Vamshi Jandhyala}
+\date{Preprint, version 1, 9 October 2026. Not peer reviewed.}
+\subjclass[2020]{05E05, 26D05, 33C45}
+\keywords{complete homogeneous symmetric polynomial, Tur\'an-type inequality, Meixner polynomials, interlacing}
+
+\begin{document}
+
+\begin{abstract}
+For the complete homogeneous symmetric polynomial $h_\ell$ in $n$ variables, write $H_i(x)=h_\ell(1^{[n-i]},x^{[i]})$ for its value when $i$ of the variables equal $x$ and the rest equal $1$. Ait-Haddou conjectured that $\Psi_{i,n}=H_i^2/(H_{i+1}H_{i-1})$ is strictly increasing on $(1,\infty)$ for $2\le i\le n-2$. We prove this for every $\ell\ge1$ and every $1\le i\le n-1$. Treating the number $i$ of $x$'s as a continuous variable $t$, the logarithmic derivative of $\Psi_{i,n}$ becomes a positive multiple of a second difference in $t$ of a ratio of two consecutive polynomials of a Meixner family, and that ratio is convex because their zeros interlace.
+\end{abstract}
+
+\maketitle
+
+\noindent\emph{Status of this preprint.} This version has not yet been independently reviewed.
+
+\section{Introduction}
+
+Take a symmetric polynomial in $n$ variables, set every variable to $1$, and then move $i$ of them to a common value $x$. How does the value depend on $i$? For the complete homogeneous symmetric polynomials Ait-Haddou asked whether a measure of curvature in $i$, the ratio $\Psi_{i,n}$ below, strictly increases as $x$ moves above $1$. This note shows that it does; since $\Psi_{i,n}(1)=1$, it follows that the values are strictly log-concave in $i$ for every positive $x\ne1$.
+
+The complete homogeneous symmetric polynomial of degree $\ell$ in $n$ variables is
+\[
+h_\ell(x_1,\dots,x_n)=\sum_{1\le j_1\le j_2\le\dots\le j_\ell\le n}x_{j_1}x_{j_2}\cdots x_{j_\ell}.
+\]
+Write $x^{[k]}$ for $x$ repeated $k$ times, and for $0\le i\le n$ put
+\[
+H_i(x)=h_\ell\bigl(1^{[n-i]},x^{[i]}\bigr).
+\]
+In 2024 Ait-Haddou asked on MathOverflow~\cite{MO} whether, for every $\ell\ge1$, each of the functions
+\[
+\Psi_{i,n}(x)=\frac{H_i(x)^2}{H_{i+1}(x)\,H_{i-1}(x)},\qquad 2\le i\le n-2,
+\]
+is strictly increasing on $(1,\infty)$, and reported a proof for $\Psi_{2,4}$. The question received two bounties and no answer until~\cite{MOA}. It belongs to a line of work on monotonicity and inequalities for ratios of symmetric polynomials~\cite{CGS,Sra,AHM,KT,XY,MS}; here a single polynomial $h_\ell$ is compared at three neighbouring points.
+
+\emph{A first case.} For $\ell=1$, $H_i=n+iy$ with $y=x-1$, so
+\[
+\Psi_{i,n}=\frac{(n+iy)^2}{(n+iy)^2-y^2}=\Bigl(1-\frac{y^2}{(n+iy)^2}\Bigr)^{-1},
+\]
+and $y/(n+iy)$ increases with $y>0$. For larger $\ell$ each $H_i$ has degree $\ell$ in $x$ and no such simplification is available; the proof below works instead with $i$ as the variable.
+
+\begin{theorem}\label{thm:main}
+For all integers $n\ge2$, $\ell\ge1$ and $1\le i\le n-1$, the function $\Psi_{i,n}$ is strictly increasing on $(1,\infty)$.
+\end{theorem}
+
+Since every $H_i(1)=\binom{n+\ell-1}{\ell}$, $\Psi_{i,n}(1)=1$, so $H_i^2>H_{i+1}H_{i-1}$ for $x>1$. Homogeneity gives $H_i(x)=x^\ell h_\ell(1^{[i]},(1/x)^{[n-i]})$, hence $\Psi_{i,n}(x)=\Psi_{n-i,n}(1/x)$, and each $\Psi_{i,n}$ is strictly decreasing on $(0,1)$. So $x=1$ is the minimum and the interval $(1,\infty)$ in the question is the natural one.
+
+\subsection*{Outline}
+Section~\ref{sec:poly} interpolates $i\mapsto H_i$ by a polynomial $P_\ell(t)$ of degree $\ell$ in a real variable $t$. Section~\ref{sec:red} differentiates in $x$: one binomial identity turns $(x-1)\frac{d}{dx}\log\Psi_{i,n}$ into a positive multiple of the second difference $f(i-1)+f(i+1)-2f(i)$ of $f=P_{\ell-1}/P_\ell$. Section~\ref{sec:zeros} shows that the $P_\ell$ satisfy a three-term recurrence of orthogonal type, so their zeros are real, negative and interlacing, and $f$ is a sum of positive multiples of $1/(t-r)$ with poles $r<0$. Such a function is convex on $[0,\infty)$ (Figure~\ref{fig:f}), which proves the theorem.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=0.78\textwidth,height=5.4cm,xmin=-3.2,xmax=6.4,ymin=0,ymax=1.25,
+  xlabel={$t$},ylabel={$f(t)$},xtick={-2.554,0,1,2,3,4,5,6},xticklabels={$r_3$,0,1,2,3,4,5,6},
+  ytick={0,0.25,0.5,0.75,1},axis lines=left,tick label style={font=\small}]
+\addplot[thick,blue] coordinates {(-2.10,1.1646) (-1.90,0.8848) (-1.70,0.7334) (-1.50,0.6374) (-1.30,0.5704) (-1.10,0.5205) (-0.90,0.4817) (-0.70,0.4504) (-0.50,0.4244) (-0.30,0.4025) (-0.10,0.3835) (0.10,0.3670) (0.30,0.3524) (0.50,0.3393) (0.70,0.3275) (0.90,0.3168) (1.10,0.3070) (1.30,0.2981) (1.50,0.2897) (1.70,0.2820) (1.90,0.2748) (2.10,0.2681) (2.30,0.2618) (2.50,0.2559) (2.70,0.2503) (2.90,0.2450) (3.10,0.2399) (3.30,0.2352) (3.50,0.2306) (3.70,0.2263) (3.90,0.2222) (4.10,0.2182) (4.30,0.2144) (4.50,0.2108) (4.70,0.2073) (4.90,0.2039) (5.10,0.2007) (5.30,0.1976) (5.50,0.1946) (5.70,0.1917) (5.90,0.1889) (6.00,0.1875)};
+\addplot[only marks,mark=*,mark size=1.6pt,red] coordinates {(0,0.375) (1,0.3118) (2,0.2714) (3,0.2424) (4,0.2201) (5,0.2023) (6,0.1875)};
+\addplot[dashed,gray] coordinates {(-2.554,0) (-2.554,1.25)};
+\end{axis}
+\end{tikzpicture}
+\caption{The ratio $f=P_{2}/P_{3}$ (the case $\ell=3$) for $n=6$ and $x=2$. The zeros of $P_3$ are $r_1\approx-16.45$, $r_2=-8$ and $r_3\approx-2.55$ (dashed). To the right of $r_3$ the curve is convex, so the second differences of $f$ at the integer points $t=0,\dots,6$ (red) are positive, and Proposition~\ref{prop:red} turns that into $\Psi_{i,6}'>0$ for $1\le i\le5$.}
+\label{fig:f}
+\end{figure}
+
+Throughout, $x>1$ is fixed and $y=x-1>0$. All statements about $P_\ell$ hold for real $n>0$, although only integer $n$ is needed for the theorem.
+
+\section{The number of \texorpdfstring{$x$}{x}'s as a variable}\label{sec:poly}
+
+The function $\Psi_{i,n}$ compares $H$ at the three integers $i-1,i,i+1$. To compare them through a derivative and a convexity argument we need $H_i$ for real $i$, which the following formula supplies.
+
+For real $t$ and integer $k\ge0$ write $\binom{t+k-1}{k}=t(t+1)\cdots(t+k-1)/k!$, a polynomial of degree $k$ in $t$. Define
+\begin{equation}\label{eq:P}
+P_\ell(t)=\sum_{k=0}^{\ell}\binom{n+\ell-1}{\ell-k}\binom{t+k-1}{k}y^k\qquad(\ell\ge0).
+\end{equation}
+
+In words, $P_\ell(t)$ is a sum of rising factorials in $t$ with coefficients that are polynomials in $y$; the number $t$ of $x$'s enters only through those rising factorials.
+
+\begin{lemma}\label{lem:P}
+$P_\ell$ is a polynomial in $t$ of degree $\ell$ with leading coefficient $y^\ell/\ell!$, positive on $[0,\infty)$, and $P_\ell(i)=H_i(x)$ for $i=0,1,\dots,n$. As formal power series in $z$, for every real $t$,
+\begin{equation}\label{eq:gen}
+\sum_{\ell\ge0}P_\ell(t)z^\ell=(1-z)^{-(n-t)}(1-xz)^{-t}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The degree and leading coefficient come from the term $k=\ell$. For $t\ge0$ every term of~\eqref{eq:P} is non-negative and the term $k=0$ equals $\binom{n+\ell-1}{\ell}>0$. For~\eqref{eq:gen}, write $1-xz=(1-z)(1-yw)$ with $w=z/(1-z)$, so that the right side equals $(1-z)^{-n}(1-yw)^{-t}=\sum_k\binom{t+k-1}{k}y^kz^k(1-z)^{-n-k}$, and the coefficient of $z^\ell$ in $z^k(1-z)^{-n-k}$ is $\binom{n+\ell-1}{\ell-k}$. At $t=i$ the right side of~\eqref{eq:gen} is $\prod_j(1-x_jz)^{-1}$ for $(x_j)=(1^{[n-i]},x^{[i]})$, the generating function of $h_\ell$, so $P_\ell(i)=H_i(x)$.
+\end{proof}
+
+\section{The reduction to a second difference}\label{sec:red}
+
+\begin{lemma}\label{lem:deriv}
+For $\ell\ge1$, $\displaystyle y\frac{\partial}{\partial y}P_\ell(t)=\ell\,P_\ell(t)-(n+\ell-1)\,P_{\ell-1}(t)$.
+\end{lemma}
+
+\begin{proof}
+The operator $y\,\partial/\partial y$ multiplies the $k$-th term of~\eqref{eq:P} by $k$. With $N=n+\ell-1$,
+\[
+k\binom{N}{\ell-k}=\ell\binom{N}{\ell-k}-(\ell-k)\binom{N}{\ell-k}=\ell\binom{N}{\ell-k}-N\binom{N-1}{\ell-1-k},
+\]
+and $\binom{N-1}{(\ell-1)-k}=\binom{n+(\ell-1)-1}{(\ell-1)-k}$ is the coefficient in $P_{\ell-1}$ (the term $k=\ell$ has no counterpart there, and $\binom{N-1}{-1}=0$).
+\end{proof}
+
+\begin{proposition}\label{prop:red}
+Let $f=P_{\ell-1}/P_\ell$ on $[0,\infty)$. For $\ell\ge1$, $1\le i\le n-1$ and $x>1$,
+\[
+(x-1)\,\frac{d}{dx}\log\Psi_{i,n}(x)=(n+\ell-1)\bigl[f(i-1)+f(i+1)-2f(i)\bigr].
+\]
+\end{proposition}
+
+\begin{proof}
+Since $d/dx=d/dy$, dividing Lemma~\ref{lem:deriv} by $P_\ell(t)>0$ gives $(x-1)\frac{d}{dx}\log H_t=\ell-(n+\ell-1)f(t)$ at $t=i-1,i,i+1$. In $\log\Psi_{i,n}=2\log H_i-\log H_{i+1}-\log H_{i-1}$ the constant $\ell$ cancels.
+\end{proof}
+
+So Theorem~\ref{thm:main} follows once $f$ is strictly convex on $[0,\infty)$.
+
+\section{Recurrence, interlacing and convexity}\label{sec:zeros}
+
+\begin{lemma}\label{lem:rec}
+$P_0=1$, $P_1(t)=n+yt$, and for $\ell\ge1$
+\begin{equation}\label{eq:rec}
+(\ell+1)P_{\ell+1}=\bigl((1+x)\ell+n+yt\bigr)P_\ell-x(n+\ell-1)P_{\ell-1}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Let $F(z)$ be the right side of~\eqref{eq:gen}. Logarithmic differentiation gives $zF'/F=z\bigl(\tfrac{n-t}{1-z}+\tfrac{tx}{1-xz}\bigr)$, that is,
+\[
+(1-z)(1-xz)\,zF'(z)=z\bigl((n+yt)-nxz\bigr)F(z).
+\]
+The coefficient of $z^{\ell+1}$ on the left is $(\ell+1)P_{\ell+1}-(1+x)\ell P_\ell+x(\ell-1)P_{\ell-1}$ and on the right it is $(n+yt)P_\ell-nxP_{\ell-1}$.
+\end{proof}
+
+In~\eqref{eq:rec}, $P_{\ell+1}$ is $P_\ell$ times a linear factor in $t$ with positive slope $y$, minus a positive multiple of $P_{\ell-1}$: the shape of the recurrence of orthogonal polynomials. Indeed, comparing~\eqref{eq:P} with the hypergeometric form of the Meixner polynomials~\cite[(9.10.1)]{KLS} gives $P_\ell(t)=\binom{n+\ell-1}{\ell}M_\ell(-t;n,1/x)$. The next lemma is the standard consequence~\cite[\S\S3.3--3.4]{Szego},~\cite{Chihara}, proved here in the form needed.
+
+\begin{lemma}\label{lem:zeros}
+Let $D_\ell=P_\ell'P_{\ell-1}-P_\ell P_{\ell-1}'$, derivatives in $t$. Then $D_1=y$ and
+\begin{equation}\label{eq:D}
+(\ell+1)D_{\ell+1}=y\,P_\ell^2+x(n+\ell-1)D_\ell,
+\end{equation}
+so $D_\ell>0$ on $\mathbb R$ for every $\ell\ge1$. Consequently $P_\ell$ has $\ell$ simple zeros, all negative, and at each zero $r$ of $P_\ell$ the number $B_r=P_{\ell-1}(r)/P_\ell'(r)$ is positive.
+\end{lemma}
+
+\begin{proof}
+Differentiate~\eqref{eq:rec} in $t$, multiply by $P_\ell$, and subtract~\eqref{eq:rec} multiplied by $P_\ell'$; the terms in $P_\ell P_\ell'$ cancel and~\eqref{eq:D} remains. Induction gives $D_\ell>0$.
+
+The zeros are real, simple and negative by induction on $\ell$; $P_1$ has the single zero $-n/y<0$. Suppose $P_\ell$ has zeros $r_1<\dots<r_\ell<0$. At $r_j$,~\eqref{eq:D} reads $(\ell+1)D_{\ell+1}(r_j)=-(\ell+1)P_{\ell+1}(r_j)P_\ell'(r_j)$, which is positive. The simple zeros of $P_\ell$ alternate the sign of $P_\ell'$, which is $(-1)^{\ell-j}$ at $r_j$ because the leading coefficient is positive. So $P_{\ell+1}(r_j)$ has sign $(-1)^{\ell-j+1}$. Together with $P_{\ell+1}(0)>0$ (Lemma~\ref{lem:P}) and the sign $(-1)^{\ell+1}$ of $P_{\ell+1}$ near $-\infty$, these are $\ell+2$ points with alternating signs, so $P_{\ell+1}$ has a zero in each of the $\ell+1$ gaps, all in $(-\infty,0)$. Finally, at a zero $r$ of $P_\ell$, $D_\ell(r)=P_\ell'(r)P_{\ell-1}(r)>0$, so $B_r>0$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+By Lemma~\ref{lem:zeros}, $\deg P_{\ell-1}<\deg P_\ell$ and the zeros of $P_\ell$ are simple, so partial fractions give
+\[
+f(t)=\frac{P_{\ell-1}(t)}{P_\ell(t)}=\sum_r\frac{B_r}{t-r},\qquad B_r>0,\ r<0 .
+\]
+For $t\ge1$ each $a=t-r$ exceeds $1$, and
+\[
+\frac1{a-1}+\frac1{a+1}-\frac2a=\frac{2}{a(a^2-1)}>0 .
+\]
+This is the convexity visible in Figure~\ref{fig:f}. Summing with the weights $B_r$ gives $f(t-1)+f(t+1)-2f(t)>0$ for all $t\ge1$, in particular at $t=i$ with $1\le i\le n-1$. By Proposition~\ref{prop:red}, $\Psi_{i,n}'(x)>0$ for every $x>1$.
+\end{proof}
+
+\section{Remarks}
+
+\begin{remark}
+The proof shows more than was asked: $t\mapsto P_{\ell-1}(t)/P_\ell(t)$ is convex on $(r_{\max},\infty)\supset[0,\infty)$ for every real $n>0$, so the conclusion holds with $n$ real and $i$ any real number in $[1,n-1]$, with $H_t$ defined by~\eqref{eq:P}. The range $1\le i\le n-1$ is the largest for which $\Psi_{i,n}$ is defined.
+\end{remark}
+
+\begin{remark}
+The inequality $\Psi_{i,n}>1$ on $(1,\infty)$ says that $P_\ell(t)^2-P_\ell(t-1)P_\ell(t+1)>0$ at integer $t$, a Tur\'an-type inequality for one Meixner polynomial at shifted values of its variable. Karlin and Szeg\H{o}~\cite{KS} studied the sign of Hankel determinants of discrete orthogonal polynomials, including Meixner, across consecutive degrees, and Dur\'an~\cite{Duran} found identities for their Casorati determinants; we have not found the inequality above, or the monotonicity in $x$, in that literature.
+\end{remark}
+
+\begin{remark}
+The interlacing in Lemma~\ref{lem:zeros} and the positivity of the weights $B_r$ are classical for orthogonal polynomials; the new step is Proposition~\ref{prop:red}, which turns the derivative in the parameter $x$ into a difference in the variable $t$.
+\end{remark}
+
+\emph{Verification.} The identities of Lemmas~\ref{lem:P}--\ref{lem:zeros} and Proposition~\ref{prop:red} were checked in exact arithmetic for small $n$ and $\ell$, and the theorem on grids of rational points, by a script that also confirms the example $\ell=1$, the symmetry $\Psi_{i,n}(x)=\Psi_{n-i,n}(1/x)$ and the data of Figure~\ref{fig:f}, and rejects deliberately altered statements. It is at
+\begin{center}\small\url{https://github.com/jvvk/mathematics/tree/main/symmetric-polynomial-ratio}.\end{center}
+
+\section*{Acknowledgements}
+The proof, text and verification program were developed with the AI assistant Claude (Anthropic), under the author's direction. The author thanks Rachid Ait-Haddou for the question. The author is responsible for the contents.
+
+\begin{thebibliography}{99}
+\bibitem{AHM} R.~Ait-Haddou and M.-L.~Mazure, \emph{The fundamental blossoming inequality in Chebyshev spaces~I: applications to Schur functions}, Found.\ Comput.\ Math.\ \textbf{18} (2018), 135--158, \href{https://doi.org/10.1007/s10208-016-9334-8}{doi:10.1007/s10208-016-9334-8}.
+\bibitem{Chihara} T.~S.~Chihara, \emph{An Introduction to Orthogonal Polynomials}, Gordon and Breach, New York, 1978.
+\bibitem{CGS} A.~Cuttler, C.~Greene and M.~Skandera, \emph{Inequalities for symmetric means}, European J.\ Combin.\ \textbf{32} (2011), 745--761, \href{https://doi.org/10.1016/j.ejc.2011.01.020}{doi:10.1016/j.ejc.2011.01.020}.
+\bibitem{Duran} A.~J.~Dur\'an, \emph{Symmetries for Casorati determinants of classical discrete orthogonal polynomials}, Proc.\ Amer.\ Math.\ Soc.\ \textbf{142} (2014), 915--930, \href{https://doi.org/10.1090/S0002-9939-2013-11802-2}{doi:10.1090/S0002-9939-2013-11802-2}.
+\bibitem{KS} S.~Karlin and G.~Szeg\H{o}, \emph{On certain determinants whose elements are orthogonal polynomials}, J.\ Analyse Math.\ \textbf{8} (1960/61), 1--157.
+\bibitem{KT} A.~Khare and T.~Tao, \emph{On the sign patterns of entrywise positivity preservers in fixed dimension}, Amer.\ J.\ Math.\ \textbf{143} (2021), 1863--1929, \href{https://doi.org/10.1353/ajm.2021.0049}{doi:10.1353/ajm.2021.0049}.
+\bibitem{KLS} R.~Koekoek, P.~A.~Lesky and R.~F.~Swarttouw, \emph{Hypergeometric Orthogonal Polynomials and Their $q$-Analogues}, Springer, Berlin, 2010.
+\bibitem{MS} C.~McSwiggen and S.~Sahi, \emph{Majorization inequalities from logarithmic convexity}, preprint (2026), \href{https://arxiv.org/abs/2605.12680}{arXiv:2605.12680}.
+\bibitem{MO} R.~Ait-Haddou, \emph{Monotonicity of ratio of symmetric polynomials}, MathOverflow question 467261 (18 March 2024), \url{https://mathoverflow.net/q/467261}, accessed 9 October 2026.
+\bibitem{MOA} V.~Jandhyala, answer to MathOverflow question 467261 (7 October 2026), \url{https://mathoverflow.net/a/515799}.
+\bibitem{Sra} S.~Sra, \emph{On inequalities for normalized Schur functions}, European J.\ Combin.\ \textbf{51} (2016), 492--494, \href{https://doi.org/10.1016/j.ejc.2015.07.005}{doi:10.1016/j.ejc.2015.07.005}.
+\bibitem{Szego} G.~Szeg\H{o}, \emph{Orthogonal Polynomials}, 4th ed., Amer.\ Math.\ Soc.\ Colloq.\ Publ.\ 23, Providence, RI, 1975.
+\bibitem{XY} J.~Xu and Y.~Yao, \emph{Majorization and inequalities among complete homogeneous symmetric functions}, European J.\ Combin.\ \textbf{136} (2026), 104389, \href{https://doi.org/10.1016/j.ejc.2026.104389}{doi:10.1016/j.ejc.2026.104389}.
+\end{thebibliography}
+
+\end{document}

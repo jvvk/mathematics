@@ -4,6 +4,7 @@ Papers and notes by Vamshi Jandhyala, each with the code that checks it. Every f
 
 | Result | Kind | Status | Verified |
 |---|---|---|---|
+| [Monotonicity of a ratio of complete homogeneous symmetric polynomials](symmetric-polynomial-ratio/) | Note | Preprint, 9 October 2026; not peer reviewed | Lean (Theorem 1 and the lemmas of its proof; standard axioms only); every identity in exact arithmetic by an independent checker |
 | [Random chords of two circles and a third centre](random-chords-two-circles/) | Paper | Preprint, 8 October 2026; not peer reviewed | Lean (every proved result: Lemmas 1 to 3, Theorem 4, Corollaries 5 to 8, the remarks; standard axioms only); exact and numerical checkers with false variants |
 | [A comparison theorem for the Hofstadter–Conway $10,000 sequence and its alternating variant](hofstadter-conway-comparison/) | Paper | Preprint, 8 October 2026; not peer reviewed | Lean (Theorem 1, every lemma, Proposition 4.1 and Corollary 4.2; standard axioms only); every printed number and the lemmas on all symmetric words to length 34 by an independent checker |
 | [Positivity of an alternating sum from random overlaps in C^N](alternating-sum-positivity/) | Paper | Preprint, 8 October 2026; not peer reviewed | Lean (Theorem 1, every corollary, Taylor's formula and Hucht's identity; standard axioms only); every identity by an exact checker |
