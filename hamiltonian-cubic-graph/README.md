@@ -28,3 +28,7 @@ python3 scripts/mutants.py
 cd ../verify && python3 check_cycles.py
 cd ../paper && python3 make_fig.py && latexmk -pdf note.tex
 ```
+
+## Licence
+
+The paper is released under [CC BY 4.0](../LICENSE-PAPERS), the code under the [MIT licence](../LICENSE-CODE).

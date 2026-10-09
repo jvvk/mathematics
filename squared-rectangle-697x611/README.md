@@ -38,3 +38,7 @@ sh mutant.sh                           # 42,489 mismatches: the mutant is caught
 python3 verify_tiling.py "$(grep HIT out/hits_17.txt | head -1)"
 cd ../paper && python3 make_fig.py && latexmk -pdf note.tex
 ```
+
+## Licence
+
+The paper is released under [CC BY 4.0](../LICENSE-PAPERS), the code under the [MIT licence](../LICENSE-CODE).

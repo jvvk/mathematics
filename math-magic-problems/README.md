@@ -45,3 +45,7 @@ cd ../../paper && python3 make_figs.py && latexmk -pdf paper.tex
 On a laptop the DRUP check takes about 13 seconds, the bishop count a few seconds, and each solver run seconds to a minute.
 
 Friedman's pages had not recorded these results when this was released, and he has not reviewed them.
+
+## Licence
+
+The paper is released under [CC BY 4.0](../LICENSE-PAPERS), the code under the [MIT licence](../LICENSE-CODE).
