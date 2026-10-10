@@ -229,138 +229,143 @@ Part of the question answered; the rest is still open.
 <table>
 <tr>
 <td width="50%" valign="top">
+<a href="coins-in-a-tray"><img src="https://raw.githubusercontent.com/jvvk/jvvk/129b8257bb0779ecb5a1e65fb9f7835201249e50/assets/coins-in-a-tray.svg" width="100%" alt="Coins in a tray"></a>
+<p><b><a href="coins-in-a-tray">Coins in a tray</a></b><br>
+Coins of radii 1/2, …, 1/n cannot be held rigidly around the rim of a unit tray for any 5 ≤ n ≤ 1000, nor in a triangulated arrangement for 5 ≤ n ≤ 16; angle relations are decided exactly by prime-ideal valuations.<br>
+<sub><a href="coins-in-a-tray/paper">paper</a> · <a href="coins-in-a-tray/verify">code</a> · Key lemmas in Lean; searches exact</sub></p>
+</td>
+<td width="50%" valign="top">
 <a href="latin-squares-small-rank"><img src="https://raw.githubusercontent.com/jvvk/jvvk/129b8257bb0779ecb5a1e65fb9f7835201249e50/assets/latin-rank.svg" width="100%" alt="Latin squares of small rank"></a>
 <p><b><a href="latin-squares-small-rank">Latin squares of small rank</a></b><br>
 Every Latin square of order n has rank at least 1 + 3(n−1)/(n+1), so at least 4 from n = 5 on; the least ranks up to order 8 are 1, 2, 3, 3, 5, 4, 6, 4.<br>
 <sub><a href="latin-squares-small-rank/paper">paper</a> · <a href="latin-squares-small-rank/lean">Lean</a> · <a href="latin-squares-small-rank/verify">code</a> · Bound and r(6), r(8) in Lean; r(5), r(7) by exact search</sub></p>
 </td>
+</tr>
+<tr>
 <td width="50%" valign="top">
 <a href="good-permutations-mersenne"><img src="https://raw.githubusercontent.com/jvvk/jvvk/129b8257bb0779ecb5a1e65fb9f7835201249e50/assets/good-perm.svg" width="100%" alt="Permutations with no whole-number averages"></a>
 <p><b><a href="good-permutations-mersenne">Permutations with no whole-number averages</a></b><br>
 If no proper block of a permutation of 1..n averages to a whole number, then n = 2ᵐ − 1; the asker's example works exactly when n is prime, and n = 15, 63 have none.<br>
 <sub><a href="good-permutations-mersenne/paper">paper</a> · <a href="good-permutations-mersenne/lean">Lean</a> · <a href="good-permutations-mersenne/verify">code</a> · Theorems in Lean; n ≤ 63 by two searches</sub></p>
 </td>
-</tr>
-<tr>
 <td width="50%" valign="top">
 <a href="catching-the-centroid"><img src="https://raw.githubusercontent.com/jvvk/jvvk/129b8257bb0779ecb5a1e65fb9f7835201249e50/assets/centroid-circle.svg" width="100%" alt="Catching the centroid"></a>
 <p><b><a href="catching-the-centroid">Catching the centroid</a></b><br>
 A circle on a random diameter of a convex region contains the centroid with probability at most 14/27 ≈ 0.5185; the equilateral triangle's 0.5164 is conjectured best.<br>
 <sub><a href="catching-the-centroid/paper">paper</a> · <a href="catching-the-centroid/lean">Lean</a> · <a href="catching-the-centroid/verify">code</a> · Bounds in Lean; sharp value open</sub></p>
 </td>
+</tr>
+<tr>
 <td width="50%" valign="top">
 <a href="broken-stick-feynman"><img src="https://raw.githubusercontent.com/jvvk/jvvk/129b8257bb0779ecb5a1e65fb9f7835201249e50/assets/broken-stick.svg" width="100%" alt="A broken stick and a Feynman diagram"></a>
 <p><b><a href="broken-stick-feynman">A broken stick and a Feynman diagram</a></b><br>
 The chance that six random pieces of a stick make a tetrahedron is a three-loop Feynman diagram; it is 0.0125749944…, not 1/79.<br>
 <sub><a href="broken-stick-feynman/paper">paper</a> · <a href="broken-stick-feynman/lean">Lean</a> · <a href="broken-stick-feynman/verify">code</a> · Algebra in Lean; no closed form</sub></p>
 </td>
-</tr>
-<tr>
 <td width="50%" valign="top">
 <a href="prime-squares-half-turns"><img src="https://raw.githubusercontent.com/jvvk/jvvk/129b8257bb0779ecb5a1e65fb9f7835201249e50/assets/prime-squares.svg" width="100%" alt="Prime squares and half-turns"></a>
 <p><b><a href="prime-squares-half-turns">Prime squares and half-turns</a></b><br>
 A p × p square, p prime, cut into p congruent pieces that are only translated or half-turned must be cut into bars; with quarter-turns too, the question is open.<br>
 <sub><a href="prime-squares-half-turns/paper">paper</a> · <a href="prime-squares-half-turns/lean">Lean</a> · <a href="prime-squares-half-turns/verify">code</a> · Algebra in Lean; full question open</sub></p>
 </td>
+</tr>
+<tr>
 <td width="50%" valign="top">
 <a href="five-numbers-many-averages"><img src="https://raw.githubusercontent.com/jvvk/jvvk/129b8257bb0779ecb5a1e65fb9f7835201249e50/assets/five-numbers.svg" width="100%" alt="Five numbers, many averages"></a>
 <p><b><a href="five-numbers-many-averages">Five numbers, many averages</a></b><br>
 Replacing two numbers by their average, the five integers (5N, 0, 4N, 3N±5, 3N±5) with N = 2ᵏ⁺¹ need exactly k + 3 moves to become equal, so five numbers have no bound on the shortest solution.<br>
 <sub><a href="five-numbers-many-averages/paper">paper</a> · <a href="five-numbers-many-averages/lean">Lean</a> · <a href="five-numbers-many-averages/verify">code</a> · In Lean; which lists are solvable is open</sub></p>
 </td>
-</tr>
-<tr>
 <td width="50%" valign="top">
 <a href="why-the-sphere-beats-the-ball"><img src="https://raw.githubusercontent.com/jvvk/jvvk/129b8257bb0779ecb5a1e65fb9f7835201249e50/assets/sphere-ball.svg" width="100%" alt="Why the sphere beats the ball"></a>
 <p><b><a href="why-the-sphere-beats-the-ball">Why the sphere beats the ball</a></b><br>
 Three points on concentric spheres form an acute triangle with probability at most 1/2, equal only when the two outer radii agree; so the uniform sphere beats every rotationally invariant law in space, while in the plane moving mass inwards helps.<br>
 <sub><a href="why-the-sphere-beats-the-ball/paper">paper</a> · <a href="why-the-sphere-beats-the-ball/lean">Lean</a> · <a href="why-the-sphere-beats-the-ball/verify">code</a> · Formula and bound in Lean; the disc's gain unexplained</sub></p>
 </td>
+</tr>
+<tr>
 <td width="50%" valign="top">
 <a href="raising-the-apex"><img src="https://raw.githubusercontent.com/jvvk/jvvk/129b8257bb0779ecb5a1e65fb9f7835201249e50/assets/raising-apex.svg" width="100%" alt="Raising the apex raises the Gaussian centroid"></a>
 <p><b><a href="raising-the-apex">Raising the apex raises the Gaussian centroid</a></b><br>
 Raise a triangle's apex along the perpendicular through a point of its base and the Gaussian centre of mass rises, in every dimension and wherever the Gaussian is centred; whether it always pins down the moving vertex is open.<br>
 <sub><a href="raising-the-apex/paper">paper</a> · <a href="raising-the-apex/lean">Lean</a> · <a href="raising-the-apex/verify">code</a> · Steps after Prékopa's theorem in Lean; oblique case open</sub></p>
 </td>
-</tr>
-<tr>
 <td width="50%" valign="top">
 <a href="sixteen-words"><img src="https://raw.githubusercontent.com/jvvk/jvvk/129b8257bb0779ecb5a1e65fb9f7835201249e50/assets/sixteen-words.svg" width="100%" alt="Sixteen words cover all 15-bit strings"></a>
 <p><b><a href="sixteen-words">Sixteen words cover all 15-bit strings</a></b><br>
 Deleting five bits from every 15-bit string can leave just 16 different strings, down from 17 in 2013, so the growth rate of the n/3-deletion problem is at most 16^(1/15) < 1.2031; among symmetric sets 16 is optimal.<br>
 <sub><a href="sixteen-words/paper">paper</a> · <a href="sixteen-words/lean">Lean</a> · <a href="sixteen-words/verify">code</a> · Rate argument in Lean; cover and optimality by certified computation</sub></p>
 </td>
+</tr>
+<tr>
 <td width="50%" valign="top">
 <a href="unit-hexagon-diameter"><img src="https://raw.githubusercontent.com/jvvk/jvvk/129b8257bb0779ecb5a1e65fb9f7835201249e50/assets/hexagon.svg" width="100%" alt="Six matchsticks in a square"></a>
 <p><b><a href="unit-hexagon-diameter">Six matchsticks in a square</a></b><br>
 No simple loop of six unit sticks fits in a unit square: the six-stick case of an open parity question.<br>
 <sub><a href="unit-hexagon-diameter/paper">paper</a> · <a href="unit-hexagon-diameter/lean">Lean</a> · <a href="unit-hexagon-diameter/verify">code</a> · Partly in Lean</sub></p>
 </td>
-</tr>
-<tr>
 <td width="50%" valign="top">
 <a href="randomized-pascal-triangle"><img src="https://raw.githubusercontent.com/jvvk/jvvk/129b8257bb0779ecb5a1e65fb9f7835201249e50/assets/pascal.svg" width="100%" alt="A randomized Pascal triangle"></a>
 <p><b><a href="randomized-pascal-triangle">A randomized Pascal triangle</a></b><br>
 The expected average blows up whenever p ≥ 0.232; whether it does for every p > 0 is open.<br>
 <sub><a href="randomized-pascal-triangle/paper">paper</a> · <a href="randomized-pascal-triangle/lean">Lean</a> · <a href="randomized-pascal-triangle/verify">code</a> · In Lean</sub></p>
 </td>
+</tr>
+<tr>
 <td width="50%" valign="top">
 <a href="power-two-tree-labels"><img src="https://raw.githubusercontent.com/jvvk/jvvk/129b8257bb0779ecb5a1e65fb9f7835201249e50/assets/power-two-tree.svg" width="100%" alt="Labelling binary trees by powers of two"></a>
 <p><b><a href="power-two-tree-labels">Labelling binary trees by powers of two</a></b><br>
 Every tree with at most 24 vertices can be labelled 0 to n − 1 with power-of-two steps; five constructions and an exact rule for universal label sets narrow any counterexample.<br>
 <sub><a href="power-two-tree-labels/paper">paper</a> · <a href="power-two-tree-labels/lean">Lean</a> · <a href="power-two-tree-labels/verify">code</a> · Constructions and lemmas in Lean; searches by two programs</sub></p>
 </td>
-</tr>
-<tr>
 <td width="50%" valign="top">
 <a href="wandering-over-divisors"><img src="https://raw.githubusercontent.com/jvvk/jvvk/129b8257bb0779ecb5a1e65fb9f7835201249e50/assets/divisor-walk.svg" width="100%" alt="Wandering over the divisors of 10ⁿ"></a>
 <p><b><a href="wandering-over-divisors">Wandering over the divisors of 10ⁿ</a></b><br>
 Players multiply by 2 or 5 or divide by 10, never repeating a divisor. The tournament's natural answer fails from 10⁶ on, and the second player beats whole families of openings on every board.<br>
 <sub><a href="wandering-over-divisors/paper">paper</a> · <a href="wandering-over-divisors/lean">Lean</a> · <a href="wandering-over-divisors/verify">code</a> · Theorems in Lean; tables by two programs</sub></p>
 </td>
+</tr>
+<tr>
 <td width="50%" valign="top">
 <a href="https://github.com/jvvk/taxicab-distances-eleven"><img src="https://raw.githubusercontent.com/jvvk/jvvk/129b8257bb0779ecb5a1e65fb9f7835201249e50/assets/taxicab.svg" width="100%" alt="Eleven points, distances 1 to 55"></a>
 <p><b><a href="https://github.com/jvvk/taxicab-distances-eleven">Eleven points, distances 1 to 55</a></b><br>
 Eleven lattice points whose 55 taxicab distances are exactly 1 to 55: the case n = 11 of an open question.<br>
 <sub><a href="https://github.com/jvvk/taxicab-distances-eleven">repository</a> · Computer search</sub></p>
 </td>
-</tr>
-<tr>
 <td width="50%" valign="top">
 <a href="cube-unfoldings-tile-space"><img src="https://raw.githubusercontent.com/jvvk/jvvk/129b8257bb0779ecb5a1e65fb9f7835201249e50/assets/cube-unfoldings.svg" width="100%" alt="Unfolded cubes that tile space"></a>
 <p><b><a href="cube-unfoldings-tile-space">Unfolded cubes that tile space</a></b><br>
 Every one of the 502,110 unfoldings of the six-dimensional cube tiles five-space with its point reflection, extending Firet's five-cube result.<br>
 <sub><a href="cube-unfoldings-tile-space/paper">paper</a> · <a href="cube-unfoldings-tile-space/lean">Lean</a> · <a href="cube-unfoldings-tile-space/verify">code</a> · Certificates, two checkers; lemmas in Lean</sub></p>
 </td>
+</tr>
+<tr>
 <td width="50%" valign="top">
 <a href="balanced-tree-agreement-subtrees"><img src="https://raw.githubusercontent.com/jvvk/jvvk/129b8257bb0779ecb5a1e65fb9f7835201249e50/assets/balanced-mast.svg" width="100%" alt="How much two balanced trees must share"></a>
 <p><b><a href="balanced-tree-agreement-subtrees">How much two balanced trees must share</a></b><br>
 Two balanced trees on n leaves always agree on at least n^0.243 leaves, and some on only n^(5/11); Martin and Thatte conjectured n^(1/2).<br>
 <sub><a href="balanced-tree-agreement-subtrees/paper">paper</a> · <a href="balanced-tree-agreement-subtrees/lean">Lean</a> · <a href="balanced-tree-agreement-subtrees/verify">code</a> · Lean, except one certified inequality</sub></p>
 </td>
-</tr>
-<tr>
 <td width="50%" valign="top">
 <a href="math-magic-problems"><img src="https://raw.githubusercontent.com/jvvk/jvvk/129b8257bb0779ecb5a1e65fb9f7835201249e50/assets/slabs.svg" width="100%" alt="Cubes cut into slabs"></a>
 <p><b><a href="math-magic-problems">Cubes cut into slabs</a></b><br>
 A cube made of one k-slab for each k ≤ n has side at most n(n+1)/2, and none exists for n = 4, 5, 6; Friedman conjectures infinitely many.<br>
 <sub><a href="math-magic-problems/paper">paper</a> · <a href="math-magic-problems/verify">code</a> · Bound by hand, n = 4 to 6 by two searches</sub></p>
 </td>
+</tr>
+<tr>
 <td width="50%" valign="top">
 <a href="span-maximising-chains"><img src="https://raw.githubusercontent.com/jvvk/jvvk/129b8257bb0779ecb5a1e65fb9f7835201249e50/assets/chains.svg" width="100%" alt="The chain that reaches farthest"></a>
 <p><b><a href="span-maximising-chains">The chain that reaches farthest</a></b><br>
 Every best chain has lengths rising then falling; exactly three orders occur for four segments, and the general count is open.<br>
 <sub><a href="span-maximising-chains/paper">paper</a> · <a href="span-maximising-chains/lean">Lean</a> · <a href="span-maximising-chains/verify">code</a> · Shape theorem in Lean</sub></p>
 </td>
-</tr>
-<tr>
 <td width="50%" valign="top">
 <a href="polyomino-rectangle-parity"><img src="https://raw.githubusercontent.com/jvvk/jvvk/129b8257bb0779ecb5a1e65fb9f7835201249e50/assets/polyomino-parity.svg" width="100%" alt="Polyomino rectangles by parity"></a>
 <p><b><a href="polyomino-rectangle-parity">Polyomino rectangles by parity</a></b><br>
 One copy of every hole-free n-omino tiles no rectangle for n = 8, 10 or 16, because the pieces' checkerboard imbalances add up to 2 mod 4 (for n = 16, over 11,230,003 pieces). Sizes 9 and 11 to 15 stay open.<br>
 <sub><a href="polyomino-rectangle-parity/paper">paper</a> · <a href="polyomino-rectangle-parity/lean">Lean</a> · <a href="polyomino-rectangle-parity/verify">code</a> · Parity argument in Lean; totals by two enumerations</sub></p>
 </td>
-<td width="50%"></td>
 </tr>
 </table>
 
@@ -398,6 +403,7 @@ Every paper, its status and exactly what was checked, and how.
 | [Five from inverse pairs](inverse-pairs-five/) | Note | Preprint, 10 October 2026; not peer reviewed | Lean (every step: rectangles via Fourier analysis, staircase, divisor bound, layer-cake identity, full-grid limit, the rate p^(−1/8+ε) and S(p) → 5; Weil's bound for Kloosterman sums as an explicit hypothesis, not an axiom; standard axioms only); independent C and Python computations with planted errors caught |
 | [The easiest dice to tell apart](easiest-dice/) | Note | Preprint, 10 October 2026; not peer reviewed; answers Math.SE 5149864 (equality cases for two rolls partly open) | Lean (every theorem and lemma: the one-roll domination for every k and r, the product step for dice that change from roll to roll, the asker's pair optimal, the equality cases for four faces; standard axioms only); the asker's closed form and the equality cases checked in exact arithmetic; an independent numerical search with a planted error caught |
 | [Polyomino rectangles by parity](polyomino-rectangle-parity/) | Note | Preprint, 10 October 2026; not peer reviewed; partial progress (n = 8, 10, 16 impossible; 9, 11-15 open) | Lean (the checkerboard argument for any pieces and placements: placed imbalance, rectangles with an even side balanced, the mod-4 obstruction; standard axioms only); the totals S(n) by two independent enumerations matching OEIS A000104, A000105, A001168 for n <= 16, with planted errors caught |
+| [Coins in a tray](coins-in-a-tray/) | Note | Preprint, 10 October 2026; not peer reviewed; partial progress (rim-only 5 ≤ n ≤ 1000 and triangulated 5 ≤ n ≤ 16 impossible; general arrangements open) | Lean (the rim angle formula, Niven's classification of rational rim angles, the asker's identity 2α₃ + α₉ = π, the n = 5 overlap, uniqueness of the root quadruple (−1, 2, 2, 3); standard axioms only); exact searches in Python with prime-ideal valuations, a 60-digit cross-check and planted errors caught; splitting theorem (Conway–Radin–Sadun) and Apollonian congruence (Graham et al.) cited |
 | [Labelling binary trees by powers of two](power-two-tree-labels/) | Note | Preprint, 10 October 2026; not peer reviewed | Lean (Theorem 1 (a)-(e): unary root, parity incl. sizes differing by one, Mersenne, one- and two-prefix constructions; tail and primitive-tail lemmas; span bound; standard axioms only); all trees n ≤ 24 by one program (two to 22), root condition n ≤ 22, universal sets n ≤ 21 (two programs to 20); independent Python recheck to n = 12 |
 | [Wandering over the divisors of a power of ten](wandering-over-divisors/) | Note | Preprint, 10 October 2026; not peer reviewed | Lean (Lemma 2 and Theorems 3, 5, 7 for every board size: edge sweep, diagonal climb, bottom row, corners, (2,0), (2,2); standard axioms only); Theorem 1 and every table by two independent exhaustive solvers (C and Python) up to 9 × 9, C to 10 × 10 |
 | [Even and odd Dyck paths](even-and-odd-dyck-paths/) | Note | Preprint, 10 October 2026; not peer reviewed | Lean (Dyck paths as step lists, valley encoding, partner involution, fixed-word sign, halving and last departures, Theorem 1; standard axioms only); Fürlinger–Hofbauer identity quoted, checked for n ≤ 8; independent recheck |
