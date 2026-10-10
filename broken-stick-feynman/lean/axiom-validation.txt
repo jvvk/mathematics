@@ -1,0 +1,55 @@
+gramMap3_apply : ∀ (g11 g22 g33 g12 g13 g23 : ℝ),
+  gramMap3.mulVec ![g11, g22, g33, g12, g13, g23] = sqLengths g11 g22 g33 g12 g13 g23
+'BrokenStick.gramMap3_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+det_gramMap3 : gramMap3.det = -8
+'BrokenStick.det_gramMap3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BrokenStick.det_gramMap2' depends on axioms: [propext, Classical.choice, Quot.sound]
+edges_minus_offdiag : ∀ (n : ℕ), n * (n + 1) / 2 - n * (n - 1) / 2 = n
+'BrokenStick.edges_minus_offdiag' depends on axioms: [propext, Classical.choice, Quot.sound]
+trace_identity3 : ∀ (t01 t02 t03 t12 t13 t23 g11 g22 g33 g12 g13 g23 : ℝ),
+  t01 * g11 + t02 * g22 + t03 * g33 + t12 * (g11 + g22 - 2 * g12) + t13 * (g11 + g33 - 2 * g13) +
+      t23 * (g22 + g33 - 2 * g23) =
+    (lap3 t01 t02 t03 t12 t13 t23 * !![g11, g12, g13; g12, g22, g23; g13, g23, g33]).trace
+'BrokenStick.trace_identity3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BrokenStick.trace_identity2' depends on axioms: [propext, Classical.choice, Quot.sound]
+card_spanning_trees : {s ∈ Finset.powersetCard 3 Finset.univ | s ∉ triangles}.card = 16
+'BrokenStick.card_spanning_trees' depends on axioms: [propext, Classical.choice, Quot.sound]
+det_lap3 : ∀ (t01 t02 t03 t12 t13 t23 : ℝ), (lap3 t01 t02 t03 t12 t13 t23).det = kirchhoff3 t01 t02 t03 t12 t13 t23
+'BrokenStick.det_lap3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BrokenStick.det_lap2' depends on axioms: [propext, Classical.choice, Quot.sound]
+duality3 : ∀ (t01 t02 t03 t12 t13 t23 : ℝ),
+  t01 ≠ 0 →
+    t02 ≠ 0 →
+      t03 ≠ 0 →
+        t12 ≠ 0 →
+          t13 ≠ 0 →
+            t23 ≠ 0 →
+              kirchhoff3 t01 t02 t03 t12 t13 t23 =
+                t01 * t02 * t03 * t12 * t13 * t23 * symanzik3 t01⁻¹ t02⁻¹ t03⁻¹ t12⁻¹ t13⁻¹ t23⁻¹
+'BrokenStick.duality3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BrokenStick.duality2' depends on axioms: [propext, Classical.choice, Quot.sound]
+kirchhoff3_quarter_inv : ∀ (b01 b02 b03 b12 b13 b23 : ℝ),
+  b01 ≠ 0 →
+    b02 ≠ 0 →
+      b03 ≠ 0 →
+        b12 ≠ 0 →
+          b13 ≠ 0 →
+            b23 ≠ 0 →
+              kirchhoff3 (1 / (4 * b01)) (1 / (4 * b02)) (1 / (4 * b03)) (1 / (4 * b12)) (1 / (4 * b13))
+                  (1 / (4 * b23)) =
+                symanzik3 b01 b02 b03 b12 b13 b23 / (4 ^ 3 * (b01 * b02 * b03 * b12 * b13 * b23))
+'BrokenStick.kirchhoff3_quarter_inv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BrokenStick.schwinger_jacobian' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BrokenStick.inv_sqrt_quarter_inv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BrokenStick.four_pow_half' depends on axioms: [propext, Classical.choice, Quot.sound]
+homogeneity_degree : ∀ (n N : ℝ), 2 * N = n * (n + 1) → N * ((n - 2) / 2) - (N - n) * ((n + 1) / 2) = -N / 2
+'BrokenStick.homogeneity_degree' depends on axioms: [propext, Classical.choice, Quot.sound]
+C2_eq : C2 = 1 / √Real.pi
+'BrokenStick.C2_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+C3_eq : C3 = 4 / Real.pi
+'BrokenStick.C3_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+C3_feynman : C3 * Real.Gamma (3 / 2) ^ 6 = Real.pi ^ 2 / 16
+'BrokenStick.C3_feynman' depends on axioms: [propext, Classical.choice, Quot.sound]
+p2_eq_quarter : C2 * Real.Gamma (3 / 2) / 2 = 1 / 4
+'BrokenStick.p2_eq_quarter' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BrokenStick.p2_feynman' depends on axioms: [propext, Classical.choice, Quot.sound]

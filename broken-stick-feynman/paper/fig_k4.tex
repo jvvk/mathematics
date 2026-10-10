@@ -1,0 +1,19 @@
+\begin{tikzpicture}[line cap=round]
+  % K3
+  \begin{scope}
+    \coordinate (a) at (90:1.1); \coordinate (b) at (210:1.1); \coordinate (c) at (330:1.1);
+    \draw[thick,inkblue] (a) -- node[left,font=\footnotesize,black] {$\beta_1$} (b)
+                               -- node[below,font=\footnotesize,black] {$\beta_2$} (c)
+                               -- node[right,font=\footnotesize,black] {$\beta_3$} (a);
+    \foreach \p in {a,b,c} \fill (\p) circle (1.6pt);
+    \node[font=\footnotesize] at (0,-1.35) {$K_3$: one loop};
+  \end{scope}
+  % K4 drawn flat
+  \begin{scope}[shift={(5,0)}]
+    \coordinate (1) at (90:1.5); \coordinate (2) at (210:1.5); \coordinate (3) at (330:1.5); \coordinate (4) at (0,0);
+    \draw[thin,gray] (1) -- (2); \draw[thin,gray] (2) -- (4); \draw[thin,gray] (3) -- (4);
+    \draw[line width=2.4pt,rust] (1) -- (3); \draw[line width=2.4pt,rust] (1) -- (4); \draw[line width=2.4pt,rust] (2) -- (3);
+    \foreach \p/\pos in {1/above,2/below left,3/below right,4/below}{\fill (\p) circle (1.8pt); \node[\pos,font=\footnotesize] at (\p) {$\p$};}
+    \node[font=\footnotesize] at (0,-1.35) {$K_4$: three loops};
+  \end{scope}
+\end{tikzpicture}

@@ -1,0 +1,16 @@
+{
+  "source_commit": "d9eb0bc (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports BrokenStick only)",
+    "CheckClaims.lean (new)",
+    "scripts/mutants.py (copy of lean-proofs scripts/brokenstick_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "84f6c411418efb3139a7d3cc7dea24aef1e6f4038eb92816755af5ee1b85d3f3",
+    "LeanProofs.lean": "030e23e86bc2ec231980f9ca31182d9fb2d0deb7bd208c97a068187f6447a2f8",
+    "LeanProofs/BrokenStick.lean": "7cb916b1e93efb2c284a62e0a1ec2c01f6a309257f6f827dd47962a8e8b4a713",
+    "scripts/mutants.py": "0f4433c1d0604bca1b7293d48f16aa498a8c2e51d05ac0e8f3950209bcaaa2aa"
+  }
+}
