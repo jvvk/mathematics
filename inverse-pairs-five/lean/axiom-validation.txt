@@ -1,0 +1,54 @@
+InversePairs.rect : ∀ (p : ℕ) [hp : Fact (Nat.Prime p)],
+  InversePairs.WeilBound p →
+    ∀ (α L γ M : ℕ),
+      1 ≤ α →
+        α + L ≤ p →
+          1 ≤ γ →
+            γ + M ≤ p →
+              |↑(InversePairs.N p (Finset.Ico α (α + L)) (Finset.Ico γ (γ + M))) - ↑L * ↑M / ↑p| ≤
+                3 * √↑p * (1 + Real.log ↑p) ^ 2
+'InversePairs.rect' depends on axioms: [propext, Classical.choice, Quot.sound]
+InversePairs.stair : ∀ (p : ℕ) [hp : Fact (Nat.Prime p)],
+  InversePairs.WeilBound p →
+    ∀ (X h L : ℕ),
+      1 ≤ h → p ≤ 1 + L * h → |↑(InversePairs.Rc p X) - ↑(InversePairs.Tc p X) / ↑p| ≤ ↑L * InversePairs.E1 p + ↑h
+'InversePairs.stair' depends on axioms: [propext, Classical.choice, Quot.sound]
+InversePairs.divisor_bound : ∀ (ε : ℝ), 0 < ε → ∃ D, 0 < D ∧ ∀ (n : ℕ), n ≠ 0 → ↑n.divisors.card ≤ D * ↑n ^ ε
+'InversePairs.divisor_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+InversePairs.R_le : ∀ (p : ℕ) [hp : Fact (Nat.Prime p)] (m : ℕ) (D ε : ℝ),
+  0 ≤ ε →
+    0 ≤ D → (∀ (n : ℕ), n ≠ 0 → ↑n.divisors.card ≤ D * ↑n ^ ε) → ↑(InversePairs.R p m) ≤ ↑m / ↑p * (D * (1 + ↑m) ^ ε)
+'InversePairs.R_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+InversePairs.C_close : ∀ (p : ℕ), 2 ≤ p → |(∑ a ∈ Finset.Ico 1 p, InversePairs.w a) ^ 2 / ↑p - 4| ≤ 8 / √↑p
+'InversePairs.C_close' depends on axioms: [propext, Classical.choice, Quot.sound]
+InversePairs.key_identity : ∀ (p : ℕ) [hp : Fact (Nat.Prime p)],
+  InversePairs.S p - InversePairs.C p - 1 =
+    ∑ m ∈ Finset.Icc 1 ((p - 1) ^ 2),
+        (InversePairs.w m - InversePairs.w (m + 1)) * (↑(InversePairs.R p m) - ↑(InversePairs.Tc p m) / ↑p) -
+      InversePairs.w ((p - 1) ^ 2 + 1) / ↑p
+'InversePairs.key_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+InversePairs.main_ineq : ∀ (p : ℕ) [hp : Fact (Nat.Prime p)],
+  InversePairs.WeilBound p →
+    ∀ (h L Y : ℕ),
+      1 ≤ h →
+        p ≤ 1 + L * h →
+          1 ≤ Y →
+            ∀ (D ε : ℝ),
+              0 ≤ ε →
+                0 ≤ D →
+                  (∀ (n : ℕ), n ≠ 0 → ↑n.divisors.card ≤ D * ↑n ^ ε) →
+                    |InversePairs.S p - InversePairs.C p - 1| ≤
+                      (↑L * InversePairs.E1 p + ↑h + 1) * InversePairs.w Y +
+                          √↑Y / ↑p * (D * (1 + ↑Y) ^ ε + 1 + Real.log ↑p) +
+                        1 / ↑p
+'InversePairs.main_ineq' depends on axioms: [propext, Classical.choice, Quot.sound]
+InversePairs.rate : (∀ (p : ℕ) [inst : Fact (Nat.Prime p)], InversePairs.WeilBound p) →
+  ∀ (ε : ℝ), 0 < ε → ∃ K, ∀ (p : ℕ) [inst : Fact (Nat.Prime p)], |InversePairs.S p - 5| ≤ K * ↑p ^ (-1 / 8 + ε)
+'InversePairs.rate' depends on axioms: [propext, Classical.choice, Quot.sound]
+InversePairs.tendsto_five : (∀ (p : ℕ) [inst : Fact (Nat.Prime p)], InversePairs.WeilBound p) →
+  Filter.Tendsto
+    (fun p =>
+      have this := ⋯;
+      InversePairs.S ↑p)
+    Filter.atTop (nhds 5)
+'InversePairs.tendsto_five' depends on axioms: [propext, Classical.choice, Quot.sound]

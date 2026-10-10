@@ -1,0 +1,25 @@
+{
+  "source_commit": "2a3b4c4 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports InversePairs only)",
+    "CheckClaims.lean (generated)",
+    "scripts/mutants.py (copy of lean-proofs scripts/inversepairs_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "b064bcf7287c75881e5a86685a48f8334e735f36273b3dd99d86a5d8c925bac9",
+    "LeanProofs/InversePairs/Bound.lean": "14f4a21c099c8d12d5f2bbe39f5a9c402ed00bf76507f5fd48f05c0b1ea412f5",
+    "LeanProofs/InversePairs/Div.lean": "de70a176efdb16cf038cafae8a0191de299388bfd222940c623002b29488b1b0",
+    "LeanProofs/InversePairs/Limit.lean": "a2fb199f1f563038889720f1eb28d217065533b3e3216fd9bc5582f5967f84d9",
+    "LeanProofs/InversePairs/Main.lean": "192e9fc01f724ed0bdef359fb397167a5d7b61ae4b34e42bbd62b6a7c14cc608",
+    "LeanProofs/InversePairs/Rect.lean": "912f02d37c8d6f22ecbbe55a3b77ead052476d70481fddd01356b64599baaaa4",
+    "LeanProofs/InversePairs/Stair.lean": "60a765eec40bd7eb6bf6549bcac31498e2ca31f947aa3110dc16d1df13c4bbe5",
+    "LeanProofs/InversePairs/Sums.lean": "f5f416c34694ad056994f453cd2b06312e1400f2fa05ec488ceb23f5845db752",
+    "LeanProofs/InversePairs.lean": "2a31e0fcdf28fc5b124107415d7e78d2665b780d34224e632c781fb7c2f6dd61",
+    "LeanProofs.lean": "148bd9048a1883dde4d7ef150c292c66e4380c90a346a2e64c6db1e72da36628",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutants.py": "b1fb1434c35fc0f4936ba35bad46456cf9113197f83145ab7f27f24e8b0f5551"
+  }
+}

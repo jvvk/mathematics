@@ -1,0 +1,11 @@
+Isolated build 2026-10-10: fresh copy of lean/, lake exe cache get, lake build LeanProofs
+✔ [8924/8933] Built LeanProofs.InversePairs.Div (102s)
+✔ [8925/8933] Built LeanProofs.InversePairs.Rect (103s)
+✔ [8926/8933] Built LeanProofs.InversePairs.Stair (63s)
+✔ [8927/8933] Built LeanProofs.InversePairs.Sums (59s)
+✔ [8928/8933] Built LeanProofs.InversePairs.Bound (78s)
+✔ [8929/8933] Built LeanProofs.InversePairs.Limit (99s)
+ℹ [8930/8933] Built LeanProofs.InversePairs.Main (76s)
+✔ [8931/8933] Built LeanProofs.InversePairs (76s)
+✔ [8932/8933] Built LeanProofs (58s)
+Build completed successfully (8933 jobs).
