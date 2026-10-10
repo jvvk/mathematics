@@ -1,0 +1,57 @@
+const_identity : ∀ (m : ℚ),
+  m ≠ 0 →
+    ∀ (e : ℕ),
+      (∏ i ∈ Finset.range (e + 1), 2 / ((2 * ↑i + 1) * m)) * ∏ i ∈ Finset.range e, 2 * (↑i + 1) * m / 2 =
+        2 / m * 4 ^ e * ↑e.factorial ^ 2 / ↑(2 * e + 1).factorial
+'TanhResidues.const_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+factor_identity : ∀ (θ : ℝ),
+  Real.cos (θ / 2) ≠ 0 →
+    (1 - Complex.exp (↑θ * Complex.I)) / (1 + Complex.exp (↑θ * Complex.I)) = -Complex.I * ↑(Real.tan (θ / 2))
+'TanhResidues.factor_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+tan_pair : ∀ (m j : ℕ), m ≠ 0 → Odd j → ∀ (k : ℤ), Real.tan (ang m j (↑m - k)) = (Real.tan (ang m j k))⁻¹
+'TanhResidues.tan_pair' depends on axioms: [propext, Classical.choice, Quot.sound]
+tan_refl : ∀ (m j : ℕ), m ≠ 0 → ∀ (k : ℤ), Real.tan (ang m j (2 * ↑m - k)) = -Real.tan (ang m j k)
+'TanhResidues.tan_refl' depends on axioms: [propext, Classical.choice, Quot.sound]
+tan_tail : ∀ (m j : ℕ), m ≠ 0 → Odd j → ∀ (k : ℤ), Real.tan (ang m j (↑m + k)) = -(Real.tan (ang m j k))⁻¹
+'TanhResidues.tan_tail' depends on axioms: [propext, Classical.choice, Quot.sound]
+tan_ne_zero : ∀ (m j : ℕ), j.Coprime m → ∀ (k : ℕ), 0 < k → k < m → Real.tan (ang m j ↑k) ≠ 0
+'TanhResidues.tan_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+prod_tan : ∀ (m j : ℕ), m ≠ 0 → Odd j → j.Coprime m → ∏ k ∈ Finset.Ioo 0 m, Real.tan (ang m j ↑k) = eps m j
+'TanhResidues.prod_tan' depends on axioms: [propext, Classical.choice, Quot.sound]
+period_prod : ∀ (m j : ℕ),
+  m ≠ 0 →
+    Odd j →
+      j.Coprime m →
+        (∏ k ∈ Finset.Ioo 0 m, -Complex.I * ↑(Real.tan (ang m j ↑k))) *
+            ∏ k ∈ Finset.Ioo m (2 * m), -Complex.I * ↑(Real.tan (ang m j ↑k)) =
+          1
+'TanhResidues.period_prod' depends on axioms: [propext, Classical.choice, Quot.sound]
+fac_periodic : ∀ (m j : ℕ), m ≠ 0 → ∀ (k a : ℕ), fac m j (k + 2 * m * a) = fac m j k
+'TanhResidues.fac_periodic' depends on axioms: [propext, Classical.choice, Quot.sound]
+shift : ∀ (m j : ℕ),
+  m ≠ 0 →
+    ∀ (a L : ℕ),
+      ∏ k ∈ Finset.Ioc (2 * m * a) (2 * m * a + L) with ¬m ∣ k, fac m j k = ∏ k ∈ Finset.Ioc 0 L with ¬m ∣ k, fac m j k
+'TanhResidues.shift' depends on axioms: [propext, Classical.choice, Quot.sound]
+filter_split : ∀ (m r : ℕ), r < m → {k ∈ Finset.Ioc 0 (m + r) | ¬m ∣ k} = Finset.Ioo 0 m ∪ Finset.Ioc m (m + r)
+'TanhResidues.filter_split' depends on axioms: [propext, Classical.choice, Quot.sound]
+period_filter : ∀ (m j : ℕ), m ≠ 0 → Odd j → j.Coprime m → ∏ k ∈ Finset.Ioc 0 (2 * m) with ¬m ∣ k, fac m j k = 1
+'TanhResidues.period_filter' depends on axioms: [propext, Classical.choice, Quot.sound]
+periods : ∀ (m j : ℕ),
+  m ≠ 0 → Odd j → j.Coprime m → ∀ (e : ℕ), ∏ k ∈ Finset.Ioc 0 (2 * m * e) with ¬m ∣ k, fac m j k = 1
+'TanhResidues.periods' depends on axioms: [propext, Classical.choice, Quot.sound]
+residue_product : ∀ (m j e ρ : ℕ),
+  m ≠ 0 →
+    Odd j →
+      j.Coprime m →
+        ρ < m →
+          ∏ k ∈ Finset.Ioc 0 ((2 * e + 1) * m + ρ) with ¬m ∣ k, fac m j k =
+            (-Complex.I) ^ (m - 1) * ↑(eps m j) * ∏ k ∈ Finset.Ioc 0 ρ, Complex.I * ↑(Real.tan (ang m j ↑k))⁻¹
+'TanhResidues.residue_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+cot_symm : ∀ (m j ρ : ℕ), m ≠ 0 → Odd j → j.Coprime m → ρ < m → A m j ρ = eps m j * A m j (m - 1 - ρ)
+'TanhResidues.cot_symm' depends on axioms: [propext, Classical.choice, Quot.sound]
+@inv_symm : ∀ {K : Type u_1} [inst : Field K] (q : K),
+  q ≠ 0 →
+    ∀ (n : ℕ),
+      ∏ k ∈ Finset.Icc 1 n, (1 - q⁻¹ ^ k) / (1 + q⁻¹ ^ k) = (-1) ^ n * ∏ k ∈ Finset.Icc 1 n, (1 - q ^ k) / (1 + q ^ k)
+'TanhResidues.inv_symm' depends on axioms: [propext, Classical.choice, Quot.sound]

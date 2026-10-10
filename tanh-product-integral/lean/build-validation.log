@@ -1,0 +1,281 @@
+⚠ [8924/8926] Built LeanProofs.TanhResidues (35s)
+warning: LeanProofs/TanhResidues.lean:1:1: * `-/`:
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+warning: LeanProofs/TanhResidues.lean:6:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/TanhResidues.lean:7:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/TanhResidues.lean:16:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/TanhResidues.lean:17:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/TanhResidues.lean:28:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/TanhResidues.lean:37:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/TanhResidues.lean:43:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/TanhResidues.lean:80:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/TanhResidues.lean:97:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/TanhResidues.lean:130:52: `if_pos` has been deprecated: Use `ite_eq_left` instead
+warning: LeanProofs/TanhResidues.lean:132:66: `if_neg` has been deprecated: Use `ite_eq_right` instead
+warning: LeanProofs/TanhResidues.lean:131:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+info: LeanProofs/TanhResidues.lean:167:66: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+warning: LeanProofs/TanhResidues.lean:169:26: `if_pos` has been deprecated: Use `ite_eq_left` instead
+info: LeanProofs/TanhResidues.lean:189:70: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+warning: LeanProofs/TanhResidues.lean:190:58: `if_neg` has been deprecated: Use `ite_eq_right` instead
+warning: LeanProofs/TanhResidues.lean:158:9: Local variable 'refl' resembles constructor 'Eq.refl' - write '.refl' (with a dot) or 'Eq.refl' to use the constructor.
+
+Note: This linter can be disabled with `set_option linter.constructorNameAsVariable false`
+warning: LeanProofs/TanhResidues.lean:180:9: Local variable 'refl' resembles constructor 'Eq.refl' - write '.refl' (with a dot) or 'Eq.refl' to use the constructor.
+
+Note: This linter can be disabled with `set_option linter.constructorNameAsVariable false`
+warning: LeanProofs/TanhResidues.lean:161:31: This simp argument is unused:
+  mem_coe
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [mem_Ioo] at hk ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanProofs/TanhResidues.lean:162:31: This simp argument is unused:
+  mem_coe
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [mem_Ioo] at hk ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanProofs/TanhResidues.lean:163:31: This simp argument is unused:
+  mem_coe
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [mem_Ioo] at hk
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanProofs/TanhResidues.lean:164:31: This simp argument is unused:
+  mem_coe
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [mem_Ioo] at hk
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanProofs/TanhResidues.lean:183:31: This simp argument is unused:
+  mem_coe
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [mem_Ioo, mem_Ioc] at hk ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanProofs/TanhResidues.lean:184:31: This simp argument is unused:
+  mem_coe
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [mem_Ioo, mem_Ioc] at hk ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanProofs/TanhResidues.lean:185:31: This simp argument is unused:
+  mem_coe
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [mem_Ioo] at hk
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanProofs/TanhResidues.lean:186:31: This simp argument is unused:
+  mem_coe
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [mem_Ioc] at hk
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanProofs/TanhResidues.lean:139:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/TanhResidues.lean:154:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/TanhResidues.lean:173:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/TanhResidues.lean:190:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+info: LeanProofs/TanhResidues.lean:207:64: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+warning: LeanProofs/TanhResidues.lean:198:7: Local variable 'refl' resembles constructor 'Eq.refl' - write '.refl' (with a dot) or 'Eq.refl' to use the constructor.
+
+Note: This linter can be disabled with `set_option linter.constructorNameAsVariable false`
+warning: LeanProofs/TanhResidues.lean:201:29: This simp argument is unused:
+  mem_coe
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [mem_Ioo] at hk ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanProofs/TanhResidues.lean:202:29: This simp argument is unused:
+  mem_coe
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [mem_Ioo] at hk ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanProofs/TanhResidues.lean:203:29: This simp argument is unused:
+  mem_coe
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [mem_Ioo] at hk
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanProofs/TanhResidues.lean:204:29: This simp argument is unused:
+  mem_coe
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [mem_Ioo] at hk
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanProofs/TanhResidues.lean:210:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/TanhResidues.lean:257:2: The `show` tactic should only be used to indicate intermediate goal states for readability.
+However, this tactic invocation changed the goal. Please use `change` instead for these purposes.
+
+Note: This linter can be disabled with `set_option linter.style.show false`
+warning: LeanProofs/TanhResidues.lean:243:29: This simp argument is unused:
+  mem_coe
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [mem_Ioo, mem_Ioc] at hk ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanProofs/TanhResidues.lean:244:29: This simp argument is unused:
+  mem_coe
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [mem_Ioo, mem_Ioc] at hk ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanProofs/TanhResidues.lean:245:29: This simp argument is unused:
+  mem_coe
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [mem_Ioo] at hk
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanProofs/TanhResidues.lean:246:29: This simp argument is unused:
+  mem_coe
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [mem_Ioc] at hk
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanProofs/TanhResidues.lean:235:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/TanhResidues.lean:279:15: This simp argument is unused:
+  mem_coe
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [mem_filter, mem_Ioc] at hk ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanProofs/TanhResidues.lean:285:15: This simp argument is unused:
+  mem_coe
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [mem_filter, mem_Ioc] at hk ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanProofs/TanhResidues.lean:289:27: This simp argument is unused:
+  mem_coe
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [mem_filter, mem_Ioc] at hk
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanProofs/TanhResidues.lean:290:27: This simp argument is unused:
+  mem_coe
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [mem_filter, mem_Ioc] at hk
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanProofs/TanhResidues.lean:344:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/TanhResidues.lean:373:29: This simp argument is unused:
+  mem_coe
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [mem_Ioc] at hk ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanProofs/TanhResidues.lean:374:29: This simp argument is unused:
+  mem_coe
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [mem_Ioc] at hk ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanProofs/TanhResidues.lean:375:29: This simp argument is unused:
+  mem_coe
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [mem_Ioc] at hk
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanProofs/TanhResidues.lean:376:29: This simp argument is unused:
+  mem_coe
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [mem_Ioc] at hk
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanProofs/TanhResidues.lean:352:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/TanhResidues.lean:354:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/TanhResidues.lean:358:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/TanhResidues.lean:371:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/TanhResidues.lean:389:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/TanhResidues.lean:394:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+✔ [8925/8926] Built LeanProofs (10s)
+Build completed successfully (8926 jobs).
+exit 0

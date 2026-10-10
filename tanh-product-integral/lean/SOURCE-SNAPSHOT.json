@@ -1,0 +1,16 @@
+{
+  "source_commit": "4f07e09 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports TanhResidues only)",
+    "CheckClaims.lean (new)",
+    "scripts/mutants.py (copy of lean-proofs scripts/tanhresidues_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "ed38e65fa9e39aaf6cb437d8fde23b630f7f5f7e7424dde83f7efbf34241a541",
+    "LeanProofs.lean": "1a8ffd01e6cc1e89e57794bf95d8b29445f859d799115680af7a37a84e6b988d",
+    "LeanProofs/TanhResidues.lean": "25273043f1b2143c96000ace4ceb5c61215988b86e227c4e0ab784b611e4e492",
+    "scripts/mutants.py": "59015df463feecdca555d6701c26f1ceea71322894d688f0d541bcc7af800658"
+  }
+}
