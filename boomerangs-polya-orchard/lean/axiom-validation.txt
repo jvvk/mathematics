@@ -1,0 +1,84 @@
+@t0_root : ∀ {r : ℝ}, 0 < r → r ≤ 1 / 3 → K r * t0 r ^ 2 - 2 * A r * t0 r + r * (1 - r) = 0
+'OrchardArcs.t0_root' depends on axioms: [propext, Classical.choice, Quot.sound]
+@t0_pos : ∀ {r : ℝ}, 0 < r → r ≤ 1 / 3 → 0 < t0 r
+'OrchardArcs.t0_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+@t0_le : ∀ {r : ℝ}, 0 < r → r ≤ 1 / 3 → t0 r ≤ 1
+'OrchardArcs.t0_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+@sqrt_lower : ∀ {A X : ℝ}, 0 < A → 0 ≤ X → X ≤ A ^ 2 → A - X / (2 * A) - X ^ 2 / (2 * A ^ 3) ≤ √(A ^ 2 - X)
+'OrchardArcs.sqrt_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+@lower_value : ∀ {r : ℝ}, 0 < r → r ≤ 1 / 3 → 4 / r - 10 < 2 * (1 - r) / t0 r - (1 - r)
+'OrchardArcs.lower_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+@rise_clear : ∀ {r x y : ℝ},
+  0 < r →
+    r ≤ 1 / 2 →
+      0 ≤ x → x ≤ 1 - r → 0 ≤ y → y ≤ 1 - r → ∀ (i j : ℤ), (i, j) ≠ (0, 0) → r ^ 2 ≤ (x - ↑i) ^ 2 + (y - ↑j) ^ 2
+'OrchardArcs.rise_clear' depends on axioms: [propext, Classical.choice, Quot.sound]
+@corridor_clear : ∀ {r x y : ℝ}, r ≤ x → x ≤ 1 - r → 0 ≤ r → ∀ (i j : ℤ), r ^ 2 ≤ (x - ↑i) ^ 2 + (y - ↑j) ^ 2
+'OrchardArcs.corridor_clear' depends on axioms: [propext, Classical.choice, Quot.sound]
+@arc_in_corridor : ∀ {a s c r y : ℝ},
+  0 < a →
+    a * (1 - c) = 1 - r →
+      r ≤ -a * c + √(a ^ 2 - (1 - r - a * s) ^ 2) →
+        |y - a * s| ≤ a * s - (1 - r) →
+          r ≤ -a * c + √(a ^ 2 - (y - a * s) ^ 2) ∧ -a * c + √(a ^ 2 - (y - a * s) ^ 2) ≤ 1 - r
+'OrchardArcs.arc_in_corridor' depends on axioms: [propext, Classical.choice, Quot.sound]
+@start_condition : ∀ {r t : ℝ},
+  0 < r →
+    r ≤ 1 / 3 →
+      0 < t →
+        t ≤ 1 →
+          K r * t ^ 2 - 2 * A r * t + r * (1 - r) ≤ 0 →
+            have a := (1 - r) * (1 + t ^ 2) / (2 * t ^ 2);
+            have s := 2 * t / (1 + t ^ 2);
+            have c := (1 - t ^ 2) / (1 + t ^ 2);
+            r ≤ -a * c + √(a ^ 2 - (1 - r - a * s) ^ 2)
+'OrchardArcs.start_condition' depends on axioms: [propext, Classical.choice, Quot.sound]
+@height_identity : ∀ {r t : ℝ}, 0 < t → (1 - r) * (1 + t ^ 2) / (2 * t ^ 2) * (2 * t / (1 + t ^ 2)) = (1 - r) / t
+'OrchardArcs.height_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+@corridor_lemma : ∀ {a ε r m ℓ₀ τ₀ τk c : ℝ},
+  0 < a →
+    0 < r →
+      0 < m →
+        0 < ε →
+          ε < Real.pi / 2 →
+            Real.tan ε < 2 * r / m →
+              τ₀ ≤ τk - r →
+                τk + r ≤ τ₀ + a * (1 - Real.cos ε) →
+                  ∃ φ ∈ Set.Icc 0 ε,
+                    ∃ n, (ℓ₀ + a * Real.sin φ - (c + ↑n * m)) ^ 2 + (τ₀ + a * (1 - Real.cos φ) - τk) ^ 2 < r ^ 2
+'OrchardArcs.corridor_lemma' depends on axioms: [propext, Classical.choice, Quot.sound]
+@farey_product : ∀ {x y Q : ℝ}, 1 ≤ x → 1 ≤ y → Q < x + y → Q - 1 < x * y
+'OrchardArcs.farey_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+@farey_angle : ∀ {θ Q : ℝ}, 0 ≤ θ → θ ≤ Real.pi / 2 → 2 ≤ Q → Real.sin θ < 1 / (Q - 1) → θ < Real.pi / Q
+'OrchardArcs.farey_angle' depends on axioms: [propext, Classical.choice, Quot.sound]
+@minkowski_offset : ∀ {a r t : ℝ},
+  0 < r →
+    r ≤ 1 / 10 →
+      4 / r ^ 3 ≤ a → 0 ≤ t → t ≤ 3 / (2 * r) → a - √(a ^ 2 - t ^ 2) ≤ 29 / 100 * r ∧ 2 / 3 * r + 29 / 100 * r < r
+'OrchardArcs.minkowski_offset' depends on axioms: [propext, Classical.choice, Quot.sound]
+@eps_sq : ∀ {a r m : ℝ},
+  0 < r →
+    r ≤ 1 / 10 →
+      2 / r ^ 2 < a → 1 ≤ m → eps a r m ^ 2 = (101 / 100) ^ 2 * (2 * (1 / m + 2 * r) / a) ∧ eps a r m ^ 2 ≤ 123 / 10000
+'OrchardArcs.eps_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+@eps_cos : ∀ {a r m : ℝ}, 0 < r → r ≤ 1 / 10 → 2 / r ^ 2 < a → 1 ≤ m → 1 / m + 2 * r ≤ a * (1 - Real.cos (eps a r m))
+'OrchardArcs.eps_cos' depends on axioms: [propext, Classical.choice, Quot.sound]
+@eps_tan : ∀ {a r m : ℝ},
+  0 < r → r ≤ 1 / 10 → 2 / r ^ 2 < a → 1 ≤ m → m ≤ a * r ^ 2 → m ^ 2 ≤ a * r / 4 → Real.tan (eps a r m) < 2 * r / m
+'OrchardArcs.eps_tan' depends on axioms: [propext, Classical.choice, Quot.sound]
+@eps_le : ∀ {a r m : ℝ}, 0 < r → 0 < a → 1 ≤ m → eps a r m ≤ 101 / 100 * √(2 * (1 + 2 * r) / a)
+'OrchardArcs.eps_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+@eps_lt_half_pi : ∀ {a r m : ℝ}, 0 < r → r ≤ 1 / 10 → 2 / r ^ 2 < a → 1 ≤ m → eps a r m < Real.pi / 2
+'OrchardArcs.eps_lt_half_pi' depends on axioms: [propext, Classical.choice, Quot.sound]
+@middle_bound : ∀ {a r : ℝ},
+  0 < r →
+    r ≤ 1 / 10 →
+      2 / r ^ 2 < a →
+        a < 4 / r ^ 3 →
+          2 ≤ min (a * r ^ 2) (√(a * r) / 2) ∧
+            2 * a * (Real.pi / min (a * r ^ 2) (√(a * r) / 2) + 101 / 100 * √(2 * (1 + 2 * r) / a)) ≤ 28 / r ^ 2
+'OrchardArcs.middle_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+@small_bound : ∀ {a r : ℝ}, 0 < r → a ≤ 2 / r ^ 2 → 2 * a ≤ 28 / r ^ 2
+'OrchardArcs.small_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+@large_bound : ∀ {r : ℝ}, 0 < r → r ≤ 1 / 10 → 3 / (2 * r) + r ≤ 28 / r ^ 2
+'OrchardArcs.large_bound' depends on axioms: [propext, Classical.choice, Quot.sound]

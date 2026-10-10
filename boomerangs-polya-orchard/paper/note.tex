@@ -1,0 +1,240 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{tikz}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Boomerangs in Polya's orchard},pdfauthor={Vamshi Jandhyala}}
+\setlength{\parskip}{0.4em}
+\setlength{\parindent}{0pt}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\definecolor{inkblue}{RGB}{40,76,105}
+\definecolor{rust}{RGB}{173,80,45}
+
+\title{Boomerangs in P\'olya's orchard: \\ how far a circular arc can see}
+\author{Vamshi Jandhyala}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-2em}
+
+\begin{abstract}
+Place an open disc of radius $r$ at every nonzero point of the integer lattice. A straight ray from the origin is
+blocked within distance about $1/r$; this is P\'olya's orchard problem. Joseph O'Rourke asked on MathOverflow how far
+a circular arc from the origin can see, calling the answer $B(r)$. We prove that
+\[
+\frac4r-10<B(r)\le\frac{28}{r^2}\qquad(0<r\le\tfrac1{10}),
+\]
+the lower bound holding for all $r\le\frac13$. The lower bound comes from an arc that threads the corridor between
+two columns of trees; the upper bound combines Minkowski's theorem for nearly straight arcs, a corridor lemma for
+lattice lines of every slope, and the spacing of Farey directions. Exact computations certify arcs reaching
+$152.0$ at $r=\frac1{20}$, and the true order of growth, somewhere between $1/r$ and $1/r^2$, remains open. The
+inequalities behind both bounds are checked in the Lean proof assistant.
+\end{abstract}
+
+\section{The question}
+
+Trees of radius $r$ stand at every lattice point except the origin, where you stand. Looking along a straight line you
+can see past a distance $R$ only if $r<1/\sqrt{R^2+1}$, so roughly to distance $1/r$; this is P\'olya's orchard
+problem in the sharp form of Allen~\cite{Allen}. O'Rourke~\cite{MO} asked what happens if sight may follow any
+circular arc from the origin. Write the \emph{reach} of an arc for the largest distance from the origin it attains
+before it first enters a disc, and $B(r)$ for the supremum of the reach over all arcs. An arc of radius $a$ can never
+reach beyond $2a$, and a straight line is blocked near $1/r$, so $B(r)$ is finite. The question has had no
+answer since 2015. O'Rourke suggested that the best arcs might straddle the discs on the axes.
+
+Before reading on, consider the strip $0<x<1$ between the first two columns of trees. How far could an arc that stays
+in that strip get?
+
+\section{The lower bound}
+
+The strip idea works. An arc that starts at the origin almost vertically, bends towards the column $x=1$ and back,
+and stays between $x=r$ and $x=1-r$ while it passes the trees, sees about four times as far as any straight line
+(Figure~\ref{fig:corridor}).
+
+\begin{theorem}\label{thm:lower}
+For $0<r\le\frac13$, $B(r)>\dfrac4r-10$.
+\end{theorem}
+
+\begin{proof}
+Let the arc leave the origin at angle $\alpha$ to the right of the $y$-axis, turning left, on the circle of radius $a$
+with centre $(-a\cos\alpha,\,a\sin\alpha)$; its right branch is $x(y)=-a\cos\alpha+\sqrt{a^2-(y-a\sin\alpha)^2}$. Choose
+$a(1-\cos\alpha)=1-r$, so that the widest point of the arc, at height $a\sin\alpha$, is at $x=1-r$. In terms of
+$t=\tan(\alpha/2)$ this means $a=(1-r)(1+t^2)/(2t^2)$ and $a\sin\alpha=(1-r)/t$.
+
+\emph{The start.} The arc must be at $x\ge r$ by the time it reaches height $1-r$, to pass the tree at $(0,1)$.
+With $A=(1-r)^2$ and $K=1-3r+3r^2$, squaring turns the condition $x(1-r)\ge r$ into
+\[
+a^2-(1-r-a\sin\alpha)^2-(r+a\cos\alpha)^2=-\frac{Kt^2-2At+r(1-r)}{t^2}\ \ge0,
+\]
+which holds at the smaller root $t_0=r(1-r)/\bigl(A+\sqrt{A^2-Kr(1-r)}\bigr)$ of the quadratic.
+
+\emph{The passage.} While $0\le y\le1-r$ the arc lies in the square $[0,1-r]^2$, every point of which is at distance
+at least $r$ from each nonzero lattice point. For heights with $|y-a\sin\alpha|\le a\sin\alpha-(1-r)$ the arc satisfies
+$x(1-r)\le x(y)\le1-r$, so $r\le x\le1-r$, and every such point is at distance at least $r$ from every lattice point.
+So the arc enters no disc before height $2a\sin\alpha-(1-r)$, and its reach is at least
+\[
+\frac{2(1-r)}{t_0}-(1-r)=\frac{2\bigl(A+\sqrt{A^2-Kr(1-r)}\bigr)}{r}-(1-r).
+\]
+\emph{The estimate.} With $X=Kr(1-r)$ and $\sqrt{A^2-X}\ge A-X/(2A)-X^2/(2A^3)$, this is at least
+\[
+\frac4r-10+r\Bigl(7-\frac r{1-r}-\frac{K^2}{(1-r)^4}\Bigr),
+\]
+and the bracket is positive for $r\le\frac13$ because $K\le1$, $(1-r)^4\ge\frac{16}{81}$ and $r/(1-r)\le\frac12$.
+\end{proof}
+
+\begin{figure}[ht]
+\centering
+\input{fig_corridor.tex}
+\caption{The corridor arc of Theorem~\ref{thm:lower} at $r=\frac14$, drawn to scale. It leaves the origin almost
+vertically, clears the tree at $(0,1)$, and stays between the dashed lines $x=r$ and $x=1-r$, where no disc can
+reach it. The proof gives reach at least $7.62$; the arc first touches a disc at distance $7.83$.}
+\label{fig:corridor}
+\end{figure}
+
+\section{The upper bound}
+
+An arc of radius $a$ that survives an arclength $\ell\le\pi a$ reaches $D=2a\sin\lambda$, $\lambda=\ell/(2a)$. Its
+second half turns through an angle $\lambda$, so its directions fill an interval $J$ of length $\lambda$, and it stays
+at distance at least $D/2$ from the origin. We bound $\lambda$ in three ranges of $a$.
+
+\emph{Small $a$.} If $a\le2/r^2$ then $D\le2a\le4/r^2$.
+
+\emph{Large $a$.} If $a\ge4/r^3$ the arc is nearly straight. The closed rectangle with half-length $L=3/(2r)$ along
+the initial tangent and half-width $2r/3$ across it has area $4$, so by Minkowski's convex body theorem~\cite[Ch.~III]{Cassels}
+it contains a lattice point $q\ne0$, which we may take ahead of the origin. Over that length the arc stays within
+$a-\sqrt{a^2-L^2}\le0.29\,r$ of the tangent, so it passes within $\frac23r+0.29r<r$ of $q$: $D<3/(2r)+r$. (This is the
+idea of Willie Wong's comment on the question.)
+
+\emph{The middle range} needs two lemmas. For a primitive lattice vector $v$ of length $m$, the lattice points lie on
+the lines parallel to $v$, which are $1/m$ apart, and are spaced $m$ apart along each line.
+
+\begin{lemma}[corridor lemma]\label{lem:corridor}
+Let a piece of an arc of radius $a$, at distance at least $r$ from the origin, turn from the direction of $v$ through an
+angle $\varepsilon<\pi/2$ with $\tan\varepsilon<2r/m$. If it avoids every disc, its sideways displacement relative to
+$v$ is less than $1/m+2r$. Hence if $a(1-\cos\varepsilon)\ge1/m+2r$, the direction interval $J$ of a surviving arc
+cannot contain $[u,u+\varepsilon]$, where $u$ is the direction of $v$.
+\end{lemma}
+
+\begin{proof}
+In coordinates along and across $v$, the piece is $\varphi\mapsto(\ell_0+a\sin\varphi,\ \tau_0+a(1-\cos\varphi))$ for
+$0\le\varphi\le\varepsilon$. If its sideways range covered a whole band $|\tau-k/m|\le r$ around a lattice line,
+take $\varphi_1<\varphi_2$ where it enters and leaves the band. Then $a(\cos\varphi_1-\cos\varphi_2)=2r$, and
+$\cos(\varepsilon-\varphi_2)\ge\cos(\varepsilon-\varphi_1)$ gives
+$a(\sin\varphi_2-\sin\varphi_1)\sin\varepsilon\ge2r\cos\varepsilon$: the piece travels more than $2r\cot\varepsilon>m$
+along the line while inside the band. So it passes a lattice point of that line at the same position along the line,
+and there it is strictly within $r$ of it; that point is not the origin. A sideways range of at least $1/m+2r$ always
+covers a whole band.
+\end{proof}
+
+\begin{lemma}[Farey directions]\label{lem:farey}
+Let $Q\ge2$. Two primitive vectors of length at most $Q$ that are consecutive in direction make an angle less than
+$\pi/Q$.
+\end{lemma}
+
+\begin{proof}
+If $u,w$ are consecutive, the triangle $0,u,w$ contains no other lattice point: such a point would have length at
+most $Q$ and a direction strictly between, or would make $u$ or $w$ imprimitive. By Pick's theorem~\cite{BOOK} the
+triangle has area $\frac12$, so $|\det(u,w)|=1$. Then $u+w$ is primitive with direction between them, so $|u+w|>Q$,
+hence $|u|+|w|>Q$ and $|u||w|>Q-1$. The angle $\theta$ between them has $\sin\theta=1/(|u||w|)<1/(Q-1)$, and
+Jordan's inequality $\sin\theta\ge2\theta/\pi$ gives $\theta<\pi/(2(Q-1))\le\pi/Q$.
+\end{proof}
+
+\begin{theorem}\label{thm:upper}
+For $0<r\le\frac1{10}$, $B(r)\le\dfrac{28}{r^2}$.
+\end{theorem}
+
+\begin{proof}
+It remains to treat $2/r^2<a<4/r^3$. Put $Q=\min(ar^2,\sqrt{ar}/2)$, which is at least $2$. For a primitive $v$ of
+length $m\le Q$ let $\varepsilon_m=1.01\sqrt{2(1/m+2r)/a}$. Then $\varepsilon_m^2\le0.0123$, and Taylor bounds for
+cosine and tangent give $a(1-\cos\varepsilon_m)\ge1/m+2r$ and $\tan\varepsilon_m<2r/m$; the second uses
+$m+2rm^2\le\frac32ar^2$, which is where both parts of the definition of $Q$ enter. By Lemma~\ref{lem:corridor}, $J$
+contains no interval $[u,u+\varepsilon_m]$, and so none of length $\bar\varepsilon=1.01\sqrt{2(1+2r)/a}\ge\varepsilon_m$
+starting at such a direction. By Lemma~\ref{lem:farey} the directions of these $v$ are less than $\pi/Q$ apart, so
+$\lambda<\pi/Q+\bar\varepsilon$ and
+\[
+D\le2a\lambda<\frac{2\pi a}Q+2.02\sqrt{2(1+2r)a}\le\frac{8\pi}{r^2}+\frac2{r^2}<\frac{28}{r^2}.
+\]
+Together with the other two ranges this proves the theorem.
+\end{proof}
+
+The constant is generous. Running the same argument numerically, with the exact Farey gaps and the exact $\varepsilon$
+for each $v$ on a fine grid of $a$, gives about $8.6/r^2$ at $r=\frac14$, $6.7/r^2$ at $r=\frac1{10}$ and $6.0/r^2$ at
+$r=\frac1{20}$; this evaluation is numerical, not part of the proof.
+
+\section{Computed arcs}
+
+For a fixed radius $a$, all arcs from the origin are rotations of one curve, and each disc forbids an interval of
+starting directions that can be computed exactly. Scanning $a$ and polishing the best candidates gives the arcs in
+Table~\ref{tab:arcs}. Each is certified afterwards by computing, in $60$-digit arithmetic, where it first enters a
+disc; Figure~\ref{fig:best} shows the one for $r=\frac16$. The search can only give lower bounds, and it could miss
+narrow optima.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrrrrrr}
+\toprule
+$1/r$ & 4 & 5 & 6 & 8 & 10 & 12 & 16 & 20 \\
+\midrule
+$B(r)\ge$ & 9.909 & 13.925 & 18.980 & 31.926 & 43.793 & 65.021 & 111.682 & 151.995 \\
+$B\,r^2\ge$ & 0.619 & 0.557 & 0.527 & 0.498 & 0.437 & 0.451 & 0.436 & 0.379 \\
+\bottomrule
+\end{tabular}
+\caption{Certified arcs. For comparison, straight lines reach about $1/r$ and the corridor arc about $4/r$.}
+\label{tab:arcs}
+\end{table}
+
+\begin{figure}[ht]
+\centering
+\input{fig_best.tex}
+\caption{The certified arc for $r=\frac16$, with the trees to scale: radius $10.75$, reach $18.98$.}
+\label{fig:best}
+\end{figure}
+
+Between $1/r=10$ and $20$ the computed reach grows like $r^{-1.8}$. A heuristic points the other way: a generic arc of
+length $\ell$ survives with probability about $e^{-2r\ell}$, and there are polynomially many distinguishable arcs, which
+suggests $B(r)\approx c\log(1/r)/r$; the ratio $B\,r/\log(1/r)$ goes from $1.79$ at $r=\frac14$ to $2.54$ at
+$r=\frac1{20}$, though not monotonically. We cannot tell these apart.
+
+\section{What is left}
+
+The order of growth of $B(r)$: is it $\log(1/r)/r$, a power of $1/r$ strictly between $1$ and $2$, or $1/r^2$? A proof
+that $B(r)\,r\to\infty$, or that $B(r)=o(1/r^2)$, would already be progress. The corridor lemma loses most in the
+middle range, where the arc is long but bends through only a small angle.
+
+\paragraph{Verification.} The algebra and clearance facts in the proof of Theorem~\ref{thm:lower} (the root $t_0$,
+the starting condition, the corridor $r\le x\le1-r$, the clearance of the box and the strip, and the final estimate),
+the corridor lemma, the angle estimate of Lemma~\ref{lem:farey} from $|u|+|w|>Q$, the offset bound for large $a$, the
+conditions on $\varepsilon_m$, and the three range estimates are proved in Lean~4 with Mathlib~\cite{mathlib}, using
+only the standard axioms. Minkowski's and Pick's theorems are cited, and the circle geometry linking an arc to its
+reach and direction interval is elementary. Python scripts check the inequality of Theorem~\ref{thm:lower} for $2000$
+values of $r$ and the corridor arc's exact reach for $40$, certify the arcs of Table~\ref{tab:arcs} exactly, evaluate the numerical upper bound and the quoted ratios, and
+reject deliberately broken versions; an independent script checks the arcs by dense sampling. Everything is at
+\url{https://github.com/jvvk/mathematics/tree/main/boomerangs-polya-orchard}.
+
+\paragraph{Acknowledgements.} Joseph O'Rourke asked the question~\cite{MO}; Willie Wong's comment there contains the
+idea used for large radii. Anthropic's Claude (Opus~5.5) was used to derive and check the bounds, run the searches,
+write the Lean formalisation and the programs, and draft this text. The author takes responsibility for the content.
+
+\begin{thebibliography}{9}
+\bibitem{MO} J.~O'Rourke, Boomerangs in Polya's orchard, MathOverflow question 224015 (2015),
+\url{https://mathoverflow.net/q/224015}, accessed 10 October 2026.
+\bibitem{Allen} T.~T.~Allen, P\'olya's orchard problem, \emph{Amer. Math. Monthly} \textbf{93} (1986) 98--104,
+\href{https://doi.org/10.1080/00029890.1986.11971759}{doi:10.1080/00029890.1986.11971759}.
+\bibitem{Cassels} J.~W.~S.~Cassels, \emph{An Introduction to the Geometry of Numbers}, Springer, 1959; Chapter III,
+Theorems of Blichfeldt and Minkowski.
+\bibitem{BOOK} M.~Aigner and G.~M.~Ziegler, \emph{Proofs from THE BOOK}, Springer; chapter ``Three applications of
+Euler's formula'' (Pick's theorem).
+\bibitem{mathlib} The mathlib Community, The Lean mathematical library, in \emph{Proceedings of the 9th ACM
+SIGPLAN International Conference on Certified Programs and Proofs (CPP 2020)}, 367--381,
+\href{https://doi.org/10.1145/3372885.3373824}{doi:10.1145/3372885.3373824}.
+\end{thebibliography}
+
+\bigskip
+\noindent Vamshi Jandhyala, London, UK.
+
+\end{document}

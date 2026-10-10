@@ -1,0 +1,16 @@
+{
+  "source_commit": "fcec6cd (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports OrchardArcs only)",
+    "CheckClaims.lean (new)",
+    "scripts/mutants.py (copy of lean-proofs scripts/orchardarcs_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "e5fc9e22a35e1677e4f6f2bb65ba33d5b0b8fb9d880ac099f5e28f199b8c9ae9",
+    "LeanProofs.lean": "a72a4594675b146cbf98407d3ddbd8fa06b732ad1bff4f88789bba6a61b79dd0",
+    "LeanProofs/OrchardArcs.lean": "1acb47bcab5fd8320fe4259b166d2d8aeaf99dd8839602c94aab1a39fa859f6c",
+    "scripts/mutants.py": "36f17482ffd0a6dfcc7dd7e9ed70737cdde06b84b810670710a16c18b12bcc84"
+  }
+}
