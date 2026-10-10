@@ -1,0 +1,4 @@
+n=2: direct 0.24999 +- 9.7e-05   parametric 0.25 +- 6.8e-18   (0.1 se)
+n=3: direct 0.0125904 +- 2.5e-05   parametric 0.0125761 +- 1.3e-06   (0.6 se)
+n=4: direct 0.00010685 +- 2.3e-06   parametric 0.000105839 +- 2.1e-08   (0.4 se)
+identity agrees for n = 2, 3, 4
