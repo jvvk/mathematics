@@ -1,0 +1,6 @@
+Isolated build 2026-10-10: fresh copy of lean/, lake exe cache get, lake build LeanProofs
+✔ [8924/8928] Built LeanProofs.TaxicabEleven.Basic (196s)
+ℹ [8925/8928] Built LeanProofs.TaxicabEleven.Main (166s)
+✔ [8926/8928] Built LeanProofs.TaxicabEleven (188s)
+✔ [8927/8928] Built LeanProofs (184s)
+Build completed successfully (8928 jobs).

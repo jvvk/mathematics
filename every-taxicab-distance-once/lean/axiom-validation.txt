@@ -1,0 +1,22 @@
+TaxicabEleven.odd_tdist_iff : ∀ (p q : ℤ × ℤ),
+  Odd (TaxicabEleven.tdist p q) ↔ ¬(TaxicabEleven.colour p ↔ TaxicabEleven.colour q)
+'TaxicabEleven.odd_tdist_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+@TaxicabEleven.card_cross : ∀ {n : ℕ} (c : Fin n → Prop) [inst : DecidablePred c],
+  {ij ∈ TaxicabEleven.pairs n | ¬(c ij.1 ↔ c ij.2)}.card = (Finset.filter c Finset.univ).card * {i | ¬c i}.card
+'TaxicabEleven.card_cross' depends on axioms: [propext, Classical.choice, Quot.sound]
+TaxicabEleven.card_odd_Icc : ∀ (N : ℕ), (Finset.filter Odd (Finset.Icc 1 ↑N)).card = (N + 1) / 2
+'TaxicabEleven.card_odd_Icc' depends on axioms: [propext, Classical.choice, Quot.sound]
+@TaxicabEleven.parity : ∀ {n : ℕ} (P : Fin n → ℤ × ℤ),
+  TaxicabEleven.Realises P (n * (n - 1) / 2) →
+    (↑{i | TaxicabEleven.colour (P i)}.card - ↑{i | ¬TaxicabEleven.colour (P i)}.card) ^ 2 =
+      ↑n - 2 * ↑(n * (n - 1) / 2 % 2)
+'TaxicabEleven.parity' depends on axioms: [propext, Classical.choice, Quot.sound]
+@TaxicabEleven.square_condition : ∀ {n : ℕ} (P : Fin n → ℤ × ℤ),
+  TaxicabEleven.Realises P (n * (n - 1) / 2) →
+    (n % 4 = 0 ∨ n % 4 = 1 → IsSquare n) ∧ (n % 4 = 2 ∨ n % 4 = 3 → IsSquare (n - 2))
+'TaxicabEleven.square_condition' depends on axioms: [propext, Classical.choice, Quot.sound]
+TaxicabEleven.eleven : TaxicabEleven.Realises TaxicabEleven.eleven_pts 55
+'TaxicabEleven.eleven' depends on axioms: [propext, Classical.choice, Quot.sound]
+TaxicabEleven.eleven_split : {i | TaxicabEleven.colour (TaxicabEleven.eleven_pts i)}.card = 7 ∧
+  {i | ¬TaxicabEleven.colour (TaxicabEleven.eleven_pts i)}.card = 4
+'TaxicabEleven.eleven_split' depends on axioms: [propext, Classical.choice, Quot.sound]

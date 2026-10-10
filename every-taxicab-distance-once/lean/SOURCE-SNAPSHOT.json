@@ -1,0 +1,20 @@
+{
+  "source_commit": "c639d0e (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports TaxicabEleven only)",
+    "CheckClaims.lean (generated)",
+    "scripts/mutants.py (copy of lean-proofs scripts/taxicabeleven_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "2f037719709535417573bed788c2970c5172891809a3b23ee298cfaf7fcb2c14",
+    "LeanProofs/TaxicabEleven/Basic.lean": "77a768f979f66ff6d3d6698d0f8730578e92ea5f4ee74b629d5e5cd20431c621",
+    "LeanProofs/TaxicabEleven/Main.lean": "667a5a894702d63d50c2e462887c2e50253354fc12f969347fe71e325998f219",
+    "LeanProofs/TaxicabEleven.lean": "84fb0e93bd2c3b79a7be3c647d6812a75fb2edd3873f4c0aeb864cf276a49292",
+    "LeanProofs.lean": "f431094915cd919ba8e897e277bc02076a7b24633c3895185c73a4b1f0b141af",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutants.py": "01c8b6034a15640cbb671364d2081e2d9d3f95e2186f661af524e0277a5962c2"
+  }
+}
