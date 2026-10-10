@@ -1,0 +1,41 @@
+Isolated build 2026-10-10: fresh copy of lean/, lake exe cache get, lake build LeanProofs
+⚠ [8924/8928] Built LeanProofs.DivisorWalk.Game (279s)
+warning: LeanProofs/DivisorWalk/Game.lean:7:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/DivisorWalk/Game.lean:10:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/DivisorWalk/Game.lean:11:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/DivisorWalk/Game.lean:12:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/DivisorWalk/Game.lean:25:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/DivisorWalk/Game.lean:40:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/DivisorWalk/Game.lean:167:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/DivisorWalk/Game.lean:234:63: this tactic is never executed
+warning: LeanProofs/DivisorWalk/Game.lean:234:63: Unused tactic linter: `omega` does nothing
+warning: LeanProofs/DivisorWalk/Game.lean:182:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/DivisorWalk/Game.lean:183:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/DivisorWalk/Game.lean:184:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/DivisorWalk/Game.lean:188:100: This line exceeds the 100 character limit, please shorten it!
+⚠ [8925/8928] Built LeanProofs.DivisorWalk.Theorems (208s)
+warning: LeanProofs/DivisorWalk/Theorems.lean:8:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/DivisorWalk/Theorems.lean:17:28: Variable name `hn` is not explicitly referenced.
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+warning: LeanProofs/DivisorWalk/Theorems.lean:47:94: this tactic is never executed
+warning: LeanProofs/DivisorWalk/Theorems.lean:47:35: `simp at hv` is a flexible tactic modifying `hv`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/DivisorWalk/Theorems.lean:47:35: `simp at hv` is a flexible tactic modifying `hv`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/DivisorWalk/Theorems.lean:47:94: Unused tactic linter: `omega` does nothing
+warning: LeanProofs/DivisorWalk/Theorems.lean:89:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/DivisorWalk/Theorems.lean:126:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/DivisorWalk/Theorems.lean:142:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/DivisorWalk/Theorems.lean:145:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/DivisorWalk/Theorems.lean:165:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/DivisorWalk/Theorems.lean:168:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/DivisorWalk/Theorems.lean:174:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/DivisorWalk/Theorems.lean:197:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/DivisorWalk/Theorems.lean:220:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/DivisorWalk/Theorems.lean:261:4: `simp at hv` is a flexible tactic modifying `hv`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/DivisorWalk/Theorems.lean:272:16: `simp at hv` is a flexible tactic modifying `hv`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/DivisorWalk/Theorems.lean:282:4: `simp at hv` is a flexible tactic modifying `hv`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/DivisorWalk/Theorems.lean:290:4: `simp at hv` is a flexible tactic modifying `hv`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/DivisorWalk/Theorems.lean:279:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/DivisorWalk/Theorems.lean:287:100: This line exceeds the 100 character limit, please shorten it!
+✔ [8926/8928] Built LeanProofs.DivisorWalk (171s)
+✔ [8927/8928] Built LeanProofs (152s)
+Build completed successfully (8928 jobs).

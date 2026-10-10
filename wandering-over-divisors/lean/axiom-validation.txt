@@ -1,0 +1,55 @@
+@DivisorWalk.reflect : ∀ {n : ℕ} {V : Finset DivisorWalk.Sq} {p : DivisorWalk.Sq},
+  DivisorWalk.BobWins n V p → DivisorWalk.BobWins n (Finset.image DivisorWalk.sw V) (DivisorWalk.sw p)
+'DivisorWalk.reflect' depends on axioms: [propext, Classical.choice, Quot.sound]
+DivisorWalk.sweep : ∀ (n k y m : ℕ) (V : Finset DivisorWalk.Sq),
+  y - m ≤ k →
+    m ≤ y →
+      y ≤ n →
+        (n, y) ∈ V →
+          y = n ∨ (n, y + 1) ∈ V →
+            (∀ (j : ℕ), m ≤ j → j < y → (n, j) ∉ V) → m = 0 ∨ (n - 1, m - 1) ∈ V → DivisorWalk.BobWins n V (n, y)
+'DivisorWalk.sweep' depends on axioms: [propext, Classical.choice, Quot.sound]
+DivisorWalk.sweep_top : ∀ (n x m : ℕ) (V : Finset DivisorWalk.Sq),
+  m ≤ x →
+    x ≤ n →
+      (x, n) ∈ V →
+        x = n ∨ (x + 1, n) ∈ V →
+          (∀ (j : ℕ), m ≤ j → j < x → (j, n) ∉ V) → m = 0 ∨ (m - 1, n - 1) ∈ V → DivisorWalk.BobWins n V (x, n)
+'DivisorWalk.sweep_top' depends on axioms: [propext, Classical.choice, Quot.sound]
+DivisorWalk.climb : ∀ (n : ℕ) (F : DivisorWalk.Sq → Prop) (P : Finset DivisorWalk.Sq → Prop),
+  (∀ (V : Finset DivisorWalk.Sq) (a : DivisorWalk.Sq), P V → P (insert a V)) →
+    ∀ (Q : ℕ → ℕ → Prop),
+      (∀ (x y : ℕ), Q x y → Q (x + 1) (y + 1)) →
+        (∀ (V : Finset DivisorWalk.Sq) (x y : ℕ),
+            x = n ∨ y = n →
+              x ≤ n →
+                y ≤ n →
+                  Q x y →
+                    P V →
+                      (x, y) ∈ V →
+                        (∀ v ∈ V, F v ∨ v.1 ≤ x ∧ v.2 ≤ y) →
+                          x = 0 ∨ y = 0 ∨ (x - 1, y - 1) ∈ V → DivisorWalk.BobWins n V (x, y)) →
+          ∀ (k x y : ℕ) (V : Finset DivisorWalk.Sq),
+            2 * n - x - y ≤ k →
+              x ≤ n →
+                y ≤ n →
+                  Q x y →
+                    P V →
+                      (x, y) ∈ V →
+                        (∀ (u w : ℕ), x ≤ u → y ≤ w → ¬F (u + 1, w) ∧ ¬F (u, w + 1) ∧ ¬F (u + 1, w + 1)) →
+                          (∀ v ∈ V, F v ∨ v.1 ≤ x ∧ v.2 ≤ y) →
+                            x = 0 ∨ y = 0 ∨ (x - 1, y - 1) ∈ V → DivisorWalk.BobWins n V (x, y)
+'DivisorWalk.climb' depends on axioms: [propext, Classical.choice, Quot.sound]
+DivisorWalk.diag : ∀ (n k : ℕ),
+  k < n → ∀ (q : DivisorWalk.Sq), q = (k + 1, k) ∨ q = (k, k + 1) → DivisorWalk.BobAnswers n {q, (k, k)} q
+'DivisorWalk.diag' depends on axioms: [propext, Classical.choice, Quot.sound]
+DivisorWalk.bottom : ∀ (n a : ℕ), 2 ≤ n → 1 ≤ a → a ≤ n → DivisorWalk.BobAnswers n {(a, 1), (a, 0)} (a, 1)
+'DivisorWalk.bottom' depends on axioms: [propext, Classical.choice, Quot.sound]
+DivisorWalk.corner_right : ∀ (n : ℕ), 2 ≤ n → DivisorWalk.BobWins n {(n, 0)} (n, 0)
+'DivisorWalk.corner_right' depends on axioms: [propext, Classical.choice, Quot.sound]
+DivisorWalk.corner_left : ∀ (n : ℕ), 2 ≤ n → DivisorWalk.BobWins n {(0, n)} (0, n)
+'DivisorWalk.corner_left' depends on axioms: [propext, Classical.choice, Quot.sound]
+DivisorWalk.two_zero : ∀ (n : ℕ), 2 ≤ n → DivisorWalk.BobWins n {(2, 0)} (2, 0)
+'DivisorWalk.two_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+DivisorWalk.two_two : ∀ (n : ℕ), 3 ≤ n → DivisorWalk.BobWins n {(2, 2)} (2, 2)
+'DivisorWalk.two_two' depends on axioms: [propext, Classical.choice, Quot.sound]

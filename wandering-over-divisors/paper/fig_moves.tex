@@ -1,0 +1,24 @@
+\begin{tikzpicture}[>={Stealth[length=2.2mm]}]
+\draw[gray!70] (0.0,0.0) rectangle ++(1.35,1.35);
+\node at (0.675,0.675) {$1$};
+\draw[gray!70] (0.0,1.35) rectangle ++(1.35,1.35);
+\node at (0.675,2.0250000000000004) {$5$};
+\draw[gray!70] (0.0,2.7) rectangle ++(1.35,1.35);
+\node at (0.675,3.375) {$25$};
+\draw[gray!70] (1.35,0.0) rectangle ++(1.35,1.35);
+\node at (2.0250000000000004,0.675) {$2$};
+\draw[gray!70] (1.35,1.35) rectangle ++(1.35,1.35);
+\node at (2.0250000000000004,2.0250000000000004) {$10$};
+\draw[gray!70] (1.35,2.7) rectangle ++(1.35,1.35);
+\node at (2.0250000000000004,3.375) {$50$};
+\draw[gray!70] (2.7,0.0) rectangle ++(1.35,1.35);
+\node at (3.375,0.675) {$4$};
+\draw[gray!70] (2.7,1.35) rectangle ++(1.35,1.35);
+\node at (3.375,2.0250000000000004) {$20$};
+\draw[gray!70] (2.7,2.7) rectangle ++(1.35,1.35);
+\node at (3.375,3.375) {$100$};
+\draw[->, very thick, rust] (2.3050000000000006,2.0250000000000004) -- (3.0750000000000006,2.0250000000000004) node[midway, above] {\scriptsize $E$};
+\draw[->, very thick, rust] (2.0250000000000004,2.2750000000000004) -- (2.0250000000000004,3.0750000000000006) node[midway, left] {\scriptsize $N$};
+\draw[->, very thick, rust] (1.7750000000000004,1.8050000000000004) -- (0.9950000000000003,0.9750000000000003) node[midway, above left] {\scriptsize $D$};
+\node[below] at (2.0250000000000004,-0.1) {\small $\times 2$ is $E$, $\times 5$ is $N$, $\div 10$ is $D$};
+\end{tikzpicture}

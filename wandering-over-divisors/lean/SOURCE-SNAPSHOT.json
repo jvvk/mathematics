@@ -1,0 +1,21 @@
+{
+  "source_commit": "8c6cd51 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports DivisorWalk only)",
+    "CheckClaims.lean (generated)",
+    "scripts/mutants.py (copy of lean-proofs scripts/divisorwalk_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "fd15c7d4459dac2a908cc0a5a090899b56c4f7ab8bd97d506ea96d23e6486fb6",
+    "LeanProofs/DivisorWalk/Game.lean": "43e3a15557cc941ca80824fab30bf89b46608610f52259f8d026ac204abfa616",
+    "LeanProofs/DivisorWalk/Main.lean": "510c7482f16cb792baa6f4da4292c3de67b76760328f90374297d4d554abbf47",
+    "LeanProofs/DivisorWalk/Theorems.lean": "882c4e000b009b9452dcd4858d28b8cdb0999e380bd20f7c514b8563453dd68d",
+    "LeanProofs/DivisorWalk.lean": "b45af82fe8a57140eb3b12223fe0f1e53d2def75deca175b0e44b74ef048b06a",
+    "LeanProofs.lean": "c656d945a3a16200b5579fe43e50ebd2fce814082c1d8b850772508b4f574f57",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutants.py": "6140c5388590812e9b4f2407fc324a49e68d88e52ecfa294581b6c60743e2136"
+  }
+}
