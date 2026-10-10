@@ -1,0 +1,16 @@
+{
+  "source_commit": "73852da (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports GaussianApex only)",
+    "CheckClaims.lean (new)",
+    "scripts/mutants.py (copy of lean-proofs scripts/gaussianapex_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "16770ce2eac376ee9144e4414281e91e59675b1ad8709e7afdd358cf6b72ca58",
+    "LeanProofs.lean": "57911f26d1a8b4516105f46e48d42e2c579e2b776c539bc8fb3e89f206f84b06",
+    "LeanProofs/GaussianApex.lean": "b1835dd400c2776d36b350769e459a338b93612795c7eee7abec9df59f9dd233",
+    "scripts/mutants.py": "4c0c3d37f6e78bb2bee30f4a00ef6b61b1c61639bfba25f8d785f43b2e3c3ed5"
+  }
+}

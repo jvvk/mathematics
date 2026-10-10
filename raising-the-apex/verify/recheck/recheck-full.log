@@ -1,0 +1,29 @@
+figure: h=0.7: mean height 0.2505 +- 0.0003 (stated 0.251)
+figure: h=1.2: mean height 0.4241 +- 0.0004 (stated 0.424)
+figure: h=2.0: mean height 0.6514 +- 0.0005 (stated 0.652)
+foot -1.0, centre (2.0, -0.5): 0.101, 0.189, 0.317, 0.451
+foot 0.3, centre (-1.5, 1.0): 0.160, 0.331, 0.642, 0.982
+foot 1.0, centre (0.0, 0.0): 0.159, 0.303, 0.516, 0.686
+tetrahedron h=0.5: mean height 0.1282 +- 0.0004
+tetrahedron h=1.0: mean height 0.2538 +- 0.0006
+tetrahedron h=2.0: mean height 0.4622 +- 0.0008
+foot outside: 5.050 at h=10, 4.048 at h=20
+positive: 19 checks passed
+
+figure: h=0.7: mean height 0.2513 +- 0.0003 (stated 0.251)
+rejected mutant: figure height 0.40 at h = 1.2 ((1.2, 0.4252530055963904, 0.4, 0.00037607944411386816))
+
+figure: h=0.7: mean height 0.2511 +- 0.0003 (stated 0.251)
+figure: h=1.2: mean height 0.4239 +- 0.0004 (stated 0.424)
+figure: h=2.0: mean height 0.6522 +- 0.0005 (stated 0.652)
+foot -1.0, centre (2.0, -0.5): 0.101, 0.188, 0.320, 0.451
+foot 0.3, centre (-1.5, 1.0): 0.159, 0.330, 0.642, 0.982
+foot 1.0, centre (0.0, 0.0): 0.159, 0.303, 0.517, 0.686
+tetrahedron h=0.5: mean height 0.1282 +- 0.0004
+tetrahedron h=1.0: mean height 0.2537 +- 0.0006
+tetrahedron h=2.0: mean height 0.4622 +- 0.0008
+rejected mutant: foot-outside heights claimed to rise ((5.050266837832056, 4.045690492459104))
+
+rejected mutant: centroid claimed to fall ((0.7, 0.2510014623750616, -inf))
+
+all 3 mutants rejected

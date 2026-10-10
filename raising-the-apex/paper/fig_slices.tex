@@ -1,0 +1,26 @@
+\begin{tikzpicture}[scale=2.6,line cap=round,line join=round]
+  \draw[gray!30] (0.5,0.6) circle (0.4);
+  \draw[gray!30] (0.5,0.6) circle (0.8);
+  \draw[gray!30] (0.5,0.6) circle (1.2);
+  \draw[gray!30] (0.5,0.6) circle (1.6);
+  \fill[gray!60] (0.5,0.6) circle (0.6pt);
+  \draw[inkblue,thick] (-1.2,0) -- (0.8,0) -- (0,0.7) -- cycle;
+  \draw[rust,thick] (-1.2,0) -- (0.8,0) -- (0,1.2) -- cycle;
+  \draw[olive,thick] (-1.2,0) -- (0.8,0) -- (0,2.0) -- cycle;
+  \draw[olive,line width=2.4pt] (-0.9000,0.5) -- (0.6000,0.5);
+  \draw[rust,line width=1.2pt] (-0.7000,0.5) -- (0.4667,0.5);
+  \draw[gray,dotted] (-1.45,0.5) node[left,font=\scriptsize,black] {height $y$} -- (1.0,0.5);
+  \draw[dashed,gray] (0,0) -- (0,2.0);
+  \fill (0,0) circle (0.9pt) node[below,font=\small] {$D$};
+  \node[below,font=\small] at (-1.2,0) {$A$};
+  \node[below,font=\small] at (0.8,0) {$B$};
+  \fill[inkblue] (-0.0357,0.2510) circle (1.3pt);
+  \node[inkblue,font=\scriptsize,anchor=west] at (1.35,0.2510) {$h=0.7$: height $0.251$};
+  \draw[inkblue,densely dotted] (-0.0357,0.2510) -- (1.33,0.2510);
+  \fill[rust] (-0.0359,0.4243) circle (1.3pt);
+  \node[rust,font=\scriptsize,anchor=west] at (1.35,0.4243) {$h=1.2$: height $0.424$};
+  \draw[rust,densely dotted] (-0.0359,0.4243) -- (1.33,0.4243);
+  \fill[olive] (-0.0355,0.6517) circle (1.3pt);
+  \node[olive,font=\scriptsize,anchor=west] at (1.35,0.6517) {$h=2$: height $0.652$};
+  \draw[olive,densely dotted] (-0.0355,0.6517) -- (1.33,0.6517);
+\end{tikzpicture}

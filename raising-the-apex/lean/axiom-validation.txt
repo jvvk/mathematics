@@ -1,0 +1,52 @@
+@dilate_combo : ∀ {E : Type u_1} [inst : AddCommGroup E] [inst_1 : Module ℝ E] {K : Set E},
+  Convex ℝ K →
+    ∀ {D : E} {s₁ s₂ l : ℝ},
+      0 < s₁ →
+        0 < s₂ →
+          0 ≤ l →
+            l ≤ 1 →
+              ∀ {z₁ z₂ : E},
+                z₁ ∈ K →
+                  z₂ ∈ K →
+                    ∃ z ∈ K,
+                      (1 - l) • (D + s₁ • (z₁ - D)) + l • (D + s₂ • (z₂ - D)) = D + ((1 - l) * s₁ + l * s₂) • (z - D)
+'GaussianApex.dilate_combo' depends on axioms: [propext, Classical.choice, Quot.sound]
+@increment_anti : ∀ {φ : ℝ → ℝ},
+  ConcaveOn ℝ (Set.Ioi 0) φ → ∀ {u₁ u₂ L : ℝ}, 0 < u₁ → u₁ ≤ u₂ → 0 < L → φ (u₂ + L) - φ u₂ ≤ φ (u₁ + L) - φ u₁
+'GaussianApex.increment_anti' depends on axioms: [propext, Classical.choice, Quot.sound]
+@increment_gt : ∀ {φ : ℝ → ℝ},
+  ConcaveOn ℝ (Set.Ioi 0) φ →
+    StrictMonoOn φ (Set.Ioi 0) →
+      ∀ {u₁ v₁ u₂ v₂ : ℝ}, 0 < u₁ → u₂ < v₂ → u₁ ≤ u₂ → v₂ - u₂ < v₁ - u₁ → φ v₂ - φ u₂ < φ v₁ - φ u₁
+'GaussianApex.increment_gt' depends on axioms: [propext, Classical.choice, Quot.sound]
+@ratio_strictMono : ∀ {φ : ℝ → ℝ},
+  ConcaveOn ℝ (Set.Ioi 0) φ →
+    StrictMonoOn φ (Set.Ioi 0) →
+      ∀ {h₁ h₂ y y' : ℝ},
+        0 < h₁ →
+          h₁ < h₂ → 0 ≤ y → y < y' → y' < h₁ → φ (1 - y / h₂) - φ (1 - y / h₁) < φ (1 - y' / h₂) - φ (1 - y' / h₁)
+'GaussianApex.ratio_strictMono' depends on axioms: [propext, Classical.choice, Quot.sound]
+@double_integral : ∀ {μ : MeasureTheory.Measure ℝ} [MeasureTheory.IsFiniteMeasure μ] {f g : ℝ → ℝ},
+  MeasureTheory.Integrable f μ →
+    MeasureTheory.Integrable g μ →
+      MeasureTheory.Integrable (fun x => f x * g x) μ →
+        ∫ (z : ℝ × ℝ), (f z.1 - f z.2) * (g z.1 - g z.2) ∂μ.prod μ =
+          2 * ((μ Set.univ).toReal * ∫ (x : ℝ), f x * g x ∂μ - (∫ (x : ℝ), f x ∂μ) * ∫ (x : ℝ), g x ∂μ)
+'GaussianApex.double_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+@chebyshev : ∀ {μ : MeasureTheory.Measure ℝ} [MeasureTheory.IsFiniteMeasure μ] {f g : ℝ → ℝ},
+  MeasureTheory.Integrable f μ →
+    MeasureTheory.Integrable g μ →
+      MeasureTheory.Integrable (fun x => f x * g x) μ →
+        (∀ (x y : ℝ), 0 ≤ (f x - f y) * (g x - g y)) →
+          (∫ (x : ℝ), f x ∂μ) * ∫ (x : ℝ), g x ∂μ ≤ (μ Set.univ).toReal * ∫ (x : ℝ), f x * g x ∂μ
+'GaussianApex.chebyshev' depends on axioms: [propext, Classical.choice, Quot.sound]
+@chebyshev_strict : ∀ {μ : MeasureTheory.Measure ℝ} [MeasureTheory.IsFiniteMeasure μ] {f g : ℝ → ℝ},
+  MeasureTheory.Integrable f μ →
+    MeasureTheory.Integrable g μ →
+      MeasureTheory.Integrable (fun x => f x * g x) μ →
+        (∀ (x y : ℝ), 0 ≤ (f x - f y) * (g x - g y)) →
+          0 < (μ.prod μ) (Function.support fun z => (f z.1 - f z.2) * (g z.1 - g z.2)) →
+            (∫ (x : ℝ), f x ∂μ) * ∫ (x : ℝ), g x ∂μ < (μ Set.univ).toReal * ∫ (x : ℝ), f x * g x ∂μ
+'GaussianApex.chebyshev_strict' depends on axioms: [propext, Classical.choice, Quot.sound]
+@mean_mix : ∀ {p m₀ m₁ m₂ : ℝ}, p ≤ 1 → m₀ < m₁ → m₁ ≤ m₂ → m₀ < p * m₁ + (1 - p) * m₂
+'GaussianApex.mean_mix' depends on axioms: [propext, Classical.choice, Quot.sound]
