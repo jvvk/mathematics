@@ -1,0 +1,24 @@
+\begin{tikzpicture}[x=5.2cm,y=0.62cm,line cap=round]
+  % rows: the first three entries after moves 1..4, as (s, s, -2s) with s = (-1/2)^m
+  \foreach \m/\s in {1/-0.5,2/0.25,3/-0.125,4/0.0625}{
+    \pgfmathsetmacro{\y}{-\m}
+    \draw[gray!60] (-1.1,\y) -- (1.1,\y);
+    \draw[gray!60] (0,\y-0.15) -- (0,\y+0.15);
+    \pgfmathsetmacro{\d}{-2*\s}
+    \fill[inkblue] (\s,\y) circle (2.6pt);
+    \draw[inkblue,thick] (\s,\y) circle (4.4pt);
+    \fill[rust] (\d,\y) circle (2.6pt);
+    \node[left,font=\footnotesize] at (-1.12,\y) {after move \m};
+  }
+  \foreach \m/\s in {1/-0.5,2/0.25,3/-0.125}{
+    \pgfmathsetmacro{\y}{-\m}
+    \pgfmathsetmacro{\d}{-2*\s}
+    \pgfmathsetmacro{\n}{-\s/2}
+    \draw[->,rust!70,thin,shorten >=3pt] (\d,\y-0.1) to[bend left=12] (\n,\y-0.9);
+  }
+  \node[font=\scriptsize,below] at (0,-4.2) {$0$};
+  \node[font=\scriptsize,below] at (1,-4.2) {$1$};
+  \node[font=\scriptsize,below] at (-1,-4.2) {$-1$};
+  \node[font=\scriptsize,below] at (0.5,-4.2) {$\tfrac12$};
+  \node[font=\scriptsize,below] at (-0.5,-4.2) {$-\tfrac12$};
+\end{tikzpicture}

@@ -1,0 +1,16 @@
+{
+  "source_commit": "61d20c8 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports PairwiseAveraging only)",
+    "CheckClaims.lean (new)",
+    "scripts/mutants.py (copy of lean-proofs scripts/pairwiseaveraging_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "6f3acede0638f661120d78a6f17429e295faa2cb7e4e4bb7e972eeac4dced5ae",
+    "LeanProofs.lean": "9d6a3e99bd55217676beb82552e5757ad2253ce01f8dc12c4f7f87dbc938aeb6",
+    "LeanProofs/PairwiseAveraging.lean": "3d9a6d96b67208a8aa960c6e147489b07d3b0e10aafbd3e0a05c61828addfcf5",
+    "scripts/mutants.py": "1fd801c2f12c333104c4bbe9bfee73c8bbd1d546f7198be55099397cee1958ff"
+  }
+}

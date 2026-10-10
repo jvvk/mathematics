@@ -1,0 +1,97 @@
+⚠ [8924/8926] Built LeanProofs.PairwiseAveraging (28s)
+warning: LeanProofs/PairwiseAveraging.lean:1:1: * `-/`:
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+warning: LeanProofs/PairwiseAveraging.lean:7:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/PairwiseAveraging.lean:12:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/PairwiseAveraging.lean:13:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/PairwiseAveraging.lean:41:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/PairwiseAveraging.lean:53:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/PairwiseAveraging.lean:69:33: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: LeanProofs/PairwiseAveraging.lean:184:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/PairwiseAveraging.lean:269:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/PairwiseAveraging.lean:275:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/PairwiseAveraging.lean:282:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/PairwiseAveraging.lean:310:2: The `show` tactic should only be used to indicate intermediate goal states for readability.
+However, this tactic invocation changed the goal. Please use `change` instead for these purposes.
+
+Note: This linter can be disabled with `set_option linter.style.show false`
+warning: LeanProofs/PairwiseAveraging.lean:332:18: `simp [B]` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/PairwiseAveraging.lean:332:18: Try this:
+  [apply] simp only [Fin.zero_eta, Fin.isValue, Nat.succ_eq_add_one, Nat.reduceAdd, Matrix.cons_val_zero]
+info: LeanProofs/PairwiseAveraging.lean:332:31: `first
+| ring1
+| linear_combination (5 / 2 : ℚ) * this`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 332!
+warning: LeanProofs/PairwiseAveraging.lean:332:18: `simp [B]` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/PairwiseAveraging.lean:332:18: Try this:
+  [apply] simp only [Fin.mk_one, Fin.isValue, Nat.succ_eq_add_one, Nat.reduceAdd, Matrix.cons_val_one,
+    Matrix.cons_val_zero]
+info: LeanProofs/PairwiseAveraging.lean:332:31: `first
+| ring1
+| linear_combination (5 / 2 : ℚ) * this`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 332!
+warning: LeanProofs/PairwiseAveraging.lean:332:18: `simp [B]` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/PairwiseAveraging.lean:332:18: Try this:
+  [apply] simp only [Fin.reduceFinMk, Fin.isValue, Nat.succ_eq_add_one, Nat.reduceAdd, Matrix.cons_val]
+info: LeanProofs/PairwiseAveraging.lean:332:31: `first
+| ring1
+| linear_combination (5 / 2 : ℚ) * this`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 332!
+warning: LeanProofs/PairwiseAveraging.lean:332:18: `simp [B]` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/PairwiseAveraging.lean:332:18: Try this:
+  [apply] simp only [Fin.reduceFinMk, Fin.isValue, Nat.succ_eq_add_one, Nat.reduceAdd, Matrix.cons_val]
+info: LeanProofs/PairwiseAveraging.lean:332:31: `first
+| ring1
+| linear_combination (5 / 2 : ℚ) * this`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 332!
+warning: LeanProofs/PairwiseAveraging.lean:332:18: `simp [B]` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/PairwiseAveraging.lean:332:18: Try this:
+  [apply] simp only [Fin.reduceFinMk, Fin.isValue, Nat.succ_eq_add_one, Nat.reduceAdd, Matrix.cons_val]
+info: LeanProofs/PairwiseAveraging.lean:332:31: `first
+| ring1
+| linear_combination (5 / 2 : ℚ) * this`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 332!
+warning: LeanProofs/PairwiseAveraging.lean:325:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/PairwiseAveraging.lean:329:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/PairwiseAveraging.lean:335:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+✔ [8925/8926] Built LeanProofs (3.0s)
+Build completed successfully (8926 jobs).

@@ -1,0 +1,14 @@
+k=1: [20, 0, 16, 7, 7] least moves 4: [(0, 1), (0, 2), (0, 3), (2, 4)]
+k=2: [40, 0, 32, 29, 29] least moves 5: [(0, 1), (0, 2), (0, 1), (0, 3), (1, 4)]
+k=3: [80, 0, 64, 43, 43] least moves 6: [(0, 1), (0, 2), (0, 1), (0, 2), (0, 3), (2, 4)]
+k=4: [160, 0, 128, 101, 101] least moves 7: [(0, 1), (0, 2), (0, 1), (0, 2), (0, 1), (0, 3), (1, 4)]
+k=5: [320, 0, 256, 187, 187] least moves 8: [(0, 1), (0, 2), (0, 1), (0, 2), (0, 1), (0, 2), (0, 3), (2, 4)]
+positive: 41 checks passed
+
+rejected mutant: pruning assumes a move fixes only one entry ((1, None))
+
+rejected mutant: optimum claimed k + 2 ((1, [(0, 1), (0, 2), (0, 3), (2, 4)]))
+
+rejected mutant: third entry 5N instead of 4N ((1, None))
+
+all 3 mutants rejected

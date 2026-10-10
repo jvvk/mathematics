@@ -1,0 +1,33 @@
+@weights : ∀ {n : ℕ} (x : Fin n → ℚ) (mv : ℕ → Fin n × Fin n) (r : ℕ) (a : Fin n),
+  ∃ m, ∑ i, m i = 2 ^ r ∧ seq x mv r a = (∑ i, ↑(m i) * x i) / 2 ^ r
+'PairwiseAveraging.weights' depends on axioms: [propext, Classical.choice, Quot.sound]
+@affine : ∀ {n : ℕ} (x : Fin n → ℚ) (mv : ℕ → Fin n × Fin n) (c d : ℚ) (r : ℕ) (a : Fin n),
+  seq (fun i => c * x i + d) mv r a = c * seq x mv r a + d
+'PairwiseAveraging.affine' depends on axioms: [propext, Classical.choice, Quot.sound]
+@sum_seq : ∀ {n : ℕ} (x : Fin n → ℚ) (mv : ℕ → Fin n × Fin n) (r : ℕ), ∑ a, seq x mv r a = ∑ a, x a
+'PairwiseAveraging.sum_seq' depends on axioms: [propext, Classical.choice, Quot.sound]
+@no_congruence : ∀ {k r q : ℕ}, r < k → q ≤ 2 ^ r → 2 ^ (k + 1) ∣ 5 * ↑q - 2 ^ (r + 1) → False
+'PairwiseAveraging.no_congruence' depends on axioms: [propext, Classical.choice, Quot.sound]
+no_mean_before : ∀ (k : ℕ) (mv : ℕ → Fin 5 × Fin 5) {r : ℕ}, r < k → ∀ (a : Fin 5), seq (B k) mv r a ≠ t k
+'PairwiseAveraging.no_mean_before' depends on axioms: [propext, Classical.choice, Quot.sound]
+@count_step : ∀ {n : ℕ} (u : Fin n → ℚ) (p : Fin n × Fin n) (μ : ℚ),
+  (hits (avg u p) μ).card ≤ (hits u μ).card ∨ (hits (avg u p) μ).card = (hits u μ).card + 2
+'PairwiseAveraging.count_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+@count_ne_pred : ∀ {n : ℕ}, 1 ≤ n → ∀ (u : Fin n → ℚ) (μ : ℚ), ∑ a, u a = ↑n * μ → (hits u μ).card ≠ n - 1
+'PairwiseAveraging.count_ne_pred' depends on axioms: [propext, Classical.choice, Quot.sound]
+lower_bound : ∀ (k : ℕ), 1 ≤ k → ∀ (mv : ℕ → Fin 5 × Fin 5) (R : ℕ), (∀ (a : Fin 5), seq (B k) mv R a = t k) → k + 3 ≤ R
+'PairwiseAveraging.lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+upper_bound : ∀ (k : ℕ), 1 ≤ k → ∀ (a : Fin 5), seq (B k) (strategy k) (k + 3) a = t k
+'PairwiseAveraging.upper_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+optimum : ∀ (k : ℕ),
+  1 ≤ k →
+    (∃ mv, ∀ (a : Fin 5), seq (B k) mv (k + 3) a = t k) ∧
+      ∀ (mv : ℕ → Fin 5 × Fin 5) (R : ℕ), (∀ (a : Fin 5), seq (B k) mv R a = t k) → k + 3 ≤ R
+'PairwiseAveraging.optimum' depends on axioms: [propext, Classical.choice, Quot.sound]
+integer_version : ∀ (k : ℕ) (i : Fin 5),
+  2 ^ (k + 1) * B k i + 3 * 2 ^ (k + 1) =
+    ![5 * 2 ^ (k + 1), 0, 4 * 2 ^ (k + 1), 3 * 2 ^ (k + 1) + 5 * (-1) ^ k, 3 * 2 ^ (k + 1) + 5 * (-1) ^ k] i
+'PairwiseAveraging.integer_version' depends on axioms: [propext, Classical.choice, Quot.sound]
+no_balanced_subset : ∀ (k : ℕ),
+  2 ≤ k → ∀ (S : Finset (Fin 5)), S.Nonempty → S ≠ Finset.univ → ∑ i ∈ S, B k i ≠ ↑S.card * t k
+'PairwiseAveraging.no_balanced_subset' depends on axioms: [propext, Classical.choice, Quot.sound]
