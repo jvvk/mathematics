@@ -13,7 +13,7 @@ The first command fetches the pinned Mathlib cache, the second compiles the proo
 statements and axioms of the headline results, and the last runs the mutation tests: each plants one wrong
 statement, constant or point and checks that the file no longer compiles.
 
-**Scope.** The Brunn–Minkowski inequality and the isodiametric inequality are not in Mathlib. The paper
+**Scope.** The Brunn-Minkowski inequality and the isodiametric inequality are not in Mathlib. The paper
 quotes them (Gardner, Bull. Amer. Math. Soc. 39, 2002); Lean proves everything Theorem 1 does with their
 output. Batominovski's point colouring (Theorem 4) is a retelling of the accepted answer, and only its
 geometric lemma is formalised.

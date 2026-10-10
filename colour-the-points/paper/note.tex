@@ -79,7 +79,7 @@ The colouring is chosen after the points are known. That is what a tiling gives 
 \section{Why seven colours cannot tile}
 
 \begin{proof}[Proof of Theorem~\ref{thm:tiling}]
-Fix one colour and thicken each of its cells $C$ by the open disc $D$ of radius $\sqrt3/2$. Cells of that colour are at least $\sqrt3$ apart, so the thickened cells $C+D$ are disjoint. The Brunn--Minkowski inequality~\cite{Gardner} gives
+Fix one colour and thicken each of its cells $C$ by the open disc $D$ of radius $\sqrt3/2$. Cells of that colour are at least $\sqrt3$ apart, so the thickened cells $C+D$ are disjoint. The Brunn-Minkowski inequality~\cite{Gardner} gives
 \[
 \operatorname{area}(C+D)\ \ge\ \Bigl(\sqrt{\operatorname{area}(C)}+\sqrt{\operatorname{area}(D)}\Bigr)^2=\Bigl(\sqrt{A}+\tfrac{\sqrt{3\pi}}2\Bigr)^2,\qquad A=\operatorname{area}(C).
 \]
@@ -117,7 +117,7 @@ The points $(0.45,0)$ and $(1.8,\frac{\sqrt3}4)$ lie in the hexagons centred at 
 
 \section{Verification}
 
-Lemma~\ref{lem:thirty}, the arithmetic of Theorem~\ref{thm:tiling} (the value of the fraction, its monotonicity in $A$, and $1/(1+\sqrt3)^2<1/7$, hence eight colours), and the counterexample of Section~\ref{sec:hex} are proved in Lean~4 with Mathlib~\cite{mathlib}. The Brunn--Minkowski and isodiametric inequalities are quoted~\cite{Gardner}, and Theorem~\ref{thm:seven} is Batominovski's. A Python script checks the lemma on a fine grid, runs the greedy colouring on $300$ random point sets, computes the closest same-coloured hexagons for the seven-class and nine-class patterns, and catches two planted errors (a $40^\circ$ lemma, and the bound $1/(1+\sqrt3)$). Code and Lean files are at~\cite{repo}.
+Lemma~\ref{lem:thirty}, the arithmetic of Theorem~\ref{thm:tiling} (the value of the fraction, its monotonicity in $A$, and $1/(1+\sqrt3)^2<1/7$, hence eight colours), and the counterexample of Section~\ref{sec:hex} are proved in Lean~4 with Mathlib~\cite{mathlib}. The Brunn-Minkowski and isodiametric inequalities are quoted~\cite{Gardner}, and Theorem~\ref{thm:seven} is Batominovski's. A Python script checks the lemma on a fine grid, runs the greedy colouring on $300$ random point sets, computes the closest same-coloured hexagons for the seven-class and nine-class patterns, and catches two planted errors (a $40^\circ$ lemma, and the bound $1/(1+\sqrt3)$). Code and Lean files are at~\cite{repo}.
 
 \section*{Acknowledgments}
 
@@ -128,7 +128,7 @@ The problem is Marconius's, the request for a tiling proof is Pedro's, the point
 \bibitem{Bato} Batominovski, answer to~\cite{MSEa} (2015), \url{https://math.stackexchange.com/a/1378397}.
 \bibitem{Rosie} Rosie F, answer to~\cite{MSEa} (2023), \url{https://math.stackexchange.com/a/4680197}.
 \bibitem{MSEb} Pedro, \emph{A combinatorial proof by tesselation of the plane}, Mathematics Stack Exchange question 1381502 (2015), \url{https://math.stackexchange.com/q/1381502}.
-\bibitem{Gardner} R.~J.~Gardner, \emph{The Brunn--Minkowski inequality}, Bull. Amer. Math. Soc. 39 (2002), 355--405.
+\bibitem{Gardner} R.~J.~Gardner, \emph{The Brunn-Minkowski inequality}, Bull. Amer. Math. Soc. 39 (2002), 355--405.
 \bibitem{mathlib} The mathlib Community, \emph{The Lean mathematical library}, in: Proc. 9th ACM SIGPLAN Int. Conf. on Certified Programs and Proofs (CPP 2020), 367--381.
 \bibitem{repo} V.~Jandhyala, code and Lean proofs, \url{https://github.com/jvvk/mathematics/tree/main/colour-the-points}.
 \end{thebibliography}
