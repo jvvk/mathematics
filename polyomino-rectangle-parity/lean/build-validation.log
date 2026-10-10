@@ -1,0 +1,61 @@
+⚠ [8924/8926] Built LeanProofs.NominoParity (26s)
+warning: LeanProofs/NominoParity.lean:1:1: * `-/`:
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+warning: LeanProofs/NominoParity.lean:6:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/NominoParity.lean:7:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/NominoParity.lean:10:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/NominoParity.lean:13:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/NominoParity.lean:15:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/NominoParity.lean:39:8: `if_pos` has been deprecated: Use `ite_eq_left` instead
+warning: LeanProofs/NominoParity.lean:41:8: `if_neg` has been deprecated: Use `ite_eq_right` instead
+warning: LeanProofs/NominoParity.lean:97:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/NominoParity.lean:98:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/NominoParity.lean:101:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/NominoParity.lean:106:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/NominoParity.lean:129:8: `if_neg` has been deprecated: Use `ite_eq_right` instead
+warning: LeanProofs/NominoParity.lean:129:27: `if_pos` has been deprecated: Use `ite_eq_left` instead
+warning: LeanProofs/NominoParity.lean:130:8: `if_pos` has been deprecated: Use `ite_eq_left` instead
+warning: LeanProofs/NominoParity.lean:130:27: `if_neg` has been deprecated: Use `ite_eq_right` instead
+warning: LeanProofs/NominoParity.lean:135:8: `if_neg` has been deprecated: Use `ite_eq_right` instead
+warning: LeanProofs/NominoParity.lean:135:27: `if_pos` has been deprecated: Use `ite_eq_left` instead
+warning: LeanProofs/NominoParity.lean:136:8: `if_pos` has been deprecated: Use `ite_eq_left` instead
+warning: LeanProofs/NominoParity.lean:136:27: `if_neg` has been deprecated: Use `ite_eq_right` instead
+warning: LeanProofs/NominoParity.lean:138:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/NominoParity.lean:148:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/NominoParity.lean:158:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/NominoParity.lean:183:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/NominoParity.lean:184:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+✔ [8925/8926] Built LeanProofs (2.9s)
+Build completed successfully (8926 jobs).
+exit 0

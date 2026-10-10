@@ -1,0 +1,36 @@
+chi_add : ∀ (p t : Cell), chi (p + t) = chi p * chi t
+'NominoParity.chi_add' depends on axioms: [propext, Quot.sound]
+chi_lin : ∀ (k : Fin 8) (p : Cell), chi (lin k p) = chi p
+'NominoParity.chi_lin' depends on axioms: [propext, Classical.choice, Quot.sound]
+chi_place : ∀ (k : Fin 8) (t p : Cell), chi (place k t p) = chi t * chi p
+'NominoParity.chi_place' depends on axioms: [propext, Classical.choice, Quot.sound]
+lin_injective : ∀ (k : Fin 8), Function.Injective (lin k)
+'NominoParity.lin_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+place_injective : ∀ (k : Fin 8) (t : Cell), Function.Injective (place k t)
+'NominoParity.place_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+imb_place : ∀ (k : Fin 8) (t : Cell) (S : Finset Cell), imb (Finset.image (place k t) S) = chi t * imb S
+'NominoParity.imb_place' depends on axioms: [propext, Classical.choice, Quot.sound]
+imb_mod_two : ∀ (S : Finset Cell), imb S % 2 = ↑S.card % 2
+'NominoParity.imb_mod_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+@imb_tiling : ∀ {N : ℕ} {R : Finset Cell} {P : Fin N → Finset Cell} {k : Fin N → Fin 8} {t : Fin N → Cell},
+  Tiles R P k t → imb R = ∑ i, chi (t i) * imb (P i)
+'NominoParity.imb_tiling' depends on axioms: [propext, Classical.choice, Quot.sound]
+@card_tiling : ∀ {N : ℕ} {R : Finset Cell} {P : Fin N → Finset Cell} {k : Fin N → Fin 8} {t : Fin N → Cell},
+  Tiles R P k t → R.card = ∑ i, (P i).card
+'NominoParity.card_tiling' depends on axioms: [propext, Classical.choice, Quot.sound]
+card_rect : ∀ (a b : ℕ), (rect a b).card = a * b
+'NominoParity.card_rect' depends on axioms: [propext, Classical.choice, Quot.sound]
+@imb_rect_even : ∀ {a b : ℕ}, Even a ∨ Even b → imb (rect a b) = 0
+'NominoParity.imb_rect_even' depends on axioms: [propext, Classical.choice, Quot.sound]
+@no_rectangle : ∀ {N : ℕ} (P : Fin N → Finset Cell),
+  (∀ (i : Fin N), Even (P i).card) →
+    (∑ i, (imb (P i)).natAbs) % 4 = 2 → ∀ (a b : ℕ) (k : Fin N → Fin 8) (t : Fin N → Cell), ¬Tiles (rect a b) P k t
+'NominoParity.no_rectangle' depends on axioms: [propext, Classical.choice, Quot.sound]
+@no_rectangle_8_10_16 : ∀ {N n : ℕ},
+  n = 8 ∨ n = 10 ∨ n = 16 →
+    ∀ (P : Fin N → Finset Cell),
+      (∀ (i : Fin N), (P i).card = n) →
+        n = 8 ∧ ∑ i, (imb (P i)).natAbs = 278 ∨
+            n = 10 ∧ ∑ i, (imb (P i)).natAbs = 4010 ∨ n = 16 ∧ ∑ i, (imb (P i)).natAbs = 13329078 →
+          ∀ (a b : ℕ) (k : Fin N → Fin 8) (t : Fin N → Cell), ¬Tiles (rect a b) P k t
+'NominoParity.no_rectangle_8_10_16' depends on axioms: [propext, Classical.choice, Quot.sound]

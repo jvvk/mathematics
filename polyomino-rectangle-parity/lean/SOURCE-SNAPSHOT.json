@@ -1,0 +1,16 @@
+{
+  "source_commit": "dc31d06 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports NominoParity only)",
+    "CheckClaims.lean (new)",
+    "scripts/mutants.py (copy of lean-proofs scripts/nominoparity_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "1fa72adf8b724753590e0b5dc48592158f1f14446c4656c1f479ddaa12d86d87",
+    "LeanProofs.lean": "be52736dac0361e890025a3345ff4a394f44915ace9fa559645d903408f04da0",
+    "LeanProofs/NominoParity.lean": "a4c3915384c6ed8d814aa6e0a3484379b03b72cacac8739b3c790f7f70a9ac9b",
+    "scripts/mutants.py": "c308b7caa7651bcc464077099ce16838136e8fa50c3f1f4df45a57b2b77a725e"
+  }
+}
