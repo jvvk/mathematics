@@ -1,0 +1,24 @@
+n= 1 trees=1 reduced=1 searched=0 max_nodes=0 avg_nodes=0.0 fails=0 unknown=0
+n= 2 trees=1 reduced=1 searched=0 max_nodes=0 avg_nodes=0.0 fails=0 unknown=0
+n= 3 trees=2 reduced=2 searched=0 max_nodes=0 avg_nodes=0.0 fails=0 unknown=0
+n= 4 trees=3 reduced=3 searched=0 max_nodes=0 avg_nodes=0.0 fails=0 unknown=0
+n= 5 trees=6 reduced=6 searched=0 max_nodes=0 avg_nodes=0.0 fails=0 unknown=0
+n= 6 trees=11 reduced=11 searched=0 max_nodes=0 avg_nodes=0.0 fails=0 unknown=0
+n= 7 trees=23 reduced=21 searched=2 max_nodes=7 avg_nodes=6.5 fails=0 unknown=0
+n= 8 trees=46 reduced=42 searched=4 max_nodes=30 avg_nodes=15.8 fails=0 unknown=0
+n= 9 trees=98 reduced=87 searched=11 max_nodes=38 avg_nodes=17.7 fails=0 unknown=0
+n=10 trees=207 reduced=207 searched=0 max_nodes=0 avg_nodes=0.0 fails=0 unknown=0
+n=11 trees=451 reduced=382 searched=69 max_nodes=40 avg_nodes=17.0 fails=0 unknown=0
+n=12 trees=983 reduced=887 searched=96 max_nodes=127 avg_nodes=31.9 fails=0 unknown=0
+n=13 trees=2179 reduced=1834 searched=345 max_nodes=179 avg_nodes=27.3 fails=0 unknown=0
+n=14 trees=4850 reduced=3895 searched=955 max_nodes=640 avg_nodes=53.3 fails=0 unknown=0
+n=15 trees=10905 reduced=8337 searched=2568 max_nodes=1582 avg_nodes=83.7 fails=0 unknown=0
+n=16 trees=24631 reduced=19050 searched=5581 max_nodes=10426 avg_nodes=182.4 fails=0 unknown=0
+n=17 trees=56011 reduced=43265 searched=12746 max_nodes=14861 avg_nodes=188.6 fails=0 unknown=0
+n=18 trees=127912 reduced=110582 searched=17330 max_nodes=28090 avg_nodes=199.2 fails=0 unknown=0
+n=19 trees=293547 reduced=223195 searched=70352 max_nodes=22455 avg_nodes=187.2 fails=0 unknown=0
+n=20 trees=676157 reduced=551094 searched=125063 max_nodes=52183 avg_nodes=323.6 fails=0 unknown=0
+n=21 trees=1563372 reduced=1228405 searched=334967 max_nodes=102819 avg_nodes=287.9 fails=0 unknown=0
+n=22 trees=3626149 reduced=2840501 searched=785648 max_nodes=208541 avg_nodes=438.7 fails=0 unknown=0
+n=23 trees=8436379 reduced=6174330 searched=2262049 max_nodes=592062 avg_nodes=704.6 fails=0 unknown=0
+n=24 trees=19680277 reduced=15019693 searched=4660584 max_nodes=1197422 avg_nodes=1303.1 fails=0 unknown=0

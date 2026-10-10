@@ -1,0 +1,79 @@
+@PowTwoTrees.Fits.basic : ∀ {t : PowTwoTrees.BT} {S : Finset ℕ} {r : ℕ},
+  PowTwoTrees.Fits t S r → r ∈ S ∧ (∀ x ∈ S, r ≤ x) ∧ S.card = t.size
+'PowTwoTrees.Fits.basic' depends on axioms: [propext, Classical.choice, Quot.sound]
+@PowTwoTrees.Fits.shift : ∀ {t : PowTwoTrees.BT} {S : Finset ℕ} {r : ℕ},
+  PowTwoTrees.Fits t S r → ∀ (d : ℕ), PowTwoTrees.Fits t (Finset.image (fun x => x + d) S) (r + d)
+'PowTwoTrees.Fits.shift' depends on axioms: [propext, Classical.choice, Quot.sound]
+@PowTwoTrees.Fits.double : ∀ {t : PowTwoTrees.BT} {S : Finset ℕ} {r : ℕ},
+  PowTwoTrees.Fits t S r → PowTwoTrees.Fits t (Finset.image (fun x => 2 * x) S) (2 * r)
+'PowTwoTrees.Fits.double' depends on axioms: [propext, Classical.choice, Quot.sound]
+@PowTwoTrees.Fits.unshift : ∀ {t : PowTwoTrees.BT} {S : Finset ℕ} {r : ℕ},
+  PowTwoTrees.Fits t S r → ∀ (d : ℕ), (∀ x ∈ S, d ≤ x) → PowTwoTrees.Fits t (Finset.image (fun x => x - d) S) (r - d)
+'PowTwoTrees.Fits.unshift' depends on axioms: [propext, Classical.choice, Quot.sound]
+@PowTwoTrees.fits_two_comm : ∀ {a b : PowTwoTrees.BT} {S : Finset ℕ} {r : ℕ},
+  PowTwoTrees.Fits (a.two b) S r → PowTwoTrees.Fits (b.two a) S r
+'PowTwoTrees.fits_two_comm' depends on axioms: [propext, Classical.choice, Quot.sound]
+@PowTwoTrees.unary_root : ∀ {c : PowTwoTrees.BT}, PowTwoTrees.Labelled c → PowTwoTrees.Labelled c.one
+'PowTwoTrees.unary_root' depends on axioms: [propext, Classical.choice, Quot.sound]
+@PowTwoTrees.parity : ∀ {a b : PowTwoTrees.BT},
+  PowTwoTrees.Labelled a →
+    PowTwoTrees.Labelled b → a.size = b.size ∨ a.size = b.size + 1 → PowTwoTrees.Labelled (a.two b)
+'PowTwoTrees.parity' depends on axioms: [propext, Classical.choice, Quot.sound]
+@PowTwoTrees.mersenne : ∀ {a b : PowTwoTrees.BT},
+  PowTwoTrees.Labelled a → PowTwoTrees.Labelled b → ∀ (k : ℕ), a.size + 1 = 2 ^ k → PowTwoTrees.Labelled (a.two b)
+'PowTwoTrees.mersenne' depends on axioms: [propext, Classical.choice, Quot.sound]
+@PowTwoTrees.prefix_case1 : ∀ {c b : PowTwoTrees.BT},
+  PowTwoTrees.Labelled c →
+    PowTwoTrees.Labelled b →
+      ∀ (d m : ℕ),
+        1 ≤ d →
+          c.size = b.size ∨ c.size = b.size + 1 → d + 2 = 2 ^ m → PowTwoTrees.Labelled ((PowTwoTrees.BT.pre d c).two b)
+'PowTwoTrees.prefix_case1' depends on axioms: [propext, Classical.choice, Quot.sound]
+@PowTwoTrees.prefix_case2 : ∀ {c b : PowTwoTrees.BT},
+  PowTwoTrees.Labelled c →
+    PowTwoTrees.Labelled b →
+      ∀ (d m : ℕ),
+        1 ≤ d →
+          b.size = c.size ∨ b.size = c.size + 1 → d + 1 = 2 ^ m → PowTwoTrees.Labelled ((PowTwoTrees.BT.pre d c).two b)
+'PowTwoTrees.prefix_case2' depends on axioms: [propext, Classical.choice, Quot.sound]
+@PowTwoTrees.two_prefix_case1 : ∀ {a b : PowTwoTrees.BT},
+  PowTwoTrees.Labelled a →
+    PowTwoTrees.Labelled b →
+      ∀ (d e m p : ℕ),
+        1 ≤ d →
+          1 ≤ e →
+            a.size = b.size ∨ a.size = b.size + 1 →
+              d + 1 = 2 ^ m →
+                e + 1 = 2 ^ p → PowTwoTrees.Labelled ((PowTwoTrees.BT.pre d a).two (PowTwoTrees.BT.pre e b))
+'PowTwoTrees.two_prefix_case1' depends on axioms: [propext, Classical.choice, Quot.sound]
+@PowTwoTrees.two_prefix_case2 : ∀ {a b : PowTwoTrees.BT},
+  PowTwoTrees.Labelled a →
+    PowTwoTrees.Labelled b →
+      ∀ (d e m p : ℕ),
+        1 ≤ d →
+          1 ≤ e →
+            b.size = a.size ∨ b.size = a.size + 1 →
+              d + 1 = 2 ^ m →
+                e + 2 = 2 ^ p → PowTwoTrees.Labelled ((PowTwoTrees.BT.pre d a).two (PowTwoTrees.BT.pre e b))
+'PowTwoTrees.two_prefix_case2' depends on axioms: [propext, Classical.choice, Quot.sound]
+@PowTwoTrees.tail : ∀ {S : Finset ℕ},
+  PowTwoTrees.Universal S →
+    2 ≤ S.card →
+      ∃ p k,
+        p = 2 ^ k ∧ p ∈ S ∧ (∀ x ∈ S, x ≠ 0 → p ≤ x) ∧ PowTwoTrees.Universal (Finset.image (fun x => x - p) (S.erase 0))
+'PowTwoTrees.tail' depends on axioms: [propext, Classical.choice, Quot.sound]
+@PowTwoTrees.primitive_tail : ∀ {S : Finset ℕ},
+  PowTwoTrees.Universal S →
+    3 ≤ S.card →
+      (∃ x ∈ S, Odd x) →
+        ∃ p k,
+          p = 2 ^ k ∧
+            p ∈ S ∧
+              (∀ x ∈ S, x ≠ 0 → p ≤ x) ∧
+                PowTwoTrees.Universal (Finset.image (fun x => x - p) (S.erase 0)) ∧
+                  (∃ y ∈ Finset.image (fun x => x - p) (S.erase 0), Odd y) ∧
+                    ∃ y ∈ Finset.image (fun x => x - p) (S.erase 0), p ≤ y
+'PowTwoTrees.primitive_tail' depends on axioms: [propext, Classical.choice, Quot.sound]
+PowTwoTrees.span_bound : ∀ (n : ℕ) (S : Finset ℕ),
+  S.card = n + 2 → PowTwoTrees.Universal S → (∃ x ∈ S, Odd x) → ∀ x ∈ S, x ≤ 2 ^ n
+'PowTwoTrees.span_bound' depends on axioms: [propext, Classical.choice, Quot.sound]

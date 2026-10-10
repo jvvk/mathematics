@@ -1,0 +1,22 @@
+{
+  "source_commit": "2d8cef0 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports PowTwoTrees only)",
+    "CheckClaims.lean (generated)",
+    "scripts/mutants.py (copy of lean-proofs scripts/powtwotrees_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "06ad318035699b496dd1241a9904bca41aecc053af89649e52404cd5a24e1251",
+    "LeanProofs/PowTwoTrees/Basic.lean": "36ba48c6e5769649fd0206aab7e22358b160d4f6a2d98e18730cf01490626ca1",
+    "LeanProofs/PowTwoTrees/Main.lean": "44f0c7461517b7b3706453d5396d221d9d6467f4b54f1e08dc6cc34e8101f536",
+    "LeanProofs/PowTwoTrees/Reductions.lean": "014a349b2e07c745ac6030bdee3690f86c73e0a2afe3006106d87190c18df58a",
+    "LeanProofs/PowTwoTrees/Universal.lean": "a187231ecb5637502a904b97fa71d10eef5bd5d4ce6f10be33b9efe1fdaf21ca",
+    "LeanProofs/PowTwoTrees.lean": "f7f1e474d4fc17f3098361edacacf299002f01637d2d7f3fb72fbfd9a6267812",
+    "LeanProofs.lean": "4d85c25f785c4622b0c9e732afaa72205ba66dbdbebd243d7dfb1df76b38fa21",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutants.py": "613c3aa7eefaceb07b14480154495243e50ed43496f8794c8ddb1fe012783a07"
+  }
+}

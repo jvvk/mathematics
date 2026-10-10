@@ -1,0 +1,31 @@
+Isolated build 2026-10-10: fresh copy of lean/, lake exe cache get, lake build LeanProofs
+⚠ [8924/8929] Built LeanProofs.PowTwoTrees.Basic (178s)
+warning: LeanProofs/PowTwoTrees/Basic.lean:6:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/PowTwoTrees/Basic.lean:7:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/PowTwoTrees/Basic.lean:8:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/PowTwoTrees/Basic.lean:14:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/PowTwoTrees/Basic.lean:31:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/PowTwoTrees/Basic.lean:124:100: This line exceeds the 100 character limit, please shorten it!
+⚠ [8925/8929] Built LeanProofs.PowTwoTrees.Reductions (104s)
+warning: LeanProofs/PowTwoTrees/Reductions.lean:6:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/PowTwoTrees/Reductions.lean:41:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/PowTwoTrees/Reductions.lean:127:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/PowTwoTrees/Reductions.lean:174:100: This line exceeds the 100 character limit, please shorten it!
+⚠ [8926/8929] Built LeanProofs.PowTwoTrees.Universal (97s)
+warning: LeanProofs/PowTwoTrees/Universal.lean:6:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/PowTwoTrees/Universal.lean:9:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/PowTwoTrees/Universal.lean:11:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/PowTwoTrees/Universal.lean:104:2: `push_neg` has been deprecated. Prefer using `push Not` instead.
+warning: LeanProofs/PowTwoTrees/Universal.lean:109:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/PowTwoTrees/Universal.lean:142:20: `simp at hy` is a flexible tactic modifying `hy`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/PowTwoTrees/Universal.lean:142:20: `simp at hy` is a flexible tactic modifying `hy`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/PowTwoTrees/Universal.lean:142:20: `simp at hy` is a flexible tactic modifying `hy`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/PowTwoTrees/Universal.lean:146:4: `simp at hy hx` is a flexible tactic modifying `hy`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/PowTwoTrees/Universal.lean:146:4: `simp at hy hx` is a flexible tactic modifying `hx`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/PowTwoTrees/Universal.lean:146:4: `simp at hy hx` is a flexible tactic modifying `hy`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/PowTwoTrees/Universal.lean:146:4: `simp at hy hx` is a flexible tactic modifying `hy`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/PowTwoTrees/Universal.lean:146:4: `simp at hy hx` is a flexible tactic modifying `hy`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/PowTwoTrees/Universal.lean:128:100: This line exceeds the 100 character limit, please shorten it!
+✔ [8927/8929] Built LeanProofs.PowTwoTrees (38s)
+✔ [8928/8929] Built LeanProofs (16s)
+Build completed successfully (8929 jobs).

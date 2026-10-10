@@ -271,7 +271,12 @@ A cube made of one k-slab for each k ≤ n has side at most n(n+1)/2, and none e
 Every best chain has lengths rising then falling; exactly three orders occur for four segments, and the general count is open.<br>
 <sub><a href="span-maximising-chains/paper">paper</a> · <a href="span-maximising-chains/lean">Lean</a> · <a href="span-maximising-chains/verify">code</a> · Shape theorem in Lean</sub></p>
 </td>
-<td width="50%"></td>
+<td width="50%" valign="top">
+<a href="power-two-tree-labels"><img src="https://raw.githubusercontent.com/jvvk/jvvk/81a06dd3cfdcd05160f95c583a3eb939432cefb6/assets/power-two-tree.svg" width="100%" alt="Labelling binary trees by powers of two"></a>
+<p><b><a href="power-two-tree-labels">Labelling binary trees by powers of two</a></b><br>
+Every tree with at most 24 vertices can be labelled 0 to n − 1 with power-of-two steps; five constructions and an exact rule for universal label sets narrow any counterexample.<br>
+<sub><a href="power-two-tree-labels/paper">paper</a> · <a href="power-two-tree-labels/lean">Lean</a> · <a href="power-two-tree-labels/verify">code</a> · Constructions and lemmas in Lean; searches by two programs</sub></p>
+</td>
 </tr>
 </table>
 
@@ -297,6 +302,7 @@ Every paper, its status and exactly what was checked, and how.
 | Result | Kind | Status | Verified |
 |---|---|---|---|
 | [Latin squares of small rank](latin-squares-small-rank/) | Note | Preprint, 10 October 2026; not peer reviewed | Lean (the lower bound 1 + 3(n−1)/(n+1) and its strict form for odd n, r(n) ≥ 4 for n ≥ 5, r(4) = 3, r(6) = 4, r(8) = 4; standard axioms only); r(5) = 5 and r(7) = 6 by an exhaustive computation with an exact modular certificate, with a false variant |
+| [Labelling binary trees by powers of two](power-two-tree-labels/) | Note | Preprint, 10 October 2026; not peer reviewed | Lean (Theorem 1 (a)-(e): unary root, parity incl. sizes differing by one, Mersenne, one- and two-prefix constructions; tail and primitive-tail lemmas; span bound; standard axioms only); all trees n ≤ 24 by one program (two to 22), root condition n ≤ 22, universal sets n ≤ 21 (two programs to 20); independent Python recheck to n = 12 |
 | [Wandering over the divisors of a power of ten](wandering-over-divisors/) | Note | Preprint, 10 October 2026; not peer reviewed | Lean (Lemma 2 and Theorems 3, 5, 7 for every board size: edge sweep, diagonal climb, bottom row, corners, (2,0), (2,2); standard axioms only); Theorem 1 and every table by two independent exhaustive solvers (C and Python) up to 9 × 9, C to 10 × 10 |
 | [Even and odd Dyck paths](even-and-odd-dyck-paths/) | Note | Preprint, 10 October 2026; not peer reviewed | Lean (Dyck paths as step lists, valley encoding, partner involution, fixed-word sign, halving and last departures, Theorem 1; standard axioms only); Fürlinger–Hofbauer identity quoted, checked for n ≤ 8; independent recheck |
 | [Deleting the powers of four: strictly increasing representation functions](powers-of-four-representations/) | Note | Preprint, 9 October 2026; not peer reviewed | Lean (the coefficient bound, the reduction to three summands, the count of ordered triples, Proposition 1; standard axioms only); Propositions 4 and 5 by hand; direct convolution and an identity check to 10^6, with a false variant |

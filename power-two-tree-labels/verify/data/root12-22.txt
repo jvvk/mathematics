@@ -1,0 +1,22 @@
+n= 1 trees=1 reduced=0 searched=1 max_nodes=0 avg_nodes=0.0 fails=0 unknown=0
+n= 2 trees=1 reduced=0 searched=1 max_nodes=1 avg_nodes=1.0 fails=0 unknown=0
+n= 3 trees=2 reduced=0 searched=2 max_nodes=2 avg_nodes=2.0 fails=0 unknown=0
+n= 4 trees=3 reduced=0 searched=3 max_nodes=3 avg_nodes=3.0 fails=0 unknown=0
+n= 5 trees=6 reduced=0 searched=6 max_nodes=7 avg_nodes=4.7 fails=0 unknown=0
+n= 6 trees=11 reduced=0 searched=11 max_nodes=7 avg_nodes=5.4 fails=0 unknown=0
+n= 7 trees=23 reduced=0 searched=23 max_nodes=13 avg_nodes=6.8 fails=0 unknown=0
+n= 8 trees=46 reduced=0 searched=46 max_nodes=25 avg_nodes=9.5 fails=0 unknown=0
+n= 9 trees=98 reduced=0 searched=98 max_nodes=98 avg_nodes=15.7 fails=0 unknown=0
+n=10 trees=207 reduced=0 searched=207 max_nodes=77 avg_nodes=18.4 fails=0 unknown=0
+n=11 trees=451 reduced=0 searched=451 max_nodes=133 avg_nodes=20.0 fails=0 unknown=0
+n=12 trees=983 reduced=0 searched=983 max_nodes=284 avg_nodes=25.5 fails=0 unknown=0
+n=13 trees=2179 reduced=0 searched=2179 max_nodes=443 avg_nodes=36.5 fails=0 unknown=0
+n=14 trees=4850 reduced=0 searched=4850 max_nodes=915 avg_nodes=52.4 fails=0 unknown=0
+n=15 trees=10905 reduced=0 searched=10905 max_nodes=6953 avg_nodes=89.6 fails=0 unknown=0
+n=16 trees=24631 reduced=0 searched=24631 max_nodes=9821 avg_nodes=150.2 fails=0 unknown=0
+n=17 trees=56011 reduced=0 searched=56011 max_nodes=34435 avg_nodes=282.8 fails=0 unknown=0
+n=18 trees=127912 reduced=0 searched=127912 max_nodes=60553 avg_nodes=384.6 fails=0 unknown=0
+n=19 trees=293547 reduced=0 searched=293547 max_nodes=111944 avg_nodes=270.7 fails=0 unknown=0
+n=20 trees=676157 reduced=0 searched=676157 max_nodes=158835 avg_nodes=300.1 fails=0 unknown=0
+n=21 trees=1563372 reduced=0 searched=1563372 max_nodes=419900 avg_nodes=360.3 fails=0 unknown=0
+n=22 trees=3626149 reduced=0 searched=3626149 max_nodes=1398740 avg_nodes=485.3 fails=0 unknown=0
