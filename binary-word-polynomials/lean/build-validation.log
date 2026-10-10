@@ -1,0 +1,227 @@
+⚠ [8924/8926] Built LeanProofs.BlockReversal (38s)
+warning: LeanProofs/BlockReversal.lean:1:1: * `-/`:
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+warning: LeanProofs/BlockReversal.lean:6:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/BlockReversal.lean:7:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/BlockReversal.lean:9:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/BlockReversal.lean:12:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/BlockReversal.lean:15:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/BlockReversal.lean:85:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/BlockReversal.lean:86:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/BlockReversal.lean:89:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/BlockReversal.lean:110:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/BlockReversal.lean:112:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/BlockReversal.lean:137:43: `simp [Gm, Matrix.mul_apply, Fin.sum_univ_two]` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/BlockReversal.lean:137:43: Try this:
+  [apply] simp only [Fin.zero_eta, Fin.isValue]
+info: LeanProofs/BlockReversal.lean:138:4: `first
+| ring1
+| linear_combination h
+| linear_combination -h`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 137!
+warning: LeanProofs/BlockReversal.lean:137:43: `simp [Gm, Matrix.mul_apply, Fin.sum_univ_two]` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/BlockReversal.lean:137:43: Try this:
+  [apply] simp only [Fin.zero_eta, Fin.isValue, Fin.mk_one]
+info: LeanProofs/BlockReversal.lean:138:4: `first
+| ring1
+| linear_combination h
+| linear_combination -h`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 137!
+warning: LeanProofs/BlockReversal.lean:137:43: `simp [Gm, Matrix.mul_apply, Fin.sum_univ_two]` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/BlockReversal.lean:137:43: Try this:
+  [apply] simp only [Fin.mk_one, Fin.isValue, Fin.zero_eta]
+info: LeanProofs/BlockReversal.lean:138:4: `first
+| ring1
+| linear_combination h
+| linear_combination -h`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 137!
+warning: LeanProofs/BlockReversal.lean:137:43: `simp [Gm, Matrix.mul_apply, Fin.sum_univ_two]` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/BlockReversal.lean:137:43: Try this:
+  [apply] simp only [Fin.mk_one, Fin.isValue]
+info: LeanProofs/BlockReversal.lean:138:4: `first
+| ring1
+| linear_combination h
+| linear_combination -h`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 137!
+warning: LeanProofs/BlockReversal.lean:135:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/BlockReversal.lean:149:100: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: LeanProofs/BlockReversal.lean:149:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/BlockReversal.lean:156:103: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: LeanProofs/BlockReversal.lean:156:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/BlockReversal.lean:161:25: `simp [Gm, u, mulVec, dotProduct, Fin.sum_univ_two]` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/BlockReversal.lean:161:25: Try this:
+  [apply] simp only [Fin.zero_eta, Fin.isValue, mulVec_fin_two, Nat.succ_eq_add_one, Nat.reduceAdd, cons_val_zero,
+    Pi.smul_apply, smul_eq_mul]
+info: LeanProofs/BlockReversal.lean:162:4: `first
+| ring1
+| linear_combination (Z 1 0 - Z 0 1) * this
+| linear_combination -(Z 1 0 - Z 0 1) * this`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 161!
+warning: LeanProofs/BlockReversal.lean:161:25: `simp [Gm, u, mulVec, dotProduct, Fin.sum_univ_two]` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/BlockReversal.lean:161:25: Try this:
+  [apply] simp only [Fin.mk_one, Fin.isValue, mulVec_fin_two, Nat.succ_eq_add_one, Nat.reduceAdd, cons_val_one,
+    cons_val_fin_one, Pi.smul_apply, smul_eq_mul]
+info: LeanProofs/BlockReversal.lean:162:4: `first
+| ring1
+| linear_combination (Z 1 0 - Z 0 1) * this
+| linear_combination -(Z 1 0 - Z 0 1) * this`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 161!
+warning: LeanProofs/BlockReversal.lean:162:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/BlockReversal.lean:164:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/BlockReversal.lean:165:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/BlockReversal.lean:175:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/BlockReversal.lean:182:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/BlockReversal.lean:191:43: `simp [Gw, T, Matrix.mul_apply, Fin.sum_univ_two, vecMul, dotProduct]` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/BlockReversal.lean:191:43: Try this:
+  [apply] simp only [Fin.zero_eta, Fin.isValue, transpose_mul]
+info: LeanProofs/BlockReversal.lean:192:4: `first
+| ring1
+| linear_combination (Z 0 0) * hd
+| linear_combination -(Z 0 0) * hd`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 191!
+warning: LeanProofs/BlockReversal.lean:191:43: `simp [Gw, T, Matrix.mul_apply, Fin.sum_univ_two, vecMul, dotProduct]` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/BlockReversal.lean:191:43: Try this:
+  [apply] simp only [Fin.zero_eta, Fin.isValue, Fin.mk_one, transpose_mul]
+info: LeanProofs/BlockReversal.lean:192:4: `first
+| ring1
+| linear_combination (Z 0 0) * hd
+| linear_combination -(Z 0 0) * hd`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 191!
+warning: LeanProofs/BlockReversal.lean:191:43: `simp [Gw, T, Matrix.mul_apply, Fin.sum_univ_two, vecMul, dotProduct]` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/BlockReversal.lean:191:43: Try this:
+  [apply] simp only [Fin.mk_one, Fin.isValue, Fin.zero_eta, transpose_mul]
+info: LeanProofs/BlockReversal.lean:192:4: `first
+| ring1
+| linear_combination (Z 0 0) * hd
+| linear_combination -(Z 0 0) * hd`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 191!
+warning: LeanProofs/BlockReversal.lean:191:43: `simp [Gw, T, Matrix.mul_apply, Fin.sum_univ_two, vecMul, dotProduct]` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/BlockReversal.lean:191:43: Try this:
+  [apply] simp only [Fin.mk_one, Fin.isValue, transpose_mul]
+info: LeanProofs/BlockReversal.lean:192:4: `first
+| ring1
+| linear_combination (Z 0 0) * hd
+| linear_combination -(Z 0 0) * hd`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 191!
+warning: LeanProofs/BlockReversal.lean:191:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/BlockReversal.lean:215:71: This simp argument is unused:
+  Matrix.mul_apply
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [T, D, bv, Fin.sum_univ_two]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanProofs/BlockReversal.lean:215:89: This simp argument is unused:
+  Fin.sum_univ_two
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [T, D, bv, Matrix.mul_apply]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanProofs/BlockReversal.lean:215:111: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: LeanProofs/BlockReversal.lean:215:111: Unused tactic linter: `ring` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: LeanProofs/BlockReversal.lean:215:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/BlockReversal.lean:217:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/BlockReversal.lean:223:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/BlockReversal.lean:224:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/BlockReversal.lean:249:8: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: LeanProofs/BlockReversal.lean:258:24: This simp argument is unused:
+  head_cons
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [e, Fin.sum_univ_two, T, of_apply, cons_val', cons_val_zero, cons_val_one, empty_val',
+    cons_val_fin_one, mul_neg, mul_one, mul_zero, add_zero, List.length_append, List.length_singleton,
+    Nat.add_sub_cancel]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: LeanProofs/BlockReversal.lean:238:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/BlockReversal.lean:241:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/BlockReversal.lean:258:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+✔ [8925/8926] Built LeanProofs (3.8s)
+Build completed successfully (8926 jobs).
+exit 0

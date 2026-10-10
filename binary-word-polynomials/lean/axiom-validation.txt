@@ -1,0 +1,61 @@
+@block_reversal : ∀ {R : Type u_1} [inst : CommRing R] (G : Matrix (Fin 2) (Fin 2) R),
+  G.transpose = G →
+    ∀ (Ms : List (Matrix (Fin 2) (Fin 2) R)),
+      (∀ N ∈ Ms, N * G = G * N.transpose) →
+        ∀ (x x' y y' : Fin 2 → R) (l l' : R),
+          G.mulVec x = l • y' → G.mulVec x' = l' • y → l' * x ⬝ᵥ Ms.prod.mulVec y = l * x' ⬝ᵥ Ms.reverse.prod.mulVec y'
+'BlockReversal.block_reversal' depends on axioms: [propext, Classical.choice, Quot.sound]
+@word_reversal : ∀ {R : Type u_1} [inst : CommRing R] (t : R) (A A' B B' : List Bool) (Ys : List (List Bool))
+  (G : Matrix (Fin 2) (Fin 2) R),
+  G.transpose = G →
+    (∀ Y ∈ Ys, M t Y * G = G * (M t Y).transpose) →
+      ∀ (l l' : R),
+        G.mulVec ((M t A).transpose.mulVec e0) = l • (M t B').mulVec e0 →
+          G.mulVec ((M t A').transpose.mulVec e0) = l' • (M t B).mulVec e0 →
+            l' * P t (A ++ Ys.flatten ++ B) = l * P t (A' ++ Ys.reverse.flatten ++ B')
+'BlockReversal.word_reversal' depends on axioms: [propext, Classical.choice, Quot.sound]
+@P_snoc : ∀ {R : Type u_1} [inst : CommRing R] (t : R) (w : List Bool) (c d : Bool),
+  P t (w ++ [c, d]) = (t - bv d) * P t (w ++ [c]) - P t w
+'BlockReversal.P_snoc' depends on axioms: [propext, Classical.choice, Quot.sound]
+@P_split : ∀ {R : Type u_1} [inst : CommRing R] (t : R) (A B : List Bool) (Ys : List (List Bool)),
+  P t (A ++ Ys.flatten ++ B) = (M t A).transpose.mulVec e0 ⬝ᵥ (List.map (M t) Ys).prod.mulVec ((M t B).mulVec e0)
+'BlockReversal.P_split' depends on axioms: [propext, Classical.choice, Quot.sound]
+@det_M : ∀ {R : Type u_1} [inst : CommRing R] (t : R) (w : List Bool), (M t w).det = 1
+'BlockReversal.det_M' depends on axioms: [propext, Classical.choice, Quot.sound]
+@theorem_R_mul : ∀ {R : Type u_1} [inst : CommRing R] (t : R) (c : Bool) (m : List Bool) (Ys : List (List Bool)),
+  (∀ Y ∈ Ys, SameClass (M t Y) (M t (c :: (m ++ [!c])))) →
+    have Z := M t (c :: (m ++ [!c]));
+    have l := Z 0 0 - Z 1 1 + eps c * (Z 1 0 - Z 0 1);
+    l * P t ((!c) :: (m ++ [!c]) ++ Ys.flatten ++ c :: (m ++ [c])) =
+      l * P t ((!c) :: (m ++ [!c]) ++ Ys.reverse.flatten ++ c :: (m ++ [c]))
+'BlockReversal.theorem_R_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+theorem_R : ∀ (c : Bool) (m : List Bool) (Ys : List (List Bool)),
+  (∀ Y ∈ Ys, SameClass (M Polynomial.X Y) (M Polynomial.X (c :: (m ++ [!c])))) →
+    P Polynomial.X ((!c) :: (m ++ [!c]) ++ Ys.flatten ++ c :: (m ++ [c])) =
+      P Polynomial.X ((!c) :: (m ++ [!c]) ++ Ys.reverse.flatten ++ c :: (m ++ [c]))
+'BlockReversal.theorem_R' depends on axioms: [propext, Classical.choice, Quot.sound]
+@interleaving_mul : ∀ {R : Type u_1} [inst : CommRing R] (t : R) (W as : List Bool),
+  P t W * P t (W ++ (List.map (fun a => a :: W) as).flatten ++ []) =
+    P t W * P t (W ++ (List.map (fun a => a :: W) as).reverse.flatten ++ [])
+'BlockReversal.interleaving_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+interleaving : ∀ (W as : List Bool),
+  P Polynomial.X (W ++ (List.map (fun a => a :: W) as).flatten) =
+    P Polynomial.X (W ++ (List.map (fun a => a :: W) as).reverse.flatten)
+'BlockReversal.interleaving' depends on axioms: [propext, Classical.choice, Quot.sound]
+@complement : ∀ {R : Type u_1} [inst : CommRing R] (t : R) (w : List Bool),
+  P t (List.map (fun x => !x) w) = (-1) ^ w.length * P (1 - t) w
+'BlockReversal.complement' depends on axioms: [propext, Classical.choice, Quot.sound]
+M_degrees : ∀ (w : List Bool),
+  (M Polynomial.X w 0 0).Monic ∧
+    (M Polynomial.X w 0 0).natDegree = w.length ∧
+      (M Polynomial.X w 0 1).natDegree ≤ w.length - 1 ∧
+        (M Polynomial.X w 1 0).natDegree ≤ w.length - 1 ∧ (M Polynomial.X w 1 1).natDegree ≤ w.length - 1
+'BlockReversal.M_degrees' depends on axioms: [propext, Classical.choice, Quot.sound]
+P_monic : ∀ (w : List Bool), (P Polynomial.X w).Monic
+'BlockReversal.P_monic' depends on axioms: [propext, Classical.choice, Quot.sound]
+lam_ne_zero : ∀ (w : List Bool),
+  w ≠ [] →
+    ∀ (e : Polynomial ℤ),
+      e.natDegree = 0 →
+        M Polynomial.X w 0 0 - M Polynomial.X w 1 1 + e * (M Polynomial.X w 1 0 - M Polynomial.X w 0 1) ≠ 0
+'BlockReversal.lam_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]

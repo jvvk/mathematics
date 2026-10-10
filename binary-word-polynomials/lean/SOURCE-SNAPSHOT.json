@@ -1,0 +1,16 @@
+{
+  "source_commit": "1da951b (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports BlockReversal only)",
+    "CheckClaims.lean (new)",
+    "scripts/mutants.py (copy of lean-proofs scripts/blockreversal_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "60b45732b808276a777fd8111957bf471d4c2116dbdb9f14843a375c0fe17982",
+    "LeanProofs.lean": "f3ec3e6709c7a2923e1d717b295e1f10e172f1e7cbd8c3a89f3aadf377235521",
+    "LeanProofs/BlockReversal.lean": "d348c137b279ef7ec42cd1d154128de07c3eee712d42b87b9e9a32dd5c777f8f",
+    "scripts/mutants.py": "e2c46ea60d79e6e9e5febae00c04ab1e34b732148d09dbfa146237f72ef7daf1"
+  }
+}
