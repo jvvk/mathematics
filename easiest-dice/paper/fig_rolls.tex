@@ -1,0 +1,16 @@
+% Replacing the rolls one at a time: each row's excess is at most the next row's.
+\begin{tikzpicture}[x=1.7cm,y=0.85cm]
+  \foreach \row in {0,1,2,3} {
+    \foreach \j in {1,2,3} {
+      \ifnum\j>\row
+        \fill[rust!12,draw=rust,thick] (\j-0.42,-\row-0.32) rectangle (\j+0.42,-\row+0.32);
+        \node[rust] at (\j,-\row) {$p_\j,q_\j$};
+      \else
+        \fill[softblue,draw=inkblue,thick] (\j-0.42,-\row-0.32) rectangle (\j+0.42,-\row+0.32);
+        \node[inkblue] at (\j,-\row) {$p^*,q^*$};
+      \fi
+    }
+    \node[anchor=west] at (3.55,-\row) {$G_{\row}$};
+  }
+  \node[anchor=west,font=\small,align=left] at (4.1,-1.5) {each step changes one roll,\\ judged at the rate\\ the other rolls set};
+\end{tikzpicture}

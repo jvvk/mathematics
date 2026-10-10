@@ -1,0 +1,2 @@
+import LeanProofs.CappedDice
+import LeanProofs.CappedDiceEquality

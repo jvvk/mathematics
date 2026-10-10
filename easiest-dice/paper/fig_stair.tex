@@ -1,0 +1,23 @@
+% Staircase pair for k = 4, r = 2/5: p* above the axis, q* below; the first a = 2 faces bracketed.
+\begin{tikzpicture}[x=1.25cm,y=4.2cm]
+  \def\w{0.62}
+  % p* bars (up)
+  \foreach \i/\h/\lab in {0/0.4/{$r$},1/0.4/{$r$},2/0.2/{$s$}} {
+    \fill[softblue,draw=inkblue,thick] (\i-\w/2,0) rectangle (\i+\w/2,\h);
+    \node[above,inkblue] at (\i,\h) {\lab};
+  }
+  \node[above,inkblue] at (3,0) {$0$};
+  % q* bars (down)
+  \foreach \i/\h/\lab in {1/0.2/{$s$},2/0.4/{$r$},3/0.4/{$r$}} {
+    \fill[rust!15,draw=rust,thick] (\i-\w/2,0) rectangle (\i+\w/2,-\h);
+    \node[below,rust] at (\i,-\h) {\lab};
+  }
+  \node[below,rust] at (0,0) {$0$};
+  \draw[thick] (-0.6,0) -- (3.6,0);
+  \node[left,inkblue] at (-0.6,0.22) {$p^*$};
+  \node[left,rust] at (-0.6,-0.22) {$q^*$};
+  \foreach \i in {0,1,2,3} \node[font=\small] at (\i,0.62) {face \i};
+  % bracket over the first two faces
+  \draw[decorate,decoration={brace,amplitude=5pt},thick] (-0.35,0.72) -- (1.35,0.72)
+    node[midway,above=6pt,font=\small,align=center] {first $a=2$ faces: $p^*$ mass $2r$ (the most),\\ $q^*$ mass $s$ (the least)};
+\end{tikzpicture}

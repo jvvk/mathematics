@@ -1,0 +1,301 @@
+⚠ [8924/8927] Replayed LeanProofs.CappedDice
+warning: LeanProofs/CappedDice.lean:1:1: * `-/`:
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+warning: LeanProofs/CappedDice.lean:6:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDice.lean:7:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDice.lean:8:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDice.lean:10:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDice.lean:93:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDice.lean:116:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDice.lean:122:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDice.lean:139:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDice.lean:146:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDice.lean:147:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDice.lean:191:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDice.lean:228:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDice.lean:240:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDice.lean:256:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDice.lean:271:20: `simp [pA]` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/CappedDice.lean:271:20: Try this:
+  [apply] simp only [Fin.mk_one, Fin.isValue]
+info: LeanProofs/CappedDice.lean:271:34: `(try constructor)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 271!
+warning: LeanProofs/CappedDice.lean:273:20: `simp [qA]` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/CappedDice.lean:273:20: Try this:
+  [apply] simp only [Fin.reduceFinMk, Fin.isValue]
+info: LeanProofs/CappedDice.lean:273:34: `(try constructor)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 273!
+warning: LeanProofs/CappedDice.lean:276:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+⚠ [8925/8927] Replayed LeanProofs.CappedDiceEquality
+warning: LeanProofs/CappedDiceEquality.lean:1:1: * `-/`:
+Copyright too short!
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+warning: LeanProofs/CappedDiceEquality.lean:6:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:8:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:11:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:13:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:14:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:15:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:25:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:54:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:56:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:57:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:71:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:115:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:132:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:159:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:183:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:207:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:234:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:245:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:247:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:251:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:260:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:263:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:270:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:272:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:274:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:277:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:284:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:297:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:315:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:318:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:322:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:361:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:374:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:391:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:393:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:396:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:421:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:454:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:465:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:466:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:467:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:499:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:500:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:512:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:520:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:522:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:528:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:532:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:540:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:547:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:569:20: `simp [pF]` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/CappedDiceEquality.lean:569:20: Try this:
+  [apply] simp only [Fin.reduceFinMk, Fin.isValue]
+info: LeanProofs/CappedDiceEquality.lean:569:34: `(try constructor)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 569!
+warning: LeanProofs/CappedDiceEquality.lean:569:20: `simp [pF]` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/CappedDiceEquality.lean:569:20: Try this:
+  [apply] simp only [Fin.reduceFinMk, Fin.isValue]
+info: LeanProofs/CappedDiceEquality.lean:569:34: `(try constructor)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 569!
+warning: LeanProofs/CappedDiceEquality.lean:571:20: `simp [qF]` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/CappedDiceEquality.lean:571:20: Try this:
+  [apply] simp only [Fin.mk_one, Fin.isValue]
+info: LeanProofs/CappedDiceEquality.lean:571:34: `(try constructor)`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 571!
+warning: LeanProofs/CappedDiceEquality.lean:585:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:590:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:591:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:592:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:593:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:597:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:598:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:599:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:600:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:604:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:605:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:606:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:607:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:611:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:612:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:613:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:614:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:619:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/CappedDiceEquality.lean:628:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+Build completed successfully (8927 jobs).
+exit 0

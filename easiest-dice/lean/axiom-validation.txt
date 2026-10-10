@@ -1,0 +1,223 @@
+@excess_le : ∀ {k : ℕ} {r : ℝ} {p q : Fin k → ℝ},
+  Adm r p →
+    Adm r q → ∀ {u v : ℝ}, 0 ≤ u → 0 ≤ v → ∃ a ≤ k, g p q u v ≤ u * min 1 (↑a * r) - v * max 0 (1 - (↑k - ↑a) * r)
+'CappedDice.excess_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+@stair_sum : ∀ {r : ℝ}, 0 ≤ r → ∀ (a : ℕ), ∑ i ∈ Finset.range a, stair r i = min 1 (↑a * r)
+'CappedDice.stair_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+@rev_sum : ∀ {r : ℝ},
+  0 ≤ r → ∀ {k a : ℕ}, 1 ≤ k → a ≤ k → ∑ i ∈ Finset.range a, stair r (k - 1 - i) = min 1 (↑k * r) - min 1 (↑(k - a) * r)
+'CappedDice.rev_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+@pstar_adm : ∀ {k : ℕ} {r : ℝ}, 0 ≤ r → 1 ≤ ↑k * r → Adm r (pstar k r)
+'CappedDice.pstar_adm' depends on axioms: [propext, Classical.choice, Quot.sound]
+@qstar_adm : ∀ {k : ℕ} {r : ℝ}, 0 ≤ r → 1 ≤ ↑k * r → Adm r (qstar k r)
+'CappedDice.qstar_adm' depends on axioms: [propext, Classical.choice, Quot.sound]
+@stair_excess_ge : ∀ {k : ℕ} {r : ℝ},
+  0 ≤ r →
+    1 ≤ ↑k * r →
+      ∀ {u v : ℝ} {a : ℕ}, a ≤ k → u * min 1 (↑a * r) - v * max 0 (1 - (↑k - ↑a) * r) ≤ g (pstar k r) (qstar k r) u v
+'CappedDice.stair_excess_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
+@dominates : ∀ {k : ℕ} {r : ℝ},
+  0 ≤ r →
+    1 ≤ ↑k * r →
+      ∀ {p q : Fin k → ℝ}, Adm r p → Adm r q → ∀ {u v : ℝ}, 0 ≤ u → 0 ≤ v → g p q u v ≤ g (pstar k r) (qstar k r) u v
+'CappedDice.dominates' depends on axioms: [propext, Classical.choice, Quot.sound]
+@G_succ : ∀ {k n : ℕ} (D : Fin (n + 1) → (Fin k → ℝ) × (Fin k → ℝ)) (u v : ℝ),
+  G D u v = ∑ i, G (fun j => D j.succ) (u * (D 0).1 i) (v * (D 0).2 i)
+'CappedDice.G_succ' depends on axioms: [propext, Classical.choice, Quot.sound]
+@G_succ' : ∀ {k n : ℕ} (D : Fin (n + 1) → (Fin k → ℝ) × (Fin k → ℝ)) (u v : ℝ),
+  G D u v = ∑ w, g (D 0).1 (D 0).2 (u * P (fun j => D j.succ) w) (v * Q (fun j => D j.succ) w)
+'CappedDice.G_succ'' depends on axioms: [propext, Classical.choice, Quot.sound]
+@G_le : ∀ {k : ℕ} {p₀ q₀ : Fin k → ℝ},
+  (∀ (i : Fin k), 0 ≤ p₀ i) →
+    (∀ (i : Fin k), 0 ≤ q₀ i) →
+      ∀ (n : ℕ) (D : Fin n → (Fin k → ℝ) × (Fin k → ℝ)),
+        (∀ (j : Fin n) (i : Fin k), 0 ≤ (D j).1 i) →
+          (∀ (j : Fin n) (i : Fin k), 0 ≤ (D j).2 i) →
+            (∀ (j : Fin n) (u v : ℝ), 0 ≤ u → 0 ≤ v → g (D j).1 (D j).2 u v ≤ g p₀ q₀ u v) →
+              ∀ (u v : ℝ), 0 ≤ u → 0 ≤ v → G D u v ≤ G (fun x => (p₀, q₀)) u v
+'CappedDice.G_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+@overlap_eq : ∀ {k n : ℕ} {D : Fin n → (Fin k → ℝ) × (Fin k → ℝ)},
+  (∀ (j : Fin n), ∑ i, (D j).1 i = 1) → overlap D = 1 - G D 1 1
+'CappedDice.overlap_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+@overlap_ge_of_dominant : ∀ {k : ℕ} {r : ℝ} {p₀ q₀ : Fin k → ℝ},
+  Adm r p₀ →
+    Adm r q₀ →
+      (∀ (p q : Fin k → ℝ), Adm r p → Adm r q → ∀ (u v : ℝ), 0 ≤ u → 0 ≤ v → g p q u v ≤ g p₀ q₀ u v) →
+        ∀ (n : ℕ) (D : Fin n → (Fin k → ℝ) × (Fin k → ℝ)),
+          (∀ (j : Fin n), Adm r (D j).1 ∧ Adm r (D j).2) → (overlap fun x => (p₀, q₀)) ≤ overlap D
+'CappedDice.overlap_ge_of_dominant' depends on axioms: [propext, Classical.choice, Quot.sound]
+@overlap_ge : ∀ {k : ℕ} {r : ℝ},
+  0 ≤ r →
+    1 ≤ ↑k * r →
+      ∀ (n : ℕ) (D : Fin n → (Fin k → ℝ) × (Fin k → ℝ)),
+        (∀ (j : Fin n), Adm r (D j).1 ∧ Adm r (D j).2) → (overlap fun x => (pstar k r, qstar k r)) ≤ overlap D
+'CappedDice.overlap_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
+@g_asker : ∀ {r : ℝ}, 1 / 3 < r → r < 1 / 2 → ∀ (u v : ℝ), g (pA r) (qA r) u v = g (pstar 4 r) (qstar 4 r) u v
+'CappedDice.g_asker' depends on axioms: [propext, Classical.choice, Quot.sound]
+@asker_adm : ∀ {r : ℝ}, 1 / 3 < r → r < 1 / 2 → Adm r (pA r) ∧ Adm r (qA r)
+'CappedDice.asker_adm' depends on axioms: [propext, Classical.choice, Quot.sound]
+@asker_optimal : ∀ {r : ℝ},
+  1 / 3 < r →
+    r < 1 / 2 →
+      ∀ (n : ℕ) (D : Fin n → (Fin 4 → ℝ) × (Fin 4 → ℝ)),
+        (∀ (j : Fin n), Adm r (D j).1 ∧ Adm r (D j).2) → (overlap fun x => (pA r, qA r)) ≤ overlap D
+'CappedDice.asker_optimal' depends on axioms: [propext, Classical.choice, Quot.sound]
+@tight : ∀ {k : ℕ} {r : ℝ},
+  0 ≤ r →
+    1 ≤ ↑k * r →
+      ∀ {p q : Fin k → ℝ},
+        Adm r p →
+          Adm r q →
+            ∀ {u v : ℝ},
+              0 < u →
+                0 < v →
+                  g p q u v = g (pstar k r) (qstar k r) u v →
+                    ∑ i ∈ pos p q u v, p i = min 1 (↑(pos p q u v).card * r) ∧
+                      ∑ i ∈ pos p q u v, q i = max 0 (1 - (↑k - ↑(pos p q u v).card) * r) ∧
+                        ∀ a ≤ k, bnd k r u v a ≤ bnd k r u v (pos p q u v).card
+'CappedDice.tight' depends on axioms: [propext, Classical.choice, Quot.sound]
+@tight4 : ∀ {r : ℝ},
+  1 / 3 < r →
+    r < 1 / 2 →
+      ∀ {p q : Fin 4 → ℝ},
+        Adm r p →
+          Adm r q →
+            ∀ {u v : ℝ},
+              0 < u →
+                0 < v →
+                  g p q u v = g (pstar 4 r) (qstar 4 r) u v →
+                    ∃ c ≤ 4,
+                      (pos p q u v).card = c ∧
+                        ∑ i ∈ pos p q u v, p i = min 1 (↑c * r) ∧
+                          ∑ i ∈ pos p q u v, q i = max 0 (1 - (4 - ↑c) * r) ∧ ∀ a ≤ 4, bnd 4 r u v a ≤ bnd 4 r u v c
+'CappedDice.tight4' depends on axioms: [propext, Classical.choice, Quot.sound]
+@face_r0 : ∀ {r : ℝ},
+  1 / 3 < r →
+    r < 1 / 2 →
+      ∀ {p q : Fin 4 → ℝ},
+        Adm r p →
+          Adm r q →
+            ∀ {u v : ℝ},
+              0 < u →
+                0 < v → u * r < v * (1 - 2 * r) → g p q u v = g (pstar 4 r) (qstar 4 r) u v → ∃ i, p i = r ∧ q i = 0
+'CappedDice.face_r0' depends on axioms: [propext, Classical.choice, Quot.sound]
+@face_0r : ∀ {r : ℝ},
+  1 / 3 < r →
+    r < 1 / 2 →
+      ∀ {p q : Fin 4 → ℝ},
+        Adm r p →
+          Adm r q →
+            ∀ {u v : ℝ},
+              0 < u →
+                0 < v → v * r < u * (1 - 2 * r) → g p q u v = g (pstar 4 r) (qstar 4 r) u v → ∃ j, p j = 0 ∧ q j = r
+'CappedDice.face_0r' depends on axioms: [propext, Classical.choice, Quot.sound]
+@mid_card : ∀ {r : ℝ},
+  1 / 3 < r →
+    r < 1 / 2 →
+      ∀ {p q : Fin 4 → ℝ},
+        Adm r p →
+          Adm r q →
+            ∀ {u v : ℝ},
+              0 < u →
+                0 < v →
+                  v ≤ u →
+                    u * (1 - 2 * r) ≤ v * r →
+                      g p q u v = g (pstar 4 r) (qstar 4 r) u v →
+                        (pos p q u v).card = 2 ∧ ∑ i ∈ pos p q u v, p i = 2 * r ∧ ∑ i ∈ pos p q u v, q i = 1 - 2 * r ∨
+                          (pos p q u v).card = 3 ∧ u * (1 - 2 * r) = v * r
+'CappedDice.mid_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+@head_eq : ∀ {k : ℕ} {r : ℝ} {p q : Fin k → ℝ},
+  0 ≤ r →
+    1 ≤ ↑k * r →
+      Adm r p →
+        Adm r q →
+          ∀ (m : ℕ) {u v : ℝ},
+            0 ≤ u →
+              0 ≤ v →
+                G (Fin.cons (p, q) (S k r m)) u v = G (S k r (m + 1)) u v →
+                  ∀ (w : Fin m → Fin k),
+                    g p q (u * P (S k r m) w) (v * Q (S k r m) w) =
+                      g (pstar k r) (qstar k r) (u * P (S k r m) w) (v * Q (S k r m) w)
+'CappedDice.head_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+@tight_rates : ∀ {k : ℕ} {r : ℝ} {p q : Fin k → ℝ},
+  0 ≤ r →
+    1 ≤ ↑k * r →
+      Adm r p →
+        Adm r q →
+          ∀ (m : ℕ),
+            (overlap fun x => (p, q)) = overlap (S k r (m + 1)) →
+              ∀ (w : Fin m → Fin k),
+                g p q (P (S k r m) w) (Q (S k r m) w) = g (pstar k r) (qstar k r) (P (S k r m) w) (Q (S k r m) w)
+'CappedDice.tight_rates' depends on axioms: [propext, Classical.choice, Quot.sound]
+@tight_rates2 : ∀ {k : ℕ} {r : ℝ} {p q : Fin k → ℝ},
+  0 ≤ r →
+    1 ≤ ↑k * r →
+      Adm r p →
+        Adm r q →
+          ∀ (m : ℕ),
+            (overlap fun x => (p, q)) = overlap (S k r (m + 2)) →
+              ∀ (i : Fin k) (w : Fin m → Fin k),
+                g p q (p i * P (S k r m) w) (q i * Q (S k r m) w) =
+                  g (pstar k r) (qstar k r) (p i * P (S k r m) w) (q i * Q (S k r m) w)
+'CappedDice.tight_rates2' depends on axioms: [propext, Classical.choice, Quot.sound]
+@P_balanced : ∀ {r : ℝ},
+  1 / 3 < r →
+    r < 1 / 2 →
+      ∀ (j : ℕ),
+        (P (S 4 r (j + j)) fun i => if ↑i < j then 1 else 2) = (r * (1 - 2 * r)) ^ j ∧
+          (Q (S 4 r (j + j)) fun i => if ↑i < j then 1 else 2) = (r * (1 - 2 * r)) ^ j
+'CappedDice.P_balanced' depends on axioms: [propext, Classical.choice, Quot.sound]
+@rate_gap : ∀ {r : ℝ}, 1 / 3 < r → r < 1 / 2 → ∀ {m : ℕ}, 2 ≤ m → (1 - 2 * r) ^ m * r < r ^ m * (1 - 2 * r)
+'CappedDice.rate_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+@pin_odd : ∀ {r : ℝ},
+  1 / 3 < r →
+    r < 1 / 2 →
+      ∀ {p q : Fin 4 → ℝ},
+        Adm r p →
+          Adm r q →
+            ∀ {i0 j0 : Fin 4},
+              p i0 = r ∧ q i0 = 0 →
+                p j0 = 0 ∧ q j0 = r → ∀ {c : ℝ}, 0 < c → g p q c c = g (pstar 4 r) (qstar 4 r) c c → Relabel r p q
+'CappedDice.pin_odd' depends on axioms: [propext, Classical.choice, Quot.sound]
+@pin_even : ∀ {r : ℝ},
+  1 / 3 < r →
+    r < 1 / 2 →
+      ∀ {p q : Fin 4 → ℝ},
+        Adm r p →
+          Adm r q →
+            ∀ {i0 j0 : Fin 4},
+              p i0 = r ∧ q i0 = 0 →
+                p j0 = 0 ∧ q j0 = r →
+                  ∀ {c : ℝ},
+                    0 < c →
+                      (∀ (i : Fin 4), g p q (p i * c) (q i * c) = g (pstar 4 r) (qstar 4 r) (p i * c) (q i * c)) →
+                        Relabel r p q
+'CappedDice.pin_even' depends on axioms: [propext, Classical.choice, Quot.sound]
+@equality_ge3 : ∀ {r : ℝ},
+  1 / 3 < r →
+    r < 1 / 2 →
+      ∀ {p q : Fin 4 → ℝ},
+        Adm r p → Adm r q → ∀ (n : ℕ), 3 ≤ n → (overlap fun x => (p, q)) = overlap (S 4 r n) → Relabel r p q
+'CappedDice.equality_ge3' depends on axioms: [propext, Classical.choice, Quot.sound]
+@relabel_attains : ∀ {r : ℝ},
+  1 / 3 < r → r < 1 / 2 → ∀ {p q : Fin 4 → ℝ}, Relabel r p q → ∀ (n : ℕ), (overlap fun x => (p, q)) = overlap (S 4 r n)
+'CappedDice.relabel_attains' depends on axioms: [propext, Classical.choice, Quot.sound]
+@overlap_one : ∀ {k : ℕ} (p q : Fin k → ℝ), (overlap fun x => (p, q)) = ∑ i, min (p i) (q i)
+'CappedDice.overlap_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+@equality_one : ∀ {r : ℝ},
+  1 / 3 < r →
+    r < 1 / 2 →
+      ∀ {p q : Fin 4 → ℝ},
+        Adm r p → Adm r q → ((overlap fun x => (p, q)) = overlap (S 4 r 1) ↔ ∀ (i : Fin 4), max (p i) (q i) = r)
+'CappedDice.equality_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+@family_adm : ∀ {r : ℝ}, 1 / 3 < r → r < 1 / 2 → ∀ {x : ℝ}, 0 ≤ x → x ≤ 1 - 2 * r → Adm r (pF r x) ∧ Adm r (qF r)
+'CappedDice.family_adm' depends on axioms: [propext, Classical.choice, Quot.sound]
+@family_G : ∀ {r : ℝ},
+  1 / 3 < r →
+    r < 1 / 2 →
+      ∀ {x : ℝ},
+        0 ≤ x → x ≤ 1 - 2 * r → G (fun x_1 => (pF r x, qF r)) 1 1 = r + 2 * r ^ 2 - (1 - 2 * r) ^ 2 + (1 - 2 * r) * r
+'CappedDice.family_G' depends on axioms: [propext, Classical.choice, Quot.sound]
+@equality_two_family : ∀ {r : ℝ},
+  1 / 3 < r → r < 1 / 2 → ∀ {x : ℝ}, 0 ≤ x → x ≤ 1 - 2 * r → (overlap fun x_1 => (pF r x, qF r)) = overlap (S 4 r 2)
+'CappedDice.equality_two_family' depends on axioms: [propext, Classical.choice, Quot.sound]

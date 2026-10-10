@@ -1,0 +1,19 @@
+{
+  "source_commit": "6ca1111 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports CappedDice and CappedDiceEquality only)",
+    "CheckClaims.lean (new)",
+    "scripts/mutants.py (copy of lean-proofs scripts/cappeddice_mutants.py)",
+    "scripts/mutants_equality.py (copy of lean-proofs scripts/cappeddiceequality_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "63ed58b0c7242a44c34179005826199b7bdc324ee8ce3dcb293a9795c0ed18f7",
+    "LeanProofs.lean": "60dfda071d4f79fa908ccb4886e1b94edbb493f38b43a4d90cc853c45c450952",
+    "LeanProofs/CappedDice.lean": "21aef1525838b093d3e365f3a910e6abe09d1ed629f36abaad4b5eed735bbdd9",
+    "LeanProofs/CappedDiceEquality.lean": "a3bf8729aa5afbb0b098b3ff26dadd333d2b9bc0398e8e0322c840edf7accfc0",
+    "scripts/mutants.py": "ae2af510219282dfe9606716ac84d9a2fc1c6b5c137244ae91dd3ca92fbce1df",
+    "scripts/mutants_equality.py": "7932c7dc7b13aaa9daa4de7af8e45d401381e52d4a7e0d54d9791bb0542912a3"
+  }
+}
