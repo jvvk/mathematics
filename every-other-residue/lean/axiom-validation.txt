@@ -1,0 +1,29 @@
+PowerTwoMatching.par_split : ∀ (k : ℕ) (e f : ℕ → ℕ),
+  ((PowerTwoMatching.par k (fun s => e (2 * s)) fun s => f (2 * s)) +
+          PowerTwoMatching.par k (fun s => e (2 * s + 1)) fun s => f (2 * s + 1)) %
+        2 =
+      PowerTwoMatching.par (k + 1) e f ∧
+    ((PowerTwoMatching.par k (fun s => e (2 * s)) fun s => f (2 * s + 1)) +
+          PowerTwoMatching.par k (fun s => e (2 * s + 1)) fun s => f (2 * s)) %
+        2 =
+      PowerTwoMatching.par (k + 1) e f
+'PowerTwoMatching.par_split' depends on axioms: [propext, Classical.choice, Quot.sound]
+PowerTwoMatching.mod_double : ∀ (k x y : ℕ),
+  2 * x % 2 ^ (k + 2) = 2 * y % 2 ^ (k + 2) ↔ x % 2 ^ (k + 1) = y % 2 ^ (k + 1)
+'PowerTwoMatching.mod_double' depends on axioms: [propext, Classical.choice, Quot.sound]
+PowerTwoMatching.mod_double_add_one : ∀ (k x y : ℕ),
+  (2 * x + 1) % 2 ^ (k + 2) = (2 * y + 1) % 2 ^ (k + 2) ↔ x % 2 ^ (k + 1) = y % 2 ^ (k + 1)
+'PowerTwoMatching.mod_double_add_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+PowerTwoMatching.exists_matching : ∀ (k : ℕ) (e f : ℕ → ℕ),
+  ∃ σ, PowerTwoMatching.Good k e f σ (PowerTwoMatching.par k e f)
+'PowerTwoMatching.exists_matching' depends on axioms: [propext, Classical.choice, Quot.sound]
+PowerTwoMatching.card_parity : ∀ (n q : ℕ), q < 2 → {t ∈ Finset.range (2 * n) | t % 2 = q}.card = n
+'PowerTwoMatching.card_parity' depends on axioms: [propext, Classical.choice, Quot.sound]
+PowerTwoMatching.sum_parity : ∀ (n q : ℕ), q < 2 → ∑ t ∈ Finset.range (2 * n) with t % 2 = q, t = n * (n - 1) + q * n
+'PowerTwoMatching.sum_parity' depends on axioms: [propext, Classical.choice, Quot.sound]
+PowerTwoMatching.parity_forced : ∀ (k : ℕ) (e f σ : ℕ → ℕ),
+  ∀ q < 2, PowerTwoMatching.Good k e f σ q → q = PowerTwoMatching.par k e f
+'PowerTwoMatching.parity_forced' depends on axioms: [propext, Classical.choice, Quot.sound]
+PowerTwoMatching.not_distinct_mod : ∀ (k : ℕ),
+  1 ≤ k → ∀ (σ : ℕ → ℕ), PowerTwoMatching.IsPerm k σ → ¬Set.InjOn (fun r => (r + σ r) % 2 ^ k) ↑(Finset.range (2 ^ k))
+'PowerTwoMatching.not_distinct_mod' depends on axioms: [propext, Classical.choice, Quot.sound]

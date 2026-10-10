@@ -1,0 +1,6 @@
+Isolated build 2026-10-10: fresh copy of lean/, lake exe cache get, lake build LeanProofs
+✔ [8924/8928] Built LeanProofs.PowerTwoMatching.Basic (279s)
+ℹ [8925/8928] Built LeanProofs.PowerTwoMatching.Main (252s)
+✔ [8926/8928] Built LeanProofs.PowerTwoMatching (249s)
+✔ [8927/8928] Built LeanProofs (236s)
+Build completed successfully (8928 jobs).

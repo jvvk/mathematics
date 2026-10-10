@@ -1,0 +1,20 @@
+{
+  "source_commit": "acb3416 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports PowerTwoMatching only)",
+    "CheckClaims.lean (generated)",
+    "scripts/mutants.py (copy of lean-proofs scripts/powertwomatching_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "9e6c30bc1d651f6c3c8542a5443ab1a20447d04aa4521351c3635fa801a559de",
+    "LeanProofs/PowerTwoMatching/Basic.lean": "c250af7d5311caf30253c1c4b98d48b0861c2dcdca2a5fea5ab5d36a7dc0a679",
+    "LeanProofs/PowerTwoMatching/Main.lean": "07042328fcbb5517ab8609c8154b20c19d68ec29c2da671e87e8f8558f5cd6fc",
+    "LeanProofs/PowerTwoMatching.lean": "21d793c52c6a74cb540513b78481b16d5e0c84cdda16c9c9db831a5a39506cd6",
+    "LeanProofs.lean": "86cb2c111259c1ff5e45046d9c2601870a59cace65356bbc2e361936e581bf5b",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutants.py": "ad88842c05fb2926f59860085a4efe9a0fdbb73de7d2b7d343ad638f02e8c5c2"
+  }
+}
