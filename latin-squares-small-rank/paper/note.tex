@@ -1,0 +1,172 @@
+\documentclass[11pt]{amsart}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\rank}{rank}
+
+\title{Latin Squares of Small Rank}
+\author{Vamshi Jandhyala}
+\address{London, United Kingdom}
+\email{vamshi.jandhyala@gmail.com}
+
+\begin{document}
+
+\begin{abstract}
+Let $r(n)$ be the least real rank of an $n\times n$ Latin square with entries $1,\dots,n$. On MathOverflow, Philip Weiss asked whether $r(n)$ can stay bounded as $n$ grows, and observed that $r(2^k)\le k+1$. We show that every Latin square of order $n$ has rank at least $1+3(n-1)/(n+1)$, with strict inequality when $n$ is odd, so $r(n)\ge4$ for all $n\ge5$. We also determine $r(n)$ for $n\le8$: the values for $n=1,\dots,8$ are $1,2,3,3,5,4,6,4$. The lower bound and the values $r(4)=3$, $r(6)=4$, $r(8)=4$ are formally verified in Lean~4; $r(5)=5$ and $r(7)=6$ rest on an exhaustive search with an exact certificate. Whether $r(n)$ is unbounded remains open.
+\end{abstract}
+
+\maketitle
+
+\section{The question}
+
+A Latin square of order $n$ is an $n\times n$ array in which each of the symbols $1,\dots,n$ occurs once in every row and once in every column. Read as a real matrix, it has a rank. The cyclic square, with entry $i+j \bmod n$ in row $i$ and column $j$ (written with values $1,\dots,n$), has rank $1+\sum_t\varphi(p_t^{a_t})$ when $n=\prod_t p_t^{a_t}$~\cite{SMF}, which is about $n$ for prime $n$. Other squares do much better. The square
+\[
+V=\begin{pmatrix}1&2&3&4\\2&1&4&3\\3&4&1&2\\4&3&2&1\end{pmatrix}
+\]
+has rank $3$: every column is a combination of $(1,1,1,1)$, $(0,1,0,1)$ and $(0,0,1,1)$. It is the case $k=2$ of a construction by Philip Weiss~\cite{MO}: for $n=2^k$, put $1+(i\oplus j)$ in row $i$ and column $j$, where $\oplus$ is bitwise exclusive or, and every column lies in the span of the all-ones vector and the $k$ bit vectors. So $r(2^k)\le k+1$, where
+\[
+r(n)=\min\{\rank V: V \text{ a Latin square of order } n \text{ with entries } 1,\dots,n\}.
+\]
+Weiss asked whether $r(n)$ is bounded along some sequence of $n$, and whether the logarithmic bound can be improved.
+
+Before reading on, try the next case. Can a $5\times5$ Latin square have rank $3$? Rank $4$? The answer is no to both: $r(5)=5$, so every $5\times5$ Latin square is invertible. The general statement is the following.
+
+\begin{theorem}\label{thm:main}
+Every Latin square $V$ of order $n\ge1$ satisfies
+\[
+\rank V\ \ge\ 1+\frac{3(n-1)}{n+1},
+\]
+and the inequality is strict when $n\ge3$ is odd.
+\end{theorem}
+
+\begin{corollary}\label{cor:four}
+$r(n)\ge4$ for every $n\ge5$, and $r(4)=3$.
+\end{corollary}
+
+\begin{proof}
+For even $n\ge6$ the bound exceeds $3$, and for odd $n\ge5$ it is at least $3$ and strict, so in both cases $\rank V\ge4$. For $n=4$ it gives $\rank V\ge 2.8$, so $\rank V\ge3$, and the square above attains $3$.
+\end{proof}
+
+The bound tends to $4$, so Theorem~\ref{thm:main} cannot decide whether $r(n)$ is bounded. For small orders we can compute $r(n)$ exactly (Section~\ref{sec:values}).
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{lcccccccc}
+\toprule
+$n$ & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8\\
+\midrule
+$r(n)$ & 1 & 2 & 3 & 3 & 5 & 4 & 6 & 4\\
+$1+\log_2 n$ & 1 & 2 & 2.58 & 3 & 3.32 & 3.58 & 3.81 & 4\\
+\bottomrule
+\end{tabular}
+\caption{The least rank of a Latin square of order $n$. For $n=4$ and $n=8$ the exclusive-or square is optimal.}
+\label{tab:values}
+\end{table}
+
+\section{Proof of Theorem~\ref{thm:main}}
+
+\emph{Centring.} Every row and column of $V$ sums to $n(n+1)/2$. Put $C=2V-(n+1)J$, where $J$ is the all-ones matrix. Each row and column of $C$ is an ordering of the $n$ numbers
+\[
+-(n-1),\ -(n-3),\ \dots,\ n-3,\ n-1,
+\]
+which sum to $0$ and whose squares sum to $S=n(n^2-1)/3$. So every row and column of $C$ sums to $0$, every column has squared length $S$, and every row contains the entry $n-1$.
+
+\emph{The right subspace.} Let $W\subseteq\R^n$ be the column space of $V$ and $\mathbf 1$ the all-ones vector. Since $V\mathbf1=\tfrac{n(n+1)}2\mathbf1$, the vector $\mathbf1$ lies in $W$. Each column of $C$ is $2$ times a column of $V$ minus $(n+1)\mathbf 1$, so it lies in $W$, and it is orthogonal to $\mathbf 1$ because its entries sum to $0$. So all columns of $C$ lie in
+\[
+K=W\cap\mathbf 1^{\perp},\qquad \dim K=\rank V-1=:d.
+\]
+
+\begin{lemma}\label{lem:factor}
+There are vectors $x_1,\dots,x_n$ and $y_1,\dots,y_n$ in $\R^d$ with
+\[
+C_{ij}=\langle x_i,y_j\rangle,\qquad \sum_{i=1}^n\|x_i\|^2=d,\qquad \|y_j\|^2=S .
+\]
+\end{lemma}
+
+\begin{proof}
+Take an orthonormal basis $u_1,\dots,u_d$ of $K$, let $x_i=(u_1(i),\dots,u_d(i))$ be the $i$-th coordinates of the basis vectors, and let $y_j=(\langle u_1,c_j\rangle,\dots,\langle u_d,c_j\rangle)$ be the coordinates of the $j$-th column $c_j$ of $C$ in this basis. Expanding $c_j=\sum_k\langle u_k,c_j\rangle u_k$ and reading off entry $i$ gives $C_{ij}=\langle x_i,y_j\rangle$. The sum $\sum_i\|x_i\|^2$ is $\sum_k\|u_k\|^2=d$, and $\|y_j\|^2=\|c_j\|^2=S$ because the basis is orthonormal.
+\end{proof}
+
+In words: a Latin square of rank $d+1$ is the same thing as $n$ row points and $n$ column points in $\R^d$ whose inner products are the centred entries. Figure~\ref{fig:xor} shows the square above this way, with $d=2$.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=2.3]
+\input{figs/xor4.tex}
+\draw[gray!60] (-1.45,0) -- (1.45,0);
+\draw[gray!60] (0,-1.45) -- (0,1.45);
+\draw[gray!50, dashed] (0,0) circle (0.7071);
+\foreach \k in {1,2,3,4} { \draw[blue!45, thin] (0,0) -- (x\k); \fill[blue!70!black] (x\k) circle (0.9pt); }
+\foreach \k in {1,2,3,4} { \draw[red!40, thin] (0,0) -- (y\k); \fill[red!70!black] (y\k) circle (0.9pt); }
+\node[blue!70!black, above right, font=\small] at (x1) {$x_1$};
+\node[blue!70!black, above left, font=\small] at (x2) {$x_2$};
+\node[blue!70!black, below right, font=\small] at (x3) {$x_3$};
+\node[blue!70!black, below left, font=\small] at (x4) {$x_4$};
+\node[red!70!black, below left, font=\small] at (y1) {$\tfrac14y_1$};
+\node[red!70!black, below left, font=\small] at (y2) {$\tfrac14y_2$};
+\node[red!70!black, above right, font=\small] at (y3) {$\tfrac14y_3$};
+\node[red!70!black, above right, font=\small] at (y4) {$\tfrac14y_4$};
+\end{tikzpicture}
+\caption{The $4\times4$ square of rank $3$ as points in the plane. Its centred form $C$ has rows $(-3,-1,1,3)$, $(-1,-3,3,1)$, $(1,3,-3,-1)$, $(3,1,-1,-3)$, and $C_{ij}=\langle x_i,y_j\rangle$. The row points lie on the circle of radius $1/\sqrt2$, so $\sum\|x_i\|^2=2$; the column points (drawn at a quarter of their length) have $\|y_j\|^2=20$. The entry $3$ in each row needs $9\le\|x_i\|^2\cdot20=10$.}
+\label{fig:xor}
+\end{figure}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Row $i$ contains $n-1$, say in column $j$. By Cauchy--Schwarz,
+\[
+(n-1)^2=\langle x_i,y_j\rangle^2\le\|x_i\|^2\,\|y_j\|^2=\|x_i\|^2S.
+\]
+Adding over the $n$ rows and using $\sum_i\|x_i\|^2=d$ gives $n(n-1)^2\le dS=d\,n(n-1)(n+1)/3$, that is, $3(n-1)\le(n+1)d$. This is the inequality, since $d=\rank V-1$.
+
+Suppose now that $n\ge3$ is odd and $3(n-1)=(n+1)d$. Then the sum of the $n$ inequalities is an equality, so each one is: $\|x_i\|^2S=(n-1)^2$ for every $i$. Fix a row $i$ and let $n-1$ and $-(n-1)$ sit in columns $j$ and $j'$. Then $\langle x_i,y_j\rangle=\|x_i\|\|y_j\|$ and $\langle x_i,-y_{j'}\rangle=\|x_i\|\|y_{j'}\|$, and equality in Cauchy--Schwarz, with $\|y_j\|=\|y_{j'}\|$ and $x_i\ne0$, forces $y_{j'}=-y_j$. Then $C_{kj'}=-C_{kj}$ for every $k$: column $j'$ of $C$ is minus column $j$. Since $n$ is odd, $0$ is one of the centred values, so column $j$ has a $0$ in some row $k$, and so does column $j'$. Row $k$ then contains $0$ twice, in columns $j\ne j'$, which is impossible.
+\end{proof}
+
+For even $n$ the centred entries are odd, there is no $0$ to use, and equality is possible in principle; it would need $(n+1)\mid 3(n-1)$, which happens only for $n=2$.
+
+\section{Exact values}\label{sec:values}
+
+Rank does not change when rows or columns are permuted. So every Latin square of order $n$ has the rank of one obtained from a representative of its isotopy class, with the $n$ symbols given the values $1,\dots,n$ in some order. McKay lists one representative of each class~\cite{McKay}: there are $2$, $2$, $22$ and $564$ classes for $n=4,5,6,7$~\cite{OEIS}. We computed the rank of all $(\#\text{classes})\times n!$ resulting matrices modulo the prime $p=2^{31}-1$. The rank modulo $p$ never exceeds the rank over $\mathbb Q$, so the minimum over all of them is an exact lower bound for $r(n)$, and a matrix attaining it, whose rank over $\mathbb Q$ we computed exactly, shows the bound is sharp. This gives $r(4)=3$, $r(5)=5$, $r(6)=4$ and $r(7)=6$. The values $r(2)=2$ and $r(3)=3$ follow from Theorem~\ref{thm:main}, whose bound is $2$ for $n=2$ and exceeds $2.5$ for $n=3$, and $r(1)=1$.
+
+For $n=6$ and $n=8$ Corollary~\ref{cor:four} gives $r(n)\ge4$, and rank-$4$ squares exist. For $n=8$ the exclusive-or square works. For $n=6$ one example is
+\[
+\begin{pmatrix}
+1&6&2&5&3&4\\6&1&5&2&4&3\\2&5&3&4&1&6\\5&2&4&3&6&1\\3&4&6&1&5&2\\4&3&1&6&2&5
+\end{pmatrix},
+\]
+which is $AB$ for an integer $6\times4$ matrix $A$ and $4\times6$ matrix $B$ (listed in the Lean files). So $r(6)=r(8)=4$, without any search.
+
+\section{Remarks}
+
+The argument of Theorem~\ref{thm:main} uses only two facts: each row contains the extreme value $n-1$, and the columns have equal length. It cannot give more than $4$, since $3(n-1)/(n+1)<3$. Table~\ref{tab:values} is consistent with $r(n)\ge1+\log_2 n$, which would make the exclusive-or square optimal at every power of $2$ and would show that $r(n)$ is unbounded. We have no proof.
+
+The orders $5$ and $7$ are striking: no Latin square of order $5$ is singular, and none of order $7$ has rank below $6$.
+
+\section{Verification}
+
+Lemma~\ref{lem:factor}, Theorem~\ref{thm:main} with its strict form, Corollary~\ref{cor:four}, and the values $r(4)=3$, $r(6)=4$, $r(8)=4$ are proved in Lean~4 with Mathlib~\cite{mathlib}, using only the standard axioms. The low-rank squares are checked there to be Latin and to factor as $AB$ over $\mathbb Z$. The values $r(5)=5$ and $r(7)=6$ rest on the computation of Section~\ref{sec:values}, which checks every class representative, uses exact modular arithmetic, and is caught by a planted error (ranks computed modulo $3$). Code, data and Lean files are at~\cite{repo}.
+
+\section*{Acknowledgments}
+
+The proofs, the computations and the Lean formalisation were carried out with Claude Opus~5.5 (Anthropic). The author is responsible for the content.
+
+\begin{thebibliography}{9}
+\bibitem{mathlib} The mathlib Community, \emph{The Lean mathematical library}, in: Proc. 9th ACM SIGPLAN Int. Conf. on Certified Programs and Proofs (CPP 2020), 367--381.
+\bibitem{McKay} B.~D.~McKay, \emph{Latin squares}, data, \url{https://users.cecs.anu.edu.au/~bdm/data/latin.html}.
+\bibitem{OEIS} OEIS Foundation, \emph{Number of inequivalent Latin squares (or isotopy classes of Latin squares) of order $n$}, sequence A040082, \url{https://oeis.org/A040082}.
+\bibitem{SMF} W.~C.~Shiu, H.~Ma and K.~T.~Fang, \emph{On the rank of cyclic Latin squares}, Linear Multilinear Algebra \textbf{40} (1995), 183--188.
+\bibitem{MO} P.~Weiss, \emph{Can arbitrarily large Latin squares have bounded rank?}, MathOverflow question 515241 (2026), \url{https://mathoverflow.net/q/515241}.
+\bibitem{repo} V.~Jandhyala, code, data and Lean proofs, \url{https://github.com/jvvk/mathematics/tree/main/latin-squares-small-rank}.
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,20 @@
+Isolated build 2026-10-10: fresh copy of lean/, lake exe cache get, lake build LeanProofs
+✔ [8924/8930] Built LeanProofs.LatinRank.Factor (123s)
+⚠ [8925/8930] Built LeanProofs.LatinRank.Bound (119s)
+warning: LeanProofs/LatinRank/Bound.lean:6:100: This line exceeds the 100 character limit, please shorten it!
+⚠ [8926/8930] Built LeanProofs.LatinRank.Witness (125s)
+warning: LeanProofs/LatinRank/Witness.lean:6:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/LatinRank/Witness.lean:8:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/LatinRank/Witness.lean:16:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/LatinRank/Witness.lean:17:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/LatinRank/Witness.lean:18:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/LatinRank/Witness.lean:19:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/LatinRank/Witness.lean:22:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/LatinRank/Witness.lean:23:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/LatinRank/Witness.lean:26:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/LatinRank/Witness.lean:60:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/LatinRank/Witness.lean:66:100: This line exceeds the 100 character limit, please shorten it!
+ℹ [8927/8930] Built LeanProofs.LatinRank.Main (165s)
+✔ [8928/8930] Built LeanProofs.LatinRank (200s)
+✔ [8929/8930] Built LeanProofs (141s)
+Build completed successfully (8930 jobs).

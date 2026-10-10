@@ -1,0 +1,27 @@
+@LatinRank.factor : ∀ {n m : ℕ} (C : Matrix (Fin n) (Fin m) ℝ) (K : Submodule ℝ (EuclideanSpace ℝ (Fin n))),
+  (∀ (j : Fin m), LatinRank.col C j ∈ K) →
+    ∃ x y,
+      (∀ (i : Fin n) (j : Fin m), C i j = inner ℝ (x i) (y j)) ∧
+        ∑ i, ‖x i‖ ^ 2 = ↑(Module.finrank ℝ ↥K) ∧ ∀ (j : Fin m), ‖y j‖ ^ 2 = ∑ i, C i j ^ 2
+'LatinRank.factor' depends on axioms: [propext, Classical.choice, Quot.sound]
+@LatinRank.rank_bound : ∀ {n : ℕ} {L : Matrix (Fin n) (Fin n) (Fin n)},
+  0 < n → LatinRank.IsLatin L → 3 * (↑n - 1) ≤ (↑n + 1) * ↑(Module.finrank ℝ ↥(LatinRank.K L))
+'LatinRank.rank_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+@LatinRank.rank_bound_strict : ∀ {n : ℕ} {L : Matrix (Fin n) (Fin n) (Fin n)},
+  3 ≤ n → Odd n → LatinRank.IsLatin L → 3 * (↑n - 1) < (↑n + 1) * ↑(Module.finrank ℝ ↥(LatinRank.K L))
+'LatinRank.rank_bound_strict' depends on axioms: [propext, Classical.choice, Quot.sound]
+@LatinRank.four_le_rank : ∀ {n : ℕ} {L : Matrix (Fin n) (Fin n) (Fin n)},
+  5 ≤ n → LatinRank.IsLatin L → 4 ≤ (LatinRank.V L).rank
+'LatinRank.four_le_rank' depends on axioms: [propext, Classical.choice, Quot.sound]
+@LatinRank.three_le_rank : ∀ {n : ℕ} {L : Matrix (Fin n) (Fin n) (Fin n)},
+  n = 4 → LatinRank.IsLatin L → 3 ≤ (LatinRank.V L).rank
+'LatinRank.three_le_rank' depends on axioms: [propext, Classical.choice, Quot.sound]
+LatinRank.r4 : (∃ L, LatinRank.IsLatin L ∧ (LatinRank.V L).rank = 3) ∧
+  ∀ (L : Matrix (Fin 4) (Fin 4) (Fin 4)), LatinRank.IsLatin L → 3 ≤ (LatinRank.V L).rank
+'LatinRank.r4' depends on axioms: [propext, Classical.choice, Quot.sound]
+LatinRank.r6 : (∃ L, LatinRank.IsLatin L ∧ (LatinRank.V L).rank = 4) ∧
+  ∀ (L : Matrix (Fin 6) (Fin 6) (Fin 6)), LatinRank.IsLatin L → 4 ≤ (LatinRank.V L).rank
+'LatinRank.r6' depends on axioms: [propext, Classical.choice, Quot.sound]
+LatinRank.r8 : (∃ L, LatinRank.IsLatin L ∧ (LatinRank.V L).rank = 4) ∧
+  ∀ (L : Matrix (Fin 8) (Fin 8) (Fin 8)), LatinRank.IsLatin L → 4 ≤ (LatinRank.V L).rank
+'LatinRank.r8' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,0 +1,22 @@
+{
+  "source_commit": "8c6cd51 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports LatinRank only)",
+    "CheckClaims.lean (generated)",
+    "scripts/mutants.py (copy of lean-proofs scripts/latinrank_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "9325bc6c43c2dbc59f8f813554f7925dd421817e8f6dd308049847b0f1858df4",
+    "LeanProofs/LatinRank/Bound.lean": "537e947d3918b73bf4e8ed38bc2c8ac13f16e760a9085d7152aa863fc5b01065",
+    "LeanProofs/LatinRank/Factor.lean": "3f1b737cd0b653a98d0815732dc67bb2770ccf176478b140665a7703bb4f4aa0",
+    "LeanProofs/LatinRank/Main.lean": "d54bdef426decbffd44805cfbaed674ff37c3fd6ade678b06accabfc3d167875",
+    "LeanProofs/LatinRank/Witness.lean": "6c2e719e3eef7f5d18eb3293bbccadce9c92b2a44448cd91148bd0ab865ac168",
+    "LeanProofs/LatinRank.lean": "e37af5454a3ad9660a856d1f84f732c38593f67ead36f09014f9262e66d3bd4e",
+    "LeanProofs.lean": "c9de080a57d1950e8a8b465cdf37550f0c61e979995258ce7e7b525c6e87defb",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutants.py": "a1392f8bd9b34f526cdf1cb120eb09f3c1ef5efb0493d42da58464d100b63ec5"
+  }
+}

@@ -1,0 +1,1 @@
+n=7: rank mod p >= 6 for all 564 classes x 7! valuations; witness of exact rank 6. r(7) = 6 OK
