@@ -1,0 +1,7 @@
+Isolated build 2026-10-10: fresh copy of lean/, lake exe cache get, lake build LeanProofs
+⚠ [8924/8928] Built LeanProofs.SevenColours.Basic (141s)
+warning: LeanProofs/SevenColours/Basic.lean:124:48: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+ℹ [8925/8928] Built LeanProofs.SevenColours.Main (133s)
+✔ [8926/8928] Built LeanProofs.SevenColours (138s)
+✔ [8927/8928] Built LeanProofs (188s)
+Build completed successfully (8928 jobs).

@@ -1,0 +1,25 @@
+\begin{scope}
+\fill[copper!15] (0:1.250) arc (0:30:1.250) -- (30:2.165) arc (30:0:2.165) -- cycle;
+\draw[thin] (0,0) -- (0:2.465); \draw[thin] (0,0) -- (30:2.465);
+\draw[inkmuted] (0:1.250) arc (0:40:1.250); \draw[inkmuted] (0:2.165) arc (0:40:2.165);
+\draw[thick, copper] (0:1.250) -- (30:2.165);
+\fill (0,0) circle (1.6pt) node[left, font=\small] {$P$};
+\fill (0:1.250) circle (1.6pt); \fill (30:2.165) circle (1.6pt);
+\node[font=\small] at (16:2.025) {$1$};
+\draw (0:0.55) arc (0:30:0.55); \node[font=\scriptsize] at (15:0.8) {$30^\circ$};
+\node[below, font=\small] at (0:0.625) {$1$}; \node[font=\small] at (38:1.500) {$\sqrt3$};
+\node[font=\small] at (1.125,-0.75) {(a)};
+\end{scope}
+\begin{scope}[shift={(5.4,0)}]
+\fill[copper!12] (0:1.250) arc (0:180:1.250) -- (180:2.165) arc (180:0:2.165) -- cycle;
+\draw[inkmuted] (0:1.250) arc (0:180:1.250); \draw[inkmuted] (0:2.165) arc (0:180:2.165);
+\draw[thin] (-2.465,0) -- (2.465,0);
+\draw[thin] (0,0) -- (2.161,0.075); \fill (2.161,0.075) circle (1.6pt);
+\draw[thin] (0,0) -- (1.248,0.940); \fill (1.248,0.940) circle (1.6pt);
+\draw[thin] (0,0) -- (0.668,2.057); \fill (0.668,2.057) circle (1.6pt);
+\draw[thin] (0,0) -- (-0.457,1.494); \fill (-0.457,1.494) circle (1.6pt);
+\draw[thin] (0,0) -- (-1.704,1.331); \fill (-1.704,1.331) circle (1.6pt);
+\draw[thin] (0,0) -- (-1.560,0.082); \fill (-1.560,0.082) circle (1.6pt);
+\fill (0,0) circle (1.8pt) node[below, font=\small] {$P$};
+\node[font=\small] at (0,-0.75) {(b)};
+\end{scope}

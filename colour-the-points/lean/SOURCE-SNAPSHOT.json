@@ -1,0 +1,20 @@
+{
+  "source_commit": "a3c931a (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports SevenColours only)",
+    "CheckClaims.lean (generated)",
+    "scripts/mutants.py (copy of lean-proofs scripts/sevencolours_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "06db9e818ff89eff927b4a2664eb12d1924621932f1892557363b11c1d25916c",
+    "LeanProofs/SevenColours/Basic.lean": "2770c040a4022f8b432a7cbc3b02bbffa578c7bfb5a6613001e64f0ec87b4cd4",
+    "LeanProofs/SevenColours/Main.lean": "8e00952e113655a84d6430a966886233e997f3a9adb46509fdf0d853e20f33f0",
+    "LeanProofs/SevenColours.lean": "d826f2bf6051d5d0b835ba8007b8d85281209497ebeda2767d8f5477ad3c3dcd",
+    "LeanProofs.lean": "0ae0b55d387d0a7d5a97e27c252c529c9e3d99eb240253a7e09b5b74ed0627f3",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutants.py": "bc7561bc90affc82e21244d68ecfa7b12c5651823ddadb7343f621166861299b"
+  }
+}
