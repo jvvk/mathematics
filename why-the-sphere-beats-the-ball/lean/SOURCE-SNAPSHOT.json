@@ -1,0 +1,16 @@
+{
+  "source_commit": "f3bbae1 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports AcuteRadial only)",
+    "CheckClaims.lean (new)",
+    "scripts/mutants.py (copy of lean-proofs scripts/acuteradial_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "06cfd92356fc00449d199b6f7c532e6f21e63125081ec74dd5ab25001be14e8f",
+    "LeanProofs.lean": "60a0b26df5c243979aa5bd06a62ef68ef94f68e707bca796590b25949c43dac9",
+    "LeanProofs/AcuteRadial.lean": "557a39de65cc77ef518a22ebf1f026e8729dcd91a7c406d12d687413dd10975f",
+    "scripts/mutants.py": "3e965fe54b0206fa60eb708bacac4fd6fdb75f711cf9076866611adc83c1a52a"
+  }
+}

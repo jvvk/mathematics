@@ -1,0 +1,22 @@
+\begin{tikzpicture}[x=6cm,y=12cm,line cap=round]
+  % left: P(a,1,1) for a from 1 to 1.8
+  \draw[->,gray] (1,0.3) -- (1.88,0.3) node[right,font=\scriptsize] {$a$};
+  \draw[->,gray] (1,0.3) -- (1,0.54);
+  \foreach \y in {0.3,0.4,0.5} \draw[gray!60] (0.99,\y) -- (1.01,\y) node[left=2pt,font=\scriptsize,black] {$\y$};
+  \foreach \x in {1,1.2,1.4,1.6,1.8} \draw[gray!60] (\x,0.297) -- (\x,0.303) node[below=3pt,font=\scriptsize,black] {$\x$};
+  \draw[gray,dashed] (1,0.5) -- (1.8,0.5);
+  \draw[inkblue,thick,domain=1:1.4142,samples=80] plot (\x,{1/(2*\x)+1/(6*\x)-(2-\x*\x)^(1.5)/(6*\x)});
+  \draw[inkblue,thick,domain=1.4142:1.8,samples=20] plot (\x,{1/(2*\x)+1/(6*\x)});
+  \node[font=\scriptsize,inkblue] at (1.45,0.395) {$P(a,1,1)$};
+\end{tikzpicture}
+\hspace{1.5em}
+\begin{tikzpicture}[x=10cm,y=12cm,line cap=round]
+  \draw[->,gray] (0,0.22) -- (0.43,0.22) node[right,font=\scriptsize] {$\varepsilon$};
+  \draw[->,gray] (0,0.22) -- (0,0.54);
+  \foreach \y in {0.25,0.3,0.4,0.5} \draw[gray!60] (-0.006,\y) -- (0.006,\y) node[left=2pt,font=\scriptsize,black] {$\y$};
+  \foreach \x in {0,0.1,0.2,0.3,0.4} \draw[gray!60] (\x,0.217) -- (\x,0.223) node[below=3pt,font=\scriptsize,black] {$\x$};
+  \draw[rust,thick,domain=0:0.4,samples=60] plot (\x,{(1-\x)^2*(1+5*\x)/4});
+  \draw[inkblue,thick,domain=0:0.4,samples=60] plot (\x,{(1-\x)^2*(1+2*\x)/2});
+  \node[font=\scriptsize,inkblue,anchor=south west] at (0.02,0.505) {space, $F_3$};
+  \node[font=\scriptsize,rust,anchor=north] at (0.2,0.305) {plane, $F_2$};
+\end{tikzpicture}

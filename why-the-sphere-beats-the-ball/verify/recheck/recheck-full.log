@@ -1,0 +1,36 @@
+P(1,1,1) simulated 0.50038 +- 0.00035, formula 0.50000
+P(1,1,0.5) simulated 0.50044 +- 0.00035, formula 0.50000
+P(1,0.8,0.6) simulated 0.47463 +- 0.00035, formula 0.47500
+P(2,1,1) simulated 0.33395 +- 0.00033, formula 0.33333
+P(1,0.9,0.2) simulated 0.45757 +- 0.00035, formula 0.45741
+P(3,1,0.5) simulated 0.18004 +- 0.00027, formula 0.18056
+P(1.2,1,0.9) simulated 0.49454 +- 0.00035, formula 0.49443
+ball: simulated 0.47156 +- 0.00035; exact integral of the formula 33/70
+dimension 2, centre mass 0.1: simulated 0.30425 +- 0.00033, F = 0.30375
+dimension 2, centre mass 0.3: simulated 0.30656 +- 0.00033, F = 0.30625
+dimension 3, centre mass 0.1: simulated 0.48524 +- 0.00035, F = 0.48600
+dimension 3, centre mass 0.3: simulated 0.39192 +- 0.00035, F = 0.39200
+positive: 20 checks passed
+
+rejected mutant: coefficient 5 for c^2/ab ((1, 1, 1, np.float64(0.499729), np.float64(0.5333333333333333), np.float64(0.000)
+
+P(1,1,1) simulated 0.50066 +- 0.00035, formula 0.50000
+P(1,1,0.5) simulated 0.49939 +- 0.00035, formula 0.50000
+P(1,0.8,0.6) simulated 0.47472 +- 0.00035, formula 0.47500
+P(2,1,1) simulated 0.33278 +- 0.00033, formula 0.33333
+P(1,0.9,0.2) simulated 0.45768 +- 0.00035, formula 0.45741
+P(3,1,0.5) simulated 0.18078 +- 0.00027, formula 0.18056
+P(1.2,1,0.9) simulated 0.49467 +- 0.00035, formula 0.49443
+rejected mutant: uniform radius for the ball ((18/25, 13/25 - 3*pi/20))
+
+P(1,1,1) simulated 0.50012 +- 0.00035, formula 0.50000
+P(1,1,0.5) simulated 0.49976 +- 0.00035, formula 0.50000
+P(1,0.8,0.6) simulated 0.47485 +- 0.00035, formula 0.47500
+P(2,1,1) simulated 0.33338 +- 0.00033, formula 0.33333
+P(1,0.9,0.2) simulated 0.45748 +- 0.00035, formula 0.45741
+P(3,1,0.5) simulated 0.18029 +- 0.00027, formula 0.18056
+P(1.2,1,0.9) simulated 0.49436 +- 0.00035, formula 0.49443
+ball: simulated 0.47169 +- 0.00035; exact integral of the formula 33/70
+rejected mutant: one-centre triangle acute 1/4 ((2, 0.1, np.float64(0.303744), 0.24300000000000005, np.float64(0.000325179629177)
+
+all 3 mutants rejected

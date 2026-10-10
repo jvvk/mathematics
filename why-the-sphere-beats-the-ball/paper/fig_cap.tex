@@ -1,0 +1,17 @@
+\begin{tikzpicture}[scale=1.6,line cap=round]
+  % cross-section: the sphere of radius w carrying W, the direction of U+V, and the cap where the angle at W is obtuse
+  \def\w{1.25}
+  \def\t{0.55}
+  \fill[rust!18] (\t,{sqrt(\w*\w-\t*\t)}) arc ({acos(\t/\w)}:{-acos(\t/\w)}:\w) -- cycle;
+  \draw[gray!70] (0,0) circle (\w);
+  \draw[rust,thick] (\t,{-sqrt(\w*\w-\t*\t)-0.15}) -- (\t,{sqrt(\w*\w-\t*\t)+0.15});
+  \draw[->,inkblue,thick] (0,0) -- (2.0,0) node[right] {$U+V$};
+  \fill (0,0) circle (1pt) node[left] {$O$};
+  \draw[|<->|,gray] (0,-1.55) -- (\t,-1.55);
+  \node[font=\small,gray,anchor=north] at (\t/2,-1.6) {$\dfrac{U\cdot V+w^2}{|U+V|}$};
+  \draw[gray!50,dotted] (0,0) -- (0,-1.55);
+  \draw[gray!50,dotted] (\t,-1.3) -- (\t,-1.55);
+  \node[rust,font=\small] at (0.95,-0.35) {cap};
+  \node[font=\small,gray,anchor=east] at ({-\w*cos(45)-0.05},{\w*sin(45)+0.05}) {radius $w$};
+  \fill[rust] ({\w*cos(30)},{\w*sin(30)}) circle (1.4pt) node[above right] {$W$};
+\end{tikzpicture}

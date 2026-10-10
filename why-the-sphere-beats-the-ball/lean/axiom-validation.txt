@@ -1,0 +1,39 @@
+@obtuse_iff : ∀ {E : Type u_1} [inst : NormedAddCommGroup E] [inst_1 : InnerProductSpace ℝ E] (U V W : E),
+  inner ℝ (U - W) (V - W) < 0 ↔ inner ℝ U V + ‖W‖ ^ 2 < inner ℝ (U + V) W
+'AcuteRadial.obtuse_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+uniform_tail : ∀ (L T : ℝ),
+  0 < L → (MeasureTheory.volume (Set.Icc (-L) L ∩ Set.Ioi T)).toReal / (2 * L) = max 0 (min 1 ((L - T) / (2 * L)))
+'AcuteRadial.uniform_tail' depends on axioms: [propext, Classical.choice, Quot.sound]
+integrand_eq : ∀ (u v w K M : ℝ),
+  0 < u →
+    0 < v →
+      0 < w → 0 < M → M / (2 * u * v) * max 0 (min 1 ((w * M - (M ^ 2 + w ^ 2 - K) / 2) / (2 * (w * M)))) = f u v w K M
+'AcuteRadial.integrand_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+@obtuseC : ∀ {a b c : ℝ}, b ≤ a → c ≤ b → 0 < c → obtuse a b c = 1 / 2 - c ^ 2 / (3 * a * b)
+'AcuteRadial.obtuseC' depends on axioms: [propext, Classical.choice, Quot.sound]
+@obtuseB : ∀ {a b c : ℝ}, b ≤ a → c ≤ b → 0 < c → obtuse a c b = (a - b) / (2 * a) + c ^ 2 / (6 * a * b)
+'AcuteRadial.obtuseB' depends on axioms: [propext, Classical.choice, Quot.sound]
+@obtuseA : ∀ {a b c : ℝ}, b ≤ a → c ≤ b → 0 < c → obtuse b c a = √(max 0 (b ^ 2 + c ^ 2 - a ^ 2)) ^ 3 / (6 * a * b * c)
+'AcuteRadial.obtuseA' depends on axioms: [propext, Classical.choice, Quot.sound]
+@acute_formula : ∀ {a b c : ℝ},
+  b ≤ a → c ≤ b → 0 < c → acute a b c = b / (2 * a) + c ^ 2 / (6 * a * b) - hgt a b c ^ 3 / (6 * a * b * c)
+'AcuteRadial.acute_formula' depends on axioms: [propext, Classical.choice, Quot.sound]
+@acute_le_half : ∀ {a b c : ℝ}, b ≤ a → c ≤ b → 0 < c → acute a b c ≤ 1 / 2
+'AcuteRadial.acute_le_half' depends on axioms: [propext, Classical.choice, Quot.sound]
+@acute_lt_half : ∀ {a b c : ℝ}, b < a → c ≤ b → 0 < c → acute a b c < 1 / 2
+'AcuteRadial.acute_lt_half' depends on axioms: [propext, Classical.choice, Quot.sound]
+@acute_sphere : ∀ {a : ℝ}, 0 < a → acute a a a = 1 / 2
+'AcuteRadial.acute_sphere' depends on axioms: [propext, Classical.choice, Quot.sound]
+@centre_vertex : ∀ {a b : ℝ}, b ≤ a → 0 < b → b / (2 * a) ≤ 1 / 2 ∧ (b / (2 * a) = 1 / 2 ↔ a = b)
+'AcuteRadial.centre_vertex' depends on axioms: [propext, Classical.choice, Quot.sound]
+mixture2 : ∀ (ε : ℝ), (1 - ε) ^ 3 / 4 + 3 * ε * (1 - ε) ^ 2 / 2 = (1 - ε) ^ 2 * (1 + 5 * ε) / 4
+'AcuteRadial.mixture2' depends on axioms: [propext, Classical.choice, Quot.sound]
+mixture2_deriv : HasDerivAt (fun ε => (1 - ε) ^ 2 * (1 + 5 * ε) / 4) (3 / 4) 0
+'AcuteRadial.mixture2_deriv' depends on axioms: [propext, Classical.choice, Quot.sound]
+mixture2_tenth : (1 - 1 / 10) ^ 2 * (1 + 5 * (1 / 10)) / 4 = 243 / 800
+'AcuteRadial.mixture2_tenth' depends on axioms: [propext, Classical.choice, Quot.sound]
+mixture3 : ∀ (ε : ℝ),
+  0 < ε →
+    ε ≤ 1 →
+      (1 - ε) ^ 3 / 2 + 3 * ε * (1 - ε) ^ 2 / 2 = (1 - ε) ^ 2 * (1 + 2 * ε) / 2 ∧ (1 - ε) ^ 2 * (1 + 2 * ε) / 2 < 1 / 2
+'AcuteRadial.mixture3' depends on axioms: [propext, Classical.choice, Quot.sound]
