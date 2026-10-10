@@ -34,8 +34,9 @@ three random points on a sphere do so more often than three in the ball. We expl
 For three points with independent uniform directions on concentric spheres of radii $a\ge b\ge c>0$ we find the
 probability of an acute triangle in closed form and show that it is at most $\frac12$, with equality only when
 the two largest radii are equal. Consequently the uniform sphere is the unique best rotationally invariant
-distribution in space, and the ball must lose to it. In the plane a small amount of mass at the centre helps
-instead, which is where the two dimensions part ways. The algebra and the integrals are checked in the Lean
+distribution in space, and the ball must lose to it. In the plane, by a recent result of Greenwell, the best
+such law instead puts a vertex at the centre, and a small amount of mass at the centre helps the circle; this
+is where the two dimensions part ways. The algebra and the integrals are checked in the Lean
 proof assistant.
 \end{abstract}
 
@@ -80,10 +81,15 @@ centred at the origin. In particular the ball, whose radius is spread out, does 
 its exact value.
 \end{corollary}
 
-The plane behaves differently, and a two-line experiment shows it (Section~\ref{sec:plane}): put a small mass
-$\varepsilon$ at the centre of the circle and the probability rises, while the same change to the sphere makes it
-fall (Figure~\ref{fig:curves}, right). What we do not have is a direct proof that the disc's particular spread
-helps; its value is only known by computing it.
+The plane behaves differently. Greenwell~\cite{Gre26} recently solved the planar version of
+Theorem~\ref{thm:main}, three concentric circles, and showed that there too the acute probability is at most
+$\frac12$ for every rotationally symmetric law; but in the plane equality needs one vertex at the centre and the
+other two on a common circle, so the uniform circle, at $\frac14$, is far from the best. In space the sphere is the
+best. That is the asymmetry the question asks about, and a two-line experiment shows it
+(Section~\ref{sec:plane}): put a small mass $\varepsilon$ at the centre and the probability rises for the circle
+but falls for the sphere (Figure~\ref{fig:curves}, right). Greenwell notes that the fixed-radius formula for
+spheres was not known; Theorem~\ref{thm:main} supplies it in $\mathbb R^3$. What we do not have is a direct proof
+that the disc's particular spread helps; its value is only known by computing it.
 
 \begin{figure}[ht]
 \centering
@@ -213,7 +219,8 @@ In the plane $F_2'(0)=\frac34>0$, and for example $F_2(\frac1{10})=\frac{243}{80
 even a local best. In space $F_3(\varepsilon)=\frac12-\frac32\varepsilon^2+\varepsilon^3<\frac12$ for
 $0<\varepsilon\le1$, as Corollary~\ref{cor:law} requires. The difference is the boundary value: a triangle with a
 vertex at the centre is acute half the time in both dimensions, which is better than the circle's $\frac14$ and
-no better than the sphere's $\frac12$.
+no better than the sphere's $\frac12$. By Greenwell's planar bound~\cite{Gre26}, a vertex at the centre with the
+other two on one circle is in fact the best the plane can do.
 
 \begin{remark}
 This does not prove that the uniform disc beats the circle: the disc spreads its mass over all radii, not just
@@ -241,6 +248,7 @@ argument, write the Lean formalisation and the programs, and draft this text. Th
 for the content.
 
 \begin{thebibliography}{9}
+\bibitem{Gre26} B.~M.~Greenwell, Random triangles on concentric circles, arXiv:2608.06591 (2026).
 \bibitem{Hal82} G.~R.~Hall, Acute triangles in the $n$-ball, \emph{J. Appl. Probab.} \textbf{19} (1982)
 712--715, \href{https://doi.org/10.2307/3213533}{doi:10.2307/3213533}.
 \bibitem{Kha20} G.~Khan, Hall's conjecture on extremal sets for random triangles, \emph{J. Geom. Anal.}
