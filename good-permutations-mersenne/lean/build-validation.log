@@ -1,0 +1,8 @@
+Isolated build 2026-10-10: fresh copy of lean/, lake exe cache get, lake build LeanProofs
+✔ [8924/8930] Built LeanProofs.GoodPerm.Basic (67s)
+✔ [8925/8930] Built LeanProofs.GoodPerm.Construction (78s)
+✔ [8926/8930] Built LeanProofs.GoodPerm.Mersenne (78s)
+ℹ [8927/8930] Built LeanProofs.GoodPerm.Main (111s)
+✔ [8928/8930] Built LeanProofs.GoodPerm (121s)
+✔ [8929/8930] Built LeanProofs (17s)
+Build completed successfully (8930 jobs).

@@ -1,0 +1,22 @@
+{
+  "source_commit": "61d20c8 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports GoodPerm only)",
+    "CheckClaims.lean (generated)",
+    "scripts/mutants.py (copy of lean-proofs scripts/goodperm_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "3664938988382b5aeb9710bd4dd4a52ae5325f0fc680988b9752d1bb1060b5b9",
+    "LeanProofs/GoodPerm/Basic.lean": "fe43fecac77a84defe81578539dcd46948f5c88e195660ac570c9f137e978f7b",
+    "LeanProofs/GoodPerm/Construction.lean": "a54f50cab5d78ed54d9cdb0388cbd83a7797cca343cbec27ed85e0c82b9fe8f1",
+    "LeanProofs/GoodPerm/Main.lean": "8a57945bcada92fb297e99af3d747820836e59be976c5623c0f3fd0912d2bb38",
+    "LeanProofs/GoodPerm/Mersenne.lean": "303425209fba7a1b2476362a7ccd787f347cb960cabbee45aa884ed76fc6ff6a",
+    "LeanProofs/GoodPerm.lean": "b0d148e3855b7098c203bd7a4705eb065f91a09394404f58b3c034d11412fe7a",
+    "LeanProofs.lean": "481599e1240e8000e748e1a20dc1a7233044cf9fc551a2531829f7cad99d331d",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutants.py": "d9f4854133217f43e7e90fadeb0bf4ea4b5cddf4a87bab1dba725b1e18fd4dc6"
+  }
+}

@@ -1,0 +1,41 @@
+@GoodPerm.two_adic : ∀ {n : ℕ} {a : ℕ → ℤ},
+  GoodPerm.Good n a →
+    ∀ (j : ℕ),
+      2 ^ (j + 1) < n →
+        ∀ (t : ℕ), 1 ≤ t → t + 2 ^ (j + 1) ≤ n + 1 → ∃ o, Odd o ∧ GoodPerm.S a t (2 ^ (j + 1)) = 2 ^ j * o
+'GoodPerm.two_adic' depends on axioms: [propext, Classical.choice, Quot.sound]
+@GoodPerm.congr_shift : ∀ {n : ℕ} {a : ℕ → ℤ},
+  GoodPerm.Good n a →
+    ∀ (j : ℕ), 2 ^ (j + 1) < n → ∀ (t : ℕ), 1 ≤ t → t + 2 ^ (j + 1) ≤ n → 2 ^ (j + 1) ∣ a (t + 2 ^ (j + 1)) - a t
+'GoodPerm.congr_shift' depends on axioms: [propext, Classical.choice, Quot.sound]
+@GoodPerm.pair_gap : ∀ {n : ℕ} {a : ℕ → ℤ} {q s : ℕ},
+  GoodPerm.IsPerm n a →
+    n = q + s →
+      s < q →
+        (∀ (i : ℕ), 1 ≤ i → i ≤ s → ↑q ∣ a (i + q) - a i) →
+          ∀ (i : ℕ), 1 ≤ i → i ≤ s → a (i + q) - a i = ↑q ∨ a (i + q) - a i = -↑q
+'GoodPerm.pair_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+@GoodPerm.middle_sum : ∀ {n : ℕ} {a : ℕ → ℤ} {q s : ℕ},
+  GoodPerm.IsPerm n a →
+    n = q + s →
+      s < q →
+        (∀ (i : ℕ), 1 ≤ i → i ≤ s → ↑q ∣ a (i + q) - a i) → 2 * GoodPerm.S a (s + 1) (q - s) = (↑q - ↑s) * (↑n + 1)
+'GoodPerm.middle_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+@GoodPerm.mersenne : ∀ {n : ℕ} {a : ℕ → ℤ}, GoodPerm.IsPerm n a → GoodPerm.Good n a → Odd n → 3 ≤ n → ∃ m, n = 2 ^ m - 1
+'GoodPerm.mersenne' depends on axioms: [propext, Classical.choice, Quot.sound]
+@GoodPerm.reduction : ∀ {a : ℕ → ℤ} (m : ℕ),
+  2 ≤ m →
+    GoodPerm.IsPerm (2 ^ m - 1) a →
+      GoodPerm.Good (2 ^ m - 1) a →
+        a (2 ^ (m - 1)) = 2 ^ (m - 1) ∧
+          ∀ (i : ℕ),
+            1 ≤ i → i < 2 ^ (m - 1) → a (i + 2 ^ (m - 1)) - a i = 2 ^ (m - 1) ∨ a (i + 2 ^ (m - 1)) - a i = -2 ^ (m - 1)
+'GoodPerm.reduction' depends on axioms: [propext, Classical.choice, Quot.sound]
+GoodPerm.c_perm : ∀ (n : ℕ), Odd n → GoodPerm.IsPerm n (GoodPerm.c n)
+'GoodPerm.c_perm' depends on axioms: [propext, Classical.choice, Quot.sound]
+GoodPerm.block_dvd_iff : ∀ (m t L : ℕ),
+  1 ≤ t → 2 ≤ L → t + L ≤ 2 ^ m - 1 + 1 → (↑L ∣ GoodPerm.S (GoodPerm.c (2 ^ m - 1)) t L ↔ t = 1 ∧ L ∣ 2 ^ m - 1)
+'GoodPerm.block_dvd_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+GoodPerm.good_iff_prime : ∀ (m : ℕ),
+  2 ≤ m → (GoodPerm.Good (2 ^ m - 1) (GoodPerm.c (2 ^ m - 1)) ↔ Nat.Prime (2 ^ m - 1))
+'GoodPerm.good_iff_prime' depends on axioms: [propext, Classical.choice, Quot.sound]
