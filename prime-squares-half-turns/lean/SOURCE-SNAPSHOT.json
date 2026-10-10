@@ -1,0 +1,16 @@
+{
+  "source_commit": "3bc78af (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports PrimeSquares only)",
+    "CheckClaims.lean (new)",
+    "scripts/mutants.py (copy of lean-proofs scripts/primesquares_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "8b3e40767f9c9e7d49bb3b88fd36aacc9fb77167038da291ed0f9725673beb5e",
+    "LeanProofs.lean": "4d53adc49543f0518d21009ecda3e217423ce8c84205b3c3300abddc629215f8",
+    "LeanProofs/PrimeSquares.lean": "b6775b01daaa393fb99408a8ca5eb0e11c4a1d2562c33bdc509607b5630a58dd",
+    "scripts/mutants.py": "09beeaab2c91d608c6d60117d3e98cf7ce88873fa7fbb3393a19d345ca37ee05"
+  }
+}

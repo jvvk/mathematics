@@ -1,0 +1,40 @@
+@prime_dvd_of_dvd_mul : ∀ {A : Type u_1} [inst : CommRing A] [IsDomain A] [UniqueFactorizationMonoid A] {q₁ q₂ d : A},
+  Prime q₁ → Prime q₂ → d ≠ 0 → ¬IsUnit d → d ∣ q₁ * q₂ → q₁ ∣ d ∨ q₂ ∣ d
+'PrimeSquares.prime_dvd_of_dvd_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+@orientation_dichotomy : ∀ {A : Type u_1} [inst : CommRing A] [IsDomain A] [UniqueFactorizationMonoid A] (σ : A ≃+* A),
+  (∀ (a : A), σ (σ a) = a) →
+    ∀ (ε : A →+* ℤ),
+      (∀ (a : A), ε (σ a) = ε a) →
+        ∀ {q₁ q₂ R F U V : A},
+          Prime q₁ →
+            Prime q₂ →
+              R = q₁ * q₂ →
+                σ R = R →
+                  ∀ {p : ℕ},
+                    Nat.Prime p →
+                      p ≠ 2 →
+                        ε F = ↑p →
+                          ∀ {u v : ℕ},
+                            ε U = ↑u →
+                              ε V = ↑v →
+                                u + v = p → (u = 0 → U = 0) → (v = 0 → V = 0) → F * U + σ F * V = R → q₁ ∣ F ∨ q₂ ∣ F
+'PrimeSquares.orientation_dichotomy' depends on axioms: [propext, Classical.choice, Quot.sound]
+@cyclotomic_prime_irreducible : ∀ {p : ℕ}, Nat.Prime p → Irreducible (Polynomial.cyclotomic p ℤ)
+'PrimeSquares.cyclotomic_prime_irreducible' depends on axioms: [propext, Classical.choice, Quot.sound]
+@cyclotomic_prime_eval_one : ∀ {p : ℕ}, Nat.Prime p → Polynomial.eval 1 (Polynomial.cyclotomic p ℤ) = ↑p
+'PrimeSquares.cyclotomic_prime_eval_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+@row_eq : ∀ {p : ℕ},
+  Nat.Prime p →
+    ∀ {f : Polynomial ℤ},
+      (∀ (i : ℕ), f.coeff i = 0 ∨ f.coeff i = 1) →
+        f.natDegree < p → Polynomial.cyclotomic p ℤ ∣ f → f = 0 ∨ f = Polynomial.cyclotomic p ℤ
+'PrimeSquares.row_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+@bar_of_dvd : ∀ {p : ℕ},
+  Nat.Prime p →
+    ∀ {F : Polynomial (Polynomial ℤ)},
+      (∀ (k i : ℕ), (F.coeff k).coeff i = 0 ∨ (F.coeff k).coeff i = 1) →
+        (∀ (k : ℕ), (F.coeff k).natDegree < p) →
+          ∑ k ∈ Finset.range (F.natDegree + 1), Polynomial.eval 1 (F.coeff k) = ↑p →
+            Polynomial.C (Polynomial.cyclotomic p ℤ) ∣ F →
+              ∃ j, F = Polynomial.C (Polynomial.cyclotomic p ℤ) * Polynomial.X ^ j
+'PrimeSquares.bar_of_dvd' depends on axioms: [propext, Classical.choice, Quot.sound]

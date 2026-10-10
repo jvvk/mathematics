@@ -1,0 +1,20 @@
+p=3: 48 cell sets x 5 involutions, only bars
+p=5: 26490 cell sets x 5 involutions, only bars
+p=7: 760 fixed heptominoes x 5 involutions, only bars
+controls: p=2 half-turn only dominoes; p=2 diagonal pair tiles with a mirror; n=4 L tiles only with half-turns
+positive: 19 checks passed
+
+p=3: 48 cell sets x 5 involutions, only bars
+rejected mutant: overlaps allowed (p=5, half-turn: non-bar [(0, 0), (0, 2), (2, 2), (2, 3), (3, 0)])
+
+p=3: 48 cell sets x 5 involutions, only bars
+p=5: 26490 cell sets x 5 involutions, only bars
+p=7: 760 fixed heptominoes x 5 involutions, only bars
+rejected mutant: half-turn replaced by the identity (n=4: L-tetromino with half-turns should tile)
+
+p=3: 48 cell sets x 5 involutions, only bars
+p=5: 26490 cell sets x 5 involutions, only bars
+p=7: 760 fixed heptominoes x 5 involutions, only bars
+rejected mutant: half-turn replaced by a quarter-turn (p=2 half-turn: non-domino)
+
+all 3 mutants rejected
