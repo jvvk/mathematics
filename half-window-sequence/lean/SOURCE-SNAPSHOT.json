@@ -1,0 +1,22 @@
+{
+  "source_commit": "2d8cef0 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports WindowSeq only)",
+    "CheckClaims.lean (generated)",
+    "scripts/mutants.py (copy of lean-proofs scripts/windowseq_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "806daefd580595623d0550d13f68479626a73e5e6afe20b3b634aeb31d934f60",
+    "LeanProofs/WindowSeq/Harm.lean": "eeb44aa7406a5a2136095486eba9dc581ebd8b49ac5a50d2d43f81cbaa84871f",
+    "LeanProofs/WindowSeq/Limit.lean": "db5f8a106ef849dc316d7c6885939dee5614483d5a1ff4ff76287a2fcfb6a802",
+    "LeanProofs/WindowSeq/Main.lean": "96a99777080ee1a4e0abaa29cd270b74679e592da2d156cacd476419c978fca6",
+    "LeanProofs/WindowSeq/Seq.lean": "747dc451e45808bd5c6b112700bf23a53def22d459659c6411256d2b936d0a8d",
+    "LeanProofs/WindowSeq.lean": "e66c8c71639cc7f2749e3338f19316232784c7f360de0cc6f6985ca84a648531",
+    "LeanProofs.lean": "fca6d58801db0ee27e1625d5b09cac24e1f9404fc843171018594d0da4070cda",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutants.py": "4a98be357e08a9488aab86837dcf2a2efecb009843a0996c3a87ec82cd87e4ce"
+  }
+}

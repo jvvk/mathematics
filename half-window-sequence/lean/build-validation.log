@@ -1,0 +1,15 @@
+Isolated build 2026-10-10: fresh copy of lean/, lake exe cache get, lake build LeanProofs
+⚠ [8924/8930] Built LeanProofs.WindowSeq.Seq (50s)
+warning: LeanProofs/WindowSeq/Seq.lean:41:10: `if_pos` has been deprecated: Use `ite_eq_left` instead
+warning: LeanProofs/WindowSeq/Seq.lean:48:10: `if_neg` has been deprecated: Use `ite_eq_right` instead
+⚠ [8925/8930] Built LeanProofs.WindowSeq.Harm (16s)
+warning: LeanProofs/WindowSeq/Harm.lean:7:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/WindowSeq/Harm.lean:8:100: This line exceeds the 100 character limit, please shorten it!
+⚠ [8926/8930] Built LeanProofs.WindowSeq.Limit (16s)
+warning: LeanProofs/WindowSeq/Limit.lean:11:100: This line exceeds the 100 character limit, please shorten it!
+⚠ [8927/8930] Built LeanProofs.WindowSeq.Main (13s)
+warning: LeanProofs/WindowSeq/Main.lean:7:100: This line exceeds the 100 character limit, please shorten it!
+info: LeanProofs/WindowSeq/Main.lean:14:0: 'WindowSeq.error_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [8928/8930] Built LeanProofs.WindowSeq (12s)
+✔ [8929/8930] Built LeanProofs (13s)
+Build completed successfully (8930 jobs).

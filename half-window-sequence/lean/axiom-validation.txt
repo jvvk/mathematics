@@ -1,0 +1,22 @@
+WindowSeq.window : ∀ (n : ℕ), 1 ≤ n → ↑n * WindowSeq.a n = 1 + ∑ k ∈ WindowSeq.W n, WindowSeq.a k
+'WindowSeq.window' depends on axioms: [propext, Classical.choice, Quot.sound]
+WindowSeq.tendsto_s : Filter.Tendsto WindowSeq.s Filter.atTop (nhds (Real.log 2))
+'WindowSeq.tendsto_s' depends on axioms: [propext, Classical.choice, Quot.sound]
+WindowSeq.c_bdd : ∃ B, ∀ (n : ℕ), WindowSeq.c n ≤ B
+'WindowSeq.c_bdd' depends on axioms: [propext, Classical.choice, Quot.sound]
+@WindowSeq.error_eq : ∀ {n : ℕ},
+  1 ≤ n →
+    WindowSeq.c n - WindowSeq.A =
+      ∑ k ∈ WindowSeq.W n, (WindowSeq.c k - WindowSeq.A) / ↑k + WindowSeq.A * (WindowSeq.s n - Real.log 2)
+'WindowSeq.error_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+WindowSeq.tendsto_zero_of_contract : ∀ (e δ : ℕ → ℝ) (M q : ℝ),
+  0 ≤ q →
+    q < 1 →
+      (∀ (n : ℕ), |e n| ≤ M) →
+        Filter.Tendsto δ Filter.atTop (nhds 0) →
+          ∀ (N0 : ℕ),
+            (∀ n ≥ N0, ∀ (R : ℝ), 0 ≤ R → (∀ k ∈ WindowSeq.W n, |e k| ≤ R) → |e n| ≤ q * R + δ n) →
+              Filter.Tendsto e Filter.atTop (nhds 0)
+'WindowSeq.tendsto_zero_of_contract' depends on axioms: [propext, Classical.choice, Quot.sound]
+WindowSeq.tendsto_c : Filter.Tendsto (fun n => ↑n * WindowSeq.a n) Filter.atTop (nhds (1 / (1 - Real.log 2)))
+'WindowSeq.tendsto_c' depends on axioms: [propext, Classical.choice, Quot.sound]
