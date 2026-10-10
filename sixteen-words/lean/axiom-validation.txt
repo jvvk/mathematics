@@ -1,0 +1,29 @@
+@covers_append : ∀ {S T : Finset (List Bool)} {n₁ n₂ : ℕ}, Covers S n₁ → Covers T n₂ → Covers (cat S T) (n₁ + n₂)
+'DeletionCover.covers_append' depends on axioms: [propext, Classical.choice, Quot.sound]
+@uniform_append : ∀ {S T : Finset (List Bool)} {m₁ m₂ : ℕ}, Uniform S m₁ → Uniform T m₂ → Uniform (cat S T) (m₁ + m₂)
+'DeletionCover.uniform_append' depends on axioms: [propext, Classical.choice, Quot.sound]
+card_append_le : ∀ (S T : Finset (List Bool)), (cat S T).card ≤ S.card * T.card
+'DeletionCover.card_append_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+@covers_pow : ∀ {S : Finset (List Bool)} {n m : ℕ},
+  Covers S n → Uniform S m → ∀ (k : ℕ), ∃ T, Covers T (k * n) ∧ Uniform T (k * m) ∧ T.card ≤ S.card ^ k
+'DeletionCover.covers_pow' depends on axioms: [propext, Classical.choice, Quot.sound]
+@mem_words : ∀ {m : ℕ} {y : List Bool}, y ∈ words m ↔ y.length = m
+'DeletionCover.mem_words' depends on axioms: [propext, Classical.choice, Quot.sound]
+covers_words : ∀ (n b : ℕ), Covers (words (n - b)) n
+'DeletionCover.covers_words' depends on axioms: [propext, Classical.choice, Quot.sound]
+H_spec : ∀ (n b : ℕ), ∃ S, Covers S n ∧ Uniform S (n - b) ∧ S.card = H n b
+'DeletionCover.H_spec' depends on axioms: [propext, Classical.choice, Quot.sound]
+H_pos : ∀ (n b : ℕ), 0 < H n b
+'DeletionCover.H_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+@H_mul : ∀ {n₁ b₁ n₂ b₂ : ℕ}, b₁ ≤ n₁ → b₂ ≤ n₂ → H (n₁ + n₂) (b₁ + b₂) ≤ H n₁ b₁ * H n₂ b₂
+'DeletionCover.H_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+subadditive_log : Subadditive fun k => Real.log ↑(H (3 * k) k)
+'DeletionCover.subadditive_log' depends on axioms: [propext, Classical.choice, Quot.sound]
+rate_exists : Filter.Tendsto (fun k => Real.log ↑(H (3 * k) k) / ↑k) Filter.atTop (nhds subadditive_log.lim)
+'DeletionCover.rate_exists' depends on axioms: [propext, Classical.choice, Quot.sound]
+alpha_le : (∃ S, Covers S 15 ∧ Uniform S 10 ∧ S.card = 16) → Real.exp (subadditive_log.lim / 3) ≤ 16 ^ (1 / 15)
+'DeletionCover.alpha_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+rate_16 : 1.2030 < 16 ^ (1 / 15) ∧ 16 ^ (1 / 15) < 1.2031
+'DeletionCover.rate_16' depends on axioms: [propext, Classical.choice, Quot.sound]
+rate_17 : 1.2078 < 17 ^ (1 / 15)
+'DeletionCover.rate_17' depends on axioms: [propext, Classical.choice, Quot.sound]

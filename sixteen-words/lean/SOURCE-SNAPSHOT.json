@@ -1,0 +1,16 @@
+{
+  "source_commit": "e65bf11 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports DeletionCover only)",
+    "CheckClaims.lean (new)",
+    "scripts/mutants.py (copy of lean-proofs scripts/deletioncover_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "8b61a299f7938cca5585e55d13d2a7298236a37991f0cb8577de7429350da420",
+    "LeanProofs.lean": "c00d402129d4c4cedf9c5068e3b78ef5c6c768692c7995d28d9a40703d9daa54",
+    "LeanProofs/DeletionCover.lean": "a755ba9e11a40892bb2cfdea30e285898551bfe8f6fcc1ac5a39ad5f0d115a07",
+    "scripts/mutants.py": "36312fdbc47ef2cd4a4d3aba5fe636e8dc4bd9b964208c69148481719c2f6369"
+  }
+}

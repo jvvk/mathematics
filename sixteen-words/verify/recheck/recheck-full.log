@@ -1,0 +1,9 @@
+published 16-word set: a cover, closed under complement and reversal, minimal
+K=16: satisfiable; a symmetric cover of size 16 found and replayed
+K=15: unsatisfiable (40434 clauses); no symmetric cover of size 15
+wrote CNF and DRAT proof
+published 16-word set: a cover, closed under complement and reversal, minimal
+rejected mutant: counter allows one more half-unit ((True, 18))
+published 16-word set: a cover, closed under complement and reversal, minimal
+rejected mutant: substring instead of subsequence ((False, 0))
+all 2 mutants rejected
