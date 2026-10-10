@@ -1,0 +1,16 @@
+{
+  "source_commit": "0026a61 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports CentroidCircle only)",
+    "CheckClaims.lean (new)",
+    "scripts/mutants.py (copy of lean-proofs scripts/centroid_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "13a9df14d6b3d8ac3f44f46838e98559ed29ba3617e95f1cca535ebb9a74cbd5",
+    "LeanProofs.lean": "40022f54a970fcb670dd2ea865448b2468ed9401f41b063406b8e616a6147383",
+    "LeanProofs/CentroidCircle.lean": "f81762c296e7db8fdee5e1c9c9fe3d079c2072efbb7be27896d9c6f9f92d9127",
+    "scripts/mutants.py": "5ffa325b988e8392efdb6c6ee655d022ad25c48ae3d5d021444d0cd2ca77ef94"
+  }
+}

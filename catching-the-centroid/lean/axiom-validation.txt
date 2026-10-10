@@ -1,0 +1,41 @@
+@key : ∀ {ρ : ℝ → ℝ}, Dens ρ → P ρ - 1 / 2 = ∫ (θ : ℝ) in 0..2 * Real.pi, ρo ρ θ * b ρ θ
+'CentroidCircle.key' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CentroidCircle.symmetric_half' depends on axioms: [propext, Classical.choice, Quot.sound]
+@signed_area : ∀ {ρ : ℝ → ℝ},
+  Dens ρ →
+    (∀ (θ : ℝ), HasDerivAt (fun t => b ρ (t + Real.pi / 2)) (db ρ (θ + Real.pi / 2)) θ) ∧
+      P ρ - 1 / 2 = 1 / 2 * ∫ (θ : ℝ) in 0..2 * Real.pi, b ρ θ * db ρ (θ + Real.pi / 2)
+'CentroidCircle.signed_area' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CentroidCircle.integral_abs_ρo' depends on axioms: [propext, Classical.choice, Quot.sound]
+@product_bound : ∀ {ρ : ℝ → ℝ}, Dens ρ → ∀ (G : ℝ), (∀ (θ : ℝ), |b ρ θ| ≤ G) → |P ρ - 1 / 2| ≤ G * (1 - s ρ)
+'CentroidCircle.product_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CentroidCircle.abs_b_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+@abs_P_sub_half_le : ∀ {ρ : ℝ → ℝ}, Dens ρ → Grunbaum ρ → Stewart ρ → |P ρ - 1 / 2| ≤ 1 / 54
+'CentroidCircle.abs_P_sub_half_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+@P_le_14_27 : ∀ {ρ : ℝ → ℝ}, Dens ρ → Grunbaum ρ → Stewart ρ → P ρ ≤ 14 / 27
+'CentroidCircle.P_le_14_27' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CentroidCircle.one_sub_s_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+@P_le_8_15 : ∀ {ρ : ℝ → ℝ}, Dens ρ → Grunbaum ρ → MinkRadon ρ → P ρ ≤ 8 / 15
+'CentroidCircle.P_le_8_15' depends on axioms: [propext, Classical.choice, Quot.sound]
+@three_sectors : ∀ {ρ : ℝ → ℝ},
+  Dens ρ →
+    Grunbaum ρ →
+      ∀ (t₀ t₁ t₂ : ℝ),
+        ((∫ (x : ℝ) in t₀..t₁, ρ x) + ∫ (x : ℝ) in t₂..t₀ + Real.pi, ρ x) +
+            ∫ (x : ℝ) in t₁ + Real.pi..t₂ + Real.pi, ρ x ≤
+          2 / 3
+'CentroidCircle.three_sectors' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CentroidCircle.s_ge_two_thirds' depends on axioms: [propext, Classical.choice, Quot.sound]
+@P_le_14_27_three_sided : ∀ {ρ : ℝ → ℝ},
+  Dens ρ →
+    Grunbaum ρ →
+      ∀ (t₀ t₁ t₂ : ℝ),
+        t₀ ≤ t₁ →
+          t₁ ≤ t₂ →
+            t₂ ≤ t₀ + Real.pi →
+              (∀ (θ : ℝ),
+                  θ ∈ Set.Icc t₀ t₁ ∨ θ ∈ Set.Icc t₂ (t₀ + Real.pi) ∨ θ ∈ Set.Icc (t₁ + Real.pi) (t₂ + Real.pi) →
+                    ρ (θ + Real.pi) ≤ ρ θ) →
+                P ρ ≤ 14 / 27
+'CentroidCircle.P_le_14_27_three_sided' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CentroidCircle.uniform_dens' depends on axioms: [propext, Classical.choice, Quot.sound]

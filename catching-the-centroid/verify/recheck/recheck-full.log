@@ -1,0 +1,80 @@
+ok    T1 P(equilateral) = 0.516435381445 vs 1/3 + ln3/6 = 0.516435381445
+ok    T1 P(square) = 0.500000000000
+ok    T2 square: P 0.500000 (table 0.500000), g 0.000000 (0.000000), s 1.000000 (1.000000)
+ok    T2 regular pentagon: P 0.499054 (table 0.499054), g 0.010557 (0.010557), s 0.894427 (0.894427)
+ok    T2 half-disc: P 0.501321 (table 0.501321), g 0.034468 (0.034468), s 0.814753 (0.814753)
+ok    T2 triangle 3,4,5: P 0.506629 (table 0.506629), g 0.055556 (0.055556), s 0.666667 (0.666667)
+ok    T2 right isosceles: P 0.509825 (table 0.509825), g 0.055556 (0.055556), s 0.666667 (0.666667)
+ok    T2 triangle (0,0),(1,0),(0.2,0.7): P 0.510138 (table 0.510138), g 0.055556 (0.055556), s 0.666667 (0.666667)
+ok    T2 equilateral triangle: P 0.516435 (table 0.516435), g 0.055556 (0.055556), s 0.666667 (0.666667)
+ok    T3 Figure 2: 0.016435, 0.002422
+ok    T4 arithmetic
+ok    T5 three-sided count {3: 2550, 5: 447, 7: 3}
+ok    T6 Stewart: min s = 0.666666667, 32 polygons with >= 10 crossings
+ok    T7 Monte Carlo square: P 0.49985, s 1.00000
+ok    T7 Monte Carlo regular pentagon: P 0.49823, s 0.89456
+ok    T7 Monte Carlo triangle 3,4,5: P 0.50619, s 0.66667
+ok    T7 Monte Carlo right isosceles: P 0.51007, s 0.66627
+ok    T7 Monte Carlo triangle (0,0),(1,0),(0.2,0.7): P 0.51050, s 0.66660
+ok    T7 Monte Carlo equilateral triangle: P 0.51613, s 0.66639
+
+ALL CHECKS PASS
+
+--- mutant near_side = True
+FAIL  T1 P(equilateral) = 0.483564618555 vs 1/3 + ln3/6 = 0.516435381445
+ok    T1 P(square) = 0.500000000000
+ok    T2 square: P 0.500000 (table 0.500000), g 0.000000 (0.000000), s 1.000000 (1.000000)
+FAIL  T2 regular pentagon: P 0.500946 (table 0.499054), g 0.010557 (0.010557), s 0.894427 (0.894427)
+FAIL  T2 triangle 3,4,5: P 0.493371 (table 0.506629), g 0.055556 (0.055556), s 0.666667 (0.666667)
+FAIL  T2 right isosceles: P 0.490175 (table 0.509825), g 0.055556 (0.055556), s 0.666667 (0.666667)
+FAIL  T2 triangle (0,0),(1,0),(0.2,0.7): P 0.489862 (table 0.510138), g 0.055556 (0.055556), s 0.666667 (0.666667)
+FAIL  T2 equilateral triangle: P 0.483565 (table 0.516435), g 0.055556 (0.055556), s 0.666667 (0.666667)
+FAIL  T3 Figure 2: -0.016435, -0.002422
+ok    T4 arithmetic
+ok    T6 Stewart: min s = 0.666666667, 5 polygons with >= 10 crossings
+ok    T7 Monte Carlo square: P 0.50023, s 1.00000
+ok    T7 Monte Carlo regular pentagon: P 0.49835, s 0.89494
+ok    T7 Monte Carlo triangle 3,4,5: P 0.50580, s 0.66754
+ok    T7 Monte Carlo right isosceles: P 0.50962, s 0.66665
+ok    T7 Monte Carlo triangle (0,0),(1,0),(0.2,0.7): P 0.51097, s 0.66707
+ok    T7 Monte Carlo equilateral triangle: P 0.51558, s 0.66624
+
+--- mutant r_power = 1
+FAIL  T1 P(equilateral) = 0.772634649327 vs 1/3 + ln3/6 = 0.516435381445
+FAIL  T1 P(square) = 0.881373587020
+FAIL  T2 square: P 0.881374 (table 0.500000), g 0.000000 (0.000000), s 1.000000 (1.000000)
+FAIL  T2 regular pentagon: P 0.573036 (table 0.499054), g 0.010557 (0.010557), s 0.894427 (0.894427)
+FAIL  T2 triangle 3,4,5: P 0.347409 (table 0.506629), g 0.055556 (0.055556), s 0.666667 (0.666667)
+FAIL  T2 right isosceles: P 1.214605 (table 0.509825), g 0.055556 (0.055556), s 0.666667 (0.666667)
+FAIL  T2 triangle (0,0),(1,0),(0.2,0.7): P 1.461322 (table 0.510138), g 0.055556 (0.055556), s 0.666667 (0.666667)
+FAIL  T2 equilateral triangle: P 0.772635 (table 0.516435), g 0.055556 (0.055556), s 0.666667 (0.666667)
+FAIL  T3 Figure 2: 0.272635, -0.141320
+ok    T4 arithmetic
+ok    T6 Stewart: min s = 0.666666667, 5 polygons with >= 10 crossings
+ok    T7 Monte Carlo square: P 0.50023, s 1.00000
+ok    T7 Monte Carlo regular pentagon: P 0.49835, s 0.89494
+ok    T7 Monte Carlo triangle 3,4,5: P 0.50580, s 0.66754
+ok    T7 Monte Carlo right isosceles: P 0.50962, s 0.66665
+ok    T7 Monte Carlo triangle (0,0),(1,0),(0.2,0.7): P 0.51097, s 0.66707
+ok    T7 Monte Carlo equilateral triangle: P 0.51558, s 0.66624
+
+--- mutant reflect_self = True
+ok    T1 P(equilateral) = 0.516435381445 vs 1/3 + ln3/6 = 0.516435381445
+ok    T1 P(square) = 0.500000000000
+ok    T2 square: P 0.500000 (table 0.500000), g 0.000000 (0.000000), s 1.000000 (1.000000)
+FAIL  T2 regular pentagon: P 0.499054 (table 0.499054), g 0.010557 (0.010557), s 1.000000 (0.894427)
+FAIL  T2 triangle 3,4,5: P 0.506629 (table 0.506629), g 0.055556 (0.055556), s 1.000000 (0.666667)
+FAIL  T2 right isosceles: P 0.509825 (table 0.509825), g 0.055556 (0.055556), s 1.000000 (0.666667)
+FAIL  T2 triangle (0,0),(1,0),(0.2,0.7): P 0.510138 (table 0.510138), g 0.055556 (0.055556), s 1.000000 (0.666667)
+FAIL  T2 equilateral triangle: P 0.516435 (table 0.516435), g 0.055556 (0.055556), s 1.000000 (0.666667)
+ok    T3 Figure 2: 0.016435, 0.002422
+ok    T4 arithmetic
+ok    T6 Stewart: min s = 1.000000000, 5 polygons with >= 10 crossings
+ok    T7 Monte Carlo square: P 0.50023, s 1.00000
+ok    T7 Monte Carlo regular pentagon: P 0.49835, s 0.89494
+ok    T7 Monte Carlo triangle 3,4,5: P 0.50580, s 0.66754
+ok    T7 Monte Carlo right isosceles: P 0.50962, s 0.66665
+ok    T7 Monte Carlo triangle (0,0),(1,0),(0.2,0.7): P 0.51097, s 0.66707
+ok    T7 Monte Carlo equilateral triangle: P 0.51558, s 0.66624
+
+mutants killed: 3/3
