@@ -1,0 +1,22 @@
+CoinsTray.rim_cos : ∀ (j k : ℝ),
+  1 < j →
+    1 < k →
+      ((1 - 1 / j) ^ 2 + (1 - 1 / k) ^ 2 - (1 / j + 1 / k) ^ 2) / (2 * (1 - 1 / j) * (1 - 1 / k)) =
+        1 - 2 / ((j - 1) * (k - 1))
+'CoinsTray.rim_cos' depends on axioms: [propext, Classical.choice, Quot.sound]
+CoinsTray.cos_alpha : ∀ (d : ℝ), 1 ≤ d → Real.cos (CoinsTray.alpha d) = 1 - 2 / d
+'CoinsTray.cos_alpha' depends on axioms: [propext, Classical.choice, Quot.sound]
+CoinsTray.alpha_rat_iff : ∀ (d : ℕ), 1 ≤ d → ((∃ r, CoinsTray.alpha ↑d = ↑r * Real.pi) ↔ d = 1 ∨ d = 2 ∨ d = 4)
+'CoinsTray.alpha_rat_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+CoinsTray.alpha_irrational_n5 : ∀ d ∈ {6, 8, 12, 16}, ¬∃ r, CoinsTray.alpha ↑d = ↑r * Real.pi
+'CoinsTray.alpha_irrational_n5' depends on axioms: [propext, Classical.choice, Quot.sound]
+CoinsTray.dan_four : 2 * CoinsTray.alpha 3 + CoinsTray.alpha 9 = Real.pi
+'CoinsTray.dan_four' depends on axioms: [propext, Classical.choice, Quot.sound]
+CoinsTray.halves_overlap : √((1 / 2 - 1 / 2 * Real.cos (2 * Real.pi / 3)) ^ 2 +
+      (0 - 1 / 2 * Real.sin (2 * Real.pi / 3)) ^ 2) <
+  1 / 2 + 1 / 2
+'CoinsTray.halves_overlap' depends on axioms: [propext, Classical.choice, Quot.sound]
+CoinsTray.root_unique : ∀ (b c d : ℤ),
+  2 ≤ b →
+    b ≤ c → c ≤ d → d ≤ -1 + b + c → (-1 + b + c + d) ^ 2 = 2 * (1 + b ^ 2 + c ^ 2 + d ^ 2) → b = 2 ∧ c = 2 ∧ d = 3
+'CoinsTray.root_unique' depends on axioms: [propext, Classical.choice, Quot.sound]

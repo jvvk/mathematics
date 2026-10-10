@@ -1,0 +1,6 @@
+Isolated build 2026-10-10: fresh copy of lean/, lake exe cache get, lake build LeanProofs
+✔ [8924/8928] Built LeanProofs.CoinsTray.Basic (259s)
+ℹ [8925/8928] Built LeanProofs.CoinsTray.Main (224s)
+✔ [8926/8928] Built LeanProofs.CoinsTray (205s)
+✔ [8927/8928] Built LeanProofs (197s)
+Build completed successfully (8928 jobs).

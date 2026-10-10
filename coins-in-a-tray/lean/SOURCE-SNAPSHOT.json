@@ -1,0 +1,20 @@
+{
+  "source_commit": "6ac576e (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports CoinsTray only)",
+    "CheckClaims.lean (generated)",
+    "scripts/mutants.py (copy of lean-proofs scripts/coinstray_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "0fdcfcc4ea4f534d0e0dc1644042fb6a6cd68c86f8b58e1553087dfc81ecda5b",
+    "LeanProofs/CoinsTray/Basic.lean": "464b0ed5eec398e0d66caf899ae8a84c5ccd1d0040cdcc276fd9ea8a10298c9f",
+    "LeanProofs/CoinsTray/Main.lean": "02718935c03347f12f8d8c062008829cf2bef0b6ac3f3353987ae2d9cb44d911",
+    "LeanProofs/CoinsTray.lean": "f7d77eae544092b550a19a6fabe309d789db5f5c15ac6b82ac2273ce68c2ef9b",
+    "LeanProofs.lean": "c9c5b0c2631b3405f87dfddeb1e1d3b88e60a3d27a8cc0632f84dacb6d7326ad",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutants.py": "5509713186662f6fb69fd9d97fdff8a940f358530554deb20a4485259f6674f0"
+  }
+}
