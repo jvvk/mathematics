@@ -1,0 +1,20 @@
+PolygonCells.coprime_sub_add : ∀ (a b : ℤ), Odd a → Even b → IsCoprime a b → IsCoprime (b - a) (b + a)
+'PolygonCells.coprime_sub_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+PolygonCells.lattice_exists : ∀ (a b k : ℤ), Odd a → Even b → IsCoprime a b → ∃ u v, b * v - a * u = k ∧ u ≡ v [ZMOD 2]
+'PolygonCells.lattice_exists' depends on axioms: [propext, Classical.choice, Quot.sound]
+PolygonCells.lattice_spacing : ∀ (a b u v u' v' : ℤ),
+  Even b →
+    0 < b →
+      Odd a →
+        IsCoprime a b →
+          b * v - a * u = b * v' - a * u' →
+            u ≡ v [ZMOD 2] → u' ≡ v' [ZMOD 2] → ∃ m, u - u' = 2 * b * m ∧ v - v' = 2 * a * m
+'PolygonCells.lattice_spacing' depends on axioms: [propext, Classical.choice, Quot.sound]
+PolygonCells.inradius : ∀ (t : ℝ), Real.sin t ≠ 0 → 1 / (2 * Real.sin t) * Real.sin (t / 2) = 1 / (4 * Real.cos (t / 2))
+'PolygonCells.inradius' depends on axioms: [propext, Classical.choice, Quot.sound]
+PolygonCells.central_gap : ∀ (t : ℝ),
+  0 < t →
+    t < Real.pi / 3 →
+      Real.sin (3 * t / 2) * Real.cos t - Real.sin (t / 2) = Real.cos (3 * t / 2) * Real.sin t ∧
+        0 < Real.sin (3 * t / 2) * Real.cos t - Real.sin (t / 2)
+'PolygonCells.central_gap' depends on axioms: [propext, Classical.choice, Quot.sound]

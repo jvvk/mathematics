@@ -1,0 +1,20 @@
+{
+  "source_commit": "9b5c748 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports PolygonCells only)",
+    "CheckClaims.lean (generated)",
+    "scripts/mutants.py (copy of lean-proofs scripts/polygoncells_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "00d6d84dc491258ec8517305b72e51a4ca8d4a47617d4091fc150495738fcbe2",
+    "LeanProofs/PolygonCells/Basic.lean": "5070d0aa9453609949b8ddccc6442c34c55d3ba9ad145ff260ab26bbfad89778",
+    "LeanProofs/PolygonCells/Main.lean": "098b99cc7c6ce8d0a8b5ca6c4fe327f5ed631fe3baee4a9cf8d7305c76f69684",
+    "LeanProofs/PolygonCells.lean": "4bdad645ba3df671f789a2a72765620526f6bd8839b85cdc91bd087e02941dc9",
+    "LeanProofs.lean": "859b70ad74f24680bc0c12d3715e9859f0a4b0d3c6094da21aa45707848273fb",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutants.py": "bea4135f7b56477213ff5dc0be3ad3bb25373d0d4e633ef3b956caa6815c1a85"
+  }
+}
