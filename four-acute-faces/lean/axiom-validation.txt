@@ -1,0 +1,48 @@
+@AcuteTetra.angle_identity : ∀ {V : Type u_1} [inst : NormedAddCommGroup V] [inst_1 : InnerProductSpace ℝ V]
+  (x y z : V), ‖x‖ = 1 → ‖y‖ = 1 → ‖z‖ = 1 → inner ℝ (x - z) (y - z) = (‖x + y - z‖ ^ 2 - 1) / 2
+'AcuteTetra.angle_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+@AcuteTetra.acute_iff : ∀ {V : Type u_1} [inst : NormedAddCommGroup V] [inst_1 : InnerProductSpace ℝ V] (A : Fin 4 → V),
+  (∀ (i : Fin 4), ‖A i‖ = 1) →
+    (∀ (e : AcuteTetra.Edge), ‖AcuteTetra.vecOf A (AcuteTetra.cE e)‖ ≠ 1) →
+      ∀ (σ : AcuteTetra.Sign),
+        AcuteTetra.AcuteVariant A σ ↔ ∀ (e : AcuteTetra.Edge), AcuteTetra.Short A e → AcuteTetra.inc e σ = true
+'AcuteTetra.acute_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+@AcuteTetra.count_eight : ∀ {V : Type u_1} [inst : NormedAddCommGroup V] [inst_1 : InnerProductSpace ℝ V]
+  [FiniteDimensional ℝ V],
+  Module.finrank ℝ V = 3 →
+    ∀ (A : Fin 4 → V),
+      (∀ (i : Fin 4), ‖A i‖ = 1) →
+        (∀ (e : AcuteTetra.Edge), ‖AcuteTetra.vecOf A (AcuteTetra.cE e)‖ ≠ 1) →
+          (List.filter (fun σ => decide (AcuteTetra.AcuteVariant A σ)) AcuteTetra.evenSigns).length +
+              (List.filter (fun σ => decide (1 ≤ AcuteTetra.kShort A σ ∧ AcuteTetra.kShort A σ ≤ 2))
+                  AcuteTetra.evenSigns).length =
+            4
+'AcuteTetra.count_eight' depends on axioms: [propext, Classical.choice, Quot.sound]
+@AcuteTetra.count_sixteen : ∀ {V : Type u_1} [inst : NormedAddCommGroup V] [inst_1 : InnerProductSpace ℝ V]
+  [FiniteDimensional ℝ V],
+  Module.finrank ℝ V = 3 →
+    ∀ (A : Fin 4 → V),
+      (∀ (i : Fin 4), ‖A i‖ = 1) →
+        (∀ (e : AcuteTetra.Edge), ‖AcuteTetra.vecOf A (AcuteTetra.cE e)‖ ≠ 1) →
+          (List.filter (fun σ => decide (AcuteTetra.AcuteVariant A σ)) AcuteTetra.allSigns).length +
+              (List.filter (fun σ => decide (1 ≤ AcuteTetra.kShort A σ ∧ AcuteTetra.kShort A σ ≤ 2))
+                  AcuteTetra.allSigns).length =
+            8
+'AcuteTetra.count_sixteen' depends on axioms: [propext, Classical.choice, Quot.sound]
+AcuteTetra.unif_le : ∀ (u : AcuteTetra.E3),
+  ‖u‖ = 1 → ∀ (t : ℝ), -1 ≤ t → t ≤ 1 → AcuteTetra.unif {x | inner ℝ x u ≤ t} = ENNReal.ofReal ((1 + t) / 2)
+'AcuteTetra.unif_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+AcuteTetra.alpha_eq : ∫⁻ (p : AcuteTetra.E3 × AcuteTetra.E3),
+    AcuteTetra.q p.1 p.2 ∂AcuteTetra.unif.prod AcuteTetra.unif =
+  ENNReal.ofReal (1 / 6)
+'AcuteTetra.alpha_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+AcuteTetra.gamma_eq : ∫⁻ (p : AcuteTetra.E3 × AcuteTetra.E3),
+    AcuteTetra.q p.1 p.2 ^ 2 ∂AcuteTetra.unif.prod AcuteTetra.unif =
+  ENNReal.ofReal (1 / 24)
+'AcuteTetra.gamma_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+AcuteTetra.count_integrated : 16 * AcuteTetra.PP (AcuteTetra.Ac AcuteTetra.allTrue) +
+    16 * AcuteTetra.PP (AcuteTetra.Rs AcuteTetra.allTrue) =
+  8
+'AcuteTetra.count_integrated' depends on axioms: [propext, Classical.choice, Quot.sound]
+AcuteTetra.prob_all_faces_acute : AcuteTetra.PP {A | AcuteTetra.AllFacesAcute A} = ENNReal.ofReal (1 / 12)
+'AcuteTetra.prob_all_faces_acute' depends on axioms: [propext, Classical.choice, Quot.sound]

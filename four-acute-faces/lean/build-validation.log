@@ -1,0 +1,37 @@
+Isolated build 2026-10-11: fresh copy of lean/, lake exe cache get, lake build LeanProofs
+⚠ [3519/3532] Built LeanProofs.AcuteTetra.Comb (100s)
+warning: LeanProofs/AcuteTetra/Comb.lean:14:100: This line exceeds the 100 character limit, please shorten it!
+⚠ [3520/3532] Built LeanProofs.AcuteTetra.Cone (113s)
+warning: LeanProofs/AcuteTetra/Cone.lean:26:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/AcuteTetra/Cone.lean:58:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/AcuteTetra/Cone.lean:158:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/AcuteTetra/Cone.lean:231:100: This line exceeds the 100 character limit, please shorten it!
+⚠ [3521/3532] Built LeanProofs.AcuteTetra.Gram (88s)
+warning: LeanProofs/AcuteTetra/Gram.lean:48:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/AcuteTetra/Gram.lean:55:2: `simp [gramEq, fins, List.finRange_succ] at h` is a flexible tactic modifying `h`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/AcuteTetra/Gram.lean:55:2: `simp [gramEq, fins, List.finRange_succ] at h` is a flexible tactic modifying `h`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/AcuteTetra/Gram.lean:55:2: `simp [gramEq, fins, List.finRange_succ] at h` is a flexible tactic modifying `h`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+⚠ [3522/3532] Built LeanProofs.AcuteTetra.Sphere (80s)
+warning: LeanProofs/AcuteTetra/Sphere.lean:33:17: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/AcuteTetra/Sphere.lean:150:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/AcuteTetra/Sphere.lean:154:100: This line exceeds the 100 character limit, please shorten it!
+⚠ [3523/3532] Built LeanProofs.AcuteTetra.Pair (62s)
+warning: LeanProofs/AcuteTetra/Pair.lean:20:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/AcuteTetra/Pair.lean:89:4: Unused tactic linter: `change ‖a + b + c‖ < 1 ↔ inner ℝ c u < -s / 2` does nothing
+⚠ [3524/3532] Built LeanProofs.AcuteTetra.Facts (71s)
+warning: LeanProofs/AcuteTetra/Facts.lean:40:100: This line exceeds the 100 character limit, please shorten it!
+✔ [3525/3532] Built LeanProofs.AcuteTetra.Geom (5.0s)
+⚠ [3526/3532] Built LeanProofs.AcuteTetra.Main (4.7s)
+warning: LeanProofs/AcuteTetra/Main.lean:55:4: `simp [h0] at this` is a flexible tactic modifying `this`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+⚠ [3527/3532] Built LeanProofs.AcuteTetra.Count (21s)
+warning: LeanProofs/AcuteTetra/Count.lean:46:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/AcuteTetra/Count.lean:60:100: This line exceeds the 100 character limit, please shorten it!
+⚠ [3528/3532] Built LeanProofs.AcuteTetra.Prob (6.1s)
+warning: LeanProofs/AcuteTetra/Prob.lean:141:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/AcuteTetra/Prob.lean:144:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/AcuteTetra/Prob.lean:201:4: Unused tactic linter: `change inner ℝ c (a + b) = -(‖a + b‖ ^ 2) / 2` does nothing
+warning: LeanProofs/AcuteTetra/Prob.lean:302:100: This line exceeds the 100 character limit, please shorten it!
+ℹ [3529/3532] Built LeanProofs.AcuteTetra.Report (4.9s)
+✔ [3530/3532] Built LeanProofs.AcuteTetra (5.0s)
+✔ [3531/3532] Built LeanProofs (5.7s)
+Build completed successfully (3532 jobs).

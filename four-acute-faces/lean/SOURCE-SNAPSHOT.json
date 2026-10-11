@@ -1,0 +1,29 @@
+{
+  "source_commit": "2c3a91c (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports AcuteTetra only)",
+    "CheckClaims.lean (generated)",
+    "scripts/mutants.py (copy of lean-proofs scripts/acutetetra_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "d0bc852573daeeecaf561ae850f40189fb32759945f14734a1a712cbd5357723",
+    "LeanProofs/AcuteTetra/Comb.lean": "d7ecadee327ef98a52ef634316aeb1aa6e193cf891c8db92a1eee6039858e8b0",
+    "LeanProofs/AcuteTetra/Cone.lean": "234717881e65664db5e415fd106830c62d032cb05403c624db94ae41632b17a3",
+    "LeanProofs/AcuteTetra/Count.lean": "244de2922304f630ded5445456af9ca1563882d59728c8b81e3a566714bf4b07",
+    "LeanProofs/AcuteTetra/Facts.lean": "22cc6d21e3f20335b02df4b7b54bff6b127c8e2960081f0f57a1b7eb4b22f827",
+    "LeanProofs/AcuteTetra/Geom.lean": "b7f5a63c0c8b7d41567bae57636eadc50ff565b3ad971efa246649ec2f3ef282",
+    "LeanProofs/AcuteTetra/Gram.lean": "ba98f50c877888fbd7834439178b635121994d659236102912b496f0aa3d3f9d",
+    "LeanProofs/AcuteTetra/Main.lean": "d9b359589908b39fedf4f169dce9474c63c19c73827f7388aabcc02ec2d77742",
+    "LeanProofs/AcuteTetra/Pair.lean": "86e7a91034a8ce581f0eadee3df7811640c271e3573e2636d1d77cd8047a121b",
+    "LeanProofs/AcuteTetra/Prob.lean": "afa6803655e7bd9d71dd0dff89c56fe30e058127ce8f43d8a8d82261a4f1a4e4",
+    "LeanProofs/AcuteTetra/Report.lean": "f11aa2f0aa129d20a4960063c402381c64f13ea940ac5b761e10e8e7730866a5",
+    "LeanProofs/AcuteTetra/Sphere.lean": "fda7d5f77e9dc6d9b7fc5c3d0297af1ced63bb22435203d2bdfc22c7e68c63ce",
+    "LeanProofs/AcuteTetra.lean": "47922b84527908f1a93a544157972b618416ed2f3285d1312fc72c11ecc79583",
+    "LeanProofs.lean": "7cd3d5b5f44875574abb196e18f9d9879643f4f1023cf11c5af4cca66f161b07",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutants.py": "a3af72340e908667a453aa57da551b368d6475f8b9da10f3e14c4377305e3e7b"
+  }
+}

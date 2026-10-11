@@ -1,0 +1,25 @@
+% Drawn directly at publication size: no document-level scaling.
+% Labels 9 pt, strokes at least 0.5 pt; total width below 5 inches.
+\begin{scope}[every node/.style={font=\fontsize{9}{11}\selectfont}]
+\coordinate (A) at (-.866,.5); \coordinate (B) at (.866,.5);
+\coordinate (C) at (0,-1); \coordinate (D) at (0,2);
+\draw[line width=.5pt] (0,0) circle (1);
+\draw[densely dashed,line width=.6pt] (A)--(D)--(B);
+\draw[line width=.8pt] (A)--(B)--(C)--cycle;
+\fill (0,0) circle (.018) node[below left] {$O$};
+\foreach \p/\l/\a in {A/a/left,B/b/right,C/c/below,D/{a+b-c}/above}
+ {\fill (\p) circle (.022);\node[\a] at (\p) {$\l$};}
+\node[align=center] at (0,-1.65) {acute angle at $c$:\\fourth corner outside};
+\end{scope}
+\begin{scope}[xshift=4.5cm,every node/.style={font=\fontsize{9}{11}\selectfont}]
+\coordinate (A) at (-.866,.5); \coordinate (B) at (.866,.5);
+\coordinate (C) at (.342,.940); \coordinate (D) at (-.342,.060);
+\draw[line width=.5pt] (0,0) circle (1);
+\draw[densely dashed,line width=.6pt] (A)--(D)--(B);
+\draw[line width=.8pt] (A)--(B)--(C)--cycle;
+\fill (0,0) circle (.018) node[below] {$O$};
+\foreach \p/\l/\a in {A/a/left,B/b/right,C/c/above}
+ {\fill (\p) circle (.022);\node[\a] at (\p) {$\l$};}
+\fill (D) circle (.022);\node at (0,-.55) {$a+b-c$};
+\node[align=center] at (0,-1.65) {obtuse angle at $c$:\\fourth corner inside};
+\end{scope}
