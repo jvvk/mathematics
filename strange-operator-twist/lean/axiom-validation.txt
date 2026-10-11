@@ -1,0 +1,17 @@
+StrangeOperator.hadamard_rec : ∀ (u : ℕ → ℚ),
+  StrangeOperator.RecL u → StrangeOperator.RecP fun n => ↑n.centralBinom * u n
+'StrangeOperator.hadamard_rec' depends on axioms: [propext, Classical.choice, Quot.sound]
+StrangeOperator.cp_mod : ∀ (p : ℕ) [inst : Fact (Nat.Prime p)], p ≠ 2 → ↑(StrangeOperator.cp p) = 1
+'StrangeOperator.cp_mod' depends on axioms: [propext, Classical.choice, Quot.sound]
+StrangeOperator.cp_fourth : ∀ (p : ℕ) [Fact (Nat.Prime p)], p ≠ 2 → StrangeOperator.cp p ^ 4 = 4 ^ (p - 1)
+'StrangeOperator.cp_fourth' depends on axioms: [propext, Classical.choice, Quot.sound]
+StrangeOperator.w_mul : ∀ (p : ℕ) [Fact (Nat.Prime p)],
+  p ≠ 2 → ∀ (d k : ℕ), 0 < k → StrangeOperator.w d (p * k) = StrangeOperator.cp p ^ (d * k) * StrangeOperator.w d k
+'StrangeOperator.w_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+StrangeOperator.choose_vanish : ∀ (p : ℕ), Nat.Prime p → 3 ≤ p → p ∣ (2 * p - 2).choose (p - 1)
+'StrangeOperator.choose_vanish' depends on axioms: [propext, Classical.choice, Quot.sound]
+StrangeOperator.prime3_reductions : ↑(-114512) = 4 ∧
+  ↑766216 = 1 ∧ 6125 * 7 = 64339413849976508288 ∧ 175 * 7 = -539829813570751232
+'StrangeOperator.prime3_reductions' depends on axioms: [propext, Quot.sound]
+StrangeOperator.prime3_contradiction : ∀ (α : ZMod 9), ¬(4 + α = 0 ∧ 7 + 7 * α = 0)
+'StrangeOperator.prime3_contradiction' depends on axioms: [propext, Classical.choice, Quot.sound]

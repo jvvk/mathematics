@@ -1,0 +1,19 @@
+\begin{tikzpicture}[x=1.45cm,y=1cm,font=\small]
+  % x-line
+  \draw[inkmuted,thin] (-0.4,2) -- (8.0,2);
+  \node[anchor=east,inkmuted] at (-0.45,2) {$x$};
+  % j-line
+  \draw[inkmuted,thin] (-0.4,0) -- (8.0,0);
+  \node[anchor=east,inkmuted] at (-0.45,0) {$j$};
+  % images
+  \foreach \u/\lab in {0/{\infty},2.6/{0},6.4/{1728}}
+    {\fill (\u,0) circle (2pt); \node[below] at (\u,-0.08) {$\lab$};}
+  % preimages: position, label, image, index, singular?
+  \foreach \x/\lab/\u/\e/\col in {0/{0}/0/4/copper, 2.0/{\tfrac1{16}}/2.6/3/black, 3.2/{\infty}/2.6/1/copper,
+                                   5.2/{\tfrac14}/6.4/2/black, 6.4/{x_+}/6.4/1/copper, 7.6/{x_-}/6.4/1/copper}
+    {\draw[inkmuted,->,shorten <=3pt,shorten >=3pt] (\x,2) -- (\u,0);
+     \fill[\col] (\x,2) circle (2.3pt);
+     \node[above] at (\x,2.08) {$\lab$};
+     \node[fill=white,inner sep=1pt,font=\scriptsize] at ($(\x,2)!0.42!(\u,0)$) {$\e$};}
+  \node[anchor=west,font=\scriptsize,inkmuted] at (0.15,1.25) {cusp};
+\end{tikzpicture}

@@ -1,0 +1,20 @@
+{
+  "source_commit": "a4d85f4 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports StrangeOperator only)",
+    "CheckClaims.lean (generated)",
+    "scripts/mutants.py (copy of lean-proofs scripts/strangeoperator_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "e906212f7dca171f8a17d8b91bdec828b540ca6267ffbc347ebef14b5ceae69a",
+    "LeanProofs/StrangeOperator/Basic.lean": "e5c19a289425b1ce54b96bad5fca28f806df8eae6f02a01f3fa1ef9fca1437db",
+    "LeanProofs/StrangeOperator/Main.lean": "715f22e34e7e6d59ec9523794af6f474616edd3bc3acb8c21220d54f470710db",
+    "LeanProofs/StrangeOperator.lean": "424df03f9216d92bddd9d7c9f3312336e7f4451de7e5dbc3a06004cae478eefc",
+    "LeanProofs.lean": "b283b512432192c4f3b537be42ef145eec22235b611e7e9152aa53fbe1603333",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutants.py": "6228792ec5726498872ae3a7ff4af7be38969363854c45fab6310cc79891da03"
+  }
+}
