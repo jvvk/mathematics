@@ -47,9 +47,10 @@ def count(name):
         if len(es)==len(E): continue
         res[len(es)]=res.get(len(es),0)+1
     return res
-ok = True
-for n in ('cube','octahedron'):
-    r=count(n); print(n, sum(r.values()), dict(sorted(r.items())))
-    ok &= [r.get(k, 0) for k in range(3, 12)] == EXPECTED[n]
-print("PASS" if ok else "FAIL")
-raise SystemExit(0 if ok else 1)
+if __name__ == "__main__":
+    ok = True
+    for n in ('cube','octahedron'):
+        r=count(n); print(n, sum(r.values()), dict(sorted(r.items())))
+        ok &= [r.get(k, 0) for k in range(3, 12)] == EXPECTED[n]
+    print("PASS" if ok else "FAIL")
+    raise SystemExit(0 if ok else 1)
