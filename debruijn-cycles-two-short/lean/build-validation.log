@@ -1,0 +1,41 @@
+Isolated build 2026-10-11: fresh copy of lean/, lake exe cache get, lake build LeanProofs
+⚠ [8924/8928] Built LeanProofs.DeBruijnCycles.Basic (109s)
+warning: LeanProofs/DeBruijnCycles/Basic.lean:7:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/DeBruijnCycles/Basic.lean:31:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/DeBruijnCycles/Basic.lean:82:22: This simp argument is unused:
+warning: LeanProofs/DeBruijnCycles/Basic.lean:197:10: `if_pos` has been deprecated: Use `ite_eq_left` instead
+warning: LeanProofs/DeBruijnCycles/Basic.lean:198:24: `if_neg` has been deprecated: Use `ite_eq_right` instead
+warning: LeanProofs/DeBruijnCycles/Basic.lean:200:47: `if_neg` has been deprecated: Use `ite_eq_right` instead
+warning: LeanProofs/DeBruijnCycles/Basic.lean:299:21: `if_true` has been deprecated: Use `ite_true` instead
+warning: LeanProofs/DeBruijnCycles/Basic.lean:302:21: `if_false` has been deprecated: Use `ite_false` instead
+warning: LeanProofs/DeBruijnCycles/Basic.lean:287:19: Variable name `hm` is not explicitly referenced.
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+warning: LeanProofs/DeBruijnCycles/Basic.lean:308:77: `if_true` has been deprecated: Use `ite_true` instead
+warning: LeanProofs/DeBruijnCycles/Basic.lean:325:8: This simp argument is unused:
+warning: LeanProofs/DeBruijnCycles/Basic.lean:385:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/DeBruijnCycles/Basic.lean:405:36: This simp argument is unused:
+warning: LeanProofs/DeBruijnCycles/Basic.lean:411:19: This simp argument is unused:
+warning: LeanProofs/DeBruijnCycles/Basic.lean:444:14: This simp argument is unused:
+warning: LeanProofs/DeBruijnCycles/Basic.lean:459:47: `if_false` has been deprecated: Use `ite_false` instead
+warning: LeanProofs/DeBruijnCycles/Basic.lean:461:28: `if_true` has been deprecated: Use `ite_true` instead
+warning: LeanProofs/DeBruijnCycles/Basic.lean:477:8: `if_neg` has been deprecated: Use `ite_eq_right` instead
+warning: LeanProofs/DeBruijnCycles/Basic.lean:477:21: `if_neg` has been deprecated: Use `ite_eq_right` instead
+warning: LeanProofs/DeBruijnCycles/Basic.lean:477:34: `if_pos` has been deprecated: Use `ite_eq_left` instead
+warning: LeanProofs/DeBruijnCycles/Basic.lean:482:8: `if_neg` has been deprecated: Use `ite_eq_right` instead
+warning: LeanProofs/DeBruijnCycles/Basic.lean:482:21: `if_neg` has been deprecated: Use `ite_eq_right` instead
+warning: LeanProofs/DeBruijnCycles/Basic.lean:482:34: `if_pos` has been deprecated: Use `ite_eq_left` instead
+warning: LeanProofs/DeBruijnCycles/Basic.lean:485:6: `if_pos` has been deprecated: Use `ite_eq_left` instead
+warning: LeanProofs/DeBruijnCycles/Basic.lean:492:14: `if_pos` has been deprecated: Use `ite_eq_left` instead
+warning: LeanProofs/DeBruijnCycles/Basic.lean:492:25: `if_pos` has been deprecated: Use `ite_eq_left` instead
+warning: LeanProofs/DeBruijnCycles/Basic.lean:508:10: `if_neg` has been deprecated: Use `ite_eq_right` instead
+warning: LeanProofs/DeBruijnCycles/Basic.lean:508:21: `if_neg` has been deprecated: Use `ite_eq_right` instead
+warning: LeanProofs/DeBruijnCycles/Basic.lean:514:37: `if_false` has been deprecated: Use `ite_false` instead
+warning: LeanProofs/DeBruijnCycles/Basic.lean:514:47: `if_true` has been deprecated: Use `ite_true` instead
+warning: LeanProofs/DeBruijnCycles/Basic.lean:514:37: `if_false` has been deprecated: Use `ite_false` instead
+warning: LeanProofs/DeBruijnCycles/Basic.lean:514:47: `if_true` has been deprecated: Use `ite_true` instead
+warning: LeanProofs/DeBruijnCycles/Basic.lean:514:37: `if_false` has been deprecated: Use `ite_false` instead
+warning: LeanProofs/DeBruijnCycles/Basic.lean:514:47: `if_true` has been deprecated: Use `ite_true` instead
+warning: LeanProofs/DeBruijnCycles/Basic.lean:514:37: `if_false` has been deprecated: Use `ite_false` instead
+warning: LeanProofs/DeBruijnCycles/Basic.lean:514:47: `if_true` has been deprecated: Use `ite_true` instead
+warning: LeanProofs/DeBruijnCycles/Basic.lean:468:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/DeBruijnCycles/Basic.lean:543:43: `if_false` has been deprecated: Use `ite_false` instead

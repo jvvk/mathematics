@@ -1,0 +1,68 @@
+DeBruijnCycles.pow_P : ∀ (m k : ℕ) (u v : DeBruijnCycles.V m),
+  (DeBruijnCycles.P m ^ k) u v = (1 / 2) ^ k * DeBruijnCycles.cnt m k u v
+'DeBruijnCycles.pow_P' depends on axioms: [propext, Classical.choice, Quot.sound]
+DeBruijnCycles.pow_P_self : ∀ (m : ℕ) (u v : DeBruijnCycles.V m), (DeBruijnCycles.P m ^ m) u v = (1 / 2) ^ m
+'DeBruijnCycles.pow_P_self' depends on axioms: [propext, Classical.choice, Quot.sound]
+DeBruijnCycles.cnt_pp : ∀ (m : ℕ) {k : ℕ},
+  k < m → DeBruijnCycles.cnt m k (DeBruijnCycles.pv m) (DeBruijnCycles.pv m) = if k % 2 = 0 then 1 else 0
+'DeBruijnCycles.cnt_pp' depends on axioms: [propext, Classical.choice, Quot.sound]
+DeBruijnCycles.cnt_pq : ∀ (m : ℕ) {k : ℕ},
+  k < m → DeBruijnCycles.cnt m k (DeBruijnCycles.pv m) (DeBruijnCycles.qv m) = if k % 2 = 0 then 0 else 1
+'DeBruijnCycles.cnt_pq' depends on axioms: [propext, Classical.choice, Quot.sound]
+DeBruijnCycles.quad_powP : ∀ (m : ℕ),
+  1 ≤ m →
+    ∀ {k : ℕ}, k < m → DeBruijnCycles.w m ⬝ᵥ (DeBruijnCycles.P m ^ k).mulVec (DeBruijnCycles.w m) = 2 * (-1 / 2) ^ k
+'DeBruijnCycles.quad_powP' depends on axioms: [propext, Classical.choice, Quot.sound]
+DeBruijnCycles.one_sub_P_mul_Z : ∀ (m : ℕ),
+  1 ≤ m → (1 - DeBruijnCycles.P m) * DeBruijnCycles.Z m = 1 - (1 / 2) ^ m • DeBruijnCycles.J m
+'DeBruijnCycles.one_sub_P_mul_Z' depends on axioms: [propext, Classical.choice, Quot.sound]
+DeBruijnCycles.LJ_mulVec_y : ∀ (m : ℕ),
+  1 ≤ m → (2 • (1 - DeBruijnCycles.P m) + DeBruijnCycles.J m).mulVec (DeBruijnCycles.y m) = DeBruijnCycles.w m
+'DeBruijnCycles.LJ_mulVec_y' depends on axioms: [propext, Classical.choice, Quot.sound]
+DeBruijnCycles.det_rank_one : ∀ (m : ℕ),
+  1 ≤ m →
+    (2 • (1 - DeBruijnCycles.P m) + DeBruijnCycles.J m -
+          Matrix.vecMulVec (DeBruijnCycles.w m) (DeBruijnCycles.w m)).det =
+      (2 • (1 - DeBruijnCycles.P m) + DeBruijnCycles.J m).det * (1 - DeBruijnCycles.w m ⬝ᵥ DeBruijnCycles.y m)
+'DeBruijnCycles.det_rank_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+DeBruijnCycles.ratio : ∀ (n : ℕ), 1 - ∑ k ∈ Finset.range (n + 1), (-1 / 2) ^ k = (2 ^ n + (-1) ^ (n + 1)) / (3 * 2 ^ n)
+'DeBruijnCycles.ratio' depends on axioms: [propext, Classical.choice, Quot.sound]
+DeBruijnCycles.lap_delete_two_cycle : ∀ (m : ℕ),
+  1 ≤ m →
+    ∀ (A : Matrix (DeBruijnCycles.V m) (DeBruijnCycles.V m) ℚ),
+      DeBruijnCycles.lap m
+          (A - Matrix.single (DeBruijnCycles.pv m) (DeBruijnCycles.qv m) 1 -
+            Matrix.single (DeBruijnCycles.qv m) (DeBruijnCycles.pv m) 1) =
+        DeBruijnCycles.lap m A - Matrix.vecMulVec (DeBruijnCycles.w m) (DeBruijnCycles.w m)
+'DeBruijnCycles.lap_delete_two_cycle' depends on axioms: [propext, Classical.choice, Quot.sound]
+DeBruijnCycles.balanced_pairs : ∀ (m : ℕ) (u₁ u₂ : DeBruijnCycles.V m) (b₁ b₂ : Bool),
+  (u₁, b₁) ≠ (u₂, b₂) →
+    DeBruijnCycles.Balanced m u₁ b₁ u₂ b₂ →
+      (u₁, b₁) = (0, false) ∧ (u₂, b₂) = (-1, true) ∨
+        (u₁, b₁) = (-1, true) ∧ (u₂, b₂) = (0, false) ∨
+          (u₁, b₁) = (DeBruijnCycles.pv m, false) ∧ (u₂, b₂) = (DeBruijnCycles.qv m, true) ∨
+            (u₁, b₁) = (DeBruijnCycles.qv m, true) ∧ (u₂, b₂) = (DeBruijnCycles.pv m, false)
+'DeBruijnCycles.balanced_pairs' depends on axioms: [propext, Classical.choice, Quot.sound]
+DeBruijnCycles.caseA : ∀ (m : ℕ),
+  1 ≤ m →
+    (2 • DeBruijnCycles.P m) 0 0 = 1 ∧
+      (2 • DeBruijnCycles.P m) (-1) (-1) = 1 ∧
+        DeBruijnCycles.lap m (2 • DeBruijnCycles.P m - Matrix.single 0 0 1 - Matrix.single (-1) (-1) 1) =
+          DeBruijnCycles.lap m (2 • DeBruijnCycles.P m)
+'DeBruijnCycles.caseA' depends on axioms: [propext, Classical.choice, Quot.sound]
+DeBruijnCycles.caseB : ∀ (n : ℕ),
+  (DeBruijnCycles.lap (n + 1)
+          (2 • DeBruijnCycles.P (n + 1) - Matrix.single (DeBruijnCycles.pv (n + 1)) (DeBruijnCycles.qv (n + 1)) 1 -
+            Matrix.single (DeBruijnCycles.qv (n + 1)) (DeBruijnCycles.pv (n + 1)) 1) +
+        DeBruijnCycles.J (n + 1)).det =
+    (DeBruijnCycles.lap (n + 1) (2 • DeBruijnCycles.P (n + 1)) + DeBruijnCycles.J (n + 1)).det *
+      ((2 ^ n + (-1) ^ (n + 1)) / (3 * 2 ^ n))
+'DeBruijnCycles.caseB' depends on axioms: [propext, Classical.choice, Quot.sound]
+DeBruijnCycles.caseB_closed : ∀ (n : ℕ),
+  2 ^ (2 ^ (n + 1) - (n + 1) - 1) * ((2 ^ n + (-1) ^ (n + 1)) / (3 * 2 ^ n)) =
+    1 / 3 * 2 ^ (2 ^ (n + 1) - 2 * (n + 1)) * (2 ^ n + (-1) ^ (n + 1))
+'DeBruijnCycles.caseB_closed' depends on axioms: [propext, Classical.choice, Quot.sound]
+DeBruijnCycles.total_closed : ∀ (n : ℕ),
+  2 ^ (2 ^ (n + 1) - (n + 1) - 1) + 1 / 3 * 2 ^ (2 ^ (n + 1) - 2 * (n + 1)) * (2 ^ n + (-1) ^ (n + 1)) =
+    2 ^ (2 ^ (n + 1) - 2 * (n + 1)) * (2 ^ (n + 2) - (-1) ^ (n + 2)) / 3
+'DeBruijnCycles.total_closed' depends on axioms: [propext, Classical.choice, Quot.sound]

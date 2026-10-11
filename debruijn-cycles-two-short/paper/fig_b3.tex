@@ -1,0 +1,27 @@
+\begin{tikzpicture}[>=stealth, scale=1.25, every node/.style={font=\small},
+  vtx/.style={draw=inkblue, fill=softblue, rounded corners=2pt, inner sep=2.5pt, font=\ttfamily\small}]
+\node[vtx] (000) at (0,0) {000};
+\node[vtx] (001) at (1.6,1.25) {001};
+\node[vtx] (100) at (1.6,-1.25) {100};
+\node[vtx] (010) at (3.2,0.62) {010};
+\node[vtx] (101) at (3.2,-0.62) {101};
+\node[vtx] (011) at (4.8,1.25) {011};
+\node[vtx] (110) at (4.8,-1.25) {110};
+\node[vtx] (111) at (6.4,0) {111};
+\draw[->, rust, very thick, dashed] (000) to[out=215, in=145, looseness=6] (000);
+\draw[->, inkblue!70] (000) to[] (001);
+\draw[->, inkblue!70] (001) to[] (010);
+\draw[->, inkblue!70] (001) to[] (011);
+\draw[->, inkblue!70] (100) to[] (000);
+\draw[->, inkblue!70] (100) to[bend left=18] (001);
+\draw[->, inkblue!70] (010) to[] (100);
+\draw[->, rust, very thick] (010) to[bend left=28] (101);
+\draw[->, rust, very thick] (101) to[bend left=28] (010);
+\draw[->, inkblue!70] (101) to[] (011);
+\draw[->, inkblue!70] (011) to[] (110);
+\draw[->, inkblue!70] (011) to[] (111);
+\draw[->, inkblue!70] (110) to[] (100);
+\draw[->, inkblue!70] (110) to[] (101);
+\draw[->, inkblue!70] (111) to[] (110);
+\draw[->, rust, very thick, dashed] (111) to[out=35, in=-35, looseness=6] (111);
+\end{tikzpicture}

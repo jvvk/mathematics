@@ -1,0 +1,20 @@
+{
+  "source_commit": "9b5c748 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports DeBruijnCycles only)",
+    "CheckClaims.lean (generated)",
+    "scripts/mutants.py (copy of lean-proofs scripts/debruijncycles_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "295e7c8bf6c985265fd626434148096c19f9f92acc2a41655116d53c8d02d80b",
+    "LeanProofs/DeBruijnCycles/Basic.lean": "663cbe374459960508a33bb588ea7b5561b8a03d983ce3686e28acb80d00b2f6",
+    "LeanProofs/DeBruijnCycles/Main.lean": "470281cfc67a81b34bdb04104e5636df4d49f534895f55deecd473520f949501",
+    "LeanProofs/DeBruijnCycles.lean": "7d5ebf035c602789414004cfdf932addff608dad0df424271f9bd0814d212aee",
+    "LeanProofs.lean": "1fc1e165590f81b910142a90f269f28d04da869b65be71fd174cd15793ae88e3",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutants.py": "18385fe8d077b6b88b8db1652564ad1054f88860e4e64093b90a51c6bf3097b9"
+  }
+}
