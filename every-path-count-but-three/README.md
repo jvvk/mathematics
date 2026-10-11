@@ -1,6 +1,11 @@
 # Every number except three is the path count of a best-connected pair
 
 <!-- visual:start -->
+<p align="center"><img src="https://raw.githubusercontent.com/jvvk/jvvk/f1ea52db49392d1317df37b667d1b29c7edcb211/assets/every-path-count-but-three.svg" width="760" alt="Every number except three is the path count of a best-connected pair"></p>
+
+<p align="center"><b>The largest number of simple paths between two vertices of a graph takes every positive integer value except 3.</b><br><sub>Solved · construction in Lean; the impossibility of 3 by hand</sub></p>
+
+<p align="center"><sub><a href="paper">paper</a> · <a href="lean">Lean proof</a> · <a href="verify">code</a> · <a href="../">all results</a></sub></p>
 <!-- visual:end -->
 
 For a graph `G` let `f(G)` be the largest number of simple paths between two distinct vertices. Trees give 1,
@@ -15,7 +20,7 @@ Add `a` new vertices to a small graph `H`, each joined to the same two vertices 
 `W_4` and one graph on six vertices (for 11) this covers every `k ≠ 3`. The impossibility of 3 is proved in the
 note by a short block-and-theta argument.
 
-Preprint v1, 11 October 2026, not peer reviewed and not yet independently reviewed. The construction (path
+Preprint v1, 12 October 2026, not peer reviewed and not yet independently reviewed. The construction (path
 generator proved exact, transfer of paths along embeddings, at most one interior new vertex, the affine count
 `N_b + (a − b)T`, the four families for every `a`, the small graphs, and the final theorem for simple graphs) is
 formally verified in Lean 4 (`lean/`, standard axioms only); the impossibility of 3 is proved by hand and not

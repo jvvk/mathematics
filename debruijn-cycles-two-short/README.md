@@ -1,6 +1,11 @@
 # Cycles of length 2^n − 2 in the binary de Bruijn graph
 
 <!-- visual:start -->
+<p align="center"><img src="https://raw.githubusercontent.com/jvvk/jvvk/f1ea52db49392d1317df37b667d1b29c7edcb211/assets/debruijn-cycles-two-short.svg" width="760" alt="Cycles of length 2^n − 2 in the binary de Bruijn graph"></p>
+
+<p align="center"><b>B(n) has (2ⁿ − (−1)ⁿ)/3 · 2^(2ⁿ⁻¹ − 2n + 2) cycles of length 2ⁿ − 2: a 1972 count, quoted since 1982 with only an outline and wrong as quoted on MathOverflow (4 instead of 3 for n = 3), now proved.</b><br><sub>Solved, with a correction · determinant algebra in Lean; BEST and matrix-tree theorems cited</sub></p>
+
+<p align="center"><sub><a href="paper">paper</a> · <a href="lean">Lean proof</a> · <a href="verify">code</a> · <a href="../">all results</a></sub></p>
 <!-- visual:end -->
 
 A cycle of length `2^n − 2` in the binary de Bruijn graph `B(n)` is a circle of `2^n − 2` bits in which every
@@ -24,7 +29,7 @@ The second case is a rank-one change of the Laplacian of `B(n−1)`; the matrix 
 inverse, and that inverse is a finite sum because a random walk on the de Bruijn graph is exactly uniform after
 `n − 1` steps.
 
-Preprint v1, 11 October 2026, not peer reviewed and not yet independently reviewed. The classification of the
+Preprint v1, 12 October 2026, not peer reviewed and not yet independently reviewed. The classification of the
 two-edge deletions, the effect of each on the Laplacian, the exact mixing, the inverse, the determinant identity,
 the return probabilities and the closed forms are formally verified in Lean 4 (`lean/`, standard axioms only);
 the BEST theorem, the matrix-tree theorem and the de Bruijn count are cited. The author used AI tools (Claude,
