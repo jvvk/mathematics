@@ -1,0 +1,20 @@
+{
+  "source_commit": "729c990 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports OpenSolids only)",
+    "CheckClaims.lean (generated)",
+    "scripts/mutants.py (copy of lean-proofs scripts/opensolids_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "65f10b618bbe2c6cd2dcec30c031b29081d824b504eea07169ec782b31b1ec98",
+    "LeanProofs/OpenSolids/Basic.lean": "8c14a06e271ded3dc077e0326ef854cb7795ed00e332fd7ab722a735150db841",
+    "LeanProofs/OpenSolids/Main.lean": "714692ed55511d5034666fabf2448dd1df9110f37828c15682d24181fa23046b",
+    "LeanProofs/OpenSolids.lean": "7a20f021ea903da023feb9afdaa791de1191ddc385012200f4b3d634ca4b4110",
+    "LeanProofs.lean": "75e764b3b69c629567447621427794caff89168cd36f8c42d50302bb01f006a0",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutants.py": "cc17b5e1454c3e5c165c4a27ef4e7f06ab0407889939886f78f30680bd99dcd4"
+  }
+}

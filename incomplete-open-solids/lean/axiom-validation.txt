@@ -1,0 +1,137 @@
+OpenSolids.cube_size : List.length OpenSolids.cube = 12 ∧
+  List.length OpenSolids.oct = 12 ∧ List.length OpenSolids.tet = 6
+'OpenSolids.cube_size' depends on axioms: [propext]
+OpenSolids.rot_count : OpenSolids.rotData.length = 24
+'OpenSolids.rot_count' does not depend on any axioms
+OpenSolids.rot_preserve : (OpenSolids.rotData.all fun d =>
+      List.all OpenSolids.cube fun e =>
+        List.contains OpenSolids.cube (OpenSolids.mapE (OpenSolids.cubeMap d.1 d.2) e)) =
+    true ∧
+  (OpenSolids.rotData.all fun d =>
+      List.all OpenSolids.oct fun e => List.contains OpenSolids.oct (OpenSolids.mapE (OpenSolids.octMap d.1 d.2) e)) =
+    true
+'OpenSolids.rot_preserve' depends on axioms: [propext]
+OpenSolids.cube_cycle_profile : List.count [12, 0, 0, 0]
+      (List.map (fun d => OpenSolids.profile (OpenSolids.cubeMap d.1 d.2) OpenSolids.cube) OpenSolids.rotData) =
+    1 ∧
+  List.count [0, 0, 0, 12]
+        (List.map (fun d => OpenSolids.profile (OpenSolids.cubeMap d.1 d.2) OpenSolids.cube) OpenSolids.rotData) =
+      6 ∧
+    List.count [0, 12, 0, 0]
+          (List.map (fun d => OpenSolids.profile (OpenSolids.cubeMap d.1 d.2) OpenSolids.cube) OpenSolids.rotData) =
+        3 ∧
+      List.count [2, 10, 0, 0]
+            (List.map (fun d => OpenSolids.profile (OpenSolids.cubeMap d.1 d.2) OpenSolids.cube) OpenSolids.rotData) =
+          6 ∧
+        List.count [0, 0, 12, 0]
+              (List.map (fun d => OpenSolids.profile (OpenSolids.cubeMap d.1 d.2) OpenSolids.cube) OpenSolids.rotData) =
+            8 ∧
+          List.map (fun d => OpenSolids.profile (OpenSolids.octMap d.1 d.2) OpenSolids.oct) OpenSolids.rotData =
+            List.map (fun d => OpenSolids.profile (OpenSolids.cubeMap d.1 d.2) OpenSolids.cube) OpenSolids.rotData
+'OpenSolids.cube_cycle_profile' depends on axioms: [propext]
+OpenSolids.cube_burnside : (1 + Polynomial.X) ^ 12 + 3 * (1 + Polynomial.X ^ 2) ^ 6 + 6 * (1 + Polynomial.X ^ 4) ^ 3 +
+      6 * (1 + Polynomial.X) ^ 2 * (1 + Polynomial.X ^ 2) ^ 5 +
+    8 * (1 + Polynomial.X ^ 3) ^ 4 =
+  24 *
+    (1 + Polynomial.X + 5 * Polynomial.X ^ 2 + 13 * Polynomial.X ^ 3 + 27 * Polynomial.X ^ 4 + 38 * Polynomial.X ^ 5 +
+                  48 * Polynomial.X ^ 6 +
+                38 * Polynomial.X ^ 7 +
+              27 * Polynomial.X ^ 8 +
+            13 * Polynomial.X ^ 9 +
+          5 * Polynomial.X ^ 10 +
+        Polynomial.X ^ 11 +
+      Polynomial.X ^ 12)
+'OpenSolids.cube_burnside' depends on axioms: [propext, Classical.choice, Quot.sound]
+OpenSolids.cube_induced : ((List.filter (fun x => decide (x.length = 4)) (List.range 8).sublists).all fun S =>
+      decide (OpenSolids.induced S OpenSolids.cube ≤ 4)) =
+    true ∧
+  ((List.filter (fun x => decide (x.length = 5)) (List.range 8).sublists).all fun S =>
+        decide (OpenSolids.induced S OpenSolids.cube ≤ 5)) =
+      true ∧
+    ((List.filter (fun x => decide (x.length = 6)) (List.range 8).sublists).all fun S =>
+        decide (OpenSolids.induced S OpenSolids.cube ≤ 7)) =
+      true
+'OpenSolids.cube_induced' depends on axioms: [propext]
+OpenSolids.oct_induced : ((List.filter (fun x => decide (x.length = 2)) (List.range 6).sublists).all fun S =>
+      decide (OpenSolids.induced S OpenSolids.oct ≤ 1)) =
+    true ∧
+  ((List.filter (fun x => decide (x.length = 3)) (List.range 6).sublists).all fun S =>
+        decide (OpenSolids.induced S OpenSolids.oct ≤ 3)) =
+      true ∧
+    ((List.filter (fun x => decide (x.length = 4)) (List.range 6).sublists).all fun S =>
+        (OpenSolids.induced S OpenSolids.oct == 5) ==
+          ((List.filter (fun i => S.contains (2 * i) && S.contains (2 * i + 1)) (List.range 3)).length == 1)) =
+      true
+'OpenSolids.oct_induced' does not depend on any axioms
+OpenSolids.ladder_trees : (OpenSolids.trees (OpenSolids.delete [0, 1] OpenSolids.cube)).length = 15
+'OpenSolids.ladder_trees' depends on axioms: [propext]
+OpenSolids.ladder_fixed : OpenSolids.cubeFixed [0, 1] (OpenSolids.trees (OpenSolids.delete [0, 1] OpenSolids.cube)) =
+  [15, 3]
+'OpenSolids.ladder_fixed' depends on axioms: [propext]
+OpenSolids.square_leaves_trees : (OpenSolids.trees (OpenSolids.delete [0, 3] OpenSolids.cube)).length = 4
+'OpenSolids.square_leaves_trees' depends on axioms: [propext]
+OpenSolids.square_leaves_fixed : OpenSolids.cubeFixed [0, 3]
+    (OpenSolids.trees (OpenSolids.delete [0, 3] OpenSolids.cube)) =
+  [4, 0]
+'OpenSolids.square_leaves_fixed' depends on axioms: [propext]
+OpenSolids.hexagon_trees : (OpenSolids.trees (OpenSolids.delete [0, 7] OpenSolids.cube)).length = 6
+'OpenSolids.hexagon_trees' depends on axioms: [propext]
+OpenSolids.hexagon_fixed : (OpenSolids.cubeFixed [0, 7]
+        (OpenSolids.trees (OpenSolids.delete [0, 7] OpenSolids.cube))).length =
+    6 ∧
+  List.count 6 (OpenSolids.cubeFixed [0, 7] (OpenSolids.trees (OpenSolids.delete [0, 7] OpenSolids.cube))) = 1 ∧
+    List.count 2 (OpenSolids.cubeFixed [0, 7] (OpenSolids.trees (OpenSolids.delete [0, 7] OpenSolids.cube))) = 3 ∧
+      List.count 0 (OpenSolids.cubeFixed [0, 7] (OpenSolids.trees (OpenSolids.delete [0, 7] OpenSolids.cube))) = 2
+'OpenSolids.hexagon_fixed' depends on axioms: [propext]
+OpenSolids.hub_trees : (List.filter (fun x => OpenSolids.spokes 7 x == 1)
+        (OpenSolids.trees (OpenSolids.delete [0] OpenSolids.cube))).length =
+    18 ∧
+  (List.filter (fun x => OpenSolids.spokes 7 x == 2)
+          (OpenSolids.trees (OpenSolids.delete [0] OpenSolids.cube))).length =
+      24 ∧
+    (List.filter (fun x => OpenSolids.spokes 7 x == 3)
+            (OpenSolids.trees (OpenSolids.delete [0] OpenSolids.cube))).length =
+        8 ∧
+      (OpenSolids.trees (OpenSolids.delete [0] OpenSolids.cube)).length = 50
+'OpenSolids.hub_trees' depends on axioms: [propext]
+OpenSolids.hub_fixed : OpenSolids.cubeFixed [0] (OpenSolids.trees (OpenSolids.delete [0] OpenSolids.cube)) = [50, 2, 2]
+'OpenSolids.hub_fixed' depends on axioms: [propext]
+OpenSolids.wheel_trees : (List.filter (fun x => OpenSolids.spokes 4 x == 1)
+        (OpenSolids.trees (OpenSolids.delete [5] OpenSolids.oct))).length =
+    16 ∧
+  (List.filter (fun x => OpenSolids.spokes 4 x == 2) (OpenSolids.trees (OpenSolids.delete [5] OpenSolids.oct))).length =
+      20 ∧
+    (List.filter (fun x => OpenSolids.spokes 4 x == 3)
+            (OpenSolids.trees (OpenSolids.delete [5] OpenSolids.oct))).length =
+        8 ∧
+      (List.filter (fun x => OpenSolids.spokes 4 x == 4)
+              (OpenSolids.trees (OpenSolids.delete [5] OpenSolids.oct))).length =
+          1 ∧
+        (OpenSolids.trees (OpenSolids.delete [5] OpenSolids.oct)).length = 45
+'OpenSolids.wheel_trees' depends on axioms: [propext]
+OpenSolids.wheel_fixed : (OpenSolids.octFixed [5] (OpenSolids.trees (OpenSolids.delete [5] OpenSolids.oct))).length =
+    4 ∧
+  List.count 45 (OpenSolids.octFixed [5] (OpenSolids.trees (OpenSolids.delete [5] OpenSolids.oct))) = 1 ∧
+    List.count 5 (OpenSolids.octFixed [5] (OpenSolids.trees (OpenSolids.delete [5] OpenSolids.oct))) = 1 ∧
+      List.count 1 (OpenSolids.octFixed [5] (OpenSolids.trees (OpenSolids.delete [5] OpenSolids.oct))) = 2
+'OpenSolids.wheel_fixed' depends on axioms: [propext]
+OpenSolids.k4e_trees : (OpenSolids.trees (OpenSolids.delete [0, 2] OpenSolids.oct)).length = 8
+'OpenSolids.k4e_trees' depends on axioms: [propext]
+OpenSolids.k4e_fixed : OpenSolids.octFixed [0, 2] (OpenSolids.trees (OpenSolids.delete [0, 2] OpenSolids.oct)) = [8, 2]
+'OpenSolids.k4e_fixed' depends on axioms: [propext]
+OpenSolids.k4_trees : (OpenSolids.trees OpenSolids.tet).length = 16 ∧
+  (List.filter (fun t => [0, 1, 2, 3].any fun x => OpenSolids.spokes x t == 3)
+        (OpenSolids.trees OpenSolids.tet)).length =
+    4
+'OpenSolids.k4_trees' depends on axioms: [propext]
+OpenSolids.cube_total : (15 + 3) / 2 = 9 ∧
+  (4 + 0) / 2 = 2 ∧
+    (6 + 3 * 2) / 6 = 2 ∧
+      (50 + 2 + 2) / 3 = 18 ∧
+        9 + 2 + 2 + 1 = 14 ∧ 18 + 6 = 24 ∧ 38 - 6 = 32 ∧ 27 - 2 = 25 ∧ 3 + 5 + 14 + 24 + 32 + 25 + 13 + 5 + 1 = 122
+'OpenSolids.cube_total' depends on axioms: [propext]
+OpenSolids.octahedron_total : (8 + 2) / 2 = 5 ∧
+  (45 + 1 + 1 + 5) / 4 = 13 ∧ 3 + 13 = 16 ∧ 38 - 4 = 34 ∧ 48 - 2 = 46 ∧ 5 + 16 + 34 + 46 + 38 + 27 + 13 + 5 + 1 = 185
+'OpenSolids.octahedron_total' depends on axioms: [propext]
+OpenSolids.tetrahedron_total : 4 / 4 + 12 / 6 = 3 ∧ 3 + 2 + 1 = 6
+'OpenSolids.tetrahedron_total' depends on axioms: [propext]
