@@ -1,0 +1,23 @@
+{
+  "source_commit": "9b5c748 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports MaxPaths only)",
+    "CheckClaims.lean (generated)",
+    "scripts/mutants.py (copy of lean-proofs scripts/maxpaths_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "65746039032d02cee8275644c86405ff1a9bb1787b10ea6f73780a030a048b71",
+    "LeanProofs/MaxPaths/Bound.lean": "c5609e0607b30c85dedde1820e9915d60b688c760f548334a4221cf44972ed6b",
+    "LeanProofs/MaxPaths/Family.lean": "e3909eebf1b5f1e424c415be6f8d16c5018a8cb168c075825b87fa35716baedf",
+    "LeanProofs/MaxPaths/Main.lean": "b69408fd76a374819b6a0fe85e874f7e5da000528d4cacb0976f92953cb2168c",
+    "LeanProofs/MaxPaths/Paths.lean": "5cf3070389894460bbc754a90cfd815ccbfb32cea33299befc76db4dafcca73b",
+    "LeanProofs/MaxPaths/Report.lean": "4a75c515470fb63b5d08a6db0ca32965800a07ff96a8ca3eaa6ff0fc695167a0",
+    "LeanProofs/MaxPaths.lean": "b932a51d5885365bfd1c78ce269f0dda233ca9f5afea23e4aa7931d0eb6102b5",
+    "LeanProofs.lean": "1b8870ccf840405e97829f66c375e49f0bb4d73a8143cb66bdda37c48752eb1b",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutants.py": "80029712aef5d20daaa4d4bac74c19cf8479340da3376bc296500ba4ba5d0431"
+  }
+}

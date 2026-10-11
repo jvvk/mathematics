@@ -1,0 +1,66 @@
+@MaxPaths.mem_ext : ∀ {V : Type} [inst : DecidableEq V] (vs : List V) (adj : V → V → Bool),
+  (∀ (w : V), w ∈ vs) →
+    ∀ (n : ℕ) (p : List V),
+      p ≠ [] →
+        p.Nodup →
+          List.IsChain (MaxPaths.R adj) p →
+            ∀ (l : List V),
+              l ∈ MaxPaths.ext vs adj n p ↔ ∃ q, l = q ++ p ∧ q.length ≤ n ∧ l.Nodup ∧ List.IsChain (MaxPaths.R adj) l
+'MaxPaths.mem_ext' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MaxPaths.nodup_ext : ∀ {V : Type} [inst : DecidableEq V] (vs : List V) (adj : V → V → Bool),
+  vs.Nodup → ∀ (n : ℕ) (p : List V), (MaxPaths.ext vs adj n p).Nodup
+'MaxPaths.nodup_ext' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MaxPaths.mem_paths : ∀ {V : Type} [inst : DecidableEq V] (vs : List V) (adj : V → V → Bool),
+  (∀ (w : V), w ∈ vs) → ∀ {u v : V} {l : List V}, l ∈ MaxPaths.paths vs adj u v ↔ MaxPaths.IsPathL adj u v l
+'MaxPaths.mem_paths' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MaxPaths.card_pullback : ∀ {V : Type} [inst : DecidableEq V] (vs : List V) (adj : V → V → Bool) {W : Type}
+  [inst_1 : DecidableEq W] (ws : List W) (adjW : W → W → Bool),
+  (∀ (w : W), w ∈ ws) →
+    (∀ (w : V), w ∈ vs) →
+      ∀ (E : W → V),
+        Function.Injective E →
+          (∀ (s t : W), adj (E s) (E t) = adjW s t) →
+            ∀ (P : List V → Prop) [inst_2 : DecidablePred P] (s t : W),
+              {l ∈ MaxPaths.paths ws adjW s t | P (List.map E l)}.card =
+                {l ∈ MaxPaths.paths vs adj (E s) (E t) | (∀ x ∈ l, x ∈ List.map E ws) ∧ P l}.card
+'MaxPaths.card_pullback' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MaxPaths.at_most_one : ∀ {V : Type} (adj : V → V → Bool) (X Y : V) {l : List V},
+  l.Nodup →
+    List.IsChain (MaxPaths.R adj) l →
+      ∀ {n₁ n₂ : V},
+        (∀ (w : V), adj w n₁ = true ∨ adj n₁ w = true → w = X ∨ w = Y) →
+          (∀ (w : V), adj w n₂ = true ∨ adj n₂ w = true → w = X ∨ w = Y) →
+            n₁ ∈ l →
+              n₂ ∈ l → l.head? ≠ some n₁ → l.getLast? ≠ some n₁ → l.head? ≠ some n₂ → l.getLast? ≠ some n₂ → n₁ = n₂
+'MaxPaths.at_most_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MaxPaths.card_decomp : ∀ {V : Type} [inst : DecidableEq V] {ι : Type} [DecidableEq ι] (P : Finset (List V))
+  (Z : Finset ι) (f : ι → V),
+  (∀ l ∈ P, ∀ k ∈ Z, ∀ k' ∈ Z, f k ∈ l → f k' ∈ l → k = k') →
+    P.card = {l ∈ P | ∀ k ∈ Z, f k ∉ l}.card + ∑ k ∈ Z, {l ∈ P | f k ∈ l}.card
+'MaxPaths.card_decomp' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MaxPaths.affine : ∀ {h : ℕ} {E : List (ℕ × ℕ)} {x y : ℕ},
+  x < h →
+    y < h →
+      ∀ {a b : ℕ} (g : Fin b → Fin a),
+        Function.Injective g →
+          ∀ (s t : Fin h ⊕ Fin b),
+            (∀ (k : Fin b), Sum.inr k = s ∨ Sum.inr k = t) →
+              MaxPaths.N h E x y a (MaxPaths.emb h g s) (MaxPaths.emb h g t) =
+                MaxPaths.N h E x y b s t + (a - b) * MaxPaths.T h E x y b s t
+'MaxPaths.affine' depends on axioms: [propext, Classical.choice, Quot.sound]
+MaxPaths.bound : ∀ (h : ℕ) (E : List (ℕ × ℕ)) (x y : ℕ) {sl r : ℕ},
+  x < h →
+    y < h →
+      MaxPaths.okAt h E x y sl r 0 = true →
+        MaxPaths.okAt h E x y sl r 1 = true →
+          MaxPaths.okAt h E x y sl r 2 = true →
+            ∀ {a : ℕ}, 1 ≤ a → ∀ (u v : Fin h ⊕ Fin a), u ≠ v → MaxPaths.N h E x y a u v ≤ sl * a + r
+'MaxPaths.bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MaxPaths.fam61 : ∀ {a : ℕ}, 1 ≤ a → MaxPaths.IsMax 5 MaxPaths.E61 0 3 a (6 * a + 1)
+'MaxPaths.fam61' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MaxPaths.fam69 : ∀ {a : ℕ}, 1 ≤ a → MaxPaths.IsMax 6 MaxPaths.E69 2 4 a (6 * a + 9)
+'MaxPaths.fam69' depends on axioms: [propext, Classical.choice, Quot.sound]
+@MaxPaths.fam611 : ∀ {a : ℕ}, 1 ≤ a → MaxPaths.IsMax 6 MaxPaths.E611 0 2 a (6 * a + 11)
+'MaxPaths.fam611' depends on axioms: [propext, Classical.choice, Quot.sound]
+MaxPaths.every_k : ∀ (k : ℕ), 1 ≤ k → k ≠ 3 → ∃ h E x y a, MaxPaths.IsSimple h E x y a ∧ MaxPaths.IsMax h E x y a k
+'MaxPaths.every_k' depends on axioms: [propext, Classical.choice, Quot.sound]

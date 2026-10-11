@@ -1,0 +1,36 @@
+Isolated build 2026-10-11: fresh copy of lean/, lake exe cache get, lake build LeanProofs
+⚠ [8924/8931] Built LeanProofs.MaxPaths.Paths (191s)
+warning: LeanProofs/MaxPaths/Paths.lean:128:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/MaxPaths/Paths.lean:155:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/MaxPaths/Paths.lean:170:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/MaxPaths/Paths.lean:222:0: `card_decomp` does not use the following hypothesis in its type:
+warning: LeanProofs/MaxPaths/Paths.lean:226:100: This line exceeds the 100 character limit, please shorten it!
+⚠ [8925/8931] Built LeanProofs.MaxPaths.Family (164s)
+warning: LeanProofs/MaxPaths/Family.lean:55:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/MaxPaths/Family.lean:73:27: Variable name `hall` is not explicitly referenced.
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+warning: LeanProofs/MaxPaths/Family.lean:80:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/MaxPaths/Family.lean:89:100: This line exceeds the 100 character limit, please shorten it!
+⚠ [8926/8931] Built LeanProofs.MaxPaths.Bound (258s)
+warning: LeanProofs/MaxPaths/Bound.lean:33:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/MaxPaths/Bound.lean:43:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/MaxPaths/Bound.lean:55:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/MaxPaths/Bound.lean:61:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/MaxPaths/Bound.lean:71:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/MaxPaths/Bound.lean:73:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/MaxPaths/Bound.lean:79:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/MaxPaths/Bound.lean:81:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/MaxPaths/Bound.lean:93:100: This line exceeds the 100 character limit, please shorten it!
+⚠ [8927/8931] Built LeanProofs.MaxPaths.Main (293s)
+warning: LeanProofs/MaxPaths/Main.lean:8:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/MaxPaths/Main.lean:9:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/MaxPaths/Main.lean:42:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/MaxPaths/Main.lean:63:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/MaxPaths/Main.lean:84:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/MaxPaths/Main.lean:89:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/MaxPaths/Main.lean:94:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/MaxPaths/Main.lean:108:100: This line exceeds the 100 character limit, please shorten it!
+ℹ [8928/8931] Built LeanProofs.MaxPaths.Report (233s)
+✔ [8929/8931] Built LeanProofs.MaxPaths (218s)
+✔ [8930/8931] Built LeanProofs (224s)
+Build completed successfully (8931 jobs).

@@ -1,0 +1,26 @@
+\begin{tikzpicture}[scale=1.05, every node/.style={font=\small},
+  v/.style={circle, draw=inkblue, fill=softblue, inner sep=1.6pt, minimum size=17pt},
+  n/.style={circle, draw=rust, fill=white, inner sep=1.2pt, minimum size=17pt}]
+\draw[inkblue!70] (0.0,0.0) -- (1.8,0.0);
+\draw[inkblue!70] (1.8,0.0) -- (3.6,0.0);
+\draw[inkblue!70] (1.8,0.0) -- (2.7,1.6);
+\draw[inkblue!70] (1.8,0.0) -- (2.7,-1.5);
+\draw[rust, line width=1.6pt] (3.6,0.0) -- (2.7,1.6);
+\draw[rust, line width=1.6pt] (3.6,0.0) -- (2.7,-1.5);
+\draw[rust, line width=1.6pt] (0.2,2.4) -- (0.0,0.0);
+\draw[rust!55] (0.2,2.4) -- (2.7,1.6);
+\draw[rust, line width=1.6pt] (0.9,3.0) -- (0.0,0.0);
+\draw[rust, line width=1.6pt] (0.9,3.0) -- (2.7,1.6);
+\draw[rust!55] (1.6,3.6) -- (0.0,0.0);
+\draw[rust!55] (1.6,3.6) -- (2.7,1.6);
+\node[v] (0) at (0.0,0.0) {0};
+\node[v] (1) at (1.8,0.0) {1};
+\node[v] (2) at (3.6,0.0) {2};
+\node[v] (4) at (2.7,-1.5) {4};
+\node[v] (3) at (2.7,1.6) {3};
+\node[n] (m1) at (0.2,2.4) {$m_1$};
+\node[n] (m2) at (0.9,3.0) {$m_2$};
+\node[n] (m3) at (1.6,3.6) {$m_3$};
+\node[font=\small, text=black!60, anchor=west] at (3.1,1.6) {$y$};
+\node[font=\small, text=black!60, anchor=east] at (-0.35,0) {$x$};
+\end{tikzpicture}
