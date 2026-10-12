@@ -3,16 +3,16 @@
 <!-- visual:start -->
 <p align="center"><img src="https://raw.githubusercontent.com/jvvk/jvvk/f1ea52db49392d1317df37b667d1b29c7edcb211/assets/debruijn-cycles-two-short.svg" width="760" alt="Cycles of length 2^n − 2 in the binary de Bruijn graph"></p>
 
-<p align="center"><b>B(n) has (2ⁿ − (−1)ⁿ)/3 · 2^(2ⁿ⁻¹ − 2n + 2) cycles of length 2ⁿ − 2: a 1972 count, quoted since 1982 with only an outline and wrong as quoted on MathOverflow (4 instead of 3 for n = 3), now proved.</b><br><sub>Solved, with a correction · determinant algebra in Lean; BEST and matrix-tree theorems cited</sub></p>
+<p align="center"><b>B(n) has (2ⁿ − (−1)ⁿ)/3 · 2^(2ⁿ⁻¹ − 2n + 2) cycles of length 2ⁿ − 2: a 1972 count, printed in 1982 with only an outline and a formula that gives 4 instead of 3 for n = 3, now proved.</b><br><sub>Solved, with a correction · determinant algebra in Lean; BEST and matrix-tree theorems cited</sub></p>
 
 <p align="center"><sub><a href="paper">paper</a> · <a href="lean">Lean proof</a> · <a href="verify">code</a> · <a href="../">all results</a></sub></p>
 <!-- visual:end -->
 
 A cycle of length `2^n − 2` in the binary de Bruijn graph `B(n)` is a circle of `2^n − 2` bits in which every
 block of `n` consecutive bits appears at most once. A count of these cycles, attributed to Kibler (1972) in
-Fredricksen's 1982 survey, has circulated with only an outline of a proof; as quoted on
-[MathOverflow 227666](https://mathoverflow.net/q/227666) (Timothy Chow, 2016) it gives 4 for `n = 3`, where
-there are 3.
+Fredricksen's 1982 survey, has circulated with only an outline of a proof, and the formula printed in the
+survey (p. 203, quoted correctly on [MathOverflow 227666](https://mathoverflow.net/q/227666) by Timothy Chow,
+2016) gives 4 for `n = 3`, where there are 3.
 
 **Theorem.** For `n ≥ 2`, `B(n)` has
 
@@ -22,7 +22,7 @@ T(n) = (2^n − (−1)^n)/3 · 2^(2^(n−1) − 2n + 2)
 
 cycles of length `2^n − 2` (1, 3, 20, 2816, 88080384 for n = 2..6). The two missing vertices are either `0^n`
 and `1^n`, giving the de Bruijn number `2^(2^(n−1) − n)`, or the two alternating strings, giving
-`(2^(n−2) − (−1)^n)/3 · 2^(2^(n−1) − 2n + 2)`. The quoted expression is the second count with `n` replaced by
+`(2^(n−2) − (−1)^n)/3 · 2^(2^(n−1) − 2n + 2)`. The second count is the printed expression evaluated at
 `n − 1`.
 
 The second case is a rank-one change of the Laplacian of `B(n−1)`; the matrix determinant lemma needs one

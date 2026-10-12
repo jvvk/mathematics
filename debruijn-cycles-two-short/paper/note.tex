@@ -27,12 +27,12 @@
 
 \begin{abstract}
 The binary de Bruijn graph $B(n)$ has $2^{2^{n-1}-n}$ cycles through all of its $2^n$ vertices. A count of
-the cycles that miss exactly two vertices, attributed to Kibler in 1972, appears, by the account of a MathOverflow
-question, in a 1982 survey with only an outline of a proof. As quoted on MathOverflow it gives $4$ for $n=3$, where there are $3$. We prove that the number is
+the cycles that miss exactly two vertices, attributed to Kibler in 1972, appears in a 1982 survey with only an
+outline of a proof, and the formula printed there gives $4$ for $n=3$, where there are $3$. We prove that the number is
 $\tfrac13\bigl(2^n-(-1)^n\bigr)\,2^{2^{n-1}-2n+2}$. The two missing vertices are either $0^n$ and $1^n$ or the
 two alternating strings. The first case is the de Bruijn count; in the second, the Laplacian changes by a
 matrix of rank one, and the determinant can be evaluated exactly because a random walk on the de Bruijn graph
-is uniform after $n-1$ steps. The quoted expression is the second case with $n$ replaced by $n-1$. The algebra
+is uniform after $n-1$ steps. Evaluated at $n-1$, the printed expression is the count of the second case. The algebra
 is checked in the Lean proof assistant.
 \end{abstract}
 
@@ -55,10 +55,10 @@ $2^{2^{n-1}-n}$ of them (de Bruijn's note~\cite{dB75} records the priority).
 
 In 2016 Timothy Chow asked on MathOverflow~\cite{MO} about a count of the cycles of length $2^n-2$ that
 Fredricksen's survey of shift-register cycles~\cite[Section~2c]{F82} attributes to Kibler (personal
-communication, 1972). As Chow describes it, the survey gives only an outline: the BEST theorem reduces the count
-to a determinant, which ``by induction'' can be evaluated. The question quotes the count as
-$\tfrac13\,2^{2^n-2n}\bigl(2^{n-1}+(-1)^n\bigr)$, which is $4$ for $n=3$. We could not consult the survey
-itself, so we do not know whether the slip is in the survey or in the quotation.
+communication, 1972). The survey gives only an outline: the BEST theorem reduces the count to a determinant,
+which ``by induction'' can be evaluated, and the total is printed as
+$\tfrac13\,2^{2^n-2n}\bigl(2^{n-1}+(-1)^n\bigr)$~\cite[p.~203]{F82}, which is $4$ for $n=3$. Chow's
+question quotes it correctly; the slip is in the survey.
 
 \begin{theorem}\label{thm:main}
 For $n\ge2$ the de Bruijn graph $B(n)$ has
@@ -73,7 +73,7 @@ miss the two alternating strings $0101\cdots$ and $1010\cdots$.
 \end{theorem}
 
 The first factor of $T(n)$ is the Jacobsthal number $1,3,5,11,21,\dots$ and the second a power of two; the
-values for $n=2,3,4,5,6$ are $1,3,20,2816,88080384$. The count of the second kind is the quoted expression
+values for $n=2,3,4,5,6$ are $1,3,20,2816,88080384$. The count of the second kind is the printed expression
 evaluated at $n-1$.
 
 \section{Two edges left out}
@@ -223,7 +223,8 @@ Technological University Eindhoven (1975).
 \bibitem{FSM} C.~Flye Sainte-Marie, Solution to question nr.~48, \emph{l'Interm\'ediaire des
 Math\'ematiciens} \textbf{1} (1894) 107--110.
 \bibitem{F82} H.~Fredricksen, A survey of full length nonlinear shift register cycle algorithms, \emph{SIAM
-Rev.} \textbf{24} (1982) 195--221, \href{https://doi.org/10.1137/1024041}{doi:10.1137/1024041}.
+Rev.} \textbf{24} (1982) 195--221, \href{https://doi.org/10.1137/1024041}{doi:10.1137/1024041}; open copy at
+\url{https://hdl.handle.net/10945/61146}.
 \bibitem{G06} R.~G\"ottfert, Sequences of period $2^N-2$, in \emph{Sequences and Their Applications, SETA 2006},
 Lecture Notes in Comput. Sci. \textbf{4086}, Springer (2006) 223--236,
 \href{https://doi.org/10.1007/11863854_19}{doi:10.1007/11863854\_19}.
