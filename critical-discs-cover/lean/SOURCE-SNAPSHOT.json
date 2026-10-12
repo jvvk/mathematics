@@ -1,0 +1,20 @@
+{
+  "source_commit": "fb190f8 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports DiscCover only)",
+    "CheckClaims.lean (generated)",
+    "scripts/mutants.py (copy of lean-proofs scripts/disccover_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "7df69c262d0e158570d23440153efeb83578147357622f1e60ad9d05558f7b93",
+    "LeanProofs/DiscCover/Basic.lean": "22615b6d3f8181423c11f26e0c5178cd6eee1d5055424c5f493f3175d6088f19",
+    "LeanProofs/DiscCover/Main.lean": "585110ff1bc917a72077d9251d919e0dde96d40d1dbad7904023f2f4934dc24e",
+    "LeanProofs/DiscCover.lean": "2b07bf9aa26966634bdde6cb401335feecbc1feea067ea6db96df9a52915c094",
+    "LeanProofs.lean": "3df83773bf537a8609c2795c21f0370da15839b732ac5b80d3f30c9b9acb5864",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutants.py": "3e153ac17aa9704d09289da13eca93296b9a325a9bb97d9ded5024c64ece6242"
+  }
+}

@@ -1,0 +1,18 @@
+@DiscCover.lens_ball : ∀ {E : Type u_1} [inst : NormedAddCommGroup E] [inst_1 : NormedSpace ℝ E] (z : E),
+  Metric.ball ((1 / 2) • z) (1 - ‖z‖ / 2) ⊆ Metric.ball 0 1 ∩ Metric.ball z 1
+'DiscCover.lens_ball' depends on axioms: [propext, Classical.choice, Quot.sound]
+DiscCover.lens_sq : ∀ (s : ℝ), 1 - s ≤ (1 - s / 2) ^ 2
+'DiscCover.lens_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+DiscCover.sum_inv_sqrt : ∀ (N : ℕ), ∑ n ∈ Finset.Icc 1 N, 1 / √↑n ≤ 2 * √↑N
+'DiscCover.sum_inv_sqrt' depends on axioms: [propext, Classical.choice, Quot.sound]
+DiscCover.log_le_sum_inv : ∀ (N : ℕ), Real.log (↑N + 1) ≤ ∑ n ∈ Finset.Icc 1 N, 1 / ↑n
+'DiscCover.log_le_sum_inv' depends on axioms: [propext, Classical.choice, Quot.sound]
+DiscCover.sum_lower : ∀ (t : ℝ),
+  0 < t →
+    2 * Real.log (1 / t) - Real.log Real.pi - 2 ≤
+      ∑ n ∈ Finset.Icc 1 ⌊1 / (Real.pi * t ^ 2)⌋₊, 1 / ↑n * (1 - t * √(Real.pi * ↑n))
+'DiscCover.sum_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+DiscCover.inv_not_integrable : ¬IntervalIntegrable (fun t => t⁻¹) MeasureTheory.volume 0 1
+'DiscCover.inv_not_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+DiscCover.sliver : ∀ (x : ℝ), |x| ≤ 1 → 1 - √(1 - x ^ 2) ≤ x ^ 2
+'DiscCover.sliver' depends on axioms: [propext, Classical.choice, Quot.sound]
