@@ -1,9 +1,9 @@
 # Permutations with no whole-number averages
 
 <!-- visual:start -->
-<p align="center"><img src="https://raw.githubusercontent.com/jvvk/jvvk/96d4523a32eccaa841688a232aca9f7bd41e2cfe/assets/good-perm.svg" width="760" alt="Permutations with no whole-number averages"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/jvvk/jvvk/5b78106961a0b72eccc0b966fb88e95a29c04830/assets/good-perm.svg" width="760" alt="Permutations with no whole-number averages"></p>
 
-<p align="center"><b>If no proper block of a permutation of 1..n averages to a whole number, then n = 2ᵐ − 1; the asker's example works exactly when n is prime, and n = 15, 63 have none.</b><br><sub>Part of a question answered · theorems in Lean; n ≤ 63 by two searches</sub></p>
+<p align="center"><b>The asker's permutation has no block with a whole-number average exactly when n is prime, and n = 15 and 63 have no such permutation at all; that n must be 2ᵐ − 1 is Bîsceanu's theorem.</b><br><sub>Part of a question answered · theorems in Lean; n ≤ 63 by two searches</sub></p>
 
 <p align="center"><sub><a href="paper">paper</a> · <a href="lean">Lean proof</a> · <a href="verify">code</a> · <a href="../">all results</a></sub></p>
 <!-- visual:end -->
