@@ -20,23 +20,25 @@ Main theorem (`Prob.lean`):
 `PP` is the law of four independent uniform points on the unit sphere of `EuclideanSpace ℝ (Fin 3)`, and
 `AllFacesAcute A` says every angle of every face is acute.
 
-| Paper (preprint v1, 6 Oct 2026)          | Lean                                                        |
-|------------------------------------------|-------------------------------------------------------------|
-| uniform measure on S²                    | `unif` (Sphere), `unif_eq_toSphere` = normalised `volume.toSphere` |
-| Lemma 1 (angle test)                     | `angle_identity` (Count)                                    |
-| Lemma 2 (criterion)                      | `acute_iff` (Geom)                                          |
-| Table: common face, eq. (3), marks       | `threshold`, `marked_iff` (Count)                           |
-| Lemma 3 (nonempty, ≤3 per line, ≤4)      | `restrictions` (Count); `exists_short`, `no_star`, `one_per_face` |
-| Lemma 4 (N + C = 4)                      | `count_eight`, `count_sixteen` (Count)                      |
-| E N = 8p, p = 1/2 − P(k ∈ {1,2})         | `count_integrated` (Prob)                                   |
-| eq. (5) moments                          | `moments_integrated` (Prob)                                 |
-| Archimedes                               | `vol_cone` (Cone), `unif_le`, `unif_lt`, `unif_eq_zero` (Sphere) |
-| q = (2 − s)/4, ⟨a,b⟩ uniform             | `q_eq`, `law_inner` (Pair)                                  |
-| α = 1/6, γ = 1/24                        | `alpha_eq`, `gamma_eq` (Pair); `PP_Fl`, `PP_Fl_inter` (Prob) |
-| null-set convention                      | `ae_generic` (Prob)                                         |
-| p = 1/12                                 | `prob_all_faces_acute` (Prob)                               |
+| Paper                                     | Lean                                                         |
+|-------------------------------------------|--------------------------------------------------------------|
+| uniform measure on the sphere             | `unif`, `unif_eq_toSphere` (Sphere)                          |
+| Lemma 1 (angle test)                      | `angle_identity` (Count)                                     |
+| Lemmas 2 and 3 (grid, criterion)          | `acute_iff` (Geom); `angle_edge`, `edge_angle` (Facts)       |
+| Lemma 4 (threshold)                       | `threshold`, `marked_iff` (Count)                            |
+| Lemma 5 (i), (ii), (iii)                  | `one_per_face`, `no_star` (Geom); `exists_short` (Main)      |
+| count (2), in the form N + C = 4          | `count_eight`, `count_sixteen` (Count); `comb` (Comb)        |
+| E N = 8p and the averaged count           | `count_integrated`, `moments_integrated` (Prob)              |
+| Archimedes' theorem                       | `vol_cone` (Cone); `unif_le`, `unif_lt` (Sphere)             |
+| cap probability (1 - s/2)/2               | `q_eq`, `law_inner` (Pair)                                   |
+| alpha = 1/6, gamma = 1/24                 | `alpha_eq`, `gamma_eq` (Pair)                                |
+| null events                               | `ae_generic` (Prob)                                          |
+| p = 1/12                                  | `prob_all_faces_acute` (Prob)                                |
 
-Not formalised: the closing remarks of the paper (the example in `ℝ⁴` and the comparison of counting formulas).
+The formal proof follows the same plan as the paper but takes different routes in places. It proves
+the count as N + C = 4, where C = 2m - J is the number of tetrahedra with one or two short faces, by an
+exhaustive check over the patterns of short triangles allowed by its restriction lemmas, rather than
+through the staircase.
 
 Every result uses only propext, Classical.choice and Quot.sound (axiom-validation.txt). The folder was
 compiled in an isolated build without the development cache (build-validation.log).

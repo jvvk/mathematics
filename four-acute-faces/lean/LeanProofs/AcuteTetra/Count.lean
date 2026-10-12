@@ -3,7 +3,7 @@ import LeanProofs.AcuteTetra.Main
 /-!
 # Acute tetrahedron: the paper's form of the count
 
-The preprint v1 exposition counts, over the eight
+An earlier version of the paper counts, over the eight
 tetrahedra `T_X` (vertex `a` kept fixed), the number `N` with four acute faces and the number `C`
 having one or two short face sums, and proves `N + C = 4` (Lemma 4). Here:
 

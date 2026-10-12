@@ -1,424 +1,471 @@
-\documentclass[11pt]{amsart}
-\usepackage[a4paper,margin=1in]{geometry}
-\usepackage{amssymb,tikz}
-\usetikzlibrary{calc,arrows.meta}
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{tikz}
+\usepackage{microtype}
 \usepackage[hidelinks]{hyperref}
-\hypersetup{pdftitle={Four Acute Faces: An Antipodal Counting Proof},pdfauthor={Vamshi Jandhyala}}
+\hypersetup{pdftitle={Four acute faces},pdfauthor={Vamshi Jandhyala}}
 \newtheorem{theorem}{Theorem}
-\newtheorem{lemma}[theorem]{Lemma}
-\newcommand{\E}{\mathbb E}\newcommand{\R}{\mathbb R}
-\newcommand{\shape}[1]{\begin{tikzpicture}[x=6pt,y=6pt,baseline=-4pt]
-\foreach \n [count=\i] in {#1}{\foreach \j in {1,...,\n}{
-\fill[black!20] (\j,-\i) rectangle +(1,-1);
-\draw[line width=.5pt] (\j,-\i) rectangle +(1,-1);}}
-\end{tikzpicture}}
-\title[Four Acute Faces]{Four Acute Faces: An Antipodal Counting Proof}
-\author{Vamshi Jandhyala}
-\address{London, United Kingdom}
-\email{vamshi.jandhyala@gmail.com}
-\subjclass[2020]{60D05, 52A22}
-\keywords{Geometric probability, random tetrahedron, antipodal symmetry}
-\date{6 October 2026}
+\newtheorem{lemma}{Lemma}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\R}{\mathbb{R}}
+% A Young diagram drawn from its row lengths, e.g. \yd{2,1}.
+\newcommand{\yd}[1]{\begin{tikzpicture}[x=7pt,y=7pt,baseline=-5pt]
+ \foreach \n [count=\i] in {#1}{\foreach \j in {1,...,\n}{
+ \filldraw[fill=black!25,line width=.5pt] (\j,-\i) rectangle +(1,1);}}
+ \end{tikzpicture}}
 \begin{document}
 \raggedbottom
+\begin{center}
+{\LARGE\bfseries Four acute faces\par}
+\vspace{8pt}
+{\large Vamshi Jandhyala\par}
+\vspace{2pt}
+{\small London, United Kingdom\par}
+\end{center}
+\vspace{6pt}
 \begin{abstract}
-Four independent uniform points on the unit sphere form a tetrahedron
-whose four faces are all acute with probability exactly $1/12$. We give a
-self-contained exposition of the antipodal counting proof that first
-appeared in a conversation publicly shared by Timothy Chow. Antipodal flips
-turn the dependent angle conditions into a $4\times4$ table of vector sums
-whose marked entries form one of six corner shapes. Our contribution is the
-organisation: one table for all twelve angle tests, a counting identity
-expressed through the faces of a single tetrahedron, and a shorter final
-calculation using one spherical cap.
+Four points chosen independently and uniformly on a sphere span a
+tetrahedron. All four of its faces are acute triangles with probability
+$1/12$, although each face on its own is acute with probability $1/2$. We
+give a short, self-contained proof. Replacing points by their antipodes
+produces eight tetrahedra, and an obtuse angle of one of them is a short
+vector sum belonging to another. The short sums fill a staircase in a
+$4\times4$ grid, and counting what the staircase can look like reduces
+the problem to two integrals that Archimedes' hat-box theorem makes
+easy. The method first appeared in a publicly shared ChatGPT
+conversation. Every step has been checked in Lean.
 \end{abstract}
-\maketitle
-\enlargethispage{3pt}
 
-\section{Antipodal flips}
-Choose four points independently and uniformly on the unit sphere in $\R^3$.
-What is the probability that their tetrahedron has four acute faces? A single
-face is acute with probability $1/2$~\cite[Lemma 4]{AEN}, but the faces are
-dependent, so multiplying four such probabilities does not give the answer.
+\section{The question}
 
-Before trying to average twelve angle conditions, consider
-\begin{equation}\label{eq:example}
- a=\tfrac13(-2,-1,2),\quad b=(1,0,0),\quad
- c=\tfrac13(-2,1,2),\quad d=\tfrac13(-1,2,2).
-\end{equation}
-Consider the angle at $c$ in $acd$, before and after replacing $c$ by $-c$.
-The first dot product is $(a-c)\cdot(d-c)=-2/9$. After the replacement,
-the three angle dot products in $a(-c)d$ are $4/9$, $28/9$ and $2/3$.
-The face has become acute. In fact $(a,-b,-c,d)$ has four acute faces;
-the table below will verify all twelve angles at once. For these points,
-exactly one of the eight tetrahedra up to overall reflection succeeds.
+Choose four points independently and uniformly at random on the unit
+sphere. They span a tetrahedron. What is the probability that all four
+faces are acute triangles? Here acute refers to the angles of each
+triangular face, not to the angles between faces.
 
-The question was posed on MathOverflow and Mathematics Stack
-Exchange~\cite{MO,MSE}. On 14 August 2026, Timothy Chow linked a publicly
-shared ChatGPT conversation containing two complete proofs of the value
-$1/12$~\cite{ChowChat}. The result, the antipodal mechanism, the total-sum
-threshold and the linear-dependence argument below are already in that
-conversation. Our purpose is expository: organise the proof in one table and
-express the count through the faces of one tetrahedron, simplifying the final
-averaging calculation. The author posted a version of the argument on
-MathOverflow on 1 October 2026~\cite{MOAnswer}, found with Claude (Anthropic)
-but without having read that conversation.
+A natural first guess goes through one face. Three random points on a
+sphere form an acute triangle with probability $1/2$
+\cite[Lemma~4]{AEN}. If the four faces behaved independently, the answer
+would be $(1/2)^4=1/16$. They do not, since any two faces share an edge,
+and the true answer is larger.
 
-Related exact computations in geometric probability include Wendel's
-centre-containment probabilities~\cite{Wendel}, Hall's acute-triangle
-probabilities for points in a ball~\cite{Hall}, and Kabluchko's expected
-solid-angle sums of random inscribed simplices~\cite{Kab}.
+\begin{theorem}\label{thm}
+Four independent uniform points on the unit sphere in $\R^3$ span a
+tetrahedron whose four faces are all acute with probability exactly
+$1/12$.
+\end{theorem}
 
-The proof has three steps. First, antipodal flips turn the twelve angle
-conditions into a placement rule for sixteen triple sums. Second, the sums
-occupy a corner of a $4\times4$ table, and counting its six possible shapes
-gives an identity relating successful tetrahedra to their short face sums.
-Third, one spherical-cap calculation and one integral give the two expectations
-needed to obtain $1/12$.
+The question was asked on MathOverflow and Mathematics Stack
+Exchange~\cite{MO,MSE}, where simulations suggested $1/12$. A proof first
+appeared in ChatGPT-generated responses in a conversation that Timothy
+Chow shared publicly and linked from MathOverflow on 14 August
+2026~\cite{ChowChat}. The method below, antipodal flips, the threshold of
+Lemma~\ref{lem:threshold} and the count of Section~\ref{sec:count2}, is the
+method of that conversation, and no priority is claimed for it. What this
+article offers is an exposition: a complete proof that needs only dot
+products, a little counting and two one-line integrals.
 
-\section{The angle criterion}
-The example suggests using antipodes: replacing any chosen point by its
-negative preserves its uniform distribution. The $16$ choices of signs form
-eight pairs under overall reflection, which preserves angles. We keep $a$
-fixed and let $T_X$ denote the tetrahedron obtained by flipping the vertices
-in $X\subseteq\{b,c,d\}$. Write $N$ for the number of these eight tetrahedra
-having four acute faces. Its value is $1$ for our example; $\E N$ averages
-this count over random choices of the four points. If $p$ is the desired
-probability, symmetry and
-linearity of expectation give
-\begin{equation}\label{eq:EN}
- \E N=8p.
-\end{equation}
-The eight tetrahedra are dependent; this equality does not require their
-independence.
+The plan is short. Section~\ref{sec:angle} turns each angle condition into
+a statement about the length of a vector sum. Section~\ref{sec:eight}
+flips points to their antipodes and arranges the resulting sums in a grid.
+Section~\ref{sec:count} shows that the short sums form a small staircase,
+Section~\ref{sec:count2} counts the possible staircases, and
+Section~\ref{sec:average} averages.
 
-In the failed face above, $\|a+d-c\|^2=5/9$ and
-$-2/9=(5/9-1)/2$. The angle test has a particularly useful form
-(Figure~\ref{fig:angle}).
+\section{Obtuse angles are short sums}\label{sec:angle}
+
+Throughout, points of the sphere are unit vectors, and a vector is
+\emph{short} if its length is less than $1$.
+
 \begin{lemma}\label{lem:angle}
 For unit vectors $x,y,z$,
 \[
  (x-z)\cdot(y-z)=\tfrac12\bigl(\|x+y-z\|^2-1\bigr).
 \]
-Thus the angle at $z$ in $xyz$ is obtuse precisely when $\|x+y-z\|<1$.
+So the angle at $z$ in the triangle $xyz$ is obtuse exactly when $x+y-z$ is
+short.
 \end{lemma}
+
 \begin{proof}
-Both sides expand to $x\cdot y-x\cdot z-y\cdot z+1$.
+Using $x\cdot x=y\cdot y=z\cdot z=1$, both sides equal
+$x\cdot y-x\cdot z-y\cdot z+1$.
 \end{proof}
+
+The vector $x+y-z$ is the fourth corner of the parallelogram built on the
+two sides of the triangle at $z$. Figure~\ref{fig:angle} shows an example
+in a plane through the centre: $x=(1,0,0)$, $y=(0,1,0)$ and
+$z=\frac15(3,4,0)$. The angle at $z$ is obtuse, since
+$(x-z)\cdot(y-z)=-\frac25$, and accordingly $\|x+y-z\|^2=\frac15$.
+
+The same vector $x+y-z$ is also the sum of the three vertices of the
+triangle with vertices $x$, $y$ and $-z$. In the example that triangle is
+acute: it contains the centre of its circumscribed circle. So one vector
+plays two roles. It tests an angle of one triangle, and it is the vertex
+sum of another. The proof keeps track of these two roles.
 
 \begin{figure}[ht]
 \centering
-\begin{tikzpicture}\input{figs/angle-monthly.tex}\end{tikzpicture}
-\caption{The fourth corner $x+y-z$ of the parallelogram on the sides at $z$
-lies outside the unit ball for an acute angle and inside for an obtuse one
-(the diagram uses $a,b,c$ in place of $x,y,z$).}
+\begin{tikzpicture}[scale=1.7,font=\small]
+ \draw[line width=.6pt] (0,0) circle (1);
+ \fill (0,0) circle (.025) node[left] {$0$};
+ \coordinate (x) at (1,0); \coordinate (y) at (0,1);
+ \coordinate (z) at (.6,.8); \coordinate (p) at (.4,.2);
+ \draw[line width=.8pt] (x)--(y)--(z)--cycle;
+ \draw[line width=.5pt,dashed] (x)--(p)--(y);
+ \fill (p) circle (.03);
+ \draw[line width=.3pt] (p)--(.25,-.45) node[below,font=\footnotesize] {$x+y-z$};
+ \foreach \P/\L/\A in {x/x/right,y/y/above left,z/z/above right}
+  \fill (\P) circle (.03) node[\A] {$\L$};
+ \node[text width=4.2cm,align=center] at (0,-1.45)
+  {angle at $z$ obtuse;\\ corner $x+y-z$ inside the circle};
+ \begin{scope}[xshift=3.6cm]
+ \draw[line width=.6pt] (0,0) circle (1);
+ \coordinate (x) at (1,0); \coordinate (y) at (0,1);
+ \coordinate (w) at (-.6,-.8);
+ \fill[black!12] (x)--(y)--(w)--cycle;
+ \draw[line width=.8pt] (x)--(y)--(w)--cycle;
+ \fill (0,0) circle (.025) node[left] {$0$};
+ \foreach \P/\L/\A in {x/x/right,y/y/above,w/-z/below left}
+  \fill (\P) circle (.03) node[\A] {$\L$};
+ \node[text width=4.2cm,align=center] at (0,-1.45)
+  {triangle $x,y,-z$ acute;\\ its vertex sum is $x+y-z$};
+ \end{scope}
+\end{tikzpicture}
+\caption{Lemma~\ref{lem:angle} in a plane through the centre. Left: the
+parallelogram on the sides at $z$ has its fourth corner inside the unit
+circle, so the angle at $z$ is obtuse. Right: replacing $z$ by $-z$ gives
+an acute triangle whose vertex sum is the same short vector.}
 \label{fig:angle}
 \end{figure}
 
-Our example has $\|a-c+d\|^2=5/9<1$. Call a vector sum
-\emph{short} if its norm is less than $1$. Before the flip it tests the
-obtuse angle at $c$; afterwards it is the vertex sum of $a(-c)d$ and tests
-no angle of that face. This change of role is what we need to track.
+\section{Eight tetrahedra in a grid}\label{sec:eight}
 
-On each triple of antipodal pairs, the four triangles up to reflection have
-vertex sums
-\[
- x+y+z,\qquad -x+y+z,\qquad x-y+z,\qquad x+y-z.
-\]
-Flipping two vertices is, up to reflection, equivalent to flipping the third.
-There are four triples of pairs, hence sixteen labelled sums up to sign.
-For any one tetrahedron, four of these entries are its face vertex sums and
-the other twelve are its angle tests. Labels remain distinct even if vector
-sums coincide. We disregard sums of norm exactly $1$, a null event justified
-in Section~\ref{sec:caps}.
+Let $a,b,c,d$ be the four random points. For every choice of signs
+$\sigma=(\sigma_1,\sigma_2,\sigma_3,\sigma_4)\in\{\pm1\}^4$, the points
+$\sigma_1a,\sigma_2b,\sigma_3c,\sigma_4d$ span a tetrahedron $T_\sigma$.
+Replacing a uniform point by its antipode leaves it uniform, so every
+$T_\sigma$ has the same distribution as $T_{(1,1,1,1)}$. The tetrahedra
+$T_\sigma$ and $T_{-\sigma}$ are reflections of each other through the
+centre and have the same angles, so we count them once. This leaves
+eight tetrahedra. Let $N$ be the number of them with four acute faces.
+Each has four acute faces with probability $p$, the probability we want, so
+\begin{equation}\label{eq:EN}
+ \E N=8p.
+\end{equation}
+The eight tetrahedra are far from independent, but~\eqref{eq:EN} needs only
+linearity of expectation.
+
+Call a tetrahedron \emph{even} or \emph{odd} according to the parity of the
+number of minus signs in $\sigma$. This is unchanged when $\sigma$ is
+replaced by $-\sigma$, because there are four signs, so there are four even
+and four odd tetrahedra.
+
+A \emph{triangle} here means three of the points $\pm a,\pm b,\pm c,\pm d$
+taken from three different pairs, again counted once together with its
+reflection. Three of the four pairs can be chosen in four ways, and signs
+on the three chosen pairs in four ways up to reflection, so there are
+sixteen triangles. Each has a vertex sum, defined up to sign, and so it is
+either short or not.
+
+\begin{lemma}\label{lem:grid}
+Every even tetrahedron shares exactly one face with every odd tetrahedron,
+and every triangle arises in this way from exactly one even and one odd
+tetrahedron. Two tetrahedra of the same parity share no face.
+\end{lemma}
+
+\begin{proof}
+A triangle becomes a tetrahedron when a sign is chosen for the point of the
+missing pair. The two choices differ in one sign, so one is even and one is
+odd. Conversely, sign vectors $\sigma$ of an even and $\tau$ of an odd
+tetrahedron differ in one or three places. In the second case replace $\tau$
+by $-\tau$, which differs from $\sigma$ in one place. The three places where
+they agree give the common face, and there is no other. Two different
+tetrahedra of the same parity differ in two places, even after reflection,
+and share no face.
+\end{proof}
+
+So the sixteen triangles fill a $4\times4$ grid. Put the even tetrahedra
+on the rows and the odd ones on the columns, and put in each cell the
+common face of its row and its column. A tetrahedron's own four faces are
+the four cells of its row, or of its column.
 
 \begin{lemma}\label{lem:criterion}
-A tetrahedron has four acute faces if and only if every short entry in the
-sixteen-entry list is among its four face vertex sums.
+A tetrahedron has four acute faces exactly when every short triangle is
+one of its faces, that is, when every short cell lies in its row or column.
 \end{lemma}
+
 \begin{proof}
-By Lemma~\ref{lem:angle}, all twelve angles are acute exactly when all twelve
-angle-test sums have norm greater than $1$. The only remaining entries are
-the four face sums.
+Take a face $xyz$ of the tetrahedron. By Lemma~\ref{lem:angle} its angle
+at $z$ is obtuse exactly when the triangle $x,y,-z$ is short, and similarly
+for the angles at $x$ and $y$. These three triangles and the face $xyz$
+are the four triangles on the same three pairs, and the three are not faces
+of the tetrahedron. Running over the four faces, the twelve angles of the
+tetrahedron correspond one to one to the twelve triangles that are not its
+faces. All twelve angles are acute exactly when none of those twelve
+triangles is short.
 \end{proof}
 
-\section{The table}
-A triangle belongs to two tetrahedra, obtained by either choice of the fourth
-vertex. For example, $a,-c,d$ belongs to $T_c$ and $T_{bc}$, which flip one
-and two vertices respectively. Put the even choices
-$T_\varnothing,T_{bc},T_{bd},T_{cd}$ in rows and the odd choices
-$T_b,T_c,T_d,T_{bcd}$ in columns, placing a triangle in the cell of its two
-containing tetrahedra.
+Thus $N$ counts the rows and columns of the grid that contain every short
+cell.
 
-To see why every cell holds exactly one triangle class, start with two
-examples. The pair $T_\varnothing,T_b$ differs only at $b$, so its common
-face is $a,c,d$. The pair $T_\varnothing,T_{bcd}$ appears to differ at three
-vertices, but reflecting $T_{bcd}$ gives $(-a,b,c,d)$, revealing their common
-face $b,c,d$.
+\section{The short cells form a staircase}\label{sec:count}
 
-In general, an even and an odd choice differ at one or three of $b,c,d$.
-With one difference, the other three vertices give their unique common face.
-With three differences, reflection turns the pair into tetrahedra differing
-only at $a$, again giving a unique common face up to reflection.
+Which cells are short? Each cell belongs to one row and one column, so it
+is natural to look at the two tetrahedra involved. For a tetrahedron $T$
+write $S_T$ for the sum of its four signed vertices and $w_T=\|S_T\|^2$.
 
-Conversely, each triangle class belongs to one even and one odd tetrahedron.
-Choosing the fourth vertex from a $b,c,d$ pair changes the parity by one flip.
-If the missing pair is $a$, reflecting to keep $a$ fixed complements all
-three other signs, also switching even and odd. Thus every triangle class
-occupies exactly one cell, and all sixteen cells are filled.
+Take an even tetrahedron $E$ and an odd one $O$. They share a face, with
+vertex sum $L$, and their fourth vertices are opposite points $v$ and $-v$.
+So, up to sign, $S_E=L+v$ and $S_O=L-v$. The cell's sum $L$ is the midpoint
+of the two totals, and the totals differ by $2v$, a vector of length $2$.
+The parallelogram law, $\|L+v\|^2+\|L-v\|^2=2\|L\|^2+2\|v\|^2$, turns this
+into a statement about lengths.
 
-Mark a cell if its vertex sum is short. A tetrahedron's line contains its
-four face sums; the twelve cells outside it are its angle tests. Thus
-Lemma~\ref{lem:criterion} says that a tetrahedron succeeds exactly when its
-line contains every mark. The example in Table~\ref{tab:main} has two marks
-in row $T_{bc}$ and therefore $N=1$.
-
-The cell of $T_{bc}$ and $T_c$ has squared tetrahedron totals $20/9$ and
-$8/9$, adding to $28/9<4$; its face sum has squared norm $5/9<1$.
-The table also determines which cells are marked without testing each vector
-separately. Let $x_i$ and $y_j$ be the squared norms of the four-vertex totals
-of row $i$ and column $j$. If their common face has vertex sum $L$ and the
-remaining pair is $\pm A$, their totals are $L+A$ and $L-A$, up to sign.
-The parallelogram law gives
-\begin{equation}\label{eq:threshold}
- x_i+y_j=\|L+A\|^2+\|L-A\|^2=2\|L\|^2+2.
-\end{equation}
-Consequently a cell is marked exactly when $x_i+y_j<4$. Sorting rows and
-columns by increasing squared totals makes the marks an upper-left corner:
-a marked cell forces every cell above it and to its left to be marked.
-
-\begin{table}[ht]
-\caption{One table for~\eqref{eq:example}: entries are common-face vertex
-sums, up to sign; the margins give squared tetrahedron totals. A cell is
-marked when its two margins add to less than $4$. The two marked entries
-(bold) have squared norm $5/9$. Row $T_{bc}$ contains both; each of its twelve
-off-row entries is an acute-angle test.}
-\centering\small\setlength{\tabcolsep}{2.5pt}\renewcommand{\arraystretch}{1.2}
-\begin{tabular}{c r|cccc}
- & & $T_d$ & $T_c$ & $T_{bcd}$ & $T_b$\\
- & $x_i\backslash y_j$ & $8/9$ & $8/9$ & $24/9$ & $104/9$\\\hline
-$T_{bc}$ & $20/9$ & $\boldsymbol{-b-c+d}$ & $\boldsymbol{a-c+d}$ & $a-b-c$ & $a-b+d$\\
-$T_{cd}$ & $36/9$ & $a+b-d$ & $a+b-c$ & $a-c-d$ & $b-c-d$\\
-$T_\varnothing$ & $44/9$ & $a+b+c$ & $a+b+d$ & $b+c+d$ & $a+c+d$\\
-$T_{bd}$ & $44/9$ & $a+c-d$ & $-b+c-d$ & $a-b-d$ & $a-b+c$
-\end{tabular}
-\label{tab:main}
-\end{table}
-
-\section{Restrictions on the marks}
-We now show that the marked corner is nonempty, has at most three marks in
-any line and has at most four marks in all. Averaging the four face sums
-gives the first two facts, and the parallelogram law gives the third. The nonemptiness argument is where
-dimension $3$ enters.
-
-For the example's $T_{bc}$, the four squared face sums are $5/9$, $5/9$,
-$53/9$ and $13/9$. Their average is $19/9>1$. The tetrahedron's total is
-$S=(-4,0,2)/3$, so this is $1+\|S\|^2/2$. An average above $1$ cannot
-force a short sum. To force one, we look for nonnegative weights totalling
-$1$ that make the weighted average exactly $1$; the following identity
-shows how to choose them.
-
-For unit vertices $B_1,\ldots,B_4$ and total $S=\sum_iB_i$, the face sums
-are $S-B_i$. If $\beta_i\ge0$ and $\sum_i\beta_i=1$, then
-\begin{equation}\label{eq:average}
- \sum_i\beta_i\|S-B_i\|^2
- =\|S\|^2+1-2S\cdot\sum_i\beta_iB_i.
-\end{equation}
-The left side averages squared face sums; the right side shows that making
-the weighted vertex sum $S/2$ will make that average $1$.
-
-\begin{lemma}\label{lem:restrictions}
-The marked corner is nonempty, has at most three marks in any line, and has
-at most four marks in total.
+\begin{lemma}[threshold]\label{lem:threshold}
+For an even tetrahedron $E$ and an odd tetrahedron $O$,
+$w_E+w_O=2\|L\|^2+2$, where $L$ is the sum of their common face. In
+particular their cell is short exactly when $w_E+w_O<4$.
 \end{lemma}
+
+So eight numbers, one for each tetrahedron, decide the whole grid.
+
+Order the rows by increasing $w_E$ and the columns by increasing $w_O$.
+If a cell is short, then so is every cell above it in its column and every
+cell to its left in its row, because moving up or left can only decrease
+$w_E+w_O$. The short cells therefore form a staircase in the top left corner
+of the grid, a Young diagram. Three more facts fix its size.
+
+\begin{lemma}\label{lem:restrict}
+\textup{(i)} Among the four triangles on any three pairs, at most one is
+short. Hence at most four cells are short.
+\textup{(ii)} No tetrahedron has four short faces. Hence no row or column is
+entirely short.
+\textup{(iii)} At least one cell is short.
+\end{lemma}
+
 \begin{proof}
-Equal weights $\beta_i=1/4$ in~\eqref{eq:average} give
-$1+\|S\|^2/2\ge1$. Thus the four face sums cannot all be short, excluding
-a line of four marks.
+(i) Two of these triangles differ, after reflecting one of them, in the
+sign of a single vertex $v$. Their sums are $u+v$ and $u-v$ for some $u$,
+and $\|u+v\|^2+\|u-v\|^2=2\|u\|^2+2\ge2$, so they are not both short.
 
-For nonemptiness, half-weights give vertex sum $S/2$ but total weight $2$.
-We must subtract weights totalling $1$ whose vertex sum is zero. In the
-example, $3a-2b-9c+6d=0$ becomes a positive relation for $T_{bc}$;
-normalising gives $w=(3,2,9,6)/20$. Subtract these from the half-weights:
-\[
-\begin{array}{r|rrrr|c|c}
- &a&-b&-c&d&\text{weight total}&\text{vertex sum}\\
-\tfrac12\text{ each}&10/20&10/20&10/20&10/20&2&S/2\\
-\text{minus }w&3/20&2/20&9/20&6/20&1&0\\\hline
-\beta&7/20&8/20&1/20&4/20&1&S/2
-\end{array}
-\]
-This subtraction corrects the total weight without changing the vertex sum,
-so~\eqref{eq:average} makes the squared-face average exactly $1$. Indeed,
-with the squared face sums $5/9,5/9,53/9,13/9$ opposite $a,-b,-c,d$,
-\[
- \frac{7\cdot5+8\cdot5+1\cdot53+4\cdot13}{20\cdot9}=1.
-\]
+(ii) If a tetrahedron has vertices $x_1,\dots,x_4$ with sum $S$, its faces
+have sums $S-x_i$, and
+$\sum_i\|S-x_i\|^2=4\|S\|^2-2\|S\|^2+4\ge4$.
 
-In general, four vectors in $\R^3$ have a nonzero linear relation. Flip
-vertices with negative coefficients; zero coefficients stay zero. Normalising
-the now nonnegative, not-all-zero coefficients produces one of the eight
-tetrahedra and weights $w_i\ge0$ with $\sum_iw_i=1$ and
-$\sum_iw_iB_i=0$. Each satisfies
+(iii) Here, and only here, we use that the space has dimension $3$. Take
+a tetrahedron with vertices $x_1,\dots,x_4$ and sum $S$. Its face opposite
+$x_i$ has sum $S-x_i$, and
 \[
- w_i=\Big\|\sum_{j\ne i}w_jB_j\Big\|\le\sum_{j\ne i}w_j=1-w_i.
+ \|S-x_i\|^2=\|S\|^2-2\,x_i\cdot S+1,
 \]
-Thus $\beta_i=1/2-w_i$ are nonnegative, sum to $1$ and have vertex sum
-$S/2$. Equation~\eqref{eq:average} gives average $1$, so some face sum has
-norm at most $1$, hence less than $1$ under our null-set convention.
-
-Finally, two distinct triangle classes on the same triple of pairs differ,
-after reflection if needed, by one flip. Their sums are $u+v$ and $u-v$ with
-$\|v\|=1$, so their squared norms add to $2\|u\|^2+2\ge2$.
-They cannot both be short. There are four triples of pairs, giving at most
-four marks altogether.
+so that face is short when $x_i\cdot S>\frac12\|S\|^2$. Since
+$S=\sum_ix_i$, the four dot products $x_i\cdot S$ add up to $\|S\|^2$, so
+their average is only $\frac14\|S\|^2$. We need a tetrahedron whose total
+can be written with less weight on its vertices. The four points satisfy a
+nontrivial linear relation, and this supplies one. Replace by its antipode
+each point whose coefficient is negative, and scale so that the largest
+coefficient is $1$. After relabelling, the vertices $x_1,\dots,x_4$ of one
+of the eight tetrahedra satisfy
+\[
+ x_1+\lambda_2x_2+\lambda_3x_3+\lambda_4x_4=0,
+ \qquad 0\le\lambda_i\le1 .
+\]
+Taking lengths, $1=\|x_1\|\le\lambda_2+\lambda_3+\lambda_4$. Substituting
+for $x_1$, the sum of the vertices is
+\[
+ S=c_2x_2+c_3x_3+c_4x_4,\qquad c_i=1-\lambda_i\ge0,\qquad
+ c_2+c_3+c_4\le2 .
+\]
+If $S=0$, every face sum $S-x_i$ has length exactly $1$. Otherwise some
+$c_i$ is positive, and if every $x_i\cdot S$ were less than
+$\frac12\|S\|^2$ we would have
+$\|S\|^2=\sum_ic_i\,(x_i\cdot S)<\frac12\|S\|^2\sum_ic_i\le\|S\|^2$, which
+is absurd. So some vertex has $x_i\cdot S\ge\frac12\|S\|^2$, and the face
+opposite it has $\|S-x_i\|^2\le1$. Lengths exactly equal to $1$
+occur with probability zero (Section~\ref{sec:average}), so this face is
+short.
 \end{proof}
 
-\section{The counting identity}
-In Table~\ref{tab:main}, $T_{bc}$ has two short face sums, $T_c$ and $T_d$
-have one each, and the other five tetrahedra have none. Let $k$ count the
-short face sums of one tetrahedron and let $C$ count the tetrahedra with
-$k=1$ or $2$. The example has $C=3$ and $N=1$. The facts of
-Lemma~\ref{lem:restrictions} matter here: an empty table would give
-$N+C=8$, and a fully marked row would give $N=1$ and $C=4$.
+The four orthonormal vectors of $\R^4$ show that (iii) needs the
+dimension. Every triangle sum then has squared length $3$, no cell is
+short, and all eight tetrahedra are regular.
 
-\begin{lemma}\label{lem:count}
-For every configuration outside the excluded null set, $N+C=4$.
-\end{lemma}
-\begin{proof}
-By Lemma~\ref{lem:restrictions}, the corner contains between one and four
-marks, with at most three per line. List its nonzero row lengths. Up to
-transposition, which changes neither count, there are six possibilities:
-\[
-\begin{array}{c|c|c|c|c}
-\text{shape}&\text{row lengths}&\text{column lengths}&N&C\\\hline
-\shape{1}&1&1&2&2\\
-\shape{2}&2&1,1&1&3\\
-\shape{3}&3&1,1,1&1&3\\
-\shape{2,1}&2,1&2,1&0&4\\
-\shape{3,1}&3,1&2,1,1&0&4\\
-\shape{2,2}&2,2&2,2&0&4
-\end{array}
-\]
-Here $N$ counts lines containing every mark, while $C$ counts lines with
-one or two marks. For instance, in shape $(2,1)$ no line contains every mark,
-but the two nonempty rows and two nonempty columns each count towards $C$.
-Every row of the displayed list gives $N+C=4$.
-\end{proof}
+\section{Counting}\label{sec:count2}
 
-Taking expectations, using~\eqref{eq:EN} and the equal distributions of
-the eight tetrahedra, gives
-\[
- p=\tfrac12-\Pr(k=1\text{ or }2).
-\]
-Two short faces give one pair, and three give three pairs. Writing the pair
-count as $\binom k2$, and recalling $k\le3$, these counts encode precisely
-this event:
-\[
-\begin{array}{c|rrrr}
-k&0&1&2&3\\
-\binom k2&0&0&1&3\\
-k-\binom k2&0&1&1&0.
-\end{array}
-\]
-In words, the number of short face sums minus their number of pairs is
-the indicator of $k=1$ or $2$. Therefore
-\begin{equation}\label{eq:moments}
- p=\tfrac12+\E\binom k2-\E k.
+By Lemma~\ref{lem:restrict}(iii) the top left cell is short, so only the
+first row and the first column can contain every short cell. The first row
+does so exactly when the staircase is a single row, and the first column
+exactly when it is a single column. By Lemma~\ref{lem:restrict}(i) and (ii),
+the staircase has between one and four cells and no line of four. Up to
+interchanging rows and columns, which changes nothing below, there are six
+possibilities, listed in Figure~\ref{fig:shapes}.
+
+We cannot average $N$ directly, but we can average anything built from
+single cells and pairs of cells in one line. A single cell is short when one
+point falls in a cap, and two cells in one row are two faces of one
+tetrahedron, sharing two vertices, which will again need only one cap
+(Section~\ref{sec:average}). So let $m$ be the number of short cells and
+$J$ the number of pairs of short cells in a common row or column, and look
+for a formula $N=A+Bm+CJ$. The first three shapes in
+Figure~\ref{fig:shapes} give $A+B=2$, $A+2B+C=1$ and $A+3B+3C=1$, so
+$A=4$, $B=-2$ and $C=1$. The other three shapes fit the same formula, so
+in every case
+\begin{equation}\label{eq:count}
+ N=4-2m+J .
 \end{equation}
-We now need only the probability of one short sum and of a pair sharing two
-vertices.
-
-\section{The cap calculation}\label{sec:caps}
-The cap below height $-1/2$ occupies $1/4$ of the unit sphere. More generally,
-Archimedes' hat-box theorem makes a uniform point's height along any fixed
-axis uniform on $[-1,1]$: a band of height $h$ has area $2\pi h$.
-\footnote{At height $z$, the ring radius is $r=\sqrt{1-z^2}$. The circumference
-$2\pi r$ times the sloping width per unit height
-$\sqrt{1+(dr/dz)^2}=1/r$ gives constant area density $2\pi$.
-Integrating gives the band area, with pole endpoints understood by limits.}
-
-Fix $a,b$, and write $s=\|a+b\|$. Since
-\[
- \|a+b+c\|^2=s^2+1+2c\cdot(a+b),
-\]
-the sum is short when the height of $c$ along $(a+b)/s$ is below $-s/2$.
-Thus the cap has height $1-s/2$ and probability
-\begin{equation}\label{eq:q}
- q=\frac{2-s}{4}.
-\end{equation}
-For example, $a\cdot b=-1/2$ gives $s=1$ and $q=1/4$; independent $c,d$
-both hit that fixed cap with probability $1/16$.
-Norm-one equality cases have probability zero: for $s>0$,
-the squared norm above is uniform on an interval of positive length, and
-$s=0$ itself has probability zero. Sign symmetry applies this argument to
-each of the sixteen labelled sums, justifying the earlier exclusion.
 
 \begin{figure}[ht]
 \centering
-\begin{tikzpicture}\input{figs/cap-monthly.tex}\end{tikzpicture}
-\caption{Equal-height sphere and cylinder bands have equal area (left).
-Both face sums $a+b+c$ and $a+b+d$ are short when $c,d$ hit the same cap of
-height $1-s/2$ (right).}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabular}{c|cccccc}
+staircase & \yd{1} & \yd{2} & \yd{3} & \yd{2,1} & \yd{3,1} & \yd{2,2}\\\hline
+$m$ & $1$ & $2$ & $3$ & $3$ & $4$ & $4$\\
+$J$ & $0$ & $1$ & $3$ & $2$ & $4$ & $4$\\
+$N$ & $2$ & $1$ & $1$ & $0$ & $0$ & $0$\\
+$4-2m+J$ & $2$ & $1$ & $1$ & $0$ & $0$ & $0$
+\end{tabular}
+\caption{The possible staircases of short cells, up to transposition. A
+single cell lies in one row and one column, which both contain every short
+cell, so $N=2$. A row of two or three cells gives $N=1$. Every other shape
+spreads over two rows and two columns and gives $N=0$.}
+\label{fig:shapes}
+\end{figure}
+
+\section{Averaging}\label{sec:average}
+
+Each cell is a triangle, and all sixteen triangles have the same
+distribution, so each is short with the same probability $\alpha$. A pair of
+cells in one row consists of two faces of one tetrahedron, which share two
+vertices, like $a+b+c$ and $a+b+d$. All such pairs have the same
+distribution, so each is short with the same probability $\gamma$. There
+are $8$ lines with $\binom42=6$ pairs each, so taking expectations
+in~\eqref{eq:count} gives
+\begin{equation}\label{eq:EN2}
+ \E N=4-2\cdot16\alpha+48\gamma .
+\end{equation}
+
+Both probabilities come from one fact, Archimedes' hat-box theorem: the
+height of a uniform point on the sphere, measured along any fixed axis, is
+uniform on $[-1,1]$. Equivalently, a band between two parallel planes at
+distance $h$ apart has area $2\pi h$, the same as the matching band on the
+circumscribed cylinder. (At height $h$ the circle of latitude has radius
+$r=\sqrt{1-h^2}$. A thin band there has circumference $2\pi r$ and sloping
+width $dh/r$, so its area is $2\pi\,dh$ whatever the height.)
+
+Fix $a$ and $b$, and let $s=\|a+b\|$ and $u=(a+b)/s$. Then
+\[
+ \|a+b+c\|^2=s^2+2s\,(c\cdot u)+1,
+\]
+which is less than $1$ exactly when the height $c\cdot u$ of $c$ along $u$
+is below $-s/2$. That is a cap of height $1-s/2$, so
+\[
+ \Pr\bigl(a+b+c\text{ short}\mid a,b\bigr)=\frac{1-s/2}{2}=\frac{1-t}{2},
+ \qquad t=\frac s2 .
+\]
+Given $a$ and $b$, the points $c$ and $d$ are independent and fall in the
+same cap, so both $a+b+c$ and $a+b+d$ are short with probability
+$\bigl((1-t)/2\bigr)^2$ (Figure~\ref{fig:cap}). The cap is random, so this
+square must be taken before averaging.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.4,font=\small]
+ \begin{scope}
+ \clip (0,0) circle (1);
+ \fill[black!15] (-1,-1) rectangle (1,-.45);
+ \end{scope}
+ \draw[line width=.6pt] (0,0) circle (1);
+ \pgfmathsetmacro{\r}{sqrt(1-.45*.45)}
+ \draw[line width=.5pt] (-\r,-.45)--(\r,-.45);
+ \fill (0,0) circle (.025);
+ \draw[line width=.7pt,->] (0,0)--(0,1) node[above] {$u=(a+b)/s$};
+ \draw[line width=.4pt,<->] (1.25,0)--node[right] {$s/2$} (1.25,-.45);
+ \draw[line width=.4pt,<->] (1.25,-.45)--node[right] {$1-s/2$} (1.25,-1);
+ \draw[line width=.3pt,densely dotted] (0,0)--(1.25,0) (\r,-.45)--(1.25,-.45)
+  (0,-1)--(1.25,-1);
+ \fill (-.35,-.8) circle (.03) node[above] {$c$};
+ \fill (.4,-.82) circle (.03) node[above] {$d$};
+\end{tikzpicture}
+\caption{With $a$ and $b$ fixed, $a+b+c$ is short exactly when $c$ lies in
+the shaded cap, whose height is $1-s/2$. By Archimedes the cap has the
+fraction $(1-s/2)/2$ of the sphere's area.}
 \label{fig:cap}
 \end{figure}
 
-Let $\alpha=\E q$ be the probability that one face sum is short. Two face
-sums share two vertices, so their probability of both being short is
-$\gamma=\E(q^2)$: fix $a,b$, multiply the two independent cap probabilities,
-then average. The shared random cap is why squaring must precede averaging.
-Four faces and six pairs give $\E k=4\alpha$ and
-$\E\binom k2=6\gamma$.
+It remains to average over $a$ and $b$. Since $s^2=2+2\,a\cdot b$ and
+$a\cdot b$ is uniform on $[-1,1]$, again by Archimedes, $t^2=s^2/4$ is uniform
+on $[0,1]$. Hence $\E t=\int_0^1\sqrt v\,dv=\frac23$ and $\E t^2=\frac12$, and
+\[
+ \alpha=\frac{1-\E t}{2}=\frac16,\qquad
+ \gamma=\frac{1-2\,\E t+\E t^2}{4}=\frac{1-\frac43+\frac12}{4}=\frac1{24}.
+\]
+This agrees with the known result for a single face. By
+Lemma~\ref{lem:angle}, a given angle of a random triangle on the sphere is
+obtuse with probability $\alpha=\frac16$. At most one angle of a triangle
+can be obtuse, so the triangle is acute with probability
+$1-3\cdot\frac16=\frac12$.
 
-It is useful to average the hit--miss probability $q(1-q)$, whose factors
-remove the square root in $s$:
+Substituting into~\eqref{eq:EN2},
 \[
- q(1-q)=\frac{(2-s)(2+s)}{16}=\frac{4-s^2}{16},
- \qquad \E s^2=2+2\E(a\cdot b)=2.
+ \E N=4-\frac{32}{6}+\frac{48}{24}=\frac23,
+ \qquad\text{so}\qquad p=\frac{\E N}{8}=\frac1{12}
 \]
-The last mean vanishes by the symmetry $b\leftrightarrow-b$. Hence
-$\alpha-\gamma=1/8$, and~\eqref{eq:moments} reduces to
-\[
- p=\tfrac12+6\gamma-4\alpha=2\alpha-\tfrac14.
-\]
-Finally, $U=(1+a\cdot b)/2$ is uniform on $[0,1]$ and $s=2\sqrt U$, so
-\[
- \alpha=\int_0^1\frac{1-\sqrt u}{2}\,du=\frac16,
- \qquad p=2\cdot\frac16-\frac14=\boxed{\frac1{12}}.
-\]
-As a check, $\alpha$ is also the probability that a specified angle of an
-inscribed random triangle is obtuse. Its three angles have equal distributions
-and at most one is obtuse, giving acute-triangle probability $1-3\alpha=1/2$.
+by~\eqref{eq:EN}. This proves Theorem~\ref{thm}.
+
+Two details were set aside. Given $a$ and $b$ with $s>0$, the squared
+length $\|a+b+c\|^2$ is uniform on an interval, so it equals $1$ with
+probability zero, and $s=0$ itself has probability zero. The same holds for
+every one of the sixteen triangles, so with probability one no vertex sum
+has length exactly $1$, no angle is right, and Lemma~\ref{lem:threshold}
+has no ties at the threshold. Ties among the $w_T$ do not matter, since any
+ordering consistent with the values gives a staircase.
 
 \section{Remarks}
-The varying success count $N\in\{0,1,2\}$ is what prevents a constant-flip
-argument of the kind used for centre containment~\cite{Wendel}.
-The earlier proof~\cite{ChowChat} counts $N=4-2m+J$, where $m$ is the number
-of short entries and $J$ counts pairs on a common line. Each entry lies on
-two lines and two distinct entries share at most one line, so
-$\sum_t k_t=2m$, $\sum_t\binom{k_t}{2}=J$ and $C=2m-J$.
-Thus $N+C=4$ is the same identity expressed through the short face sums of
-one tetrahedron; its advantage is the immediate reduction to two moments.
 
-Dimension $3$ enters in the nonzero linear relation among four vertices.
-For four orthonormal vectors in $\R^4$, every triple sum has squared norm
-$3$: the table is empty and all eight tetrahedra have equilateral faces.
-The short-sum angle test is unchanged, but the nonemptiness argument fails.
+For comparison, Wendel's theorem~\cite{Wendel} gives the probability that
+the convex hull of random points contains the centre by the same device of
+antipodal flips, but there exactly one flip in each family succeeds. Here
+the number of successes $N$ is $0$, $1$ or $2$, which is why a count such
+as~\eqref{eq:count} is needed.
 
-\section*{Acknowledgements}
-This paper was developed with Claude (Anthropic).
-The author is responsible for the mathematics and citations. A portable
-exact-arithmetic checker accompanies the source; its finite checks support,
-but do not replace, the proof.
+A Lean~4 formalisation of Theorem~\ref{thm}, using Mathlib, accompanies the
+article as supplementary material. It states the result for the uniform
+measure on the sphere and proves it, including Archimedes' theorem and
+both integrals, using only Lean's standard axioms. It follows the plan above, although
+some steps take different routes: for instance, it proves the count in the
+equivalent form $N+C=4$, where $C=2m-J$ is the number of tetrahedra with
+one or two short faces, by checking every pattern of short
+triangles allowed by restrictions of the kind in Lemma~\ref{lem:restrict}. Sixteen deliberately falsified variants of its
+statements fail to compile.
+
+\section*{Declaration of AI use}
+The exposition is my own. I used Claude Opus~5.5 (Anthropic) to help
+draft the paper and to write the Lean formalisation. The theorem and the
+method of proof are credited to~\cite{ChowChat}.
 
 \begin{thebibliography}{9}
-\bibitem{AEN} A.~Akopyan, H.~Edelsbrunner and A.~Nikitenko, \emph{The beauty of random polytopes inscribed in the $2$-sphere}, Experiment.\ Math.\ \textbf{34} (2025), no.~3, 327--341. \href{https://doi.org/10.1080/10586458.2021.1980459}{doi:10.1080/10586458.2021.1980459}.
-\bibitem{ChowChat} \emph{Tetrahedron Acute Faces Proof}, ChatGPT-generated responses in a conversation publicly shared by Timothy Chow and linked in a MathOverflow comment on 14 August 2026. \url{https://chatgpt.com/share/6a7e8742-01e0-83ea-81de-533ea9dcb597}. Accessed 6 October 2026.
-\bibitem{Hall} G.~R.~Hall, \emph{Acute triangles in the $n$-ball}, J.\ Appl.\ Probab.\ \textbf{19} (1982), no.~3, 712--715. \href{https://doi.org/10.2307/3213533}{doi:10.2307/3213533}.
-\bibitem{Kab} Z.~Kabluchko, \emph{Angle sums of random simplices in dimensions $3$ and $4$}, Proc.\ Amer.\ Math.\ Soc.\ \textbf{148} (2020), no.~7, 3079--3086. \href{https://doi.org/10.1090/proc/14934}{doi:10.1090/proc/14934}.
-\bibitem{MO} Dan, \emph{A tetrahedron's vertices are random points on a sphere. What is the probability that the tetrahedron's four faces are all acute triangles?}, MathOverflow question 498296 (2025), with answers and comments, \url{https://mathoverflow.net/q/498296}.
-\bibitem{MSE} Dan, the same question on Mathematics Stack Exchange, question 5083355 (July 2025), with answers by J.~D'Aurizio and J.~Ferry, \url{https://math.stackexchange.com/q/5083355}.
-\bibitem{MOAnswer} V.~Jandhyala, answer to MathOverflow question 498296, 1 October 2026, \url{https://mathoverflow.net/a/515661}.
-\bibitem{Wendel} J.~G.~Wendel, \emph{A problem in geometric probability}, Math.\ Scand.\ \textbf{11} (1962), 109--111. \href{https://doi.org/10.7146/math.scand.a-10655}{doi:10.7146/math.scand.a-10655}.
+\small\raggedright
+\bibitem{AEN} A.~Akopyan, H.~Edelsbrunner and A.~Nikitenko, The beauty of
+random polytopes inscribed in the $2$-sphere, \emph{Exp. Math.} \textbf{34}
+(2025), 327--341.
+
+\bibitem{ChowChat} T.~Chow (shared by), Tetrahedron acute faces proof,
+ChatGPT-generated responses in a publicly shared conversation, linked from
+a comment on MathOverflow question 498296 on 14 August 2026,
+\url{https://chatgpt.com/share/6a7e8742-01e0-83ea-81de-533ea9dcb597}.
+
+\bibitem{MO} Dan, A tetrahedron's vertices are random points on a sphere.
+What is the probability that the tetrahedron's four faces are all acute
+triangles?, MathOverflow question 498296 (2025),
+\url{https://mathoverflow.net/q/498296}.
+
+\bibitem{MSE} Dan, the same question, Mathematics Stack Exchange question
+5083355 (2025), \url{https://math.stackexchange.com/q/5083355}.
+
+\bibitem{Wendel} J.~G.~Wendel, A problem in geometric probability,
+\emph{Math. Scand.} \textbf{11} (1962), 109--111.
 \end{thebibliography}
 \end{document}

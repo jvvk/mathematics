@@ -8,29 +8,29 @@
 <p align="center"><sub><a href="paper">paper</a> · <a href="lean">Lean proof</a> · <a href="verify">code</a> · <a href="../">all results</a></sub></p>
 <!-- visual:end -->
 
-Choose four points independently and uniformly on the unit sphere in `ℝ³`. What is the probability that all four faces of the tetrahedron they span are acute triangles? MathOverflow [question 498296](https://mathoverflow.net/q/498296) (also Mathematics Stack Exchange [5083355](https://math.stackexchange.com/q/5083355)) asked whether it is `1/12`. Simulations suggested so, and for a single face the probability is `1/2`, so the faces are far from independent.
+Choose four points independently and uniformly on the unit sphere in `ℝ³`. What is the probability that all four faces of the tetrahedron they span are acute triangles? MathOverflow [question 498296](https://mathoverflow.net/q/498296) (also Mathematics Stack Exchange [5083355](https://math.stackexchange.com/q/5083355)) asked whether it is `1/12`. A single face is acute with probability `1/2`, but the faces share edges, so they are far from independent.
 
 **Theorem.** The probability is exactly `1/12`.
 
-The proof flips signs. Replacing some of the four points by their antipodes gives eight tetrahedra, and the expected number of them with four acute faces is `8 · (1/12) = 2/3`. An angle is obtuse exactly when a signed sum of three of the unit vectors is short (length below `1`). A finite count shows that the number `N` of good tetrahedra among the eight satisfies `N + C = 4`, where `C` counts tetrahedra with one or two short face sums. So `E N` reduces to two pair integrals on the sphere, `1/6` and `1/24`, which follow from Archimedes' theorem that the height of a uniform point on the sphere is uniform.
+An angle of a triangle on the sphere is obtuse exactly when a signed sum of its three vertices is short (length below `1`). Replacing points by their antipodes gives eight tetrahedra, and an obtuse angle of one of them is a short face sum of another. Every even tetrahedron shares exactly one face with every odd one, so the sixteen triangles fill a `4 × 4` grid, and a tetrahedron has four acute faces exactly when every short cell lies in its row or column. A threshold on the tetrahedra's totals makes the short cells a small staircase, and the six possible staircases give `N = 4 − 2m + J` for the number `N` of good tetrahedra, where `m` counts short cells and `J` pairs of short cells in one line. Archimedes' hat-box theorem gives the two probabilities needed, `1/6` and `1/24`, so `E N = 2/3` and the answer is `2/3 ÷ 8 = 1/12`.
 
-The theorem and its proof first appeared in a ChatGPT conversation publicly shared by Timothy Chow and linked from a MathOverflow comment on 14 August 2026. The paper credits it and claims no priority for either. Its contribution is an original, simplified exposition of that proof, with a Lean formalisation of the whole theorem. For the record, the author's earlier MathOverflow answer ([515661](https://mathoverflow.net/a/515661), 1 October 2026) was found with Claude (Anthropic) without the author having read that conversation.
+The theorem and the method first appeared in a ChatGPT conversation publicly shared by Timothy Chow and linked from a MathOverflow comment on 14 August 2026. The paper credits it and claims no priority. Its contribution is the exposition. The author's MathOverflow answer ([515661](https://mathoverflow.net/a/515661), 1 October 2026) was found with Claude (Anthropic) without the author having read that conversation.
 
-Preprint v1, October 2026, not peer reviewed. The whole theorem, including the probability measure, Archimedes' theorem and the two integrals, is formally verified in Lean 4 (`lean/`, standard axioms only). Only the closing remarks of the paper are outside Lean. The author used AI tools in this work, as stated in the paper: Claude Opus 5.5 (Anthropic) was used for the Lean formalisation and in drafting the paper. The author is responsible for its content.
+Preprint, October 2026, not peer reviewed. The paper's declaration: the exposition is the author's own; Claude Opus 5.5 (Anthropic) was used to help draft the paper and to write the Lean formalisation. The whole theorem, including the probability measure, Archimedes' theorem and both integrals, is formally verified in Lean 4 (`lean/`, standard axioms only).
 
 ## Contents
 
-- `paper/`: `paper.tex` and `paper.pdf` (preprint v1), with `figs/`.
+- `paper/`: `paper.tex` and `paper.pdf`. Figures are drawn in TikZ inside the source.
 - `verify/`:
-  - `check_identities.py`: exact rational checks of every finite step. It covers the angle identity, the threshold, the face and angle correspondence, `N + C = 4` on 400 exact configurations, all corner shapes, all 65,536 sign subsets, the worked example and the final arithmetic. `MUTANT=1` (a wrong threshold for short sums) and `MUTANT=2` (a wrong value for `∫ √u`) must fail.
-  - `sim_N.py`: Monte Carlo with 400,000 samples of the number of good tetrahedra among the eight. The mean is about `0.667`, giving about `0.0834` for the probability.
+  - `check.py`: exact rational checks of every finite claim on 600 configurations of rational points on the sphere: the grid, the acute-face criterion (with `N` counted directly from the angles), the threshold, the staircase, the three restrictions, `N = 4 − 2m + J`, the worked example and the final arithmetic. `MUTANT=1` (threshold `3`) and `MUTANT=2` (`N = 4 − 2m + 2J`) must fail.
+  - `sim.py`: Monte Carlo estimate from one million random tetrahedra, about `0.0838`.
 - `lean/`: a Lake project pinned to Lean 4.34.0 and Mathlib v4.34.0. `lean/README.md` maps the paper to Lean names, `CheckClaims.lean` prints their axioms, and `scripts/mutants.py` runs the mutation tests.
 
 ## Reproduce
 
 ```
-cd verify && python3 check_identities.py && MUTANT=1 python3 check_identities.py; MUTANT=2 python3 check_identities.py
-python3 sim_N.py
+cd verify && python3 check.py && MUTANT=1 python3 check.py; MUTANT=2 python3 check.py
+python3 sim.py
 cd ../paper && latexmk -pdf paper.tex
 cd ../lean && lake exe cache get && lake build LeanProofs && lake env lean CheckClaims.lean
 ```

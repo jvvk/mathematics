@@ -5,13 +5,14 @@
   "uncommitted_overrides": [
     "LeanProofs.lean (root imports AcuteTetra only)",
     "CheckClaims.lean (generated)",
-    "scripts/mutants.py (copy of lean-proofs scripts/acutetetra_mutants.py)"
+    "scripts/mutants.py (copy of lean-proofs scripts/acutetetra_mutants.py)",
+    "LeanProofs/AcuteTetra/Count.lean (module docstring wording only; proofs unchanged)"
   ],
   "files": {
     "CheckClaims.lean": "d0bc852573daeeecaf561ae850f40189fb32759945f14734a1a712cbd5357723",
     "LeanProofs/AcuteTetra/Comb.lean": "d7ecadee327ef98a52ef634316aeb1aa6e193cf891c8db92a1eee6039858e8b0",
     "LeanProofs/AcuteTetra/Cone.lean": "234717881e65664db5e415fd106830c62d032cb05403c624db94ae41632b17a3",
-    "LeanProofs/AcuteTetra/Count.lean": "244de2922304f630ded5445456af9ca1563882d59728c8b81e3a566714bf4b07",
+    "LeanProofs/AcuteTetra/Count.lean": "3c0952166b6d46a670149fbadacec4c4439b88c3e7ac69a06d745eb10b1a41fc",
     "LeanProofs/AcuteTetra/Facts.lean": "22cc6d21e3f20335b02df4b7b54bff6b127c8e2960081f0f57a1b7eb4b22f827",
     "LeanProofs/AcuteTetra/Geom.lean": "b7f5a63c0c8b7d41567bae57636eadc50ff565b3ad971efa246649ec2f3ef282",
     "LeanProofs/AcuteTetra/Gram.lean": "ba98f50c877888fbd7834439178b635121994d659236102912b496f0aa3d3f9d",
