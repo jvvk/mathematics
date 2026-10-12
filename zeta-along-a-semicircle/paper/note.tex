@@ -1,0 +1,118 @@
+\documentclass[11pt]{amsart}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amssymb,amsmath}
+\usepackage{tikz}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage[hidelinks]{hyperref}
+
+\colorlet{copper}{orange!75!black}
+\colorlet{inkmuted}{black!60}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Zeta Along a Semicircle}
+\author{Vamshi Jandhyala}
+\address{London, United Kingdom}
+\email{vamshi.jandhyala@gmail.com}
+
+\begin{document}
+
+\begin{abstract}
+A question on Mathematics Stack Exchange asks whether $|\zeta(z)|$ increases strictly along the semicircle $z=1-5e^{iu}$, $0\le u\le\pi$, which runs from the trivial zero $-4$ through the critical strip to $6$. We prove that it does, with a computer-assisted argument in ball arithmetic, and that the same holds for the semicircle of radius $3$ through $-2$. For the semicircles of radius $7,9,\dots,41$ through the other trivial zeros it fails: $|\zeta|$ decreases on a certified interval. A heuristic from the functional equation explains the threshold: once the arc reaches height $2\pi$ while moving to the right in the half-plane $\operatorname{Re}z<0$, $|\zeta|$ falls. The exact reductions behind the computation are checked in Lean.
+\end{abstract}
+
+\maketitle
+
+\section{The question}
+
+Start at the trivial zero $z=-4$ of the Riemann zeta function and walk to $z=6$ along the lower semicircle centred at $1$, $z(u)=1-5e^{iu}$ for $0\le u\le\pi$. A Mathematics Stack Exchange user asked whether $|\zeta(z(u))|$ increases strictly along the way, and whether a computer-assisted proof would count~\cite{MSE}. The walk starts at $|\zeta|=0$ and ends at $\zeta(6)=\pi^6/945\approx1.017$, but in between it crosses the critical strip, where $|\zeta|$ can do anything. Before reading on, it is worth guessing what happens on the larger semicircles through $-6$, $-8$, \dots: Figure~\ref{fig:arcs} gives the answer away.
+
+\begin{theorem}\label{thm:main}
+For $r=3$ and $r=5$, the function $u\mapsto|\zeta(1-re^{iu})|$ is strictly increasing on $[0,\pi]$.
+\end{theorem}
+
+\begin{theorem}\label{thm:fail}
+For every odd $r$ with $7\le r\le41$, the function $u\mapsto|\zeta(1-re^{iu})|$ is not monotone on $[0,\pi]$.
+\end{theorem}
+
+\begin{figure}[ht]
+\centering
+\input{figs/arcs.tex}
+\caption{Left: the semicircles $z=1-re^{iu}$ for $r=3,5,7,9$, from the trivial zero $1-r$ to $1+r$. Right: $\log|\zeta|$ along them. For $r=3$ (blue) and $r=5$ (copper, the question) it rises all the way; for $r=7$ (dark grey) and $r=9$ (light grey) it overshoots and falls before the end.}
+\label{fig:arcs}
+\end{figure}
+
+Both theorems are computer assisted. On the second question in~\cite{MSE}: such a proof is a proof, provided every number is an enclosure with a proven error bound rather than a floating-point estimate. All computations below use Arb~\cite{Arb} ball arithmetic through python-flint~\cite{flint}, and every quantity is enclosed over a whole interval of $u$ at once.
+
+\section{The reduction}
+
+Write $F(u)=\log|\zeta(z(u))|$ and $z(u)=1-re^{iu}$, so $z'(u)=-rie^{iu}$ and $|z'|=r$. Away from zeros of $\zeta$,
+\[
+R(u):=F'(u)=\operatorname{Re}\Bigl(z'(u)\,\frac{\zeta'}{\zeta}\bigl(z(u)\bigr)\Bigr),
+\]
+because $\log|\zeta|$ is the real part of a branch of $\log\zeta$. So it suffices to show $R>0$ on $(0,\pi)$. Two points need care, and each has a short exact argument.
+
+\emph{The start.} At $u=0$ the path sits on the zero $z_0=1-r$, so $R\to+\infty$ there and cannot be enclosed directly. Write $\zeta(z)=(z-z_0)h(z)$ with
+\[
+h(z)=\int_0^1\zeta'\bigl(z_0+s(z-z_0)\bigr)\,ds,\qquad h'(z)=\int_0^1 s\,\zeta''\bigl(z_0+s(z-z_0)\bigr)\,ds .
+\]
+Then $\zeta'/\zeta=1/(z-z_0)+h'/h$, and since $z-z_0=r(1-e^{iu})$ a short computation gives $\operatorname{Re}\bigl(z'/(z-z_0)\bigr)=\frac12\cot\frac u2$. Hence
+\begin{equation}\label{eq:start}
+R(u)\ \ge\ \tfrac12\cot\tfrac u2-r\,\Bigl|\frac{h'}{h}\Bigr| .
+\end{equation}
+If $B$ is a convex box containing $z_0$ and the arc for $0\le u\le\delta$, then $h(z)$ is an average of values of $\zeta'$ on $B$, and $h'(z)$ is half an average of values of $\zeta''$ on $B$. So $h$ and $h'$ lie in the boxes enclosing $\zeta'(B)$ and $\frac12\zeta''(B)$, and~\eqref{eq:start} with $\frac12\cot\frac u2\ge\frac12\cot\frac\delta2$ proves $R>0$ on $(0,\delta]$ once these enclosures are tight enough. In fact $h'/h\approx\zeta''(z_0)/(2\zeta'(z_0))$ is small: for $r=5$ the enclosures give $5|h'/h|\le3.34$, against $\frac12\cot0.025\approx19.99$ for $\delta=0.05$.
+
+\emph{The end.} At $u=\pi$, $z=1+r$ and $z'=ri$, while $\zeta(1+r)$ and $\zeta'(1+r)$ are real; so $R(\pi)=0$ exactly. The arc meets the real axis at right angles, and by the symmetry $\zeta(\bar z)=\overline{\zeta(z)}$ the point $u=\pi$ is a turning point of $F$. So $R$ cannot be bounded away from $0$ near $\pi$. Instead we show $R'<0$ on $[\pi-\varepsilon,\pi]$, where
+\[
+R'(u)=\operatorname{Re}\Bigl(z''\frac{\zeta'}{\zeta}+z'^2\Bigl(\frac{\zeta''}{\zeta}-\Bigl(\frac{\zeta'}{\zeta}\Bigr)^{2}\Bigr)\Bigr),\qquad z''=re^{iu};
+\]
+then $R(u)=-\int_u^\pi R'>0$ for $u<\pi$.
+
+\emph{The middle.} On $[\delta,\pi-\varepsilon]$ we enclose $R$ on intervals of $u$, bisecting until every enclosure is positive.
+
+\section{The computation}
+
+With $\delta=0.05$, $\varepsilon=0.3$ and $64$-bit balls, the three steps succeed for both radii:
+
+\begin{center}
+\begin{tabular}{ccc}
+\hline
+$r$ & intervals with $R>0$ on $[0.05,\pi-0.3]$ & intervals with $R'<0$ on $[\pi-0.3,\pi]$\\
+\hline
+$3$ & $1695$ & $3$\\
+$5$ & $3219$ & $3$\\
+\hline
+\end{tabular}
+\end{center}
+
+\noindent Each run takes about a second. This proves Theorem~\ref{thm:main}. The margin is thin near the top: for $r=5$, on the last quarter of the arc $|\zeta|$ rises only from about $0.963$ to $1.017$, and $R(u)/\sin u$ tends to about $0.18$ as $u\to\pi$. The left half of the arc, through the critical strip and the half-plane $\operatorname{Re}z<0$, is where ball arithmetic does the real work.
+
+For Theorem~\ref{thm:fail} it is enough to find, for each $r$, one interval of $u$ on which the enclosure of $R$ is negative. Scanning intervals of length $\pi/4000$ finds one for every odd $r$ from $7$ to $41$; for $r=7$ it is $[1946\pi/4000,\,1947\pi/4000]$, near $u=\pi/2$.
+
+\begin{remark}[Why the threshold lies between $5$ and $7$]
+For $\operatorname{Re}z=\sigma<0$ and large $|t|=|\operatorname{Im}z|$, the functional equation and Stirling's formula give $|\zeta(\sigma+it)|\approx(|t|/2\pi)^{1/2-\sigma}|\zeta(1-\sigma-it)|$~\cite{Titchmarsh}, and the last factor is close to $1$. So, at fixed height, $|\zeta|$ \emph{decreases} as $\sigma$ increases once $|t|>2\pi$. Near $u=\pi/2$ the arc moves almost horizontally to the right at height about $r$ while $\sigma=1-r\cos u$ is still negative for $u<\arccos(1/r)$, so for $r$ well above $2\pi\approx6.28$ the factor $(|t|/2\pi)^{-\sigma}$ wins and $F$ falls. For $r=3$ and $r=5$ the arc never reaches height $2\pi$. This is a heuristic, not a proof; turning it into a proof for all $r\ge7$ needs explicit error terms.
+\end{remark}
+
+\section{Verification}
+
+The script \texttt{prove.py} proves the case $r=5$ asked in~\cite{MSE}, and \texttt{semicircles.py} proves both theorems; both use only ball arithmetic. Planted errors are caught: claiming monotonicity past $u=\pi$ (where it fails by symmetry), claiming monotonicity for $r=7$, and looking for a decrease for $r=3$ all fail to certify. A floating-point evaluation of $R(1)$ in mpmath agrees with the enclosure to $15$ digits.
+
+The exact reductions are formally verified in Lean~4 with Mathlib~\cite{mathlib}: the identity $\operatorname{Re}\bigl(z'/(z-z_0)\bigr)=\frac12\cot\frac u2$, the splitting $\bigl((z-z_0)h\bigr)'/\bigl((z-z_0)h\bigr)=1/(z-z_0)+h'/h$, the bound~\eqref{eq:start} in the form used, $R(\pi)=0$ for real values of $\zeta$ and $\zeta'$ at $1+r$, and the step from $R'<0$ and $R(\pi)=0$ to $R>0$. The enclosures of $\zeta$, $\zeta'$ and $\zeta''$, the averaging argument and the formula for $R'$ are outside Lean. Code and Lean files are at~\cite{repo}.
+
+\section*{Acknowledgments}
+
+The question is due to the Mathematics Stack Exchange user shown as user45639; the use of $\operatorname{Re}(z'\zeta'/\zeta)$ follows a comment of Greg Martin on the question. The computations and the Lean formalisation were carried out with Claude (Anthropic). The author is responsible for the content.
+
+\begin{thebibliography}{9}
+\bibitem{Arb} F.~Johansson, \emph{Arb: efficient arbitrary-precision midpoint-radius interval arithmetic}, arXiv:1611.02831 (2016).
+\bibitem{flint} The FLINT team, \emph{python-flint}, version 0.9.0, \url{https://github.com/flintlib/python-flint}.
+\bibitem{mathlib} The mathlib Community, \emph{The Lean mathematical library}, in: Proc.\ 9th ACM SIGPLAN Int.\ Conf.\ on Certified Programs and Proofs (CPP 2020), 367--381.
+\bibitem{MSE} user45639, \emph{Monotonicity of $|\zeta(z)|$ along the semicircular path $z=1-5e^{iu}$}, Mathematics Stack Exchange question 5150160, \url{https://math.stackexchange.com/q/5150160}.
+\bibitem{Titchmarsh} E.~C.~Titchmarsh, \emph{The Theory of the Riemann Zeta-Function}, 2nd ed., revised by D.~R.~Heath-Brown, Oxford University Press, 1986.
+\bibitem{repo} V.~Jandhyala, code and Lean proofs, \url{https://github.com/jvvk/mathematics/tree/main/zeta-along-a-semicircle}.
+\end{thebibliography}
+
+\end{document}

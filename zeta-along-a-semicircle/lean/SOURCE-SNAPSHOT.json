@@ -1,0 +1,20 @@
+{
+  "source_commit": "922402b (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports ZetaArc only)",
+    "CheckClaims.lean (generated)",
+    "scripts/mutants.py (copy of lean-proofs scripts/zetaarc_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "313d59e2f4b725a311451df015d6655c97f484fe164bcc14255a29cb7c688060",
+    "LeanProofs/ZetaArc/Basic.lean": "db15faf45a727a107014a72730847429c8a5e6577698b8d32b2295d8c086fe52",
+    "LeanProofs/ZetaArc/Main.lean": "fa802690b313531714b988108657cb731957ccca46e8666b65ee7676698937b4",
+    "LeanProofs/ZetaArc.lean": "754c2bc637f2eef20b8424094ed3f855feec2245708a7d2162480abb28ecd138",
+    "LeanProofs.lean": "057f3ad914442272c84021ba0eb34138f84fbc2cf54d232984eb4e6dfaeaf074",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutants.py": "f361388946d733e0252010c01457055b54188ab4f27b26900dca5e00eea45120"
+  }
+}

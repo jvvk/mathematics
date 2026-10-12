@@ -1,0 +1,19 @@
+ZetaArc.re_ratio : ∀ (r u : ℝ),
+  r ≠ 0 →
+    Real.sin (u / 2) ≠ 0 →
+      (-↑r * Complex.I * Complex.exp (↑u * Complex.I) / (1 - ↑r * Complex.exp (↑u * Complex.I) - (1 - ↑r))).re =
+        Real.cos (u / 2) / (2 * Real.sin (u / 2))
+'ZetaArc.re_ratio' depends on axioms: [propext, Classical.choice, Quot.sound]
+ZetaArc.log_deriv_split : ∀ (z z₀ h h' : ℂ),
+  z - z₀ ≠ 0 → h ≠ 0 → (h + (z - z₀) * h') / ((z - z₀) * h) = 1 / (z - z₀) + h' / h
+'ZetaArc.log_deriv_split' depends on axioms: [propext, Classical.choice, Quot.sound]
+ZetaArc.region_a : ∀ (zp q k : ℂ) (r M c : ℝ),
+  (zp * q).re = c → ‖zp‖ = r → ‖k‖ ≤ M → 0 ≤ r → r * M < c → 0 < (zp * (q + k)).re
+'ZetaArc.region_a' depends on axioms: [propext, Classical.choice, Quot.sound]
+ZetaArc.R_pi : ∀ (r a b : ℝ), (-↑r * Complex.I * Complex.exp (↑Real.pi * Complex.I) * (↑a / ↑b)).re = 0
+'ZetaArc.R_pi' depends on axioms: [propext, Classical.choice, Quot.sound]
+ZetaArc.pos_of_deriv_neg : ∀ (R : ℝ → ℝ) (a : ℝ),
+  ContinuousOn R (Set.Icc a Real.pi) →
+    (∀ x ∈ Set.Ioo a Real.pi, HasDerivAt R (deriv R x) x ∧ deriv R x < 0) →
+      R Real.pi = 0 → ∀ x ∈ Set.Ico a Real.pi, 0 < R x
+'ZetaArc.pos_of_deriv_neg' depends on axioms: [propext, Classical.choice, Quot.sound]
