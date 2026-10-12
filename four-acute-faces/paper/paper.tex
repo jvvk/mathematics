@@ -36,7 +36,7 @@ vector sum belonging to another. The short sums fill a staircase in a
 $4\times4$ grid, and counting what the staircase can look like reduces
 the problem to two integrals that Archimedes' hat-box theorem makes
 easy. The method first appeared in a publicly shared ChatGPT
-conversation. Every step has been checked in Lean.
+conversation.
 \end{abstract}
 
 \section{The question}
@@ -423,7 +423,7 @@ has length exactly $1$, no angle is right, and Lemma~\ref{lem:threshold}
 has no ties at the threshold. Ties among the $w_T$ do not matter, since any
 ordering consistent with the values gives a staircase.
 
-\section{Remarks}
+\section{A remark}
 
 For comparison, Wendel's theorem~\cite{Wendel} gives the probability that
 the convex hull of random points contains the centre by the same device of
@@ -431,19 +431,9 @@ antipodal flips, but there exactly one flip in each family succeeds. Here
 the number of successes $N$ is $0$, $1$ or $2$, which is why a count such
 as~\eqref{eq:count} is needed.
 
-A Lean~4 formalisation of Theorem~\ref{thm}, using Mathlib, accompanies the
-article as supplementary material. It states the result for the uniform
-measure on the sphere and proves it, including Archimedes' theorem and
-both integrals, using only Lean's standard axioms. It follows the plan above, although
-some steps take different routes: for instance, it proves the count in the
-equivalent form $N+C=4$, where $C=2m-J$ is the number of tetrahedra with
-one or two short faces, by checking every pattern of short
-triangles allowed by restrictions of the kind in Lemma~\ref{lem:restrict}. Sixteen deliberately falsified variants of its
-statements fail to compile.
-
 \section*{Declaration of AI use}
 The exposition is my own. I used Claude Opus~5.5 (Anthropic) to help
-draft the paper and to write the Lean formalisation. The theorem and the
+draft the paper. The theorem and the
 method of proof are credited to~\cite{ChowChat}.
 
 \begin{thebibliography}{9}

@@ -16,7 +16,7 @@ An angle of a triangle on the sphere is obtuse exactly when a signed sum of its 
 
 The theorem and the method first appeared in a ChatGPT conversation publicly shared by Timothy Chow and linked from a MathOverflow comment on 14 August 2026. The paper credits it and claims no priority. Its contribution is the exposition. The author's MathOverflow answer ([515661](https://mathoverflow.net/a/515661), 1 October 2026) was found with Claude (Anthropic) without the author having read that conversation.
 
-Preprint v2, October 2026, not peer reviewed. Version 1 (tag `four-acute-faces-v1`) was prepared with Claude (Anthropic) and OpenAI Codex; this version replaces it. The paper's declaration: the exposition is the author's own; Claude Opus 5.5 (Anthropic) was used to help draft the paper and to write the Lean formalisation. The whole theorem, including the probability measure, Archimedes' theorem and both integrals, is formally verified in Lean 4 (`lean/`, standard axioms only).
+Preprint v2, October 2026, not peer reviewed. Version 1 (tag `four-acute-faces-v1`) was prepared with Claude (Anthropic) and OpenAI Codex; this version replaces it. The paper's declaration: the exposition is the author's own; Claude Opus 5.5 (Anthropic) was used to help draft the paper. Separately from the paper, a Lean 4 formalisation of the full theorem, including the probability measure, Archimedes' theorem and both integrals, is in `lean/` (standard axioms only); it was written with Claude Opus 5.5.
 
 ## Contents
 
