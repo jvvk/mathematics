@@ -14,13 +14,13 @@ Choose four points independently and uniformly on the unit sphere in `ℝ³`. Wh
 
 The proof flips signs. Replacing some of the four points by their antipodes gives eight tetrahedra, and the expected number of them with four acute faces is `8 · (1/12) = 2/3`. An angle is obtuse exactly when a signed sum of three of the unit vectors is short (length below `1`). A finite count shows that the number `N` of good tetrahedra among the eight satisfies `N + C = 4`, where `C` counts tetrahedra with one or two short face sums. So `E N` reduces to two pair integrals on the sphere, `1/6` and `1/24`, which follow from Archimedes' theorem that the height of a uniform point on the sphere is uniform.
 
-The same proof, in a different form, had already appeared in a ChatGPT conversation shared by Timothy Chow and linked from a MathOverflow comment on 14 August 2026. The paper credits it, and its contribution is expository: a complete, checked and formalised account. The author's MathOverflow answer ([515661](https://mathoverflow.net/a/515661), 1 October 2026) was found with Claude (Anthropic) without the author having read that conversation.
+The theorem and its proof first appeared in a ChatGPT conversation publicly shared by Timothy Chow and linked from a MathOverflow comment on 14 August 2026. The paper credits it and claims no priority for either. Its contribution is an original, simplified exposition of that proof, with a Lean formalisation of the whole theorem. For the record, the author's earlier MathOverflow answer ([515661](https://mathoverflow.net/a/515661), 1 October 2026) was found with Claude (Anthropic) without the author having read that conversation.
 
-Preprint v1, October 2026, not peer reviewed; submitted to arXiv. The whole theorem, including the probability measure, Archimedes' theorem and the two integrals, is formally verified in Lean 4 (`lean/`, standard axioms only). Only the closing remarks of the paper are outside Lean. The author used AI tools (Claude, Anthropic) in this work, as stated in the paper, and is responsible for its content.
+Preprint v1, October 2026, not peer reviewed. The whole theorem, including the probability measure, Archimedes' theorem and the two integrals, is formally verified in Lean 4 (`lean/`, standard axioms only). Only the closing remarks of the paper are outside Lean. The author used AI tools in this work, as stated in the paper: Claude Opus 5.5 (Anthropic) was used for the Lean formalisation and in drafting the paper. The author is responsible for its content.
 
 ## Contents
 
-- `paper/`: `paper.tex` and `paper.pdf` (the arXiv version), with `figs/`.
+- `paper/`: `paper.tex` and `paper.pdf` (preprint v1), with `figs/`.
 - `verify/`:
   - `check_identities.py`: exact rational checks of every finite step. It covers the angle identity, the threshold, the face and angle correspondence, `N + C = 4` on 400 exact configurations, all corner shapes, all 65,536 sign subsets, the worked example and the final arithmetic. `MUTANT=1` (a wrong threshold for short sums) and `MUTANT=2` (a wrong value for `∫ √u`) must fail.
   - `sim_N.py`: Monte Carlo with 400,000 samples of the number of good tetrahedra among the eight. The mean is about `0.667`, giving about `0.0834` for the probability.

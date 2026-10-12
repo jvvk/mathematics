@@ -20,7 +20,7 @@ Main theorem (`Prob.lean`):
 `PP` is the law of four independent uniform points on the unit sphere of `EuclideanSpace ℝ (Fin 3)`, and
 `AllFacesAcute A` says every angle of every face is acute.
 
-| Paper (paper-arxiv, 6 Oct 2026)          | Lean                                                        |
+| Paper (preprint v1, 6 Oct 2026)          | Lean                                                        |
 |------------------------------------------|-------------------------------------------------------------|
 | uniform measure on S²                    | `unif` (Sphere), `unif_eq_toSphere` = normalised `volume.toSphere` |
 | Lemma 1 (angle test)                     | `angle_identity` (Count)                                    |

@@ -8,7 +8,7 @@ Main theorem (`Prob.lean`):
 `AllFacesAcute A` says every angle of every face is acute. Axioms: `propext`, `Classical.choice`,
 `Quot.sound` only. Mutation tests: `scripts/mutants_acutetetra.sh` (all mutants rejected).
 
-| Paper (paper-arxiv, 6 Oct 2026)          | Lean                                                        |
+| Paper (preprint v1, 6 Oct 2026)          | Lean                                                        |
 |------------------------------------------|-------------------------------------------------------------|
 | uniform measure on S²                    | `unif` (Sphere), `unif_eq_toSphere` = normalised `volume.toSphere` |
 | Lemma 1 (angle test)                     | `angle_identity` (Count)                                    |
