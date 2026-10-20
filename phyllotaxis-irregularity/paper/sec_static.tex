@@ -1,0 +1,308 @@
+\section{The first disk near a hexagonal front}\label{sec:static}
+
+A rhombic lattice front whose notch hinge is exactly $60^\circ$ is a piece of the hexagonal packing:
+every disk of the front touches its neighbours in the triangular lattice. This section shows that such
+fronts are unstable in the direction the conjecture cares about. Perturb a few hinges by amounts of
+order $t$ and let the disks shrink at a rate of order $t$, and the very first disk can be a pentagon.
+
+\subsection{The notch-60 lattice}
+\begin{lemma}[Notch-60 law]\label{lem:notch60}
+A rhombic lattice front with $m$ down vectors and $n$ up vectors of bearing $u$, the down vectors at
+$u-120^\circ$ (notch hinge $60^\circ$), closes if and only if
+\[
+\tan u=\frac{\sqrt3\,m}{2n-m}.
+\]
+Both families point to the right, $30^\circ<u<90^\circ$, exactly when $n/2<m<2n$.
+\end{lemma}
+
+\begin{proof}
+Expand $\sin(u-2\pi/3)=-\tfrac12\sin u-\tfrac{\sqrt3}2\cos u$: the closing condition
+$m\sin(u-2\pi/3)+n\sin u=0$ becomes $(2n-m)\sin u=\sqrt3\,m\cos u$. The bounds on $u$ are $\tan u>1/\sqrt3$
+and $2n-m>0$.
+\end{proof}
+
+\noindent For $(2,3)$ this gives $\tan u=\sqrt3/2$, $u\approx40.89^\circ$ and down bearing
+$\approx-79.11^\circ$; for $(1,2)$ it gives a vertical down vector, which is why the construction below
+needs $m,n\ge2$.
+
+\begin{definition}\label{def:hexfront}
+Let $m,n\ge2$ with $n/2<m<2n$. Write the front word as $D_1\cdots D_m\,U_1\cdots U_n$ and name the disks
+around the notch $Z\xrightarrow{D_{m-1}}A\xrightarrow{D_m}B\xrightarrow{U_1}C\xrightarrow{U_2}E$. The front
+$H(\alpha,\sigma,\eps,c)$ has all its disks, the seeds included, of diameter~\eqref{eq:diam}, consecutive disks
+touching, and the hinges of the notch-60 lattice except four:
+\begin{gather*}
+h(D_{m-1},D_m)=180^\circ+\alpha,\qquad h(D_m,U_1)=60^\circ+\sigma,\qquad h(U_1,U_2)=180^\circ-\eps,\\
+h(U_n,D_1)=300^\circ-(\alpha+\sigma-\eps).
+\end{gather*}
+\end{definition}
+
+The last hinge, at the ridge, is forced: the deviations $h-180^\circ$ of the hinges of a closed front sum
+to zero. To fix scale and vertical translation, set the diameter of the first disk to $1$ at height $0$.
+The bearings have the form $\phi+\beta_j(\alpha,\sigma,\eps)$, where the hinges determine the relative
+bearings $\beta_j$. Generate the edge lengths by~\eqref{eq:edge-exact}. At zero parameters the
+vertical closing error has derivative $\sum_j\cos\beta_j=\Lambda_0>0$ with respect to $\phi$.
+The implicit function theorem therefore determines an analytic closing rotation for small
+parameters. Horizontal closure defines the positive circumference. The last tangency is included
+in this recurrence, since its endpoint returns to height $0$ and hence to diameter $1$.
+Both $\eta_U$ and $\eta_D$ are $O(|\alpha|+|\eps|+|c|)$, so their maximum has this bound and
+their product has its square as a bound. The one notch angle is
+$60^\circ+\sigma$, and the rate is $|c|$.
+
+At $t=0$ the disks of $H$ sit on the triangular lattice $\{xD+yU:x,y\in\mathbb Z\}$, where $D$ and $U$ now
+denote the unit down and up vectors. Since $D\cdot U=-\tfrac12$,
+\begin{equation}\label{eq:eisenstein}
+|xD+yU|^2=x^2-xy+y^2,
+\end{equation}
+which takes the values $0,1,3,4,7,\dots$ and never $2$. Two disks of $H$ that are not neighbours are at
+distance at least $\sqrt3$ at $t=0$, except two pairs at distance $1$: the disks on either side of the
+notch, $A$ and $C$, and the disks on either side of the ridge. Indeed, going right from one disk to the
+other along the front adds the vectors of a proper cyclic subword of $D^mU^n$, with sum $xD+yU$,
+$0\le x\le m$, $0\le y\le n$. By~\eqref{eq:eisenstein} this has length $1$ only for $(x,y)$ equal to
+$(1,0)$ or $(0,1)$, which are neighbours, or $(1,1)$, which is the subword $DU$ at the notch or $UD$ at
+the ridge. The other images of the second disk add $k(mD+nU)$. For $k=-1$ the result is minus the sum
+of the complementary subword, covered by the same list. For $k\ge1$ or $k\le-2$ both coordinates are
+at least $2$ or both at most $-2$, and since $x^2-xy+y^2=\tfrac14(x+y)^2+\tfrac34(x-y)^2$ the squared
+length is at least $4$.
+
+\begin{lemma}[Validity]\label{lem:valid}
+Along $(\alpha,\sigma,\eps,c)=t(a,s,e,-q)$ the clearances of these two pairs are, to first order,
+$\tfrac{\sqrt3}2\bigl(s+\tfrac q2\kappa_u\bigr)t$ at the notch and $\tfrac{\sqrt3}2\bigl(a+s-e-\tfrac q2\kappa_u\bigr)t$ at the
+ridge, with $\kappa_u=\cos(u-60^\circ)$. So the lower bounds in~\eqref{eq:window} make $H(ta,ts,te,-tq)$ a
+valid front for small $t>0$.
+\end{lemma}
+
+\begin{proof}
+Let $T$ be the middle disk of either triple and $L$, $R$ its neighbours. Write $\ell_1=|T-L|$,
+$\ell_2=|T-R|$, and let $\phi$ be the angle of the triangle $LTR$ at $T$: the angle above the chain at the
+notch and below it at the ridge. Then $\phi$ is $60^\circ$ plus a hinge deviation, which the
+definition prescribes exactly: $\phi=60^\circ+\sigma$ at the notch and $\phi=60^\circ+(\alpha+\sigma-\eps)$ at the
+ridge. By the law of cosines,
+\[
+|L-R|^2=\ell_1^2+\ell_2^2-2\ell_1\ell_2\cos\phi .
+\]
+At $t=0$, $\ell_1=\ell_2=|L-R|=1$ and $\phi=60^\circ$, so
+$\tfrac{d}{dt}|L-R|=\tfrac12(\dot\ell_1+\dot\ell_2)+\tfrac{\sqrt3}2\dot\phi$. Tangency gives
+$\ell_1=\tfrac12(d_T+d_L)$ and $\ell_2=\tfrac12(d_T+d_R)$ exactly. The clearance of the pair is
+$g=|L-R|-\tfrac12(d_L+d_R)$, so
+\[
+\dot g=\tfrac{\sqrt3}2\dot\phi+\tfrac12\Bigl(\dot d_T-\tfrac12(\dot d_L+\dot d_R)\Bigr).
+\]
+With $c=-qt$ and heights $y_k$ at $t=0$, $\dot d_k=-q\,(y_k-y_0)$, and the reference height $y_0$ cancels.
+At the ridge $T$ is reached by $U_n$ and left by $D_1$, so
+$y_T-\tfrac12(y_L+y_R)=\tfrac12(\Imag U-\Imag D)=\tfrac12\bigl(\sin u-\sin(u-120^\circ)\bigr)=\tfrac{\sqrt3}2\kappa_u$; at the
+notch the same expression is $-\tfrac{\sqrt3}2\kappa_u$. Hence
+\[
+\dot g_{\mathrm{notch}}=\tfrac{\sqrt3}2\bigl(s+\tfrac q2\kappa_u\bigr),\qquad
+\dot g_{\mathrm{ridge}}=\tfrac{\sqrt3}2\bigl(a+s-e-\tfrac q2\kappa_u\bigr).
+\]
+Every other pair of non-neighbours is at distance at least $\sqrt3$ at $t=0$, by the remark before the
+lemma, so it stays clear for small $t$. Neighbours touch by construction. Under the lower bounds
+in~\eqref{eq:window} both derivatives are positive, so $g>0$ at both pairs for small $t>0$.
+\end{proof}
+
+\noindent Shrinking closes the ridge: the hexagonal front itself is not a valid front once $c<0$, and the
+ridge has to open by at least $\tfrac q2\kappa_u t$. With the other hinges at their lattice values this forces
+$\alpha+\sigma-\eps>0$, so with $\sigma<\eps$ the down vectors must be irregular too ($a>0$). On fronts with
+$m+n\ge5$ one can instead perturb another hinge inside a run, which changes nothing at $Q_0$.
+
+Theorem~\ref{thm:static} of the introduction says that $H(ta,ts,te,-tq)$ places a pentagon first when
+$(a,s,e,q)$ satisfies~\eqref{eq:window}. The rest of this section proves it.
+
+\subsection{The lowest site}
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[scale=1.55,every node/.style={font=\small}]
+\coordinate (Z) at (1,1.7321); \coordinate (A) at (0.5,0.8660); \coordinate (B) at (0,0);
+\coordinate (C) at (1,0); \coordinate (E) at (2,0); \coordinate (Q) at (1.5,0.8660);
+\foreach \p in {Z,A,B,C,E} \draw[fill=black!8] (\p) circle (0.5);
+\draw[thick] (Q) circle (0.5);
+\foreach \p in {Z,A,B,C,E,Q} \fill (\p) circle (0.9pt);
+\draw[-{Latex[length=2mm]}] (Z)--(A); \draw[-{Latex[length=2mm]}] (A)--(B);
+\draw[-{Latex[length=2mm]}] (B)--(C); \draw[-{Latex[length=2mm]}] (C)--(E);
+\draw[densely dashed] (Z)--(E);
+\node[above left=7pt] at (Z) {$Z$}; \node[left=9pt] at (A) {$A$}; \node[below=9pt] at (B) {$B$};
+\node[below=9pt] at (C) {$C$}; \node[below=9pt] at (E) {$E$}; \node at ($(Q)+(0.17,-0.2)$) {$Q_0$};
+\draw (0.3,0) arc (0:60:0.3); \node at (0.42,0.2) {$\tau$};
+\draw (1.25,0) arc (0:180:0.25); \node at (1,0.36) {$\gamma$};
+\node[align=left,anchor=west] at (2.75,1.1) {$\tau=60^\circ+\sigma$\\$\gamma=180^\circ-\eps$\\$h_A=180^\circ+\alpha$};
+\end{tikzpicture}
+\caption{The notch of a hexagonal front, turned so that $U_1=C-B$ is horizontal. The site $Q_0$ touches
+four front disks, $Z$, $A$, $C$ and $E$, and $Z$, $E$ are two diameters apart (dashed). The pentagon disk
+touches $A$ and $E$; at constant diameter it must clear $C$, which needs $\eps>\sigma$, and fit between $Z$
+and $E$, which needs $2\sigma+\alpha>\eps$.}\label{fig:hex}
+\end{figure}
+
+\begin{lemma}\label{lem:hexsite}
+At $\alpha=\sigma=\eps=c=0$, with unit diameters:
+\begin{enumerate}
+\item[(a)] every position touching two front disks is a lattice point;
+\item[(b)] among lattice points strictly above the front, the lowest are $Q_0=A+U$ and its periodic
+images, and every other one is higher by at least $\min(|\Imag D|,\Imag U)$;
+\item[(c)] $Q_0$ touches exactly the four front disks $Z,A,C,E$; $|Z-E|=2$ with $Q_0$ the midpoint, and
+$|Q_0-B|=\sqrt3$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) A position touching disks at $P$ and $R$ has $|Q-P|=|Q-R|=1$, so $|P-R|\le2$, and
+by~\eqref{eq:eisenstein} $|P-R|$ is $1$, $\sqrt3$ or $2$. The lattice is invariant under rotation by
+$60^\circ$. In the first case $Q=P+(R-P)e^{\pm i\pi/3}$. In the second, the six solutions
+of $x^2-xy+y^2=3$ show that $R-P=w+we^{i\pi/3}$ for a unit lattice vector $w$, and the two positions are
+$P+w$ and $P+we^{i\pi/3}$. In the third, the solutions of $x^2-xy+y^2=4$ are twice the unit vectors, and
+$Q$ is the midpoint. In each case $Q$ is a lattice point.
+
+(b) Use coordinates $xD+yU$ and put $\delta=-\Imag D>0$, $\upsilon=\Imag U>0$. The height is
+$-x\delta+y\upsilon$, and closure of the period $mD+nU$ gives $m\delta=n\upsilon$. Take $B$ as the origin and
+$A=(-1,0)$, so the front vertices are $(x,0)$ for $-m\le x\le0$ and $(0,y)$ for $0\le y\le n$, repeated
+with period $(m,n)$. The map $(x,y)\mapsto xD+yU$ preserves orientation and $\Real D,\Real U>0$, so the front is a
+graph over the horizontal axis, and a point lies above it exactly when it lies to the left of the
+staircase traversed in the direction of increasing $x$ and $y$. Write a lattice point as
+$(km-j,\,y)$ with $k\in\mathbb Z$ and $1\le j\le m$. It is strictly above the front exactly when
+$y\ge kn+1$. Relative to $B$, and using $km\delta=kn\upsilon$, its height is
+\[
+-(km-j)\delta+y\upsilon=j\delta+(y-kn)\upsilon\;\ge\;j\delta+\upsilon .
+\]
+This is smallest, $\delta+\upsilon$, exactly for $j=1$, $y=kn+1$, which is
+$(-1,1)+k(m,n)=Q_0+k(mD+nU)$. Any other point has $j\ge2$ or $y\ge kn+2$, and so is higher by at least
+$\delta$ or $\upsilon$.
+
+(c) The six unit neighbours of $Q_0=(-1,1)$ are $Q_0+(1,0)=(0,1)=C$, $Q_0-(0,1)=A$,
+$Q_0+(1,1)=(0,2)=E$, $Q_0-(1,1)=(-2,0)=Z$, and $(-1,2)$, $(-2,1)$. The last two are not front vertices,
+because $m,n\ge2$. Then $Z-E=-2(D+U)$ has length $2$ with midpoint $Q_0$, and $Q_0-B=U-D$ has length
+$\sqrt3$ by~\eqref{eq:eisenstein}.
+\end{proof}
+
+\noindent So six pairs share the apex $Q_0$: $ZA$ (a triangle on $D_{m-1}$), $AC$ (the rhombus), $CE$ (a
+triangle on $U_2$), $AE$ and $ZC$ (pentagons) and $ZE$ (a transition removing three vectors). The first
+disk is decided among them at first order. The pair $ZE$ is degenerate and is treated by
+its separation, rather than by a transverse-apex expansion.
+
+\subsection{First-order clearances}
+Turn and translate the configuration so that $B=0$ and $U_1$ points along $1$; clearances do not change,
+and the height enters only multiplied by $c$, so its first-order change does not matter. Then
+$A=\omega$, $C=1$, $E=2$, $Z=2\omega$, $Q_0=1+\omega$ with $\omega=e^{i\pi/3}$, and the contact normals
+$n_k=Q_0-z_k$ are
+\[
+n_A=1,\qquad n_C=\omega,\qquad n_E=\omega-1,\qquad n_Z=1-\omega.
+\]
+Along $(\alpha,\sigma,\eps,c)=t(a,s,e,-q)$ write $\dot z$ for $dz/dt$ at $t=0$. For a candidate family $Q(t)=Q_0+t x+o(t)$, differentiating the clearance $|Q-z_k|-\tfrac12(d_k+d_Q)$ as in~\eqref{eq:tangency} shows that, to
+first order, the disk is clear of $z_k$ to strict first order when $n_k\cdot x>\lambda_k$; a tangency requires $n_k\cdot x=\lambda_k$, with
+\[
+\lambda_k=n_k\cdot\dot z_k-\tfrac q2\,h_k
+\]
+and $h_k$ the height of $z_k$ above $Q_0$ (diameters normalised to $1$ at the height of $Q_0$).
+
+\begin{lemma}\label{lem:hexclear}
+Put $\mu_C=\lambda_A+\lambda_E-\lambda_C$ and $\mu_Z=-(\lambda_Z+\lambda_E)$. To first order:
+\begin{enumerate}
+\item[(a)] the disk touching $A$ and $E$ clears $C$ by $\mu_C$ and $Z$ by $\mu_Z$;
+\item[(b)] the disks touching $A,C$ and $C,E$ overlap $E$ and $A$ by $\mu_C$, and the disk touching $Z,C$
+overlaps $A$ by $\mu_C+\mu_Z$;
+\item[(c)] if $\mu_Z>0$ no disk near $Q_0$ touches both $Z$ and $E$, and the disk touching $Z,A$ is higher than the one
+touching $A,E$ by $\tfrac2{\sqrt3}\mu_Z\cos u$;
+\item[(d)] $\mu_C=\tfrac{\sqrt3}2(e-s)-\tfrac q8\bigl(3\sin u+5\sqrt3\cos u\bigr)$ and
+$\mu_Z=\tfrac{\sqrt3}2(2s+a-e)+\tfrac q2\bigl(3\sin u+\sqrt3\cos u\bigr)$, per unit $t$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Parts (a) to (c) use only $n_E=n_C-n_A$ and $n_Z=-n_E$. At the vertex $n_A\cdot x=\lambda_A$, $n_E\cdot x=\lambda_E$ one gets
+$n_C\cdot x-\lambda_C=\lambda_A+\lambda_E-\lambda_C$ and $n_Z\cdot x-\lambda_Z=-\lambda_E-\lambda_Z$. At $n_A\cdot x=\lambda_A$, $n_C\cdot x=\lambda_C$ the
+clearance to $E$ is $\lambda_C-\lambda_A-\lambda_E=-\mu_C$, and symmetrically for $C,E$ against $A$. At $n_Z\cdot x=\lambda_Z$,
+$n_C\cdot x=\lambda_C$ the clearance to $A$ is $\lambda_Z+\lambda_C-\lambda_A=-\mu_C-\mu_Z$.
+
+The pair $ZE$ has opposite normals, so it has no transverse apex and needs a separate argument. Suppose
+a disk at $Q$ touches both, with $Q\to Q_0$ as $t\to0$. By the triangle inequality
+\[
+|Z-E|\le|Q-Z|+|Q-E|=\tfrac12(d_Z+d_E)+d_Q,
+\]
+so $g(t)=|Z-E|-\tfrac12(d_Z+d_E)-d_Q\le0$. Normalise diameters to $1$ at the height of $Q_0$ at $t=0$;
+then $d_Q=1+c\,(\Imag Q-\Imag Q_0)=1+o(t)$. Since $Z-E=-2n_Z$ with $|n_Z|=1$ at $t=0$,
+\[
+g(t)=t\bigl(-n_Z\cdot\dot Z-n_E\cdot\dot E+\tfrac q2(h_Z+h_E)\bigr)+o(t)=t\,\mu_Z+o(t),
+\]
+using $n_E=-n_Z$ and $\dot d_k=-qh_k$. So $\mu_Z>0$ gives $g(t)>0$ for small $t>0$, a contradiction. No
+apex expansion is used, so this covers candidates whose distance from $Q_0$ is much larger than $t$.
+The vertices $ZA$ and $AE$ both lie on
+the line $n_A\cdot x=\lambda_A$, a distance $\tfrac2{\sqrt3}\mu_Z$ apart along $in_A$, whose height in the cylinder
+frame is $\cos u>0$.
+
+(d) The hinges give $\dot A=is\,\omega$, $\dot C=0$, $\dot E=ie$, $\dot Z=i(2s+a)\omega$ at $q=0$, so
+$\lambda_A=-\tfrac{\sqrt3}2s$, $\lambda_C=0$, $\lambda_E=\tfrac{\sqrt3}2e$ and $\lambda_Z=-\tfrac{\sqrt3}2(2s+a)$. The rate stretches
+each side to the mean of its two diameters, adding $-q\ell_{BC}$ to $\dot C$, $-q(\ell_{BC}+\ell_{CE})$ to $\dot E$,
+$-q\ell_{AB}\omega$ to $\dot A$ and $-q(\ell_{AB}+\ell_{ZA})\omega$ to $\dot Z$, where $\ell_{XY}=\tfrac12(h_X+h_Y)$.
+Collecting terms,
+\[
+\mu_C^{q}=-\tfrac q4\,(3h_A-h_B-5h_C+h_E),\qquad \mu_Z^{q}=-\tfrac q4\,(2h_A+2h_B+2h_C-h_Z-h_E),
+\]
+and the heights are $h_z=-\Imag\bigl(e^{iu}(Q_0-z)\bigr)$: $h_A=-\sin u$, $h_B=-\sqrt3\sin(u+30^\circ)$,
+$h_C=-\sin(u+60^\circ)$, $h_E=-\sin(u+120^\circ)$, $h_Z=-\sin(u-60^\circ)$. Since
+$\sin(u-60^\circ)+\sin(u+120^\circ)=0$ this gives (d).
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:static}]
+By Lemma~\ref{lem:valid} the front is valid for small $t>0$. By~(d) the upper bound in~\eqref{eq:window} is
+$\mu_C>0$. Since $\tfrac12(3\sin u+\sqrt3\cos u)=\sqrt3\kappa_u$, (d) and Lemma~\ref{lem:valid} give $\mu_Z$ as the sum
+of the notch and ridge clearance rates plus $\sqrt3q\kappa_u$, so $\mu_Z>0$ on every valid front.
+
+\emph{The pentagon disk is a valid position.} The normals $n_A$ and $n_E$ are not parallel, so
+Lemma~\ref{lem:apex} gives a $C^1$ family $Q_{AE}(t)\to Q_0$ touching $A$ and $E$. By
+Lemma~\ref{lem:hexclear}(a) its clearances from $C$ and $Z$ are $t\mu_C+o(t)$ and $t\mu_Z+o(t)$, both
+positive for small $t$. Every other front disk, periodic images included, is at distance at least
+$\sqrt3$ from $Q_0$ at $t=0$ (Lemma~\ref{lem:hexsite}(c) and~\eqref{eq:eisenstein}), so it stays clear.
+$Q_0$ is strictly above the front, and the front moves continuously with $t$, so $Q_{AE}(t)$ is above it.
+
+\emph{Nothing else is as low.} Suppose that for some sequence $t_k\to0$ there is a valid position
+$Q_k\ne Q_{AE}(t_k)$ with $\Imag Q_k\le\Imag Q_{AE}(t_k)$, touching front disks $P_k$ and $R_k$. We derive a
+contradiction in three steps.
+
+\smallskip\noindent\emph{Step 1: compactness.} Normalise the diameter to $1$ at height $0$, so the front
+disks have diameters in $[\tfrac12,2]$ and heights in a fixed bounded interval for small $t$. If $Q$ touches
+$P$, then $|\Imag Q-\Imag P|\le|Q-P|=d_P+\tfrac c2(\Imag Q-\Imag P)$, so $|\Imag Q-\Imag P|\le2d_P\le4$ once $|c|\le\tfrac12$.
+Hence $Q_k$ has bounded height, and modulo the period it lies in a bounded set. Its parents lie within
+distance $4$ of it, and the circumference is bounded below, so up to periodic translation $P_k$ and
+$R_k$ range over a finite set of front disks and images. Passing to a subsequence, the pair
+$(P_k,R_k)$ is fixed and $Q_k\to Q^*$.
+
+\smallskip\noindent\emph{Step 2: the limit is $Q_0$.} Touching and non-overlap are closed conditions, and
+all diameters tend to $1$. So $Q^*$ is at distance exactly $1$ from the limits of $P_k$ and $R_k$, and at
+distance at least $1$ from every front disk at $t=0$. By Lemma~\ref{lem:hexsite}(a), $Q^*$ is a lattice
+point. It lies on or above the limiting front. The only lattice points on the front polyline are its
+vertices, which are front disks at distance $0$, so $Q^*$ is strictly above. Finally
+$\Imag Q^*\le\lim\Imag Q_{AE}(t_k)=\Imag Q_0$. By Lemma~\ref{lem:hexsite}(b), $Q^*$ is $Q_0$ up to periodic
+translation, and by Lemma~\ref{lem:hexsite}(c) the limiting parents are two of $Z,A,C,E$.
+
+\smallskip\noindent\emph{Step 3: the six pairs.} For large $k$, $Q_k$ is a position near $Q_0$ touching one
+of the six pairs. Five of them have non-parallel normals at $Q_0$. For these, the implicit function
+theorem in the proof of Lemma~\ref{lem:apex}, with $t$ in place of $c$, gives a neighbourhood of $Q_0$ in
+which the touching position is unique for small $t$ and lies on the $C^1$ apex family, so $Q_k$ lies on
+that family.
+\begin{itemize}
+\item $AE$: then $Q_k=Q_{AE}(t_k)$, which was excluded.
+\item $AC$, $CE$ and $ZC$: by Lemma~\ref{lem:hexclear}(b) these families overlap $E$, $A$ and $A$ by
+$t\mu_C+o(t)$, $t\mu_C+o(t)$ and $t(\mu_C+\mu_Z)+o(t)$, so they are not valid for large $k$.
+\item $ZA$: by Lemma~\ref{lem:hexclear}(c) it is higher than $Q_{AE}$ by $\tfrac2{\sqrt3}\mu_Z\cos u\,t+o(t)>0$.
+\end{itemize}
+The sixth pair, $ZE$, admits no touching position near $Q_0$, by the separation argument in the proof of
+Lemma~\ref{lem:hexclear}. Every case gives a contradiction. So for small $t>0$ the pentagon disk
+touching $A$ and $E$ is the unique lowest valid position, and the first transition is a pentagon.
+\end{proof}
+
+\noindent Lemma~\ref{lem:hexclear}, the notch part of Lemma~\ref{lem:valid} and the step from validity to
+$\mu_Z>0$ are checked in Lean (\lean{Static.lean}): the four tangencies and three hinge rates of the front
+determine the first-order clearances of all six candidates and of the notch pair. The file
+\lean{StaticExists.lean} constructs the local five-disk and apex families for the prescribed
+rates. Periodic closure and global exclusion are supplied by the analytic arguments above.
+
+On valid rays above the window ($\mu_C<0$), the tested fronts place a rhombus $AC$. The independent
+simulator agrees with both predictions on every valid front tested: $182$ fronts over all $26$ shapes with
+$2\le m\le6$, on rays inside and above the window (\texttt{verify/static\_general.py}).
+A separate brute-force enumeration confirms Lemma~\ref{lem:hexsite}(b) for all $47$ shapes with
+$2\le m\le8$ (\texttt{verify/static\_lattice\_order.py}).
+
+The theorem uses the simplest perturbation. Lemma~\ref{lem:hexclear} involves only the hinges at $A$, $B$
+and $C$, so on fronts with $n\ge3$ one may also turn the hinge between $U_2$ and $U_3$, and then $\alpha=0$ is
+allowed: the down vectors stay exactly regular and only the up vectors carry irregularity. The channel
+condition $\mu_Z>0$ is then no longer automatic. When it fails the channel between $Z$ and $E$ is closed, no
+disk fits near $Q_0$, and the first disk is placed elsewhere, a triangle in all our runs
+(\texttt{verify/static\_channel.py}).

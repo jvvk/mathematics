@@ -1,0 +1,28 @@
+{
+  "source_commit": "3255796 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports the ten Phyllotaxis modules only)",
+    "CheckClaims.lean (generated)",
+    "scripts/mutants.py (generated from lean-proofs scripts/tilings, static, firstorder, lemma4exists, prop2, passbalance .toml)",
+    "LeanProofs/Phyllotaxis/*.lean taken from the commit (git show HEAD), not the working tree"
+  ],
+  "files": {
+    "CheckClaims.lean": "c9b9eb60e9363129069a5dcb7f04fcaad17e3295f33fd0d4329c3fecef5a0b8d",
+    "LeanProofs/Phyllotaxis/Apex.lean": "18dc6a78d91d97120bf20ce449761d5f0264fb6084e2a6e6ff0c3cf08e66026e",
+    "LeanProofs/Phyllotaxis/FirstOrder.lean": "bf8c90cceacf8aa9f661c154657d243a9be835779c6385bb01216078aace30a6",
+    "LeanProofs/Phyllotaxis/Lemma4.lean": "a43a94a3afddc9ab3933e1e775aacc610648e89bc19409837342a0c814801c11",
+    "LeanProofs/Phyllotaxis/Lemma4Exists.lean": "523119a5dae6f9640f5c928ef10dfc318bac2bf949c0fd52fab68d4231935830",
+    "LeanProofs/Phyllotaxis/PassBalance.lean": "31fdd05fa7d7917522f7c83d0189eedb7ac286eb50590525d1e722b93071c23a",
+    "LeanProofs/Phyllotaxis/Prop2.lean": "2268e43b67c2ac0e17a03ef553e166cdd9b25abbcfb4f1ca78a26cc535088ae2",
+    "LeanProofs/Phyllotaxis/Static.lean": "ffb5c590c40f65e9f685a49b6c8617decdae88eb356ca1c1ce3859f3b3c18a7d",
+    "LeanProofs/Phyllotaxis/StaticExists.lean": "7613f4ee206ec7f68f90baffb1185575fed361c41db807ba6859d03cf8ac8135",
+    "LeanProofs/Phyllotaxis/Sweep.lean": "bc4dcc9ddc0795c1856828b56bbcf8cc7c1bf5805975dc9a0567f9b687408ccb",
+    "LeanProofs/Phyllotaxis/Tilings.lean": "5ecb77460a035418a1074a6fc12906a70e6e278e8e4aecbad68c0b42f90a560e",
+    "LeanProofs.lean": "c162c243dd23da974005bbcbfd43ce0e511cff97da04e7181efa27d3c393a63c",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutants.py": "26e38b3a6f2a76ac31c2651caea069b567ae9a1bd9b22e4ae857e29b268b2df4"
+  }
+}

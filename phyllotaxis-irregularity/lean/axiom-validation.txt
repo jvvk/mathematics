@@ -1,0 +1,280 @@
+@Phyllotaxis.Tilings.threshold_tan : ∀ {m n β : ℝ},
+  Real.cos β ≠ 0 →
+    2 * m + n ≠ 0 → (m * Real.sin β + n * Real.sin (β + Real.pi / 3) = 0 ↔ Real.tan β = -(√3 * n) / (2 * m + n))
+'Phyllotaxis.Tilings.threshold_tan' depends on axioms: [propext, Classical.choice, Quot.sound]
+Phyllotaxis.Tilings.K0.height_gaps : (Phyllotaxis.Tilings.emb 19 Phyllotaxis.Tilings.K0.T).2 -
+      (Phyllotaxis.Tilings.emb 19 Phyllotaxis.Tilings.K0.Q).2 =
+    √(3 / 76) ∧
+  (Phyllotaxis.Tilings.emb 19 Phyllotaxis.Tilings.K0.Q).2 - (Phyllotaxis.Tilings.emb 19 Phyllotaxis.Tilings.K0.z1).2 =
+    √(3 / 76)
+'Phyllotaxis.Tilings.K0.height_gaps' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Phyllotaxis.Static.notch60_tan : ∀ {m n u : ℝ},
+  Real.cos u ≠ 0 →
+    2 * n - m ≠ 0 → (m * Real.sin (u - 2 * Real.pi / 3) + n * Real.sin u = 0 ↔ Real.tan u = √3 * m / (2 * n - m))
+'Phyllotaxis.Static.notch60_tan' depends on axioms: [propext, Classical.choice, Quot.sound]
+Phyllotaxis.Static.lattice_Q0 : have Z := (1, √3);
+have A := (1 / 2, √3 / 2);
+have B := (0, 0);
+have C := (1, 0);
+have E := (2, 0);
+have Q := (3 / 2, √3 / 2);
+Phyllotaxis.Static.d2 Z Q = 1 ∧
+  Phyllotaxis.Static.d2 A Q = 1 ∧
+    Phyllotaxis.Static.d2 C Q = 1 ∧
+      Phyllotaxis.Static.d2 E Q = 1 ∧
+        Phyllotaxis.Static.d2 B Q = 3 ∧ Phyllotaxis.Static.d2 Z E = 4 ∧ Q = ((Z.1 + E.1) / 2, (Z.2 + E.2) / 2)
+'Phyllotaxis.Static.lattice_Q0' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Phyllotaxis.Static.pentagon_first : ∀ {α σ ε k Wr Wi : ℝ} (F : Phyllotaxis.Static.Front α σ ε k Wr Wi),
+  0 < Phyllotaxis.Static.Pm α σ ε k Wr Wi →
+    0 < Phyllotaxis.Static.Rm α σ ε k Wr Wi →
+      ∀ (Q Qr Qt Qw : Phyllotaxis.FirstOrder.Mov),
+        Q.x 0 = 3 / 2 ∧ Q.y 0 = √3 / 2 →
+          Qr.x 0 = 3 / 2 ∧ Qr.y 0 = √3 / 2 →
+            Qt.x 0 = 3 / 2 ∧ Qt.y 0 = √3 / 2 →
+              Qw.x 0 = 3 / 2 ∧ Qw.y 0 = √3 / 2 →
+                Phyllotaxis.FirstOrder.Tan 1 (k * Wi) (k * Wr) F.A Q →
+                  Phyllotaxis.FirstOrder.Tan 1 (k * Wi) (k * Wr) Q F.E →
+                    Phyllotaxis.FirstOrder.Tan 1 (k * Wi) (k * Wr) F.A Qr →
+                      Phyllotaxis.FirstOrder.Tan 1 (k * Wi) (k * Wr) Qr F.C →
+                        Phyllotaxis.FirstOrder.Tan 1 (k * Wi) (k * Wr) F.C Qt →
+                          Phyllotaxis.FirstOrder.Tan 1 (k * Wi) (k * Wr) Qt F.E →
+                            Phyllotaxis.FirstOrder.Tan 1 (k * Wi) (k * Wr) F.Z Qw →
+                              Phyllotaxis.FirstOrder.Tan 1 (k * Wi) (k * Wr) Qw F.C →
+                                ∀ᶠ (t : ℝ) in nhdsWithin 0 (Set.Ioi 0),
+                                  0 < Phyllotaxis.Static.clr (k * Wi) (k * Wr) F.C Q t ∧
+                                    0 < Phyllotaxis.Static.clr (k * Wi) (k * Wr) F.Z Q t ∧
+                                      Phyllotaxis.Static.clr (k * Wi) (k * Wr) F.E Qr t < 0 ∧
+                                        Phyllotaxis.Static.clr (k * Wi) (k * Wr) F.A Qt t < 0 ∧
+                                          Phyllotaxis.Static.clr (k * Wi) (k * Wr) F.A Qw t < 0
+'Phyllotaxis.Static.pentagon_first' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Phyllotaxis.Static.notch_clear : ∀ {α σ ε k Wr Wi : ℝ} (F : Phyllotaxis.Static.Front α σ ε k Wr Wi),
+  HasDerivAt (Phyllotaxis.Static.clr (k * Wi) (k * Wr) F.A F.C) (2 * (√3 / 2 * σ - k * (√3 * Wr + 3 * Wi) / 8)) 0
+'Phyllotaxis.Static.notch_clear' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Phyllotaxis.Static.channel_of_valid : ∀ {α σ ε k Wr Wi : ℝ},
+  k ≤ 0 →
+    0 ≤ 3 * Wi + √3 * Wr →
+      0 < √3 / 2 * σ - k * (√3 * Wr + 3 * Wi) / 8 →
+        0 < Phyllotaxis.Static.Gm α σ ε k Wr Wi → 0 < Phyllotaxis.Static.Rm α σ ε k Wr Wi
+'Phyllotaxis.Static.channel_of_valid' depends on axioms: [propext, Classical.choice, Quot.sound]
+Phyllotaxis.StaticExists.front_exists : ∀ (α σ ε k Wr Wi : ℝ),
+  ∃ F Q Qr Qt Qw,
+    (Q.x 0 = 3 / 2 ∧ Q.y 0 = √3 / 2) ∧
+      (Qr.x 0 = 3 / 2 ∧ Qr.y 0 = √3 / 2) ∧
+        (Qt.x 0 = 3 / 2 ∧ Qt.y 0 = √3 / 2) ∧
+          (Qw.x 0 = 3 / 2 ∧ Qw.y 0 = √3 / 2) ∧
+            Phyllotaxis.FirstOrder.Tan 1 (k * Wi) (k * Wr) F.A Q ∧
+              Phyllotaxis.FirstOrder.Tan 1 (k * Wi) (k * Wr) Q F.E ∧
+                Phyllotaxis.FirstOrder.Tan 1 (k * Wi) (k * Wr) F.A Qr ∧
+                  Phyllotaxis.FirstOrder.Tan 1 (k * Wi) (k * Wr) Qr F.C ∧
+                    Phyllotaxis.FirstOrder.Tan 1 (k * Wi) (k * Wr) F.C Qt ∧
+                      Phyllotaxis.FirstOrder.Tan 1 (k * Wi) (k * Wr) Qt F.E ∧
+                        Phyllotaxis.FirstOrder.Tan 1 (k * Wi) (k * Wr) F.Z Qw ∧
+                          Phyllotaxis.FirstOrder.Tan 1 (k * Wi) (k * Wr) Qw F.C
+'Phyllotaxis.StaticExists.front_exists' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Phyllotaxis.Apex.apex_exists : ∀ {b0 hs hc : ℝ} {ax ay cx cy : ℝ → ℝ} {q0 : ℝ × ℝ},
+  ContDiffAt ℝ 1 ax 0 →
+    ContDiffAt ℝ 1 ay 0 →
+      ContDiffAt ℝ 1 cx 0 →
+        ContDiffAt ℝ 1 cy 0 →
+          (q0.1 - ax 0) ^ 2 + (q0.2 - ay 0) ^ 2 = b0 ^ 2 →
+            (cx 0 - q0.1) ^ 2 + (cy 0 - q0.2) ^ 2 = b0 ^ 2 →
+              (q0.1 - ax 0) * (q0.2 - cy 0) - (q0.2 - ay 0) * (q0.1 - cx 0) ≠ 0 →
+                ∃ ψ ψ',
+                  ψ 0 = q0 ∧
+                    HasDerivAt ψ ψ' 0 ∧
+                      (∀ᶠ (c : ℝ) in nhds 0, Phyllotaxis.Apex.defect b0 hs hc ax ay cx cy (c, ψ c) = 0) ∧
+                        ∀ᶠ (p : ℝ × ℝ × ℝ) in nhds (0, q0),
+                          Phyllotaxis.Apex.defect b0 hs hc ax ay cx cy p = 0 → ψ p.1 = p.2
+'Phyllotaxis.Apex.apex_exists' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Phyllotaxis.Apex.rhombic_family_exists : ∀ {b0 ux uy dx dy : ℝ},
+  0 < b0 →
+    ux ^ 2 + uy ^ 2 = b0 ^ 2 →
+      dx ^ 2 + dy ^ 2 = b0 ^ 2 →
+        ux * dy - uy * dx ≠ 0 →
+          ∃ A B C Q,
+            Phyllotaxis.FirstOrder.Tan b0 0 1 A B ∧
+              Phyllotaxis.FirstOrder.Tan b0 0 1 B C ∧
+                Phyllotaxis.FirstOrder.Tan b0 0 1 A Q ∧
+                  Phyllotaxis.FirstOrder.Tan b0 0 1 Q C ∧
+                    Q.pos 0 = A.pos 0 + (C.pos 0 - B.pos 0) ∧
+                      (C.pos 0 - B.pos 0).re * (B.pos 0 - A.pos 0).im -
+                            (C.pos 0 - B.pos 0).im * (B.pos 0 - A.pos 0).re ≠
+                          0 ∧
+                        C.pos 0 - B.pos 0 = { re := ux, im := uy } ∧ B.pos 0 - A.pos 0 = { re := dx, im := dy }
+'Phyllotaxis.Apex.rhombic_family_exists' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Phyllotaxis.FirstOrder.rhombic_step : ∀ {b0 : ℝ},
+  0 < b0 →
+    ∀ (A B C Q : Phyllotaxis.FirstOrder.Mov),
+      Phyllotaxis.FirstOrder.Tan b0 0 1 A B →
+        Phyllotaxis.FirstOrder.Tan b0 0 1 B C →
+          Phyllotaxis.FirstOrder.Tan b0 0 1 A Q →
+            Phyllotaxis.FirstOrder.Tan b0 0 1 Q C →
+              Q.pos 0 = A.pos 0 + (C.pos 0 - B.pos 0) →
+                (C.pos 0 - B.pos 0).re * (B.pos 0 - A.pos 0).im - (C.pos 0 - B.pos 0).im * (B.pos 0 - A.pos 0).re ≠ 0 →
+                  Q.vel - A.vel - (C.vel - B.vel) = Complex.I * (C.pos 0 - B.pos 0) * (B.pos 0 - A.pos 0) / ↑b0
+'Phyllotaxis.FirstOrder.rhombic_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Phyllotaxis.FirstOrder.triangle_step : ∀ {b0 : ℝ},
+  0 < b0 →
+    ∀ (B C Q : Phyllotaxis.FirstOrder.Mov),
+      Phyllotaxis.FirstOrder.Tan b0 0 1 B C →
+        Phyllotaxis.FirstOrder.Tan b0 0 1 B Q →
+          Phyllotaxis.FirstOrder.Tan b0 0 1 Q C →
+            Q.pos 0 = B.pos 0 + Phyllotaxis.FirstOrder.ω * (C.pos 0 - B.pos 0) →
+              Q.vel - B.vel - Phyllotaxis.FirstOrder.ω * (C.vel - B.vel) =
+                Complex.I * (C.pos 0 - B.pos 0) ^ 2 / (2 * ↑b0)
+'Phyllotaxis.FirstOrder.triangle_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Phyllotaxis.FirstOrder.cushion_rate : ∀ {b0 β : ℝ},
+  0 < b0 →
+    ∀ (B C Q : Phyllotaxis.FirstOrder.Mov),
+      Phyllotaxis.FirstOrder.Tan b0 0 1 B C →
+        Phyllotaxis.FirstOrder.Tan b0 0 1 B Q →
+          Phyllotaxis.FirstOrder.Tan b0 0 1 Q C →
+            Q.pos 0 = B.pos 0 + Phyllotaxis.FirstOrder.ω * (C.pos 0 - B.pos 0) →
+              C.pos 0 - B.pos 0 = ↑b0 * Complex.exp (↑β * Complex.I) →
+                HasDerivAt (fun c => ((Q.pos c - B.pos c) / (Phyllotaxis.FirstOrder.ω * (C.pos c - B.pos c))).arg)
+                  (Real.cos (β - Real.pi / 3) / 2) 0
+'Phyllotaxis.FirstOrder.cushion_rate' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Phyllotaxis.FirstOrder.split_rate : ∀ {b0 β : ℝ},
+  0 < b0 →
+    ∀ (B C Q : Phyllotaxis.FirstOrder.Mov),
+      Phyllotaxis.FirstOrder.Tan b0 0 1 B C →
+        Phyllotaxis.FirstOrder.Tan b0 0 1 B Q →
+          Phyllotaxis.FirstOrder.Tan b0 0 1 Q C →
+            Q.pos 0 = B.pos 0 + Phyllotaxis.FirstOrder.ω * (C.pos 0 - B.pos 0) →
+              C.pos 0 - B.pos 0 = ↑b0 * Complex.exp (↑β * Complex.I) →
+                HasDerivAt
+                  (fun c =>
+                    ((Q.pos c - B.pos c) * (starRingEnd ℂ) Phyllotaxis.FirstOrder.ω /
+                        ((C.pos c - Q.pos c) * Phyllotaxis.FirstOrder.ω)).arg)
+                  (Real.cos β / 2) 0
+'Phyllotaxis.FirstOrder.split_rate' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Phyllotaxis.FirstOrder.pass_rate : ∀ {b0 β : ℝ},
+  0 < b0 →
+    ∀ (A B C Q : Phyllotaxis.FirstOrder.Mov),
+      Phyllotaxis.FirstOrder.Tan b0 0 1 A B →
+        Phyllotaxis.FirstOrder.Tan b0 0 1 B C →
+          Phyllotaxis.FirstOrder.Tan b0 0 1 A Q →
+            Phyllotaxis.FirstOrder.Tan b0 0 1 Q C →
+              Q.pos 0 = A.pos 0 + (C.pos 0 - B.pos 0) →
+                (C.pos 0 - B.pos 0).re * (B.pos 0 - A.pos 0).im - (C.pos 0 - B.pos 0).im * (B.pos 0 - A.pos 0).re ≠ 0 →
+                  C.pos 0 - B.pos 0 = ↑b0 * Complex.exp (↑β * Complex.I) →
+                    HasDerivAt (fun c => ((C.pos c - Q.pos c) / (B.pos c - A.pos c)).arg) (-Real.cos β) 0
+'Phyllotaxis.FirstOrder.pass_rate' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Phyllotaxis.Lemma4.n1_exclusion : ∀ {cβ sβ cU : ℝ},
+  cβ = 1 / (2 * √7) →
+    sβ = -(3 * √3) / (2 * √7) →
+      cU = 5 / (2 * √7) →
+        -(cβ + 3 * √3 * sβ) / 4 = 13 / (4 * √7) ∧ 3 / 2 * cU = 15 / (4 * √7) ∧ -(cβ + 3 * √3 * sβ) / 4 + 3 / 2 * cU = √7
+'Phyllotaxis.Lemma4.n1_exclusion' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Phyllotaxis.Lemma4.dG_dc : ∀ {s k : ℝ} (P0 P1 P2 P3 Q : Phyllotaxis.FirstOrder.Mov),
+  Phyllotaxis.FirstOrder.Tan 1 s k P0 P1 →
+    Phyllotaxis.FirstOrder.Tan 1 s k P1 P2 →
+      Phyllotaxis.FirstOrder.Tan 1 s k P2 P3 →
+        Phyllotaxis.FirstOrder.Tan 1 s k P0 Q →
+          Phyllotaxis.FirstOrder.Tan 1 s k Q P3 →
+            P1.x 0 = 0 →
+              P1.y 0 = 0 →
+                P1.x' = 0 ∧ P1.y' = 0 →
+                  P2.x 0 = 1 ∧ P2.y 0 = 0 →
+                    P3.x 0 = 2 ∧ P3.y 0 = 0 →
+                      P0.x 0 = 1 / 2 ∧ P0.y 0 = √3 / 2 →
+                        Q.x 0 = 3 / 2 ∧ Q.y 0 = √3 / 2 →
+                          P2.y' = 0 →
+                            P3.y' = 0 →
+                              P0.y' = √3 * P0.x' →
+                                HasDerivAt
+                                  (fun c =>
+                                    (Q.x c - P2.x c) ^ 2 + (Q.y c - P2.y c) ^ 2 -
+                                      (1 + c * (s * (P2.x c + Q.x c) + k * (P2.y c + Q.y c)) / 2) ^ 2)
+                                  ((5 * (s / 2 + √3 / 2 * k) - s) / 2) 0
+'Phyllotaxis.Lemma4.dG_dc' depends on axioms: [propext, Classical.choice, Quot.sound]
+Phyllotaxis.Lemma4.dG_dθ : ∀ (P0 P2 P3 Q : Phyllotaxis.FirstOrder.Mov),
+  Phyllotaxis.FirstOrder.Tan 1 0 0 P0 Q →
+    Phyllotaxis.FirstOrder.Tan 1 0 0 Q P3 →
+      P0.x 0 = 1 / 2 ∧ P0.y 0 = √3 / 2 →
+        P0.x' = 0 ∧ P0.y' = 0 →
+          P2.x 0 = 1 ∧ P2.y 0 = 0 →
+            P2.x' = 0 ∧ P2.y' = 0 →
+              P3.x 0 = 2 ∧ P3.y 0 = 0 →
+                P3.x' = 0 ∧ P3.y' = 1 →
+                  Q.x 0 = 3 / 2 ∧ Q.y 0 = √3 / 2 →
+                    HasDerivAt (fun θ => (Q.x θ - P2.x θ) ^ 2 + (Q.y θ - P2.y θ) ^ 2 - 1) (√3) 0
+'Phyllotaxis.Lemma4.dG_dθ' depends on axioms: [propext, Classical.choice, Quot.sound]
+Phyllotaxis.Lemma4.kappa2_eq : ∀ (β : ℝ),
+  (5 * (Real.sin (β + (Real.pi - Real.pi / 3)) / 2 + √3 / 2 * Real.cos (β + (Real.pi - Real.pi / 3))) -
+        Real.sin (β + (Real.pi - Real.pi / 3))) /
+      (2 * √3) =
+    -(Real.cos β + 3 * √3 * Real.sin β) / 4
+'Phyllotaxis.Lemma4.kappa2_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Phyllotaxis.Lemma4.boundary_slope : ∀ {G : ℝ × ℝ → ℝ} {L : ℝ × ℝ →L[ℝ] ℝ},
+  HasFDerivAt G L (0, 0) →
+    ∀ {a b : ℝ},
+      HasDerivAt (fun θ => G (θ, 0)) a 0 →
+        HasDerivAt (fun c => G (0, c)) b 0 →
+          a ≠ 0 →
+            ∀ {θs : ℝ → ℝ} {θ' : ℝ},
+              HasDerivAt θs θ' 0 → θs 0 = 0 → (∀ᶠ (c : ℝ) in nhds 0, G (θs c, c) = 0) → θ' = -b / a
+'Phyllotaxis.Lemma4.boundary_slope' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Phyllotaxis.pass_balance : ∀ {n : ℕ} [inst : NeZero n] (g0 : Fin n → ℤ) (s : List (Fin n)),
+  (∀ (i : Fin n), 0 ≤ g0 i) →
+    (∀ (i : Fin n), 0 ≤ Phyllotaxis.gaps g0 s i) → ∀ (j k : Fin n), |↑(List.count j s) - ↑(List.count k s)| ≤ ∑ i, g0 i
+'Phyllotaxis.pass_balance' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Phyllotaxis.pass_lag : ∀ {n : ℕ} [inst : NeZero n] (g0 : Fin n → ℤ) (s : List (Fin n)),
+  (∀ (i : Fin n), 0 ≤ g0 i) →
+    (∀ (i : Fin n), 0 ≤ Phyllotaxis.gaps g0 s i) → ∀ (u : Fin n), |↑n * ↑(List.count u s) - ↑s.length| ≤ ↑n * ∑ i, g0 i
+'Phyllotaxis.pass_lag' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Phyllotaxis.sweep : ∀ {n m : ℕ} (r0 : Fin n → ZMod m) (s : List (Fin n)) (j : ℕ) (hj : j < s.length),
+  Phyllotaxis.labels r0 (List.take j s) s[j] - 1 = r0 s[j] - ↑(List.count s[j] (List.take (j + 1) s))
+'Phyllotaxis.sweep' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Phyllotaxis.alternation_gap : ∀ {n : ℕ} [inst : NeZero n] {a : Fin n},
+  a ≠ a + 1 → ∀ (g0 : Fin n → ℤ) (j : ℕ), Phyllotaxis.gaps g0 (Phyllotaxis.alt a (a + 1) j) a = g0 a + ↑(j % 2)
+'Phyllotaxis.alternation_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Phyllotaxis.Prop2.prop2 : ∀ {m n Ku Kv : ℕ},
+  0 < m →
+    ∀ {c ε R : ℝ},
+      0 ≤ ε →
+        |c| + R * c ^ 2 ≤ 1 / 2 →
+          ∀ (f : ℕ → ℕ → ℂ),
+            (∀ (d t : ℕ), ‖f d t‖ ≤ 1) →
+              (∀ (d t t' : ℕ), ‖f d t - f d t'‖ ≤ ε * |↑t - ↑t'|) →
+                ∀ {αu αv : ℤ} {du dv : ℕ → ℕ},
+                  (∀ (k : ℕ), ↑(du k) = (αu - ↑k) % ↑m) →
+                    (∀ (k : ℕ), ↑(dv k) = (αv - ↑k) % ↑m) →
+                      ∀ {tu tv : ℕ → ℕ},
+                        (∀ k < Ku, |↑n * ↑k - ↑(tu k)| ≤ ↑n * ↑m) →
+                          (∀ k < Kv, |↑n * ↑k - ↑(tv k)| ≤ ↑n * ↑m) →
+                            Ku ≤ Kv + m ∧ Kv ≤ Ku + m →
+                              ∀ {ru rv : ℕ → ℂ},
+                                (∀ (k : ℕ), ‖ru k‖ ≤ R * c ^ 2) →
+                                  (∀ (k : ℕ), ‖rv k‖ ≤ R * c ^ 2) →
+                                    ‖∑ k ∈ Finset.range Ku,
+                                            Complex.log (1 + (Complex.I * ↑c * f (du k) (tu k) + ru k)) -
+                                          ∑ k ∈ Finset.range Kv,
+                                            Complex.log (1 + (Complex.I * ↑c * f (dv k) (tv k) + rv k))‖ ≤
+                                      |c| * (↑Ku * (3 * ↑n * ↑m * ε) + 3 * ↑m) +
+                                        (↑Ku + ↑Kv) * ((|c| + R * c ^ 2) ^ 2 + R * c ^ 2)
+'Phyllotaxis.Prop2.prop2' depends on axioms: [propext, Classical.choice, Quot.sound]
+Phyllotaxis.Lemma4Exists.dG_dc_family : ∀ (s k : ℝ),
+  ∃ P0 P1 P2 P3 Q,
+    Phyllotaxis.FirstOrder.Tan 1 s k P0 P1 ∧
+      Phyllotaxis.FirstOrder.Tan 1 s k P1 P2 ∧
+        Phyllotaxis.FirstOrder.Tan 1 s k P2 P3 ∧
+          Phyllotaxis.FirstOrder.Tan 1 s k P0 Q ∧
+            Phyllotaxis.FirstOrder.Tan 1 s k Q P3 ∧
+              P1.x 0 = 0 ∧
+                P1.y 0 = 0 ∧
+                  (P1.x' = 0 ∧ P1.y' = 0) ∧
+                    (P2.x 0 = 1 ∧ P2.y 0 = 0) ∧
+                      (P3.x 0 = 2 ∧ P3.y 0 = 0) ∧
+                        (P0.x 0 = 1 / 2 ∧ P0.y 0 = √3 / 2) ∧
+                          (Q.x 0 = 3 / 2 ∧ Q.y 0 = √3 / 2) ∧ P2.y' = 0 ∧ P3.y' = 0 ∧ P0.y' = √3 * P0.x'
+'Phyllotaxis.Lemma4Exists.dG_dc_family' depends on axioms: [propext, Classical.choice, Quot.sound]
+Phyllotaxis.Lemma4Exists.dG_dθ_family : ∃ P0 P2 P3 Q,
+  Phyllotaxis.FirstOrder.Tan 1 0 0 P0 Q ∧
+    Phyllotaxis.FirstOrder.Tan 1 0 0 Q P3 ∧
+      (P0.x 0 = 1 / 2 ∧ P0.y 0 = √3 / 2) ∧
+        (P0.x' = 0 ∧ P0.y' = 0) ∧
+          (P2.x 0 = 1 ∧ P2.y 0 = 0) ∧
+            (P2.x' = 0 ∧ P2.y' = 0) ∧
+              (P3.x 0 = 2 ∧ P3.y 0 = 0) ∧ (P3.x' = 0 ∧ P3.y' = 1) ∧ Q.x 0 = 3 / 2 ∧ Q.y 0 = √3 / 2
+'Phyllotaxis.Lemma4Exists.dG_dθ_family' depends on axioms: [propext, Classical.choice, Quot.sound]

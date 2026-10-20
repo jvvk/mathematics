@@ -1,0 +1,37 @@
+Isolated build 2026-10-20: fresh copy of lean/, lake exe cache get, lake build LeanProofs
+⚠ [8924/8935] Built LeanProofs.Phyllotaxis.PassBalance (233s)
+warning: LeanProofs/Phyllotaxis/PassBalance.lean:1:1: * `-/`:
+⚠ [8925/8935] Built LeanProofs.Phyllotaxis.Tilings (233s)
+warning: LeanProofs/Phyllotaxis/Tilings.lean:1:1: * `-/`:
+warning: LeanProofs/Phyllotaxis/Tilings.lean:6:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Phyllotaxis/Tilings.lean:10:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Phyllotaxis/Tilings.lean:12:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Phyllotaxis/Tilings.lean:13:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Phyllotaxis/Tilings.lean:14:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Phyllotaxis/Tilings.lean:15:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Phyllotaxis/Tilings.lean:16:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Phyllotaxis/Tilings.lean:33:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Phyllotaxis/Tilings.lean:118:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Phyllotaxis/Tilings.lean:145:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Phyllotaxis/Tilings.lean:184:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Phyllotaxis/Tilings.lean:245:100: This line exceeds the 100 character limit, please shorten it!
+⚠ [8926/8935] Built LeanProofs.Phyllotaxis.FirstOrder (233s)
+warning: LeanProofs/Phyllotaxis/FirstOrder.lean:1:1: * `-/`:
+⚠ [8927/8935] Built LeanProofs.Phyllotaxis.Prop2 (233s)
+warning: LeanProofs/Phyllotaxis/Prop2.lean:1:1: * `-/`:
+⚠ [8928/8935] Built LeanProofs.Phyllotaxis.Sweep (232s)
+warning: LeanProofs/Phyllotaxis/Sweep.lean:1:1: * `-/`:
+⚠ [8929/8935] Built LeanProofs.Phyllotaxis.Apex (233s)
+warning: LeanProofs/Phyllotaxis/Apex.lean:1:1: * `-/`:
+⚠ [8930/8935] Built LeanProofs.Phyllotaxis.Lemma4 (233s)
+warning: LeanProofs/Phyllotaxis/Lemma4.lean:1:1: * `-/`:
+⚠ [8931/8935] Built LeanProofs.Phyllotaxis.Static (233s)
+warning: LeanProofs/Phyllotaxis/Static.lean:1:1: * `-/`:
+⚠ [8932/8935] Built LeanProofs.Phyllotaxis.Lemma4Exists (221s)
+warning: LeanProofs/Phyllotaxis/Lemma4Exists.lean:1:1: * `-/`:
+warning: LeanProofs/Phyllotaxis/Lemma4Exists.lean:111:4: The `show` tactic should only be used to indicate intermediate goal states for readability.
+warning: LeanProofs/Phyllotaxis/Lemma4Exists.lean:135:6: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+⚠ [8933/8935] Built LeanProofs.Phyllotaxis.StaticExists (222s)
+warning: LeanProofs/Phyllotaxis/StaticExists.lean:1:1: * `-/`:
+✔ [8934/8935] Built LeanProofs (177s)
+Build completed successfully (8935 jobs).

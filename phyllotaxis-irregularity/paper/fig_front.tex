@@ -1,0 +1,19 @@
+% front F(beta, eps) with beta = 0.45, eps = 0.12 (exaggerated), unit diameters; coordinates from
+% z1 = D, z2 = D + Ua, z3 = D + Ua + Ub = (Lambda, 0) with Lambda = 2.2936 (computed in verify/schematic note)
+\foreach \s in {0,2.2936} {
+  \foreach \x/\y in {0/0,0.4959/-0.8684,1.3687/-0.3802} \draw[fill=black!8] (\x+\s,\y) circle (0.5);
+  \draw[-{Latex[length=1.8mm]}] ($(0,0)+(\s,0)$)--($(0.4959,-0.8684)+(\s,0)$);
+  \draw[-{Latex[length=1.8mm]}] ($(0.4959,-0.8684)+(\s,0)$)--($(1.3687,-0.3802)+(\s,0)$);
+  \draw[-{Latex[length=1.8mm]}] ($(1.3687,-0.3802)+(\s,0)$)--($(2.2936,0)+(\s,0)$);
+}
+\draw[fill=black!8] (4.5872,0) circle (0.5);
+\node at (-0.22,-0.62) {$D$};
+\node at (0.95,-1.05) {$U_{\mathrm a}$};
+\node at (1.95,-0.62) {$U_{\mathrm b}$};
+\draw (0.4959,-0.8684) ++(29.2:0.32) arc (29.2:119.7:0.32);
+\node at ($(0.4959,-0.8684)+(75:0.5)$) {$\tau$};
+\draw (1.3687,-0.3802) ++(22.3:0.3) arc (22.3:209.2:0.3);
+\node at ($(1.3687,-0.3802)+(110:0.48)$) {$\gamma$};
+\draw[dashed] (0,0.75)--(0,-1.55); \draw[dashed] (2.2936,0.75)--(2.2936,-1.55);
+\draw[{Latex[length=1.6mm]}-{Latex[length=1.6mm]}] (0,-1.45)--node[below]{circumference $\Lambda$} (2.2936,-1.45);
+\draw[-{Latex[length=1.8mm]}] (-0.95,-1.2)--node[left]{height} (-0.95,0.4);
