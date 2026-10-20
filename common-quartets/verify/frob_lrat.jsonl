@@ -1,0 +1,2 @@
+{"n": 40, "k": 4, "perm": "mul:3", "solver_exit": 20, "check": "VERIFIED", "solve_s": 0.7, "check_s": 0.8, "proof_mb": 0.0}
+{"n": 14, "k": 3, "perm": "1 2 3,4 5 6,7 8 9,10 11 12", "solver_exit": 20, "check": "VERIFIED", "solve_s": 4.4, "check_s": 0.4, "proof_mb": 44.8}

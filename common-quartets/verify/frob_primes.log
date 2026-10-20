@@ -1,0 +1,7 @@
+n=17 k=4: 8820 vars, 123900 clauses
+SAT in 0.0s
+T = (0, (((((((1, ((6, 7), 11)), (2, 5)), (3, (9, 12))), (8, 13)), ((4, 10), 16)), 14), 15))
+independent check, common quartets: 0
+n=29 k=4: 81081 vars, 1363635 clauses
+n=37 k=4: 219555 vars, 3900225 clauses
+done

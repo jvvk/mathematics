@@ -1,0 +1,20 @@
+{
+  "source_commit": "6877808 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports QuartetIter, CatFamily, CommonQuartet only)",
+    "CheckClaims.lean (generated)",
+    "scripts/mutants.py (generated from lean-proofs scripts/quartetiter.toml, catfamily.toml, commonquartet.toml)"
+  ],
+  "files": {
+    "CheckClaims.lean": "699c2c3c3f1688f20937a35aa768c81d8e3fba502a50a658e0032512e834099f",
+    "LeanProofs/CatFamily.lean": "b6514e2d5d3d55e884327b8861becaca2dd07da0b84e56399d2ced9c1fa99b54",
+    "LeanProofs/CommonQuartet.lean": "b91a8ccc6ab3cf8376c97abb55c2f00700e9c72fad0b37eeea0b5da553573023",
+    "LeanProofs/QuartetIter.lean": "c2c414c67885e689bb2dbb317f820ddccb8af916e9c60a96f3124b188ceb603d",
+    "LeanProofs.lean": "7b570a1339f20116ed908ccd81b5240941f2965f1b6f40cb809ebd5a48375639",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutants.py": "d4d904d37d355695852da6f9804dc034cb03a7acaac6112cdc208c5c7dcc5989"
+  }
+}

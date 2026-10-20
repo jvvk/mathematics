@@ -1,0 +1,33 @@
+Isolated build 2026-10-20: fresh copy of lean/, lake exe cache get, lake build LeanProofs
+✔ [8924/8928] Built LeanProofs.CommonQuartet (76s)
+⚠ [8925/8928] Built LeanProofs.QuartetIter (218s)
+warning: LeanProofs/QuartetIter.lean:1:1: * `-/`:
+warning: LeanProofs/QuartetIter.lean:4:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/QuartetIter.lean:7:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/QuartetIter.lean:8:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/QuartetIter.lean:9:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/QuartetIter.lean:10:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/QuartetIter.lean:29:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/QuartetIter.lean:55:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/QuartetIter.lean:120:100: This line exceeds the 100 character limit, please shorten it!
+⚠ [8926/8928] Built LeanProofs.CatFamily (219s)
+warning: LeanProofs/CatFamily.lean:1:1: * `-/`:
+warning: LeanProofs/CatFamily.lean:4:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/CatFamily.lean:5:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/CatFamily.lean:7:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/CatFamily.lean:8:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/CatFamily.lean:9:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/CatFamily.lean:11:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/CatFamily.lean:45:63: `if_pos` has been deprecated: Use `ite_eq_left` instead
+warning: LeanProofs/CatFamily.lean:46:56: `if_pos` has been deprecated: Use `ite_eq_left` instead
+warning: LeanProofs/CatFamily.lean:47:62: `if_neg` has been deprecated: Use `ite_eq_right` instead
+warning: LeanProofs/CatFamily.lean:56:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/CatFamily.lean:129:25: `if_true` has been deprecated: Use `ite_true` instead
+warning: LeanProofs/CatFamily.lean:129:64: `if_false` has been deprecated: Use `ite_false` instead
+warning: LeanProofs/CatFamily.lean:135:27: `if_true` has been deprecated: Use `ite_true` instead
+warning: LeanProofs/CatFamily.lean:135:41: `if_false` has been deprecated: Use `ite_false` instead
+warning: LeanProofs/CatFamily.lean:141:32: `if_false` has been deprecated: Use `ite_false` instead
+warning: LeanProofs/CatFamily.lean:116:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/CatFamily.lean:144:100: This line exceeds the 100 character limit, please shorten it!
+✔ [8927/8928] Built LeanProofs (135s)
+Build completed successfully (8928 jobs).

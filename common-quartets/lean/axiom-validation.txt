@@ -1,0 +1,71 @@
+@QuartetIter.cell : ∀ {α : Type u_1} [inst : DecidableEq α] (U X C : Finset α),
+  X ⊆ U →
+    C ⊆ U →
+      U.card ≤ 3 * X.card →
+        U.card ≤ 3 * (U \ X).card →
+          U.card ≤ 3 * C.card →
+            U.card ≤ 3 * (U \ C).card →
+              U.card ≤ 6 * (X ∩ C).card ∧ U.card ≤ 6 * ((U \ X) \ C).card ∨
+                U.card ≤ 6 * (X \ C).card ∧ U.card ≤ 6 * (U \ X ∩ C).card
+'QuartetIter.cell' depends on axioms: [propext, Classical.choice, Quot.sound]
+@QuartetIter.step : ∀ {α : Type u_1} [inst : DecidableEq α] (T : QuartetIter.SplitSys α) (X Y : Finset α),
+  Disjoint X Y →
+    2 ≤ (X ∪ Y).card →
+      (X ∪ Y).card ≤ 3 * X.card →
+        (X ∪ Y).card ≤ 3 * Y.card →
+          ∃ X' ⊆ X, ∃ Y' ⊆ Y, T.Sep X' Y' ∧ (X ∪ Y).card ≤ 6 * X'.card ∧ (X ∪ Y).card ≤ 6 * Y'.card
+'QuartetIter.step' depends on axioms: [propext, Classical.choice, Quot.sound]
+@QuartetIter.iterate : ∀ {α : Type u_1} [inst : DecidableEq α] (U : Finset α) (T : ℕ → QuartetIter.SplitSys α),
+  2 ≤ U.card →
+    ∀ (j : ℕ),
+      2 ≤ j →
+        ∃ X ⊆ U,
+          ∃ Y ⊆ U,
+            Disjoint X Y ∧
+              (∀ i < j, (T i).Sep X Y) ∧ U.card ≤ 2 * 3 ^ (j - 1) * X.card ∧ U.card ≤ 2 * 3 ^ (j - 1) * Y.card
+'QuartetIter.iterate' depends on axioms: [propext, Classical.choice, Quot.sound]
+@QuartetIter.common_quartet : ∀ {α : Type u_1} [inst : DecidableEq α] (U : Finset α) (k : ℕ),
+  2 ≤ k →
+    ∀ (T : ℕ → QuartetIter.SplitSys α),
+      2 * 3 ^ (k - 1) + 1 ≤ U.card → ∃ X ⊆ U, ∃ Y ⊆ U, Disjoint X Y ∧ 2 ≤ X.card ∧ 2 ≤ Y.card ∧ ∀ i < k, (T i).Sep X Y
+'QuartetIter.common_quartet' depends on axioms: [propext, Classical.choice, Quot.sound]
+CatFamily.family : ∀ (k : ℕ),
+  1 ≤ k →
+    ∀ (a b c d : ℤ),
+      a ≠ b →
+        a ≠ c →
+          a ≠ d →
+            b ≠ c →
+              b ≠ d →
+                c ≠ d →
+                  a.natAbs ≤ 2 ^ (k - 1) →
+                    b.natAbs ≤ 2 ^ (k - 1) →
+                      c.natAbs ≤ 2 ^ (k - 1) → d.natAbs ≤ 2 ^ (k - 1) → ¬CatFamily.Common k a b c d
+'CatFamily.family' depends on axioms: [propext, Classical.choice, Quot.sound]
+CommonQuartet.quads_card : (CommonQuartet.quads 13).length = 715
+'CommonQuartet.quads_card' does not depend on any axioms
+CommonQuartet.witness_leaves : CommonQuartet.onLeaves CommonQuartet.T1 13 = true ∧
+  CommonQuartet.onLeaves CommonQuartet.T2 13 = true ∧ CommonQuartet.onLeaves CommonQuartet.T3 13 = true
+'CommonQuartet.witness_leaves' does not depend on any axioms
+CommonQuartet.witness_binary : CommonQuartet.resolvesAll CommonQuartet.T1 13 = true ∧
+  CommonQuartet.resolvesAll CommonQuartet.T2 13 = true ∧ CommonQuartet.resolvesAll CommonQuartet.T3 13 = true
+'CommonQuartet.witness_binary' does not depend on any axioms
+CommonQuartet.no_common_quartet : CommonQuartet.noCommon CommonQuartet.T1 CommonQuartet.T2 CommonQuartet.T3 13 = true
+'CommonQuartet.no_common_quartet' does not depend on any axioms
+CommonQuartet.cyclic_leaves : CommonQuartet.onLeaves CommonQuartet.T 13 = true ∧
+  CommonQuartet.onLeaves (CommonQuartet.Tr.map CommonQuartet.times3 CommonQuartet.T) 13 = true ∧
+    CommonQuartet.onLeaves
+        (CommonQuartet.Tr.map CommonQuartet.times3 (CommonQuartet.Tr.map CommonQuartet.times3 CommonQuartet.T)) 13 =
+      true
+'CommonQuartet.cyclic_leaves' does not depend on any axioms
+CommonQuartet.cyclic_binary : CommonQuartet.resolvesAll CommonQuartet.T 13 = true ∧
+  CommonQuartet.resolvesAll (CommonQuartet.Tr.map CommonQuartet.times3 CommonQuartet.T) 13 = true ∧
+    CommonQuartet.resolvesAll
+        (CommonQuartet.Tr.map CommonQuartet.times3 (CommonQuartet.Tr.map CommonQuartet.times3 CommonQuartet.T)) 13 =
+      true
+'CommonQuartet.cyclic_binary' does not depend on any axioms
+CommonQuartet.cyclic_no_common_quartet : CommonQuartet.noCommon CommonQuartet.T
+    (CommonQuartet.Tr.map CommonQuartet.times3 CommonQuartet.T)
+    (CommonQuartet.Tr.map CommonQuartet.times3 (CommonQuartet.Tr.map CommonQuartet.times3 CommonQuartet.T)) 13 =
+  true
+'CommonQuartet.cyclic_no_common_quartet' does not depend on any axioms
