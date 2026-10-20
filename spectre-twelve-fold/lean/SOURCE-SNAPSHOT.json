@@ -1,0 +1,26 @@
+{
+  "source_commit": "1b2bec2 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports SpectreCover only)",
+    "CheckClaims.lean (generated)",
+    "scripts/mutants.py (copy of lean-proofs scripts/spectrecover_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "494e259b5715a579189c80b6781ab1ae85ec648704b380cd5239a34807910354",
+    "LeanProofs/SpectreCover/Ae.lean": "c2b995a83490bc425cf2cee7040cce140c8df9a2ab000a4da46187d17b58d18f",
+    "LeanProofs/SpectreCover/Concrete.lean": "12c098a7c0f01f3048d8e458f0f6039bad025bf3be4462892fedf7a2007ae35b",
+    "LeanProofs/SpectreCover/Count.lean": "2b78f2b3d302e6c143d0116702145336e972124563089b4524fa5aecd239f3ea",
+    "LeanProofs/SpectreCover/Cover.lean": "d825edf62c4e3cadc504cf0a31c0a164293ea39927581d70374964645522eb70",
+    "LeanProofs/SpectreCover/Data.lean": "e9d1ff3b12115fb992102b9af81327d784b8f0bbfcaa2bf605453cb62a6c69a2",
+    "LeanProofs/SpectreCover/Main.lean": "35907a5e603fb56dc213de3ab08b6409ed67ee8695eeea7614248aefc7d8ac00",
+    "LeanProofs/SpectreCover/Report.lean": "03219882333227476f46495411aea5a4ebc83b6bbae157a504f9c99744bf6681",
+    "LeanProofs/SpectreCover/Shadow.lean": "14d2b7af0a9e67fa192a676ff18a143952fb49c775a2cb6ecf18495a766e51e7",
+    "LeanProofs/SpectreCover.lean": "5920477a7d8bd7098f112af225543d7bacc18e4f9210e9bc8a3f715ec96f3a46",
+    "LeanProofs.lean": "c83214069bf76b4e8095a3047c374b968e696dc43ba1ff2044d5aa15df856d17",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutants.py": "c7c729c0eb0696a7c18434375ff5c5a6a05fea97f1644b5e475933cfa13c3708"
+  }
+}

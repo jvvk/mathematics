@@ -1,0 +1,73 @@
+@SpectreCover.tri_shadow : ∀ {A B C z : ℝ × ℝ},
+  0 < SpectreCover.orient A B C →
+    A.1 ≠ z.1 →
+      B.1 ≠ z.1 →
+        C.1 ≠ z.1 →
+          z ∉ segment ℝ A B →
+            z ∉ segment ℝ B C →
+              z ∉ segment ℝ C A →
+                (if z ∈ SpectreCover.closedTri A B C then 1 else 0) =
+                  SpectreCover.shadow A B z + SpectreCover.shadow B C z + SpectreCover.shadow C A z
+'SpectreCover.tri_shadow' depends on axioms: [propext, Classical.choice, Quot.sound]
+@SpectreCover.vmove : ∀ {ι : Type u_1} [inst : Fintype ι] {V : ι → Fin 3 → ℝ × ℝ} {v w : ℝ × ℝ},
+  (∀ (i : ι), 0 < SpectreCover.orient (V i 0) (V i 1) (V i 2)) →
+    v.1 * w.2 - v.2 * w.1 ≠ 0 →
+      SpectreCover.Paired V v w →
+        ∀ {x y₁ y₂ : ℝ},
+          (∀ (i : ι) (k : Fin 3) (m : ℤ × ℤ), (V i k + SpectreCover.lat v w m).1 ≠ x) →
+            (∀ (i : ι) (k : Fin 3) (m : ℤ × ℤ),
+                (x, y₁) ∉ segment ℝ (V i k + SpectreCover.lat v w m) (V i (k + 1) + SpectreCover.lat v w m)) →
+              (∀ (i : ι) (k : Fin 3) (m : ℤ × ℤ),
+                  (x, y₂) ∉ segment ℝ (V i k + SpectreCover.lat v w m) (V i (k + 1) + SpectreCover.lat v w m)) →
+                SpectreCover.cnt V v w (x, y₁) = SpectreCover.cnt V v w (x, y₂)
+'SpectreCover.vmove' depends on axioms: [propext, Classical.choice, Quot.sound]
+@SpectreCover.cnt_ae_const : ∀ {ι : Type u_1} [inst : Fintype ι] {V : ι → Fin 3 → ℝ × ℝ} {v w : ℝ × ℝ} [Countable ι],
+  (∀ (i : ι), 0 < SpectreCover.orient (V i 0) (V i 1) (V i 2)) →
+    v.1 * w.2 - v.2 * w.1 ≠ 0 → SpectreCover.Paired V v w → ∃ c, ∀ᵐ (z : ℝ × ℝ), SpectreCover.cnt V v w z = c
+'SpectreCover.cnt_ae_const' depends on axioms: [propext, Classical.choice, Quot.sound]
+@SpectreCover.count_mul_det : ∀ {v w : ℝ × ℝ} {ι : Type u_1} [inst : Fintype ι] {V : ι → Fin 3 → ℝ × ℝ},
+  (∀ (i : ι), 0 < SpectreCover.orient (V i 0) (V i 1) (V i 2)) →
+    v.1 * w.2 - v.2 * w.1 ≠ 0 →
+      ∀ (c : ℕ),
+        (∀ᵐ (z : ℝ × ℝ), SpectreCover.cnt V v w z = ↑c) →
+          ↑c * |v.1 * w.2 - v.2 * w.1| = ∑ i, SpectreCover.orient (V i 0) (V i 1) (V i 2) / 2
+'SpectreCover.count_mul_det' depends on axioms: [propext, Classical.choice, Quot.sound]
+SpectreCover.keys_sorted_eq : SpectreCover.msort SpectreCover.keyLe 12 (List.map SpectreCover.key SpectreCover.edges) =
+  SpectreCover.msort SpectreCover.keyLe 12 (List.map SpectreCover.rkey SpectreCover.edges)
+'SpectreCover.keys_sorted_eq' depends on axioms: [propext, Quot.sound]
+SpectreCover.tris_boundary : (∀ (i : Fin 14),
+    List.count (i, i + 1) SpectreCover.triEdges = 1 ∧ List.count (i + 1, i) SpectreCover.triEdges = 0) ∧
+  ∀ e ∈ SpectreCover.triEdges,
+    e.2 ≠ e.1 + 1 → List.count e SpectreCover.triEdges = 1 ∧ List.count (e.2, e.1) SpectreCover.triEdges = 1
+'SpectreCover.tris_boundary' depends on axioms: [propext, Classical.choice, Quot.sound]
+SpectreCover.placements_injective : Function.Injective SpectreCover.placements
+'SpectreCover.placements_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+SpectreCover.curved_records_cancel : SpectreCover.msort SpectreCover.lexLe 10 (SpectreCover.curvedRecords 0) =
+    SpectreCover.msort SpectreCover.lexLe 10 (SpectreCover.curvedRecords 1) ∧
+  (SpectreCover.curvedRecords 0).length = 378
+'SpectreCover.curved_records_cancel' depends on axioms: [propext]
+SpectreCover.all_ccw : ∀ (j : Fin 54) (t : Fin 12),
+  SpectreCover.posZ
+      (SpectreCover.orientZ (SpectreCover.vertZ j t 0) (SpectreCover.vertZ j t 1) (SpectreCover.vertZ j t 2)) =
+    true
+'SpectreCover.all_ccw' depends on axioms: [propext, Quot.sound]
+SpectreCover.V_paired : SpectreCover.Paired SpectreCover.V SpectreCover.vR SpectreCover.wR
+'SpectreCover.V_paired' depends on axioms: [propext, Classical.choice, Quot.sound]
+SpectreCover.det_eq : SpectreCover.vR.1 * SpectreCover.wR.2 - SpectreCover.vR.2 * SpectreCover.wR.1 = 27 / 2 * (1 + √3)
+'SpectreCover.det_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+SpectreCover.sum_orient : ∑ i, SpectreCover.orient (SpectreCover.V i 0) (SpectreCover.V i 1) (SpectreCover.V i 2) / 2 =
+  162 * (1 + √3)
+'SpectreCover.sum_orient' depends on axioms: [propext, Classical.choice, Quot.sound]
+SpectreCover.cnt_ae_twelve : ∀ᵐ (z : ℝ × ℝ), SpectreCover.cnt SpectreCover.V SpectreCover.vR SpectreCover.wR z = 12
+'SpectreCover.cnt_ae_twelve' depends on axioms: [propext, Classical.choice, Quot.sound]
+SpectreCover.tile_eq : ∀ (p : Fin 54 × ℤ × ℤ),
+  SpectreCover.tile p = ⋃ t, SpectreCover.tri SpectreCover.V SpectreCover.vR SpectreCover.wR (p.1, t) p.2
+'SpectreCover.tile_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+SpectreCover.tiles_separated : ∀ (j : Fin 54) (t t' : Fin 12),
+  t ≠ t' →
+    (SpectreCover.sepZ (SpectreCover.vertZ j t) (SpectreCover.vertZ j t') ||
+        SpectreCover.sepZ (SpectreCover.vertZ j t') (SpectreCover.vertZ j t)) =
+      true
+'SpectreCover.tiles_separated' depends on axioms: [propext, Quot.sound]
+SpectreCover.spectre_twelve_fold : ∀ᵐ (z : ℝ × ℝ), {p | z ∈ SpectreCover.tile p}.ncard = 12
+'SpectreCover.spectre_twelve_fold' depends on axioms: [propext, Classical.choice, Quot.sound]

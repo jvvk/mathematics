@@ -1,0 +1,41 @@
+Isolated build 2026-10-20: fresh copy of lean/, lake exe cache get, lake build LeanProofs
+⚠ [8924/8933] Built LeanProofs.SpectreCover.Shadow (212s)
+warning: LeanProofs/SpectreCover/Shadow.lean:105:24: `Set.mem_setOf_eq` has been deprecated: Use `Set.mem_ofPred_eq` instead
+warning: LeanProofs/SpectreCover/Shadow.lean:126:24: `Set.mem_setOf_eq` has been deprecated: Use `Set.mem_ofPred_eq` instead
+✔ [8925/8933] Built LeanProofs.SpectreCover.Data (533s)
+⚠ [8926/8933] Built LeanProofs.SpectreCover.Cover (344s)
+warning: LeanProofs/SpectreCover/Cover.lean:20:5: please avoid 'open (scoped) Classical' statements: this can hide theorem statements which would be better stated with explicit decidability statements.
+warning: LeanProofs/SpectreCover/Cover.lean:146:0: automatically included section variable(s) unused in theorem `SpectreCover.tri_finite`:
+warning: LeanProofs/SpectreCover/Cover.lean:146:0: `tri_finite` does not use the following hypothesis in its type:
+⚠ [8927/8933] Built LeanProofs.SpectreCover.Ae (56s)
+warning: LeanProofs/SpectreCover/Ae.lean:15:5: please avoid 'open (scoped) Classical' statements: this can hide theorem statements which would be better stated with explicit decidability statements.
+warning: LeanProofs/SpectreCover/Ae.lean:74:36: `Set.mem_setOf_eq` has been deprecated: Use `Set.mem_ofPred_eq` instead
+warning: LeanProofs/SpectreCover/Ae.lean:97:29: `Set.mem_setOf_eq` has been deprecated: Use `Set.mem_ofPred_eq` instead
+warning: LeanProofs/SpectreCover/Ae.lean:92:0: automatically included section variable(s) unused in theorem `SpectreCover.mem_tri_swap`:
+warning: LeanProofs/SpectreCover/Ae.lean:92:0: `mem_tri_swap` does not use the following hypothesis in its type:
+warning: LeanProofs/SpectreCover/Ae.lean:104:0: automatically included section variable(s) unused in theorem `SpectreCover.swap_orient`:
+warning: LeanProofs/SpectreCover/Ae.lean:104:0: `swap_orient` does not use the following hypothesis in its type:
+warning: LeanProofs/SpectreCover/Ae.lean:201:17: `Set.mem_setOf_eq` has been deprecated: Use `Set.mem_ofPred_eq` instead
+warning: LeanProofs/SpectreCover/Ae.lean:207:17: `Set.mem_setOf_eq` has been deprecated: Use `Set.mem_ofPred_eq` instead
+warning: LeanProofs/SpectreCover/Ae.lean:212:19: `Set.mem_setOf_eq` has been deprecated: Use `Set.mem_ofPred_eq` instead
+warning: LeanProofs/SpectreCover/Ae.lean:196:0: automatically included section variable(s) unused in theorem `SpectreCover.good_ae`:
+warning: LeanProofs/SpectreCover/Ae.lean:196:0: `good_ae` does not use the following hypothesis in its type:
+⚠ [8928/8933] Built LeanProofs.SpectreCover.Concrete (116s)
+warning: LeanProofs/SpectreCover/Concrete.lean:18:5: please avoid 'open (scoped) Classical' statements: this can hide theorem statements which would be better stated with explicit decidability statements.
+⚠ [8929/8933] Built LeanProofs.SpectreCover.Count (117s)
+warning: LeanProofs/SpectreCover/Count.lean:14:19: please avoid 'open (scoped) Classical' statements: this can hide theorem statements which would be better stated with explicit decidability statements.
+warning: LeanProofs/SpectreCover/Count.lean:54:10: The `show` tactic should only be used to indicate intermediate goal states for readability.
+warning: LeanProofs/SpectreCover/Count.lean:121:39: `Set.mem_setOf_eq` has been deprecated: Use `Set.mem_ofPred_eq` instead
+warning: LeanProofs/SpectreCover/Count.lean:173:4: The `show` tactic should only be used to indicate intermediate goal states for readability.
+warning: LeanProofs/SpectreCover/Count.lean:199:0: automatically included section variable(s) unused in theorem `SpectreCover.tsum_tri`:
+warning: LeanProofs/SpectreCover/Count.lean:197:0: `tsum_tri` does not use the following hypothesis in its type:
+warning: LeanProofs/SpectreCover/Count.lean:217:42: `Measurable.ennreal_tsum` has been deprecated: Use `Measurable.tsum` from `Mathlib.MeasureTheory.Constructions.Polish.Basic` instead
+warning: LeanProofs/SpectreCover/Count.lean:227:40: `Set.mem_setOf_eq` has been deprecated: Use `Set.mem_ofPred_eq` instead
+warning: LeanProofs/SpectreCover/Count.lean:231:38: `Set.mem_setOf_eq` has been deprecated: Use `Set.mem_ofPred_eq` instead
+warning: LeanProofs/SpectreCover/Count.lean:224:0: automatically included section variable(s) unused in theorem `SpectreCover.tsum_indicator_tri`:
+warning: LeanProofs/SpectreCover/Count.lean:224:0: `tsum_indicator_tri` does not use the following hypothesis in its type:
+warning: LeanProofs/SpectreCover/Count.lean:242:38: `Set.mem_setOf_eq` has been deprecated: Use `Set.mem_ofPred_eq` instead
+warning: LeanProofs/SpectreCover/Count.lean:234:0: automatically included section variable(s) unused in theorem `SpectreCover.finsum_ite_tri`:
+warning: LeanProofs/SpectreCover/Count.lean:234:0: `finsum_ite_tri` does not use the following hypothesis in its type:
+warning: LeanProofs/SpectreCover/Count.lean:253:15: `Set.mem_setOf_eq` has been deprecated: Use `Set.mem_ofPred_eq` instead
+⚠ [8930/8933] Built LeanProofs.SpectreCover.Main (523s)
