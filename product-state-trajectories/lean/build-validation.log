@@ -1,0 +1,23 @@
+Isolated build 2026-10-20: fresh copy of lean/, lake exe cache get, lake build LeanProofs
+✔ [8924/8935] Built LeanProofs.ProductTrajectory.Graded (333s)
+⚠ [8925/8935] Built LeanProofs.ProductTrajectory.RankOne (332s)
+warning: LeanProofs/ProductTrajectory/RankOne.lean:20:0: `exists_vecMulVec_of_minors` does not use the following hypotheses in its type:
+⚠ [8926/8935] Built LeanProofs.ProductTrajectory.Characters (333s)
+warning: LeanProofs/ProductTrajectory/Characters.lean:101:0: `exists_lattice` does not use the following hypothesis in its type:
+⚠ [8927/8935] Built LeanProofs.ProductTrajectory.SO4 (337s)
+warning: LeanProofs/ProductTrajectory/SO4.lean:73:34: `simp [tau]` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/ProductTrajectory/SO4.lean:71:2: `simp [conjTranspose_apply] at e00 e01 e10 e11` is a flexible tactic modifying `e11`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/ProductTrajectory/SO4.lean:73:34: `simp [tau]` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/ProductTrajectory/SO4.lean:71:2: `simp [conjTranspose_apply] at e00 e01 e10 e11` is a flexible tactic modifying `e01`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/ProductTrajectory/SO4.lean:73:34: `simp [tau]` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/ProductTrajectory/SO4.lean:71:2: `simp [conjTranspose_apply] at e00 e01 e10 e11` is a flexible tactic modifying `e10`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/ProductTrajectory/SO4.lean:71:2: `simp [conjTranspose_apply] at e00 e01 e10 e11` is a flexible tactic modifying `e00`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/ProductTrajectory/SO4.lean:73:34: `simp [tau]` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+✔ [8928/8935] Built LeanProofs.ProductTrajectory.Core (219s)
+✔ [8929/8935] Built LeanProofs.ProductTrajectory.ExpSums (219s)
+✔ [8930/8935] Built LeanProofs.ProductTrajectory.Heisenberg (233s)
+✔ [8931/8935] Built LeanProofs.ProductTrajectory.Main (236s)
+✔ [8932/8935] Built LeanProofs.ProductTrajectory.MaxEnt (237s)
+✔ [8933/8935] Built LeanProofs.ProductTrajectory (222s)
+✔ [8934/8935] Built LeanProofs (200s)
+Build completed successfully (8935 jobs).

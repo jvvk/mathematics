@@ -1,0 +1,98 @@
+@ProductTrajectory.exists_lattice : ∀ {J : Type u_1} [Fintype J] (lam : J → ℝ),
+  ∃ k ω e c, LinearIndependent ℤ ω ∧ ∀ (j : J), lam j = ProductTrajectory.dot ω (e j) + c
+'ProductTrajectory.exists_lattice' depends on axioms: [propext, Classical.choice, Quot.sound]
+@ProductTrajectory.eq_zero_of_eval_zt : ∀ {k : ℕ} (ω : Fin k → ℝ),
+  Function.Injective (ProductTrajectory.dot ω) →
+    ∀ (p : MvPolynomial (Fin k) ℂ), (∀ (t : ℝ), (MvPolynomial.eval (ProductTrajectory.zt ω t)) p = 0) → p = 0
+'ProductTrajectory.eq_zero_of_eval_zt' depends on axioms: [propext, Classical.choice, Quot.sound]
+@ProductTrajectory.exists_vecMulVec_of_minors : ∀ {R : Type u_1} [inst : CommRing R] [IsDomain R]
+  [NormalizedGCDMonoid R] {ι : Type u_2} {κ : Type u_3} [Fintype ι] [Fintype κ] (F : Matrix ι κ R),
+  (∀ (i i' : ι) (l l' : κ), F i l * F i' l' = F i l' * F i' l) → ∃ α β, F = Matrix.vecMulVec α β
+'ProductTrajectory.exists_vecMulVec_of_minors' depends on axioms: [propext, Classical.choice, Quot.sound]
+@ProductTrajectory.isWeightedHomogeneous_of_mul : ∀ {σ : Type u_1} {R : Type u_2} [inst : CommRing R] [IsDomain R]
+  (w : σ → ℤ) {p q : MvPolynomial σ R},
+  p ≠ 0 →
+    q ≠ 0 → ∀ {m : ℤ}, MvPolynomial.IsWeightedHomogeneous w (p * q) m → ∃ a, MvPolynomial.IsWeightedHomogeneous w p a
+'ProductTrajectory.isWeightedHomogeneous_of_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+@ProductTrajectory.orthogonal_of_homogeneous : ∀ {k : ℕ} {J : Type u_1} [inst : Fintype J]
+  {γ : J → MvPolynomial (Fin k) ℂ},
+  γ ≠ 0 →
+    (∀ (j : Fin k), ∃ c, MvPolynomial.IsWeightedHomogeneous (ProductTrajectory.wt j) (ProductTrajectory.G γ) c) →
+      ∀ (μ ν : Fin k →₀ ℕ), μ ≠ ν → ∑ i, star ((γ i).coeff μ) * (γ i).coeff ν = 0
+'ProductTrajectory.orthogonal_of_homogeneous' depends on axioms: [propext, Classical.choice, Quot.sound]
+@ProductTrajectory.main : ∀ {ι : Type u_1} {κ : Type u_2} {J : Type u_3} [inst : Fintype ι] [inst_1 : Fintype κ]
+  [inst_2 : Fintype J] (lam : J → ℝ) (v : J → Matrix ι κ ℂ),
+  (∀ (j j' : J), j ≠ j' → ∑ i, ∑ l, star (v j i l) * v j' i l = 0) →
+    (∀ (t : ℝ), ∃ a b, ∑ j, Complex.exp (-(Complex.I * (↑(lam j) * ↑t))) • v j = Matrix.vecMulVec a b) →
+      ∃ k S T x y f g,
+        (∀ (μ ν : Fin k →₀ ℕ), μ ≠ ν → ∑ i, star (x μ i) * x ν i = 0) ∧
+          (∀ (μ ν : Fin k →₀ ℕ), μ ≠ ν → ∑ l, star (y μ l) * y ν l = 0) ∧
+            ∀ (t : ℝ),
+              ∑ j, Complex.exp (-(Complex.I * (↑(lam j) * ↑t))) • v j =
+                Matrix.vecMulVec (∑ μ ∈ S, Complex.exp (-(Complex.I * (↑(f μ) * ↑t))) • x μ)
+                  (∑ ν ∈ T, Complex.exp (-(Complex.I * (↑(g ν) * ↑t))) • y ν)
+'ProductTrajectory.main' depends on axioms: [propext, Classical.choice, Quot.sound]
+ProductTrajectory.const_modulus_single : ∀ (S : Finset ℝ) (c : ℝ → ℂ),
+  (∀ s ∈ S, c s ≠ 0) →
+    S.Nonempty → ∀ (K : ℝ), (∀ (t : ℝ), Complex.normSq (∑ s ∈ S, c s * ProductTrajectory.ch s t) = K) → ∃ κ, S = {κ}
+'ProductTrajectory.const_modulus_single' depends on axioms: [propext, Classical.choice, Quot.sound]
+ProductTrajectory.SO4.tau_fixed : ∀ (X : ProductTrajectory.SO4.M2) (r : ℂ),
+  r ≠ 0 → X * Matrix.conjTranspose X = r • 1 → Matrix.det X = r → ProductTrajectory.SO4.tau X = X
+'ProductTrajectory.SO4.tau_fixed' depends on axioms: [propext, Classical.choice, Quot.sound]
+ProductTrajectory.SO4.split_basis : ∀ (ω : Fin 4 → Fin 4 → ℝ),
+  (∀ (a b : Fin 4), ω a b = -ω b a) →
+    ∀ (b : Fin 4),
+      ∑ a, (Complex.I * ↑(ω a b)) • ProductTrajectory.SO4.E a =
+        ProductTrajectory.SO4.Aof ω * ProductTrajectory.SO4.E b +
+          ProductTrajectory.SO4.E b * ProductTrajectory.SO4.Cof ω
+'ProductTrajectory.SO4.split_basis' depends on axioms: [propext, Classical.choice, Quot.sound]
+@ProductTrajectory.MaxEnt.evolve_eigen : ∀ {A C : ProductTrajectory.SO4.M2},
+  Matrix.IsHermitian A →
+    Matrix.IsHermitian C →
+      ∀ (X : ProductTrajectory.SO4.M2) (s : ℝ),
+        A * X + X * C = ↑s • X →
+          ∀ (t : ℝ),
+            NormedSpace.exp (-(↑t * Complex.I) • A) * X * NormedSpace.exp (-(↑t * Complex.I) • C) =
+              ProductTrajectory.ch s t • X
+'ProductTrajectory.MaxEnt.evolve_eigen' depends on axioms: [propext, Classical.choice, Quot.sound]
+ProductTrajectory.MaxEnt.generator : ∀ (S : Finset ℝ) (κ : ℝ) (W : ℝ → ProductTrajectory.SO4.M2),
+  (∀ s ∈ S, W s ≠ 0) →
+    (∀ s ∈ S, ∀ s' ∈ S, s ≠ s' → ProductTrajectory.SO4.ip (W s) (W s') = 0) →
+      (∀ s ∈ S, κ - s ∈ S ∧ ProductTrajectory.SO4.tau (W (κ - s)) = W s) →
+        ∃ A C, Matrix.IsHermitian A ∧ Matrix.IsHermitian C ∧ ∀ s ∈ S, A * W s + W s * C = ↑(s - κ / 2) • W s
+'ProductTrajectory.MaxEnt.generator' depends on axioms: [propext, Classical.choice, Quot.sound]
+ProductTrajectory.MaxEnt.maxent : ∀ (S : Finset ℝ) (W : ℝ → ProductTrajectory.SO4.M2),
+  (∀ s ∈ S, W s ≠ 0) →
+    (∀ s ∈ S, ∀ s' ∈ S, s ≠ s' → ProductTrajectory.SO4.ip (W s) (W s') = 0) →
+      (∀ (t : ℝ),
+          ∃ r, ProductTrajectory.MaxEnt.Nt S W t * Matrix.conjTranspose (ProductTrajectory.MaxEnt.Nt S W t) = r • 1) →
+        ∃ A C,
+          Matrix.IsHermitian A ∧
+            Matrix.IsHermitian C ∧
+              ∀ (t : ℝ),
+                ProductTrajectory.MaxEnt.Nt S W t =
+                  NormedSpace.exp (-(↑t * Complex.I) • A) * ProductTrajectory.MaxEnt.Nt S W 0 *
+                    NormedSpace.exp (-(↑t * Complex.I) • C)
+'ProductTrajectory.MaxEnt.maxent' depends on axioms: [propext, Classical.choice, Quot.sound]
+ProductTrajectory.Heisenberg.H_mulVec : ∀ (μ : Fin 4),
+  ProductTrajectory.Heisenberg.Hh.mulVec (ProductTrajectory.Heisenberg.vecV μ) =
+    ↑↑μ • ProductTrajectory.Heisenberg.vecV μ
+'ProductTrajectory.Heisenberg.H_mulVec' depends on axioms: [propext, Classical.choice, Quot.sound]
+ProductTrajectory.Heisenberg.M_eq_sum : ∀ (t : ℝ),
+  ProductTrajectory.Heisenberg.Mt t = ∑ μ, ProductTrajectory.Heisenberg.zz t ^ ↑μ • ProductTrajectory.Heisenberg.V μ
+'ProductTrajectory.Heisenberg.M_eq_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+ProductTrajectory.Heisenberg.V_orth : ∀ (μ ν : Fin 4),
+  μ ≠ ν → ∑ i, ∑ j, star (ProductTrajectory.Heisenberg.V μ i j) * ProductTrajectory.Heisenberg.V ν i j = 0
+'ProductTrajectory.Heisenberg.V_orth' depends on axioms: [propext, Classical.choice, Quot.sound]
+ProductTrajectory.Heisenberg.det_M : ∀ (t : ℝ), (ProductTrajectory.Heisenberg.Mt t).det = 1
+'ProductTrajectory.Heisenberg.det_M' depends on axioms: [propext, Classical.choice, Quot.sound]
+ProductTrajectory.Heisenberg.normSq_M : ∀ (t : ℝ), ∑ i, ∑ j, Complex.normSq (ProductTrajectory.Heisenberg.Mt t i j) = 6
+'ProductTrajectory.Heisenberg.normSq_M' depends on axioms: [propext, Classical.choice, Quot.sound]
+ProductTrajectory.Heisenberg.not_local : ¬∃ A C,
+    A.IsHermitian ∧
+      C.IsHermitian ∧
+        ∀ (t : ℝ),
+          ProductTrajectory.Heisenberg.Mt t =
+            NormedSpace.exp (-(↑t * Complex.I) • A) * ProductTrajectory.Heisenberg.Mt 0 *
+              NormedSpace.exp (-(↑t * Complex.I) • C)
+'ProductTrajectory.Heisenberg.not_local' depends on axioms: [propext, Classical.choice, Quot.sound]

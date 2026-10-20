@@ -1,0 +1,28 @@
+{
+  "source_commit": "3255796 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports ProductTrajectory only)",
+    "CheckClaims.lean (generated)",
+    "scripts/mutants.py (copy of lean-proofs scripts/producttrajectory_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "569eeeede1e2d8f021defc0713dd2705d600210c98f9e0df0f4fbcc901daa01d",
+    "LeanProofs/ProductTrajectory/Characters.lean": "45871d6f66c9005be8cf3942e455060e6df8e2f6435b7df9097c7247a93aec16",
+    "LeanProofs/ProductTrajectory/Core.lean": "39b1ce626b0c2922781f451e0c1e8f6c2cad77e7fd79366aad171469941448af",
+    "LeanProofs/ProductTrajectory/ExpSums.lean": "5fd34f48fda75fa1595f7d0e7ad59691bf33c0b14140e8826f73b0c40cf44748",
+    "LeanProofs/ProductTrajectory/Graded.lean": "578233f020cba260931c4c82f0413daa1a0879322f0e8abfbfb193181af944ff",
+    "LeanProofs/ProductTrajectory/Heisenberg.lean": "d267c50bd299f51a24bb4d687a8d8bd42d6f116c8b24c65d814780b89a15448a",
+    "LeanProofs/ProductTrajectory/Main.lean": "9750ea0fa736e810bd5cdafb0c64e1bf727100e908cd3e33210ec66df39ac743",
+    "LeanProofs/ProductTrajectory/MaxEnt.lean": "f1f01db4a539fb4278046b88dd6bb21e6f1f71e18ba583adcaf0e7c22ab9801a",
+    "LeanProofs/ProductTrajectory/RankOne.lean": "48cbbc7a950852769e40e8470483897b33f7cbcc3b06c040a839c02f6d1d48dc",
+    "LeanProofs/ProductTrajectory/Report.lean": "11bfb5a70ed95885e19531a07a210d502f33a604152f33ed1c15860d234599dd",
+    "LeanProofs/ProductTrajectory/SO4.lean": "ae185ea1bb19005f9e61a3d5f5ffd50fe4f357a112da2dbab0605502092cca61",
+    "LeanProofs/ProductTrajectory.lean": "7828d723c0e91f2fd74ea24751ec362c6ea314ed69ecff17cb6f3e5aad3dffb4",
+    "LeanProofs.lean": "bd961b46c0add6d0a01902f852ccd5a9f9701216eba7ea52c9ca6ec40f9b6334",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutants.py": "605a6d8b865f63eb279ea9646f5e565641711e384e027766029378d476c2e12e"
+  }
+}
