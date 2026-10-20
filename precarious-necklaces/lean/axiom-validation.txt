@@ -1,0 +1,81 @@
+@Precarious.symm_iff_rotate : ∀ {α : Type u_1} [DecidableEq α] (w : List α),
+  w ≠ [] → (Precarious.Symm w ↔ ∃ s, 0 < s ∧ s < w.length ∧ w.rotate s = w)
+'Precarious.symm_iff_rotate' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Precarious.symm_rotate : ∀ {α : Type u_1} [DecidableEq α] (w : List α) (t : ℕ),
+  Precarious.Symm (w.rotate t) ↔ Precarious.Symm w
+'Precarious.symm_rotate' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Precarious.filter_rotate : ∀ {α : Type u_1} [DecidableEq α] (p : α → Bool) (w : List α) (t : ℕ),
+  ∃ t', List.filter p (w.rotate t) = (List.filter p w).rotate t'
+'Precarious.filter_rotate' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Precarious.count_dvd_of_pow : ∀ {α : Type u_1} [inst : DecidableEq α] {w : List α} {c x : α} {r : ℕ},
+  Precarious.IsPow (Precarious.del c w) r → x ≠ c → r ∣ List.count x w
+'Precarious.count_dvd_of_pow' depends on axioms: [propext, Quot.sound]
+@Precarious.pow_of_pairs : ∀ {α : Type u_1} [inst : DecidableEq α] (w : List α) (q : ℕ),
+  1 ≤ q →
+    2 ≤ w.toFinset.card → (∀ x ∈ w, ∀ y ∈ w, x ≠ y → Precarious.IsPow (Precarious.pair x y w) q) → Precarious.IsPow w q
+'Precarious.pow_of_pairs' depends on axioms: [propext, Classical.choice, Quot.sound]
+Precarious.even_spec : ∀ (m : ℕ),
+  1 ≤ m →
+    Precarious.IsPrecarious (Precarious.evenWord m) ∧
+      (Precarious.evenWord m).toFinset.card = 2 * m ∧ (Precarious.evenWord m).length = 2 * m * Precarious.pr m
+'Precarious.even_spec' depends on axioms: [propext, Classical.choice, Quot.sound]
+Precarious.odd_spec : ∀ (m : ℕ),
+  1 ≤ m →
+    Precarious.IsPrecarious (Precarious.oddWord m) ∧
+      (Precarious.oddWord m).toFinset.card = 2 * m + 1 ∧
+        (Precarious.oddWord m).length = Precarious.pr m * (2 * m * Precarious.pp m + 1)
+'Precarious.odd_spec' depends on axioms: [propext, Classical.choice, Quot.sound]
+Precarious.clusterWord_keepPrec : ∀ (h n : ℕ), 1 ≤ h → 1 ≤ n → Precarious.KeepPrec (2 * h) (Precarious.clusterWord h n)
+'Precarious.clusterWord_keepPrec' depends on axioms: [propext, Classical.choice, Quot.sound]
+Precarious.clusterWord_not_symm : ∀ (h n : ℕ), 1 ≤ h → 1 ≤ n → ¬Precarious.Symm (Precarious.clusterWord h n)
+'Precarious.clusterWord_not_symm' depends on axioms: [propext, Classical.choice, Quot.sound]
+Precarious.extWord_keepPrec : ∀ (m n s : ℕ), 1 ≤ m → s < 2 * m → Precarious.KeepPrec s (Precarious.extWord m n)
+'Precarious.extWord_keepPrec' depends on axioms: [propext, Classical.choice, Quot.sound]
+Precarious.extWord_not_symm : ∀ (m n : ℕ), 1 ≤ m → ¬Precarious.Symm (Precarious.extWord m n)
+'Precarious.extWord_not_symm' depends on axioms: [propext, Classical.choice, Quot.sound]
+Precarious.even_every_deletion : ∀ (m : ℕ) (J : Finset (Fin m × Bool)),
+  J.Nonempty → Precarious.Symm (List.filter (fun z => decide (z ∉ J)) (Precarious.evenWord m))
+'Precarious.even_every_deletion' depends on axioms: [propext, Classical.choice, Quot.sound]
+Precarious.odd_every_deletion : ∀ (m : ℕ) (J : Finset (Option (Fin m × Bool))),
+  J.Nonempty → Precarious.Symm (List.filter (fun z => decide (z ∉ J)) (Precarious.oddWord m))
+'Precarious.odd_every_deletion' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Precarious.lower_bound : ∀ {α : Type u_1} [inst : DecidableEq α] (w : List α),
+  Precarious.IsPrecarious w → Precarious.a w.toFinset.card ≤ w.length
+'Precarious.lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Precarious.keep_general_bound : ∀ {α : Type u_1} [inst : DecidableEq α] (s : ℕ),
+  1 ≤ s →
+    ∀ (w : List α), Precarious.KeepPrec s w → s < w.toFinset.card → Precarious.closedForm w.toFinset.card s ≤ w.length
+'Precarious.keep_general_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+Precarious.precarious_min : ∀ (k : ℕ),
+  2 ≤ k →
+    (∀ {α : Type} [inst : DecidableEq α] (w : List α),
+        Precarious.IsPrecarious w → w.toFinset.card = k → Precarious.a k ≤ w.length) ∧
+      ∃ β x w, Precarious.IsPrecarious w ∧ w.toFinset.card = k ∧ w.length = Precarious.a k
+'Precarious.precarious_min' depends on axioms: [propext, Classical.choice, Quot.sound]
+Precarious.keep_exact : ∀ (k s : ℕ),
+  1 ≤ s →
+    s < k →
+      (∀ {α : Type} [inst : DecidableEq α] (w : List α),
+          Precarious.KeepPrec s w → w.toFinset.card = k → Precarious.closedForm k s ≤ w.length) ∧
+        ∃ β x w, Precarious.KeepPrec s w ∧ w.toFinset.card = k ∧ w.length = Precarious.closedForm k s
+'Precarious.keep_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+Precarious.closedForm_top : ∀ (k : ℕ), 2 ≤ k → Precarious.closedForm k (k - 1) = Precarious.a k
+'Precarious.closedForm_top' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Precarious.isPrecarious_iff_keepPrec : ∀ {α : Type u_1} [inst : DecidableEq α] (w : List α),
+  2 ≤ w.toFinset.card → (Precarious.IsPrecarious w ↔ Precarious.KeepPrec (w.toFinset.card - 1) w)
+'Precarious.isPrecarious_iff_keepPrec' depends on axioms: [propext, Classical.choice, Quot.sound]
+Precarious.keep_two_exact : ∀ (k : ℕ),
+  3 ≤ k →
+    (∀ {α : Type} [inst : DecidableEq α] (w : List α),
+        Precarious.KeepPrec 2 w → w.toFinset.card = k → 2 * k + 8 ≤ w.length) ∧
+      ∃ β x w, Precarious.KeepPrec 2 w ∧ w.toFinset.card = k ∧ w.length = 2 * k + 8
+'Precarious.keep_two_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+Precarious.keep_three_exact : ∀ (k : ℕ),
+  4 ≤ k →
+    (∀ {α : Type} [inst : DecidableEq α] (w : List α),
+        Precarious.KeepPrec 3 w → w.toFinset.card = k → 6 * k ≤ w.length) ∧
+      ∃ β x w, Precarious.KeepPrec 3 w ∧ w.toFinset.card = k ∧ w.length = 6 * k
+'Precarious.keep_three_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+Precarious.a_values : Precarious.a 2 = 4 ∧
+  Precarious.a 3 = 14 ∧ Precarious.a 4 = 24 ∧ Precarious.a 5 = 126 ∧ Precarious.a 6 = 180 ∧ Precarious.a 7 = 1290
+'Precarious.a_values' depends on axioms: [propext, Classical.choice, Quot.sound]

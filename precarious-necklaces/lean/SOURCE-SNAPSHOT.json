@@ -1,0 +1,27 @@
+{
+  "source_commit": "6877808 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports Precarious only)",
+    "CheckClaims.lean (generated)",
+    "scripts/mutants.py (copy of lean-proofs scripts/precarious_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "b28f851120a90719bd47f9bc75171c48f639f5f7fb0a7cca87c1f64b1cf12743",
+    "LeanProofs/Precarious/Basic.lean": "959b1955d1aa5c1642046047eab1b4c9864ccaf9f9576d4985bc919f5b998fdf",
+    "LeanProofs/Precarious/Bound.lean": "1adcff38543260967ddbd326fb1ea198f14ebd8d9ac2e9b5e43f97a408782b9f",
+    "LeanProofs/Precarious/Closed.lean": "8cc21f43861627d77e0bafcd712e0b23572b04166ee9278f105a8bace266a400",
+    "LeanProofs/Precarious/ClosedConstruct.lean": "3f821e2c6071a659a28441008245310222339db4df0d654faa090670afe78501",
+    "LeanProofs/Precarious/Construct.lean": "e1d5f1fe165d65c4a3c61826c2899984e6b641444924a1bbce6c3a60efa0bc4c",
+    "LeanProofs/Precarious/Extensions.lean": "17436da186fb896ac4e01141db9e73eab74cf7ecd75f79328cc1f57b3898cd72",
+    "LeanProofs/Precarious/Framework.lean": "09df167cfa461cc0d66eeb9d212b5bf20668a9bceb3a2bbd14b4ccb10d3558e9",
+    "LeanProofs/Precarious/Report.lean": "6d9dc8b9058de8ce8243ed8fc7a62624b584ca41eaa05edb9f7c4449b9be0e1d",
+    "LeanProofs/Precarious/Rotation.lean": "8333fd8c444292c9eb79b2d36818c4a3fa1d965cd37dd6f14ef64d5e35a07b72",
+    "LeanProofs/Precarious.lean": "ad4c14d83db82fee72e474f87dded033ce0fa0d21eb2866431f0bc754ee9729e",
+    "LeanProofs.lean": "67129bd626c31c42759771bb7be095c2292d6d82628d577b402ad9b4ab533687",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutants.py": "c6b0620a7c267775657831ddeb5e56e0cffd5e4070aa9db7a957d5ee15dd411f"
+  }
+}

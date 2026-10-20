@@ -1,0 +1,41 @@
+Isolated build 2026-10-20: fresh copy of lean/, lake exe cache get, lake build LeanProofs
+⚠ [8924/8934] Built LeanProofs.Precarious.Basic (182s)
+warning: LeanProofs/Precarious/Basic.lean:6:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Precarious/Basic.lean:7:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Precarious/Basic.lean:10:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Precarious/Basic.lean:11:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Precarious/Basic.lean:12:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Precarious/Basic.lean:14:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Precarious/Basic.lean:16:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Precarious/Basic.lean:50:0: `filter_flatten_replicate` does not use the following hypothesis in its type:
+warning: LeanProofs/Precarious/Basic.lean:56:0: `flatten_replicate_mul` does not use the following hypothesis in its type:
+warning: LeanProofs/Precarious/Basic.lean:61:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Precarious/Basic.lean:93:14: This simp argument is unused:
+warning: LeanProofs/Precarious/Basic.lean:98:12: This simp argument is unused:
+warning: LeanProofs/Precarious/Basic.lean:101:45: This simp argument is unused:
+warning: LeanProofs/Precarious/Basic.lean:82:0: `prefix_filter` does not use the following hypothesis in its type:
+warning: LeanProofs/Precarious/Basic.lean:110:4: `simp at hj` is a flexible tactic modifying `hj`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/Precarious/Basic.lean:124:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Precarious/Basic.lean:139:6: `List.take_succ` has been deprecated: Use `List.take_add_one` instead
+warning: LeanProofs/Precarious/Basic.lean:167:10: `simp [length_take, length_drop]` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/Precarious/Basic.lean:167:10: `simp [length_take, length_drop]` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/Precarious/Basic.lean:142:0: `pow_of_periodic` does not use the following hypothesis in its type:
+warning: LeanProofs/Precarious/Basic.lean:173:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Precarious/Basic.lean:178:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Precarious/Basic.lean:179:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Precarious/Basic.lean:217:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Precarious/Basic.lean:331:100: This line exceeds the 100 character limit, please shorten it!
+⚠ [8925/8934] Built LeanProofs.Precarious.Rotation (183s)
+warning: LeanProofs/Precarious/Rotation.lean:6:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Precarious/Rotation.lean:7:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Precarious/Rotation.lean:8:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Precarious/Rotation.lean:9:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Precarious/Rotation.lean:11:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Precarious/Rotation.lean:12:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Precarious/Rotation.lean:25:0: `rotate_mul_self` does not use the following hypothesis in its type:
+warning: LeanProofs/Precarious/Rotation.lean:31:0: `length_pow` does not use the following hypothesis in its type:
+warning: LeanProofs/Precarious/Rotation.lean:36:0: `rotate_pow` does not use the following hypothesis in its type:
+warning: LeanProofs/Precarious/Rotation.lean:36:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Precarious/Rotation.lean:49:40: `simp at hv` is a flexible tactic modifying `hv`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/Precarious/Rotation.lean:45:0: `symm_iff_rotate` does not use the following hypothesis in its type:
+warning: LeanProofs/Precarious/Rotation.lean:64:100: This line exceeds the 100 character limit, please shorten it!
