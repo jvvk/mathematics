@@ -1,0 +1,41 @@
+Isolated build 2026-10-20: fresh copy of lean/, lake exe cache get, lake build LeanProofs
+⚠ [8924/8927] Built LeanProofs.ZeroOneFour (206s)
+warning: LeanProofs/ZeroOneFour.lean:15:0: The module doc-string for a file should be the first command after the imports.
+warning: LeanProofs/ZeroOneFour.lean:2:0: * `A seven-reaction`:
+warning: LeanProofs/ZeroOneFour.lean:2:77: * `generate steady states`:
+warning: LeanProofs/ZeroOneFour.lean:4:0: * `
+warning: LeanProofs/ZeroOneFour.lean:4:0: * `
+warning: LeanProofs/ZeroOneFour.lean:5:9: * ` and `:
+warning: LeanProofs/ZeroOneFour.lean:6:47: * `.`:
+warning: LeanProofs/ZeroOneFour.lean:3:0: * `(chem-tang-zhang-three-steady-states; witness and proof route from FOUR_STATES.md, Codex, 2026-10-16).`:
+warning: LeanProofs/ZeroOneFour.lean:40:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/ZeroOneFour.lean:52:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/ZeroOneFour.lean:53:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/ZeroOneFour.lean:54:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/ZeroOneFour.lean:55:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/ZeroOneFour.lean:58:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/ZeroOneFour.lean:63:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/ZeroOneFour.lean:108:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/ZeroOneFour.lean:109:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/ZeroOneFour.lean:112:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/ZeroOneFour.lean:115:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/ZeroOneFour.lean:117:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/ZeroOneFour.lean:125:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/ZeroOneFour.lean:130:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/ZeroOneFour.lean:140:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/ZeroOneFour.lean:171:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/ZeroOneFour.lean:171:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/ZeroOneFour.lean:171:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/ZeroOneFour.lean:171:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/ZeroOneFour.lean:172:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/ZeroOneFour.lean:172:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/ZeroOneFour.lean:172:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/ZeroOneFour.lean:173:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/ZeroOneFour.lean:197:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/ZeroOneFour.lean:197:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/ZeroOneFour.lean:197:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/ZeroOneFour.lean:197:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/ZeroOneFour.lean:198:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/ZeroOneFour.lean:198:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/ZeroOneFour.lean:198:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/ZeroOneFour.lean:199:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.

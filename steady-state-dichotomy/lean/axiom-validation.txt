@@ -1,0 +1,82 @@
+ZeroOneFour.f_from_network : ∀ (x y z : ℝ),
+  ZeroOneFour.f1 x y z = -7 * x * y - 1 * x * z + 1 * z + 1 * y * z - 1 * x * y ∧
+    ZeroOneFour.f2 x y z = -7 * x * y + 1 * x * z - 1 * x * y + 1 ∧ ZeroOneFour.f3 x y z = 1 * x * y - 1 * z + 3 * x
+'ZeroOneFour.f_from_network' depends on axioms: [propext, Classical.choice, Quot.sound]
+ZeroOneFour.jac_partials : ∀ (x y z : ℝ),
+  HasDerivAt (fun t => ZeroOneFour.f1 t y z) (ZeroOneFour.jac x y z 0 0) x ∧
+    HasDerivAt (fun t => ZeroOneFour.f1 x t z) (ZeroOneFour.jac x y z 0 1) y ∧
+      HasDerivAt (fun t => ZeroOneFour.f1 x y t) (ZeroOneFour.jac x y z 0 2) z ∧
+        HasDerivAt (fun t => ZeroOneFour.f2 t y z) (ZeroOneFour.jac x y z 1 0) x ∧
+          HasDerivAt (fun t => ZeroOneFour.f2 x t z) (ZeroOneFour.jac x y z 1 1) y ∧
+            HasDerivAt (fun t => ZeroOneFour.f2 x y t) (ZeroOneFour.jac x y z 1 2) z ∧
+              HasDerivAt (fun t => ZeroOneFour.f3 t y z) (ZeroOneFour.jac x y z 2 0) x ∧
+                HasDerivAt (fun t => ZeroOneFour.f3 x t z) (ZeroOneFour.jac x y z 2 1) y ∧
+                  HasDerivAt (fun t => ZeroOneFour.f3 x y t) (ZeroOneFour.jac x y z 2 2) z
+'ZeroOneFour.jac_partials' depends on axioms: [propext, Classical.choice, Quot.sound]
+ZeroOneFour.det_jac : ∀ (x y z : ℝ), (ZeroOneFour.jac x y z).det = ZeroOneFour.detJ x y z
+'ZeroOneFour.det_jac' depends on axioms: [propext, Classical.choice, Quot.sound]
+@ZeroOneFour.on_curve : ∀ {x y z : ℝ},
+  0 < x →
+    0 < z →
+      ZeroOneFour.f1 x y z = 0 →
+        ZeroOneFour.f2 x y z = 0 →
+          ZeroOneFour.f3 x y z = 0 → 1 / 8 < z ∧ x = ZeroOneFour.X z ∧ y = ZeroOneFour.Y z ∧ ZeroOneFour.P z = 0
+'ZeroOneFour.on_curve' depends on axioms: [propext, Classical.choice, Quot.sound]
+ZeroOneFour.main : ∃ r₁ r₂ r₃ r₄,
+  r₁ ∈ Set.Ioo (6 / 25) (13 / 50) ∧
+    r₂ ∈ Set.Ioo (17 / 20) (87 / 100) ∧
+      r₃ ∈ Set.Ioo (6 / 5) (121 / 100) ∧
+        r₄ ∈ Set.Ioo 93 94 ∧
+          ZeroOneFour.S = {ZeroOneFour.g r₁, ZeroOneFour.g r₂, ZeroOneFour.g r₃, ZeroOneFour.g r₄} ∧
+            ZeroOneFour.S.ncard = 4 ∧
+              ZeroOneFour.detJ (ZeroOneFour.X r₁) (ZeroOneFour.Y r₁) r₁ < 0 ∧
+                0 < ZeroOneFour.detJ (ZeroOneFour.X r₂) (ZeroOneFour.Y r₂) r₂ ∧
+                  ZeroOneFour.detJ (ZeroOneFour.X r₃) (ZeroOneFour.Y r₃) r₃ < 0 ∧
+                    0 < ZeroOneFour.detJ (ZeroOneFour.X r₄) (ZeroOneFour.Y r₄) r₄
+'ZeroOneFour.main' depends on axioms: [propext, Classical.choice, Quot.sound]
+ZeroOneFive.f_from_network : ∀ (x y z : ℝ),
+  ZeroOneFive.f1 x y z = -1 * x - 1 * x * y + 2 / 5 * y * z + 1 / 2500 + 1 / 100000 * y ∧
+    ZeroOneFive.f2 x y z = 1 * x + 1 * x * z - 2 / 5 * y * z + 1 / 2500 - 1 / 100000 * y ∧
+      ZeroOneFive.f3 x y z = 5 * x - 2 / 5 * y * z - 1 / 2 * z
+'ZeroOneFive.f_from_network' depends on axioms: [propext, Classical.choice, Quot.sound]
+ZeroOneFive.jac_partials : ∀ (x y z : ℝ),
+  HasDerivAt (fun t => ZeroOneFive.f1 t y z) (ZeroOneFive.jac x y z 0 0) x ∧
+    HasDerivAt (fun t => ZeroOneFive.f1 x t z) (ZeroOneFive.jac x y z 0 1) y ∧
+      HasDerivAt (fun t => ZeroOneFive.f1 x y t) (ZeroOneFive.jac x y z 0 2) z ∧
+        HasDerivAt (fun t => ZeroOneFive.f2 t y z) (ZeroOneFive.jac x y z 1 0) x ∧
+          HasDerivAt (fun t => ZeroOneFive.f2 x t z) (ZeroOneFive.jac x y z 1 1) y ∧
+            HasDerivAt (fun t => ZeroOneFive.f2 x y t) (ZeroOneFive.jac x y z 1 2) z ∧
+              HasDerivAt (fun t => ZeroOneFive.f3 t y z) (ZeroOneFive.jac x y z 2 0) x ∧
+                HasDerivAt (fun t => ZeroOneFive.f3 x t z) (ZeroOneFive.jac x y z 2 1) y ∧
+                  HasDerivAt (fun t => ZeroOneFive.f3 x y t) (ZeroOneFive.jac x y z 2 2) z
+'ZeroOneFive.jac_partials' depends on axioms: [propext, Classical.choice, Quot.sound]
+ZeroOneFive.det_jac : ∀ (x y z : ℝ), (ZeroOneFive.jac x y z).det = ZeroOneFive.detJ x y z
+'ZeroOneFive.det_jac' depends on axioms: [propext, Classical.choice, Quot.sound]
+@ZeroOneFive.on_curve : ∀ {x y z : ℝ},
+  0 < y →
+    0 < z →
+      ZeroOneFive.f1 x y z = 0 →
+        ZeroOneFive.f2 x y z = 0 →
+          ZeroOneFive.f3 x y z = 0 →
+            ZeroOneFive.D z < 0 ∧ x = ZeroOneFive.X z ∧ y = ZeroOneFive.Y z ∧ ZeroOneFive.E z = 0
+'ZeroOneFive.on_curve' depends on axioms: [propext, Classical.choice, Quot.sound]
+@ZeroOneFive.detJ_root : ∀ {z : ℝ},
+  ZeroOneFive.D z ≠ 0 →
+    ZeroOneFive.E z = 0 →
+      ZeroOneFive.detJ (ZeroOneFive.X z) (ZeroOneFive.Y z) z =
+        -ZeroOneFive.M z * ZeroOneFive.dE z / (1250 * ZeroOneFive.D z ^ 2)
+'ZeroOneFive.detJ_root' depends on axioms: [propext, Classical.choice, Quot.sound]
+ZeroOneFive.main : ∃ r₁ r₂ r₃ r₄ r₅,
+  r₁ ∈ Set.Ioo (1 / 92549) (1 / 92548) ∧
+    r₂ ∈ Set.Ioo (5 / 41934) (4 / 33547) ∧
+      r₃ ∈ Set.Ioo (1107 / 69395) (1091 / 68392) ∧
+        r₄ ∈ Set.Ioo (18817 / 33654) (18122 / 32411) ∧
+          r₅ ∈ Set.Ioo (236675 / 108788) (256527 / 117913) ∧
+            ZeroOneFive.S = {ZeroOneFive.g r₁, ZeroOneFive.g r₂, ZeroOneFive.g r₃, ZeroOneFive.g r₄, ZeroOneFive.g r₅} ∧
+              ZeroOneFive.S.ncard = 5 ∧
+                ZeroOneFive.detJ (ZeroOneFive.X r₁) (ZeroOneFive.Y r₁) r₁ < 0 ∧
+                  0 < ZeroOneFive.detJ (ZeroOneFive.X r₂) (ZeroOneFive.Y r₂) r₂ ∧
+                    ZeroOneFive.detJ (ZeroOneFive.X r₃) (ZeroOneFive.Y r₃) r₃ < 0 ∧
+                      0 < ZeroOneFive.detJ (ZeroOneFive.X r₄) (ZeroOneFive.Y r₄) r₄ ∧
+                        ZeroOneFive.detJ (ZeroOneFive.X r₅) (ZeroOneFive.Y r₅) r₅ < 0
+'ZeroOneFive.main' depends on axioms: [propext, Classical.choice, Quot.sound]

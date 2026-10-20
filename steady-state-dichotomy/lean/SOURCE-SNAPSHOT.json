@@ -1,0 +1,19 @@
+{
+  "source_commit": "3255796 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports ZeroOneFour, ZeroOneFive only)",
+    "CheckClaims.lean (generated)",
+    "scripts/mutants.py (generated from lean-proofs scripts/zeroonefour_mutants.toml, zeroonefive_mutants.toml)"
+  ],
+  "files": {
+    "CheckClaims.lean": "1f98876a5897610d5116054331efbfcf6e9ee5a35cf298acc8d197f54cdb63d3",
+    "LeanProofs/ZeroOneFive.lean": "f687308dfe14ab326b5b0df84ee73d783d39a2f3d5e87d567b019e5b462e96f1",
+    "LeanProofs/ZeroOneFour.lean": "3cc494165c3bdc0239cee62541124abc5ce33cc565528f375a2ed064f0380d7e",
+    "LeanProofs.lean": "1996bf526db1e101c9f0b456eadf403e8222fb02ff1caa1d70ce7a9c96aa6f2f",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutants.py": "6617fd8c238aa5411fa914c81ad6376cee7c8e2cb2c6e912fb8d333f1a73cb2c"
+  }
+}
