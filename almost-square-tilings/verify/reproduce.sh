@@ -1,8 +1,11 @@
 #!/bin/sh
-# Re-run every check behind the theorem. Needs python3 and a C compiler; the optional
-# second search for n <= 19 also needs the z3-solver Python package.
+# Re-run the checks behind the theorem: checksums, the certificate audit, Figure 1, the C search for n <= 19,
+# and (with the z3-solver Python package) the second search for n <= 18; add 19 to its list to run that case
+# too (a few minutes). Exits nonzero on the first failure.
 set -e
 cd "$(dirname "$0")"
+echo "== checksums of out/"
+shasum -a 256 -c SHA256SUMS --quiet
 echo "== certificate audit (all remaining cases, all inflations, coverage of 20..20000)"
 python3 verify/audit.py .
 echo "== Figure 1: Moron's rectangle with moved cut lines tiles R_32"

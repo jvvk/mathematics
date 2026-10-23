@@ -4,17 +4,21 @@
 cd "${0:A:h}" || exit 1
 D=AlmostSquares
 M=$D/Mut.lean
+fails=0
 mk() { sed -e "s/^namespace AlmostSq\$/namespace AlmostSqMut\nopen AlmostSq/; s/^end AlmostSq\$/end AlmostSqMut/" "$D/$1" > "$M"; }
 run_mut() {
   name="$1"; file="$2"; expr="$3"
   mk "$file"; base=$(cat "$M")
   sed -i '' "$expr" "$M"
-  if [[ "$(cat $M)" == "$base" ]]; then echo "MUTATION DID NOT APPLY: $name"; return; fi
-  if nice -n 15 timeout 300 lake env lean --threads=1 "$M" >/dev/null 2>&1; then echo "MUTANT SURVIVED: $name"; else echo "rejected: $name"; fi
+  if [[ "$(cat $M)" == "$base" ]]; then echo "MUTATION DID NOT APPLY: $name"; fails=$((fails+1)); return; fi
+  nice -n 15 timeout 300 lake env lean --threads=1 "$M" >/dev/null 2>&1; rc=$?
+  if [[ $rc -eq 0 ]]; then echo "MUTANT SURVIVED: $name"; fails=$((fails+1))
+  elif [[ $rc -eq 124 ]]; then echo "TIMEOUT (not counted as rejected): $name"; fails=$((fails+1))
+  else echo "rejected: $name"; fi
 }
 for file in Inflation.lean Parity.lean Real.lean Examples.lean Scales.lean Classes.lean Inflations.lean Main.lean Bouwkamp.lean Counts.lean Reach.lean; do   # unmutated renamed copies must pass
   mk "$file"
-  if nice -n 15 timeout 300 lake env lean --threads=1 "$M" >/dev/null 2>&1; then echo "baseline ok: $file"; else echo "BASELINE FAILS: $file"; fi
+  if nice -n 15 timeout 300 lake env lean --threads=1 "$M" >/dev/null 2>&1; then echo "baseline ok: $file"; else echo "BASELINE FAILS: $file"; fails=$((fails+1)); fi
 done
 run_mut "balance: right side (f W - f 0) -> f W"        Inflation.lean 's/      (f W - f 0) \* (g H - g 0) := by/      f W * (g H - g 0) := by/'
 run_mut "inflation: strict -> monotone"                 Inflation.lean 's/    (hX : StrictMonoOn X (CutX W ts)) (hY : StrictMonoOn Y (CutY H ts)) :/    (hX : MonotoneOn X (CutX W ts)) (hY : StrictMonoOn Y (CutY H ts)) :/'
@@ -45,3 +49,5 @@ run_mut "pieces: 22 -> 21"                               Counts.lean 's/(base 11
 run_mut "57x55: 67 -> 68"                                Reach.lean 's/dedup.length = 67/dedup.length = 68/'
 run_mut "Moron: n = 60 -> 61"                            Reach.lean 's/(tab \[(9, -1), (10, -2), (14, -1), (17, -2), (32, -4)\]) 60 = true/(tab [(9, -1), (10, -2), (14, -1), (17, -2), (32, -4)]) 61 = true/'
 rm -f "$M"
+if [[ $fails -gt 0 ]]; then echo "$fails FAILURES"; exit 1; fi
+echo "all mutants rejected, all baselines pass"

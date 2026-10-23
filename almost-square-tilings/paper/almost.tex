@@ -22,7 +22,7 @@
 \author{Vamshi Jandhyala}
 \subjclass[2020]{05B45, 52C20}
 \keywords{Tiling, dissection, almost-square, perfect squared square}
-\date{Preprint, version 2, 23 October 2026 (expository revision; results unchanged from version 1 of 8 October). Not peer reviewed.}
+\date{Preprint, version 3, 23 October 2026 (version 1: 8 October; version 2: expository revision; results unchanged throughout). Not peer reviewed.}
 
 \begin{document}
 \raggedbottom
@@ -98,7 +98,7 @@ for the rectangle of least area into which $1\times2,2\times3,\dots,m\times(m+1)
 Simonis and O'Sullivan~\cite{simonis} solved it by computer up to $m=26$, and Ellard and
 MacHale~\cite{ellard} study packings of such rectangles. When the frame must itself be
 an almost-square, the area condition holds only for $m=1,3,8,20,34$, and exact fits are known for each
-of them, the last found by van den Berg, Braam, Moes, Suilen and Bhulai~\cite{vdberg}. For $m>1$ these
+of them; for the last, Giovanni Resta reports finding one in January 2007~\cite{friedman-almost}, and van den Berg, Braam, Moes, Suilen and Bhulai found one independently~\cite{vdberg}. For $m>1$ these
 fits are tilings in our sense, of the almost-squares of sizes $4$, $15$, $55$ and $119$. Allowing any
 set of distinct sizes, as Friedman does, is what makes every large $n$ reachable.
 
@@ -534,9 +534,12 @@ integer, so $a$ is too.}
 \end{figure}
 
 So it suffices to search over integer placements. The search fills $\R_n$ from the bottom up. In any
-partial tiling, find the lowest level of the unfilled region and its leftmost point at that level;
-some tile must have its lower-left corner exactly there, so it suffices to try each unused size in each
-orientation at that point. The search finds tilings exactly for $n\in\{4,10,12,14,15,18\}$, agreeing
+partial tiling, the filled region is bounded above by a skyline. Take a segment of the skyline that is a
+local minimum, with a higher wall (or the boundary of $\R_n$) on each side; the program takes the narrowest
+such segment. The cell at its left end has filled cells below it and to its left, so some tile has its
+lower-left corner exactly there, and the wall on the right bounds that tile's width. It suffices to try
+each unused size in each orientation at that point. (The lowest, leftmost unfilled cell is one such
+point; the Lean search uses that one.) The search finds tilings exactly for $n\in\{4,10,12,14,15,18\}$, agreeing
 with Friedman's table from $n=6$, and none for the other $n\le19$. The hardest case, $n=19$, takes about
 $2.3\times10^5$ search nodes. A second program sharing no code with the first encodes the question as an
 exact cover (one variable per placement of each size and orientation, every cell covered once, every size
@@ -549,7 +552,7 @@ proves Theorem~\ref{thm:main}. \qed
 Every claim in Sections~\ref{sec:proof} and~\ref{sec:small} is a finite check, and the data and
 programs are at \url{https://github.com/jvvk/mathematics/tree/main/almost-square-tilings}: the layouts of the squared squares, the $128$ inflations
 with their thresholds (the $111$ used and some spares), the $151$ explicit tilings and the six small
-ones, both searches for $n\le19$, and a script that reruns everything, with checksums. A checker
+ones, both searches for $n\le19$, checksums, and a script that reruns the checker, the search in C for $n\le19$, the second search for $n\le18$ ($n=19$ on request, a few minutes) and the checksums. A checker
 sharing no code with the programs that found the tilings rebuilds each tiling cell by cell; it checks
 every explicit tiling, every inflation at its first two scales and the conditions of
 Lemma~\ref{lem:scales} for $300$ further scales, and confirms that every $n$ with $20\le n\le20000$ is
@@ -602,6 +605,7 @@ rectangles of orders $21$ to $24$, \emph{J. Combin.\ Theory Ser.~B} \textbf{59} 
 \href{https://doi.org/10.1017/mag.2016.6}{doi:10.1017/mag.2016.6}.
 \bibitem{friedman-0512} E.~Friedman, Problem of the Month (May 2012), Math Magic,
 \url{https://erich-friedman.github.io/mathmagic/0512.html}, accessed 26 September 2026.
+\bibitem{friedman-almost} E.~Friedman, Almost squares in almost squares, Erich's Packing Center, \url{https://erich-friedman.github.io/packing/almost/}, accessed 23 October 2026.
 \bibitem{friedman-unsolved} E.~Friedman, Unsolved problems from Math Magic, problem 20,
 \url{https://erich-friedman.github.io/mathmagic/unsolved.html}, accessed 7 October 2026.
 \bibitem{gambini} I.~Gambini, \emph{Quant aux carr\'es carrel\'es}, Ph.D. thesis, Universit\'e de la

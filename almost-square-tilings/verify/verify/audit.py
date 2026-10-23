@@ -103,11 +103,10 @@ def main() -> None:
     even = {V % 112 for S, V, _ in recs if S == 112}
     odd = {V % 110 for S, V, _ in recs if S == 110}
     print(f"residues: even mod 112 {len(even)}/56, odd mod 110 {len(odd)}/55")
-    print(
-        "AUDIT PASS"
-        if bad == 0 and not gaps and len(even) == 56 and len(odd) == 55
-        else f"AUDIT FAIL ({bad})"
-    )
+    ok = bad == 0 and not gaps and len(even) == 56 and len(odd) == 55
+    print("AUDIT PASS" if ok else f"AUDIT FAIL ({bad})")
+    if not ok:
+        sys.exit(1)
 
 
 if __name__ == "__main__":
