@@ -14,6 +14,8 @@ The answer: exactly when `n ∈ {4, 10, 12, 14, 15, 18}` or `n ≥ 20` (Theorem 
 
 Preprint v1, 8 October 2026, not peer reviewed; the exposition has not yet been independently reviewed. Friedman's list of solved problems credits the result. The author used an AI tool (Claude, Anthropic) in this work, as described in the paper's acknowledgements, and is responsible for its content.
 
+**Version 2** (23 October 2026, tag `almost-square-tilings-v2`): expository revision of the paper (one sentence of Section 2 reworded). The results, programs and Lean files are unchanged from v1.
+
 ## Contents
 
 - `paper/`: `almost.tex`, `almost.pdf` and the figure sources `fig_*.tex`.

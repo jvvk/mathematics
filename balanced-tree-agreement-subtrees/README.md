@@ -40,6 +40,8 @@ Preprint v1, 9 October 2026, not peer reviewed.
 The author used an AI assistant (Claude, Anthropic) in this work, as described in the paper's
 acknowledgement, and is responsible for its content.
 
+**Version 2** (23 October 2026, tag `balanced-tree-agreement-subtrees-v2`): expository revision of the paper (worked examples for restriction, cluster and strategy). The results, programs and Lean files are unchanged from v1.
+
 ## Contents
 
 - `paper/`: `paper.tex`, `paper.pdf`, and the two figures with the scripts that draw them.

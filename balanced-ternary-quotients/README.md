@@ -14,6 +14,8 @@ This paper proves it. `4·3^k + 5`, `4·3^k − 5`, `8·3^k + 7` and `8·3^k + 1
 
 Preprint v1, 8 October 2026, not peer reviewed. Theorems 1.1 and 1.3 are formally verified in Lean 4 (`lean/`, standard axioms only), and every number quoted in the paper is recomputed by `verify/check_paper.py`; the exposition has not yet been independently reviewed. The author used an AI tool (Claude, Anthropic) in this work, as described in the paper's declaration of generative AI use, and is responsible for its content.
 
+**Version 2** (23 October 2026, tag `balanced-ternary-quotients-v2`): expository revision of the paper (conditions (i) and (iii) of Proposition 2.2 now argued in the text instead of called immediate). The results, programs and Lean files are unchanged from v1.
+
 ## Contents
 
 - `paper/`: `quotients.tex`, `quotients.pdf`, the appendix tables `tables.tex` and Figure 1.

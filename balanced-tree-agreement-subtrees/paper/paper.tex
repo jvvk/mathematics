@@ -90,7 +90,7 @@ random labellings of the same shapes.
 We follow the terminology of \cite{BLOSSW}. A rooted binary phylogenetic $X$-tree is a rooted
 binary tree whose leaves are bijectively labelled by $X$. For $Y\subseteq X$ the restriction
 $T|Y$ is obtained from the minimal subtree connecting $Y$ by suppressing non-root vertices of
-degree two. For trees $S$ and $T$ with label sets $X$ and $X'$, a set $Y\subseteq X\cap X'$ is an
+degree two; for example, restricting $((1,2),(3,4))$ to $\{1,2,3\}$ gives $((1,2),3)$. For trees $S$ and $T$ with label sets $X$ and $X'$, a set $Y\subseteq X\cap X'$ is an
 \emph{agreement set} if $S|Y\cong T|Y$ as leaf-labelled trees, and $\mast(S,T)$ is the largest
 size of an agreement set. A rooted binary tree is \emph{balanced} if it has $2^m$ leaves, all at
 depth $m$. If $S_L,S_R$ and $T_L,T_R$ are the maximal pendant subtrees of $S$ and $T$, then
@@ -106,12 +106,12 @@ For example, the balanced trees $S=((1,2),(3,4))$ and $T=((1,3),(2,4))$ of Figur
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.74\textwidth]{fig_subst.pdf}
+\includegraphics[width=0.66\textwidth]{fig_subst.pdf}
 \caption{(a) Two balanced trees on four leaves whose largest agreement subtree has two leaves. (b) The substitution $S^\circ[A]$ of Section~\ref{sec:subst}: each leaf $z$ of $S^\circ$ becomes the root of a tree $A_z$. An agreement set of $S^\circ[A]$ and $T^\circ[B]$ can use at most $\mast(S^\circ,T^\circ)$ of the blocks, and at most $\mast(A_z,B_z)$ leaves inside each.}
 \label{fig:subst}
 \end{figure}
 
-A \emph{cluster} of a rooted tree is the set of leaves below some vertex. If $C$ is a cluster
+A \emph{cluster} of a rooted tree is the set of leaves below some vertex; $\{1,2\}$ is a cluster of $((1,2),(3,4))$ and $\{2,3\}$ is not. If $C$ is a cluster
 of $S$ and $Y$ meets $C$ in exactly one leaf $y$, then for any $c\in C$ the tree $S|Y$ is
 obtained from $S|((Y\setminus C)\cup\{c\})$ by renaming $c$ as $y$.
 
@@ -207,7 +207,7 @@ In the induction, $x_1,\dots,x_4$ are the fractions of the shared labels lying i
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.9\textwidth]{fig_grid.pdf}
+\includegraphics[width=0.8\textwidth]{fig_grid.pdf}
 \caption{The six terms of $\Phi_{a,c}$ as the six cases of recurrence~\eqref{eq:rec}, read on the table of overlaps $x_1,\dots,x_4$ between the halves of $S$ (rows) and of $T$ (columns).}
 \label{fig:grid}
 \end{figure}
@@ -273,7 +273,9 @@ depths. Hence
 \varphi_j(y)=\sum_{(u,v)\in j} 2^{c(|u|+|v|)}\,L_{uv}(y)^a .
 \]
 Each $\varphi_j$ is a nonnegative combination of concave functions of $y$, so it is concave on
-$\Delta_8$.
+$\Delta_8$. For example, pairing $S_0=S_L$ with $T_0=T_L$ and $S_1$ with $T_1$ by~\eqref{eq:rec}, and then using the
+alternative $\mast(S_0,T_0)\ge\mast(S_{00},T_0)$ gives the strategy $\{(S_{00},T_0),(S_1,T_1)\}$, with
+$\varphi_j(y)=2^{3c}L_{00,0}(y)^a+2^{2c}L_{1,1}(y)^a$.
 
 \begin{lemma}[computer-assisted]\label{lem:cert2}
 For $a=2/5$ and $c=157/2000$, $\max_j\varphi_j(y)\ge1$ for every $y\in\Delta_8$.
@@ -379,6 +381,7 @@ found the substitution argument and the two-level induction, wrote the certifier
 verification programs, wrote the Lean formalisation of Section~\ref{sec:lean} and drafted the text. The
 author directed the work, checked the results and is responsible for the contents.
 
+\enlargethispage{3\baselineskip}
 \begin{thebibliography}{99}
 
 \bibitem{Aldous} D.~J. Aldous, On the largest common subtree of random leaf-labeled binary

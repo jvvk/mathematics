@@ -14,6 +14,8 @@ The answer is no. The mex sequence that starts `1,1,1,0,1,0,1,1` is unbounded (T
 
 Preprint v1, 8 October 2026, not peer reviewed. Lemmas 1 to 3 and Theorems 1 and 2 are formally verified in Lean 4 (`lean/`, standard axioms only); the exposition has not yet been independently reviewed. The author used AI tools (Claude, Anthropic; Codex, OpenAI) in this work, as described in the paper's acknowledgement, and is responsible for its content.
 
+**Version 2** (23 October 2026, tag `mex-sequence-not-periodic-v2`): expository revision of the paper (one sentence of the introduction reworded). The results, programs and Lean files are unchanged from v1.
+
 ## Contents
 
 - `paper/`: `mex.tex`, `mex.pdf` and the figure `figs/fig_sequence.pdf`.

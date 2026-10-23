@@ -13,6 +13,8 @@
 \newcommand{\zz}[1]{0^{#1}}
 
 \usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{patterns}
 \begin{document}
 \maketitle
 
@@ -159,6 +161,40 @@ $m_A(j) + \sigma_A(j) = \rho_j = m_B(j) + \sigma_B(j)$, summing over $j$ gives
 \sum_{j} \lvert m_A(j) - m_B(j) \rvert \le 8\lambda .
 \end{equation}
 
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[x=0.42cm,y=0.42cm,font=\small]
+% left panel: same gap
+\begin{scope}
+\node[anchor=west] at (0,5.2) {(a) same gap: ruled out};
+\node[anchor=east] at (-0.2,2.5) {$G$}; \node[anchor=east] at (-0.2,0) {$G'$};
+\fill[blue!25] (0,2) rectangle (5,3); \fill[red!25] (5,2) rectangle (9,3);
+\fill[blue!25] (0,-0.5) rectangle (3,0.5);
+\fill[red!25] (3,-0.5) rectangle (9,0.5);
+\fill[pattern=north east lines,pattern color=black!60] (0,-0.5) rectangle (9,0.5);
+\draw (0,2) rectangle (9,3) (5,2)--(5,3) (0,-0.5) rectangle (9,0.5) (3,-0.5)--(3,0.5);
+\node at (2.5,2.5) {$x_1$}; \node at (7,2.5) {$y_1$};
+\node[fill=white,inner sep=1pt] at (1.5,0) {$x_2$}; \node[fill=white,inner sep=1pt] at (6,0) {$y_2$};
+\draw[<->,thick] (2.5,3.1) to[bend left=30] (7,3.1);
+\node[align=center] at (4.5,-1.6) {unmatched: $x_2+y_2=K\lambda>8\lambda$};
+\end{scope}
+% right panel: crossed
+\begin{scope}[xshift=7.2cm]
+\node[anchor=west] at (0,5.2) {(b) crossed, type T: allowed};
+\node[anchor=east] at (-0.2,2.5) {$G$}; \node[anchor=east] at (-0.2,0) {$G'$};
+\fill[blue!25] (0,2) rectangle (8,3); \fill[red!25] (8,2) rectangle (9,3);
+\fill[blue!25] (0,-0.5) rectangle (1,0.5); \fill[red!25] (1,-0.5) rectangle (9,0.5);
+\fill[pattern=north east lines,pattern color=black!60] (8,2) rectangle (9,3) (0,-0.5) rectangle (1,0.5);
+\draw (0,2) rectangle (9,3) (8,2)--(8,3) (0,-0.5) rectangle (9,0.5) (1,-0.5)--(1,0.5);
+\node at (4,2.5) {$x_1$}; \node at (5,0) {$y_2$};
+\draw[<->,thick] (4,1.9) -- (5,0.6);
+\node[align=center] at (4.5,-1.6) {unmatched: $x_2+y_1$, can be small};
+\end{scope}
+\end{tikzpicture}
+\caption{Step~1 in pictures. Each long gap is split between copy $A$ (blue, shares $x_1$, $x_2$) and copy $B$ (red, shares $y_1$, $y_2$); an arrow joins two shares that lie in runs with the same index, and hatched shares lie in runs that no long share of the other copy matches. By~\eqref{eq:mass} the hatched total is at most $8\lambda$. (a) If $A$'s run through $G$ lines up with $B$'s run through $G$, then neither share of $G'$ is matched, because $A$'s long runs are $a$ indices apart and $B$'s are $3\mu-a$ apart, which never agree since $3\mu$ is odd; that leaves $K\lambda$ zeros unmatched. (b) Lining up $A$'s run through $G$ with $B$'s run through $G'$ leaves only $x_2+y_1$ unmatched, so this is the case the rest of the proof has to rule out.}
+\label{fig:longruns}
+\end{figure}
+
 \subsection{Step 1: the long runs}
 If $A$'s run spanning $G$ has index $i$, its run spanning $G'$ has index $i + a$, since $A$ passes $a$ of its
 ones in between; likewise $B$'s two long runs have indices $j$ and $j + 3\mu - a$.
@@ -169,7 +205,7 @@ odd and $4\mu$ is even, or $j = i + a$ and $3\mu \equiv 0 \pmod{4\mu}$, also imp
 the left side of~\eqref{eq:mass} is $2K\lambda$, and when the coincidence is on the same long gap it is at
 least $K\lambda$; both exceed $8\lambda$. So $A$'s run spanning one long gap coincides with $B$'s run spanning
 the other, and after exchanging the copies if necessary, $A$'s run $R$ spanning $G$ coincides with $B$'s run
-$Q$ spanning $G'$. We call this \emph{type~T}.
+$Q$ spanning $G'$ (Figure~\ref{fig:longruns}). We call this \emph{type~T}.
 
 If $a = 0$, the two long runs of $A$ are a single run, and by~\eqref{eq:mass} it coincides with one of the two
 long runs of $B$. If $a = 3\mu$, exchanging the copies returns us to $a = 0$.

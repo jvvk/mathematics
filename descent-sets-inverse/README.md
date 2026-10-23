@@ -17,6 +17,8 @@ Preprint, 8 October 2026.
 **Status.** All proved results are formally verified in Lean 4 and all computations were independently rechecked; the proofs have not yet been checked line by line by a human.
 **Origin.** The results and proofs were found with the AI systems Claude (Anthropic) and Codex (OpenAI), directed by the author.
 
+**Version 2** (23 October 2026, tag `descent-sets-inverse-v2`): expository revision of the paper (one sentence of Section 3 reworded). The results, programs and Lean files are unchanged from v1.
+
 ## Contents
 
 - `paper/`: `paper.tex` and `paper.pdf` (Electronic Journal of Combinatorics format, `e-jc.sty`), the figure source `figs/rowwords.tex`, and `abstract.txt`.

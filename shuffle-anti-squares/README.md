@@ -19,6 +19,8 @@ and extends the first: multiplying every zero run of `U_k` by any λ and replaci
 
 Preprint, 8 October 2026. The author used AI tools (Claude, Anthropic) in this work, as described in the paper's acknowledgements, and takes full responsibility for its content.
 
+**Version 2** (23 October 2026, tag `shuffle-anti-squares-v2`): expository revision of the paper (a new figure for Step 1 of the proof of Theorem 4 (why the long runs must line up across the two gaps)). The results, programs and Lean files are unchanged from v1.
+
 ## Contents
 
 - `paper/`: `antisquares.tex`, `antisquares.pdf`, the class file `e-jc.sty`, the figure and its generator `make_fig_circle.py`, and the HTML abstract.

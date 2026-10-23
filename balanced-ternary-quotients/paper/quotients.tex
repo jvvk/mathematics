@@ -19,7 +19,7 @@
 
 \title[Quotients of zero-free balanced ternary numbers]{Infinitely many integers that are not quotients of\\ zero-free balanced ternary numbers}
 \author{Vamshi Jandhyala}
-\date{Preprint, version 1, 8 October 2026. Not peer reviewed.}
+\date{Preprint, version 2, 23 October 2026 (expository revision; results unchanged from version 1 of 8 October). Not peer reviewed.}
 \subjclass[2020]{11A63, 11B85, 68V15}
 \keywords{balanced ternary, digit restrictions, quotient sets, finite automata, formal verification}
 
@@ -272,7 +272,7 @@ S_k=\{0\}\cup\pm\Bigl\{\tfrac23X,\ \tfrac23X+2\Bigr\}\cup
 \pm\{2X-2-2\cdot 3^i\}_{0\le i\le k-1}\cup\pm\{2X-2-4\cdot 3^i,\ 2X-2-8\cdot 3^i\}_{0\le i\le k-2}.
 \]
 
-Conditions (i) and (iii) of Proposition~\ref{prop:criterion} are immediate from the tables. Conditions
+Condition (i) of Proposition~\ref{prop:criterion} holds because every table lists $0$. Condition (iii) is a size check: in every table the coefficient $g$ is at most $a/2$, so the elements have absolute value close to $n/2$ at most, well below $n-2$; the formal proof of Section~\ref{sec:lean} checks the exact inequality for every family. Conditions
 (ii) and (iv) reduce to finitely many cases, uniformly in $k$, through the following two observations.
 
 \begin{lemma}[chain step]\label{lem:chain}

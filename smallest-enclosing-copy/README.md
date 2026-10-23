@@ -18,6 +18,8 @@ where `T` is the tetrahedron spanned by four independent points, each on a unifo
 
 Preprint v1, 8 October 2026, not peer reviewed. Every theorem, lemma and corollary is formally verified in Lean 4 (`lean/`, standard axioms only); the exposition has not yet been independently reviewed. The author used AI tools (Claude, Anthropic; Codex, OpenAI) in this work, as described in the paper's acknowledgement, and is responsible for its content.
 
+**Version 2** (23 October 2026, tag `smallest-enclosing-copy-v2`): expository revision of the paper (Figures 1 and 2 referenced where their ideas are introduced). The results, programs and Lean files are unchanged from v1.
+
 ## Contents
 
 - `paper/`: `enclosing.tex`, `enclosing.pdf` and the figure source `fig_example.tex`.

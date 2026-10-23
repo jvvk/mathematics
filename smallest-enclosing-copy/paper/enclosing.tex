@@ -17,7 +17,7 @@
 
 \title{Does the smallest enclosing copy fit?\\ Random points in a convex polygon}
 \author{Vamshi Jandhyala}
-\date{Preprint, version 1, 8 October 2026. Not peer reviewed.}
+\date{Preprint, version 2, 23 October 2026 (expository revision; results unchanged from version 1 of 8 October). Not peer reviewed.}
 \subjclass[2020]{60D05; 52A22; 60G55}
 \keywords{random polygons, smallest enclosing copy, Poisson limit, linear programming, Mecke equation, formal verification}
 
@@ -51,7 +51,7 @@ rotated. The asker's simulations for two points suggested a family resemblance w
 The answer is no, and the reason is instructive. A smallest enclosing polygon wants to turn slightly: turning by an
 angle of order $1/n$ lets it hug the outermost points better, and the same turn pushes its corners out by a distance
 of order $1/n$, the same order as the gaps between the outermost points and the sides. Whether the copy fits is
-decided by a competition between these two effects, and it can be computed exactly.
+decided by a competition between these two effects, and it can be computed exactly. Figure~\ref{fig:example} shows the effect for forty points in an equilateral triangle: the smallest enclosing triangle is turned by about $0.08$ radians and pokes out near a corner.
 
 \begin{figure}[ht]
 \centering
@@ -124,7 +124,7 @@ vertices $v_i$.
 support $x\cdot R_\theta u_i=h_i-d+\theta s+O(\theta^2)$ in the rotated normal direction. A copy $(1+\varepsilon)R_\theta
 K+c$ has support $(1+\varepsilon)h_i+c\cdot u_i+O(\theta|c|)$ in the same direction, and its vertex at the end of side
 $i$ pokes out across the line of side $i$ unless $\varepsilon h_i+c\cdot u_i\le\min(\theta a_i,\theta b_i)$. With
-$\Theta=n\theta$, $C=nc$, $D=nd$ and $\varepsilon$ replaced by $n\varepsilon$, all quantities are of order one.
+$\Theta=n\theta$, $C=nc$, $D=nd$ and $\varepsilon$ replaced by $n\varepsilon$, all quantities are of order one. Figure~\ref{fig:model} draws one side in these coordinates.
 
 \begin{figure}[ht]
 \centering
