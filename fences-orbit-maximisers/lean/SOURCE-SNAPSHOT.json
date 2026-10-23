@@ -1,0 +1,25 @@
+{
+  "source_commit": "fa25cb9 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports Orbits516140 only)",
+    "CheckClaims.lean (generated)",
+    "scripts/mutants.py (copy of lean-proofs scripts/orbits516140_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "eb6dd0b12e31089c41ef60efad1a1956482f1294fea04c1170fddc274c69641e",
+    "LeanProofs/Orbits516140/Aut.lean": "99558a5bfe71f73c805d77fcc2d2335770442e6fd31199f3441a92e84397a3d2",
+    "LeanProofs/Orbits516140/Basic.lean": "0cf209fd5657941d3997979611ef9e2ea49e5656a8a3ccac8f394b7f5341823a",
+    "LeanProofs/Orbits516140/Count.lean": "9a35df40a0177aca82f72abd9ab8400b4b6ae5b4b92d6561338743b77a317c26",
+    "LeanProofs/Orbits516140/Fences.lean": "9868641408c22f8b9046b1ea26bf21d208d1bd310af70c849dfd4858e59a2c55",
+    "LeanProofs/Orbits516140/Posets.lean": "4404682637727bb733fc0be6c407ada4b600de14ddc2aa7ea402586c4c601903",
+    "LeanProofs/Orbits516140/Report.lean": "7985eeea3d341c3af6dacf2cd74029a9444f1a8d7572a24f5f174d1ba9abf388",
+    "LeanProofs/Orbits516140.lean": "a1cfc5e1d0bbff14cb76eaef5dbcbb58bc5ca8e8c9340a9304a527e707d85b33",
+    "LeanProofs.lean": "f423a7456932f5a3620927da53682d99babb2e9c421fe2d0091ce4619a3279ed",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutants.toml": "7c8a417f07f7f6e73bd983e03b065842f5e1e10790fd3bd46e479ba950ad62db",
+    "scripts/mutate.py": "1ab357b3dad230320d1266e48ce5cce1f85ea8866de18b3e86c5385d2921c9c6"
+  }
+}

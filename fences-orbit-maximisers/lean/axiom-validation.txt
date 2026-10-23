@@ -1,0 +1,51 @@
+@Orbits516140.card_linExt_eq : ∀ {α : Type u_1} [inst : Fintype α] [inst_1 : PartialOrder α],
+  Nat.card (Orbits516140.LinExt α) = Nat.card (α ≃o α) * Orbits516140.orbitCount α
+'Orbits516140.card_linExt_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Orbits516140.orbitCount_eq_div : ∀ {α : Type u_1} [inst : Fintype α] [inst_1 : PartialOrder α],
+  Orbits516140.orbitCount α = Nat.card (Orbits516140.LinExt α) / Nat.card (α ≃o α)
+'Orbits516140.orbitCount_eq_div' depends on axioms: [propext, Classical.choice, Quot.sound]
+Orbits516140.orbits_F_lt_Q1 : Orbits516140.orbitCount Orbits516140.F < Orbits516140.orbitCount Orbits516140.Q1
+'Orbits516140.orbits_F_lt_Q1' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Orbits516140.two_pow_mul_card_linExt_le : ∀ {α : Type u_1} [inst : Fintype α] [inst_1 : PartialOrder α]
+  (M : Finset (α × α)),
+  (∀ p ∈ M, p.1 < p.2) →
+    (∀ p ∈ M, ∀ q ∈ M, p ≠ q → p.1 ≠ q.1 ∧ p.1 ≠ q.2 ∧ p.2 ≠ q.1 ∧ p.2 ≠ q.2) →
+      2 ^ M.card * Nat.card (Orbits516140.LinExt α) ≤ (Fintype.card α).factorial
+'Orbits516140.two_pow_mul_card_linExt_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Orbits516140.factorial_le_card_aut : ∀ {α : Type u_1} [Fintype α] [inst : PartialOrder α] (S : Finset α),
+  (∀ x ∈ S, Orbits516140.Isolated x) → S.card.factorial ≤ Nat.card (α ≃o α)
+'Orbits516140.factorial_le_card_aut' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Orbits516140.exists_matching : ∀ {α : Type u_1} [inst : Fintype α] [inst_1 : PartialOrder α],
+  Orbits516140.IsFenceUnion α →
+    ∃ M,
+      (∀ p ∈ M, p.1 < p.2) ∧
+        (∀ p ∈ M, ∀ q ∈ M, p ≠ q → p.1 ≠ q.1 ∧ p.1 ≠ q.2 ∧ p.2 ≠ q.1 ∧ p.2 ≠ q.2) ∧
+          Fintype.card α ≤ 3 * M.card + (Orbits516140.isoSet α).card
+'Orbits516140.exists_matching' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Orbits516140.orbitCount_mul_le : ∀ {α : Type u_1} [inst : Fintype α] [inst_1 : PartialOrder α],
+  Orbits516140.IsFenceUnion α →
+    ∃ t k, Fintype.card α ≤ 3 * t + k ∧ Orbits516140.orbitCount α * 2 ^ t * k.factorial ≤ (Fintype.card α).factorial
+'Orbits516140.orbitCount_mul_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Orbits516140.Gr.orbitCount_Gr : ∀ {j : ℕ} {𝒮 : Finset (Finset (Fin j))},
+  Finset.univ ∈ 𝒮 → 𝒮.card.factorial ≤ Orbits516140.orbitCount (Orbits516140.Gr j 𝒮)
+'Orbits516140.Gr.orbitCount_Gr' depends on axioms: [propext, Classical.choice, Quot.sound]
+Orbits516140.exists_poset_orbitCount_ge' : ∀ (n j : ℕ),
+  1 ≤ n - j → n - j ≤ 2 ^ j → ∃ β x x_1, Fintype.card β = n ∧ (n - j).factorial ≤ Orbits516140.orbitCount β
+'Orbits516140.exists_poset_orbitCount_ge'' depends on axioms: [propext, Classical.choice, Quot.sound]
+Orbits516140.exists_poset_orbitCount_ge : ∀ (n j : ℕ),
+  1 ≤ n - j → n - j ≤ 2 ^ j - 1 → ∃ β x x_1, Fintype.card β = n ∧ (n - j).factorial ≤ Orbits516140.orbitCount β
+'Orbits516140.exists_poset_orbitCount_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Orbits516140.factorial_lt : ∀ {n t k : ℕ},
+  181 ≤ n → n ≤ 3 * t + k → n.factorial < (n - Orbits516140.J n).factorial * 2 ^ t * k.factorial
+'Orbits516140.factorial_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Orbits516140.fence_union_not_max : ∀ {α : Type u_1} [inst : Fintype α] [inst_1 : PartialOrder α],
+  181 ≤ Fintype.card α →
+    Orbits516140.IsFenceUnion α →
+      ∃ β x x_1, Fintype.card β = Fintype.card α ∧ Orbits516140.orbitCount α < Orbits516140.orbitCount β
+'Orbits516140.fence_union_not_max' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Orbits516140.fence_union_not_max' : ∀ {α : Type u_1} [inst : Fintype α] [inst_1 : PartialOrder α],
+  181 ≤ Fintype.card α →
+    Orbits516140.IsFenceUnion α →
+      ¬∀ (β : Type) [inst_2 : Fintype β] [inst_3 : PartialOrder β],
+          Fintype.card β = Fintype.card α → Orbits516140.orbitCount β ≤ Orbits516140.orbitCount α
+'Orbits516140.fence_union_not_max'' depends on axioms: [propext, Classical.choice, Quot.sound]

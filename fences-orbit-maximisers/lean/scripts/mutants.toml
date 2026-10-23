@@ -1,0 +1,389 @@
+# Mutation suite for LeanProofs/Orbits516140 (MO 516140, answer 516154: orbits of linear extensions).
+# Run: python3 -I ~/.claude/skills/mutation-harness/mutate.py scripts/orbits516140.toml
+# Copy mode: each mutant is one statement or definition change, compiled as a copy of its own file
+# against the built tree. Parts: [Basic] [Count] [Aut] [Posets] [Fences].
+# Equivalent mutant avoided: weakening the order-reflecting condition in autCands to order-preserving
+# (on a finite poset an order-preserving bijection is an automorphism, so the statement stays true).
+[check]
+cmd = ["lake", "env", "lean", "{file}"]
+cwd = ".."
+timeout = 900
+mode = "copy"
+fail_markers = ["error"]
+
+[[mutant]]
+name = '''[Basic] smul_eq_self_iff: phi^2 = 1 instead of phi = 1'''
+file = "../LeanProofs/Orbits516140/Basic.lean"
+old = '''φ • σ = σ ↔ φ = 1 := by'''
+new = '''φ • σ = σ ↔ φ * φ = 1 := by'''
+
+[[mutant]]
+name = '''[Basic] stabilizer_eq_bot: stabilizer = top'''
+file = "../LeanProofs/Orbits516140/Basic.lean"
+old = '''stabilizer (α ≃o α) σ = ⊥ := by'''
+new = '''stabilizer (α ≃o α) σ = ⊤ := by'''
+
+[[mutant]]
+name = '''[Basic] card_linExt_eq: (#Aut + 1) * f'''
+file = "../LeanProofs/Orbits516140/Basic.lean"
+old = '''Nat.card (LinExt α) = Nat.card (α ≃o α) * orbitCount α := by'''
+new = '''Nat.card (LinExt α) = (Nat.card (α ≃o α) + 1) * orbitCount α := by'''
+
+[[mutant]]
+name = '''[Basic] card_aut_dvd: divides e + 1'''
+file = "../LeanProofs/Orbits516140/Basic.lean"
+old = '''Nat.card (α ≃o α) ∣ Nat.card (LinExt α) :='''
+new = '''Nat.card (α ≃o α) ∣ Nat.card (LinExt α) + 1 :='''
+
+[[mutant]]
+name = '''[Basic] orbitCount_eq_div: e * #Aut'''
+file = "../LeanProofs/Orbits516140/Basic.lean"
+old = '''orbitCount α = Nat.card (LinExt α) / Nat.card (α ≃o α) := by'''
+new = '''orbitCount α = Nat.card (LinExt α) * Nat.card (α ≃o α) := by'''
+
+[[mutant]]
+name = '''[Count] cnt: empty set counted 0'''
+file = "../LeanProofs/Orbits516140/Count.lean"
+old = '''  | 0, _ => 1'''
+new = '''  | 0, _ => 0'''
+
+[[mutant]]
+name = '''[Count] cnt: remove a maximal-test element'''
+file = "../LeanProofs/Orbits516140/Count.lean"
+old = '''∑ m ∈ S.filter (fun m => ∀ x ∈ D m, x ∉ S), cnt D k (S.erase m)'''
+new = '''∑ m ∈ S.filter (fun m => ∀ x ∈ D m, x ∈ S), cnt D k (S.erase m)'''
+
+[[mutant]]
+name = '''[Count] ListExt: reversed orientation'''
+file = "../LeanProofs/Orbits516140/Count.lean"
+old = '''{l : List α // l.Nodup ∧ l.toFinset = S ∧ l.Pairwise (fun a b => ¬ b < a)}'''
+new = '''{l : List α // l.Nodup ∧ l.toFinset = S ∧ l.Pairwise (fun a b => ¬ a < b)}'''
+
+[[mutant]]
+name = '''[Count] card_linExt_eq_cnt: fuel card - 1'''
+file = "../LeanProofs/Orbits516140/Count.lean"
+old = '''Nat.card (LinExt α) = cnt D (Fintype.card α) Finset.univ := by'''
+new = '''Nat.card (LinExt α) = cnt D (Fintype.card α - 1) Finset.univ := by'''
+
+[[mutant]]
+name = '''[Count] card_linExt_eq_cnt: hD one direction only'''
+file = "../LeanProofs/Orbits516140/Count.lean"
+old = '''theorem card_linExt_eq_cnt (D : α → List α) (hD : ∀ x m, x < m ↔ x ∈ D m)'''
+new = '''theorem card_linExt_eq_cnt (D : α → List α) (hD : ∀ x m, x < m → x ∈ D m)'''
+
+[[mutant]]
+name = '''[Count] card_listExt: card S = k + 1'''
+file = "../LeanProofs/Orbits516140/Count.lean"
+old = '''∀ (k : ℕ) (S : Finset α), S.card = k → Nat.card (ListExt S) = cnt D k S'''
+new = '''∀ (k : ℕ) (S : Finset α), S.card = k + 1 → Nat.card (ListExt S) = cnt D k S'''
+
+[[mutant]]
+name = '''[Aut] card_below_map: below vs above'''
+file = "../LeanProofs/Orbits516140/Aut.lean"
+old = '''theorem card_below_map (φ : α ≃o β) (x : α) : (below (φ x)).card = (below x).card := by'''
+new = '''theorem card_below_map (φ : α ≃o β) (x : α) : (below (φ x)).card = (above x).card := by'''
+
+[[mutant]]
+name = '''[Aut] card_above_map: above vs below'''
+file = "../LeanProofs/Orbits516140/Aut.lean"
+old = '''theorem card_above_map (φ : α ≃o β) (x : α) : (above (φ x)).card = (above x).card := by'''
+new = '''theorem card_above_map (φ : α ≃o β) (x : α) : (above (φ x)).card = (below x).card := by'''
+
+[[mutant]]
+name = '''[Aut] refine: wrong side below'''
+file = "../LeanProofs/Orbits516140/Aut.lean"
+old = '''(∀ z, z < x → ∃ w ∈ C z, w < y)'''
+new = '''(∀ z, z < x → ∃ w ∈ C z, y < w)'''
+
+[[mutant]]
+name = '''[Aut] card_aut_eq: off by one'''
+file = "../LeanProofs/Orbits516140/Aut.lean"
+old = '''Nat.card (α ≃o α) = (autCands T).card := by'''
+new = '''Nat.card (α ≃o α) = (autCands T).card + 1 := by'''
+
+[[mutant]]
+name = '''[Aut] card_aut_eq: table inclusion reversed'''
+file = "../LeanProofs/Orbits516140/Aut.lean"
+old = '''(hT : ∀ x, refine sig x ⊆ T x)'''
+new = '''(hT : ∀ x, T x ⊆ refine sig x)'''
+
+[[mutant]]
+name = '''[Aut] card_comp_le_two: at most one'''
+file = "../LeanProofs/Orbits516140/Aut.lean"
+old = '''theorem card_comp_le_two (h : IsFenceUnion α) (x : α) : (comp x).card ≤ 2 := by'''
+new = '''theorem card_comp_le_two (h : IsFenceUnion α) (x : α) : (comp x).card ≤ 1 := by'''
+
+[[mutant]]
+name = '''[Aut] IsFenceUnion: distance 2'''
+file = "../LeanProofs/Orbits516140/Aut.lean"
+old = '''∀ a b : α, a < b → (e a).val + 1 = (e b).val ∨ (e b).val + 1 = (e a).val'''
+new = '''∀ a b : α, a < b → (e a).val + 2 = (e b).val ∨ (e b).val + 1 = (e a).val'''
+
+[[mutant]]
+name = '''[Aut] isEmpty_iso_dual: below instead of above'''
+file = "../LeanProofs/Orbits516140/Aut.lean"
+old = '''(h : ∀ y : α, (above y).card ≠ (below x).card)'''
+new = '''(h : ∀ y : α, (below y).card ≠ (below x).card)'''
+
+[[mutant]]
+name = '''[Posets] Q: g below b instead of d'''
+file = "../LeanProofs/Orbits516140/Posets.lean"
+old = '''def DQ : Fin 7 → List (Fin 7) := ![[], [0, 2], [], [2, 4, 6], [], [4], []]'''
+new = '''def DQ : Fin 7 → List (Fin 7) := ![[], [0, 2, 6], [], [2, 4], [], [4], []]'''
+
+[[mutant]]
+name = '''[Posets] Q_covBy: cover g<b'''
+file = "../LeanProofs/Orbits516140/Posets.lean"
+old = '''(x, y) ∈ [((0 : Fin 7), (1 : Fin 7)), (2, 1), (2, 3), (4, 3), (4, 5), (6, 3)]'''
+new = '''(x, y) ∈ [((0 : Fin 7), (1 : Fin 7)), (2, 1), (2, 3), (4, 3), (4, 5), (6, 1)]'''
+
+[[mutant]]
+name = '''[Posets] e_Q: 297'''
+file = "../LeanProofs/Orbits516140/Posets.lean"
+old = '''Nat.card (LinExt Q) = 298'''
+new = '''Nat.card (LinExt Q) = 297'''
+
+[[mutant]]
+name = '''[Posets] aut_Q: 2'''
+file = "../LeanProofs/Orbits516140/Posets.lean"
+old = '''Nat.card (Q ≃o Q) = 1'''
+new = '''Nat.card (Q ≃o Q) = 2'''
+
+[[mutant]]
+name = '''[Posets] Q_not_selfDual: witness f (1 below, a has 1 above)'''
+file = "../LeanProofs/Orbits516140/Posets.lean"
+old = '''(Bip.mk 3 : Q) (by decide)'''
+new = '''(Bip.mk 5 : Q) (by decide)'''
+
+[[mutant]]
+name = '''[Posets] e_Q1: 2385'''
+file = "../LeanProofs/Orbits516140/Posets.lean"
+old = '''Nat.card (LinExt Q1) = 2384'''
+new = '''Nat.card (LinExt Q1) = 2385'''
+
+[[mutant]]
+name = '''[Posets] aut_Q1: 2'''
+file = "../LeanProofs/Orbits516140/Posets.lean"
+old = '''Nat.card (Q1 ≃o Q1) = 1'''
+new = '''Nat.card (Q1 ≃o Q1) = 2'''
+
+[[mutant]]
+name = '''[Posets] orbits_Q1: 2383'''
+file = "../LeanProofs/Orbits516140/Posets.lean"
+old = '''theorem orbits_Q1 : orbitCount Q1 = 2384'''
+new = '''theorem orbits_Q1 : orbitCount Q1 = 2383'''
+
+[[mutant]]
+name = '''[Posets] Q1_not_fenceUnion: witness b (2 comparable)'''
+file = "../LeanProofs/Orbits516140/Posets.lean"
+old = '''not_isFenceUnion (x := (Bip.mk 3 : Q1))'''
+new = '''not_isFenceUnion (x := (Bip.mk 1 : Q1))'''
+
+[[mutant]]
+name = '''[Posets] Q1_not_selfDual: point 1 instead of d'''
+file = "../LeanProofs/Orbits516140/Posets.lean"
+old = '''isEmpty_iso_dual (Bip.mk 3 : Q1)'''
+new = '''isEmpty_iso_dual (Bip.mk 1 : Q1)'''
+
+[[mutant]]
+name = '''[Posets] F: Z4 replaced by Z3 + point'''
+file = "../LeanProofs/Orbits516140/Posets.lean"
+old = '''def DF : Fin 8 → List (Fin 8) := ![[], [0], [], [2, 4], [], [4], [], []]'''
+new = '''def DF : Fin 8 → List (Fin 8) := ![[], [0], [], [2, 4], [], [], [], []]'''
+
+[[mutant]]
+name = '''[Posets] e_F: 4201'''
+file = "../LeanProofs/Orbits516140/Posets.lean"
+old = '''Nat.card (LinExt F) = 4200'''
+new = '''Nat.card (LinExt F) = 4201'''
+
+[[mutant]]
+name = '''[Posets] aut_F: 1 (factor 2 lost)'''
+file = "../LeanProofs/Orbits516140/Posets.lean"
+old = '''Nat.card (F ≃o F) = 2'''
+new = '''Nat.card (F ≃o F) = 1'''
+
+[[mutant]]
+name = '''[Posets] orbits_F: 4200 (no division)'''
+file = "../LeanProofs/Orbits516140/Posets.lean"
+old = '''theorem orbits_F : orbitCount F = 2100'''
+new = '''theorem orbits_F : orbitCount F = 4200'''
+
+[[mutant]]
+name = '''[Posets] F_isFenceUnion: claimed for Q1'''
+file = "../LeanProofs/Orbits516140/Posets.lean"
+old = '''theorem F_isFenceUnion : IsFenceUnion F :='''
+new = '''theorem F_isFenceUnion : IsFenceUnion Q1 :='''
+
+[[mutant]]
+name = '''[Posets] orbits_F_lt_Q1: reversed'''
+file = "../LeanProofs/Orbits516140/Posets.lean"
+old = '''theorem orbits_F_lt_Q1 : orbitCount F < orbitCount Q1 := by'''
+new = '''theorem orbits_F_lt_Q1 : orbitCount Q1 < orbitCount F := by'''
+
+[[mutant]]
+name = '''[Posets] R: h above e instead of c'''
+file = "../LeanProofs/Orbits516140/Posets.lean"
+old = '''def DR : Fin 8 → List (Fin 8) := ![[], [0, 2], [], [2, 4, 6], [], [4], [], [2]]'''
+new = '''def DR : Fin 8 → List (Fin 8) := ![[], [0, 2], [], [2, 4, 6], [], [4], [], [4]]'''
+
+[[mutant]]
+name = '''[Posets] R_covBy: cover c<f'''
+file = "../LeanProofs/Orbits516140/Posets.lean"
+old = '''(4, 3), (4, 5), (6, 3), (2, 7)]'''
+new = '''(4, 3), (2, 5), (6, 3), (2, 7)]'''
+
+[[mutant]]
+name = '''[Posets] e_R: 1612'''
+file = "../LeanProofs/Orbits516140/Posets.lean"
+old = '''Nat.card (LinExt R) = 1613'''
+new = '''Nat.card (LinExt R) = 1612'''
+
+[[mutant]]
+name = '''[Posets] aut_R: 2'''
+file = "../LeanProofs/Orbits516140/Posets.lean"
+old = '''Nat.card (R ≃o R) = 1'''
+new = '''Nat.card (R ≃o R) = 2'''
+
+[[mutant]]
+name = '''[Posets] R_selfDual: g, h not swapped'''
+file = "../LeanProofs/Orbits516140/Posets.lean"
+old = '''![5, 4, 3, 2, 1, 0, 7, 6]'''
+new = '''![5, 4, 3, 2, 1, 0, 6, 7]'''
+
+[[mutant]]
+name = '''[Posets] e_Z4: 4'''
+file = "../LeanProofs/Orbits516140/Posets.lean"
+old = '''Nat.card (LinExt (Bip 4 DZ4)) = 5'''
+new = '''Nat.card (LinExt (Bip 4 DZ4)) = 4'''
+
+[[mutant]]
+name = '''[Posets] e_Z6: 62'''
+file = "../LeanProofs/Orbits516140/Posets.lean"
+old = '''Nat.card (LinExt (Bip 6 DZ6)) = 61'''
+new = '''Nat.card (LinExt (Bip 6 DZ6)) = 62'''
+
+[[mutant]]
+name = '''[Posets] orbits_F7: 524'''
+file = "../LeanProofs/Orbits516140/Posets.lean"
+old = '''orbitCount (Bip 7 DF7) = 525'''
+new = '''orbitCount (Bip 7 DF7) = 524'''
+
+[[mutant]]
+name = '''[Posets] arith_n10: 107281'''
+file = "../LeanProofs/Orbits516140/Posets.lean"
+old = '''* 298 = 107280'''
+new = '''* 298 = 107281'''
+
+[[mutant]]
+name = '''[Posets] arith_n11: 798436'''
+file = "../LeanProofs/Orbits516140/Posets.lean"
+old = '''* 1613 = 798435'''
+new = '''* 1613 = 798436'''
+
+[[mutant]]
+name = '''[Posets] arith_bound9: E_6 = 62'''
+file = "../LeanProofs/Orbits516140/Posets.lean"
+old = '''9 * 8 * 7 / 2 * 61 = 15372'''
+new = '''9 * 8 * 7 / 2 * 62 = 15372'''
+
+# [Fences] Every mutant below states something false (counterexample in its name), except F1, which
+# the caller asked for: T at n >= 150 is not refuted (58 <= n <= 180 is claimed by a separate
+# computation); it is rejected only because the route through factorial_lt needs n >= 181.
+# Equivalent mutant avoided: dropping "nonempty" in L5 (n - j <= 2^j). That statement is TRUE and is
+# proved as exists_poset_orbitCount_ge' (an empty index gives an isolated bottom, still minimal).
+
+[[mutant]]
+name = """[Fences] F1 T: n >= 150 (not a falsity witness; proof route needs 181)"""
+file = "../LeanProofs/Orbits516140/Fences.lean"
+old = "theorem fence_union_not_max {α : Type*} [Fintype α] [PartialOrder α]\n    (hn : 181 ≤"
+new = "theorem fence_union_not_max {α : Type*} [Fintype α] [PartialOrder α]\n    (hn : 150 ≤"
+
+[[mutant]]
+name = """[Fences] F2 L1: 2^(t+1) e <= n! (empty poset: 2 <= 1)"""
+file = "../LeanProofs/Orbits516140/Fences.lean"
+old = """    2 ^ M.card * Nat.card (LinExt α) ≤ (Fintype.card α)! := by"""
+new = """    2 ^ (M.card + 1) * Nat.card (LinExt α) ≤ (Fintype.card α)! := by"""
+
+[[mutant]]
+name = """[Fences] F3 L2: (k+1)! <= #Aut (one point: 2 <= 1)"""
+file = "../LeanProofs/Orbits516140/Fences.lean"
+old = """    S.card ! ≤ Nat.card (α ≃o α) := by"""
+new = """    (S.card + 1)! ≤ Nat.card (α ≃o α) := by"""
+
+[[mutant]]
+name = """[Fences] F4 L3: n <= 2t + k (fence a<b>c: t = 1, k = 0)"""
+file = "../LeanProofs/Orbits516140/Fences.lean"
+old = """      Fintype.card α ≤ 3 * M.card + (isoSet α).card := by"""
+new = """      Fintype.card α ≤ 2 * M.card + (isoSet α).card := by"""
+
+[[mutant]]
+name = """[Fences] F5 L3: isolated points dropped, n <= 3t (one point)"""
+file = "../LeanProofs/Orbits516140/Fences.lean"
+old = """      Fintype.card α ≤ 3 * M.card + (isoSet α).card := by"""
+new = """      Fintype.card α ≤ 3 * M.card := by"""
+
+[[mutant]]
+name = """[Fences] F6 L5: (n - j + 1)! (n = 2, j = 1: every 2-element poset has f = 1)"""
+file = "../LeanProofs/Orbits516140/Fences.lean"
+old = """theorem exists_poset_orbitCount_ge (n j : ℕ) (h1 : 1 ≤ n - j) (h2 : n - j ≤ 2 ^ j - 1) :
+    ∃ (β : Type) (_ : Fintype β) (_ : PartialOrder β),
+      Fintype.card β = n ∧ (n - j)! ≤ orbitCount β :="""
+new = """theorem exists_poset_orbitCount_ge (n j : ℕ) (h1 : 1 ≤ n - j) (h2 : n - j ≤ 2 ^ j - 1) :
+    ∃ (β : Type) (_ : Fintype β) (_ : PartialOrder β),
+      Fintype.card β = n ∧ (n - j + 1)! ≤ orbitCount β :="""
+
+[[mutant]]
+name = """[Fences] F7 Graham poset: f >= (m+1)! (j = 0, S = {empty}: one point, f = 1)"""
+file = "../LeanProofs/Orbits516140/Fences.lean"
+old = """theorem orbitCount_Gr : 𝒮.card ! ≤ orbitCount (Gr j 𝒮) := by"""
+new = """theorem orbitCount_Gr : (𝒮.card + 1)! ≤ orbitCount (Gr j 𝒮) := by"""
+
+[[mutant]]
+name = """[Fences] F8 Graham poset: #Aut <= (j-1)! (j = 2, S = {univ}: swapping the tops)"""
+file = "../LeanProofs/Orbits516140/Fences.lean"
+old = """theorem card_aut_le : Nat.card (Gr j 𝒮 ≃o Gr j 𝒮) ≤ j ! := by"""
+new = """theorem card_aut_le : Nat.card (Gr j 𝒮 ≃o Gr j 𝒮) ≤ (j - 1)! := by"""
+
+[[mutant]]
+name = """[Fences] F9 Graham poset: e >= m! j! + 1 (j = 0, one point: e = 1)"""
+file = "../LeanProofs/Orbits516140/Fences.lean"
+old = """theorem le_card_linExt : 𝒮.card ! * j ! ≤ Nat.card (LinExt (Gr j 𝒮)) := by"""
+new = """theorem le_card_linExt : 𝒮.card ! * j ! + 1 ≤ Nat.card (LinExt (Gr j 𝒮)) := by"""
+
+[[mutant]]
+name = """[Fences] F10 L6 threshold 178 (n = 178, J = 8, k = 1, t = 59: 178! >= 170! 2^59 1!)"""
+file = "../LeanProofs/Orbits516140/Fences.lean"
+old = """theorem factorial_lt {n t k : ℕ} (hn : 181 ≤ n)"""
+new = """theorem factorial_lt {n t k : ℕ} (hn : 178 ≤ n)"""
+
+[[mutant]]
+name = """[Fences] F11 cube route threshold 180 (2 * 180^24 > 2^180)"""
+file = "../LeanProofs/Orbits516140/Fences.lean"
+old = """theorem two_mul_pow_J_lt {n : ℕ} (hn : 181 ≤ n)"""
+new = """theorem two_mul_pow_J_lt {n : ℕ} (hn : 180 ≤ n)"""
+
+[[mutant]]
+name = """[Fences] F12 finite range from 180 (2 * 180^24 > 2^180)"""
+file = "../LeanProofs/Orbits516140/Fences.lean"
+old = """theorem small_range : ∀ n, n < 256 → 181 ≤ n → 2 * n ^ 24 < 2 ^ n := by"""
+new = """theorem small_range : ∀ n, n < 256 → 180 ≤ n → 2 * n ^ 24 < 2 ^ n := by"""
+
+[[mutant]]
+name = """[Fences] F13 r_bound from r = 7 (3 * 64 + 1 > 128)"""
+file = "../LeanProofs/Orbits516140/Fences.lean"
+old = """theorem r_bound (r : ℕ) (hr : 8 ≤ r)"""
+new = """theorem r_bound (r : ℕ) (hr : 7 ≤ r)"""
+
+[[mutant]]
+name = """[Fences] F14 2^k <= (k!)^3 (k = 1)"""
+file = "../LeanProofs/Orbits516140/Fences.lean"
+old = """theorem two_pow_le_two_mul_factorial_cube (k : ℕ) : 2 ^ k ≤ 2 * (k !) ^ 3 := by"""
+new = """theorem two_pow_le_two_mul_factorial_cube (k : ℕ) : 2 ^ k ≤ (k !) ^ 3 := by"""
+
+[[mutant]]
+name = """[Fences] F15 J_spec with 2^J + J - 2 (n = 2: J 2 = 1 and 2 > 1)"""
+file = "../LeanProofs/Orbits516140/Fences.lean"
+old = """theorem J_spec (n : ℕ) : n ≤ 2 ^ J n + J n - 1 := Nat.find_spec (exists_J n)"""
+new = """theorem J_spec (n : ℕ) : n ≤ 2 ^ J n + J n - 2 := Nat.find_spec (exists_J n)"""
+

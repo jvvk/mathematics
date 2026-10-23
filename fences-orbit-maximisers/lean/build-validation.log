@@ -1,0 +1,11 @@
+Isolated build 2026-10-23: fresh copy of lean/, lake exe cache get, lake build LeanProofs
+✔ [8924/8932] Built LeanProofs.Orbits516140.Basic (90s)
+✔ [8925/8932] Built LeanProofs.Orbits516140.Count (131s)
+✔ [8926/8932] Built LeanProofs.Orbits516140.Aut (131s)
+✔ [8927/8932] Built LeanProofs.Orbits516140.Fences (115s)
+✔ [8928/8932] Built LeanProofs.Orbits516140.Posets (289s)
+ℹ [8929/8932] Built LeanProofs.Orbits516140.Report (33s)
+⚠ [8930/8932] Built LeanProofs.Orbits516140 (24s)
+warning: LeanProofs/Orbits516140.lean:1:1: * `-/`:
+✔ [8931/8932] Built LeanProofs (58s)
+Build completed successfully (8932 jobs).
