@@ -23,6 +23,8 @@ Erich Friedman's [Math Magic](https://erich-friedman.github.io/mathmagic/) poses
 
 Preprint v2, 9 October 2026 (v1 the same day had the first four results), not peer reviewed. Some results are computer-certified and some proved by hand; the paper says which, and for each certified result what was computed, why it suffices, and how it was checked independently. No Lean formalisation: the certified results are exhaustive counts and solver refutations, checked by certificates and by programs written independently. The author used AI tools (Claude, Anthropic; Codex, OpenAI) in this work, as described in the paper, and is responsible for its content.
 
+**Version 3** (23 October 2026, tag `math-magic-problems-v3`): expository revision of the paper (a new figure for the finite problem behind the touch-cycle theorem, and small wording and layout changes). The results, programs and Lean files are unchanged from v2.
+
 ## Contents
 
 - `paper/`: `paper.tex`, `paper.pdf`, and `make_figs.py`, which draws every figure from the data in `verify/` and checks it as it does so (the bishop armies are valid, every touch count holds, the capture position is 2-regular).

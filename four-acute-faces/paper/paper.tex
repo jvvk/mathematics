@@ -34,8 +34,8 @@ give a short, self-contained proof. Replacing points by their antipodes
 produces eight tetrahedra, and an obtuse angle of one of them is a short
 vector sum belonging to another. The short sums fill a staircase in a
 $4\times4$ grid, and counting what the staircase can look like reduces
-the problem to two integrals that Archimedes' hat-box theorem makes
-easy. The method first appeared in a publicly shared ChatGPT
+the problem to two integrals that follow from Archimedes' hat-box
+theorem. The method first appeared in a publicly shared ChatGPT
 conversation.
 \end{abstract}
 
@@ -209,7 +209,33 @@ triangles is short.
 \end{proof}
 
 Thus $N$ counts the rows and columns of the grid that contain every short
-cell.
+cell. For example, take
+$a=\tfrac13(-2,-1,2)$, $b=(1,0,0)$, $c=\tfrac13(-2,1,2)$ and $d=\tfrac13(-1,2,2)$.
+Figure~\ref{fig:grid} shows the grid. Exactly two cells are short, and both lie in the row of
+$a,-b,-c,d$, so this is the one tetrahedron of the eight with four acute faces, and $N=1$.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[x=1.9cm,y=0.75cm,font=\small]
+\foreach \c/\lab in {1/{$++-+$},2/{$+++-$},3/{$+---$},4/{$+-++$}} \node at (\c,0.9) {\lab};
+\foreach \r/\lab in {1/{$+--+$},2/{$++--$},3/{$+-+-$},4/{$++++$}} \node[anchor=east] at (0.4,-\r+1) {\lab};
+\fill[gray!30] (0.5,-0.5) rectangle (2.5,0.5);
+\foreach \r/\row in {1/{{$a,\bar c,d$},{$\bar b,\bar c,d$},{$a,\bar b,\bar c$},{$a,\bar b,d$}},
+                     2/{{$a,b,\bar c$},{$a,b,\bar d$},{$a,\bar c,\bar d$},{$b,\bar c,\bar d$}},
+                     3/{{$\bar b,c,\bar d$},{$a,c,\bar d$},{$a,\bar b,\bar d$},{$a,\bar b,c$}},
+                     4/{{$a,b,d$},{$a,b,c$},{$b,c,d$},{$a,c,d$}}}{
+  \foreach \cell [count=\c] in \row \node at (\c,-\r+1) {\cell};
+}
+\foreach \x in {0.5,1.5,2.5,3.5,4.5} \draw (\x,0.5) -- (\x,-3.5);
+\foreach \y in {0.5,-0.5,-1.5,-2.5,-3.5} \draw (0.5,\y) -- (4.5,\y);
+\end{tikzpicture}
+\caption{The grid for the example in the text, with $\bar x$ for $-x$. Rows are the even
+tetrahedra and columns the odd ones, labelled by their signs on $a,b,c,d$; each cell is the
+common face. Rows and columns are listed in order of increasing $w$ (Section~\ref{sec:count}).
+The two shaded cells are the short ones: $a-c+d$ and $-b-c+d$ have squared lengths $5/9$ and
+$5/9$, all other cells have squared length above $1$.}
+\label{fig:grid}
+\end{figure}
 
 \section{The short cells form a staircase}\label{sec:count}
 

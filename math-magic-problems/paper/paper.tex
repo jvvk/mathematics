@@ -17,7 +17,7 @@
 
 \title{Seven problems from Erich Friedman's \emph{Math Magic}}
 \author{Vamshi Jandhyala}
-\date{Preprint v2, 9 October 2026 (v1 the same day had Sections 2--5). Not peer reviewed.}
+\date{Preprint v3, 23 October 2026 (expository revision of v2 of 9 October; v1 the same day had Sections 2--5). Not peer reviewed.}
 
 \begin{document}
 \begin{abstract}
@@ -41,7 +41,7 @@ by programs published with the paper.
 
 Since 1998 Erich Friedman's \emph{Math Magic} has posed one problem a month, published the
 solutions readers sent in, and collected the questions they could not answer on a list of unsolved
-problems~\cite{unsolved}. The problems are recreational in flavour and often easy to state, which
+problems~\cite{unsolved}. The problems are recreational in flavour and short to state, which
 makes the open ones tantalising. This note settles four of them and makes progress on three more. As of 9 October 2026 the list still
 shows problems 15, 21 and 24 as open, and the March 2005 page on armies of bishops still asks for the
 two values we prove~\cite{bishops}.
@@ -54,7 +54,7 @@ The programs are in the \path{verify} folder that accompanies this paper; each s
 subfolder.
 
 \begin{center}
-\small
+\footnotesize
 \begin{tabular}{@{}llll@{}}
 \toprule
 Problem & Source & Result & Kind\\
@@ -164,7 +164,16 @@ rule at that cell refers only to cells of the window. The restriction of the arr
 a solution of a finite problem: colour each window cell $A$, $B$, $C$ or empty, with the origin
 occupied, the half-plane beyond it empty, and the counting rule imposed at every occupied interior
 cell. That problem is unsatisfiable for $r=6$, $6$, $8$ and $4$ for the four triples in the order
-listed. So no finite arrangement exists.
+listed. So no finite arrangement exists. Figure~\ref{fig:window} shows the finite problem for $n=(0,1)$ and $r=4$.
+
+\begin{figure}[ht]
+\centering
+\input{fig_window}
+\caption{The finite problem behind Theorem~\ref{thm:touch}, for $n=(0,1)$ and $r=4$. The extreme
+king $p$ sits at the origin, every cell beyond it (shaded) is empty, and the counting rule is imposed
+only at occupied cells inside the dashed square, whose eight neighbours all lie in the window.}
+\label{fig:window}
+\end{figure}
 
 Each finite problem is written as a formula in conjunctive normal form, and the folder
 \path{verify/touch-cycles/certificates} holds the formula with a DRUP refutation found by a SAT

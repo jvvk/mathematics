@@ -33,7 +33,7 @@
 \fi
 \subjclass[2020]{52C45, 05C10, 05C62}
 \keywords{Triangulations, point sets, geometric thickness, order types}
-\date{7 October 2026}
+\date{7 October 2026; revised 23 October 2026}
 
 \begin{document}
 
@@ -68,7 +68,7 @@ For every $n\geq9$ there is a set of $n$ points in general position with a penta
 
 The author posted Theorem~\ref{thm:main}, with the nine-point example and the insertion argument, as an answer to that question on 30 September 2026~\cite{MOAnswer}. Theorem~\ref{thm:hull} below is new here.
 
-The question is related to geometric thickness. A graph is \emph{doubly linear} if it can be drawn with straight edges on some point set so that its edges split into two non-crossing classes; Hutchinson, Shermer, and Vince~\cite{HSV} showed that such a graph on $n\geq4$ vertices has at most $6n-18$ edges. For a point set with a triangular hull, each triangulation has $3n-6$ edges, so two triangulations sharing $s$ edges have a union of $6n-12-s$ edges: the shared ones would otherwise be counted twice. The union splits into two non-crossing classes, so the bound says $s\geq6$ there, and equality would require a doubly linear graph with $6n-18$ edges. Durocher, Gethner, and Mondal~\cite{DGM} constructed doubly linear graphs with $6n-19$ edges for every $n\geq9$, and completing their two layers to triangulations shows $f(n)\leq7$. Theorem~\ref{thm:main} does not bear on whether $6n-18$ edges are possible. That question needs a triangular hull, and with a pentagonal hull the union of the two triangulations has only $2(3n-8)-5=6n-21$ edges.
+The question is related to geometric thickness. A graph is \emph{doubly linear} if it can be drawn with straight edges on some point set so that its edges split into two non-crossing classes; Hutchinson, Shermer, and Vince~\cite{HSV} showed that such a graph on $n\geq4$ vertices has at most $6n-18$ edges. For a point set with a triangular hull, each triangulation has $3n-6$ edges, so two triangulations sharing $s$ edges have a union of $6n-12-s$ edges: the shared ones would otherwise be counted twice. The union splits into two non-crossing classes, so the bound says $s\geq6$ there, and equality would require a doubly linear graph with $6n-18$ edges. Durocher, Gethner, and Mondal~\cite{DGM} constructed doubly linear graphs with $6n-19$ edges for every $n\geq9$, and completing their two layers to triangulations shows $f(n)\leq7$, as Alex Ravsky observed in the thread~\cite{MO}. Theorem~\ref{thm:main} does not bear on whether $6n-18$ edges are possible. That question needs a triangular hull, and with a pentagonal hull the union of the two triangulations has only $2(3n-8)-5=6n-21$ edges.
 
 The question also makes sense for each hull size separately. Garc\'{\i}a, Hurtado, Korman, Matos, Saumell, Silveira, Tejel, and T\'oth~\cite{GHK} studied \emph{biplane} graphs on a fixed point set, those whose edges split into two non-crossing classes. A maximal biplane graph on $P$ is the union of two triangulations~\cite[Lemma~1]{GHK}, so if the hull of $P$ has $h$ vertices it has at most $2(3n-3-h)-h=6n-3h-6$ edges, with equality exactly when the two triangulations share only the hull. For the nine points of Figure~\ref{fig:nine}, with $h=5$, each triangulation has $3\cdot9-3-5=19$ edges and their union has $2\cdot19-5=33=6\cdot9-3\cdot5-6$. The second theorem says when that happens.
 
@@ -152,7 +152,7 @@ As Figure~\ref{fig:insert} illustrates, joining a point inside a face to its thr
 
 \section{The Good Pair Returns}\label{sec:regen}
 
-A single insertion is easy; to repeat it, a new good pair is needed after each step. Look again at Figure~\ref{fig:nine}. The side $56$ of the face $156$ of $A$ passes through the faces $357$, $347$, $479$ and $469$ of $B$, in this order from $5$ to $6$. The face $479$ shares no vertex with $156$, so it forms a good pair with $156$ and can receive the next point. The face $347$ contains neither $5$ nor $6$, and it will still lie along the side $56$ after that point is inserted, ready to form the next good pair. Carrying both faces along one side is the whole idea.
+Lemma~\ref{lem:insert} handles one insertion; to repeat it, a new good pair is needed after each step. Look again at Figure~\ref{fig:nine}. The side $56$ of the face $156$ of $A$ passes through the faces $357$, $347$, $479$ and $469$ of $B$, in this order from $5$ to $6$. The face $479$ shares no vertex with $156$, so it forms a good pair with $156$ and can receive the next point. The face $347$ contains neither $5$ nor $6$, and it will still lie along the side $56$ after that point is inserted, ready to form the next good pair. Carrying both faces along one side is the whole idea.
 
 \begin{definition}
 Let $A$ and $B$ be triangulations of $P$. A face $\alpha=xyz$ of $A$ and two different faces $\beta$ and $\gamma$ of $B$ form a \emph{chain} $(\alpha;\beta,\gamma)$ along the side $xy$ if the open segment $xy$ meets the interiors of both $\beta$ and $\gamma$, $\beta$ has no vertex in common with $\alpha$, and $\gamma$ has neither $x$ nor $y$ as a vertex.
@@ -261,7 +261,7 @@ A longer argument, included in the Lean formalisation described in the acknowled
 We end with two further questions. Is the minimum for a triangular hull equal to seven for every $n\geq9$? And can a set of six, seven, or eight points with collinear triples, which the enumeration does not include, have two triangulations sharing only five edges?
 
 \section*{Acknowledgements}
-The problem and its first bounds come from the MathOverflow discussion~\cite{MO}, in particular the contributions of Tony Huynh, G\"unter Rote, and Jukka Kohonen. Claude Opus~5.5 and Claude Fable~5.1 (Anthropic) were used to search for examples, to write and run the verification code, to develop and check the proofs, and to draft the manuscript. The author is responsible for the content. The ancillary files of this article contain an exact checker for the examples and small claims, including those of Section~\ref{sec:hulls}, the enumeration code, and coordinates and both triangulations for $9\leq n\leq17$. Theorems~\ref{thm:main} and~\ref{thm:hull} and the lemmas they use have also been formalised in the Lean~4 proof assistant, with Lemma~\ref{lem:convex} checked for points on a parabola, which is the case the proof of Theorem~\ref{thm:hull} uses. The formalisation takes the computer search of Section~\ref{sec:small} as a stated hypothesis for a pentagonal hull with six to eight points, and the supplementary archive includes the Lean sources, pinned dependency versions, build instructions and a driver that prints the theorem statements and their axiom dependencies. OpenAI ChatGPT assisted with the subsequent exposition and reproducibility revision.
+The problem and its first bounds come from the MathOverflow discussion~\cite{MO}, in particular the contributions of Tony Huynh, G\"unter Rote, Jukka Kohonen and Alex Ravsky. Claude Opus~5.5 and Claude Fable~5.1 (Anthropic) were used to search for examples, to write and run the verification code, to develop and check the proofs, and to draft the manuscript. The author is responsible for the content. The ancillary files of this article contain an exact checker for the examples and small claims, including those of Section~\ref{sec:hulls}, the enumeration code, and coordinates and both triangulations for $9\leq n\leq17$. Theorems~\ref{thm:main} and~\ref{thm:hull} and the lemmas they use have also been formalised in the Lean~4 proof assistant, with Lemma~\ref{lem:convex} checked for points on a parabola, which is the case the proof of Theorem~\ref{thm:hull} uses. The formalisation takes the computer search of Section~\ref{sec:small} as a stated hypothesis for a pentagonal hull with six to eight points, and the supplementary archive includes the Lean sources, pinned dependency versions, build instructions and a driver that prints the theorem statements and their axiom dependencies. OpenAI ChatGPT assisted with the subsequent exposition and reproducibility revision.
 \ifanon\else
 The certificates are also available at~\cite{repo}.
 \fi
@@ -281,7 +281,7 @@ Till, \emph{Minimum number of common edges of triangulations}, MathOverflow ques
 V.~Jandhyala, answer to MathOverflow question 454425, 30 September 2026, \url{https://mathoverflow.net/a/515648}.
 \ifanon\else
 \bibitem{repo}
-\url{https://github.com/jvvk/triangulations-sharing-five-edges}.
+V.~Jandhyala, \emph{Two triangulations that share only their hull}: certificates, enumeration code and Lean sources, \url{https://github.com/jvvk/mathematics/tree/main/two-triangulations-hull}.
 \fi
 \end{thebibliography}
 

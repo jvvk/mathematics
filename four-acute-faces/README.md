@@ -18,6 +18,8 @@ The theorem and the method first appeared in a ChatGPT conversation publicly sha
 
 Preprint v2, October 2026, not peer reviewed. Version 1 (tag `four-acute-faces-v1`) was prepared with Claude (Anthropic) and OpenAI Codex; this version replaces it. The paper's declaration: the exposition is the author's own; Claude Opus 5.5 (Anthropic) was used to help draft the paper. Separately from the paper, a Lean 4 formalisation of the full theorem, including the probability measure, Archimedes' theorem and both integrals, is in `lean/` (standard axioms only); it was written with Claude Opus 5.5.
 
+**Version 3** (23 October 2026, tag `four-acute-faces-v3`): expository revision of the paper (the grid of Section 3 worked out for the paper's rational example (new Figure 2), and one phrase of the abstract). The results, programs and Lean files are unchanged from v2.
+
 ## Contents
 
 - `paper/`: `paper.tex` and `paper.pdf`. Figures are drawn in TikZ inside the source.
