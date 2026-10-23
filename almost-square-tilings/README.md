@@ -12,9 +12,11 @@ An almost-square is a `k × (k+1)` rectangle. Erich Friedman asked for which `n`
 
 The answer: exactly when `n ∈ {4, 10, 12, 14, 15, 18}` or `n ≥ 20` (Theorem 1). The construction scales a perfect squared square and moves each cut line by an integer so that every square becomes an almost-square; one counting identity proves it correct and gives a parity lemma explaining why the squared square of side 112 reaches only even `n` and the one of side 110 only odd `n`. Explicit tilings cover the remaining `n` from 20 to 248, and an exhaustive search settles `n ≤ 19`.
 
-Preprint v1, 8 October 2026, not peer reviewed; the exposition has not yet been independently reviewed. Friedman's list of solved problems credits the result. The author used an AI tool (Claude, Anthropic) in this work, as described in the paper's acknowledgements, and is responsible for its content.
+Preprint v3, 23 October 2026 (v1: 8 October 2026), not peer reviewed; the exposition has not yet been independently reviewed. Friedman's list of solved problems credits the result. The author used an AI tool (Claude, Anthropic) in this work, as described in the paper's acknowledgements, and is responsible for its content.
 
 **Version 2** (23 October 2026, tag `almost-square-tilings-v2`): expository revision of the paper (one sentence of Section 2 reworded). The results, programs and Lean files are unchanged from v1.
+
+**Version 3** (23 October 2026, tag `almost-square-tilings-v3`): credits Giovanni Resta for the m = 34 almost-square packing, describes the C search's skyline rule exactly, `reproduce.sh` checks `SHA256SUMS`, and every script exits nonzero on a failure. The results and the Lean statements are unchanged.
 
 ## Contents
 
