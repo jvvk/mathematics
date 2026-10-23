@@ -1,0 +1,28 @@
+Frobenius292507.frobenius : ∀ (n : ℕ),
+  2 ≤ n →
+    ∀ (a : ℕ → ℕ),
+      (∀ (i : ℕ), a (i + n) = a i) →
+        (∀ (i : ℕ), 0 < a i) →
+          (Finset.range n).gcd (Frobenius292507.x n a) = 1 →
+            ¬Frobenius292507.InS n a ((n - 1) * Frobenius292507.N n a) ∧
+              ∀ (m : ℕ), (n - 1) * Frobenius292507.N n a < m → Frobenius292507.InS n a m
+'Frobenius292507.frobenius' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Frobenius292507.not_InS : ∀ {n : ℕ} {a : ℕ → ℕ},
+  2 ≤ n →
+    (∀ (i : ℕ), a (i + n) = a i) →
+      (∀ (i : ℕ), 0 < a i) →
+        (Finset.range n).gcd (Frobenius292507.x n a) = 1 → ¬Frobenius292507.InS n a ((n - 1) * Frobenius292507.N n a)
+'Frobenius292507.not_InS' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Frobenius292507.InS_of_gt : ∀ {n : ℕ} {a : ℕ → ℕ},
+  2 ≤ n →
+    (∀ (i : ℕ), a (i + n) = a i) →
+      (∀ (i : ℕ), 0 < a i) →
+        (Finset.range n).gcd (Frobenius292507.x n a) = 1 →
+          ∀ {m : ℕ}, (n - 1) * Frobenius292507.N n a < m → Frobenius292507.InS n a m
+'Frobenius292507.InS_of_gt' depends on axioms: [propext, Classical.choice, Quot.sound]
+Frobenius292507.generators123 : Frobenius292507.x 3 Frobenius292507.a123 0 = 4 ∧
+  Frobenius292507.x 3 Frobenius292507.a123 1 = 9 ∧ Frobenius292507.x 3 Frobenius292507.a123 2 = 7
+'Frobenius292507.generators123' depends on axioms: [propext, Classical.choice, Quot.sound]
+Frobenius292507.example123 : ¬Frobenius292507.InS 3 Frobenius292507.a123 10 ∧
+  ∀ (m : ℕ), 10 < m → Frobenius292507.InS 3 Frobenius292507.a123 m
+'Frobenius292507.example123' depends on axioms: [propext, Classical.choice, Quot.sound]

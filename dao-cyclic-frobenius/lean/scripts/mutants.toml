@@ -1,0 +1,96 @@
+# Mutation suite for LeanProofs/Frobenius292507 (MO 292507, Hailong Dao: Frobenius number of the cyclic
+# semigroup <x_0, ..., x_{n-1}> is (n-1)(a_0...a_{n-1} - 1)).
+# Run:  scripts/frobenius292507_mutants.sh   (or python3 -I ~/.claude/skills/mutation-harness/mutate.py <this file>)
+# Inplace mode: a mutated definition must reach every downstream module, so each check rebuilds the
+# LeanProofs.Frobenius292507 tree. Afterwards `lake build LeanProofs.Frobenius292507` restores the .olean files.
+# Every mutant states something false (counterexample in its name); each targets a statement, not a proof step.
+[check]
+cmd = ["lake", "build", "LeanProofs.Frobenius292507"]
+cwd = ".."
+timeout = 900
+mode = "inplace"
+fail_markers = ["error"]
+
+[[mutant]]
+name = "M1 N = P instead of P - 1 (a=(1,2,3): the carry a_0 x_1 = x_0 + N reads 9 = 4 + 6)"
+file = "../LeanProofs/Frobenius292507/Defs.lean"
+old = "def N (n : ℕ) (a : ℕ → ℕ) : ℕ := P n a - 1"
+new = "def N (n : ℕ) (a : ℕ → ℕ) : ℕ := P n a"
+
+[[mutant]]
+name = "M2 x with n product terms (range (n + 1)): carry identity fails"
+file = "../LeanProofs/Frobenius292507/Defs.lean"
+old = "def x (n : ℕ) (a : ℕ → ℕ) (i : ℕ) : ℕ := ∑ k ∈ range n, ∏ j ∈ range k, a (i + j)"
+new = "def x (n : ℕ) (a : ℕ → ℕ) (i : ℕ) : ℕ := ∑ k ∈ range (n + 1), ∏ j ∈ range k, a (i + j)"
+
+[[mutant]]
+name = "M3 headline: (n - 2) N not in S (n=2, a=(1,2): x = (2,3), and 0 is in S)"
+file = "../LeanProofs/Frobenius292507/Main.lean"
+old = "    ¬ InS n a ((n - 1) * N n a) ∧ ∀ m, (n - 1) * N n a < m → InS n a m :="
+new = "    ¬ InS n a ((n - 2) * N n a) ∧ ∀ m, (n - 1) * N n a < m → InS n a m :="
+
+[[mutant]]
+name = "M4 headline: every m >= (n - 1) N in S (non-strict; (n-1)N itself is not)"
+file = "../LeanProofs/Frobenius292507/Main.lean"
+old = "    ¬ InS n a ((n - 1) * N n a) ∧ ∀ m, (n - 1) * N n a < m → InS n a m :="
+new = "    ¬ InS n a ((n - 1) * N n a) ∧ ∀ m, (n - 1) * N n a ≤ m → InS n a m :="
+
+[[mutant]]
+name = "M5 headline: gcd hypothesis weakened to 0 < gcd (a=(1,1): x = (2,2), N = 0, and 0 is in S)"
+file = "../LeanProofs/Frobenius292507/Main.lean"
+old = "    (hpos : ∀ i, 0 < a i) (hgcd : (range n).gcd (x n a) = 1) :\n    ¬ InS"
+new = "    (hpos : ∀ i, 0 < a i) (hgcd : 0 < (range n).gcd (x n a)) :\n    ¬ InS"
+
+[[mutant]]
+name = "M6 headline: n >= 1 instead of n >= 2 (n=1: x_0 = 1, (n-1)N = 0 is in S)"
+file = "../LeanProofs/Frobenius292507/Main.lean"
+old = "theorem frobenius (n : ℕ) (hn : 2 ≤ n)"
+new = "theorem frobenius (n : ℕ) (hn : 1 ≤ n)"
+
+[[mutant]]
+name = "M7 digit bound off by one: d_i <= a_{i-1} (v(d) can exceed N)"
+file = "../LeanProofs/Frobenius292507/Digits.lean"
+old = "def IsDigit (n : ℕ) (a : ℕ → ℕ) (d : ℕ → ℕ) : Prop := ∀ i < n, d i < b n a i"
+new = "def IsDigit (n : ℕ) (a : ℕ → ℕ) (d : ℕ → ℕ) : Prop := ∀ i < n, d i ≤ b n a i"
+
+[[mutant]]
+name = "M8 carry identity with constant P instead of N (a=(1,2,3): 9 = 4 + 6 false)"
+file = "../LeanProofs/Frobenius292507/Carry.lean"
+old = "    a i * x n a (i + 1) = x n a i + N n a := by"
+new = "    a i * x n a (i + 1) = x n a i + P n a := by"
+
+[[mutant]]
+name = "M9 sum identity = (n - 1) N (a=(1,2,3): 2*4 + 0*9 + 1*7 = 15 = 3*5, not 10)"
+file = "../LeanProofs/Frobenius292507/Carry.lean"
+old = "    ∑ i ∈ range n, (b n a i - 1) * x n a i = n * N n a := by"
+new = "    ∑ i ∈ range n, (b n a i - 1) * x n a i = (n - 1) * N n a := by"
+
+[[mutant]]
+name = "M10 step 3: N >= 2 (a=(1,1,2): x = (3,4,5), gcd 1, N = 1)"
+file = "../LeanProofs/Frobenius292507/Carry.lean"
+old = "    (hgcd : (range n).gcd (x n a) = 1) : 1 ≤ N n a := by"
+new = "    (hgcd : (range n).gcd (x n a) = 1) : 2 ≤ N n a := by"
+
+[[mutant]]
+name = "M11 step 4: gcd(x_0, P) = 1 (a=(1,2,3): gcd(4, 6) = 2)"
+file = "../LeanProofs/Frobenius292507/Carry.lean"
+old = "    (hgcd : (range n).gcd (x n a) = 1) : Nat.Coprime (x n a 0) (N n a) := by"
+new = "    (hgcd : (range n).gcd (x n a) = 1) : Nat.Coprime (x n a 0) (P n a) := by"
+
+[[mutant]]
+name = "M12 step 6(i): every t <= P is a digit value (t = P is not; max value is P - 1)"
+file = "../LeanProofs/Frobenius292507/Digits.lean"
+old = "    (ht : t ≤ N n a) : ∃ d, IsDigit n a d ∧ v n a d = t := by"
+new = "    (ht : t ≤ P n a) : ∃ d, IsDigit n a d ∧ v n a d = t := by"
+
+[[mutant]]
+name = "M13 example: Frobenius number 9 instead of 10 (10 is the gap)"
+file = "../LeanProofs/Frobenius292507/Main.lean"
+old = "theorem example123 : ¬ InS 3 a123 10 ∧ ∀ m, 10 < m → InS 3 a123 m := by"
+new = "theorem example123 : ¬ InS 3 a123 9 ∧ ∀ m, 9 < m → InS 3 a123 m := by"
+
+[[mutant]]
+name = "M14 example: generator x_1 = 8 instead of 9"
+file = "../LeanProofs/Frobenius292507/Main.lean"
+old = "theorem generators123 : x 3 a123 0 = 4 ∧ x 3 a123 1 = 9 ∧ x 3 a123 2 = 7 := by"
+new = "theorem generators123 : x 3 a123 0 = 4 ∧ x 3 a123 1 = 8 ∧ x 3 a123 2 = 7 := by"

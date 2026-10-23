@@ -1,0 +1,12 @@
+Isolated build 2026-10-23: fresh copy of lean/, lake exe cache get, lake build LeanProofs
+✔ [8924/8932] Built LeanProofs.Frobenius292507.Defs (61s)
+✔ [8925/8932] Built LeanProofs.Frobenius292507.Carry (69s)
+✔ [8926/8932] Built LeanProofs.Frobenius292507.Digits (91s)
+✔ [8927/8932] Built LeanProofs.Frobenius292507.Semigroup (92s)
+✔ [8928/8932] Built LeanProofs.Frobenius292507.Main (85s)
+⚠ [8929/8932] Built LeanProofs.Frobenius292507.Report (88s)
+warning: LeanProofs/Frobenius292507/Report.lean:3:100: This line exceeds the 100 character limit, please shorten it!
+⚠ [8930/8932] Built LeanProofs.Frobenius292507 (84s)
+warning: LeanProofs/Frobenius292507.lean:1:1: * `-/`:
+✔ [8931/8932] Built LeanProofs (84s)
+Build completed successfully (8932 jobs).

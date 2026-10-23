@@ -1,0 +1,25 @@
+{
+  "source_commit": "c3f66df (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports Frobenius292507 only)",
+    "CheckClaims.lean (generated)",
+    "scripts/mutants.py (copy of lean-proofs scripts/frobenius292507_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "8b41a76c049d284fa9ef6cb169c8650d2011f640a4ec6e7aea171a1ff2ab03a0",
+    "LeanProofs/Frobenius292507/Carry.lean": "6aea65ae26f91d4e4fc15149991e1b696bb0d669d24bf35a3aecb57181761a89",
+    "LeanProofs/Frobenius292507/Defs.lean": "548af813b69bf869f6aa5011a03eb41a52a404d70c25d4eaffb0cc3d1cd21f59",
+    "LeanProofs/Frobenius292507/Digits.lean": "2a8608ab2d5293602b33d37e923ba50672ad55c39f6845d44211f8ad2dfa8914",
+    "LeanProofs/Frobenius292507/Main.lean": "2b578f4913b43079e56f8cfd03ed411bb105f881a69568f5ce9119cf227d8c6e",
+    "LeanProofs/Frobenius292507/Report.lean": "4279719b52a70a6dd5490f55176d95cd4420096a1dbdc835f8a5c6b53f37e0b1",
+    "LeanProofs/Frobenius292507/Semigroup.lean": "74ab9b62a370672f0d8322b4b8627f4d91d630b45737e4b07fe4d66dca84afee",
+    "LeanProofs/Frobenius292507.lean": "95c55ff5c610762002308415997f53b66d9eb4c0250b67de7431907c23c7617c",
+    "LeanProofs.lean": "77c10cda331a43dda8aca103a8bb616515425005091a20e1132b57da1e38d0a5",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutants.toml": "2f1506fbe357517467132e2392615e3a5ed67dc813725f082c18171847b5ce65",
+    "scripts/mutate.py": "1ab357b3dad230320d1266e48ce5cce1f85ea8866de18b3e86c5385d2921c9c6"
+  }
+}
