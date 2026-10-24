@@ -11,4 +11,4 @@
   -105.0 1.319581
 1,cos,sin coef ['0.00026', '-0.25008', '-1.29886'] max resid 5.04e-07
 1,cos,sin,cos2,sin2 coef ['0.00012', '-0.25000', '-1.29904', '0.00004', '0.00004'] max resid 6.58e-12
-PASS coefficients -0.25, -1.29904
+PASS five-term fit: coefficients -0.25000, -1.29904, residual < 1e-9

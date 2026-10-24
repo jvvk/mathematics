@@ -90,6 +90,12 @@ def run_lean(src):
         match = re.match(r"^(.+?):\d+:\d+:\s*error:", line)
         if match and os.path.realpath(match.group(1)) == os.path.realpath(src):
             located.append(line)
+    # Resource limits (recursion depth, heartbeats, deterministic timeouts, memory) say nothing about the
+    # mutated statement, so they are harness failures, not rejections.
+    resource = re.search(r"maximum recursion depth|maxRecDepth|heartbeat|deterministic\)? timeout|"
+                         r"out of memory|stack overflow", output, re.I)
+    if resource:
+        return "RESOURCE", first + f" ({resource.group(0)})"
     if r.returncode == 1 and located:
         return "REJECTED", located[0]
     if r.returncode == 0 and not errors:

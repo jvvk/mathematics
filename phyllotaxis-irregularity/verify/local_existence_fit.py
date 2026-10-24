@@ -1,7 +1,7 @@
 """Record local_existence_fit.out (Section 8): kappa2(beta_D) = (theta* - cushion)/|c| from the local pentagon
 boundary of local_existence.py, over beta_D in [-105, -60] degrees, and its least-squares fit by 1, cos, sin (and
 with cos 2, sin 2 added). The fitted coefficients -0.25 and -1.29904 of cos(beta_D) and sin(beta_D) are those quoted
-in the paper. Exits nonzero if they differ from those values by more than 1e-3.
+in the paper (five-term fit). Exits nonzero if they differ by more than 1e-4 or the residual exceeds 1e-9.
 Run: python3 local_existence_fit.py   (about a minute)
 """
 from __future__ import annotations
@@ -39,8 +39,10 @@ def main() -> int:
     x1, r1 = solve(A1, ks); x2, r2 = solve(A2, ks)
     print("1,cos,sin coef", [f"{v:.5f}" for v in x1], f"max resid {r1:.2e}")
     print("1,cos,sin,cos2,sin2 coef", [f"{v:.5f}" for v in x2], f"max resid {r2:.2e}")
-    ok = abs(x1[1] + 0.25) < 1e-3 and abs(x1[2] + 1.29904) < 1e-3
-    print("PASS coefficients -0.25, -1.29904" if ok else "FAIL coefficients differ from the paper")
+    # the paper quotes the five-term fit: cos and sin coefficients -0.25000 and -1.29904, residual below 1e-9
+    ok = abs(x2[1] + 0.25) < 1e-4 and abs(x2[2] + 1.29904) < 1e-4 and r2 < 1e-9
+    print("PASS five-term fit: coefficients -0.25000, -1.29904, residual < 1e-9" if ok
+          else "FAIL five-term fit differs from the paper")
     return 0 if ok else 1
 
 

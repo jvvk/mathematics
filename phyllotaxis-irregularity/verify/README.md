@@ -19,13 +19,13 @@ its first lines). Times are on a laptop.
 
 ## Explorations and records (not proofs)
 
-Every script listed here has its recorded output `name.out` in this folder. Variant runs: `break_probability_consistent_coarse.out`
-is `python3 break_probability_consistent.py -0.002 2.0,2.5,2.8,2.9,3.0,3.5` and the same with `-0.0001`;
+Every script listed here has its recorded output `name.out` in this folder (`burst_exact.out` and `transition_scaling.out` regenerated 24 October 2026; `burst_certify.py`, which never completed, was removed in v2). Variant runs: `break_probability_consistent_coarse.out`
+is `python3 break_probability_consistent.py -0.002 2.0,2.5,2.8,2.9,3.0,3.5` and the same with `-0.000125` (the record prints c to four decimals);
 `local_existence_fit.out` and `independent_tolerance.out` are written by `local_existence_fit.py` and
 `independent_tolerance.py`, which exit nonzero if the quoted coefficients or the histories change.
 
 - Section 7 burst, Conjecture C: `burst_exact.py` (first-order events in `Q(√3, √19)` with exact signs; reports 60
-  unresolved clearance incidences), `burst_mp.py` + `mp_stack.py` (60-digit runs at `c = 0`), `burst_certify.py`,
+  unresolved clearance incidences), `burst_mp.py` + `mp_stack.py` (60-digit runs at `c = 0`),
   `step1_words.py`, `step2_words.py`, `step1_margins.py`, `lineage.py`.
 - Section 8 ratio law: `break_probability.py`, `break_probability_consistent.py` (consistent seeds), `critical_ratio.py`,
   `multi_step.py`, `mismatch_law.py`, `kappa1_consistent.py`, `transition_scaling.py`, `tracking_irregularity.py`,

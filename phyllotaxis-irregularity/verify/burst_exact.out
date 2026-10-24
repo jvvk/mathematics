@@ -38,4 +38,6 @@
 [Ua/+ Ua/- D Ub/+ Ub/-]  parastichy (3, 2)
     T(3, 3) (tie) -> R(3, 3) -> T(3, 4) -> P(3, 3) => PENTAGON
     T(3, 3) (tie) -> R(3, 3) -> T(3, 4) -> P(3, 3) => PENTAGON
-every branch ends in a pentagon before (8,5): True
+every represented branch ends in a pentagon before (8,5): True
+Exploratory computation; unresolved validity jets: {'selected_unresolved_clearances': 60, 'steps': 76}
+A nonlinear certificate must also branch over undecided validity and threshold rules.

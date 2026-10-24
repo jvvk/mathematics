@@ -741,9 +741,11 @@ $-c\cos\beta_U>0$ and the passing up vector by $c\cos\beta_D<0$ (Corollary~\ref{
 the notch hinge $\pi-(\beta_U-\beta_D)$ increases steadily, while by
 Proposition~\ref{prop:frozen} the ratio $\Ua/\Ub$ stays $e^{i\eps}$ up to $O(|c|)$. Along the
 way the configuration follows the $(1,2)$ lattice fronts from $F(\beta,\eps)$ to the threshold of
-Lemma~\ref{lem:threshold}, up to $O(|\eps|+|c|)$. On that compact path the notch hinge stays in
-$(60^\circ,120^\circ)$ and the $1,2$-notch has $\gamma+\tau>4\pi/3$ by a margin bounded below, so
-by~\cite[Prop.~4.3]{GD} and Lemma~\ref{lem:apex} the only valid offspring is the rhombus.
+Lemma~\ref{lem:threshold}, up to $O(|\eps|+|c|)$. While the notch hinge stays in a fixed compact subset of
+$(60^\circ,120^\circ)$, the $1,2$-notch has $\gamma+\tau>4\pi/3$ by a margin bounded below, so
+by~\cite[Prop.~4.3]{GD} and Lemma~\ref{lem:apex} the only valid offspring is the rhombus. Near $120^\circ$ the
+configuration is close to the threshold tiling, where Lemma~\ref{lem:shared}(b) applies instead: the
+rhombus remains the valid candidate at the notch until the up triangle becomes valid.
 
 The phase ends at the first step at which a triangle candidate is valid. At the threshold tiling this is
 a triple site: the triangle on $D$, the triangle on the up vector that follows it, and the rhombus over the
@@ -769,10 +771,15 @@ three, with contact normals
 \[
 Q_*-A=U,\qquad Q_*-B=V,\qquad Q_*-E=-S.
 \]
-For configurations in a small enough neighbourhood of this one (positions, diameters, and $|c|$ small),
-let $T$ be the placement touching $A$ and $B$ and $R$ the placement touching $B$ and $E$, on the branches
-through $Q_*$. If $T$ clears $E$, then $R$ clears $A$ and $\Imag R\le\Imag T$, with equality only if $T=R$.
-Every other disk of the stack, older disks included, clears both.
+Suppose $A$ is a highest disk of the front. For configurations in a small enough neighbourhood of this
+one (positions, diameters, and $|c|$ small), let $T$, $R$ and $P$ be the placements touching $A$ and $B$,
+$B$ and $E$, and $A$ and $E$, on the branches through $Q_*$. Then:
+\begin{enumerate}
+\item[(a)] if $T$ clears $E$, then $R$ clears $A$ and $\Imag R\le\Imag T$, with equality only if $T=R$;
+\item[(b)] $P$ clears $B$ if and only if $R$ does not clear $A$ strictly; so $P$ and $R$ are not both valid
+except when $P=R=T$, and one of them always clears the third disk;
+\item[(c)] every other disk of the stack, older disks included, clears all three.
+\end{enumerate}
 \end{lemma}
 
 \begin{proof}
@@ -786,11 +793,17 @@ g_A'=\frac{\sin(\pi/3)}{\sin(u_*+\pi/3)}>0,\qquad g_E'=\frac{\sin(-\pi/3)}{\sin(
 and both signs persist nearby. $T$ is the zero $x_T$ of $g_A$ and $R$ the zero $x_R$ of $g_E$, unique by the
 implicit function theorem since the contact normals are not parallel. If $T$ clears $E$ then
 $g_E(x_T)\ge0=g_E(x_R)$, so $x_T\le x_R$ and $\Imag T=h(x_T)\ge h(x_R)=\Imag R$; and
-$g_A(x_R)\ge g_A(x_T)=0$, so $R$ clears $A$. Equality forces $x_T=x_R$.
+$g_A(x_R)\ge g_A(x_T)=0$, so $R$ clears $A$. Equality forces $x_T=x_R$. This is (a).
 
-For the other disks: before the first offending event every step is a triangle (which removes nothing) or
-a rhombus (which removes a notch bottom lower than its parents), so no centre in the stack is higher than
-the highest front disk, whose height tends to that of $B$, below $Q_*$. The directions from $Q_*$ to $A$, $B$,
+For (b), run the same argument on the curve $f_E=0$ through $Q_*$, a graph over the direction
+$t=e^{i(u_*+30^\circ)}$ perpendicular to $Q_*-E=-S$. Along it $f_A$ and $f_B$ both increase, with derivatives
+$U\cdot t=V\cdot t=\cos30^\circ>0$ at the limit, persisting nearby. $P$ is the zero of $f_A$ and $R$ the zero of
+$f_B$ on this curve. So $f_B(P)\ge0$ if and only if $P$ is not before $R$ along $t$, if and only if
+$f_A(R)\le f_A(P)=0$. Equality in either is the triple point.
+
+For (c): before the first offending event every step is a triangle (which removes nothing) or a rhombus or
+pentagon (which removes disks lower than the new disk), so by induction no centre in the stack is higher
+than the highest front disk, which is $A$, at height $\Imag Q_*-\sin u_*+o(1)$, below $Q_*$. The directions from $Q_*$ to $A$, $B$,
 $E$ are $u_*+180^\circ$, $u_*+240^\circ$, $u_*+300^\circ$, about $199^\circ$, $259^\circ$, $319^\circ$, and every
 direction in the lower half-plane is within less than $60^\circ$ of one of them. A unit disk centred at
 $Q_*+rn$, $0<r\le1$, $n$ in the lower half-plane, would therefore lie at distance
@@ -801,8 +814,12 @@ $d(X)/(1-|c|/2)$ of $X$, so by compactness the exclusion persists in a neighbour
 
 \noindent In words: both candidates touch $B$, and the curve of such positions descends to the right. Clearing
 the right-hand disk $E$ forces $T$ onto the higher part of that curve. The lemma is used twice. In a down-up
-notch $A\xrightarrow{S}B\xrightarrow{U}E$ ($E=B+U$), $T$ is the triangle on the down vector and $R$ the
-triangle on the up vector. In the words $\Ua\,\dn{\Ub}\,D\,\up{\Ub}$ and $\Ua\,D\,\dn{\Ub}\,\up{\Ub}$ below,
+notch $A\xrightarrow{S}B\xrightarrow{U}E$ ($E=B+U$), $T$ is the triangle on the down vector, $R$ the
+triangle on the up vector and $P$ the rhombus over $B$; by (b) the rhombus is valid exactly until the up
+triangle is, and by (a) the down triangle never undercuts it. In every use $A$ is the highest front disk: it
+is the only peak of the front in the $(1,2)$ phase and in the words $\Ua\,\dn{\Ub}\,D\,\up{\Ub}$ and
+$\Ua\,D\,\dn{\Ub}\,\up{\Ub}$, and in the other two words it exceeds the other peak by
+$\Imag(S+V)=\sin u_*>0$ up to $O(\delta+|c|)$. In the words $\Ua\,\dn{\Ub}\,D\,\up{\Ub}$ and $\Ua\,D\,\dn{\Ub}\,\up{\Ub}$ below,
 $A,B$ are the ends of the first down vector and $E$ the end of the up vector $\up{\Ub}$, so $T$ is a triangle
 on a down vector and $R$ the rhombus. The comparison is exact; it does not need a margin.
 
@@ -907,10 +924,21 @@ meets the triangle on $\Ua$ and a rhombus, at the down-up notch before $\Ua$. By
 that notch no triangle on the down vector is placed; the triangle on $\Ua$, when valid, is the intended
 second triangle, and at an exact tie the same disk is inserted on $\Ua$. In the other two words a triangle
 on a down vector meets the rhombus and a pentagon; the pentagon is excluded and the rhombus is placed, as
-shown above. The remaining comparisons hold at the limit tilings with margins of order one, and the
-configurations stay within $O(|\eps|+|c|)$ of the limit, because the $(2,2)$ phase lasts $O(|\eps|/|c|+1)$
-steps with drift $O(|c|)$ per step; by Lemma~\ref{lem:uniform} those margins persist for $|\eps|<\eps_0$ and
-$|c|<c_0$. The margins of order $|c|$, \eqref{eq:ddu} and~\eqref{eq:dud}, are signed and only increase during
+shown above. The remaining comparisons hold at the limit tilings with margins of order one.
+
+It remains to see that the configuration stays in the neighbourhood $\mathcal N$ of the limit tilings on which
+all these statements and the rates of Corollary~\ref{cor:rates} hold, with constants uniform on $\mathcal N$. At
+the start of the $(2,2)$ phase it is within $C_0(|\eps|+|c|)$ of the limit, by Proposition~\ref{prop:frozen} and
+Lemma~\ref{lem:triangle}. The phase ends when the notch $(\dn{\Ub},\Ua)$ admits its triangle; that notch's
+hinge starts within $C_0(|\eps|+|c|)$ of its switching value, and while the configuration is in $\mathcal N$
+every pass of $\Ua$ over $\dn{\Ub}$ moves it towards that value by at least $\kappa|c|$, $\kappa>0$, since
+both vectors turn with the signed rates of Corollary~\ref{cor:rates}. Let $n_1$ be the first step at which
+the configuration leaves the ball of radius $r$ about the limit, $r$ fixed with that ball inside $\mathcal N$.
+Before $n_1$ the phase has at most $C_1(|\eps|/|c|+1)$ passes, each of a bounded number of steps, so the
+configuration moves by at most $C_2(|\eps|+|c|)$ before the phase ends; for $|\eps|$ and $|c|$ small this is
+less than $r-C_0(|\eps|+|c|)$, so the phase ends before $n_1$. Hence the whole phase lies within
+$O(|\eps|+|c|)$ of the limit, and by Lemma~\ref{lem:uniform} the order-one margins persist for $|\eps|<\eps_0$
+and $|c|<c_0$. The margins of order $|c|$, \eqref{eq:ddu} and~\eqref{eq:dud}, are signed and only increase during
 the phase. The front after the second triangle has up vectors $\up{\Ua},\up{\Ub}$ and down vectors
 $D,\dn{\Ua},\dn{\Ub}$.
 \end{proof}
@@ -1295,7 +1323,7 @@ and the margin~\eqref{eq:dud} close the gap, and Theorem~\ref{thm:A} stands as s
 threshold is $120^\circ+O(|c|)$, not exactly $120^\circ$ (Section~\ref{sec:stepone}, Lemma~\ref{lem:32phase});
 the first-disk theorem is stated for single-notch fronts $D^mU^n$; Swinton's version and sections are
 cited; the Lean coverage of Lemma~\ref{lem:apex} is stated exactly; the recorded outputs and the
-verification scripts are completed and every script exits nonzero on a failure.
+proof checks are completed and each exits nonzero on a failure (the explorations are records, not tests).
 
 \begin{thebibliography}{99}
 \bibitem{repo} V.~Jandhyala, \emph{Irregularity versus growth rate in disk-stacking phyllotaxis: code, records and Lean
