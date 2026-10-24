@@ -71,8 +71,8 @@ phylogenetic trees $S,T$ on a common set of $n=2^m$ labels.
 
 Part~(1) rests on a substitution lemma (Lemma~\ref{lem:subst}). Its argument is the tree-product
 argument of Guillemot, Nicolas, Berry and Paul \cite[Section~5.3]{GNBP}, used there to show that the
-size of a maximum compatible tree, which equals $\mast$ for binary trees, is multiplicative under
-powers of a tree (a construction they cite to earlier work, including Hein, Jiang, Wang and Zhang \cite{HJWZ}); we
+size of a maximum compatible tree of a collection of trees, which equals $\mast$ for two binary trees,
+is multiplicative when every tree in the collection is raised to the same power \cite[Lemma~40(ii)]{GNBP} (a construction they cite to earlier work, including Hein, Jiang, Wang and Zhang \cite{HJWZ}); we
 allow the substituted pair to vary from leaf to leaf, and apply it to balanced trees. Its useful consequence is that any single pair of balanced trees
 with a small agreement subtree yields a bound for all $n$. Part~(2) applies it to the $k=3$
 example of \cite{BLOSSW}. Part~(3) keeps the induction of \cite[Theorem~1.3]{BLOSSW} but
@@ -369,7 +369,8 @@ Everything above except Lemma~\ref{lem:cert2} is checked in Lean~4 with Mathlib
 \end{itemize}
 The certificate of Lemma~\ref{lem:cert2}, with over a million simplices, is checked in exact arithmetic by
 the script of Section~\ref{sec:verify} and not in Lean. Fourteen mutations of the formal development
-(a wrong constant, a caterpillar left unreversed, an inflated bound) each make it fail to compile. The Lean files
+(a wrong constant, a caterpillar left unreversed, an inflated bound) each make it fail to compile;
+the log of the run, with the first error of each, is \texttt{lean/mutants.log}. The Lean files
 and scripts are at \url{https://github.com/jvvk/mathematics}.
 
 \section{Open questions}
@@ -385,7 +386,7 @@ sizes the caterpillar is already optimal. Whether $\beta$ is close to $5/11$ or 
 \emph{Changes in version 3.} The substitution argument is credited to Guillemot, Nicolas, Berry
 and Paul, and the version of \cite{BLOSSW} whose numbering is cited is stated. The verification
 programs now include the unreversed-caterpillar control and the log of the full run for
-Lemma~\ref{lem:cert2}, and the mutation tests count a timeout as a failure of the test. The theorems,
+Lemma~\ref{lem:cert2}, and the mutation tests count a timeout as a failure of the test and record each mutant's error. The theorems,
 their proofs and the Lean statements are unchanged.
 
 \section*{Acknowledgements}

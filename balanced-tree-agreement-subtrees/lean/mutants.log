@@ -1,0 +1,51 @@
+baseline ok: Balanced.lean
+baseline ok: Basic.lean
+baseline ok: CertOne.lean
+baseline ok: Example.lean
+baseline ok: Grid.lean
+baseline ok: Lower.lean
+baseline ok: Restrict.lean
+baseline ok: Subst.lean
+baseline ok: TwoLevel.lean
+rejected: triples: c outside the cluster -> inside
+    LeanProofs/BalancedMast/Mut.lean:140:33: error: Function expected at
+rejected: restriction drops a nonempty half
+    LeanProofs/BalancedMast/Mut.lean:76:23: error: unsolved goals
+rejected: substitution: product -> sum
+    LeanProofs/BalancedMast/Mut.lean:149:49: error: unsolved goals
+rejected: submultiplicativity -> subadditivity
+    LeanProofs/BalancedMast/Mut.lean:152:2: error: Type mismatch
+rejected: grid lemma without the factor 2
+    LeanProofs/BalancedMast/Mut.lean:137:4: error: Type mismatch: After simplification, term
+rejected: caterpillar 0 with two ranks swapped
+    LeanProofs/BalancedMast/Mut.lean:81:2: error: Tactic `decide` proved that the proposition
+rejected: cells not reversed in T
+    LeanProofs/BalancedMast/Mut.lean:153:41: error: omega could not prove the goal:
+rejected: M(2^11) <= 2^4
+    LeanProofs/BalancedMast/Mut.lean:296:4: error: Application type mismatch: The argument
+rejected: Phi diagonal weight 4^c -> 8^c
+    LeanProofs/BalancedMast/Mut.lean:161:32: error: unsolved goals
+rejected: inflated lower bound for 2^c
+    LeanProofs/BalancedMast/Mut.lean:65:65: error: (kernel) application type mismatch
+rejected: root certificate with r^4
+    LeanProofs/BalancedMast/Mut.lean:103:64: error: maximum recursion depth has been reached
+rejected: exponent 0.235 -> 0.24
+    LeanProofs/BalancedMast/Mut.lean:222:72: error: unsolved goals
+rejected: a strategy that stops at the root
+    LeanProofs/BalancedMast/Mut.lean:449:2: error: Tactic `decide` proved that the proposition
+rejected: exponent 0.243 -> 0.244
+    LeanProofs/BalancedMast/Mut.lean:607:48: error: unsolved goals
+14 mutants, 0 problems
+exit 0
+
+# Rerun 2026-10-24 after replacing the mutant "root certificate with r^4" (a weaker bound; it failed only on Lean's recursion limit) by r^6 (a stronger, false bound):
+baseline ok: CertOne.lean
+rejected: inflated lower bound for 2^c
+    LeanProofs/BalancedMast/Mut.lean:65:65: error: (kernel) application type mismatch
+rejected: root certificate with r^6 (a stronger, false bound)
+    LeanProofs/BalancedMast/Mut.lean:63:74: error: Tactic `decide` proved that the proposition
+rejected: exponent 0.235 -> 0.24
+    LeanProofs/BalancedMast/Mut.lean:222:72: error: unsolved goals
+3 mutants, 0 problems
+
+[exited with code 0]

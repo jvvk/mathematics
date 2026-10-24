@@ -36,8 +36,8 @@ MUTANTS = [
     ("Phi diagonal weight 4^c -> 8^c", "Lower.lean",
      "(4 : ℝ) ^ c * (x₁ ^ a + x₄ ^ a)", "(8 : ℝ) ^ c * (x₁ ^ a + x₄ ^ a)"),
     ("inflated lower bound for 2^c", "CertOne.lean", "def certQ2 : ℕ := 17764576", "def certQ2 : ℕ := 17764676"),
-    ("root certificate with r^4", "CertOne.lean",
-     "decide (r ^ 5 * certN ^ 2 ≤ S ^ 2 * 2 ^ (5 * certK))", "decide (r ^ 4 * certN ^ 2 ≤ S ^ 2 * 2 ^ (5 * certK))"),
+    ("root certificate with r^6 (a stronger, false bound)", "CertOne.lean",
+     "decide (r ^ 5 * certN ^ 2 ≤ S ^ 2 * 2 ^ (5 * certK))", "decide (r ^ 6 * certN ^ 2 ≤ S ^ 2 * 2 ^ (5 * certK))"),
     ("exponent 0.235 -> 0.24", "CertOne.lean",
      "(2 : ℝ) ^ ((m : ℝ) * (47 / 200)) ≤ M m", "(2 : ℝ) ^ ((m : ℝ) * (48 / 200)) ≤ M m"),
     ("a strategy that stops at the root", "TwoLevel.lean",
@@ -47,7 +47,8 @@ MUTANTS = [
 ]
 
 
-def check(text: str) -> bool | None:
+def check(text: str) -> tuple[bool | None, str]:
+    """(True, "") if `text` compiles, (False, first error line) if not, (None, "timeout") on a timeout."""
     MUT.write_text(text)
     p = subprocess.Popen(["taskpolicy", "-c", "background", "lake", "env", "lean", str(MUT)], cwd=ROOT,
                          stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
@@ -57,9 +58,11 @@ def check(text: str) -> bool | None:
     except subprocess.TimeoutExpired:
         os.killpg(p.pid, signal.SIGKILL)  # lake's lean child too
         p.communicate()
-        print("  (timed out: inconclusive, counted as a problem)", flush=True)
-        return None
-    return p.returncode == 0 and "error" not in out
+        return None, "timeout"
+    if p.returncode == 0 and "error" not in out:
+        return True, ""
+    err = next((l for l in out.splitlines() if "error" in l), f"exit code {p.returncode}")
+    return False, err.replace(str(ROOT) + "/", "")
 
 
 def main() -> int:
@@ -67,8 +70,8 @@ def main() -> int:
     sel = [m for m in MUTANTS if not sys.argv[1:] or any(a in m[1] for a in sys.argv[1:])]
     try:
         for f in sorted({m[1] for m in sel}):
-            ok = check((D / f).read_text())
-            print(f"baseline {'ok' if ok else 'FAILS'}: {f}", flush=True)
+            ok, why = check((D / f).read_text())
+            print(f"baseline {'ok' if ok else 'FAILS'}: {f}" + ("" if ok else f"  [{why}]"), flush=True)
             bad += not ok
         for name, f, old, new in sel:
             src = (D / f).read_text()
@@ -76,7 +79,7 @@ def main() -> int:
                 print(f"MUTATION DID NOT APPLY: {name}", flush=True)
                 bad += 1
                 continue
-            res = check(src.replace(old, new))
+            res, why = check(src.replace(old, new))
             if res is None:
                 print(f"MUTANT INCONCLUSIVE (timeout): {name}", flush=True)
                 bad += 1
@@ -84,7 +87,7 @@ def main() -> int:
                 print(f"MUTANT SURVIVED: {name}", flush=True)
                 bad += 1
             else:
-                print(f"rejected: {name}", flush=True)
+                print(f"rejected: {name}\n    {why}", flush=True)
     finally:
         MUT.unlink(missing_ok=True)
     print(f"{len(sel)} mutants, {bad} problems")

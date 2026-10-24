@@ -42,13 +42,13 @@ acknowledgement, and is responsible for its content.
 
 **Version 2** (23 October 2026, tag `balanced-tree-agreement-subtrees-v2`): expository revision of the paper (worked examples for restriction, cluster and strategy). The results, programs and Lean files are unchanged from v1.
 
-**Version 3** (24 October 2026, tag `balanced-tree-agreement-subtrees-v3`): credits Guillemot, Nicolas, Berry and Paul (Discrete Appl. Math. 2009, Section 5.3) for the tree-product argument behind the substitution lemma, states that the cited numbering of Bordewich et al. is arXiv v1, adds the unreversed-caterpillar control to `verify/mast.py` and the full-run log for Lemma 5.3, and makes `lean/scripts/mutants.py` count a timeout as a failure. The theorems and the Lean statements are unchanged.
+**Version 3** (24 October 2026, tag `balanced-tree-agreement-subtrees-v3`): credits Guillemot, Nicolas, Berry and Paul (Discrete Appl. Math. 2009, Section 5.3) for the tree-product argument behind the substitution lemma, states that the cited numbering of Bordewich et al. is arXiv v1, adds the unreversed-caterpillar control to `verify/mast.py` and the full-run log for Lemma 5.3, and makes `lean/scripts/mutants.py` count a timeout as a failure and record each mutant's first error (`lean/mutants.log`: all 14 rejected by a compile error). The theorems and the Lean statements are unchanged.
 
 ## Contents
 
 - `paper/`: `paper.tex`, `paper.pdf`, and the two figures with the scripts that draw them.
 - `lean/`: a Lake project pinned to Lean 4.34.0 and Mathlib v4.34.0; `lean/README.md` maps results to Lean
-  names, `CheckClaims.lean` prints their axioms, `scripts/mutants.py` runs the mutation tests.
+  names, `CheckClaims.lean` prints their axioms, `scripts/mutants.py` runs the mutation tests (`mutants.log`: the last run).
 - `verify/`: the certifiers, the dynamic program for `mast`, and the generators of the Lean certificate
   data; `verify/README.md` lists what each checks.
 
