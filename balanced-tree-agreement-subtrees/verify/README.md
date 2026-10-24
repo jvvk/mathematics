@@ -5,10 +5,10 @@ Run every script from this folder. Python 3; `certify_simplex_rig.py` also needs
 
 | Script | What it checks |
 |---|---|
-| `mast.py` | Exact dynamic program for `mast` of two balanced trees, based on recurrence (1); checks itself against brute force on 300 random pairs, rebuilds the construction of Bordewich et al. (agreement exactly 32 on 2048 leaves) and substituted pairs (exact product bound), and catches a broken construction (caterpillars not reversed: 128). |
+| `mast.py` | Exact dynamic program for `mast` of two balanced trees, based on recurrence (1); checks itself against brute force on 300 random pairs, rebuilds the construction of Bordewich et al. (agreement exactly 32 on 2048 leaves) and substituted pairs (asserts equality with the product bound), and runs a broken control in which the caterpillars are not reversed in `T` (agreement 128, so the bound 32 fails). |
 | `verify_published.py` | Parses the two 2048-leaf trees printed in Bordewich et al., Appendix A, and computes their `mast` (32). Needs the text of arXiv:2005.07357: `mkdir refs && curl -L https://arxiv.org/pdf/2005.07357 -o refs/blossw.pdf && pdftotext refs/blossw.pdf refs/blossw_raw.txt`. |
 | `certify_iv.py a c` | Lemma 5.1 by interval arithmetic with exact rational `a`, `c`: `python3 certify_iv.py 2/5 33/400` succeeds (4373 boxes); `2/5 2/25` fails, as it should. |
-| `certify_simplex_rig.py DS,DT a c` | Lemma 5.3: `python3 certify_simplex_rig.py 2,1 2/5 157/2000` succeeds (1,418,968 simplices, about 10 minutes); `2,1 2/5 19/250` finds a violating vertex. With `1,1 2/5 33/400` it reproduces Lemma 5.1. Output of the full run: `cert_rig_21_2-5_157-2000.log`. |
+| `certify_simplex_rig.py DS,DT a c` | Lemma 5.3: `python3 certify_simplex_rig.py 2,1 2/5 157/2000` succeeds (1,418,968 simplices, about 10 minutes); `2,1 2/5 19/250` finds a violating vertex. With `1,1 2/5 33/400` it reproduces Lemma 5.1. Output of the full run (27 September 2026): `cert_rig_21_2-5_157-2000.log`, in this folder. |
 | `strategies.py` | Generates the lookahead strategies from recurrence (1): 42 for the (2,1) case. |
 | `test_rig_bounds.py` | Checks the exact lower bounds for `x^(2/5)` against 60-digit values; an inflated bound is rejected. |
 | `lower2.py` | Numerical optimum of the one-level induction (about 0.2354). |

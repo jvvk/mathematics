@@ -47,7 +47,7 @@ MUTANTS = [
 ]
 
 
-def check(text: str) -> bool:
+def check(text: str) -> bool | None:
     MUT.write_text(text)
     p = subprocess.Popen(["taskpolicy", "-c", "background", "lake", "env", "lean", str(MUT)], cwd=ROOT,
                          stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
@@ -57,8 +57,8 @@ def check(text: str) -> bool:
     except subprocess.TimeoutExpired:
         os.killpg(p.pid, signal.SIGKILL)  # lake's lean child too
         p.communicate()
-        print("  (timed out: counted as not compiling)", flush=True)
-        return False
+        print("  (timed out: inconclusive, counted as a problem)", flush=True)
+        return None
     return p.returncode == 0 and "error" not in out
 
 
@@ -76,7 +76,11 @@ def main() -> int:
                 print(f"MUTATION DID NOT APPLY: {name}", flush=True)
                 bad += 1
                 continue
-            if check(src.replace(old, new)):
+            res = check(src.replace(old, new))
+            if res is None:
+                print(f"MUTANT INCONCLUSIVE (timeout): {name}", flush=True)
+                bad += 1
+            elif res:
                 print(f"MUTANT SURVIVED: {name}", flush=True)
                 bad += 1
             else:

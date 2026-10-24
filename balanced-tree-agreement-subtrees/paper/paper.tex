@@ -24,8 +24,9 @@ Let $M(n)$ be the smallest possible size of a maximum agreement subtree of two b
 binary phylogenetic trees on the same $n=2^m$ leaves. Martin and Thatte conjectured
 $M(n)\ge n^{1/2}$. Bordewich, Linz, Owen, St.~John, Semple and Wicke disproved this, showing
 $M(n)<c\,n^{1/2}$ for every $c>0$ along a subsequence, and proved $M(n)\ge n^{0.17}$.
-A substitution lemma shows that $M$ is submultiplicative, so the exponent
-$\beta=\lim \log M(n)/\log n$ exists and equals $\inf_m \log_2 M(2^m)/m$. Their example on
+A substitution lemma, a form of the tree-product argument of Guillemot, Nicolas, Berry and Paul,
+shows that $M$ is submultiplicative, so the exponent
+$\beta=\lim \log M(n)/\log n$ exists and equals $\inf_m \log_2 M(2^m)/m$. The example of Bordewich et al.\ on
 $2048$ leaves then gives $\beta\le 5/11$, that is, $M(n)=O(n^{5/11})$. Optimising the
 parameters in their inductive lower bound gives $M(n)\ge n^{0.235}$, and an induction that looks
 two levels down one tree and one level down the other gives $M(n)\ge n^{0.243}$. Both steps rest on
@@ -68,8 +69,11 @@ phylogenetic trees $S,T$ on a common set of $n=2^m$ labels.
 \end{enumerate}
 \end{theorem}
 
-Part~(1) rests on a substitution lemma (Lemma~\ref{lem:subst}), which is elementary but which we
-have not found in the literature on this problem. Its useful consequence is that any single pair of balanced trees
+Part~(1) rests on a substitution lemma (Lemma~\ref{lem:subst}). Its argument is the tree-product
+argument of Guillemot, Nicolas, Berry and Paul \cite[Section~5.3]{GNBP}, used there to show that the
+size of a maximum compatible tree, which equals $\mast$ for binary trees, is multiplicative under
+powers of a tree (a construction they cite to earlier work, including Hein, Jiang, Wang and Zhang \cite{HJWZ}); we
+allow the substituted pair to vary from leaf to leaf, and apply it to balanced trees. Its useful consequence is that any single pair of balanced trees
 with a small agreement subtree yields a bound for all $n$. Part~(2) applies it to the $k=3$
 example of \cite{BLOSSW}. Part~(3) keeps the induction of \cite[Theorem~1.3]{BLOSSW} but
 replaces its case analysis by an exact inequality in four variables, checked in interval
@@ -140,6 +144,9 @@ $|Z_Y|\le\mast(S^\circ,T^\circ)$. For each $z$, the restrictions of $S$ and $T$ 
 $Y\cap\Lambda_z$ are $A_z|(Y\cap\Lambda_z)$ and $B_z|(Y\cap\Lambda_z)$, and they agree, so
 $|Y\cap\Lambda_z|\le\mast(A_z,B_z)$. Summing over $z\in Z_Y$ gives the bound.
 \end{proof}
+
+When all the pairs $(A_z,B_z)$ are copies of one pair, $S$ and $T$ are the tree products of
+\cite[Definition~36]{GNBP}, and the proof above is that of \cite[Lemma~39]{GNBP}.
 
 \begin{corollary}\label{cor:submult}
 For all $h,k\ge0$, $M(2^{h+k})\le M(2^h)\,M(2^k)$.
@@ -375,6 +382,12 @@ lower height in which no triple is displayed by both trees. Exhaustive enumerati
 for $5\le r\le 7$ every such pair on $r$ leaves contains a tree of height $r-1$, so for these
 sizes the caterpillar is already optimal. Whether $\beta$ is close to $5/11$ or substantially smaller is open.
 
+\emph{Changes in version 3.} The substitution argument is credited to Guillemot, Nicolas, Berry
+and Paul, and the version of \cite{BLOSSW} whose numbering is cited is stated. The verification
+programs now include the unreversed-caterpillar control and the log of the full run for
+Lemma~\ref{lem:cert2}, and the mutation tests count a timeout as a failure of the test. The theorems,
+their proofs and the Lean statements are unchanged.
+
 \section*{Acknowledgements}
 The author used an AI assistant, Claude (Anthropic; Claude Opus~5.5 for the formalisation). It
 found the substitution argument and the two-level induction, wrote the certifiers and the other
@@ -389,13 +402,21 @@ trees, \emph{SIAM J. Discrete Math.} 36(1) (2022) 299--314.
 
 \bibitem{BLOSSW} M.~Bordewich, S.~Linz, M.~Owen, K.~St.~John, C.~Semple and K.~Wicke, On the
 maximum agreement subtree conjecture for balanced trees, \emph{SIAM J. Discrete Math.} 36(1)
-(2022) 336--354. arXiv:2005.07357.
+(2022) 336--354. arXiv:2005.07357v1; theorem, lemma and appendix numbers cited here are those of the
+arXiv version.
 
 \bibitem{BS} T.~Budzinski and D.~S\'enizergues, Maximum agreement subtrees and H\"older
 homeomorphisms between Brownian trees, \emph{J. \'Ec. polytech. Math.} 11 (2024) 395--430.
 
 \bibitem{Fekete} M.~Fekete, \"Uber die Verteilung der Wurzeln bei gewissen algebraischen
 Gleichungen mit ganzzahligen Koeffizienten, \emph{Math. Z.} 17 (1923) 228--249.
+
+\bibitem{GNBP} S.~Guillemot, F.~Nicolas, V.~Berry and C.~Paul, On the approximability of the
+maximum agreement subtree and maximum compatible tree problems, \emph{Discrete Appl. Math.} 157(7)
+(2009) 1555--1570.
+
+\bibitem{HJWZ} J.~Hein, T.~Jiang, L.~Wang and K.~Zhang, On the complexity of comparing evolutionary
+trees, \emph{Discrete Appl. Math.} 71 (1996) 153--169.
 
 \bibitem{Khezeli} A.~Khezeli, An improved lower bound on the largest common subtree of random
 leaf-labeled binary trees, \emph{SIAM J. Discrete Math.} 38(3) (2024) 2530--2541.

@@ -1,0 +1,9 @@
+  certified 200000 (LP 153491), stack 18, depth 47, cache 111, 81s
+  certified 400000 (LP 290230), stack 12, depth 47, cache 116, 158s
+  certified 600000 (LP 440706), stack 12, depth 47, cache 116, 238s
+  certified 800000 (LP 584519), stack 11, depth 47, cache 116, 321s
+  certified 1000000 (LP 739280), stack 14, depth 47, cache 118, 405s
+  certified 1200000 (LP 880997), stack 11, depth 47, cache 120, 486s
+  certified 1400000 (LP 1027941), stack 7, depth 47, cache 123, 574s
+CERTIFIED (rigorous) DS=2 DT=1 a=2/5 c=157/2000 exponent a-2c=243/1000 = 0.243: 1418968 simplices, max depth 47, LP 1042855, float-accepted but rigor-rejected 0, min vertex max-phi 1.002001, distinct powers 123, 582.2s
+exit 0

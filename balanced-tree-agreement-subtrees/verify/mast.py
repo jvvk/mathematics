@@ -78,16 +78,17 @@ def caterpillar_form(order: list[int]):
 # ---------- construction ----------
 
 
-def build(levels: list[int]) -> tuple[list[int], list[int], int]:
+def build(levels: list[int], reverse: bool = True) -> tuple[list[int], list[int], int]:
     """Apply the construction for k in `levels`, innermost first, from the 1-leaf base.
-    Returns (S, T, bound) where bound = product of 2p over levels."""
+    Returns (S, T, bound) where bound = product of 2p over levels. reverse=False lays the
+    caterpillars in the same order in T (a deliberately broken control)."""
     A, B, bound = [0], [0], 1
     for k in levels:
-        A, B, bound = level(A, B, bound, k)
+        A, B, bound = level(A, B, bound, k, reverse)
     return A, B, bound
 
 
-def level(A: list[int], B: list[int], m: int, k: int):
+def level(A: list[int], B: list[int], m: int, k: int, reverse: bool = True):
     b = len(A)
     c = 2**k
     h1 = c - k - 1
@@ -102,7 +103,7 @@ def level(A: list[int], B: list[int], m: int, k: int):
             for t in range(c):
                 off = ((i * p + j) * c + t) * b
                 s_pos = i * sup + cats[j][t]
-                t_pos = j * sup + cats[i][c - 1 - t]
+                t_pos = j * sup + cats[i][c - 1 - t if reverse else t]
                 S[s_pos * b : (s_pos + 1) * b] = [off + x for x in A]
                 T[t_pos * b : (t_pos + 1) * b] = [off + x for x in B]
     assert sorted(S) == sorted(T) == list(range(len(S)))
@@ -190,7 +191,11 @@ def main() -> None:
         n = len(S)
         m = mast(S, T)
         print(f"levels={levels} n={n} mast={m} bound={bound} sqrt(n)={n**0.5:.1f}")
-        assert m <= bound
+        assert m == bound, (levels, m, bound)
+    S, T, bound = build([3], reverse=False)
+    m = mast(S, T)
+    print(f"control, caterpillars not reversed: n={len(S)} mast={m} (bound {bound} fails)")
+    assert m == 128, m
     sys.stdout.flush()
 
 

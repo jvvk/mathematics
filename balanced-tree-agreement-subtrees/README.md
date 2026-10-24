@@ -16,7 +16,7 @@ proved `M(n) ≥ n^0.17`.
 
 The paper proves:
 
-- **The exponent exists.** A substitution lemma makes `M` submultiplicative, so by Fekete's lemma
+- **The exponent exists.** A substitution lemma (the tree-product argument of Guillemot, Nicolas, Berry and Paul, with blocks allowed to vary) makes `M` submultiplicative, so by Fekete's lemma
   `β = lim log₂ M(2^m) / m` exists and equals the infimum. Any single pair of balanced trees therefore gives
   a bound for all `n`.
 - **`β ≤ 5/11`.** The `k = 3` example of Bordewich et al. (2048 leaves, agreement 32) gives
@@ -24,7 +24,7 @@ The paper proves:
 - **`β ≥ 0.243`.** Their inductive lower bound with optimised constants gives `n^0.235`; an induction
   that looks two levels down one tree and one level down the other gives `n^0.243`.
 
-Preprint v1, 9 October 2026, not peer reviewed.
+Preprint v3, 24 October 2026 (v1: 9 October 2026), not peer reviewed.
 
 - **Formally verified in Lean 4** (`lean/`, standard axioms only):
   - the substitution lemma, submultiplicativity and the existence of the exponent;
@@ -41,6 +41,8 @@ The author used an AI assistant (Claude, Anthropic) in this work, as described i
 acknowledgement, and is responsible for its content.
 
 **Version 2** (23 October 2026, tag `balanced-tree-agreement-subtrees-v2`): expository revision of the paper (worked examples for restriction, cluster and strategy). The results, programs and Lean files are unchanged from v1.
+
+**Version 3** (24 October 2026, tag `balanced-tree-agreement-subtrees-v3`): credits Guillemot, Nicolas, Berry and Paul (Discrete Appl. Math. 2009, Section 5.3) for the tree-product argument behind the substitution lemma, states that the cited numbering of Bordewich et al. is arXiv v1, adds the unreversed-caterpillar control to `verify/mast.py` and the full-run log for Lemma 5.3, and makes `lean/scripts/mutants.py` count a timeout as a failure. The theorems and the Lean statements are unchanged.
 
 ## Contents
 
