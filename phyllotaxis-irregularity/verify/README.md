@@ -15,6 +15,7 @@ its first lines). Times are on a laptop.
 | Lemma 2.2, Lemma 7.3, the limiting tilings | `exact_limits.py`, `certify_limits.py` | candidate tables in exact rational arithmetic (ties are identities), and an interval-arithmetic recheck |
 | Lemmas 3.2, 3.3 (rhombus and triangle steps) | `rhombic_step_formula.py`, `triangle_step_formula.py` | first-order formulas against exact geometry, with planted mutants |
 | Theorem B: no triangle on a down vector (Lemma 6.1, Section 6) | `down_triangle_exclusion.py` | 72 first transitions: in words 1/3 the up triangle is valid and no higher than any valid down triangle, in words 2/4 the rhombus is lower by at least 0.45 b\|c\| (theory: b\|c\|/2); two planted false bounds rejected; about two minutes |
+| Lemma 6.1 and Theorem B, independent implementation (by Codex; shares no code) | `independent_first_transition.py` | exact derivatives of Lemma 6.1, buried-centre mesh, 3645 local perturbations, 75 first transitions plus three slow-rate runs with overlap checks against every earlier disk |
 | The two simulators | `simulators_agree.py` | `multi_step.py` and `independent_stack.py` give the same events disk for disk on the fronts of Table 1 |
 
 ## Explorations and records (not proofs)

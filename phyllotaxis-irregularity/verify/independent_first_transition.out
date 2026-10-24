@@ -1,0 +1,17 @@
+exact derivatives: sqrt(7)/3 -sqrt(7)/3 sqrt(3)/2 sqrt(3)/2
+up-triangle clearance derivatives: f_hinge = sqrt(3)/2; f_c = -9*sqrt(21)/56 ; switching-hinge derivative = 9*sqrt(7)/28
+12 front Y=0,-1,-1/2 A index=0 A height margin in Y=1/2
+22w1 front Y=0,1/2,-1/2,1 A index=3 A height margin in Y=1/2
+22w2 front Y=0,1/2,-1/2,-3/2 A index=1 A height margin in Y=1/2
+22w3 front Y=0,1/2,-1/2,1 A index=3 A height margin in Y=1/2
+22w4 front Y=0,1/2,-1/2,-3/2 A index=1 A height margin in Y=1/2
+buried-disk cap mesh: 1553 points; max nearest-parent squared distance = 13/25
+shared-contact grid: 3645 cases; 0 failures; 9 near triple ties; max tangency residual = 4.44e-16
+dynamics grid: 75 runs; 0 failures; second-triangle words: {'a b- b+ D': 19, 'a D b+ b-': 56}
+max phase/(|eps/c|+1) = 1.500000; max bearing deviation/(|eps|+|c|) = 0.925108
+max removed-centre excess height = 0; max tangency residual = 2.2e-13
+slow-rate beta=u+0.001 eps=0.0005 c=-0.0001: {'triangles': [(26, 'b', '12', 'D'), (33, 'a', 'a b- b+ D', 'D')], 'phase': 7, 'words': {'a D b+ b-': 2, 'a b- D b+': 2, 'a b- b+ D': 2, 'a D b- b+': 1}, 'drift': 0.00042063292767458016, 'drift_scaled': 0.7010548794576336, 'phase_scaled': 1.1666666666666667, 'buried_excess': 0.0, 'residual': 8.881784197001252e-16}
+slow-rate beta=u+0.001 eps=0.0005 c=-1e-05: {'triangles': [(248, 'b', '12', 'D'), (323, 'a', 'a b- b+ D', 'D')], 'phase': 75, 'words': {'a D b+ b-': 19, 'a b- D b+': 19, 'a b- b+ D': 19, 'a D b- b+': 18}, 'drift': 0.00046217235949885804, 'drift_scaled': 0.9062203127428589, 'phase_scaled': 1.4705882352941178, 'buried_excess': 0.0, 'residual': 7.105427357601002e-15}
+slow-rate beta=u+0.001 eps=0.0005 c=-1e-06: {'triangles': [(2462, 'b', '12', 'D'), (3217, 'a', 'a b- b+ D', 'D')], 'phase': 755, 'words': {'a D b+ b-': 189, 'a b- D b+': 189, 'a b- b+ D': 189, 'a D b- b+': 188}, 'drift': 0.0004640582891555223, 'drift_scaled': 0.9262640502106232, 'phase_scaled': 1.5069860279441116, 'buried_excess': 0.0, 'residual': 1.1157741397482823e-13}
+example (0.42, 0.002, -0.0005) [(516, 'b', '12', 'D'), (521, 'a', 'a D b+ b-', 'b-')]
+example (0.42, 0, -0.0005) [(517, 'a', '12', 'D'), (518, 'a', 'a D b+ b-', 'b-')]
