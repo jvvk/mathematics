@@ -381,6 +381,20 @@ check(
     "136 exceptions fall into 21 families with at least three members; 64 into none",
     len(fams) == 21 and len(inside) == 136 and len(EX) - len(inside) == 64,
 )
+raw: dict[tuple[int, int], set[int]] = {}
+for n in EX:
+    k = 1
+    while 3**k <= 2 * n:
+        q, rem = divmod(n, 3**k)
+        for aa, bb in ((q, rem), (q + 1, rem - 3**k)):
+            if 0 < aa <= 300 and abs(bb) <= 300:
+                raw.setdefault((aa, bb), set()).add(n)
+        k += 1
+raws = {f: s for f, s in raw.items() if len(s) >= 3}
+check(
+    "without the normalisation (3 does not divide a, |b| < 3^(k-1)): 77 pairs, the same 136 exceptions",
+    len(raws) == 77 and set().union(*raws.values()) == inside,
+)
 
 
 def pattern(a: int, b: int) -> str:

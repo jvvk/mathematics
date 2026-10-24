@@ -191,7 +191,7 @@ def nonaccept_all_k(a, b, hyp, par):
             Q, mq = split_power(rB)                    # coefficient of Y = 3^i, i.e. Q*3^(i - mq)
             # generic i in [L, k-U]: need i - mq > len(R) and k - m > i - mq + len(Q)
             need_low = L - mq > bt_len(R)
-            need_high = U + m - mq - bt_len(Q) >= 1    # k - m - (k - U - mq + len Q) >= 1
+            need_high = U - m + mq - bt_len(Q) >= 1    # k - m - (k - U - mq + len Q) >= 1
             if not (need_low and need_high): probs.append((el, 'gap', L, U, m, mq, bt_len(Q), bt_len(R)))
             Kstar = max(Kstar, L + U + m + 1)
     return (not probs), Kstar, probs

@@ -19,7 +19,7 @@
 
 \title[Quotients of zero-free balanced ternary numbers]{Infinitely many integers that are not quotients of\\ zero-free balanced ternary numbers}
 \author{Vamshi Jandhyala}
-\date{Preprint, version 2, 23 October 2026 (expository revision; results unchanged from version 1 of 8 October). Not peer reviewed.}
+\date{Preprint, version 3, 24 October 2026 (version 1: 8 October; version 2: expository revision; results unchanged throughout). Not peer reviewed.}
 \subjclass[2020]{11A63, 11B85, 68V15}
 \keywords{balanced ternary, digit restrictions, quotient sets, finite automata, formal verification}
 
@@ -37,13 +37,13 @@ set of carries of size linear in $k$ that is closed under the carry map of multi
 contains no accepting carry. For $4\cdot 3^k+5$ the argument is short enough to check by hand. The same method, applied
 to one residue class of $k$ modulo $2$ or $4$ at a time, proves eight further families, among them
 $5\cdot 3^k+4$ for $k\equiv 0\pmod 4$ and $5\cdot 3^k-4$ for $k\equiv 2\pmod 4$. All thirteen results
-are formally verified in Lean~4. Of the $200$ exceptions below $10^8$, $75$ are covered. For the analogous problem with the digits $0$ and $1$ we confirm one
+are formally verified in Lean~4, apart from the sharpness of the bounds, which rests on explicit witnesses. Of the $200$ exceptions below $10^8$, $75$ are covered. For the analogous problem with the digits $0$ and $1$ we confirm one
 further case of the guess of Bai et al.\ that $621\cdot 3^{4k}-20$ always gives an exception.
 \end{abstract}
 
 \maketitle
 
-\noindent\emph{Status of this preprint.} Theorems~\ref{thm:main} and~\ref{thm:classes} are formally verified in Lean~4 (Section~\ref{sec:lean}), using only Lean's standard axioms, and every number quoted in the paper is recomputed by a separate program (see \emph{Code and data}). This version has not yet been independently reviewed.
+\noindent\emph{Status of this preprint.} The thirteen non-membership statements of Theorems~\ref{thm:main} and~\ref{thm:classes} are formally verified in Lean~4 (Section~\ref{sec:lean}), using only Lean's standard axioms. The sharpness clauses of both theorems and Proposition~\ref{prop:cantor} are not in Lean: they are checked by a separate program (see \emph{Code and data}), which recomputes the witnesses and the carry search, together with the other finite claims listed there. This version has not yet been independently reviewed.
 
 \section{Introduction}
 
@@ -333,7 +333,7 @@ exception; it is in the list of \cite{BMRS}, but it is not covered by the unifor
 
 \section{Formal verification}\label{sec:lean}
 
-All thirteen results of Theorems~\ref{thm:main} and~\ref{thm:classes} are proved in Lean~4 \cite{Lean4} (version 4.34, core library
+All thirteen non-membership results of Theorems~\ref{thm:main} and~\ref{thm:classes} are proved in Lean~4 \cite{Lean4} (version 4.34, core library
 only, without Mathlib). The statement proved for $8\cdot 3^k+17$, for example, is
 \[
 \forall k\ge 5,\quad \neg\,\exists\, m,N\in\Z,\ \ 0<m\ \wedge\ \mathtt{ZF}\,m\ \wedge\ 0<N\ \wedge\
@@ -413,7 +413,10 @@ linear size, does not apply directly to this family, and we do not claim a proof
 A search with the decision procedure of Section~\ref{sec:auto} finds exactly $200$ integers
 $n\not\equiv 0\pmod 3$ below $10^8$ outside $\B/\B$. Of these, $136$ fall into $21$ families
 $a\cdot 3^k+b$ with at least three members each, listed in Table~\ref{tab:fam}; the other $64$ belong to no
-family with $a,|b|\le 300$ and at least three members below $10^8$. Within its range, each family is
+family with $a,|b|\le 300$ and at least three members below $10^8$. Here a family is written in normalised form, with
+$3\nmid a$ and $|b|<3^{k-1}$ for every member counted, so that each exception has at most one
+representation $a\cdot 3^k+b$ for a given $k$ and families are not repeated under $a\mapsto 3a$, $k\mapsto k-1$. Without
+the normalisation the same $136$ exceptions are spread over $77$ parameter pairs. Within its range, each family is
 periodic in $k$ from some point on, with period $1$, $2$ or $4$. The families also come in visible pairs:
 $b$ changes sign, as with $4\cdot 3^k\pm 5$, or the roles of $a$ and $b$ swap, as with $40\cdot 3^k\pm 41$
 and $41\cdot 3^k\pm 40$. Theorems~\ref{thm:main} and~\ref{thm:classes} account for every exception in ten of the
@@ -455,8 +458,10 @@ $19\cdot 3^k-10$ & \texttt{.....x...x...x} &  \\
 $20\cdot 3^k-19$ & \texttt{.....x...x...x} & proved \\
 \bottomrule\end{tabular}\end{table}
 
-\begin{question}
-Is $5\cdot 3^k+4\notin\B/\B$ for all $k\ge 5$? Is $3^k+4\notin\B/\B$ for all odd $k\ge 5$?
+\begin{question}\label{q:five}
+Is $5\cdot 3^k+4\notin\B/\B$ for all $k\ge 5$? Is $3^k+4\notin\B/\B$ for all odd $k\ge 5$? (The second
+question is Shallit's: he suggests these numbers as counterexamples in the OEIS entry A351243
+\cite{OEIS}, 5 February 2022.)
 \end{question}
 
 \begin{question}
@@ -468,9 +473,19 @@ Is $F$ infinite? In particular, is $621\cdot 3^{4k}-20\in F$ for every $k\ge 1$?
 \end{question}
 
 \section*{Code and data}
-The Lean development, the program that generates it, the decision procedures, the list of the $200$
-exceptions below $10^8$, and a program that recomputes every number quoted in this paper are at
+The Lean development, the program that generates it, the decision procedures, the search program that finds the $200$
+exceptions below $10^8$ (about 25 minutes), the list it produces, and a program that recomputes the numbers quoted
+in this paper are at
 \begin{center}\small\url{https://github.com/jvvk/mathematics/tree/main/balanced-ternary-quotients}.\end{center}
+The recomputation program checks that each listed number is outside $\B/\B$, the family counts, the witnesses
+and the carry sets of Appendix~\ref{app:tables} against the criterion; completeness of the list below $10^8$ rests
+on the search program, which is run separately.
+
+\emph{Changes in version 3.} The second part of Question~\ref{q:five} is credited to Shallit; the statements of what Lean
+verifies and what the programs check are narrowed to what they do; the normalisation behind Table~\ref{tab:fam} is
+stated; a sign in the upper-gap test of the independent symbolic checker is corrected, and its certificates for
+the five families of Theorem~\ref{thm:main} were rerun and pass. The theorems, their proofs and the Lean files are
+unchanged.
 
 \section*{Declaration of generative AI use}
 The author used Claude (Anthropic; Claude Opus models, between 19 September and 8 October 2026)
@@ -478,8 +493,8 @@ throughout this work, under the author's direction: to run the searches for exce
 of Appendix~\ref{app:tables}, to write the decision programs, the symbolic checker, the program that
 generates the Lean proofs and the hand-written Lean proof, to search the literature, and to draft the
 text. The reason was to obtain a computer-assisted proof that can be checked in full: every theorem
-is verified in Lean (Section~\ref{sec:lean}), and every number quoted is recomputed by a separate
-program (see \emph{Code and data}). The author takes full responsibility for the content, including
+of non-membership is verified in Lean (Section~\ref{sec:lean}), and the witnesses and the other finite claims are
+recomputed by a separate program (see \emph{Code and data}). The author takes full responsibility for the content, including
 the references.
 
 \begin{thebibliography}{9}
