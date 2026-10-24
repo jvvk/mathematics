@@ -33,7 +33,7 @@ Preprint v3, 24 October 2026 (v1: 8 October 2026), not peer reviewed. The thirte
 
 ```
 cd verify
-python3 check_paper.py                          # every number in the paper, seconds (about 1 GB for the last check)
+python3 check_paper.py                          # the checks listed under Contents, seconds (about 1 GB for the last check)
 python3 symproof.py 4 5 cert                    # independent all-k proof of one family of Theorem 1.1
 cc -O2 -o search search.c && ./search 1 100000000 > ex.txt   # the 200 exceptions, about 25 minutes
 cd ../paper && latexmk -pdf quotients.tex

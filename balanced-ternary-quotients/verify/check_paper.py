@@ -1,4 +1,5 @@
-"""Checks every number and finite claim in the paper (../paper/quotients.tex), from the definitions.
+"""Checks the numbers and finite claims of the paper (../paper/quotients.tex) from the definitions:
+the witnesses, carry sets, counts and tables listed in ../README.md. Completeness of the exception list is search.c.
 
 Run: python3 check_paper.py [--quick]     (standard library only)
      --quick skips the 3.7 million carry search for 621*3^16 - 20 (a few seconds and about 1 GB of memory).
@@ -382,13 +383,12 @@ check(
     len(fams) == 21 and len(inside) == 136 and len(EX) - len(inside) == 64,
 )
 raw: dict[tuple[int, int], set[int]] = {}
-for n in EX:
+for n in EX:  # every a <= 300 and k with |n - a*3^k| <= 300, not only the nearest quotients
     k = 1
-    while 3**k <= 2 * n:
-        q, rem = divmod(n, 3**k)
-        for aa, bb in ((q, rem), (q + 1, rem - 3**k)):
-            if 0 < aa <= 300 and abs(bb) <= 300:
-                raw.setdefault((aa, bb), set()).add(n)
+    while 3**k <= n + 300:
+        for aa in range(1, 301):
+            if abs(n - aa * 3**k) <= 300:
+                raw.setdefault((aa, n - aa * 3**k), set()).add(n)
         k += 1
 raws = {f: s for f, s in raw.items() if len(s) >= 3}
 check(
