@@ -1,7 +1,7 @@
 """MO 458571: n uniform points in a regular p-gon K (inradius 1); smallest enclosing regular p-gon Q (any rotation);
 P(Q can be placed inside K). Two independent methods.
 
-finite: exact. For each rotation theta, r(theta) = min_c max_k (h_k(theta) - c.u_k(theta)) is an LP (support values of
+finite: exact LPs, approximate rotation search. For each rotation theta, r(theta) = min_c max_k (h_k(theta) - c.u_k(theta)) is an LP (support values of
 the hull in the p rotated side normals). Minimise over theta (grid + golden refine). Then, among optimal centres, an LP
 asks for one with every vertex of Q inside K.
 limit (n -> inf): side k carries a Poisson process (D = scaled depth, s = position along the side, |s| <= L/2);

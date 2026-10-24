@@ -26,7 +26,8 @@ lake build             # compiles every module and runs the axiom audit in Main.
 | Step 0 (rotation localises) | `step0`, `step0_sample` | `Enclosing/Theorem1Step0.lean` |
 | Step 1 (witnesses confine copies) | `finite_tangent_copy_bound`, `model_copy_bound` | `Enclosing/FiniteCoercivity.lean`, `Enclosing/Theorem1Model.lean` |
 | Steps 2-3 (boundary window, Poisson approximation uniform over events) | `trueEv_iff_evN`, `polygon_boundary_uniform_error`, `polygon_boundary_varying_event_limit` | `Enclosing/Theorem1Physical.lean`, `Enclosing/UniformBoundary.lean`, `Enclosing/VaryingBoundaryLimit.lean` |
-| Lemma 7 (nondegeneracy, via Mecke) | `nonDeg_ae`, `optimum_tilt_gap`, `strict_rep` | `Enclosing/Theorem1Strict.lean`, `Enclosing/Theorem1Model.lean` |
+| Lemma 5 (existence): only the coercivity part (bounded tilt; deep points never binding); existence of an optimum is not formalised and not needed | `finite_tangent_copy_bound`, `model_copy_bound` | `Enclosing/FiniteCoercivity.lean`, `Enclosing/Theorem1Model.lean` |
+| Lemma 7 (nondegeneracy, via Mecke): the structure of optima (a certified vertex, or optima along the segment direction), (b) and (c); the boundedness of the segment in (a) is not formalised | `nonDeg_ae`, `optimum_tilt_gap`, `strict_rep` | `Enclosing/Theorem1Strict.lean`, `Enclosing/Theorem1Model.lean` |
 | Lemma 8 (stability) | `poisson_stable` | `Enclosing/Theorem1Events.lean` |
 | Lemma 9 (void probability) | `void_area`, `model_void` | `Enclosing/Void.lean`, `Enclosing/Model.lean` |
 | Theorem 10 (the formula), truncated and untruncated model | `general_optFit_limit`, `untruncated_prob` | `Enclosing/GeneralClassify.lean`, `Enclosing/Untruncated.lean` |
@@ -41,7 +42,9 @@ Not formalised: the reduction to area one by scaling, the numerical values (simu
 ## Mutation tests
 
 Each script copies one source file, plants a single wrong change (a constant, a hypothesis, an
-inequality) and checks that the result no longer compiles. Every planted mutant is rejected.
+inequality) and checks that the result no longer compiles. In the v1 runs every planted mutant was rejected, under a
+harness that counted any nonzero exit as a rejection; the scripts now accept only a Lean error located in the mutated
+file and report crashes, timeouts and resource limits as failures, and have not been rerun on every mutant.
 
 ```
 python3 scripts/enclosing_mutants.py                  # all paper-level mutants

@@ -663,7 +663,9 @@ $\operatorname{int}$ the topological interior; and $p_4=1/4$ in the limit model.
 
 Not formalised: the reduction to area one by scaling, the numerical values of Section~\ref{sec:num} (including
 $p_q$ for $q\ge5$), and Conjecture~\ref{conj:eq}. Each formal statement was also tested against deliberately wrong
-variants (a changed constant, a dropped hypothesis, a reversed inequality); all of them fail to check.
+variants (a changed constant, a dropped hypothesis, a reversed inequality); all of them fail to check. Those runs used a
+harness that counted any nonzero exit of the checker as a rejection; the shipped harness now accepts only an error
+located in the mutated file, and has not yet been rerun on every variant.
 The Lean source, the simulation programs and an independent recheck of the triangle values are in the folder
 \texttt{smallest-enclosing-copy} of \url{https://github.com/jvvk/mathematics}.
 
@@ -742,7 +744,8 @@ cited; Lemma~\ref{lem:nondeg}(a) is stated for $\Pi^T$ only on the event that ev
 ends, which is where it is used; the witness bound of Step~1 holds for $n\ge N(K,y)$, not for all $n$; the Jacobian
 sentence names the direction of the map; the statements about large $q$ are marked as numerical evidence; the
 numerical programs are described as approximations (rotation search, depth cutoff); and the Lean coverage of the
-lemmas is stated exactly. The theorems, corollaries and their proofs are unchanged.
+lemmas is stated exactly. The statements of the theorems and corollaries are unchanged; qualifications inside the proof
+of Theorem~\ref{thm:main} were corrected.
 
 \begin{thebibliography}{9}
 

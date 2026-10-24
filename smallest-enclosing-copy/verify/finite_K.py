@@ -1,4 +1,4 @@
-"""Exact finite-n check for a general polygon K: smallest enclosing similar copy lam R_theta K + c (LP in (lam, c) for
+"""Finite-n check for a general polygon K (exact LPs; the rotation is searched near 0 and refined, not certified): smallest enclosing similar copy lam R_theta K + c (LP in (lam, c) for
 each theta; theta searched near 0), then LP for a c (at optimal lam, theta) with every vertex of the copy inside K.
 Usage: finite_K.py name n trials seed"""
 import os, sys, signal, math, numpy as np

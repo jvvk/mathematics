@@ -24,7 +24,8 @@ if __name__ == "__main__":
     for A in np.linspace(0.5, 60, 240):
         for B in np.linspace(A, (180 - A) / 2, 120):
             p = P_closed(A, B)
-            # The 4001-point 1-D quadrature has error below 1e-7 on this grid.
+            # Quadrature error is up to about 2e-7 on this grid (near degenerate angles) but 1.3e-9 at the minimum
+            # (60, 60); more than 1 degree away from it p - 13/48 >= 1.8e-5, so the 1e-7 tolerance cannot mislead.
             passed &= math.isfinite(p) and p >= 13 / 48 - 1e-7
             if p < best[0]: best = (p, (round(A, 3), round(B, 3)))
     print("grid minimum:", round(best[0], 7), "at angles", best[1], " 13/48 =", round(13 / 48, 7))
