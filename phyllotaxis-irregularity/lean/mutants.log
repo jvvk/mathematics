@@ -1,0 +1,75 @@
+PASS baseline LeanProofs/Phyllotaxis/Tilings.lean: PASSED; no Lean error line
+PASS baseline LeanProofs/Phyllotaxis/Static.lean: PASSED; no Lean error line
+PASS baseline LeanProofs/Phyllotaxis/StaticExists.lean: PASSED; no Lean error line
+PASS baseline LeanProofs/Phyllotaxis/FirstOrder.lean: PASSED; no Lean error line
+PASS baseline LeanProofs/Phyllotaxis/Apex.lean: PASSED; no Lean error line
+PASS baseline LeanProofs/Phyllotaxis/Lemma4.lean: PASSED; no Lean error line
+PASS baseline LeanProofs/Phyllotaxis/Lemma4Exists.lean: PASSED; no Lean error line
+PASS baseline LeanProofs/Phyllotaxis/Prop2.lean: PASSED; no Lean error line
+PASS baseline LeanProofs/Phyllotaxis/Sweep.lean: PASSED; no Lean error line
+PASS baseline LeanProofs/Phyllotaxis/PassBalance.lean: PASSED; no Lean error line
+REJECTED LeanProofs/Phyllotaxis/Tilings.lean: threshold law sign flipped; LeanProofs/Phyllotaxis/Tilings.lean:42:4: error: linarith failed to find a contradiction
+REJECTED LeanProofs/Phyllotaxis/Tilings.lean: (1,2) threshold tan -sqrt3/3; LeanProofs/Phyllotaxis/Tilings.lean:47:63: error: unsolved goals
+REJECTED LeanProofs/Phyllotaxis/Tilings.lean: K0 threshold tan -sqrt3/2; LeanProofs/Phyllotaxis/Tilings.lean:52:63: error: unsolved goals
+REJECTED LeanProofs/Phyllotaxis/Tilings.lean: rotation by 60 with wrong sign; LeanProofs/Phyllotaxis/Tilings.lean:98:2: error: unsolved goals
+REJECTED LeanProofs/Phyllotaxis/Tilings.lean: pentagon apex moved; LeanProofs/Phyllotaxis/Tilings.lean:162:83: error: unsolved goals
+REJECTED LeanProofs/Phyllotaxis/Tilings.lean: Q tangent to P1 (distance 1 instead of sqrt3); LeanProofs/Phyllotaxis/Tilings.lean:172:36: error: unsolved goals
+REJECTED LeanProofs/Phyllotaxis/Tilings.lean: T-Q distance 2 instead of sqrt3; LeanProofs/Phyllotaxis/Tilings.lean:181:74: error: unsolved goals
+REJECTED LeanProofs/Phyllotaxis/Tilings.lean: K0 height gap sqrt(3/19); LeanProofs/Phyllotaxis/Tilings.lean:194:9: error: unsolved goals
+REJECTED LeanProofs/Phyllotaxis/Tilings.lean: alternation margin sqrt(3/7); LeanProofs/Phyllotaxis/Tilings.lean:257:22: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+REJECTED LeanProofs/Phyllotaxis/Tilings.lean: K0 period 18; LeanProofs/Phyllotaxis/Tilings.lean:157:33: error: unsolved goals
+REJECTED LeanProofs/Phyllotaxis/Static.lean: pentagon margin: rate coefficient 5 sqrt3 -> 3 sqrt3; LeanProofs/Phyllotaxis/Static.lean:291:2: error: ring failed, ring expressions not equal
+REJECTED LeanProofs/Phyllotaxis/Static.lean: channel margin: 2 sigma -> sigma; LeanProofs/Phyllotaxis/Static.lean:306:2: error: ring failed, ring expressions not equal
+REJECTED LeanProofs/Phyllotaxis/Static.lean: window upper bound: /4 -> /2; LeanProofs/Phyllotaxis/Static.lean:446:2: error: Type mismatch
+REJECTED LeanProofs/Phyllotaxis/Static.lean: window lower bound: alpha sign; LeanProofs/Phyllotaxis/Static.lean:446:2: error: Type mismatch
+REJECTED LeanProofs/Phyllotaxis/Static.lean: notch-60 law: m -> n in numerator; LeanProofs/Phyllotaxis/Static.lean:54:4: error: linarith failed to find a contradiction
+REJECTED LeanProofs/Phyllotaxis/Static.lean: B at distance 2 from Q0 instead of sqrt3; LeanProofs/Phyllotaxis/Static.lean:70:48: error: unsolved goals
+REJECTED LeanProofs/Phyllotaxis/Static.lean: ZA height gap halved; LeanProofs/Phyllotaxis/Static.lean:370:2: error: ring failed, ring expressions not equal
+REJECTED LeanProofs/Phyllotaxis/Static.lean: ZC overlap rate -(P+R) -> -P; LeanProofs/Phyllotaxis/Static.lean:350:17: error: Tactic `unfold` failed to unfold `Rm` in
+REJECTED LeanProofs/Phyllotaxis/Static.lean: notch hinge normalised by omega instead of -omega; LeanProofs/Phyllotaxis/Static.lean:237:71: error: Application type mismatch: The argument
+REJECTED LeanProofs/Phyllotaxis/Static.lean: pentagon_first with non-strict channel margin; LeanProofs/Phyllotaxis/Static.lean:479:87: error: linarith failed to find a contradiction
+REJECTED LeanProofs/Phyllotaxis/StaticExists.lean: existence: notch turning at 2 sigma; LeanProofs/Phyllotaxis/StaticExists.lean:216:4: error: unsolved goals
+REJECTED LeanProofs/Phyllotaxis/StaticExists.lean: existence: height functional with Wr, Wi swapped; LeanProofs/Phyllotaxis/StaticExists.lean:105:2: error: ring failed, ring expressions not equal
+REJECTED LeanProofs/Phyllotaxis/Static.lean: notch clearance rate term /8 -> /4; LeanProofs/Phyllotaxis/Static.lean:402:2: error: ring failed, ring expressions not equal
+REJECTED LeanProofs/Phyllotaxis/Static.lean: channel opens for growing disks too (k >= 0); LeanProofs/Phyllotaxis/Static.lean:422:55: error: linarith failed to find a contradiction
+REJECTED LeanProofs/Phyllotaxis/FirstOrder.lean: Lemma 1 coefficient halved; LeanProofs/Phyllotaxis/FirstOrder.lean:141:2: error: Tactic `apply` failed: could not unify the conclusion of `@complex_of_parts`
+REJECTED LeanProofs/Phyllotaxis/FirstOrder.lean: Lemma 1 sign flipped; LeanProofs/Phyllotaxis/FirstOrder.lean:141:2: error: Tactic `apply` failed: could not unify the conclusion of `@complex_of_parts`
+REJECTED LeanProofs/Phyllotaxis/FirstOrder.lean: Lemma 3 missing factor 1/2; LeanProofs/Phyllotaxis/FirstOrder.lean:221:2: error: Tactic `apply` failed: could not unify the conclusion of `@complex_of_parts_sq`
+REJECTED LeanProofs/Phyllotaxis/FirstOrder.lean: Lemma 3 phase of the new up instead of U; LeanProofs/Phyllotaxis/FirstOrder.lean:221:2: error: Tactic `apply` failed: could not unify the conclusion of `@complex_of_parts_sq`
+REJECTED LeanProofs/Phyllotaxis/FirstOrder.lean: tangency derivative without the 1/2; LeanProofs/Phyllotaxis/FirstOrder.lean:85:2: error: linarith failed to find a contradiction
+REJECTED LeanProofs/Phyllotaxis/FirstOrder.lean: cushion phase beta + 60; LeanProofs/Phyllotaxis/FirstOrder.lean:288:38: error: unsolved goals
+REJECTED LeanProofs/Phyllotaxis/FirstOrder.lean: split rate cos beta (no 1/2); LeanProofs/Phyllotaxis/FirstOrder.lean:319:24: error: unsolved goals
+REJECTED LeanProofs/Phyllotaxis/FirstOrder.lean: pass rate safe sign flipped; LeanProofs/Phyllotaxis/FirstOrder.lean:354:92: error: unsolved goals
+REJECTED LeanProofs/Phyllotaxis/FirstOrder.lean: up rotation sin instead of cos; LeanProofs/Phyllotaxis/FirstOrder.lean:383:92: error: unsolved goals
+REJECTED LeanProofs/Phyllotaxis/FirstOrder.lean: N=1 margin 1/2 instead of 3/2; LeanProofs/Phyllotaxis/FirstOrder.lean:420:34: error: unsolved goals
+REJECTED LeanProofs/Phyllotaxis/FirstOrder.lean: cos split sums to 2 cos; LeanProofs/Phyllotaxis/FirstOrder.lean:410:92: error: unsolved goals
+REJECTED LeanProofs/Phyllotaxis/Apex.lean: IFT without transversality; LeanProofs/Phyllotaxis/Apex.lean:126:6: error: ring failed, ring expressions not equal
+REJECTED LeanProofs/Phyllotaxis/Apex.lean: triangle family with |U|^2 = b0^2 + 1; LeanProofs/Phyllotaxis/Apex.lean:190:4: error: ring failed, ring expressions not equal
+REJECTED LeanProofs/Phyllotaxis/Apex.lean: rhombic family with parallel U, D allowed; LeanProofs/Phyllotaxis/Apex.lean:269:6: error: No goals to be solved
+REJECTED LeanProofs/Phyllotaxis/Lemma4.lean: dG/dc with +s; LeanProofs/Phyllotaxis/Lemma4.lean:72:4: error: ring failed, ring expressions not equal
+REJECTED LeanProofs/Phyllotaxis/Lemma4.lean: dG/dtheta = 1; LeanProofs/Phyllotaxis/Lemma4.lean:91:2: error: ring failed, ring expressions not equal
+REJECTED LeanProofs/Phyllotaxis/Lemma4.lean: kappa2 with 3 instead of 3 sqrt3; LeanProofs/Phyllotaxis/Lemma4.lean:104:2: error: ring failed, ring expressions not equal
+REJECTED LeanProofs/Phyllotaxis/Lemma4.lean: kappa2 at K0 = 13/(2 sqrt19); LeanProofs/Phyllotaxis/Lemma4.lean:160:2: error: ring failed, ring expressions not equal
+REJECTED LeanProofs/Phyllotaxis/Lemma4.lean: N=1 exclusion kappa2 11/(4 sqrt7); LeanProofs/Phyllotaxis/Lemma4.lean:176:4: error: ring failed, ring expressions not equal
+REJECTED LeanProofs/Phyllotaxis/Lemma4.lean: boundary slope sign flipped; LeanProofs/Phyllotaxis/Lemma4.lean:133:2: error: linarith failed to find a contradiction
+REJECTED LeanProofs/Phyllotaxis/Lemma4.lean: binding constraint |Q - P1| = 1; LeanProofs/Phyllotaxis/Lemma4.lean:150:2: error: ring failed, ring expressions not equal
+REJECTED LeanProofs/Phyllotaxis/Lemma4Exists.lean: pentagon apex at the wrong base point; LeanProofs/Phyllotaxis/Lemma4Exists.lean:103:10: error: Application type mismatch: The argument
+REJECTED LeanProofs/Phyllotaxis/Lemma4Exists.lean: D' direction not kept (slope 1 instead of sqrt3); LeanProofs/Phyllotaxis/Lemma4Exists.lean:111:4: error: 'show' tactic failed, pattern
+REJECTED LeanProofs/Phyllotaxis/Lemma4Exists.lean: P3 not turning (velocity 0); LeanProofs/Phyllotaxis/Lemma4Exists.lean:144:4: error: unsolved goals
+REJECTED LeanProofs/Phyllotaxis/Prop2.lean: matched sums with 2m leftover; LeanProofs/Phyllotaxis/Prop2.lean:62:2: error: unsolved goals
+REJECTED LeanProofs/Phyllotaxis/Prop2.lean: matched sums without the pairing error; LeanProofs/Phyllotaxis/Prop2.lean:62:2: error: unsolved goals
+REJECTED LeanProofs/Phyllotaxis/Prop2.lean: phase matching 2nm eps; LeanProofs/Phyllotaxis/Prop2.lean:129:71: error: unsolved goals
+REJECTED LeanProofs/Phyllotaxis/Prop2.lean: sweep offset off by one; LeanProofs/Phyllotaxis/Prop2.lean:121:2: error: mod_cast has type
+REJECTED LeanProofs/Phyllotaxis/Prop2.lean: log factor without the remainder term; LeanProofs/Phyllotaxis/Prop2.lean:146:71: error: unsolved goals
+REJECTED LeanProofs/Phyllotaxis/Prop2.lean: Prop 2 with m leftover; LeanProofs/Phyllotaxis/Prop2.lean:230:13: error: unsolved goals
+REJECTED LeanProofs/Phyllotaxis/Prop2.lean: Prop 2 for |c| + R c^2 <= 1; LeanProofs/Phyllotaxis/Prop2.lean:214:25: error: Application type mismatch: The argument
+REJECTED LeanProofs/Phyllotaxis/Sweep.lean: labels increase with passes; LeanProofs/Phyllotaxis/Sweep.lean:45:16: error: unsolved goals
+REJECTED LeanProofs/Phyllotaxis/Sweep.lean: sweep off by one; LeanProofs/Phyllotaxis/Sweep.lean:68:98: error: unsolved goals
+REJECTED LeanProofs/Phyllotaxis/Sweep.lean: alternation gap parity shifted; LeanProofs/Phyllotaxis/Sweep.lean:98:62: error: unsolved goals
+REJECTED LeanProofs/Phyllotaxis/PassBalance.lean: balance bound m - 1 instead of m; LeanProofs/Phyllotaxis/PassBalance.lean:101:18: error: linarith failed to find a contradiction
+REJECTED LeanProofs/Phyllotaxis/PassBalance.lean: balance without nonnegative final gaps; LeanProofs/Phyllotaxis/PassBalance.lean:123:85: error: Application type mismatch: The argument
+REJECTED LeanProofs/Phyllotaxis/PassBalance.lean: lag bound without the factor n; LeanProofs/Phyllotaxis/PassBalance.lean:116:52: error: unsolved goals
+REJECTED LeanProofs/Phyllotaxis/PassBalance.lean: gap formula with the pass direction reversed; LeanProofs/Phyllotaxis/PassBalance.lean:38:16: error: unsolved goals
+REJECTED LeanProofs/Phyllotaxis/PassBalance.lean: total downs not conserved (+1); LeanProofs/Phyllotaxis/PassBalance.lean:47:40: error: unsolved goals
+PASS: 10 baselines passed, 63/63 mutants REJECTED
+exit 0

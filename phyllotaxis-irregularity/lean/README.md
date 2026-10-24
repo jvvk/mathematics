@@ -13,6 +13,9 @@ The first command fetches the pinned Mathlib cache, the second compiles the proo
 statements and axioms of the results below, and the last runs the 63 mutation tests: each plants one wrong
 constant, sign, hypothesis or statement and checks that the module no longer compiles.
 
+`mutants.log` is the run of 24 October 2026: 10 baselines pass and all 63 mutants are rejected, each by a Lean
+error located in the mutated file (timeouts, crashes and resource limits would count as failures).
+
 | Paper | Lean file | Main theorems (namespace `Phyllotaxis`) |
 |---|---|---|
 | Lemma 2.2 (threshold law), the tiling `K₀`, Lemma 7.3 identities, `√(3/28)` | `Tilings.lean` | `Tilings.threshold_tan`, `Tilings.K0.height_gaps` |
