@@ -1,0 +1,56 @@
+Step 1: candidates at the lattice (height, pair, gap, clearance-1):
+  y=-1.63663  C-B+  gap 3  clear-1 = +0.00000  below front
+  y=-1.30931  A-B  gap 0  clear-1 = -1.00000  overlaps
+  y=-1.30931  B-E  gap 1  clear-1 = -1.00000  overlaps
+  y=-0.98198  Z-B  gap 1  clear-1 = -1.00000  overlaps
+  y=-0.98198  B-C  gap 0  clear-1 = -1.00000  overlaps
+  y=-0.98198  E-B+  gap 2  clear-1 = -1.00000  overlaps
+  y=-0.98198  E-C+  gap 3  clear-1 = -1.00000  overlaps
+  y=-0.65465  C-Z+  gap 1  clear-1 = -1.00000  overlaps
+  y=-0.65465  C-A+  gap 2  clear-1 = -1.00000  overlaps
+  y=-0.32733  Z-A  gap 0  clear-1 = +0.00000  valid
+  y=-0.32733  Z-C  gap 2  clear-1 = +0.00000  valid
+  y=-0.32733  Z-E  gap 3  clear-1 = +0.00000  valid
+  y=-0.32733  A-C  gap 1  clear-1 = +0.00000  valid
+  y=-0.32733  A-E  gap 2  clear-1 = +0.00000  valid
+  y=-0.32733  C-E  gap 0  clear-1 = +0.00000  valid
+  y=+0.00000  E-A+  gap 1  clear-1 = -1.00000  overlaps
+  y=+0.32733  E-Z+  gap 0  clear-1 = +0.73205  valid
+lowest valid height -0.32733 = -sqrt(21)/14, shared by 6 pairs; next valid +0.32733
+Q0 touches ['Z', 'A', 'C', 'E']
+  Z: normal (5*sqrt(7)/14, -sqrt(21)/14), s = -sqrt(21)*c/28
+  A: normal (2*sqrt(7)/7, sqrt(21)/7), s = 13*sqrt(3)*alpha/28 - 5*sqrt(21)*c/56 - sqrt(3)*epsilon/7 + 3*sqrt(3)*sigma/7 - sqrt(3)*zeta/7
+  C: normal (-sqrt(7)/14, 3*sqrt(21)/14), s = -sqrt(3)*alpha/28 + sqrt(21)*c/14 - sqrt(3)*epsilon/7 - sqrt(3)*sigma/14 - sqrt(3)*zeta/7
+  E: normal (-5*sqrt(7)/14, sqrt(21)/14), s = -sqrt(3)*alpha/2 + 11*sqrt(21)*c/28 + sqrt(3)*epsilon/2 - sqrt(3)*sigma
+
+Step 2: vertices of the local free polygon (first order):
+  ZA: height 65*sqrt(7)*alpha/196 - 17*c/56 - 5*sqrt(7)*epsilon/49 + 15*sqrt(7)*sigma/49 - 5*sqrt(7)*zeta/49;  slacks C: sqrt(3)*alpha/2 - sqrt(21)*c/8 + sqrt(3)*sigma/2, E: sqrt(3)*alpha/2 - 5*sqrt(21)*c/14 - sqrt(3)*epsilon/2 + sqrt(3)*sigma
+  ZC: height -5*sqrt(7)*alpha/196 + 9*c/28 - 5*sqrt(7)*epsilon/49 - 5*sqrt(7)*sigma/98 - 5*sqrt(7)*zeta/49;  slacks A: -sqrt(3)*alpha/2 + sqrt(21)*c/8 - sqrt(3)*sigma/2, E: sqrt(3)*alpha/2 - 5*sqrt(21)*c/14 - sqrt(3)*epsilon/2 + sqrt(3)*sigma
+  AC: height 9*sqrt(7)*alpha/196 + 11*c/56 - 5*sqrt(7)*epsilon/49 + sqrt(7)*sigma/49 - 5*sqrt(7)*zeta/49;  slacks Z: sqrt(3)*alpha/2 - sqrt(21)*c/8 + sqrt(3)*sigma/2, E: -13*sqrt(21)*c/56 - sqrt(3)*epsilon/2 + sqrt(3)*sigma/2
+  AE: height 9*sqrt(7)*alpha/196 + 9*c/8 + 9*sqrt(7)*epsilon/49 - 13*sqrt(7)*sigma/49 - 5*sqrt(7)*zeta/49;  slacks Z: sqrt(3)*alpha/2 - 5*sqrt(21)*c/14 - sqrt(3)*epsilon/2 + sqrt(3)*sigma, C: 13*sqrt(21)*c/56 + sqrt(3)*epsilon/2 - sqrt(3)*sigma/2
+  CE: height 9*sqrt(7)*alpha/196 - c/28 - 17*sqrt(7)*epsilon/98 + 9*sqrt(7)*sigma/98 - 5*sqrt(7)*zeta/49;  slacks Z: sqrt(3)*alpha/2 - 5*sqrt(21)*c/14 - sqrt(3)*epsilon/2 + sqrt(3)*sigma, A: -13*sqrt(21)*c/56 - sqrt(3)*epsilon/2 + sqrt(3)*sigma/2
+
+Pentagon vertex A-E is feasible iff sqrt(3)*alpha/2 - 5*sqrt(21)*c/14 - sqrt(3)*epsilon/2 + sqrt(3)*sigma > 0 and 13*sqrt(21)*c/56 + sqrt(3)*epsilon/2 - sqrt(3)*sigma/2 > 0
+Z-E channel open iff sqrt(3)*alpha/2 - 5*sqrt(21)*c/14 - sqrt(3)*epsilon/2 + sqrt(3)*sigma > 0
+
+Step 3: prediction vs simulator (alpha, sigma, eps, zeta, c) -> predicted / simulated
+  (0.0, 0.9, 1.0, 0.5, 0.0) x 0.002: predicted P, simulated P (2, 3)->(2, 2)  ok
+  (0.0, 0.7, 1.0, 0.5, 0.0) x 0.002: predicted P, simulated P (2, 3)->(2, 2)  ok
+  (0.0, 0.55, 1.0, 0.5, 0.0) x 0.002: predicted P, simulated P (2, 3)->(2, 2)  ok
+  (0.0, 0.45, 1.0, 0.0, 0.0) x 0.002: predicted jam, simulated T (2, 3)->(3, 3)  ok
+  (0.0, 1.1, 1.0, 0.5, 0.0) x 0.002: predicted R, simulated R (2, 3)->(2, 3)  ok
+  (0.3, 0.8, 1.0, 0.2, 0.0) x 0.002: predicted P, simulated P (2, 3)->(2, 2)  ok
+  (-0.3, 0.8, 1.0, 0.2, 0.0) x 0.002: predicted P, simulated P (2, 3)->(2, 2)  ok
+  (0.2, 0.75, 1.0, 0.5, -0.2) x 0.002: predicted P, simulated P (2, 3)->(2, 2)  ok
+  (0.2, 0.75, 1.0, 0.5, -0.5) x 0.002: predicted R, simulated R (2, 3)->(2, 3)  ok
+  (0.0, 0.75, 1.0, 0.5, -1.0) x 0.002: invalid front (two disks overlap), skipped
+  (0.0, 0.75, 1.0, 0.5, -2.0) x 0.002: invalid front (two disks overlap), skipped
+  (0.1, 0.8, 1.0, -0.4, -0.3) x 0.002: predicted R, simulated R (2, 3)->(2, 3)  ok
+  direction [-0.73, 0.69, 0.53, -0.49, -0.01]: (exact - linear)/h at h=1e-4 -> Z +6.63e-06, C -1.32e-05
+  direction [-0.1, 0.3, 0.58, -0.81, -0.94]: (exact - linear)/h at h=1e-4 -> Z +1.52e-04, C -1.82e-04
+  direction [0.67, -0.13, 0.52, -1.0, -0.11]: (exact - linear)/h at h=1e-4 -> Z +3.24e-06, C -1.67e-06
+  direction [0.44, -0.54, 0.89, 0.8, -0.94]: (exact - linear)/h at h=1e-4 -> Z -1.10e-05, C -7.82e-06
+  direction [-0.95, 0.08, 0.88, -0.24, -0.57]: (exact - linear)/h at h=1e-4 -> Z -7.07e-06, C -2.04e-06
+  direction [-0.16, -0.94, -0.56, -0.12, -0.01]: (exact - linear)/h at h=1e-4 -> Z -1.06e-05, C -3.64e-05
+Step 4: max |exact-linear|/h = 1.8e-03 (bound 5e-3)
+PASS: 10 simulator comparisons, 24 slack comparisons, 2 invalid fronts skipped, 0 failures

@@ -1,0 +1,6 @@
+beta=0.42 eps/|c|=+20: (2,2) steps 29, dangerous visits 0, words: [Ua D Ub/+ Ub/-] x8; [Ua Ub/- D Ub/+] x7; [Ua Ub/- Ub/+ D] x7; [Ua D Ub/- Ub/+] x7
+beta=0.42 eps/|c|=+100: (2,2) steps 149, dangerous visits 0, words: [Ua D Ub/+ Ub/-] x38; [Ua Ub/- D Ub/+] x37; [Ua Ub/- Ub/+ D] x37; [Ua D Ub/- Ub/+] x37
+beta=0.42 eps/|c|=-100: (2,2) steps 149, dangerous visits 0, words: [Ua D Ub/+ Ub/-] x38; [Ua Ub/- D Ub/+] x37; [Ua Ub/- Ub/+ D] x37; [Ua D Ub/- Ub/+] x37
+beta=0.52 eps/|c|=+20: (2,2) steps 29, dangerous visits 0, words: [Ua D Ub/+ Ub/-] x8; [Ua Ub/- D Ub/+] x7; [Ua Ub/- Ub/+ D] x7; [Ua D Ub/- Ub/+] x7
+beta=0.52 eps/|c|=+100: (2,2) steps 149, dangerous visits 0, words: [Ua D Ub/+ Ub/-] x38; [Ua Ub/- D Ub/+] x37; [Ua Ub/- Ub/+ D] x37; [Ua D Ub/- Ub/+] x37
+beta=0.52 eps/|c|=-100: (2,2) steps 149, dangerous visits 0, words: [Ua D Ub/+ Ub/-] x38; [Ua Ub/- D Ub/+] x37; [Ua Ub/- Ub/+ D] x37; [Ua D Ub/- Ub/+] x37

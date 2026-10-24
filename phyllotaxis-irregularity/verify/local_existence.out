@@ -1,0 +1,16 @@
+c = 0 check (expect theta* = cushion):
+  cushion +0.0000: theta* - cushion = -1.92e-11
+  cushion +0.0020: theta* - cushion = -1.92e-11
+  cushion -0.0020: theta* - cushion = -1.93e-11
+b0 = 0.06: kappa2 = (theta* - cushion)/|c|
+  c=-0.00400: cushion 0.0|c| -> 1.2635  cushion 0.3|c| -> 1.2642  cushion 0.6|c| -> 1.2649
+  c=-0.00200: cushion 0.0|c| -> 1.2629  cushion 0.3|c| -> 1.2633  cushion 0.6|c| -> 1.2637
+  c=-0.00100: cushion 0.0|c| -> 1.2627  cushion 0.3|c| -> 1.2628  cushion 0.6|c| -> 1.2630
+  c=-0.00050: cushion 0.0|c| -> 1.2625  cushion 0.3|c| -> 1.2626  cushion 0.6|c| -> 1.2627
+  c=-0.00025: cushion 0.0|c| -> 1.2625  cushion 0.3|c| -> 1.2625  cushion 0.6|c| -> 1.2625
+b0 = 0.1: kappa2 = (theta* - cushion)/|c|
+  c=-0.00400: cushion 0.0|c| -> 1.2635  cushion 0.3|c| -> 1.2642  cushion 0.6|c| -> 1.2649
+  c=-0.00200: cushion 0.0|c| -> 1.2629  cushion 0.3|c| -> 1.2633  cushion 0.6|c| -> 1.2637
+  c=-0.00100: cushion 0.0|c| -> 1.2627  cushion 0.3|c| -> 1.2628  cushion 0.6|c| -> 1.2630
+  c=-0.00050: cushion 0.0|c| -> 1.2625  cushion 0.3|c| -> 1.2626  cushion 0.6|c| -> 1.2627
+  c=-0.00025: cushion 0.0|c| -> 1.2625  cushion 0.3|c| -> 1.2625  cushion 0.6|c| -> 1.2625

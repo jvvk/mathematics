@@ -1,0 +1,6 @@
+claimed formulas                   max err/c^2:  X 0.111   Y 0.111   hinge 0.0265
+MUTANT xi sign flipped             max err/c^2:  X 4.48e+03   Y 4.48e+03   hinge 0.0265
+MUTANT xi factor 1 not 1/2         max err/c^2:  X 2.24e+03   Y 2.24e+03   hinge 0.0265
+MUTANT phase beta_D not beta_U     max err/c^2:  X 2.08e+03   Y 2.08e+03   hinge 0.0265
+MUTANT cushion sign flipped        max err/c^2:  X 0.111   Y 0.111   hinge 8.5e+03
+PASS: 150 triangle samples, error/c^2 < 1.0, 4 mutants checked, 0 failures

@@ -1,0 +1,4 @@
+claimed formulas                   max error/c^2 = 0.2765, bound 1.0: accepted
+MUTANT first-order sign flipped    max error/c^2 = 9922.6957, bound 1.0: rejected
+MUTANT coefficient 1/2 not 1       max error/c^2 = 2480.5886, bound 1.0: rejected
+PASS: 140 rhombic samples, tangency/diameter-law residuals < 1e-12, 2 mutants checked, 0 failures

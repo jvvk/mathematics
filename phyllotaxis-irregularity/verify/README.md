@@ -14,9 +14,15 @@ its first lines). Times are on a laptop.
 | Theorem A, independent nonlinear check | `review_independent.py` | 141 first-disk cases with a direct quadratic apex solver and exact affine-law closure; the four example histories of Table 1; ordered-field signs |
 | Lemma 2.2, Lemma 7.3, the limiting tilings | `exact_limits.py`, `certify_limits.py` | candidate tables in exact rational arithmetic (ties are identities), and an interval-arithmetic recheck |
 | Lemmas 3.2, 3.3 (rhombus and triangle steps) | `rhombic_step_formula.py`, `triangle_step_formula.py` | first-order formulas against exact geometry, with planted mutants |
+| Theorem B: no triangle on a down vector (Lemma 6.1, Section 6) | `down_triangle_exclusion.py` | 72 first transitions: in words 1/3 the up triangle is valid and no higher than any valid down triangle, in words 2/4 the rhombus is lower by at least 0.45 b\|c\| (theory: b\|c\|/2); two planted false bounds rejected; about two minutes |
 | The two simulators | `simulators_agree.py` | `multi_step.py` and `independent_stack.py` give the same events disk for disk on the fronts of Table 1 |
 
 ## Explorations and records (not proofs)
+
+Every script listed here has its recorded output `name.out` in this folder. Variant runs: `break_probability_consistent_coarse.out`
+is `python3 break_probability_consistent.py -0.002 2.0,2.5,2.8,2.9,3.0,3.5` and the same with `-0.0001`;
+`local_existence_fit.out` and `independent_tolerance.out` are written by `local_existence_fit.py` and
+`independent_tolerance.py`, which exit nonzero if the quoted coefficients or the histories change.
 
 - Section 7 burst, Conjecture C: `burst_exact.py` (first-order events in `Q(√3, √19)` with exact signs; reports 60
   unresolved clearance incidences), `burst_mp.py` + `mp_stack.py` (60-digit runs at `c = 0`), `burst_certify.py`,

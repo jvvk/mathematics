@@ -1,6 +1,6 @@
 """Mutation tests for the Lean files: each mutant plants one wrong constant, sign, hypothesis or statement and
 must make its file fail to compile. Run from lean/ after `lake build LeanProofs`."""
-import subprocess, sys
+import os, re, subprocess, sys
 
 MUTANTS = [
     ('LeanProofs/Phyllotaxis/Tilings.lean', 'threshold law sign flipped', '    m * sin β + n * sin (β + π / 3) = 0 ↔ tan β = -(√3 * n) / (2 * m + n) := by', '    m * sin β + n * sin (β + π / 3) = 0 ↔ tan β = (√3 * n) / (2 * m + n) := by'),
@@ -68,17 +68,71 @@ MUTANTS = [
     ('LeanProofs/Phyllotaxis/PassBalance.lean', 'total downs not conserved (+1)', '    ∑ i, gaps g0 s i = ∑ i, g0 i := by', '    ∑ i, gaps g0 s i = ∑ i, g0 i + 1 := by'),
 ]
 
-killed = 0
-for src, name, old, new in MUTANTS:
-    text = open(src).read()
-    assert text.count(old) == 1, f"{name}: anchor not unique in {src}"
-    open(src, "w").write(text.replace(old, new))
+def run_lean(src):
     try:
         r = subprocess.run(["lake", "env", "lean", src], capture_output=True, text=True, timeout=1200)
-        dead = r.returncode != 0 or "error" in r.stdout + r.stderr
-    finally:
-        open(src, "w").write(text)
-    killed += dead
-    print(("killed   " if dead else "SURVIVED ") + f"{src}: {name}", flush=True)
-print(f"{killed}/{len(MUTANTS)} mutants killed")
-sys.exit(0 if killed == len(MUTANTS) else 1)
+    except subprocess.TimeoutExpired:
+        return "TIMEOUT", "no Lean error line (timed out after 1200s)"
+    except OSError as e:
+        return "INFRA", f"no Lean error line ({e})"
+    output = re.sub(r"\x1b\[[0-9;]*m", "", r.stdout + "\n" + r.stderr)
+    errors = [line for line in output.splitlines() if "error:" in line]
+    first = errors[0] if errors else "no Lean error line"
+    if r.returncode < 0:
+        return "CRASH", f"signal {-r.returncode}; {first}"
+    # Missing imports/toolchains are infrastructure failures, even with a source location.
+    infra = re.search(r"toolchain|unknown module prefix|unknown package|no such file or directory|"
+                      r"object file .* does not exist|failed to (?:download|load)|shared librar", output, re.I)
+    if infra:
+        return "INFRA", first + f" ({infra.group(0)})"
+    located = []
+    for line in errors:
+        match = re.match(r"^(.+?):\d+:\d+:\s*error:", line)
+        if match and os.path.realpath(match.group(1)) == os.path.realpath(src):
+            located.append(line)
+    if r.returncode == 1 and located:
+        return "REJECTED", located[0]
+    if r.returncode == 0 and not errors:
+        return "PASSED", first
+    detail = next((line for line in output.splitlines() if line.strip()), "no output")
+    return "INFRA", f"returncode {r.returncode}; {first}; {detail}"
+
+
+def main():
+    baselines = list(dict.fromkeys(src for src, _, _, _ in MUTANTS))
+    bad = 0
+    for src in baselines:
+        status, error = run_lean(src)
+        ok = status == "PASSED"
+        bad += not ok
+        print(f"{'PASS' if ok else 'FAIL'} baseline {src}: {status}; {error}", flush=True)
+    if bad:
+        print(f"FAIL: {bad}/{len(baselines)} baselines failed; mutants not run")
+        return 1
+    rejected = 0
+    for src, name, old, new in MUTANTS:
+        try:
+            text = open(src).read()
+            if text.count(old) != 1:
+                print(f"FAIL INFRA {src}: {name}; mutation anchor is not unique", flush=True)
+                continue
+            try:
+                open(src, "w").write(text.replace(old, new))
+                status, error = run_lean(src)
+            finally:
+                open(src, "w").write(text)
+        except OSError as e:
+            print(f"FAIL INFRA {src}: {name}; {e}", flush=True)
+            continue
+        if status == "PASSED":
+            status = "SURVIVED"
+        rejected += status == "REJECTED"
+        print(("REJECTED " if status == "REJECTED" else f"FAIL {status} ")
+              + f"{src}: {name}; {error}", flush=True)
+    ok = rejected == len(MUTANTS)
+    print(f"{'PASS' if ok else 'FAIL'}: {len(baselines)} baselines passed, {rejected}/{len(MUTANTS)} mutants REJECTED")
+    return 0 if ok else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

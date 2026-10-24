@@ -1,0 +1,36 @@
+c=-0.002 beta=0.42 eps/|c|= +0.0: min margin/|c| =     +nan at None  pentagon site ever: False  last gap 0
+c=-0.002 beta=0.42 eps/|c|= +2.0: min margin/|c| =   +1.417 at ('DDU', 'Ub/-', 'D', 'Ub/+')  pentagon site ever: False  last gap 0
+c=-0.002 beta=0.42 eps/|c|= +5.0: min margin/|c| =   +1.416 at ('DDU', 'Ub/-', 'D', 'Ub/+')  pentagon site ever: False  last gap 0
+c=-0.002 beta=0.42 eps/|c|=+20.0: min margin/|c| =   +1.411 at ('DDU', 'Ub/-', 'D', 'Ub/+')  pentagon site ever: False  last gap 0
+c=-0.002 beta=0.42 eps/|c|= -5.0: min margin/|c| =   +1.416 at ('DDU', 'Ub/-', 'D', 'Ub/+')  pentagon site ever: False  last gap 0
+c=-0.002 beta=0.42 eps/|c|=-20.0: min margin/|c| =   +1.411 at ('DDU', 'Ub/-', 'D', 'Ub/+')  pentagon site ever: False  last gap 0
+c=-0.002 beta=0.47 eps/|c|= +0.0: min margin/|c| =     +nan at None  pentagon site ever: False  last gap 0
+c=-0.002 beta=0.47 eps/|c|= +2.0: min margin/|c| =   +1.417 at ('DDU', 'Ub/-', 'D', 'Ub/+')  pentagon site ever: False  last gap 0
+c=-0.002 beta=0.47 eps/|c|= +5.0: min margin/|c| =   +1.417 at ('DDU', 'Ub/-', 'D', 'Ub/+')  pentagon site ever: False  last gap 0
+c=-0.002 beta=0.47 eps/|c|=+20.0: min margin/|c| =   +1.412 at ('DDU', 'Ub/-', 'D', 'Ub/+')  pentagon site ever: False  last gap 0
+c=-0.002 beta=0.47 eps/|c|= -5.0: min margin/|c| =   +1.416 at ('DDU', 'Ub/-', 'D', 'Ub/+')  pentagon site ever: False  last gap 0
+c=-0.002 beta=0.47 eps/|c|=-20.0: min margin/|c| =   +1.411 at ('DDU', 'Ub/-', 'D', 'Ub/+')  pentagon site ever: False  last gap 0
+c=-0.002 beta=0.52 eps/|c|= +0.0: min margin/|c| =     +nan at None  pentagon site ever: False  last gap 0
+c=-0.002 beta=0.52 eps/|c|= +2.0: min margin/|c| =   +1.417 at ('DDU', 'Ub/-', 'D', 'Ub/+')  pentagon site ever: False  last gap 0
+c=-0.002 beta=0.52 eps/|c|= +5.0: min margin/|c| =   +1.416 at ('DDU', 'Ub/-', 'D', 'Ub/+')  pentagon site ever: False  last gap 0
+c=-0.002 beta=0.52 eps/|c|=+20.0: min margin/|c| =   +1.411 at ('DDU', 'Ub/-', 'D', 'Ub/+')  pentagon site ever: False  last gap 0
+c=-0.002 beta=0.52 eps/|c|= -5.0: min margin/|c| =   +1.416 at ('DDU', 'Ub/-', 'D', 'Ub/+')  pentagon site ever: False  last gap 0
+c=-0.002 beta=0.52 eps/|c|=-20.0: min margin/|c| =   +1.412 at ('DDU', 'Ub/-', 'D', 'Ub/+')  pentagon site ever: False  last gap 0
+c=-0.0005 beta=0.42 eps/|c|= +0.0: min margin/|c| =     +nan at None  pentagon site ever: False  last gap 0
+c=-0.0005 beta=0.42 eps/|c|= +2.0: min margin/|c| =   +1.417 at ('DDU', 'Ub/-', 'D', 'Ub/+')  pentagon site ever: False  last gap 0
+c=-0.0005 beta=0.42 eps/|c|= +5.0: min margin/|c| =   +1.417 at ('DDU', 'Ub/-', 'D', 'Ub/+')  pentagon site ever: False  last gap 0
+c=-0.0005 beta=0.42 eps/|c|=+20.0: min margin/|c| =   +1.416 at ('DDU', 'Ub/-', 'D', 'Ub/+')  pentagon site ever: False  last gap 0
+c=-0.0005 beta=0.42 eps/|c|= -5.0: min margin/|c| =   +1.417 at ('DDU', 'Ub/-', 'D', 'Ub/+')  pentagon site ever: False  last gap 0
+c=-0.0005 beta=0.42 eps/|c|=-20.0: min margin/|c| =   +1.416 at ('DDU', 'Ub/-', 'D', 'Ub/+')  pentagon site ever: False  last gap 0
+c=-0.0005 beta=0.47 eps/|c|= +0.0: min margin/|c| =     +nan at None  pentagon site ever: False  last gap 0
+c=-0.0005 beta=0.47 eps/|c|= +2.0: min margin/|c| =   +1.417 at ('DDU', 'Ub/-', 'D', 'Ub/+')  pentagon site ever: False  last gap 0
+c=-0.0005 beta=0.47 eps/|c|= +5.0: min margin/|c| =   +1.417 at ('DDU', 'Ub/-', 'D', 'Ub/+')  pentagon site ever: False  last gap 0
+c=-0.0005 beta=0.47 eps/|c|=+20.0: min margin/|c| =   +1.416 at ('DDU', 'Ub/-', 'D', 'Ub/+')  pentagon site ever: False  last gap 0
+c=-0.0005 beta=0.47 eps/|c|= -5.0: min margin/|c| =   +1.417 at ('DDU', 'Ub/-', 'D', 'Ub/+')  pentagon site ever: False  last gap 0
+c=-0.0005 beta=0.47 eps/|c|=-20.0: min margin/|c| =   +1.416 at ('DDU', 'Ub/-', 'D', 'Ub/+')  pentagon site ever: False  last gap 0
+c=-0.0005 beta=0.52 eps/|c|= +0.0: min margin/|c| =     +nan at None  pentagon site ever: False  last gap 0
+c=-0.0005 beta=0.52 eps/|c|= +2.0: min margin/|c| =   +1.417 at ('DDU', 'Ub/-', 'D', 'Ub/+')  pentagon site ever: False  last gap 0
+c=-0.0005 beta=0.52 eps/|c|= +5.0: min margin/|c| =   +1.417 at ('DDU', 'Ub/-', 'D', 'Ub/+')  pentagon site ever: False  last gap 0
+c=-0.0005 beta=0.52 eps/|c|=+20.0: min margin/|c| =   +1.416 at ('DDU', 'Ub/-', 'D', 'Ub/+')  pentagon site ever: False  last gap 0
+c=-0.0005 beta=0.52 eps/|c|= -5.0: min margin/|c| =   +1.417 at ('DDU', 'Ub/-', 'D', 'Ub/+')  pentagon site ever: False  last gap 0
+c=-0.0005 beta=0.52 eps/|c|=-20.0: min margin/|c| =   +1.416 at ('DDU', 'Ub/-', 'D', 'Ub/+')  pentagon site ever: False  last gap 0

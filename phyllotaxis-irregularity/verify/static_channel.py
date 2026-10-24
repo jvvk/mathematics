@@ -42,6 +42,7 @@ def valid(disks, lam):
 
 if __name__ == "__main__":
     t = 2e-3
+    bad = 0
     for (m, n) in ((2, 3), (3, 4), (4, 5)):
         u = G.bearing_u(m, n); ku = math.cos(u - math.pi / 3)
         for (a, s, e, z, q) in ((0, 0.3, 1, 1, 0.05), (0, 0.4, 1, 1, 0.05), (0, 0.7, 1, 1, 0.05), (0, 0.8, 1, 0.5, 0.05)):
@@ -53,5 +54,11 @@ if __name__ == "__main__":
             p0 = S.parastichy(); dl = S.step()
             ev = {1: "T", 0: "R", -1: "P"}.get(dl, dl)
             pred = "P" if (muZ > 0 and muC > 0) else ("R" if muC < 0 else "not P")
-            agree = (ev == "P") == (pred == "P")
+            agree = ev in ("T", "R") if pred == "not P" else ev == pred
             print(f"({m},{n}) a,s,e,zeta,q={a,s,e,z,q}: valid={ok} mu_C={muC:+.3f} mu_Z={muZ:+.3f} predicted {pred}, simulated {ev} {p0}->{S.parastichy()} {'ok' if agree else 'MISMATCH'}")
+            if not ok or not agree:
+                bad += 1
+                reason = "invalid front" if not ok else f"predicted {pred}, simulated {ev}"
+                print(f"FAIL: ({m},{n}) a,s,e,zeta,q={a,s,e,z,q}: {reason}")
+    print(f"{'FAIL' if bad else 'PASS'}: 12 channel comparisons, {bad} failures")
+    sys.exit(1 if bad else 0)

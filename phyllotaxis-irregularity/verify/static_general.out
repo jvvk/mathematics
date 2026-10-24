@@ -1,0 +1,38 @@
+Part 1: (exact - linear)/t for the clearances of the pentagon apex (t = 1e-4)
+  (m,n)=(2,2): max |exact-linear|/t = 1.5e-04
+  (m,n)=(2,3): max |exact-linear|/t = 5.2e-05
+  (m,n)=(3,2): max |exact-linear|/t = 2.5e-05
+  (m,n)=(3,4): max |exact-linear|/t = 1.6e-04
+  (m,n)=(4,7): max |exact-linear|/t = 1.6e-05
+  (m,n)=(5,3): max |exact-linear|/t = 5.7e-05
+  (m,n)=(6,11): max |exact-linear|/t = 4.8e-04
+Part 1 passed (worst 4.8e-04)
+
+Part 2: simulator vs the window, rays (alpha, eps, c) with sigma placed relative to the window
+  (2,2) mid:- in-hi:- above:R below:- mid:P in-hi:P above:R below:- mid:P in-hi:P above:R below:-
+  (2,3) mid:- in-hi:- above:R below:- mid:P in-hi:P above:R below:- mid:P in-hi:P above:R below:-
+  (3,2) mid:- in-hi:- above:R below:- mid:P in-hi:P above:R below:- mid:P in-hi:P above:R below:-
+  (3,3) mid:- in-hi:- above:R below:- mid:P in-hi:P above:R below:- mid:P in-hi:P above:R below:-
+  (3,4) mid:- in-hi:- above:R below:- mid:P in-hi:P above:R below:- mid:P in-hi:P above:R below:-
+  (3,5) mid:- in-hi:- above:R below:- mid:P in-hi:P above:R below:- mid:P in-hi:P above:R below:-
+  (4,3) mid:- in-hi:- above:R below:- mid:P in-hi:P above:R below:- mid:P in-hi:P above:R below:-
+  (4,4) mid:- in-hi:- above:R below:- mid:P in-hi:P above:R below:- mid:P in-hi:P above:R below:-
+  (4,5) mid:- in-hi:- above:R below:- mid:P in-hi:P above:R below:- mid:P in-hi:P above:R below:-
+  (4,6) mid:- in-hi:- above:R below:- mid:P in-hi:P above:R below:- mid:P in-hi:P above:R below:-
+  (4,7) mid:- in-hi:- above:R below:- mid:P in-hi:P above:R below:- mid:P in-hi:P above:R below:-
+  (5,3) mid:- in-hi:- above:R below:- mid:P in-hi:P above:R below:- mid:P in-hi:P above:R below:-
+  (5,4) mid:- in-hi:- above:R below:- mid:P in-hi:P above:R below:- mid:P in-hi:P above:R below:-
+  (5,5) mid:- in-hi:- above:R below:- mid:P in-hi:P above:R below:- mid:P in-hi:P above:R below:-
+  (5,6) mid:- in-hi:- above:R below:- mid:P in-hi:P above:R below:- mid:P in-hi:P above:R below:-
+  (5,7) mid:- in-hi:- above:R below:- mid:P in-hi:P above:R below:- mid:P in-hi:P above:R below:-
+  (5,8) mid:- in-hi:- above:R below:- mid:P in-hi:P above:R below:- mid:P in-hi:P above:R below:-
+  (5,9) mid:- in-hi:- above:R below:- mid:P in-hi:P above:R below:- mid:P in-hi:P above:R below:-
+  (6,4) mid:- in-hi:- above:R below:- mid:P in-hi:P above:R below:- mid:P in-hi:P above:R below:-
+  (6,5) mid:- in-hi:- above:R below:- mid:P in-hi:P above:R below:- mid:P in-hi:P above:R below:-
+  (6,6) mid:- in-hi:- above:R below:- mid:P in-hi:P above:R below:- mid:P in-hi:P above:R below:-
+  (6,7) mid:- in-hi:- above:R below:- mid:P in-hi:P above:R below:- mid:P in-hi:P above:R below:-
+  (6,8) mid:- in-hi:- above:R below:- mid:P in-hi:P above:R below:- mid:P in-hi:P above:R below:-
+  (6,9) mid:- in-hi:- above:R below:- mid:P in-hi:P above:R below:- mid:P in-hi:P above:R below:-
+  (6,10) mid:- in-hi:- above:R below:- mid:P in-hi:P above:R below:- mid:P in-hi:P above:R below:-
+  (6,11) mid:- in-hi:- above:R below:- mid:P in-hi:P above:R below:- mid:P in-hi:P above:R below:-
+valid fronts tested: 182, invalid fronts skipped ('-'): 130, mismatches: 0

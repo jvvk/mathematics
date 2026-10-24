@@ -1,0 +1,8 @@
+r=2.0: .. .. .. .. .. .. .. .. .. ..
+r=2.5: .. .. .. .. .. .. .. .. .. ..
+r=2.8: .. .. .. .. .. .. .. PE .. ..
+r=3.0: .. .. .. PE .. .. PE PE .. PE
+r=3.2: PE PE PE PE PE PE PE PE PE PE
+r=3.5: PE PE PE PE PE PE PE PE PE PE
+r=4.0: PE PE PE PE PE PE PE PE PE PE
+runs where existence == placement: 70; disagreements: 0; steps from first existence to placement: min 1, max 1

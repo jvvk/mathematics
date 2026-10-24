@@ -1,0 +1,13 @@
+(ii) linear response K = (eps(eps0) - eps(0)) / eps0, eps0 = +-1e-4
+  c=-0.020000 eps0=+1e-04 steps=    20 (lattice     20) K=1.00008 raw=-3.338e-03 lat=-3.238e-03
+  c=-0.020000 eps0=-1e-04 steps=    20 (lattice     20) K=1.00008 raw=-3.138e-03 lat=-3.238e-03
+  c=-0.010000 eps0=+1e-04 steps=    39 (lattice     39) K=0.99999 raw=-5.895e-03 lat=-5.995e-03
+  c=-0.010000 eps0=-1e-04 steps=    39 (lattice     39) K=0.99999 raw=-6.095e-03 lat=-5.995e-03
+  c=-0.005000 eps0=+1e-04 steps=    76 (lattice     76) K=1.00001 raw=+9.062e-04 lat=+8.062e-04
+  c=-0.005000 eps0=-1e-04 steps=    76 (lattice     76) K=1.00000 raw=+7.062e-04 lat=+8.062e-04
+  c=-0.002500 eps0=+1e-04 steps=   150 (lattice    150) K=1.00000 raw=+5.015e-04 lat=+4.015e-04
+  c=-0.002500 eps0=-1e-04 steps=   150 (lattice    150) K=1.00000 raw=+3.015e-04 lat=+4.015e-04
+  c=-0.001250 eps0=+1e-04 steps=   298 (lattice    298) K=1.00000 raw=+3.004e-04 lat=+2.004e-04
+  c=-0.001250 eps0=-1e-04 steps=   298 (lattice    298) K=1.00000 raw=+1.004e-04 lat=+2.004e-04
+  c=-0.000625 eps0=+1e-04 steps=   594 (lattice    594) K=1.00000 raw=-2.001e-04 lat=-1.001e-04
+  c=-0.000625 eps0=-1e-04 steps=   594 (lattice    594) K=1.00000 raw=-7.763e-08 lat=-1.001e-04

@@ -30,6 +30,14 @@ import sympy as sp
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from independent_stack import Stack
 
+
+def require(ok, reason):
+    if not ok:
+        print(f"FAIL: {reason}")
+        print("FAIL: static (2,3) verification failed")
+        sys.exit(1)
+
+
 al, si, ep, ze, c = sp.symbols("alpha sigma epsilon zeta c", real=True)
 P = (al, si, ep, ze, c)
 NAMES = ["Z", "A", "B", "C", "E"]
@@ -44,15 +52,15 @@ R120 = sp.Matrix(
     [[sp.Rational(-1, 2), -sp.sqrt(3) / 2], [sp.sqrt(3) / 2, sp.Rational(-1, 2)]]
 )
 U0 = sp.simplify(R120 * D0)
-assert (
-    sp.simplify(2 * D0[1] + 3 * U0[1]) == 0
+require(
+    sp.simplify(2 * D0[1] + 3 * U0[1]) == 0, "front does not close horizontally"
 )  # closure: the front is periodic horizontally
 vec0 = [D0, D0, U0, U0, U0]
 z0 = [sp.Matrix([0, 0])]
 for v in vec0[:-1]:
     z0.append(sp.simplify(z0[-1] + v))
 LAM = sp.simplify(sum(v[0] for v in vec0))
-assert sp.simplify(LAM - sp.sqrt(7)) == 0, LAM  # circumference sqrt7
+require(sp.simplify(LAM - sp.sqrt(7)) == 0, f"circumference is {LAM}, expected sqrt7")
 
 
 def J(v: sp.Matrix) -> sp.Matrix:
@@ -113,7 +121,7 @@ for y, a, b, s, gap, cl, Q in sorted(cands, key=lambda t: float(t[0])):
     )
 ties = [x for x in valid if sp.simplify(x[0] - ymin) == 0]
 Q0 = ties[0][6]
-assert all(sp.simplify(t[6] - Q0) == sp.zeros(2, 1) for t in ties)
+require(all(sp.simplify(t[6] - Q0) == sp.zeros(2, 1) for t in ties), "lowest apex ties disagree")
 nxt = min(float(x[0]) for x in valid if sp.simplify(x[0] - ymin) != 0)
 print(
     f"lowest valid height {float(ymin):+.5f} = {sp.nsimplify(ymin)}, shared by {len(ties)} pairs; next valid {nxt:+.5f}"
@@ -124,7 +132,7 @@ touch = [
     if sp.simplify((Q0 - pos0(k, t)).dot(Q0 - pos0(k, t)) - 1) == 0
 ]
 print("Q0 touches", [NAMES[k] + ("+" if t else "") for k, t in touch])
-assert sorted(NAMES[k] for k, _ in touch) == ["A", "C", "E", "Z"]
+require(sorted(NAMES[k] for k, _ in touch) == ["A", "C", "E", "Z"], "Q0 has the wrong touching disks")
 
 # ---------- first order ----------
 # bearings: theta_k = theta_k0 + phi + r_k ; lengths L_k = 1 + c (y_k + y_{k+1}) / 2 (seeds consistent)
@@ -189,7 +197,7 @@ print(
     " and ".join(f"{v} > 0" for v in fP.values()),
 )
 # width of the Z-E channel: Z and E have opposite normals, so a free point exists iff s_Z + s_E <= 0
-assert sp.simplify(cons["Z"][0] + cons["E"][0]) == sp.zeros(2, 1)
+require(sp.simplify(cons["Z"][0] + cons["E"][0]) == sp.zeros(2, 1), "Z-E channel normals are not opposite")
 gapZE = sp.nsimplify(-(cons["Z"][1] + cons["E"][1]))
 print("Z-E channel open iff", gapZE, "> 0")
 
@@ -284,7 +292,8 @@ if __name__ == "__main__":
         print(
             f"  {tuple(round(v / t, 2) for v in p)} x {t}: predicted {pr}, simulated {ev} {a}->{b}  {'ok' if ok else 'MISMATCH'}"
         )
-    print("mismatches:", bad, " invalid fronts skipped:", skipped)
+        if not ok:
+            print(f"FAIL: parameters {p}: predicted {pr}, simulated {ev}")
 
 
 # ---------- Step 4: the linear forms against exact nonlinear geometry ----------
@@ -312,8 +321,13 @@ if __name__ == "__main__":
             sl, _ = exact_slacks(*p)
             for k in ("Z", "C"):
                 lin = fz[k](*p)
-                worst = max(worst, abs(sl[k] - lin) / h)
+                error = abs(sl[k] - lin) / h
+                if not math.isfinite(error) or error >= 5e-3:
+                    bad += 1
+                    print(f"FAIL: parameters {p}, slack {k}: |exact-linear|/h = {error}, expected < 5e-3")
+                worst = max(worst, error)
         print(f"  direction {[round(v, 2) for v in d]}: (exact - linear)/h at h=1e-4 -> "
               + ", ".join(f"{k} {(exact_slacks(*[1e-4 * v for v in d])[0][k] - fz[k](*[1e-4 * v for v in d])) / 1e-4:+.2e}" for k in ("Z", "C")))
-    assert worst < 5e-3, worst
-    print("Step 4: linear forms agree with the exact slacks to first order (max |exact-linear|/h =", f"{worst:.1e})")
+    print("Step 4: max |exact-linear|/h =", f"{worst:.1e} (bound 5e-3)")
+    print(f"{'FAIL' if bad else 'PASS'}: {len(tests) - skipped} simulator comparisons, 24 slack comparisons, {skipped} invalid fronts skipped, {bad} failures")
+    sys.exit(1 if bad else 0)

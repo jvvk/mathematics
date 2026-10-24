@@ -1,0 +1,9 @@
+beta=0.45, lattice start (1,2); route = Fibonacci bases reached before the first break
+  c=-0.300  steps=    41  last Fibonacci base=(8, 5)  wrong-side triangle at (8, 8)->(9, 8)  (0s)
+  c=-0.200  steps=   187  last Fibonacci base=(21, 34)  reached target  (0s)
+  c=-0.150  steps=   232  last Fibonacci base=(21, 34)  reached target  (0s)
+  c=-0.100  steps=   340  last Fibonacci base=(21, 34)  reached target  (0s)
+  c=-0.070  steps=   458  last Fibonacci base=(21, 34)  reached target  (0s)
+  c=-0.050  steps=   615  last Fibonacci base=(21, 34)  reached target  (0s)
+  c=-0.035  steps=   864  last Fibonacci base=(21, 34)  reached target  (0s)
+  c=-0.025  steps=  1192  last Fibonacci base=(21, 34)  reached target  (0s)

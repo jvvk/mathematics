@@ -1,0 +1,14 @@
+eps = 1.0e-5, eta = 1e-6 eps
+  [Ua/+ Ua/- Ub/+ D Ub/-]: R T R R P   margins/(eps d): 1.987e+4 1.147e-7 1.987e+4 1.987e+4 1.987e+4   P(Ua/-/-,Ub/+,Ua/+)
+  [Ua/+ Ub/- Ua/- Ub/+ D]: T R R P   margins/(eps d): 1.147e-7 1.987e+4 1.987e+4 1.987e+4   P(Ua/-/-,Ub/+,Ua/+)
+  [Ua/+ Ub/- Ub/+ Ua/- D]: R T T R P   margins/(eps d): 1.987e+4 1.147e-7 1.147e-7 5.825e-46 1.987e+4   P(Ub/-/-,Ub/+,Ua/-/+)
+  [Ua/+ D Ub/- Ub/+ Ua/-]: T T R P   margins/(eps d): 1.147e-7 1.147e-7 5.825e-46 1.987e+4   P(Ub/-/-,Ub/+,Ua/-/+)
+  [Ua/+ D Ub/+ Ub/- Ua/-]: T T R R P   margins/(eps d): 1.147e-7 1.147e-7 1.987e+4 0.1147 1.987e+4   P(D/-,Ub/+,Ua/-/+)
+  [Ua/+ Ua/- D Ub/+ Ub/-]: T R T P   margins/(eps d): 1.147e-7 1.987e+4 0.1147 1.987e+4   P(D/-,Ub/+,Ua/+)
+eps = 1.0e-7, eta = 1e-6 eps
+  [Ua/+ Ua/- Ub/+ D Ub/-]: R T R R P   margins/(eps d): 1.987e+6 1.147e-7 1.987e+6 1.987e+6 1.987e+6   P(Ua/-/-,Ub/+,Ua/+)
+  [Ua/+ Ub/- Ua/- Ub/+ D]: T R R P   margins/(eps d): 1.147e-7 1.987e+6 1.987e+6 1.987e+6   P(Ua/-/-,Ub/+,Ua/+)
+  [Ua/+ Ub/- Ub/+ Ua/- D]: R T T T P   margins/(eps d): 1.987e+6 1.147e-7 1.147e-7 0.0 1.987e+6   P(Ub/-/-,Ub/+,Ua/-/+)
+  [Ua/+ D Ub/- Ub/+ Ua/-]: T T T P   margins/(eps d): 1.147e-7 1.147e-7 2.913e-44 1.987e+6   P(Ub/-/-,Ub/+,Ua/-/+)
+  [Ua/+ D Ub/+ Ub/- Ua/-]: T T R R P   margins/(eps d): 1.147e-7 1.147e-7 1.987e+6 0.1147 1.987e+6   P(D/-,Ub/+,Ua/-/+)
+  [Ua/+ Ua/- D Ub/+ Ub/-]: T R T P   margins/(eps d): 1.147e-7 1.987e+6 0.1147 1.987e+6   P(D/-,Ub/+,Ua/+)

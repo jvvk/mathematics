@@ -23,8 +23,14 @@ def history_ms(pts, b0, c, max_steps):
     return ev
 
 if __name__ == "__main__":
+    bad = 0
     for beta, eps, c in ((0.523, 0.005, -0.0025), (0.523, 0.005, -0.00125), (0.523, 0.01, -0.005), (0.523, 0.01, -0.0025)):
         pts, b0 = consistent_front(beta, eps, c)
         a = history(pts, b0, c, int(30 / abs(c)))
         b = history_ms(pts, b0, c, int(30 / abs(c)))
         print(f"eps={eps} c={c}: {'SAME' if a == b else 'DIFFERENT'}\n  independent: {' '.join(a)}\n  multi_step:  {' '.join(b)}", flush=True)
+        if a != b:
+            bad += 1
+            print(f"FAIL: simulator histories disagree for eps={eps}, c={c}")
+    print(f"{'FAIL' if bad else 'PASS'}: 4 simulator comparisons, {bad} disagreements")
+    sys.exit(1 if bad else 0)

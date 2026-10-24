@@ -1,0 +1,36 @@
+eps=0.02 sigma/eps=0.5 u1=40.32 bd=-79.11 etaU=0.0100 c=0: first non-R (1, 'T', (2, 3), (3, 3))
+eps=0.02 sigma/eps=0.5 u1=40.32 bd=-79.11 etaU=0.0100 c=-1e-06: first non-R (1, 'T', (2, 3), (3, 3))
+eps=0.02 sigma/eps=0.5 u1=40.32 bd=-79.11 etaU=0.0100 c=-0.0001: first non-R (1, -2, (2, 3), (2, 1))
+eps=0.02 sigma/eps=0.9 u1=40.26 bd=-78.71 etaU=0.0100 c=0: first non-R (1, 'P', (2, 3), (2, 2))
+eps=0.02 sigma/eps=0.9 u1=40.26 bd=-78.71 etaU=0.0100 c=-1e-06: first non-R (1, 'P', (2, 3), (2, 2))
+eps=0.02 sigma/eps=0.9 u1=40.26 bd=-78.71 etaU=0.0100 c=-0.0001: first non-R (1, 'P', (2, 3), (2, 2))
+eps=0.02 sigma/eps=1.1 u1=40.22 bd=-78.52 etaU=0.0100 c=0: first non-R None
+eps=0.02 sigma/eps=1.1 u1=40.22 bd=-78.52 etaU=0.0100 c=-1e-06: first non-R None
+eps=0.02 sigma/eps=1.1 u1=40.22 bd=-78.52 etaU=0.0100 c=-0.0001: first non-R None
+eps=0.02 sigma/eps=2.0 u1=40.06 bd=-77.65 etaU=0.0100 c=0: first non-R None
+eps=0.02 sigma/eps=2.0 u1=40.06 bd=-77.65 etaU=0.0100 c=-1e-06: first non-R None
+eps=0.02 sigma/eps=2.0 u1=40.06 bd=-77.65 etaU=0.0100 c=-0.0001: first non-R None
+eps=0.005 sigma/eps=0.5 u1=40.75 bd=-79.11 etaU=0.0025 c=0: first non-R (1, 'T', (2, 3), (3, 3))
+eps=0.005 sigma/eps=0.5 u1=40.75 bd=-79.11 etaU=0.0025 c=-1e-06: first non-R (1, 'T', (2, 3), (3, 3))
+eps=0.005 sigma/eps=0.5 u1=40.75 bd=-79.11 etaU=0.0025 c=-0.0001: first non-R (1, -2, (2, 3), (2, 1))
+eps=0.005 sigma/eps=0.9 u1=40.73 bd=-79.01 etaU=0.0025 c=0: first non-R (1, 'P', (2, 3), (2, 2))
+eps=0.005 sigma/eps=0.9 u1=40.73 bd=-79.01 etaU=0.0025 c=-1e-06: first non-R (1, 'P', (2, 3), (2, 2))
+eps=0.005 sigma/eps=0.9 u1=40.73 bd=-79.01 etaU=0.0025 c=-0.0001: first non-R (1, 'P', (2, 3), (2, 2))
+eps=0.005 sigma/eps=1.1 u1=40.73 bd=-78.96 etaU=0.0025 c=0: first non-R None
+eps=0.005 sigma/eps=1.1 u1=40.73 bd=-78.96 etaU=0.0025 c=-1e-06: first non-R None
+eps=0.005 sigma/eps=1.1 u1=40.73 bd=-78.96 etaU=0.0025 c=-0.0001: first non-R None
+eps=0.005 sigma/eps=2.0 u1=40.69 bd=-78.74 etaU=0.0025 c=0: first non-R None
+eps=0.005 sigma/eps=2.0 u1=40.69 bd=-78.74 etaU=0.0025 c=-1e-06: first non-R None
+eps=0.005 sigma/eps=2.0 u1=40.69 bd=-78.74 etaU=0.0025 c=-0.0001: first non-R None
+eps=0.001 sigma/eps=0.5 u1=40.86 bd=-79.11 etaU=0.0005 c=0: first non-R (1, 'T', (2, 3), (3, 3))
+eps=0.001 sigma/eps=0.5 u1=40.86 bd=-79.11 etaU=0.0005 c=-1e-06: first non-R (1, 'T', (2, 3), (3, 3))
+eps=0.001 sigma/eps=0.5 u1=40.86 bd=-79.11 etaU=0.0005 c=-0.0001: first non-R (1, -2, (2, 3), (2, 1))
+eps=0.001 sigma/eps=0.9 u1=40.86 bd=-79.09 etaU=0.0005 c=0: first non-R (1, 'P', (2, 3), (2, 2))
+eps=0.001 sigma/eps=0.9 u1=40.86 bd=-79.09 etaU=0.0005 c=-1e-06: first non-R (1, 'P', (2, 3), (2, 2))
+eps=0.001 sigma/eps=0.9 u1=40.86 bd=-79.09 etaU=0.0005 c=-0.0001: first non-R (1, 'P', (2, 3), (2, 2))
+eps=0.001 sigma/eps=1.1 u1=40.86 bd=-79.08 etaU=0.0005 c=0: first non-R None
+eps=0.001 sigma/eps=1.1 u1=40.86 bd=-79.08 etaU=0.0005 c=-1e-06: first non-R None
+eps=0.001 sigma/eps=1.1 u1=40.86 bd=-79.08 etaU=0.0005 c=-0.0001: first non-R None
+eps=0.001 sigma/eps=2.0 u1=40.85 bd=-79.03 etaU=0.0005 c=0: first non-R None
+eps=0.001 sigma/eps=2.0 u1=40.85 bd=-79.03 etaU=0.0005 c=-1e-06: first non-R None
+eps=0.001 sigma/eps=2.0 u1=40.85 bd=-79.03 etaU=0.0005 c=-0.0001: first non-R None

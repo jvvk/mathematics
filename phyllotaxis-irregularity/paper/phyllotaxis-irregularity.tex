@@ -34,15 +34,15 @@
 \email{vamshi.jandhyala@gmail.com}
 \subjclass[2020]{92C80, 37N25, 52C15}
 \keywords{Phyllotaxis, disk stacking, Fibonacci transitions, parastichy, formal verification}
-\date{Preprint v1, 20 October 2026}
+\date{Preprint v2, 24 October 2026 (v1: 20 October 2026)}
 
 \begin{document}
 \raggedbottom
 \begin{abstract}
 In a disk-stacking model of phyllotaxis, slowly decreasing diameters can produce successive
 Fibonacci transitions. We identify a geometric obstruction to uniform guarantees based on separate
-upper bounds for irregularity and diameter decrease. For each hexagonal front with $m,n\ge2$ and
-$n/2<m<2n$, we construct an explicit open cone of perturbations for which the first placement is a
+upper bounds for irregularity and diameter decrease. For each hexagonal front written as a single-notch
+word $D^mU^n$ with $m,n\ge2$ and $n/2<m<2n$, we construct an explicit open cone of perturbations for which the first placement is a
 pentagon transition. Both directional deviations tend to zero, all initial disks obey the diameter
 law, and the rate tends to zero with the perturbation. The proof compares all competing placements
 at a four-contact lattice site. We also derive uniform local transition formulas and a cancellation
@@ -232,7 +232,8 @@ angles $\beta\in[0.40,0.52]$ and three rates, none of the sampled second transit
 all break at sampled ratios $\eps/|c|\ge3.4$ (Figure~\ref{fig:pr}). We refer to this empirical crossover as the
 \emph{ratio law}; it is not a monotonicity theorem or a universal threshold. Gol\'e, Dumais and Douady observed that irregularity alone drives the pattern towards
 quasi-symmetry~\cite[p.~29, item (iii)]{GDD}, and Swinton found that noise and rate ``interact in a complex
-way'' and listed the critical rate as open~\cite[Sec.~5.3]{Swinton2024}. The ratio law is a quantitative form
+way''~\cite[Sec.~5.3]{Swinton2024} and noted that there is no theoretical guidance on the critical
+rate~\cite[Sec.~6]{Swinton2024}. The ratio law is a quantitative form
 of that interaction for one initial irregularity.
 
 \subsection*{The geometric mechanism} Figure~\ref{fig:pent} shows the relevant local geometry. A triangle transition at a slow rate is nearly equilateral, so it leaves a notch whose hinge is
@@ -744,11 +745,66 @@ Lemma~\ref{lem:threshold}, up to $O(|\eps|+|c|)$. On that compact path the notch
 $(60^\circ,120^\circ)$ and the $1,2$-notch has $\gamma+\tau>4\pi/3$ by a margin bounded below, so
 by~\cite[Prop.~4.3]{GD} and Lemma~\ref{lem:apex} the only valid offspring is the rhombus.
 
-When the hinge reaches $120^\circ$, the triangle candidate on the notch becomes valid. It rests on the
-less steep vector of the notch, the up vector at about $19^\circ$ against the down vector at about
-$-41^\circ$, so the margin is of order one. Call the up vector that carries this first triangle $\Ub$
-and the other $\Ua$. (When $|c|\ll|\eps|$, $\Ub$ is the less steep one; Theorem~\ref{thm:A} does not
+The phase ends at the first step at which a triangle candidate is valid. At the threshold tiling this is
+a triple site: the triangle on $D$, the triangle on the up vector that follows it, and the rhombus over the
+notch disk are one and the same disk, touching three disks. So the switch does not happen at a hinge of
+exactly $120^\circ$ once $c\ne0$ (it happens at $120^\circ+O(|c|)$), and which triangle is placed is decided
+at first order, not by an order-one margin. Lemma~\ref{lem:shared} settles it: whenever the triangle on
+$D$ is valid, the triangle on the up vector is valid and no higher, with equality only when the two are
+the same disk, which is then inserted on the up vector. So the first triangle rests on an up vector. Call
+it $\Ub$ and the other $\Ua$. (When $|c|\ll|\eps|$, $\Ub$ is the less steep one; Theorem~\ref{thm:A} does not
 need that.)
+
+\subsection{Two candidates sharing a contact}
+Every near-tie in this section has the same shape. Put
+$u_*=\beta_{\min}=\arctan(\sqrt3/5)$ and let
+\[
+U=e^{iu_*},\qquad S=e^{i(u_*-\pi/3)},\qquad V=e^{i(u_*+\pi/3)}
+\]
+be the unit up, down and steep up vectors of the $(1,2)$ threshold tiling (Lemma~\ref{lem:threshold}).
+
+\begin{lemma}[Shared contact]\label{lem:shared}
+Let $A$, $B$, $E$ be disks of a front and $Q_*$ a point at which, at $\eps=c=0$, a unit disk touches all
+three, with contact normals
+\[
+Q_*-A=U,\qquad Q_*-B=V,\qquad Q_*-E=-S.
+\]
+For configurations in a small enough neighbourhood of this one (positions, diameters, and $|c|$ small),
+let $T$ be the placement touching $A$ and $B$ and $R$ the placement touching $B$ and $E$, on the branches
+through $Q_*$. If $T$ clears $E$, then $R$ clears $A$ and $\Imag R\le\Imag T$, with equality only if $T=R$.
+Every other disk of the stack, older disks included, clears both.
+\end{lemma}
+
+\begin{proof}
+For a disk $P$ write $f_P(X)=|X-P|-\tfrac12\bigl(d_P+d(X)\bigr)$, with $d(X)=b_0+c\Imag X$; $X$ clears $P$
+when $f_P(X)\ge0$. Near $Q_*$ the curve $f_B=0$ is a graph $y=h(x)$, since its $y$-derivative is close to
+$\Imag V>0$, and $h'=-\Real V/(\Imag V-c/2)+o(1)<0$ because both coordinates of $V$ are positive. Along it
+put $g_A(x)=f_A(x,h(x))$ and $g_E(x)=f_E(x,h(x))$. At the limit
+\[
+g_A'=\frac{\sin(\pi/3)}{\sin(u_*+\pi/3)}>0,\qquad g_E'=\frac{\sin(-\pi/3)}{\sin(u_*+\pi/3)}<0,
+\]
+and both signs persist nearby. $T$ is the zero $x_T$ of $g_A$ and $R$ the zero $x_R$ of $g_E$, unique by the
+implicit function theorem since the contact normals are not parallel. If $T$ clears $E$ then
+$g_E(x_T)\ge0=g_E(x_R)$, so $x_T\le x_R$ and $\Imag T=h(x_T)\ge h(x_R)=\Imag R$; and
+$g_A(x_R)\ge g_A(x_T)=0$, so $R$ clears $A$. Equality forces $x_T=x_R$.
+
+For the other disks: before the first offending event every step is a triangle (which removes nothing) or
+a rhombus (which removes a notch bottom lower than its parents), so no centre in the stack is higher than
+the highest front disk, whose height tends to that of $B$, below $Q_*$. The directions from $Q_*$ to $A$, $B$,
+$E$ are $u_*+180^\circ$, $u_*+240^\circ$, $u_*+300^\circ$, about $199^\circ$, $259^\circ$, $319^\circ$, and every
+direction in the lower half-plane is within less than $60^\circ$ of one of them. A unit disk centred at
+$Q_*+rn$, $0<r\le1$, $n$ in the lower half-plane, would therefore lie at distance
+$\sqrt{1+r^2-2r\cos\theta}<1$ from that parent, $\theta<60^\circ$, overlapping it. So at the limit no
+other disk meets $Q_*$; any disk overlapping a nearby candidate $X$ has its centre within
+$d(X)/(1-|c|/2)$ of $X$, so by compactness the exclusion persists in a neighbourhood.
+\end{proof}
+
+\noindent In words: both candidates touch $B$, and the curve of such positions descends to the right. Clearing
+the right-hand disk $E$ forces $T$ onto the higher part of that curve. The lemma is used twice. In a down-up
+notch $A\xrightarrow{S}B\xrightarrow{U}E$ ($E=B+U$), $T$ is the triangle on the down vector and $R$ the
+triangle on the up vector. In the words $\Ua\,\dn{\Ub}\,D\,\up{\Ub}$ and $\Ua\,D\,\dn{\Ub}\,\up{\Ub}$ below,
+$A,B$ are the ends of the first down vector and $E$ the end of the up vector $\up{\Ub}$, so $T$ is a triangle
+on a down vector and $R$ the rhombus. The comparison is exact; it does not need a margin.
 
 \subsection{The \texorpdfstring{$(2,2)$}{(2,2)} phase} After the first triangle the front is $\Ua,D,\up{\Ub},\dn{\Ub}$,
 where $\up{\Ub}$ and $\dn{\Ub}$ are the new up and down vectors. At $\eps=c=0$ these are the four vectors of
@@ -772,57 +828,91 @@ Each of the four words is a word in the vectors of the $(1,2)$ threshold tiling,
 model with $7$ in place of $19$ every candidate position is a rational point: pairs at distance $1$, $\sqrt3$
 and $2$ have their apexes at lattice points and farther pairs have none. The candidates were enumerated and
 compared in exact rational arithmetic (\texttt{verify/exact\_limits.py}; an independent interval-arithmetic
-check is \texttt{verify/certify\_limits.py}). The coincidences are exact identities of rational points: a
-rhombus with a triangle or pentagon at the same location, the cases treated in the rest of this
-section. The value $\sqrt{3/28}$ is exact: in the word $\Ua\,D\,\up{\Ub}\,\dn{\Ub}$
+check is \texttt{verify/certify\_limits.py}). The coincidences are exact identities of rational points, of two
+kinds: in the first and third words a triangle on a down vector, the triangle on $\Ua$ and a rhombus; in the
+second and fourth a triangle on a down vector, a rhombus and a pentagon. Both are treated below. The value $\sqrt{3/28}$ is exact: in the word $\Ua\,D\,\up{\Ub}\,\dn{\Ub}$
 the lowest position is the apex $w_3+\Ua$ of the triangle on $(\dn{\Ub},\Ua)$ and the next is the
 rhombus apex $w_1+\up{\Ub}$, half a unit of $Y$ higher in the rational model. The gap formula is~\eqref{eq:gaps} applied
 to alternating passes.
 \end{proof}
 
 \subsection{No pentagon in the first transition} A pentagon needs a three-vector notch whose two hinges
-sum to at most $240^\circ$. Two such triples are degenerate at zeroth order in the $(2,2)$ phase.
+sum to at most $240^\circ$. Three such triples are degenerate at zeroth order in the $(2,2)$ phase.
 
 The triple $D,\Ua,\up{\Ub}$ (one down, two ups) needs $\Ua$ immediately followed by $\up{\Ub}$, an empty gap,
 which Lemma~\ref{lem:alternation} excludes.
 
-The triple $\dn{\Ub},D,\up{\Ub}$ (two downs, one up) is the delicate one. By~\eqref{eq:hinge} its hinge
-sum minus $240^\circ$ is
+The other two have two downs and one up, namely $\dn{\Ub},D,\up{\Ub}$ in the word
+$\Ua\,\dn{\Ub}\,D\,\up{\Ub}$ and $D,\dn{\Ub},\up{\Ub}$ in the word $\Ua\,D\,\dn{\Ub}\,\up{\Ub}$. By~\eqref{eq:hinge} the hinge sum minus
+$240^\circ$ telescopes to
 \[
-h(\dn{\Ub},D)+h(D,\up{\Ub})-\tfrac{4\pi}3=\tfrac{2\pi}3-\bigl(\arg\up{\Ub}-\arg\dn{\Ub}\bigr),
+m_j=\tfrac{2\pi}3-\bigl(\arg\up{\Ub}-\arg d_j\bigr),
 \]
-in which $D$ drops out. At creation, Lemma~\ref{lem:triangle}(b) gives $\arg\up{\Ub}-\arg\dn{\Ub}
-=\tfrac{2\pi}3+\tfrac c2\cos\beta_U$. The triple first forms after $\Ua$ passes $\dn{\Ub}$, which by
-Corollary~\ref{cor:rates} turns $\dn{\Ub}$ by $-c\cos\beta_U$. So when the triple exists its margin is
-at least
+where $d_j$ is the first down vector of the triple ($\dn{\Ub}$, respectively $D$); the middle vector drops out.
+Write $u$ for the bearing of $\Ub$ when it is split, $a$ for that of $\Ua$ and $d$ for that of $D$, all within
+$\delta$ of their threshold values, and use the two first-order rules: a triangle on $\Ub$ creates
+$\arg\up{\Ub}=u+\tfrac\pi3+\tfrac c2\cos(u-\tfrac\pi3)$ and $\arg\dn{\Ub}=u-\tfrac\pi3-\tfrac c2\cos(u+\tfrac\pi3)$
+(Lemma~\ref{lem:triangle}), and a pass of an up bearing $a$ over a down bearing $d$ sends
+$a\mapsto a+c\cos d$, $d\mapsto d-c\cos a$ (Corollary~\ref{cor:rates}), each up to $O(c^2)$.
+
+For $d_j=\dn{\Ub}$: the triple first forms after $\Ua$ passes $\dn{\Ub}$, so
 \begin{equation}\label{eq:ddu}
-\tfrac32\cos\beta_U\,|c|+O(c^2)=\tfrac{15}{4\sqrt7}|c|+O(c^2)\approx1.417\,|c|,
+m_{\dn{\Ub}}=-c\bigl(\tfrac12\cos u+\cos a\bigr)+O(\delta|c|+c^2)=\tfrac{15}{4\sqrt7}|c|+O(\delta|c|+c^2)\approx1.417\,|c|,
 \end{equation}
-with $\cos\beta_U=5/(2\sqrt7)$ at the threshold tiling, and later passes only increase it. The
-margin has no zeroth-order term for any $\eps$: at $c=0$ a triangle creates $\up{\Ub}$ and $\dn{\Ub}$ exactly
-$120^\circ$ apart and rhombus steps do not turn vectors, and $D$ drops out. So the margin is $|c|\,f+O(c^2)$
-with $f$ continuous in the configuration, and $f=\tfrac32\cos\beta_U+O(|\eps|+|c|)$ because the configuration
-is within $O(|\eps|+|c|)$ of the threshold tiling; the error in~\eqref{eq:ddu} is $O(|\eps||c|+c^2)$. The margin
-has the safe sign. A pentagon would need a negative margin, and in fact more: reflecting centres by $z\mapsto-\bar z$ and reversing the front order
-(so front vectors become $v\mapsto\bar v$) turns this triple into a one-down-two-up notch whose down vector has
-$\cos=1/(2\sqrt7)$, $\sin=-3\sqrt3/(2\sqrt7)$, and Lemma~\ref{lem:pent} below then requires the margin to be
-below $-\kappa_2|c|$ with $\kappa_2=13/(4\sqrt7)\approx1.228$. The two requirements are separated by
+with $\cos\beta_{\min}=5/(2\sqrt7)$. For $d_j=D$: put $\eta_0=\tfrac\pi3-(u-d)$ when the first triangle is
+placed. That triangle clears its left neighbour, and the clearance is
+$\tfrac{\sqrt3}2\eta_0-\tfrac34c\sin(u_*+\tfrac\pi3)+O(\eta_0^2+\delta|c|+c^2)$ with root exactly $\eta_0=0$ at
+$c=0$, so $\eta_0\ge\tfrac{9}{4\sqrt7}c+O(\delta|c|+c^2)$. Before the triple forms, $\up{\Ub}$ and then $\Ua$
+have passed $D$, so
+\begin{equation}\label{eq:dud}
+m_D=\eta_0-c\bigl(\tfrac12\cos s_*+\cos s_*+\cos v_*+\cos u_*\bigr)+O(\delta|c|+c^2)
+\ge\tfrac{15}{4\sqrt7}|c|+O(\delta|c|+c^2),
+\end{equation}
+since the cosine sum is $6/\sqrt7$ (here $s_*=u_*-\tfrac\pi3$, $v_*=u_*+\tfrac\pi3$).
+
+Later passes only increase either margin: every rhombus that changes $m_j$ decreases $\arg\up{\Ub}$ or
+increases $\arg d_j$, by $|c|$ times a cosine bounded away from zero, up to $O(c^2)$. So no unsigned error
+accumulates over the phase, however long it is, and both margins stay at least $\tfrac{15}{4\sqrt7}|c|$ up to
+$O(\delta|c|+c^2)$. A pentagon needs more than a negative margin: reflecting centres by $z\mapsto-\bar z$ and
+reversing the front order (so front vectors become $v\mapsto\bar v$) turns either triple into a
+one-down-two-up notch whose down vector has $\cos=1/(2\sqrt7)$, $\sin=-3\sqrt3/(2\sqrt7)$, and
+Lemma~\ref{lem:pent} below then requires the margin to be below $-\kappa_2|c|$ with
+$\kappa_2=13/(4\sqrt7)\approx1.228$. The two requirements are separated by
 \[
 \tfrac{15}{4\sqrt7}+\tfrac{13}{4\sqrt7}=\sqrt7\approx2.646
 \]
 times $|c|$, so no pentagon forms.
 
+\subsection{No triangle on a down vector} In the words $\Ua\,\dn{\Ub}\,D\,\up{\Ub}$ and $\Ua\,D\,\dn{\Ub}\,\up{\Ub}$
+the exact tables put a triangle on the first down vector, the rhombus on the next two vectors and the
+pentagon of the triple above at one point (\texttt{verify/exact\_limits.py}). The pentagon is excluded, and
+by Lemma~\ref{lem:shared} the rhombus is valid and no higher whenever the triangle is valid. In fact the
+gap is strict along the trajectory: expanding both placements to first order gives, with $b$ the diameter
+of the first disk of the triple,
+\[
+\begin{aligned}
+\frac{\Imag T-\Imag R}{b}&=m_j\Bigl(\frac1{2\sqrt7}+O(\delta)\Bigr)-c\Bigl(\frac{13}{56}+O(\delta)\Bigr)+O(c^2)\\
+&\ge|c|\Bigl(\frac{15}{56}+\frac{13}{56}\Bigr)-O(\delta|c|+c^2)=\frac{|c|}2-O(\delta|c|+c^2),
+\end{aligned}
+\]
+using~\eqref{eq:ddu} and~\eqref{eq:dud}. In simulations the smallest observed value of
+$(\Imag T-\Imag R)/(b|c|)$ is $0.4997$ (\texttt{verify/down\_triangle\_exclusion.py}).
+
 \begin{proof}[Proof of Theorem~\ref{thm:A}]
-In the $(1,2)$ phase the only offspring is the rhombus until the threshold, where the first triangle
-fires on an up vector with an order-one margin. In the $(2,2)$ phase the passes alternate with the margin
-of Lemma~\ref{lem:alternation}. The only near-tie at one location is the rhombus against the triangle
-at the notch $(\dn{\Ub},\Ua)$ as its hinge crosses $120^\circ$, which is the intended second triangle;
-it rests on $\Ua$ (about $19^\circ$) rather than $\dn{\Ub}$ (about $-41^\circ$). Pentagons are excluded
-above. Each of these statements holds at the limit tilings with a margin that is either of order one or
-the first-order margin $\sqrt7|c|$, and the configurations stay within $O(|\eps|+|c|)$ of the limit,
-because the $(2,2)$ phase lasts $O(|\eps|/|c|+1)$ steps with drift $O(|c|)$ per step. By
-Lemma~\ref{lem:uniform} the margins persist for $|\eps|<\eps_0$ and $|c|<c_0$. The front after the
-second triangle has up vectors $\up{\Ua},\up{\Ub}$ and down vectors $D,\dn{\Ua},\dn{\Ub}$.
+In the $(1,2)$ phase the only offspring is the rhombus until a triangle first becomes valid, at a triple
+site where Lemma~\ref{lem:shared} places it on an up vector. In the $(2,2)$ phase the passes alternate with
+the margin of Lemma~\ref{lem:alternation}, and the coincidences at the lowest location are of two kinds. In
+the words $\Ua\,D\,\up{\Ub}\,\dn{\Ub}$ and $\Ua\,\dn{\Ub}\,\up{\Ub}\,D$ a triangle on the down vector before $\Ua$
+meets the triangle on $\Ua$ and a rhombus, at the down-up notch before $\Ua$. By Lemma~\ref{lem:shared} for
+that notch no triangle on the down vector is placed; the triangle on $\Ua$, when valid, is the intended
+second triangle, and at an exact tie the same disk is inserted on $\Ua$. In the other two words a triangle
+on a down vector meets the rhombus and a pentagon; the pentagon is excluded and the rhombus is placed, as
+shown above. The remaining comparisons hold at the limit tilings with margins of order one, and the
+configurations stay within $O(|\eps|+|c|)$ of the limit, because the $(2,2)$ phase lasts $O(|\eps|/|c|+1)$
+steps with drift $O(|c|)$ per step; by Lemma~\ref{lem:uniform} those margins persist for $|\eps|<\eps_0$ and
+$|c|<c_0$. The margins of order $|c|$, \eqref{eq:ddu} and~\eqref{eq:dud}, are signed and only increase during
+the phase. The front after the second triangle has up vectors $\up{\Ua},\up{\Ub}$ and down vectors
+$D,\dn{\Ua},\dn{\Ub}$.
 \end{proof}
 
 \section{The second transition}\label{sec:steptwo}
@@ -864,7 +954,8 @@ collects the $O(c)$ terms of~\eqref{eq:inherit}, and we have no closed form for 
 
 \begin{lemma}[The $(3,2)$ phase]\label{lem:32phase}
 Suppose no pentagon occurs during the $(3,2)$ phase. Then every step of the phase is the rhombus at the
-lowest lattice position, until the first notch hinge reaches $120^\circ$; the front then lies within
+lowest lattice position, until a triangle candidate first becomes valid, at a notch hinge of
+$120^\circ+O(|c|)$; the front then lies within
 $O(|c|)$ of the front $K_\eps(w)$ determined by~\eqref{eq:inherit}, by one of the six cyclic words $w$ of the
 phase, by closure and by the threshold condition.
 \end{lemma}
@@ -876,9 +967,10 @@ $\tfrac12|\Imag D|(3a-2b)$: distinct positions modulo the period are separated b
 $\tfrac12|\Imag D|\ge\tfrac12 b\sin23.4^\circ>0.19\,b$ along the whole phase, since $|\beta_D|$ decreases from about
 $41^\circ$ to $23.4^\circ$. Rhombus candidates are lattice positions, so the order of the passes is the
 lattice order with that margin. Triangle candidates overlap a neighbour while every hinge is below
-$120^\circ$. By assumption no pentagon is placed. The front thus follows the six-word cycle of the
+$120^\circ-K|c|$ for a constant $K$ (the exact switching boundary moves with $c$, as in
+Section~\ref{sec:stepone}). By assumption no pentagon is placed. The front thus follows the six-word cycle of the
 lattice, and at the first threshold crossing it is determined, up to $O(c)$, by the frozen
-ratios~\eqref{eq:inherit}, the word, closure and the hinge $120^\circ$.
+ratios~\eqref{eq:inherit}, the word, closure and the hinge $120^\circ$, up to $O(c)$.
 \end{proof}
 
 The hypothesis isolates the unresolved case of Conjecture~\ref{thm:B}: a pentagon in the
@@ -1157,7 +1249,7 @@ Result & Lean file & main theorems\\
 Lemma~\ref{lem:threshold}, $K_0$, Lemma~\ref{lem:K0} identities, $\sqrt{3/28}$ & \lean{Tilings} & \lean{threshold\_tan}, \lean{K0.height\_gaps}\\
 Lemmas~\ref{lem:notch60}, \ref{lem:hexsite} (at $Q_0$), \ref{lem:hexclear}, \ref{lem:valid} (notch); $\mu_Z>0$ on valid fronts & \lean{Static} & \lean{notch60\_tan}, \lean{lattice\_Q0}, \lean{pentagon\_first}, \lean{notch\_clear}, \lean{channel\_of\_valid}\\
 Local five-disk families: hypotheses satisfiable & \lean{StaticExists} & \lean{front\_exists}\\
-Lemma~\ref{lem:apex} and non-vacuity & \lean{Apex}, \lean{Lemma4Exists} & \lean{apex\_exists}, \lean{rhombic\_family\_exists}\\
+Lemma~\ref{lem:apex}: differentiability at $0$, tangency nearby and local uniqueness (not the full $C^1$ neighbourhood statement); non-vacuity & \lean{Apex}, \lean{Lemma4Exists} & \lean{apex\_exists}, \lean{rhombic\_family\_exists}\\
 Lemmas~\ref{lem:rhombus}, \ref{lem:triangle}, Corollary~\ref{cor:rates} & \lean{FirstOrder} & \lean{rhombic\_step}, \lean{triangle\_step}, \lean{cushion\_rate}\\
 Margin~\eqref{eq:ddu} and $\sqrt7$ & \lean{FirstOrder}, \lean{Lemma4} & \lean{split\_rate}, \lean{pass\_rate}, \lean{n1\_exclusion}\\
 Lemma~\ref{lem:pent} & \lean{Lemma4} & \lean{dG\_dc}, \lean{dG\_d$\theta$}, \lean{kappa2\_eq}, \lean{boundary\_slope}\\
@@ -1188,8 +1280,22 @@ draft. Codex (OpenAI, GPT-6) reviewed the draft, found an earlier first-disk pen
 five-disk front with one directional deviation zero, which prompted the construction of
 Theorem~\ref{thm:static} on a different family of fronts, and contributed the revision that
 recast delayed breakdown as Conjecture~\ref{thm:B}, computational checks and the identification of
-proof obligations. The author is responsible for the content of this preprint, which has not yet
+proof obligations. In version 2, a Codex referee report found the gap in the proof of
+Theorem~\ref{thm:A} described below; Codex proved Lemma~\ref{lem:shared} and the strict bound for the words
+$\Ua\,\dn{\Ub}\,D\,\up{\Ub}$ and $\Ua\,D\,\dn{\Ub}\,\up{\Ub}$, including the treatment of the triple
+$D,\dn{\Ub},\up{\Ub}$, and Claude checked both against independent simulations and an independent
+derivation of the same comparison. The author is responsible for the content of this preprint, which has not yet
 been independently reviewed.
+
+\emph{Changes in version 2.} Version 1 asserted that the first triangle wins by an order-one margin and
+that the only near-tie in the $(2,2)$ phase is the second triangle. Both are wrong: at each triangle
+event, and in two of the four words of the $(2,2)$ phase, a triangle on a down vector coincides with the
+intended placement at the threshold tiling, and one two-down triple was not treated. Lemma~\ref{lem:shared}
+and the margin~\eqref{eq:dud} close the gap, and Theorem~\ref{thm:A} stands as stated. The triangle
+threshold is $120^\circ+O(|c|)$, not exactly $120^\circ$ (Section~\ref{sec:stepone}, Lemma~\ref{lem:32phase});
+the first-disk theorem is stated for single-notch fronts $D^mU^n$; Swinton's version and sections are
+cited; the Lean coverage of Lemma~\ref{lem:apex} is stated exactly; the recorded outputs and the
+verification scripts are completed and every script exits nonzero on a failure.
 
 \begin{thebibliography}{99}
 \bibitem{repo} V.~Jandhyala, \emph{Irregularity versus growth rate in disk-stacking phyllotaxis: code, records and Lean
@@ -1216,8 +1322,8 @@ ACM SIGPLAN International Conference on Certified Programs and Proofs (CPP 2020)
 \href{https://doi.org/10.1145/3372885.3373824}{doi:10.1145/3372885.3373824}.
 \bibitem{Schwendener} S.~Schwendener, \emph{Mechanische Theorie der Blattstellungen}, Engelmann, Leipzig, 1878.
 \bibitem{Swinton2024} J.~Swinton, \emph{Disk-stacking models are consistent with Fibonacci and non-Fibonacci
-structure in sunflowers}, preprint (2024),
-\href{https://arxiv.org/abs/2407.05857}{arXiv:2407.05857}.
+structure in sunflowers}, preprint, version 3 (2 September 2024),
+\href{https://arxiv.org/abs/2407.05857v3}{arXiv:2407.05857v3}.
 \bibitem{SwintonOchu} J.~Swinton, E.~Ochu and the MSI Turing's Sunflower Consortium, \emph{Novel Fibonacci
 and non-Fibonacci structure in the sunflower: results of a citizen science experiment}, R.\ Soc.\ Open
 Sci.\ \textbf{3} (2016), no.~5, 160091.

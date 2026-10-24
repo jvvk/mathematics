@@ -1,0 +1,14 @@
+lattice start (eps = 0): minimum 1,2-notch pentagon margin during step 2, vs c
+  beta=0.45 c=-0.0080: min margin = -0.008443 rad, margin/|c| = -1.055, ended at (3, 5)
+  beta=0.45 c=-0.0040: min margin = -0.004346 rad, margin/|c| = -1.086, ended at (3, 5)
+  beta=0.45 c=-0.0020: min margin = -0.001336 rad, margin/|c| = -0.668, ended at (3, 5)
+  beta=0.45 c=-0.0010: min margin = -0.000323 rad, margin/|c| = -0.323, ended at (3, 5)
+  beta=0.45 c=-0.0005: min margin = +0.000129 rad, margin/|c| = +0.257, ended at (3, 5)
+  beta=0.523 c=-0.0080: min margin = -0.000454 rad, margin/|c| = -0.057, ended at (3, 5)
+  beta=0.523 c=-0.0040: min margin = -0.003322 rad, margin/|c| = -0.830, ended at (3, 5)
+  beta=0.523 c=-0.0020: min margin = +0.000600 rad, margin/|c| = +0.300, ended at (3, 5)
+  beta=0.523 c=-0.0010: min margin = -0.000752 rad, margin/|c| = -0.752, ended at (3, 5)
+  beta=0.523 c=-0.0005: min margin = -0.000120 rad, margin/|c| = -0.241, ended at (3, 5)
+irregular starts, beta 0.523, c = -0.002: margin trajectory in step 2 (step, state, event, margin)
+  eps=0.004 (ratio 2): 1352(3, 3)T:+inf  1353(3, 3)R:-0.0004  1354(3, 4)T:-0.0004  1355(3, 4)R:+0.0006  1356(3, 5)T:+0.0002
+  eps=0.01 (ratio 5): 1350(3, 3)T:+inf  1351(3, 3)R:-0.0075  1352(3, 4)T:-0.0075  1353(3, 3)P:-0.0048

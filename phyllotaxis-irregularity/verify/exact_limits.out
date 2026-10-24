@@ -1,0 +1,17 @@
+== K0 at the pentagon (word U S U S U U D)  (N = 19, period X = 19)
+   Y = 2 (above lowest by dY = 0, height 0.000000): R(P0..P1) touching P0,P2,P3; P(P0..P2) touching P0,P2,P3; T(P2..P2) touching P0,P2,P3
+   Y = 5/2 (above lowest by dY = 1/2, height 0.198680): T(z0..z0) touching P3,z0,z1; T(P3..P3) touching P3,z0,z1; R(P3..z0) touching P3,z0,z1
+   Y = 3 (above lowest by dY = 1, height 0.397360): R(z1..z2) touching P0,z1
+== (2,2) word 1: Ua D Ub/+ Ub/-  (N = 7, period X = 7)
+   Y = 3/2 (above lowest by dY = 0, height 0.000000): T(Ua..Ua) touching D,Ua,Ub/-; T(Ub/-..Ub/-) touching D,Ua,Ub/-; R(Ub/-..Ua) touching D,Ua,Ub/-
+   Y = 2 (above lowest by dY = 1/2, height 0.327327): R(D..Ub/+) touching D,Ub/-
+== (2,2) word 2: Ua Ub/- D Ub/+  (N = 7, period X = 7)
+   Y = 1 (above lowest by dY = 0, height 0.000000): T(Ub/-..Ub/-) touching D,Ua,Ub/-; P(Ub/-..Ub/+) touching D,Ua,Ub/-; R(D..Ub/+) touching D,Ua,Ub/-
+   Y = 3/2 (above lowest by dY = 1/2, height 0.327327): T(Ua..Ua) touching Ua,Ub/-
+== (2,2) word 3: Ua Ub/- Ub/+ D  (N = 7, period X = 7)
+   Y = 3/2 (above lowest by dY = 0, height 0.000000): T(Ua..Ua) touching D,Ua,Ub/-; T(D..D) touching D,Ua,Ub/-; R(D..Ua) touching D,Ua,Ub/-
+   Y = 2 (above lowest by dY = 1/2, height 0.327327): R(Ub/-..Ub/+) touching D,Ub/-
+== (2,2) word 4: Ua D Ub/- Ub/+  (N = 7, period X = 7)
+   Y = 1 (above lowest by dY = 0, height 0.000000): T(D..D) touching D,Ua,Ub/-; P(D..Ub/+) touching D,Ua,Ub/-; R(Ub/-..Ub/+) touching D,Ua,Ub/-
+   Y = 3/2 (above lowest by dY = 1/2, height 0.327327): T(Ua..Ua) touching D,Ua
+all gaps exact: K0 dY = 1/2 (sqrt(3/76)), (2,2) words dY = 1/2 (sqrt(3/28))

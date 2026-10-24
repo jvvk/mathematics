@@ -58,11 +58,22 @@ if __name__ == "__main__":
         if bD < -1.4 or bD > -0.05:
             continue
         samples.append((bU, bD, random.uniform(0.2, 0.45)))
+    bad = 0
+    # A uniform bound on this sampled domain; O(c) mutants exceed it at small |c|.
+    bound = 1.0
     for mut, name in ((0, "claimed formulas"), (1, "MUTANT xi sign flipped"), (2, "MUTANT xi factor 1 not 1/2"),
                       (3, "MUTANT phase beta_D not beta_U"), (4, "MUTANT cushion sign flipped")):
         worst = [0.0, 0.0, 0.0]
+        accepted = True
         for bU, bD, b in samples:
             for c in (-1e-2, -1e-3, -1e-4):
                 e = errors(bU, bD, b, c, mut)
-                worst = [max(w, x / c**2) for w, x in zip(worst, e)]
+                scaled = [x / c**2 for x in e]
+                accepted = all(math.isfinite(x) and x < bound for x in scaled) and accepted
+                worst = [max(w, x) for w, x in zip(worst, scaled)]
         print(f"{name:34s} max err/c^2:  X {worst[0]:.3g}   Y {worst[1]:.3g}   hinge {worst[2]:.3g}")
+        if (mut == 0 and not accepted) or (mut != 0 and accepted):
+            bad += 1
+            print(f"FAIL: {name}: " + ("first-order error bound exceeded" if mut == 0 else "mutant survived"))
+    print(f"{'FAIL' if bad else 'PASS'}: {len(samples)} triangle samples, error/c^2 < {bound}, 4 mutants checked, {bad} failures")
+    sys.exit(1 if bad else 0)

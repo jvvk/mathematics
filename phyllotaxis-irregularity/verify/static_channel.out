@@ -1,0 +1,13 @@
+(2,3) a,s,e,zeta,q=(0, 0.3, 1, 1, 0.05): valid=True mu_C=+0.553 mu_Z=-0.265 predicted not P, simulated T (2, 3)->(3, 3) ok
+(2,3) a,s,e,zeta,q=(0, 0.4, 1, 1, 0.05): valid=True mu_C=+0.466 mu_Z=-0.091 predicted not P, simulated T (2, 3)->(3, 3) ok
+(2,3) a,s,e,zeta,q=(0, 0.7, 1, 1, 0.05): valid=True mu_C=+0.207 mu_Z=+0.428 predicted P, simulated P (2, 3)->(2, 2) ok
+(2,3) a,s,e,zeta,q=(0, 0.8, 1, 0.5, 0.05): valid=True mu_C=+0.120 mu_Z=+0.601 predicted P, simulated P (2, 3)->(2, 2) ok
+(3,4) a,s,e,zeta,q=(0, 0.3, 1, 1, 0.05): valid=True mu_C=+0.555 mu_Z=-0.262 predicted not P, simulated T (3, 4)->(4, 4) ok
+(3,4) a,s,e,zeta,q=(0, 0.4, 1, 1, 0.05): valid=True mu_C=+0.469 mu_Z=-0.089 predicted not P, simulated T (3, 4)->(4, 4) ok
+(3,4) a,s,e,zeta,q=(0, 0.7, 1, 1, 0.05): valid=True mu_C=+0.209 mu_Z=+0.430 predicted P, simulated P (3, 4)->(3, 3) ok
+(3,4) a,s,e,zeta,q=(0, 0.8, 1, 0.5, 0.05): valid=True mu_C=+0.122 mu_Z=+0.604 predicted P, simulated P (3, 4)->(3, 3) ok
+(4,5) a,s,e,zeta,q=(0, 0.3, 1, 1, 0.05): valid=True mu_C=+0.557 mu_Z=-0.261 predicted not P, simulated T (4, 5)->(5, 5) ok
+(4,5) a,s,e,zeta,q=(0, 0.4, 1, 1, 0.05): valid=True mu_C=+0.470 mu_Z=-0.088 predicted not P, simulated T (4, 5)->(5, 5) ok
+(4,5) a,s,e,zeta,q=(0, 0.7, 1, 1, 0.05): valid=True mu_C=+0.210 mu_Z=+0.431 predicted P, simulated P (4, 5)->(4, 4) ok
+(4,5) a,s,e,zeta,q=(0, 0.8, 1, 0.5, 0.05): valid=True mu_C=+0.124 mu_Z=+0.605 predicted P, simulated P (4, 5)->(4, 4) ok
+PASS: 12 channel comparisons, 0 failures

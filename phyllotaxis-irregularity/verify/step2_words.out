@@ -1,0 +1,12 @@
+beta=0.42 eps/|c|=+5: (3,2) cycle words: [Ua/+ Ua/- Ub/+ D Ub/-] x298; [Ua/+ Ub/- Ua/- Ub/+ D] x298; [Ua/+ Ub/- Ub/+ Ua/- D] x298; [Ua/+ D Ub/- Ub/+ Ua/-] x298; [Ua/+ D Ub/+ Ub/- Ua/-] x297; [Ua/+ Ua/- D Ub/+ Ub/-] x297
+    burst: T->Ua/+ D Ub/-/+ Ub/-/- Ub/+ Ua/- | R->Ua/+ Ua/- D Ub/-/+ Ub/-/- Ub/+ | T->Ua/+ Ua/- D/+ D/- Ub/-/+ Ub/-/- Ub/+ | P->['P/-', 'Ua/-', 'D/+', 'D/-', 'Ub/-/+', 'P(Ub/-/-,Ub/+,Ua/+)/+']
+beta=0.42 eps/|c|=-5: (3,2) cycle words: [Ua/+ Ua/- Ub/+ Ub/- D] x298; [Ua/+ D Ua/- Ub/+ Ub/-] x298; [Ua/+ D Ub/+ Ua/- Ub/-] x298; [Ua/+ Ub/- D Ub/+ Ua/-] x298; [Ua/+ Ub/- Ub/+ D Ua/-] x298; [Ua/+ Ua/- Ub/- Ub/+ D] x298
+    burst: T->Ua/+ Ua/- Ub/-/+ Ub/-/- Ub/+ D | R->Ua/+ D Ua/- Ub/-/+ Ub/-/- Ub/+ | T->Ua/+ D Ua/-/+ Ua/-/- Ub/-/+ Ub/-/- Ub/+ | P->['Ua/-/-', 'Ub/-/+', 'P(Ub/-/-,Ub/+,Ua/+)/+', 'P/-', 'D', 'Ua/-/+']
+beta=0.42 eps/|c|=+1: (3,2) cycle words: [Ua/+ Ua/- Ub/+ D Ub/-] x300; [Ua/+ Ub/- Ua/- Ub/+ D] x300; [Ua/+ Ub/- Ub/+ Ua/- D] x299; [Ua/+ D Ub/- Ub/+ Ua/-] x299; [Ua/+ D Ub/+ Ub/- Ua/-] x299; [Ua/+ Ua/- D Ub/+ Ub/-] x299
+    burst: T->Ua/+ Ub/- Ua/-/+ Ua/-/- Ub/+ D | T->Ua/+ Ub/- Ua/-/+ Ua/-/- Ub/+ D/+ D/- | T->Ua/+ Ub/-/+ Ub/-/- Ua/-/+ Ua/-/- Ub/+ D/+ D/-
+beta=0.52 eps/|c|=+5: (3,2) cycle words: [Ua/+ Ua/- Ub/+ Ub/- D] x298; [Ua/+ D Ua/- Ub/+ Ub/-] x298; [Ua/+ D Ub/+ Ua/- Ub/-] x298; [Ua/+ Ub/- D Ub/+ Ua/-] x298; [Ua/+ Ub/- Ub/+ D Ua/-] x297; [Ua/+ Ua/- Ub/- Ub/+ D] x297
+    burst: T->Ua/+ Ub/- D/+ D/- Ub/+ Ua/- | R->Ua/+ Ua/- Ub/- D/+ D/- Ub/+ | T->Ua/+ Ua/- Ub/-/+ Ub/-/- D/+ D/- Ub/+ | P->['P(D/-,Ub/+,Ua/+)/+', 'P/-', 'Ua/-', 'Ub/-/+', 'Ub/-/-', 'D/+']
+beta=0.52 eps/|c|=-5: (3,2) cycle words: [Ua/+ Ua/- Ub/+ D Ub/-] x298; [Ua/+ Ub/- Ua/- Ub/+ D] x298; [Ua/+ Ub/- Ub/+ Ua/- D] x298; [Ua/+ D Ub/- Ub/+ Ua/-] x298; [Ua/+ D Ub/+ Ub/- Ua/-] x297; [Ua/+ Ua/- D Ub/+ Ub/-] x297
+    burst: T->Ua/+ D Ub/-/+ Ub/-/- Ub/+ Ua/- | R->Ua/+ Ua/- D Ub/-/+ Ub/-/- Ub/+ | T->Ua/+ Ua/- D/+ D/- Ub/-/+ Ub/-/- Ub/+ | P->['D/+', 'D/-', 'Ub/-/+', 'P(Ub/-/-,Ub/+,Ua/+)/+', 'P/-', 'Ua/-']
+beta=0.52 eps/|c|=+1: (3,2) cycle words: [Ua/+ Ua/- Ub/+ D Ub/-] x300; [Ua/+ Ub/- Ua/- Ub/+ D] x300; [Ua/+ Ub/- Ub/+ Ua/- D] x299; [Ua/+ D Ub/- Ub/+ Ua/-] x299; [Ua/+ D Ub/+ Ub/- Ua/-] x299; [Ua/+ Ua/- D Ub/+ Ub/-] x299
+    burst: T->Ua/+ Ub/- Ua/-/+ Ua/-/- Ub/+ D | T->Ua/+ Ub/- Ua/-/+ Ua/-/- Ub/+ D/+ D/- | T->Ua/+ Ub/-/+ Ub/-/- Ua/-/+ Ua/-/- Ub/+ D/+ D/-
