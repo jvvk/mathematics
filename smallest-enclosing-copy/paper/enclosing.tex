@@ -17,7 +17,7 @@
 
 \title{Does the smallest enclosing copy fit?\\ Random points in a convex polygon}
 \author{Vamshi Jandhyala}
-\date{Preprint, version 2, 23 October 2026 (expository revision; results unchanged from version 1 of 8 October). Not peer reviewed.}
+\date{Preprint, version 3, 24 October 2026 (version 1: 8 October; version 2: expository revision; results unchanged throughout). Not peer reviewed.}
 \subjclass[2020]{60D05; 52A22; 60G55}
 \keywords{random polygons, smallest enclosing copy, Poisson limit, linear programming, Mecke equation, formal verification}
 
@@ -34,8 +34,8 @@ governed by the freedom to rotate the enclosing copy, which has no analogue for 
 \end{abstract}
 \maketitle
 
-\noindent\emph{Status of this preprint.} Every theorem, lemma and corollary is formally verified in Lean~4
-(Section~\ref{sec:lean}), using only Lean's standard axioms. The exposition, the numerical results of
+\noindent\emph{Status of this preprint.} Every theorem and corollary is formally verified in Lean~4
+(Section~\ref{sec:lean}), using only Lean's standard axioms, and so are the parts of the lemmas listed there. The exposition, the numerical results of
 Section~\ref{sec:num} and Conjecture~\ref{conj:eq} are not formally verified, and this version has not yet been
 independently reviewed.
 
@@ -46,7 +46,10 @@ Drop $n$ random points into a disk and draw the smallest circle containing them.
 disk? A question on Mathematics Stack Exchange \cite{mse} asked for the limiting probability, and an answer there
 shows that it is exactly $1/2$. A follow-up on MathOverflow \cite{mo} asked whether the same holds when the disk and
 the circle are replaced by a regular polygon and a smallest enclosing regular polygon of the same kind, which may be
-rotated. The asker's simulations for two points suggested a family resemblance with the disk.
+rotated. The asker's simulations for two points suggested a family resemblance with the disk. The author answered
+that question on MathOverflow on 2 October 2026 \cite{moans}, announcing the values $13/48$ and $1/4$ and the prism
+formula with an outline of the Poisson, linear-programming and Mecke argument; this paper gives the complete proofs,
+the formula for every convex polygon, the triangle family and the formal verification.
 
 The answer is no, and the reason is instructive. A smallest enclosing polygon wants to turn slightly: turning by an
 angle of order $1/n$ lets it hug the outermost points better, and the same turn pushes its corners out by a distance
@@ -265,7 +268,8 @@ contains the sample.
 $W_i^+=\{x:s_i(x)\in[b_i-w_i,b_i-w_i/2]\}$ and $W_i^-=\{x:s_i(x)\in[a_i+w_i/2,a_i+w_i]\}$ near its two ends, with
 $w_i=\min(\delta_K,L_i)/2$. Call points of the sample in $W_i^\pm$ at depth $d_i\le y/n$ \emph{witnesses}. The part of
 $W_i^\pm$ at depth at most $y/n$ has area $w_iy/(2n)$, so the probability that some window has no witness is at most
-$2m\max_i(1-w_iy/(2n))^n\le2me^{-\min_iw_iy/2}$, small for large $y$, uniformly in $n$.
+$2m\max_i(1-w_iy/(2n))^n\le2me^{-\min_iw_iy/2}$, small for large $y$. The area formula needs the band of depth
+$y/n$ to stay inside the window, so this holds for $n\ge N(K,y)$, which is all the limit argument uses.
 
 Suppose every side has witnesses $x_i^\pm$ at scaled depths $D_i^\pm=nd_i(x_i^\pm)\le M$, and let $z$ satisfy their
 constraints, with $\lambda_q(z)\le1$ and $|q\Theta|\le Q/4$. By Lemma~\ref{lem:tangent}(a), $D_i^+\ge\Theta s_i^+-H_i$.
@@ -333,7 +337,7 @@ to depths at most $T$, and by Lemma~\ref{lem:exist} and the witness bound the op
 bounded box whose lines are below a finite depth, almost surely, so $E^T=E$ for all large $T$.
 
 \emph{Assembly.} Given $\epsilon>0$ choose $y$ so that the sample has witnesses at depth at most $y/n$ with
-probability at least $1-\epsilon$ for all $n$ (Step 1), then $M\ge y$ with $2me^{-\min_iw_iM/2}\le\epsilon$, then $R$,
+probability at least $1-\epsilon$ for all $n\ge N(K,y)$ (Step 1), then $M\ge y$ with $2me^{-\min_iw_iM/2}\le\epsilon$, then $R$,
 $\eta$, $\delta$ and $T\ge T_c$ with $|\Prob(E^T)-p(K)|\le\epsilon$ (Steps 0, 1, 2 and 5). For large $n$,
 $\Prob(\mathcal A_n^c)\le2\epsilon$ (Steps 0, 1, 2), so $|\Prob(E_n)-\Prob(F_n(\mu_n))|\le2\epsilon$; then
 $|\Prob(F_n(\mu_n))-\Prob(F(\Pi^T))|\le\epsilon$ (Steps 3 and 4), $|\Prob(F(\Pi^T))-\Prob(E^T)|\le\epsilon$ (Step 5) and
@@ -346,8 +350,10 @@ of a point $j$ on side $i$, and $\tau=(0,t_k,0)$. A feasible $z$ is optimal for 
 $e_1=\sum_{j\in B}\lambda_ja_j$ for some $\lambda_j\ge0$, where $B$ is the set of constraints tight at $z$.
 
 \begin{lemma}\label{lem:nondeg}
-For the limit model, and for $\Pi^T$ at each cutoff $T$, the following hold almost surely whenever the optimal set
-$Z^*$ is nonempty.
+For the limit model, and for $\Pi^T$ at each cutoff $T$ on the event that every side carries a point of $\Pi^T$ near
+each of its ends (in particular on the witness event of Step~5), the following hold almost surely whenever the
+optimal set $Z^*$ is nonempty. (Without points near the ends of some sides, the segment in (S) can be unbounded
+for $\Pi^T$.)
 \begin{itemize}
 \item[(a)] Either (V) $Z^*=\{z^*\}$, exactly four constraints are tight at $z^*$, their gradient matrix $A_B$ is
 invertible and $A_B^{-\top}e_1$ is positive; or (S) exactly three constraints are tight on $Z^*$, from points
@@ -382,7 +388,8 @@ incompatible with $\sum\lambda_ju_{i(j)}=0$ and $\lambda>0$; two points on $k$ a
 $\lambda_{j_1}+\lambda_{j_2}=\lambda_{j_3}$ together with $\sum\lambda_js_j=0$ forces $s_{j_1}<-s_{j_3}<s_{j_2}$
 (equality is a null event). If $|B|=4$ the rows are independent and $\lambda=A_B^{-\top}e_1$ is positive by
 minimality: case (V). In case (S) every row in $B$ is orthogonal to $\tau$, so $Z^*$ contains a segment in direction
-$\tau$, bounded because sides with $u_j\cdot t_k>0$ and with $u_j\cdot t_k<0$ both exist; its endpoints are where one
+$\tau$, bounded because sides with $u_j\cdot t_k>0$ and with $u_j\cdot t_k<0$ both exist and carry points (almost
+surely in the limit model, by assumption for $\Pi^T$); its endpoints are where one
 further constraint becomes tight. A further tight point at $z^*$ in case (V), or a fifth constraint tight at an
 endpoint in case (S), is an affine relation in that point's depth with coefficient $1$, so null. If no optimal point
 carries a set of type (S), $Z^*$ is a single point, since a face of positive dimension would contain a point whose
@@ -498,8 +505,9 @@ holds}\}$, the sum over sets of four distinct points of $\Pi$. By the multivaria
 \Pi\cup\{x_1,\dots,x_4\}\text{, and }E\text{ holds}\big)\,dx_1\cdots dx_4 ,
 \end{multline*}
 the factor $1/24$ accounting for the orderings. Fix the sides $i_r$ and positions $s_r$ of the $x_r$, with $\det
-A\ne0$. The map $(D_1,\dots,D_4)\mapsto z=(\varepsilon,C,\Theta)$ defined by making the four constraints tight,
-$D_r=\Theta s_r-\varepsilon h_{i_r}-C\cdot u_{i_r}$, is affine with Jacobian $|\det A|$. Given $z$, the four points
+A\ne0$. The map $z=(\varepsilon,C,\Theta)\mapsto(D_1,\dots,D_4)$ defined by making the four constraints tight,
+$D_r=\Theta s_r-\varepsilon h_{i_r}-C\cdot u_{i_r}$, is affine with Jacobian $|\det A|$ (its inverse has Jacobian
+$1/|\det A|$). Given $z$, the four points
 form the tight set of an optimal vertex iff (a) the KKT condition $e_1\in\operatorname{int}\operatorname{cone}(\text{rows
 of }A)$ holds, which depends only on the $s_r$, and (b) no point of $\Pi$ violates a constraint at $z$. On the event
 $E$, which at $z$ reads $C\in R(-\varepsilon,\Theta)$ (that is, $H_i\le\min(\Theta a_i,\Theta b_i)$; the set
@@ -619,10 +627,11 @@ standard error $\le3\times10^{-4}$).}
 \end{table}
 
 The values are not monotone: apart from $q=3,4$ (where $p_3>p_4$), the computed odd values $q=5,7$ lie below
-their even neighbours. They appear to settle near $0.146$ for large $q$ (we computed up to $q=200$), and do not approach the disk value $1/2$. For the disk
-the enclosing circle has no rotational freedom and its size is governed by curvature; for a polygon with many sides
-the rotation still costs a corner poke of order $1/n$ while the side lengths shrink, and the two limits $n\to\infty$
-and $q\to\infty$ do not commute.
+their even neighbours. They appear to settle near $0.146$ for large $q$ (we computed up to $q=200$), well away from the disk value $1/2$.
+This is numerical evidence only: we have not proved that $p_q$ converges, nor that its limit differs from $1/2$. The
+heuristic reason is that for the disk the enclosing circle has no rotational freedom and its size is governed by
+curvature, while for a polygon with many sides the rotation still costs a corner poke of order $1/n$ as the side
+lengths shrink; if so, the limits $n\to\infty$ and $q\to\infty$ would not commute.
 
 \section{Formal verification}\label{sec:lean}
 
@@ -637,7 +646,10 @@ is that some copy $\lambda R_\theta K+c$ of least $\lambda$ containing the sampl
 position: $\Prob(E_n)$ tends to the value of Theorem~\ref{thm:formula}, which is the probability of $E$ in the limit
 model. The proof follows Section~\ref{sec:conv}; the Poisson processes, the multivariate Mecke equation and the
 Poisson approximation of Step~3 are developed from scratch, since Mathlib has no point processes.
-\item Lemmas~\ref{lem:nondeg}, \ref{lem:stab} and~\ref{lem:void}, the coercivity part of Lemma~\ref{lem:exist}
+\item Lemma~\ref{lem:nondeg} as used: every optimum is a single certified vertex or lies on a segment in the
+direction $\tau$ (\texttt{optimum\_structure}; the boundedness of that segment in (a) is part of the written argument
+only), together with (b) and (c) (\texttt{optimum\_tilt\_gap}, \texttt{nonDeg\_ae}, \texttt{strict\_rep}); Lemmas~\ref{lem:stab}
+and~\ref{lem:void}; the coercivity part of Lemma~\ref{lem:exist}
 (bounded tilt, and deep points never binding; existence of an optimum is not needed), and Theorem~\ref{thm:formula}
 for every polygon whose sides satisfy the nondegeneracy conditions used here (unit normals, positive width across
 parallel sides), which every strictly convex polygon of area one does.
@@ -657,9 +669,11 @@ The Lean source, the simulation programs and an independent recheck of the trian
 
 \section{Numerical verification}\label{sec:num}
 
-Every value in this paper was checked by at least two of three independent programs: (i) exact simulation of the
-finite problem, minimising over rotations with a linear program at each angle; (ii) Monte Carlo simulation of the
-limit LP with Poisson strips; (iii) evaluation of the formulas above. For regular $q$-gons with $q\ge5$ the check is
+Every value in this paper was checked by at least two of three independent programs: (i) simulation of the
+finite problem, minimising over rotations with a linear program at each angle (the rotation is searched on an
+interval and refined locally, so the global minimum over rotations is approximated, not certified); (ii) Monte Carlo simulation of the
+limit LP with Poisson strips cut off at a fixed depth (the reported standard errors are sampling errors only; the
+bias from the cutoff is not bounded); (iii) evaluation of the formulas above. For regular $q$-gons with $q\ge5$ the check is
 weaker: the values in Table~\ref{tab:reg} come from two separate implementations of Corollary~\ref{cor:reg} (for
 instance $p_5=0.1732$ and $0.17345\pm0.00042$), and limit-LP simulations confirm them only to about $\pm0.01$.
 
@@ -723,6 +737,13 @@ smooth convex bodies other than the disk, and to higher dimensions, where the ro
 The derivations, text, simulation programs and Lean formalisation were developed with the AI assistants Claude
 (Anthropic) and Codex (OpenAI), under the author's direction. The author is responsible for the contents.
 
+\emph{Changes in version 3.} After a Codex referee report: the author's MathOverflow answer of 2 October 2026 is
+cited; Lemma~\ref{lem:nondeg}(a) is stated for $\Pi^T$ only on the event that every side carries points near its
+ends, which is where it is used; the witness bound of Step~1 holds for $n\ge N(K,y)$, not for all $n$; the Jacobian
+sentence names the direction of the map; the statements about large $q$ are marked as numerical evidence; the
+numerical programs are described as approximations (rotation search, depth cutoff); and the Lean coverage of the
+lemmas is stated exactly. The theorems, corollaries and their proofs are unchanged.
+
 \begin{thebibliography}{9}
 
 \bibitem{groeneboom88} P.~Groeneboom, Limit theorems for convex hulls, \emph{Probab. Theory Related Fields}
@@ -733,6 +754,8 @@ Probab.} \textbf{44} (2012), no.~2, 330--342. \url{https://doi.org/10.1239/aap/1
 Textbooks~7, Cambridge University Press, 2017. \url{https://doi.org/10.1017/9781316104477}
 \bibitem{mo} Dan, Question about $n$ random points in a regular polygon, and a limiting probability, MathOverflow
 question 458571, 16 November 2023. \url{https://mathoverflow.net/q/458571} (accessed 8 October 2026).
+\bibitem{moans} V.~Jandhyala, answer to \cite{mo}, MathOverflow answer 515687, 2 October 2026.
+\url{https://mathoverflow.net/a/515687}
 \bibitem{morin25} L.~Morin, Probability that $n$ points are in convex position in a regular $\kappa$-gon: asymptotic
 results, \emph{Adv. Appl. Probab.} \textbf{57} (2025), no.~3, 811--870. \url{https://doi.org/10.1017/apr.2024.63}
 \bibitem{morin26} L.~Morin, Probability that $n$ points are in convex position in a general convex polygon:

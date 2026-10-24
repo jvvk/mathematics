@@ -4,7 +4,7 @@
 Each mutant copies one file to Enclosing/Mut.lean with a single textual change and compiles it
 with `lake env lean` (single process, nice 15). Unmutated copies must pass (baseline).
 """
-import subprocess, sys, pathlib
+import subprocess, sys, pathlib, re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 D = ROOT / "EnclosingCopy" / "Enclosing"
@@ -404,11 +404,39 @@ MUTANTS = [
      "        if Odd q then ENNReal.ofReal (8 / (3 * (q : ℝ) ^ 2)) else 0)) := by"),
 ]
 
-def check(text: str) -> bool:
+def first_error(output: str) -> str:
+    return next((line for line in output.splitlines() if re.match(r"^.+:\d+:\d+:\s*error:", line)), "")
+
+def run_check(cmd, cwd, path, timeout):
+    try:
+        r = subprocess.run(cmd, cwd=cwd, capture_output=True, text=True, timeout=timeout)
+    except subprocess.TimeoutExpired as e:
+        out = e.stdout or ""; err = e.stderr or ""
+        if isinstance(out, bytes): out = out.decode(errors="replace")
+        if isinstance(err, bytes): err = err.decode(errors="replace")
+        return "TIMEOUT", out + "\n" + err
+    except OSError as e:
+        return "INFRA", str(e)
+    output = r.stdout + "\n" + r.stderr; lower = output.lower()
+    if r.returncode < 0 or 128 < r.returncode < 160: return "CRASH", output
+    if r.returncode == 124: return "TIMEOUT", output
+    if any(s in lower for s in ("maximum recursion depth", "maxrecdepth", "heartbeat", "deterministic timeout", "out of memory", "stack overflow")):
+        return "RESOURCE", output
+    if any(s in lower for s in ("toolchain", "unknown package", "unknown module prefix", "object file", "no such file or directory", "command not found")):
+        return "INFRA", output
+    if r.returncode == 0 and not re.search(r"\berror:", output): return "OK", output
+    if r.returncode == 1:
+        for line in output.splitlines():
+            m = re.match(r"^(.+?):\d+:\d+:\s*error:", line)
+            if m:
+                source = pathlib.Path(m[1])
+                if not source.is_absolute(): source = pathlib.Path(cwd) / source
+                if source.resolve() == pathlib.Path(path).resolve(): return "REJECTED", output
+    return "INFRA", output
+
+def check(text: str):
     MUT.write_text(text)
-    r = subprocess.run(["nice", "-n", "15", "lake", "env", "lean", str(MUT)], cwd=ROOT,
-                       capture_output=True, text=True, timeout=600)
-    return r.returncode == 0 and "error" not in r.stdout
+    return run_check(["nice", "-n", "15", "lake", "env", "lean", str(MUT)], ROOT, MUT, 600)
 
 def main() -> int:
     bad = 0
@@ -416,17 +444,23 @@ def main() -> int:
     sel = [m for m in MUTANTS if not sys.argv[1:] or any(a in m[1] for a in sys.argv[1:])]
     try:
         for f in sorted({m[1] for m in sel}):
-            ok = check((D / f).read_text())
-            print(f"baseline {'ok' if ok else 'FAILS'}: {f}", flush=True)
-            bad += not ok
+            status, output = check((D / f).read_text())
+            print(f"baseline {'ok' if status == 'OK' else status}: {f}", flush=True)
+            if status != "OK":
+                print(output, flush=True)
+                bad += 1
+        if bad:
+            print(f"{len(sel)} mutants, {bad} problems (baseline failure)")
+            return 1
         for name, f, old, new in sel:
             src = (D / f).read_text()
             if src.count(old) != 1:
                 print(f"MUTATION DID NOT APPLY: {name}", flush=True); bad += 1; continue
-            if check(src.replace(old, new)):
-                print(f"MUTANT SURVIVED: {name}", flush=True); bad += 1
-            else:
-                print(f"rejected: {name}", flush=True)
+            status, output = check(src.replace(old, new))
+            print(f"{'SURVIVED' if status == 'OK' else status}: {name}", flush=True)
+            error = first_error(output)
+            print(error or "(no Lean error diagnostic)", flush=True)
+            if status != "REJECTED": bad += 1
     finally:
         MUT.unlink(missing_ok=True)
     print(f"{len(sel)} mutants, {bad} problems")

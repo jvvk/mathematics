@@ -20,12 +20,12 @@ def sample(m):
     return out[:m]
 def lam_of(X, t):
     Ut = U @ R(t).T; hx = (X @ Ut.T).max(0)            # support of points in rotated normals
-    r = linprog([1, 0, 0], A_ub=-np.c_[H, Ut], b_ub=-hx, bounds=[(None, None)] * 3, method="highs"); return r.fun, hx, Ut
+    r = G.checked(linprog([1, 0, 0], A_ub=-np.c_[H, Ut], b_ub=-hx, bounds=[(None, None)] * 3, method="highs")); return r.fun, hx, Ut
 def ok(X, t):
     lam, hx, Ut = lam_of(X, t); W = (V @ R(t).T) * lam  # copy vertices before shift
     A = np.r_[-Ut, np.tile(U, (len(V), 1))]
     b = np.r_[lam * H - hx + 1e-12, (np.repeat(H[None], len(V), 0) - W @ U.T).reshape(-1)]
-    return linprog([0, 0], A_ub=A, b_ub=b, bounds=[(None, None)] * 2, method="highs").status == 0
+    return G.checked(linprog([0, 0], A_ub=A, b_ub=b, bounds=[(None, None)] * 2, method="highs"), infeasible=True).status == 0
 res = []
 try:
     for _ in range(T):
@@ -37,5 +37,6 @@ try:
             if f(m1) < f(m2): b = m2
             else: a = m1
         res.append(ok(X, (a + b) / 2))
-except Exception as e: print("stopped:", type(e).__name__)
+except TimeoutError as e: print("stopped:", type(e).__name__)
+if not res: sys.exit("no trials completed")
 m = np.mean(res); print(f"finite {name} n={n}: trials={len(res)} P={m:.4f} +- {math.sqrt(m*(1-m)/len(res)):.4f}")

@@ -2,7 +2,7 @@
 triangle_closed.py. It uses the closed form g(a, b) = (Phi(a + b) - Phi(a - b)) / (2ab), with Phi even,
 Phi(x) = x^2/2 - x^4/12 for |x| <= 1 and 2|x|/3 - 1/4 for |x| >= 1 (proved in Lean as g_closed), and
 p = (1 / (2 sum L^2)) sum_k L_k^2 g(L_i^2/L_k^2, L_j^2/L_k^2) with side lengths from the law of sines."""
-import math
+import math, sys
 
 def Phi(x):
     x = abs(x)
@@ -19,6 +19,12 @@ cases = [("equilateral", (60, 60, 60), 13 / 48), ("right isosceles", (90, 45, 45
          ("30-60-90", (90, 60, 30), 29 / 96), ("20-40-120", (20, 40, 120), None),
          ("flat isosceles (limit 25/72)", (1e-3, 1e-3, 180 - 2e-3), 25 / 72),
          ("needle isosceles (limit 1/3)", (90 - 1e-3, 90 - 1e-3, 2e-3), 1 / 3)]
+passed = True
 for name, ang, exact in cases:
     v = p(*ang)
     print(f"{name:30s} p = {v:.6f}" + (f"   exact {exact:.6f}" if exact else ""))
+    # Absolute tolerance 1e-8 allows the finite-angle limits and their cancellation error.
+    target = exact if exact is not None else 0.3249432990245567
+    passed &= math.isfinite(v) and abs(v - target) <= 1e-8
+print("PASS" if passed else "FAIL")
+sys.exit(0 if passed else 1)

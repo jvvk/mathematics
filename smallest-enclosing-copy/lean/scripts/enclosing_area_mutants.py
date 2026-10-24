@@ -7,7 +7,7 @@ All checks run serially, with a 120-second cap and nice priority 15.
 """
 from pathlib import Path
 import argparse
-import subprocess
+from enclosing_mutants import first_error, run_check
 import tempfile
 
 MUTANTS = [('physical strip correction sign reversed',
@@ -83,18 +83,16 @@ def main():
                         'boundary-check', str(args.imports), str(path)]
             else:
                 cmd += ['lean', str(path)]
-            result = subprocess.run(cmd, cwd=args.project, capture_output=True, text=True,
-                                    timeout=125)
-            output = result.stdout + result.stderr
-            if result.returncode in (124, 137) or 'object file' in output or 'unknown module prefix' in output:
-                raise RuntimeError(output)
-            return result.returncode == 0, output
+            return run_check(cmd, args.project, path, 125)
         for file in sorted({m[1] for m in mutants}):
-            ok, output = check((sources / file).read_text())
-            print(f"baseline {'ok' if ok else 'FAILED'}: {file}", flush=True)
-            if not ok:
+            status, output = check((sources / file).read_text())
+            print(f"baseline {'ok' if status == 'OK' else status}: {file}", flush=True)
+            if status != 'OK':
                 print(output)
                 problems += 1
+        if problems:
+            print(f'{len(mutants)} mutations; {problems} problems (baseline failure)', flush=True)
+            return 1
         for name, file, old, new in mutants:
             source = (sources / file).read_text()
             # A shared formula may occur in multiple theorem statements: change the first only.
@@ -102,10 +100,10 @@ def main():
                 print(f'mutation did not apply: {name}', flush=True)
                 problems += 1
                 continue
-            ok, output = check(source.replace(old, new, 1))
-            rejected = not ok and ('error:' in output or 'error(' in output)
-            print(f"{'rejected' if rejected else 'FAILED'}: {name}", flush=True)
-            if not rejected:
+            status, output = check(source.replace(old, new, 1))
+            print(f"{'SURVIVED' if status == 'OK' else status}: {name}", flush=True)
+            print(first_error(output) or '(no Lean error diagnostic)', flush=True)
+            if status != 'REJECTED':
                 print(output)
                 problems += 1
     print(f'{len(mutants)} mutations; {problems} problems', flush=True)

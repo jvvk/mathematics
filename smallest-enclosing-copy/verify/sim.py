@@ -11,6 +11,7 @@ Usage: sim.py finite p n trials seed | sim.py limit p trials seed"""
 import os, sys, signal, math, numpy as np
 from scipy.optimize import linprog
 from scipy.spatial import ConvexHull
+from general_K import checked
 def _stop(*_): raise TimeoutError
 signal.signal(signal.SIGALRM, _stop); signal.alarm(int(os.environ.get("TIME_LIMIT", "0")))
 
@@ -32,6 +33,7 @@ def sample(p, n, rng):
 def r_of(H, p, th):     # LP: min r s.t. r + c.u_k >= h_k
     U = normals(p, th); h = (H @ U.T).max(0)
     res = linprog([1, 0, 0], A_ub=-np.c_[np.ones(p), U], b_ub=-h, bounds=[(None, None)] * 3, method="highs")
+    checked(res)
     return res.fun, h
 
 def inside_ok(H, p, th):
@@ -40,7 +42,7 @@ def inside_ok(H, p, th):
     A = np.r_[-U, np.tile(N0, (p, 1))]
     b = np.r_[r - h + 1e-12, (1 - (np.repeat(W, p, 0) * np.tile(N0, (p, 1))).sum(-1))]
     res = linprog([0, 0], A_ub=A, b_ub=b, bounds=[(None, None)] * 2, method="highs")
-    return res.status == 0
+    return checked(res, infeasible=True).status == 0
 
 def finite_trial(p, n, rng):
     X = sample(p, n, rng); H = X[ConvexHull(X).vertices] if n >= 3 else X
@@ -68,6 +70,7 @@ def limit_trial(p, rng, Dmax=12.0, mutant=False):
             rows.append([-1, si, -U[k, 0], -U[k, 1]]); rhs.append(Di)
     A = np.array(rows); b = np.array(rhs)
     res = linprog([1, 0, 0, 0], A_ub=A, b_ub=b, bounds=[(None, None)] * 4, method="highs")
+    checked(res)
     rho, Th = res.x[0], res.x[1]
     # among optima (fix rho, keep Theta's sign region): exists (Theta, C) with feasibility and inside condition
     ok = False
@@ -76,7 +79,7 @@ def limit_trial(p, rng, Dmax=12.0, mutant=False):
         b2 = np.r_[b + rho, -rho * np.ones(p)]
         bnd = [(0, None) if sg == 1 else (None, 0), (None, None), (None, None)]
         r2 = linprog([0, 0, 0], A_ub=A2, b_ub=b2 + 1e-9, bounds=bnd, method="highs")
-        ok |= r2.status == 0
+        ok |= checked(r2, infeasible=True).status == 0
     return ok, Th
 
 if __name__ == "__main__":
@@ -90,6 +93,7 @@ if __name__ == "__main__":
             p, T = int(sys.argv[2]), int(sys.argv[3])
             Dm = float(sys.argv[5]) if len(sys.argv) > 6 else 12.0; mut = len(sys.argv) > 7
             for _ in range(T): res.append(limit_trial(p, rng, Dm, mut)[0])
-    except Exception as e:
+    except TimeoutError as e:
         print("stopped:", type(e).__name__)
+    if not res: sys.exit("no trials completed")
     k = len(res); m = sum(res); print(f"{mode} p={sys.argv[2]} trials={k} P(inside)={m/k:.4f} +- {math.sqrt(m/k*(1-m/k)/k):.4f}")

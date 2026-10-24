@@ -17,7 +17,10 @@ def lower_hull(sig, D):
 def side(rng, Dmax=12.0):
     m = rng.poisson(2 * Dmax); return lower_hull(rng.uniform(-1, 1, m), rng.uniform(0, Dmax, m))
 
-M = lambda H, T: (T * H[:, 0] - H[:, 1]).max()
+def M(H, T):
+    v = (T * H[:, 0] - H[:, 1]).max()
+    if not np.isfinite(v): raise ValueError("non-finite support value")
+    return v
 
 def trial(p, rng):
     Hs = [side(rng) for _ in range(p)]
@@ -26,7 +29,9 @@ def trial(p, rng):
     # breakpoints: hull edge slopes, plus (p=4) crossings of the two pair sums, found by bisection on a bracket
     bps = sorted(set(float((b[1]-a[1])/(b[0]-a[0])) for H in Hs for a, b in zip(H[:-1], H[1:])))
     bps = [-1e6] + bps + [1e6]
+    if not np.isfinite(bps).all(): raise ValueError("non-finite breakpoint")
     vals = [f(t) for t in bps]; i = int(np.argmin(vals))
+    if not np.isfinite(vals).all(): raise ValueError("non-finite objective")
     a, b = bps[max(i-1, 0)], bps[min(i+1, len(bps)-1)]
     for _ in range(80):   # ternary search on the convex function inside the bracket
         m1, m2 = a + (b-a)/3, b - (b-a)/3
@@ -39,5 +44,6 @@ if __name__ == "__main__":
     p, n, seed = map(int, sys.argv[1:4]); rng = np.random.default_rng(seed); r = []
     try:
         for _ in range(n): r.append(trial(p, rng))
-    except Exception as e: print("stopped:", type(e).__name__)
+    except TimeoutError as e: print("stopped:", type(e).__name__)
+    if not r: sys.exit("no trials completed")
     k, m = len(r), sum(r); print(f"p={p} trials={k} P={m/k:.4f} +- {math.sqrt(m/k*(1-m/k)/k):.4f}")

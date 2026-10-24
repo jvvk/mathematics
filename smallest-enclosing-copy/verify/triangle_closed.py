@@ -1,7 +1,7 @@
 """Closed form for triangles: P = (1/(2 sum L^2)) sum_k L_k^2 g(x_i, x_j), x_i = (L_i/L_k)^2,
 g(al, be) = E[(1 - (al U1 + be U2)^2)_+], U uniform on [-1,1] (1-D integral against the trapezoid density).
 Checks against triangle_exact.py, then scans shapes on a fine grid (law of sines: L proportional to sin(angle))."""
-import math, numpy as np
+import math, sys, numpy as np
 def g(al, be, n=4001):
     lo, hi = abs(al - be), al + be                 # density of W = al U1 + be U2 on [-hi, hi]: trapezoid
     w = np.linspace(0, min(1.0, hi), n)
@@ -14,11 +14,20 @@ def P_closed(A, B):
     return tot / (2 * (L ** 2).sum())
 if __name__ == "__main__":
     from triangle_exact import P_angles
+    passed = True
     for A, B in [(60, 60), (30, 60), (20, 40), (80, 60), (45, 45)]:
-        print(A, B, round(P_closed(A, B), 6), round(P_angles(A, B, 1201), 6))
+        closed, exact = P_closed(A, B), P_angles(A, B, 1201)
+        print(A, B, round(closed, 6), round(exact, 6))
+        # Absolute tolerance 1e-6 covers the 1201-point 2-D quadrature error.
+        passed &= math.isfinite(closed) and math.isfinite(exact) and abs(closed - exact) <= 1e-6
     best = (1, None)
     for A in np.linspace(0.5, 60, 240):
         for B in np.linspace(A, (180 - A) / 2, 120):
             p = P_closed(A, B)
+            # The 4001-point 1-D quadrature has error below 1e-7 on this grid.
+            passed &= math.isfinite(p) and p >= 13 / 48 - 1e-7
             if p < best[0]: best = (p, (round(A, 3), round(B, 3)))
     print("grid minimum:", round(best[0], 7), "at angles", best[1], " 13/48 =", round(13 / 48, 7))
+    passed &= abs(best[0] - 13 / 48) <= 1e-7
+    print("PASS" if passed else "FAIL")
+    sys.exit(0 if passed else 1)

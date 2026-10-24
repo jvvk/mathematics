@@ -17,11 +17,15 @@ try:
         k = rng.integers(0, p, (m, 4)); s = rng.uniform(-1, 1, (m, 4)); a = 2 * np.pi * k / p
         A = np.stack([np.ones((m, 4)), np.cos(a), np.sin(a), -s], -1)          # (m, 4 rows, 4 cols)
         det = np.linalg.det(A); good = np.abs(det) > 1e-12
+        if not np.isfinite(det).all(): raise ValueError("non-finite determinant")
         lam = np.zeros((m, 4)); lam[good] = np.linalg.solve(np.transpose(A[good], (0, 2, 1)), np.tile([1., 0, 0, 0], (good.sum(), 1))[..., None])[..., 0]
+        if not np.isfinite(lam).all(): raise ValueError("non-finite cone solution")
         f = np.where(good & (lam >= -1e-12).all(1), np.abs(det), 0.0)
         tot += f.sum(); tot2 += (f * f).sum(); done += m
-except Exception as e:
+except TimeoutError as e:
     print("stopped:", type(e).__name__)
+if not done: sys.exit("no samples completed")
 E = tot / done; se = math.sqrt(tot2 / done - E * E) / math.sqrt(done)
 c = p * math.tan(math.pi / p) / 6
+if not all(map(math.isfinite, (E, se, c * E, c * se))): raise ValueError("non-finite estimate")
 print(f"p={p} samples={done} E_p={E:.5f} P_p={c*E:.5f} +- {c*se:.5f}")

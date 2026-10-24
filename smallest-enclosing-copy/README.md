@@ -16,10 +16,12 @@ The answer is no. For `n` uniform points in a convex polygon `K`, the probabilit
 
 where `T` is the tetrahedron spanned by four independent points, each on a uniformly chosen vertical edge of the prism `P_q × [-1, 1]` at a uniform height; `p_4 = 1/4`, and numerically `p_q` settles near 0.146, far from the disk's 1/2. The reason is the freedom to rotate the enclosing copy, which the disk does not have.
 
-Preprint v1, 8 October 2026, not peer reviewed. Every theorem, lemma and corollary is formally verified in Lean 4 (`lean/`, standard axioms only); the exposition has not yet been independently reviewed. The author used AI tools (Claude, Anthropic; Codex, OpenAI) in this work, as described in the paper's acknowledgement, and is responsible for its content.
+Preprint v3, 24 October 2026 (v1: 8 October 2026), not peer reviewed. Every theorem and corollary is formally verified in Lean 4 (`lean/`, standard axioms only), and so are the parts of the lemmas listed in Section 8 of the paper; the exposition has not yet been independently reviewed. The author used AI tools (Claude, Anthropic; Codex, OpenAI) in this work, as described in the paper's acknowledgement, and is responsible for its content.
 
 **Version 2** (23 October 2026, tag `smallest-enclosing-copy-v2`): expository revision of the paper (Figures 1 and 2 referenced where their ideas are introduced). The results, programs and Lean files are unchanged from v1.
 
+
+**Version 3** (24 October 2026, tag `smallest-enclosing-copy-v3`): after a Codex referee report, cites the author's MathOverflow answer of 2 October 2026; states Lemma 7(a) for the cutoff model only on the witness event, where it is used; the witness bound holds for `n ≥ N(K, y)`; marks the large-`q` statements as numerical evidence; describes the simulations as approximations; states the Lean coverage of the lemmas exactly; and the verification scripts exit nonzero on failure. The theorems and their proofs are unchanged.
 ## Contents
 
 - `paper/`: `enclosing.tex`, `enclosing.pdf` and the figure source `fig_example.tex`.

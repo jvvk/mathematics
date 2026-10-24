@@ -7,6 +7,11 @@ import os, sys, signal, math, numpy as np
 from scipy.optimize import linprog
 def _stop(*_): raise TimeoutError
 signal.signal(signal.SIGALRM, _stop); signal.alarm(int(os.environ.get("TIME_LIMIT", "0")))
+def checked(r, infeasible=False):
+    if infeasible and r.status == 2: return r
+    if r.status != 0: raise RuntimeError(r.message)
+    if not np.isfinite(r.fun) or not np.isfinite(r.x).all(): raise ValueError("non-finite LP result")
+    return r
 SHAPES = {
     "equilateral": np.array([[0, 0], [1, 0], [0.5, math.sqrt(3) / 2]]),
     "tri_30_60_90": np.array([[0, 0], [math.sqrt(3), 0], [0, 1.0]]),
@@ -37,12 +42,12 @@ def trial(S, rng, Dmax):
         m = rng.poisson(Dmax * (b - a)); D = rng.uniform(0, Dmax, m); s = rng.uniform(a, b, m)
         for Di, si in zip(D, s): rows.append([-h, -u[0], -u[1], si]); rhs.append(Di)   # -(eps h + C.u - Theta s) <= D
     A = np.array(rows); bb = np.array(rhs)
-    r = linprog([1, 0, 0, 0], A_ub=A, b_ub=bb, bounds=[(None, None)] * 4, method="highs"); eps = r.x[0]
+    r = checked(linprog([1, 0, 0, 0], A_ub=A, b_ub=bb, bounds=[(None, None)] * 4, method="highs")); eps = r.x[0]
     for sg in (1, -1):   # vars (C, Theta) with eps fixed; event rows: h eps + C.u - Theta*(a or b) <= 0
         ev = [[u[0], u[1], -(a if sg == 1 else b)] for (u, h, a, b) in S]; evb = [-h * eps for (u, h, a, b) in S]
         A2 = np.r_[A[:, 1:], np.array(ev)]; b2 = np.r_[bb - A[:, 0] * eps, evb]
         r2 = linprog([0, 0, 0], A_ub=A2, b_ub=b2 + 1e-9, bounds=[(None, None), (None, None), (0, None) if sg == 1 else (None, 0)], method="highs")
-        if r2.status == 0: return True
+        if checked(r2, infeasible=True).status == 0: return True
     return False
 if __name__ == "__main__":
     name, T, seed = sys.argv[1], int(sys.argv[2]), int(sys.argv[3]); Dmax = float(sys.argv[4]) if len(sys.argv) > 4 else 25.0
@@ -52,5 +57,6 @@ if __name__ == "__main__":
     rng = np.random.default_rng(seed); res = []
     try:
         for _ in range(T): res.append(trial(S, rng, Dmax))
-    except Exception as e: print("stopped:", type(e).__name__)
+    except TimeoutError as e: print("stopped:", type(e).__name__)
+    if not res: sys.exit("no trials completed")
     m = np.mean(res); print(f"{name}: trials={len(res)} P={m:.4f} +- {math.sqrt(m*(1-m)/len(res)):.4f}")
