@@ -14,6 +14,6 @@
     "LeanProofs.lean": "1996bf526db1e101c9f0b456eadf403e8222fb02ff1caa1d70ce7a9c96aa6f2f",
     "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
     "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
-    "scripts/mutants.py": "6617fd8c238aa5411fa914c81ad6376cee7c8e2cb2c6e912fb8d333f1a73cb2c"
+    "scripts/mutants.py": "8a72923014f280c0a9459aad4e8109c039aa95a6652579d22cba7546bb462374"
   }
 }

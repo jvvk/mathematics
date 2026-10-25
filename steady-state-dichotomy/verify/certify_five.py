@@ -1,4 +1,4 @@
-"""Exact stability certificate for the five-state example (Proposition in Section 6).
+"""Exact stability certificate for the five-state example (Theorem 6.1).
 
 The positive steady states lie on the curve x = Xc(z), y = Yc(z) at the five positive roots of E(z). For each
 root take a rational isolating interval I. Each Routh-Hurwitz quantity of the characteristic polynomial
