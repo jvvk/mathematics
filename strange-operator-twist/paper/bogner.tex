@@ -46,8 +46,9 @@ $p$-adic Frobenius structure with a specified first constant. We state the exist
 structure as a hypothesis, and certify its truncations at $p=5,7,11,13,17$, up to degree $1000$ at
 $p=5$; every truncation forces the predicted constant. We also show that rescaling the coordinate
 does not help (for algebraic irrational scalings conditional on an all-prime congruence, for rational
-ones of bounded height), that the strong structure does not exist at $p=3$, and that two natural
-routes to the hypothesis are closed.
+ones of bounded height), that the strong structure does not exist at $p=3$, that product Laurent
+models cannot give the hypothesis, and that a transfer through the Hadamard product needs more than
+integrality of truncated structures on $\mathrm{Sym}^2D$.
 \end{abstract}
 
 \maketitle
@@ -60,8 +61,8 @@ P=\theta^4-8x(2\theta+1)^2(5\theta^2+5\theta+2)+192x^2(2\theta+1)(3\theta+2)(3\t
 \]
 This operator appears in Bogner's thesis \cite{Bog12} and is discussed by van Straten
 \cite[pp.~28--29]{vS17} and by Almkvist and van Straten \cite[p.~22 of arXiv v1]{AvS}; Bogner and Reiter
-obtained it as the entry $8'$ of their table of operators $\mathrm{Sym}^2R\star I_{1/2}$ and noted that it has no
-integral instanton numbers \cite[Proposition~3.6 and the table of Section~3]{BR}. It has the holomorphic
+obtained it as the entry $8'$ of their tables of operators $\mathrm{Sym}^2R\star I_{1/2}$ and noted that it has no
+integral instanton numbers \cite[arXiv v1, Proposition~3.6 and the tables of \S\S4.2 and 4.4, pp.~14 and 19]{BR}. It has the holomorphic
 solution $y_0=1+16x+576x^2+25600x^3+\cdots$, the mirror map $q=x+40x^2+1984x^3+\cdots$
 and the Yukawa coupling
 \[
@@ -115,8 +116,9 @@ $q\mapsto c_pq^p$ with $c_p=\leg2p 2^{(p-1)/2}$, which is the lift the cusp of $
 A twisted form of a theorem of Beukers and Vlasenko \cite{BV} turns a Frobenius structure with first
 constant $\log_p(c_p)/p$ into twisted integrality at $p\ge5$. Finite truncations of such a
 structure exist at $p=5,7,11,13,17$ and force that constant.
-\item (Approaches, Section~\ref{sec:approaches}.) Models of the period, and proofs or
-computations that close two routes to the remaining hypothesis.
+\item (Approaches, Section~\ref{sec:approaches}.) Models of the period; a proof that product
+Laurent models cannot give the remaining hypothesis; and a computation showing that a transfer
+through the Hadamard product needs more than integrality of truncated structures.
 \end{enumerate}
 
 All computations use exact rational arithmetic. The scripts that produce each number are listed in
@@ -491,8 +493,8 @@ This explains where the value of $\alpha_1$ comes from. Heuristically, $D$ inher
 structure from Dwork's theory of the Gauss equation, pulled back along $z(x)$ (the gauge factor
 $(1-16x)^{-1/4}$ contributes a unit of $1+p\Z_p[[x]]$), and the canonical lift of the Tate curve
 $q_\tau\mapsto q_\tau^p$ then gives $\alpha_1=\frac1p\log_pc_p$. We have not made this chain
-rigorous. Integrality does not determine $\alpha_1$ for $L$ (Observation~\ref{obs:transfer}), so
-the value cannot be read off from $L$ alone, and the natural hypothesis concerns $P$ directly.
+rigorous. Integrality through degree $60$ does not determine $\alpha_1$ for $L$
+(Observation~\ref{obs:transfer}), so the value cannot be read off from truncated structures on $L$, and the natural hypothesis concerns $P$ directly.
 
 \begin{proposition}[An obstruction at the prime $3$]\label{prop:prime3-obstruction}
 The operator $P$ has no BV-strong Frobenius structure for the lift
@@ -618,9 +620,10 @@ Section~\ref{sec:approaches} records the approaches tried and where each stops.
 \section{Approaches to the hypothesis}\label{sec:approaches}
 
 This section records models of the period of $P$ and the routes to
-Hypothesis~\ref{hyp:F} they suggest. Two of the routes are closed by proof or by
-computation: product Laurent models (Proposition~\ref{prop:product-obstruction}) and
-a general transfer through the Hadamard product (Observation~\ref{obs:transfer}).
+Hypothesis~\ref{hyp:F} they suggest. One route is closed by proof: product Laurent
+models (Proposition~\ref{prop:product-obstruction}). For another, a transfer through the Hadamard
+product, a computation (Observation~\ref{obs:transfer}) shows that integrality of truncated
+structures on $L$ is not enough.
 
 \subsection{A modular-base model}
 
@@ -929,11 +932,12 @@ sum gave only the holomorphic period. It provides an arithmetic route to the
 Frobenius hypothesis, but an all-degree $p$-adic divisibility argument for these
 sums and their inhomogeneous correction is still needed.
 
-\subsection{No general transfer through the Hadamard product}
+\subsection{Transfer through the Hadamard product: integral truncations are not enough}
 
 A natural plan is to build the structure on $D$ from Dwork's theory of the Gauss
 equation, pass it to $L=\mathrm{Sym}^2D$, and then transfer it across the Hadamard
-product with $I$. The last step cannot be a general lemma.
+product with $I$. The last step cannot be a lemma that uses only integrality of truncated
+structures on $L$.
 
 \begin{observation}\label{obs:transfer}
 For the lift $x\mapsto x^p$ with $p=5,7$ and all coefficients of degree at most
@@ -975,9 +979,10 @@ factors, and an argument through $L$ must explain why the Hadamard product selec
 $\alpha_1$ that the cusp predicts. The double cover of Section~\ref{sec:approaches} is the most
 direct geometric candidate, but it still needs a resolution over $\Z_p$ and an identification of
 its integral rank-four lattice. A search for a two
-variable model of $D$ on reflexive polygons, with constant term forced into $12\Z$ by parity, found
-none with coefficients of absolute value at most $4$ on the reflexive polygons with at most eight boundary
-points; the triangle with nine was not searched (\texttt{verify/laurent\_d/}). The gauge factor $(432x^2-40x+1)^{1/4}$ in the
+variable model $h$ of $D$, with $\mathrm{CT}(h^n)=\lambda^nf_n$ for $n\le8$, $\lambda=\pm3$ (constant term
+$4\lambda=\pm12$, the smallest values parity allows, since it forces the constant term into $12\Z$) and every other coefficient of
+absolute value at most $4$, found none on any of the sixteen reflexive polygons, while a planted model
+is recovered (\texttt{verify/laurent\_d/}). The gauge factor $(432x^2-40x+1)^{1/4}$ in the
 remark of Section~\ref{sec:structure} suggests why: $f$ itself is probably not a constant term
 series. The second question is whether other operators in the tables of \cite{AESZ} whose instanton
 numbers look defective become integral after a twist of this kind.
@@ -1013,9 +1018,9 @@ statement of the structure by Bogner and Reiter. The author is responsible for t
 presented it as new. Integrality of the mirror map and Yukawa coupling is stated as computed through degree
 $110$, not as proved. The count of $996$ Laurent models is corrected: they meet both sides of both axes, but none
 has the origin inside its Newton polygon. The transfer observation is limited to truncated structures, the
-search for models of $D$ is stated with the polygon it omitted, and the page of \cite{AvS} is corrected. The
-verification scripts now check every cached coefficient, exit nonzero on failure, and include the planted
-scaling test. The twisted integrality, the conditional theorem and the certificates are unchanged.
+search for models of $D$ now covers all sixteen reflexive polygons and states its scope exactly, and the page of \cite{AvS} is corrected. The
+runner \texttt{run\_all.py} now checks every cached coefficient and the planted scaling test, and exits
+nonzero if any script's stated output is missing; four scripts that could pass silently now assert. The twisted integrality, the conditional theorem and the certificates are unchanged.
 
 \begin{thebibliography}{99}
 \bibitem{AESZ} G.~Almkvist, C.~van Enckevort, D.~van Straten, W.~Zudilin, \emph{Tables of

@@ -2,6 +2,7 @@
 
     python3 run_all.py          # about two minutes on one core
     python3 run_all.py --deep   # also the long certificates (degree 1000 at p = 5, 500 at p = 7, 11, 13)
+                                #   and the full search for Laurent models of D
 
 Each entry: the script, its arguments, and strings that must appear in its output. Mutants (wrong field,
 missing sign, wrong character, corrupted coefficient, wrong twist base, a wrongly claimed fibre) are run by
@@ -135,6 +136,7 @@ CHECKS = [
       "P=I*apery p=7 jets<3: alpha1 mod p^2: [0] (#1)"]),
     ("run_ctrl.py", ["P", "5", "30", "2", "apery"], ["α1 values [0]"]),
     ("models_check.py", [], ["PASS moments 320, 6144", "PASS Weierstrass form"]),
+    ("laurent_d/control2d.py", [], ["PASS: planted model recovered"]),
 ]
 
 # (p, R, precision s, residue of alpha_1) from Observation 5.9; the predicted value must equal the residue
@@ -170,6 +172,7 @@ def run(script, args):
 
 def cached_coefficients(degree=110):
     """Exact operator recurrence, followed by Lagrange inversion of q = x exp(g1)."""
+    sys.path.insert(0, HERE)
     import cyk
 
     T = cyk.T
@@ -230,7 +233,9 @@ def model_outcome(returncode, output):
 def main():
     deep = "--deep" in sys.argv
     check_caches()
-    for script, args, wants in CHECKS:
+    # the search for models of D on all sixteen reflexive polygons (about four minutes)
+    checks = CHECKS + ([("laurent_d/search2d_chunk.py", ["4", "0", "-1"], ["hits: 0", "PASS: no model"])] if deep else [])
+    for script, args, wants in checks:
         out = run(script, args)
         missing = [w for w in wants if w not in out]
         if missing:

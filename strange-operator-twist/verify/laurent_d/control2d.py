@@ -1,5 +1,5 @@
-"""Step A, pruned: h = c0 + h0, c0 = 4λ. Needs CT(h0^2)=24λ², CT(h0^3)=128λ³, then full CT(h^n)=λ^n f_n to n=8.
-CT(h0^2) = 2 Σ_{pairs v,-v} c_v c_-v  (cheap prune);  CT(h0^3) cheap via triples."""
+"""Positive control for search2d_chunk.py: the same search, on the polygons with at most five boundary points,
+with f replaced by the constant-term series of a planted h (c0 = 12, λ = ±3). It must find that model; exits 1 if not."""
 import sys
 from itertools import product, combinations
 from fractions import Fraction as F
@@ -99,3 +99,6 @@ for verts, lat in [t for t in sorted(polys, key=lambda t: len(t[1])) if len(t[1]
                 hits += 1
                 print("HIT verts", verts, "coef", dict(coef), "c0", c0, flush=True)
 print("hits:", hits, "time", round(time.time()-T0))
+if not hits:
+    sys.exit("FAIL: the planted model was not recovered")
+print("PASS: planted model recovered")

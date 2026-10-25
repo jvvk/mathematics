@@ -1,0 +1,15 @@
+# 25 October 2026, run with scripts/mutants.py before its import-failure rule (INFRA for a missing .olean or
+# unresolved import). Every diagnostic below is a proof error located in Mut.lean, none an import failure, so the
+# current harness classifies each the same way.
+baseline ACCEPTED: Basic.lean; (no diagnostic)
+REJECTED: L recurrence 5n^2 -> 4n^2; /private/tmp/claude-501/-Users-vamshi/832b1201-e0a7-4ba3-a90a-9637a63cb45b/scratchpad/sot-lean/LeanProofs/StrangeOperator/Mut.lean:45:48: error: unsolved goals
+REJECTED: P recurrence 192 -> 191; /private/tmp/claude-501/-Users-vamshi/832b1201-e0a7-4ba3-a90a-9637a63cb45b/scratchpad/sot-lean/LeanProofs/StrangeOperator/Mut.lean:45:48: error: unsolved goals
+REJECTED: c_p without the sign; /private/tmp/claude-501/-Users-vamshi/832b1201-e0a7-4ba3-a90a-9637a63cb45b/scratchpad/sot-lean/LeanProofs/StrangeOperator/Mut.lean:100:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+REJECTED: c_p^4 = 4^p; /private/tmp/claude-501/-Users-vamshi/832b1201-e0a7-4ba3-a90a-9637a63cb45b/scratchpad/sot-lean/LeanProofs/StrangeOperator/Mut.lean:106:76: error: unsolved goals
+REJECTED: odd weights without the power d; /private/tmp/claude-501/-Users-vamshi/832b1201-e0a7-4ba3-a90a-9637a63cb45b/scratchpad/sot-lean/LeanProofs/StrangeOperator/Mut.lean:167:17: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+REJECTED: even k, odd d weight 1; /private/tmp/claude-501/-Users-vamshi/832b1201-e0a7-4ba3-a90a-9637a63cb45b/scratchpad/sot-lean/LeanProofs/StrangeOperator/Mut.lean:157:4: error: unsolved goals
+REJECTED: binom(2p-2, p-2); /private/tmp/claude-501/-Users-vamshi/832b1201-e0a7-4ba3-a90a-9637a63cb45b/scratchpad/sot-lean/LeanProofs/StrangeOperator/Mut.lean:183:31: error: omega could not prove the goal:
+REJECTED: 9 A33 = 5 + alpha; /private/tmp/claude-501/-Users-vamshi/832b1201-e0a7-4ba3-a90a-9637a63cb45b/scratchpad/sot-lean/LeanProofs/StrangeOperator/Mut.lean:193:2: error: Tactic `decide` proved that the proposition
+REJECTED: second condition 7 + 4 alpha; /private/tmp/claude-501/-Users-vamshi/832b1201-e0a7-4ba3-a90a-9637a63cb45b/scratchpad/sot-lean/LeanProofs/StrangeOperator/Mut.lean:197:12: error: Tactic `decide` proved that the proposition
+9 mutants, 0 problems
+exit 0

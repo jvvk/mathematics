@@ -1,0 +1,6 @@
+reflexive polygons found: 49
+polygons with at most 9 boundary points: 49 searching 48 to 48
+polygon ((-2, -1), (1, -1), (1, 2)) 9 0
+hits: 0 time 173
+PASS: no model in this range
+exit 0

@@ -31,4 +31,7 @@ checked in exact arithmetic by `verify/run_all.py`.
 criterion. `w d k` is the weight of Section 4 with the Jacobi symbol `(2/k)`.
 
 Every result uses at most propext, Classical.choice and Quot.sound (axiom-validation.txt). The folder was
-compiled in an isolated build without the development cache (build-validation.log).
+compiled in an isolated build without the development cache (build-validation.log). `scripts/mutants.py` plants nine wrong
+variants (recurrence coefficients, the sign of `c_p`, the weights, the prime-3 arithmetic); a variant counts as
+rejected only for a proof error located in the mutated file, and a timeout, crash, resource limit or import failure
+fails the run. All nine were rejected (mutants.log).

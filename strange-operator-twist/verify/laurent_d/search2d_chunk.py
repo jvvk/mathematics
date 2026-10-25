@@ -1,5 +1,10 @@
-"""Step A, pruned: h = c0 + h0, c0 = 4λ. Needs CT(h0^2)=24λ², CT(h0^3)=128λ³, then full CT(h^n)=λ^n f_n to n=8.
-CT(h0^2) = 2 Σ_{pairs v,-v} c_v c_-v  (cheap prune);  CT(h0^3) cheap via triples."""
+"""Search for h = c0 + h0 on a reflexive polygon with CT(h^n) = λ^n f_n for n <= 8, where f is the holomorphic
+solution of D, λ = ±3 and c0 = 4λ = ±12 (CT(h) = λ f_1, forced into 12Z by parity). Every nonconstant coefficient
+has absolute value at most R (vertices nonzero). MAXB (default 9, i.e. all sixteen reflexive polygons) bounds the
+number of boundary points; the list has GL2(Z)-duplicates, which repeat work but lose nothing. Prunes: CT(h0^2) = 2 Σ_{pairs v,-v} c_v c_-v, then CT(h0^3) via triples.
+
+Usage: python3 search2d_chunk.py R LO HI [MAXB]   (polygon indices LO..HI-1 of the sorted list; HI = -1 for all).
+Exits 1 if any model is found (the paper records none)."""
 import sys
 from itertools import product, combinations
 from fractions import Fraction as F
@@ -65,8 +70,11 @@ print("reflexive polygons found:", len(polys), flush=True)
 import time; T0 = time.time()
 
 hits = 0
-PL = sorted(polys, key=lambda t: len(t[1]))
+MAXB = int(sys.argv[4]) if len(sys.argv) > 4 else 9
+PL = [t for t in sorted(polys, key=lambda t: len(t[1])) if len(t[1]) <= MAXB]
 LO, HI = int(sys.argv[2]), int(sys.argv[3])
+HI = len(PL) if HI < 0 else HI
+print("polygons with at most", MAXB, "boundary points:", len(PL), "searching", LO, "to", HI - 1, flush=True)
 for verts, lat in PL[LO:HI]:
     pairs = [(i, lat.index((-p[0], -p[1]))) for i, p in enumerate(lat) if (-p[0], -p[1]) in lat and lat.index((-p[0], -p[1])) > i]
     tris = [(i, j, k) for i in range(len(lat)) for j in range(i+1, len(lat)) for k in range(j+1, len(lat))
@@ -100,3 +108,6 @@ for verts, lat in PL[LO:HI]:
                 hits += 1
                 print("HIT verts", verts, "coef", dict(coef), "c0", c0, flush=True)
 print("hits:", hits, "time", round(time.time()-T0))
+if hits:
+    sys.exit("FAIL: a model was found, contradicting the paper")
+print("PASS: no model in this range")
