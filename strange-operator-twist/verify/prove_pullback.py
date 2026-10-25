@@ -26,3 +26,5 @@ t1 = theta(g); t2 = theta(t1)
 Dg = t2 - 4*x*(10*t2 + 5*t1 + g) + 48*x**2*(9*t2 + 9*t1 + 2*g)
 res = sp.simplify(sp.together(Dg.subs(Z, z)))
 print("D applied to the pullback simplifies to:", res)
+print("PASS prove_pullback" if res == 0 else "FAIL prove_pullback")
+assert res == 0, "D does not annihilate the pullback"

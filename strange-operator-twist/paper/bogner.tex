@@ -28,16 +28,18 @@
 \author{Vamshi Jandhyala}
 \address{London, United Kingdom}
 \email{vamshi.jandhyala@gmail.com}
+\date{Preprint v2, 25 October 2026 (v1: 11 October 2026). Not peer reviewed.}
 
 \begin{document}
 
 \begin{abstract}
-Bogner found a fourth order operator of Calabi-Yau type whose holomorphic period, mirror map and
-Yukawa coupling are integral while its instanton numbers are not: $n_p$ has denominator $p^2$ at
-every prime $p\ge3$ that has been examined. We show that the operator is the Hadamard product of
-$\sum\binom{2n}{n}x^n$ with the symmetric square of a modular second order operator for an index
-four subgroup of $\mathrm{PSL}_2(\Z)$, and that the instanton numbers become integers, for all
-$d\le110$, when they are read through a Galois twisted multicover formula over $\Q(\sqrt2)$. The
+Bogner found a fourth order operator of Calabi-Yau type whose holomorphic period is integral, and whose
+mirror map and Yukawa coupling are integral in every degree computed, while its instanton numbers are not: $n_p$ has denominator $p^2$ at
+every prime $p\ge3$ that has been examined. As Bogner and Reiter found, the operator is the Hadamard
+product of $\sum\binom{2n}{n}x^n$ with the symmetric square of a second order operator; we record that this
+operator is modular for an index four subgroup of $\mathrm{PSL}_2(\Z)$, and show that the instanton numbers
+become integers, for all $d\le110$, when they are read through a Galois twisted multicover formula over
+$\Q(\sqrt2)$. The
 twist is dictated by the cusp, where the Hauptmodul satisfies $x^4\approx-q_\tau/4$. A twisted form
 of a theorem of Beukers and Vlasenko proves the twisted integrality at each prime $p\ge5$ from a
 $p$-adic Frobenius structure with a specified first constant. We state the existence of that
@@ -57,13 +59,17 @@ Let $\theta=x\,\frac{d}{dx}$ and
 P=\theta^4-8x(2\theta+1)^2(5\theta^2+5\theta+2)+192x^2(2\theta+1)(3\theta+2)(3\theta+4)(2\theta+3).
 \]
 This operator appears in Bogner's thesis \cite{Bog12} and is discussed by van Straten
-\cite[pp.~28--29]{vS17} and by Almkvist and van Straten \cite[p.~21]{AvS}. It has the holomorphic
-solution $y_0=1+16x+576x^2+25600x^3+\cdots$, the integral mirror map $q=x+40x^2+1984x^3+\cdots$
-and the integral Yukawa coupling
+\cite[pp.~28--29]{vS17} and by Almkvist and van Straten \cite[p.~22 of arXiv v1]{AvS}; Bogner and Reiter
+obtained it as the entry $8'$ of their table of operators $\mathrm{Sym}^2R\star I_{1/2}$ and noted that it has no
+integral instanton numbers \cite[Proposition~3.6 and the table of Section~3]{BR}. It has the holomorphic
+solution $y_0=1+16x+576x^2+25600x^3+\cdots$, the mirror map $q=x+40x^2+1984x^3+\cdots$
+and the Yukawa coupling
 \[
 K(q)=1+8q-5632q^3-456064q^4-17708032q^5+\cdots.
 \]
-(The printed $8q^2$ in \cite{AvS} is a misprint for $8q$.) Writing
+The mirror map and the Yukawa coupling have integer coefficients through degree $110$ in our computations;
+we know of no proof that they are integral in every degree. (The printed $8q^2$ in \cite{AvS} is a misprint
+for $8q$.) Writing
 $K(q)=1+\sum_{d\ge1}n_d d^3 q^d/(1-q^d)$ gives $n_1=8$, $n_2=-1$, $n_3=-1880/9$,
 $n_5=-3541608/25$, and $n_p$ has denominator $p^2$ for the odd primes tested. Van Straten calls this ``rather
 puzzling'': integrality of the period and the mirror map suggests a rank four Calabi-Yau motive, to
@@ -94,7 +100,7 @@ $6$ & $-18136853/9$ & $-2015232$\\
 The results are as follows.
 
 \begin{enumerate}
-\item (Structure, Section~\ref{sec:structure}.) $P=I\star\mathrm{Sym}^2 D$, where $I$ is the first order
+\item (Structure, Section~\ref{sec:structure}; due to Bogner and Reiter \cite{BR}.) $P=I\star\mathrm{Sym}^2 D$, where $I$ is the first order
 operator of $\sum\binom{2n}{n}x^n$, $\star$ is the Hadamard product, and $D$ is a second order
 operator whose holomorphic solution is
 $(1-16x)^{-1/4}\,{}_2F_1\bigl(\tfrac1{12},\tfrac5{12};1;-6912x^4/(1-16x)^3\bigr)$. Equivalently
@@ -124,12 +130,12 @@ Let
 D&=\theta^2-4x(10\theta^2+5\theta+1)+48x^2(3\theta+1)(3\theta+2),\\
 L&=\theta^3-4x(2\theta+1)(5\theta^2+5\theta+2)+48x^2(\theta+1)(3\theta+2)(3\theta+4).
 \end{align*}
-Then $L=\mathrm{Sym}^2 D$ and $P=I\star L$. In particular the holomorphic solution of $P$ is
+Then $L=\mathrm{Sym}^2 D$ and $P=I\star L$ \cite[Proposition~3.6, entry $8'$]{BR}. In particular the holomorphic solution of $P$ is
 $y_0=\sum_n\binom{2n}{n}u_nx^n$ where $\sum_n u_nx^n=f^2$ and $f$ is the holomorphic solution of $D$.
 \end{proposition}
 
 \begin{proof}
-The symmetric square of a second order operator is computed by the recursion in
+We include the short verification. The symmetric square of a second order operator is computed by the recursion in
 \cite[Lemma~4.2.4]{Bog12}; comparing normalised coefficients with those of $L$ gives equality as
 rational functions (checked symbolically). If $(n+1)^3u_{n+1}=R_1(n)u_n-R_2(n)u_{n-1}$ with
 $R_1=4(2n+1)(5n^2+5n+2)$ and $R_2=48n(9n^2-1)$, then $v_n=\binom{2n}{n}u_n$ satisfies
@@ -858,11 +864,9 @@ model for $\binom{2n}{n}$, in any number of variables, makes \cite[Proposition~1
 The failure sits in the factor $\binom{2n}{n}$ itself, whose truncation
 at $n=p-1$ vanishes modulo $p$, and not in the edges of any particular
 polytope.  An exhaustive search over Laurent polynomials supported on
-$[-1,1]^2$ with coefficients in $\{0,\pm1,\pm2\}$ and the origin interior
-found $996$ models with $\operatorname{CT}(f^n)=\binom{2n}{n}$ for
-$n\le8$.  None of them has vertex coefficients $\pm2^a$ together with
-length-two edges of discriminant $\pm2^a$
-(\texttt{hw2/good\_faces.py}).  A Laurent model to which the cited
+$[-1,1]^2$ with coefficients in $\{0,\pm1,\pm2\}$ finds $996$ with $\operatorname{CT}(f^n)=\binom{2n}{n}$ for
+$n\le8$ whose support meets both sides of both coordinate axes, and none whose Newton polygon has the origin
+in its interior, which \cite[Proposition~1.8]{BV} needs (\texttt{verify/good\_faces.py}, \texttt{verify/search\_f.py}).  A Laurent model to which the cited
 theorem applies must therefore mix the variables of the two Hadamard
 factors.
 
@@ -944,8 +948,10 @@ divisible by $7$, and $A_2$ removes all but $0$.
 Within the tested range, integrality on $L$ does not constrain the first constant,
 while integrality on $I\star L$ fixes it. A lemma of the form ``an integral
 structure on $L$ with first constant $x$ yields one on $I\star L$ with first
-constant $x$'' could therefore hold for at most one residue class of $x$, and a
-proof must use more than the integrality of the structure on $L$. The factor $\binom{2n}{n}$ selects the first constant, and the
+constant $x$'', applied to structures integral through degree $60$, could therefore hold for at most one
+residue class of $x$. This concerns truncations: a constant admitted on $L$ through degree $60$ might fail at
+higher degree, so the observation does not exclude a transfer lemma for full structures, but it shows that a
+proof must use more than integrality of the structure on $L$ in the tested range. The factor $\binom{2n}{n}$ selects the first constant, and the
 selection is already visible at the level of the mirror map. A proof along these
 lines would have to show that the structure induced from the cusp of $D$ is the
 one selected, which is Hypothesis~\ref{hyp:F} in another form.
@@ -970,7 +976,8 @@ $\alpha_1$ that the cusp predicts. The double cover of Section~\ref{sec:approach
 direct geometric candidate, but it still needs a resolution over $\Z_p$ and an identification of
 its integral rank-four lattice. A search for a two
 variable model of $D$ on reflexive polygons, with constant term forced into $12\Z$ by parity, found
-none with coefficients of absolute value at most $4$. The gauge factor $(432x^2-40x+1)^{1/4}$ in the
+none with coefficients of absolute value at most $4$ on the reflexive polygons with at most eight boundary
+points; the triangle with nine was not searched (\texttt{verify/laurent\_d/}). The gauge factor $(432x^2-40x+1)^{1/4}$ in the
 remark of Section~\ref{sec:structure} suggests why: $f$ itself is probably not a constant term
 series. The second question is whether other operators in the tables of \cite{AESZ} whose instanton
 numbers look defective become integral after a twist of this kind.
@@ -996,9 +1003,19 @@ square and the pullback) are checked in a computer algebra system.
 
 \section*{Acknowledgments}
 
-The structure of the operator, the twisted formula, the conditional theorem, the certificates and
-the Lean formalisation were developed with AI assistance (Claude, Anthropic; OpenAI Codex), and
-every computation was checked by the scripts above. The author is responsible for the content.
+The verification of the structure, the modular description of $D$, the twisted formula, the conditional
+theorem, the certificates and the Lean formalisation were developed with AI assistance (Claude, Anthropic;
+OpenAI Codex), and every computation was checked by the scripts above. A Codex referee report found the prior
+statement of the structure by Bogner and Reiter. The author is responsible for the content.
+
+\emph{Changes in version 2.} The decomposition $P=I\star\mathrm{Sym}^2D$ is credited to Bogner and Reiter
+\cite{BR}, who list the operator as entry $8'$ and note that its instanton numbers are not integral; version 1
+presented it as new. Integrality of the mirror map and Yukawa coupling is stated as computed through degree
+$110$, not as proved. The count of $996$ Laurent models is corrected: they meet both sides of both axes, but none
+has the origin inside its Newton polygon. The transfer observation is limited to truncated structures, the
+search for models of $D$ is stated with the polygon it omitted, and the page of \cite{AvS} is corrected. The
+verification scripts now check every cached coefficient, exit nonzero on failure, and include the planted
+scaling test. The twisted integrality, the conditional theorem and the certificates are unchanged.
 
 \begin{thebibliography}{99}
 \bibitem{AESZ} G.~Almkvist, C.~van Enckevort, D.~van Straten, W.~Zudilin, \emph{Tables of
@@ -1009,6 +1026,9 @@ Combin.\ \textbf{58} (2023), doi:10.1007/s10801-023-01272-0; arXiv:2103.08651.
 Math.\ Q.\ \textbf{19} (2023), no.~1, 7--44; arXiv:2109.10427.
 \bibitem{BV3} F.~Beukers, M.~Vlasenko, \emph{Dwork crystals III: from excellent Frobenius lifts
 towards supercongruences}, Int.\ Math.\ Res.\ Not.\ IMRN (2023), no.~23, 20433--20483; arXiv:2105.14841.
+\bibitem{BR} M.~Bogner, S.~Reiter, \emph{Some fourth order CY-type operators with non-symplectically rigid
+monodromy}, Exp.\ Math.\ \textbf{26} (2017), no.~1, 98--113, doi:10.1080/10586458.2015.1127186;
+arXiv:1211.3945 (16 November 2012).
 \bibitem{Bog12} M.~Bogner, \emph{On differential operators of Calabi-Yau type}, Dissertation,
 Johannes Gutenberg-Universit\"at Mainz, 2012, doi:10.25358/openscience-2085.
 \bibitem{SVW} A.~Schwarz, V.~Vologodsky, J.~Walcher, \emph{Integrality of framing and geometric origin of $2$-functions (with algebraic coefficients)}, arXiv:1702.07135.

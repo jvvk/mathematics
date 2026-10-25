@@ -35,4 +35,7 @@ T = sp.symbols("T")
 Lpoly = sp.expand(T**3 - 4*x*(2*T+1)*(5*T**2+5*T+2) + 48*x**2*(T+1)*(3*T+2)*(3*T+4))
 Lc = [Lpoly.coeff(T, k) for k in range(4)]
 Lc = [sp.simplify(v / Lc[3]) for v in Lc]
-print("Sym^2(D) normalised coefficients equal L's:", all(sp.simplify(ns[k] - Lc[k]) == 0 for k in range(4)))
+ok = all(sp.simplify(ns[k] - Lc[k]) == 0 for k in range(4))
+print("Sym^2(D) normalised coefficients equal L's:", ok)
+print("PASS prove_symsq" if ok else "FAIL prove_symsq")
+assert ok, "Sym^2(D) coefficients differ from L"

@@ -22,7 +22,8 @@ qx = [F(0)] + cyk.pexp(g1, M)[:M]
 xq = cyk.revert(qx, M)
 V2q, V3q = cyk.compose(V2, xq, M), cyk.compose(V3, xq, M)
 res = [2*V2q[k] + k*V3q[k] for k in range(M+1)]
-print("self-duality 2V2 + θV3 = 0 through q^%d:" % M, all(r == 0 for r in res))
+self_dual = all(r == 0 for r in res)
+print("self-duality 2V2 + θV3 = 0 through q^%d:" % M, self_dual)
 
 bad = []
 for p in sp.primerange(3, 200):
@@ -31,3 +32,5 @@ for p in sp.primerange(3, 200):
     if (c % p != 1) or (pow(c, 4, m) - pow(-4, p-1, m)) % m:
         bad.append(p)
 print("c_p ≡ 1 (mod p) and c_p^4 ≡ (-4)^(p-1) (mod p^3) for all odd p < 200:", not bad, bad[:5])
+print("PASS checks_proof" if self_dual and not bad else "FAIL checks_proof")
+assert self_dual and not bad, (res, bad)

@@ -9,6 +9,27 @@ COEF = (-2, -1, 0, 1, 2)
 TARGET = [comb(2 * n, n) for n in range(9)]
 
 
+def cross(o, a, b):
+    return (a[0]-o[0])*(b[1]-o[1]) - (a[1]-o[1])*(b[0]-o[0])
+
+
+def hull(points):
+    pts = sorted(set(points))
+    lo, up = [], []
+    for p in pts:
+        while len(lo) >= 2 and cross(lo[-2], lo[-1], p) <= 0: lo.pop()
+        lo.append(p)
+    for p in reversed(pts):
+        while len(up) >= 2 and cross(up[-2], up[-1], p) <= 0: up.pop()
+        up.append(p)
+    return lo[:-1] + up[:-1]
+
+
+def origin_interior(points):
+    V = hull(points)
+    return len(V) >= 3 and all(cross(a, b, (0, 0)) > 0 for a, b in zip(V, V[1:] + V[:1]))
+
+
 def mul(f: dict, g: dict) -> dict:
     out: dict = defaultdict(int)
     for u, a in f.items():
@@ -35,14 +56,13 @@ if __name__ == "__main__":
         f = {p: c for p, c in zip(nonzero, cs) if c}
         if not f:
             continue
-        xs = [p[0] for p in f]; ys = [p[1] for p in f]
-        if not (min(xs) < 0 < max(xs) and min(ys) < 0 < max(ys)):
+        if not origin_interior(f):
             continue  # origin must be interior
         for c0 in COEF:
             ff = dict(f)
             if c0:
                 ff[(0, 0)] = c0
-            if len(ct_powers(ff, 8)) == 9:
+            if ct_powers(ff, 8) == TARGET:
                 hits.append(ff)
     print("hits:", len(hits))
     for ff in hits[:10]:

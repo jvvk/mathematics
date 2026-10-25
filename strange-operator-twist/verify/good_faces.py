@@ -3,19 +3,7 @@
 k=1 Hasse-Witt entry of the product face Delta_f x {v}: c^(p-1) CT(f^(p-1))."""
 import itertools
 from math import comb
-from search_f import mul, ct_powers, PTS, COEF
-
-def hull(points):
-    pts = sorted(set(points))
-    def cross(o, a, b): return (a[0]-o[0])*(b[1]-o[1]) - (a[1]-o[1])*(b[0]-o[0])
-    lo, up = [], []
-    for p in pts:
-        while len(lo) >= 2 and cross(lo[-2], lo[-1], p) <= 0: lo.pop()
-        lo.append(p)
-    for p in reversed(pts):
-        while len(up) >= 2 and cross(up[-2], up[-1], p) <= 0: up.pop()
-        up.append(p)
-    return lo[:-1] + up[:-1]
+from search_f import mul, ct_powers, PTS, COEF, TARGET, hull, origin_interior
 
 def pow2(n: int) -> bool:
     n = abs(n)
@@ -35,16 +23,19 @@ def good(f: dict) -> bool:
 
 nonzero = [p for p in PTS if p != (0, 0)]
 found = []
+interior = 0
 for cs in itertools.product(COEF, repeat=8):
     f = {p: c for p, c in zip(nonzero, cs) if c}
     if not f: continue
-    xs = [p[0] for p in f]; ys = [p[1] for p in f]
-    if not (min(xs) < 0 < max(xs) and min(ys) < 0 < max(ys)): continue
+    if not origin_interior(f): continue
     for c0 in COEF:
         ff = dict(f)
         if c0: ff[(0, 0)] = c0
-        if len(ct_powers(ff, 8)) == 9 and good(ff):
-            found.append(ff)
+        if ct_powers(ff, 8) == TARGET:
+            interior += 1
+            if good(ff):
+                found.append(ff)
+print("binom(2n,n) models with origin strictly interior:", interior)
 print("binom(2n,n) models with good own faces:", len(found))
 for ff in found[:5]:
     print(sorted(ff.items()), "vertices", hull(list(ff)))

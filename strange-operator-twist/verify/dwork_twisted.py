@@ -22,9 +22,13 @@ def test(cfun):
     return checked, fails
 
 
+ok = True
 for name, cf in [("twisted c_p = (2/p) 2^((p-1)/2)", lambda p: legendre_symbol(2, p) * 2 ** ((p - 1) // 2)),
                  ("untwisted c_p = 1", lambda p: 1),
                  ("wrong sign c_p = 2^((p-1)/2)", lambda p: 2 ** ((p - 1) // 2)),
                  ("wrong base c_p = (3/p) 3^((p-1)/2)", lambda p: legendre_symbol(3, p) * 3 ** ((p - 1) // 2) if p != 3 else 1)]:
     checked, fails = test(cf)
     print(f"{name:38s}: {checked - len(fails)}/{checked} congruences hold; first failures {fails[:5]}")
+    ok = ok and checked > 0 and (not fails if name.startswith("twisted ") else bool(fails))
+print("PASS dwork_twisted" if ok else "FAIL dwork_twisted")
+assert ok, "twisted congruences or negative controls failed"

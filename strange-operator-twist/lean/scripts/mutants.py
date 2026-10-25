@@ -7,6 +7,7 @@ with `lake env lean` (single process, background QoS). Unmutated copies must pas
 """
 import os
 import pathlib
+import re
 import signal
 import subprocess
 import sys
@@ -34,19 +35,43 @@ MUTANTS = [
 ]
 
 
-def check(text: str) -> bool:
-    MUT.write_text(text)
-    p = subprocess.Popen(["taskpolicy", "-c", "background", "lake", "env", "lean", str(MUT)], cwd=ROOT,
-                         stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
-                         start_new_session=True)
+def classify(returncode: int, output: str) -> str:
+    if returncode < 0:
+        return "CRASH"
+    if re.search(r"maximum recursion depth|maxRecDepth|heartbeat|deterministic timeout|out of memory|stack overflow",
+                 output, re.IGNORECASE):
+        return "RESOURCE"
+    errors = re.findall(r"^(.+?):\d+:\d+:\s*error:", output, re.MULTILINE)
+    diagnostics = [line for line in output.splitlines() if "error:" in line]
+    local = errors and len(errors) == len(diagnostics) and all((ROOT / f).resolve() == MUT.resolve() for f in errors)
+    if returncode == 1 and local:
+        return "REJECTED"
+    if returncode == 0 and "error:" not in output:
+        return "ACCEPTED"
+    return "INFRA"
+
+
+def first_error(output: str) -> str:
+    return next((line for line in output.splitlines() if "error:" in line),
+                next((line for line in output.splitlines() if line.strip()), "(no diagnostic)"))
+
+
+def check(text: str) -> tuple[str, str]:
     try:
-        out, _ = p.communicate(timeout=1200)
+        MUT.write_text(text)
+        p = subprocess.Popen(["taskpolicy", "-c", "background", "lake", "env", "lean", str(MUT)], cwd=ROOT,
+                             stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
+                             start_new_session=True)
+    except OSError as e:
+        return "INFRA", str(e)
+    try:
+        out, err = p.communicate(timeout=1200)
     except subprocess.TimeoutExpired:
         os.killpg(p.pid, signal.SIGKILL)  # lake's lean child too
-        p.communicate()
-        print("  (timed out: counted as not compiling)", flush=True)
-        return False
-    return p.returncode == 0 and "error" not in out
+        out, err = p.communicate()
+        return "TIMEOUT", first_error(out + "\n" + err)
+    output = out + "\n" + err
+    return classify(p.returncode, output), first_error(output)
 
 
 def main() -> int:
@@ -54,20 +79,21 @@ def main() -> int:
     sel = [m for m in MUTANTS if not sys.argv[1:] or any(a in m[1] for a in sys.argv[1:])]
     try:
         for f in sorted({m[1] for m in sel}):
-            ok = check((D / f).read_text())
-            print(f"baseline {'ok' if ok else 'FAILS'}: {f}", flush=True)
-            bad += not ok
+            outcome, error = check((D / f).read_text())
+            print(f"baseline {outcome}: {f}; {error}", flush=True)
+            bad += outcome != "ACCEPTED"
+        if bad:
+            print(f"{bad} baseline problems; mutants not run")
+            return 1
         for name, f, old, new in sel:
             src = (D / f).read_text()
             if src.count(old) != 1:
                 print(f"MUTATION DID NOT APPLY: {name}", flush=True)
                 bad += 1
                 continue
-            if check(src.replace(old, new)):
-                print(f"MUTANT SURVIVED: {name}", flush=True)
-                bad += 1
-            else:
-                print(f"rejected: {name}", flush=True)
+            outcome, error = check(src.replace(old, new))
+            print(f"{outcome}: {name}; {error}", flush=True)
+            bad += outcome != "REJECTED"
     finally:
         MUT.unlink(missing_ok=True)
     print(f"{len(sel)} mutants, {bad} problems")

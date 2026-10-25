@@ -10,6 +10,7 @@ the scripts themselves and their failure is asserted here.
 
 import json
 import os
+import re
 import subprocess
 import sys
 from fractions import Fraction as F
@@ -77,7 +78,12 @@ CHECKS = [
             "wrong sign c_p = 2^((p-1)/2)          : 82/135",
         ],
     ),
-    ("padic.py", [], ["satisfying all 21 primes mod p^2: [] 0"]),
+    (
+        "padic.py",
+        [],
+        ["satisfying all 21 primes mod p^2: [] 0",
+         "planted scaling 17/5 recovered: ['17/5']", "PASS planted scaling recovery"],
+    ),
     (
         "checks_proof.py",
         [],
@@ -107,7 +113,13 @@ CHECKS = [
         ["'lattice_points': 45", "'interior_points': [(0, 0, 0, 0)]"],
     ),
     ("deformed_sum.py", [], ["All four P jets agree through degree 40."]),
-    ("good_faces.py", [], ["binom(2n,n) models with good own faces: 0"]),
+    ("search_f.py", [], ["hits: 0"]),
+    (
+        "good_faces.py",
+        [],
+        ["binom(2n,n) models with origin strictly interior: 0",
+         "binom(2n,n) models with good own faces: 0"],
+    ),
     ("jets_test.py", ["bogner", "5", "60", "2"],
      ["L=bogner p=5: alpha1 values surviving mod p^2: 25 (of 25)",
       "P=I*bogner p=5 jets<2: alpha1 mod p^2: [9] (#1); predicted 9"]),
@@ -146,7 +158,8 @@ DEEP = [
 
 def run(script, args):
     out = subprocess.run(
-        [PY, script, *args], cwd=HERE, capture_output=True, text=True, timeout=3600
+        [PY, script, *args], cwd=HERE, capture_output=True, text=True, timeout=3600,
+        env={k: v for k, v in os.environ.items() if k != "MUTANT"}
     )
     if out.returncode:
         raise SystemExit(
@@ -155,8 +168,68 @@ def run(script, args):
     return out.stdout
 
 
+def cached_coefficients(degree=110):
+    """Exact operator recurrence, followed by Lagrange inversion of q = x exp(g1)."""
+    import cyk
+
+    T = cyk.T
+    Qs = [T**4, -8 * (2 * T + 1)**2 * (5 * T**2 + 5 * T + 2),
+          192 * (2 * T + 1) * (3 * T + 2) * (3 * T + 4) * (2 * T + 3)]
+    a = cyk.frob(Qs, degree)
+    iy0 = cyk.pinv([row[0] for row in a], degree)
+    g1 = cyk.pmul([row[1] for row in a], iy0, degree)
+    g2 = cyk.pmul([row[2] for row in a], iy0, degree)
+    g1sq = cyk.pmul(g1, g1, degree)
+    h = [g2[k] - g1sq[k] / 2 for k in range(degree + 1)]
+    K = [F(1)]
+    for n in range(1, degree + 1):
+        # [q^n]h(x(q)) = [x^(n-1)]h'(x) exp(-n g1(x)) / n.
+        exp = cyk.pexp([-n * c for c in g1[:n]], n - 1)
+        K.append(n * sum(j * h[j] * exp[n - j] for j in range(1, n + 1)))
+    return K
+
+
+def compare_cache(name, cached, expected):
+    assert len(cached) == len(expected), f"{name}: wrong coefficient count {len(cached)}"
+    for n, (actual, wanted) in enumerate(zip(cached, expected)):
+        assert actual == wanted, f"{name}: K_{n} differs from the operator recurrence"
+
+
+def check_caches():
+    expected = cached_coefficients()
+    caches = {}
+    for degree in (80, 110):
+        name = f"K{degree}.json"
+        with open(os.path.join(HERE, name)) as f:
+            caches[name] = json.load(f)
+        compare_cache(name, caches[name], expected[:degree + 1])
+        print(f"PASS {name}: all {degree + 1} coefficients equal the operator recurrence")
+    mutant = caches["K110.json"].copy()
+    mutant[109] += 109**3
+    try:
+        compare_cache("K110.json", mutant, expected)
+    except AssertionError as e:
+        assert str(e) == "K110.json: K_109 differs from the operator recurrence", str(e)
+        print(f"REJECTED K_109 += 109^3: {e}")
+    else:
+        raise AssertionError("K_109 += 109^3 mutant survived")
+
+
+def model_outcome(returncode, output):
+    if returncode < 0:
+        return "CRASH"
+    if re.search(r"maximum recursion depth|maxRecDepth|heartbeat|deterministic timeout|out of memory|stack overflow",
+                 output, re.IGNORECASE):
+        return "RESOURCE"
+    expected = "AssertionError: orders at b=0 (3, 5, 9), claimed (4, 5, 10)"
+    if returncode == 1 and output.rstrip().endswith(expected):
+        return "REJECTED"
+    return "ACCEPTED" if returncode == 0 else "INFRA"
+
+
 def main():
     deep = "--deep" in sys.argv
+    check_caches()
     for script, args, wants in CHECKS:
         out = run(script, args)
         missing = [w for w in wants if w not in out]
@@ -164,15 +237,25 @@ def main():
             raise SystemExit(f"FAIL {script} {args}: missing {missing}\n{out[-3000:]}")
         print(f"PASS {script} {' '.join(args)}")
     # the planted fibre type in models_check must fail
-    bad = subprocess.run(
-        [PY, "models_check.py"],
-        cwd=HERE,
-        capture_output=True,
-        text=True,
-        env={**os.environ, "MUTANT": "1"},
-    )
-    assert bad.returncode != 0, "models_check mutant survived"
-    print("PASS models_check.py MUTANT=1 fails")
+    try:
+        bad = subprocess.run(
+            [PY, "models_check.py"],
+            cwd=HERE,
+            capture_output=True,
+            text=True,
+            timeout=120,
+            env={**os.environ, "MUTANT": "1"},
+        )
+    except subprocess.TimeoutExpired:
+        raise SystemExit("FAIL models_check.py MUTANT=1: TIMEOUT")
+    except OSError as e:
+        raise SystemExit(f"FAIL models_check.py MUTANT=1: INFRA {e}")
+    output = bad.stdout + bad.stderr
+    outcome = model_outcome(bad.returncode, output)
+    error = next((line for line in output.splitlines() if line.startswith("AssertionError:")),
+                 next(iter(output.splitlines()), "(no diagnostic)"))
+    print(f"{outcome} models_check.py MUTANT=1: {error}")
+    assert outcome == "REJECTED", output
     # untwisted denominators: every prime p <= 19 divides a denominator of n_d, d <= 20 (Table 2)
     K = json.load(open(os.path.join(HERE, "K110.json")))
     u = [F(0)] * 21
