@@ -1,6 +1,4 @@
-# 25 October 2026, run with scripts/mutants.py before its import-failure rule (INFRA for a missing .olean or
-# unresolved import). Every diagnostic below is a proof error located in Mut.lean, none an import failure, so the
-# current harness classifies each the same way.
+# 25 October 2026, scripts/mutants.py as shipped (SHA-256 in SOURCE-SNAPSHOT.json), isolated copy, Lean 4.34.0
 baseline ACCEPTED: Basic.lean; (no diagnostic)
 REJECTED: L recurrence 5n^2 -> 4n^2; /private/tmp/claude-501/-Users-vamshi/832b1201-e0a7-4ba3-a90a-9637a63cb45b/scratchpad/sot-lean/LeanProofs/StrangeOperator/Mut.lean:45:48: error: unsolved goals
 REJECTED: P recurrence 192 -> 191; /private/tmp/claude-501/-Users-vamshi/832b1201-e0a7-4ba3-a90a-9637a63cb45b/scratchpad/sot-lean/LeanProofs/StrangeOperator/Mut.lean:45:48: error: unsolved goals
