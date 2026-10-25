@@ -17,7 +17,7 @@
 \newcommand{\one}{\mathbf 1}
 \title{A determinant dichotomy for quadratic zero-one systems:\\steady-state parity, boundedness, and finite-time escape}
 \author{Vamshi Jandhyala\\\small London, United Kingdom}
-\date{Preprint v1, 20 October 2026}
+\date{Preprint v2, 25 October 2026 (v1: 20 October 2026)}
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -154,7 +154,7 @@ quadratic zero-one network and by systems in the strict class.
 \end{corollary}
 
 \begin{corollary}[Four states versus five]\label{cor:fourfive}
-A regular strict system with exactly four positive steady states has an open
+Let $\Delta\ne0$. A regular strict system with exactly four positive steady states has an open
 set of finite-time escaping trajectories. A regular strict system with five
 positive steady states, if one exists, must lie in the absorbing-box region
 $\Delta<0$.
@@ -571,9 +571,11 @@ Section~\ref{sec:seven}, gives at every root of $E$
 \]
 At the five simple roots $E'$ has the signs $+,-,+,-,+$ of the crossings, which
 gives the stated determinant signs. Stability of the first, third and fifth
-states is certified by exact rational Routh--Hurwitz enclosures, computed by the
-same verifier as in Section~\ref{sec:seven}; states with $\det Df>0$ have a positive real
-eigenvalue.
+states is certified in exact rational arithmetic (\texttt{verify/certify\_five.py}): each state has a
+rational isolating interval for its root of $E$, and on that interval the numerator and denominator of each
+Routh--Hurwitz quantity $b_1$, $b_3$, $b_1b_2-b_3$, written as a rational function of $z$ along the curve,
+have no real root (Sturm counts), so its sign is its sign at the midpoint. States with $\det Df>0$ have a
+positive real eigenvalue.
 \end{proof}
 
 \begin{figure}[ht]
@@ -645,8 +647,9 @@ exact root certificates and verification commands are at~\cite{repo}.
 
 \section{Formal verification}
 Both extreme examples are verified in Lean~4 with Mathlib \cite{Lean4,Mathlib}.
-For each network the formal statement derives the mass-action system from the
-reaction list, proves that the stated Jacobian entries are the partial
+For each network the formal statement records the mass-action system as transcribed, reaction by reaction,
+from the reaction list (which appears in the Lean source as a comment; the reactions themselves are not
+formalised), proves that the stated Jacobian entries are the partial
 derivatives, and proves that the set of positive steady states consists of
 exactly four, respectively five, explicit points, each in a stated rational
 interval, with determinant signs $-,+,-,+$ and $-,+,-,+,-$. The proofs follow
@@ -655,9 +658,10 @@ eliminant, the bound on the number of roots of a polynomial, and the determinant
 identity. They use only the standard axioms of Lean's logic. Each formalisation
 was tested against planted errors (a wrong count, a wrong sign, a changed rate, a
 wrong Jacobian entry, a shifted root interval); all of the 10 and 11 planted
-variants respectively fail to compile. The stability counts, which rely on the
-Routh--Hurwitz criterion, are certified by exact rational arithmetic but are not
-formalised. The general dichotomy is not formalised; its degree-theoretic steps
+variants respectively fail to compile, each with a Lean error in the mutated file. The stability counts,
+which rely on the Routh--Hurwitz criterion, are certified in exact rational arithmetic
+(\texttt{verify/verify\_dichotomy.py} for Section~\ref{sec:seven}, \texttt{verify/certify\_five.py} for
+Section~\ref{sec:five}) but are not formalised. The general dichotomy is not formalised; its degree-theoretic steps
 use the standard properties of the Brouwer degree.
 
 \section{What remains open}\label{sec:open}
@@ -709,6 +713,13 @@ draft and its proofs, found the eight-reaction five-state network and the elemen
 proofs of both extreme examples, wrote the Lean formalisation and the independent
 recheck, and revised the text. The author is responsible for the content of this
 preprint, which has not yet been independently reviewed.
+
+\emph{Changes in version 2.} After a Codex referee report: Corollary~\ref{cor:fourfive} now assumes
+$\Delta\ne0$, which its proof through Theorem~\ref{thm:main} needs; the stability of the five-state example,
+claimed in version 1 as exact but checked there only in 60-digit arithmetic, is now certified exactly
+(\texttt{verify/certify\_five.py}); the description of the Lean statements says that the mass-action systems
+are transcribed, not derived from a formal reaction list; the Lean mutation harness accepts only errors located
+in the mutated file. Theorem~\ref{thm:main} and the examples are unchanged.
 
 \begin{thebibliography}{9}
 \bibitem{repo} V. Jandhyala, A determinant dichotomy for quadratic zero-one systems: code,

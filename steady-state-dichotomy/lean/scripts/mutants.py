@@ -1,6 +1,8 @@
 """Mutation tests for the Lean files: each mutant plants one wrong count, sign, rate, Jacobian entry or root
-interval and must make its file fail to compile. Run from lean/ after `lake build LeanProofs`."""
-import subprocess, sys
+interval and must make its file fail to compile, with a Lean error located in the mutated file. Crashes, timeouts,
+resource limits and infrastructure failures count as failures of the harness, never as rejections. Run from lean/
+after `lake build LeanProofs`."""
+import os, re, subprocess, sys
 
 MUTANTS = [
     ('LeanProofs/ZeroOneFour.lean', 'five positive states instead of four', 'S = {g r₁, g r₂, g r₃, g r₄} ∧ S.ncard = 4 ∧', 'S = {g r₁, g r₂, g r₃, g r₄} ∧ S.ncard = 5 ∧'),
@@ -26,17 +28,70 @@ MUTANTS = [
     ('LeanProofs/ZeroOneFive.lean', 'curve parametrisation D with 31999', 'def D (z : ℝ) : ℝ := 8000 * z ^ 2 - 32000 * z - 1', 'def D (z : ℝ) : ℝ := 8000 * z ^ 2 - 31999 * z - 1'),
 ]
 
-killed = 0
-for src, name, old, new in MUTANTS:
-    text = open(src).read()
-    assert text.count(old) == 1, f"{name}: anchor not unique in {src}"
-    open(src, "w").write(text.replace(old, new))
+def run_lean(src):
     try:
         r = subprocess.run(["lake", "env", "lean", src], capture_output=True, text=True, timeout=900)
-        dead = r.returncode != 0 or "error" in r.stdout + r.stderr
-    finally:
-        open(src, "w").write(text)
-    killed += dead
-    print(("killed   " if dead else "SURVIVED ") + f"{src}: {name}", flush=True)
-print(f"{killed}/{len(MUTANTS)} mutants killed")
-sys.exit(0 if killed == len(MUTANTS) else 1)
+    except subprocess.TimeoutExpired:
+        return "TIMEOUT", "no Lean error line (timed out after 900s)"
+    except OSError as e:
+        return "INFRA", f"no Lean error line ({e})"
+    output = re.sub(r"\x1b\[[0-9;]*m", "", r.stdout + "\n" + r.stderr)
+    errors = [line for line in output.splitlines() if "error:" in line]
+    first = errors[0] if errors else "no Lean error line"
+    if r.returncode < 0:
+        return "CRASH", f"signal {-r.returncode}; {first}"
+    # Missing imports/toolchains are infrastructure failures, even with a source location.
+    infra = re.search(r"toolchain|unknown module prefix|unknown package|no such file or directory|"
+                      r"object file .* does not exist|failed to (?:download|load)|shared librar", output, re.I)
+    if infra:
+        return "INFRA", first + f" ({infra.group(0)})"
+    located = []
+    for line in errors:
+        match = re.match(r"^(.+?):\d+:\d+:\s*error:", line)
+        if match and os.path.realpath(match.group(1)) == os.path.realpath(src):
+            located.append(line)
+    # Resource limits (recursion depth, heartbeats, deterministic timeouts, memory) say nothing about the
+    # mutated statement, so they are harness failures, not rejections.
+    resource = re.search(r"maximum recursion depth|maxRecDepth|heartbeat|deterministic\)? timeout|"
+                         r"out of memory|stack overflow", output, re.I)
+    if resource:
+        return "RESOURCE", first + f" ({resource.group(0)})"
+    if r.returncode == 1 and located:
+        return "REJECTED", located[0]
+    if r.returncode == 0 and not errors:
+        return "PASSED", first
+    detail = next((line for line in output.splitlines() if line.strip()), "no output")
+    return "INFRA", f"returncode {r.returncode}; {first}; {detail}"
+
+
+def main():
+    baselines = list(dict.fromkeys(src for src, _, _, _ in MUTANTS))
+    bad = 0
+    for src in baselines:
+        status, why = run_lean(src)
+        print(f"{'PASS' if status == 'PASSED' else 'FAIL'} baseline {src}: {status}; {why}", flush=True)
+        bad += status != "PASSED"
+    if bad:
+        print(f"FAIL: {bad} baselines failed; mutants not run")
+        return 1
+    rejected = 0
+    for src, name, old, new in MUTANTS:
+        text = open(src).read()
+        if text.count(old) != 1:
+            print(f"FAIL INFRA {src}: {name}; anchor not unique", flush=True)
+            continue
+        try:
+            open(src, "w").write(text.replace(old, new))
+            status, why = run_lean(src)
+        finally:
+            open(src, "w").write(text)
+        status = "SURVIVED" if status == "PASSED" else status
+        rejected += status == "REJECTED"
+        print(("REJECTED " if status == "REJECTED" else f"FAIL {status} ") + f"{src}: {name}\n    {why}", flush=True)
+    ok = rejected == len(MUTANTS)
+    print(f"{'PASS' if ok else 'FAIL'}: {len(baselines)} baselines passed, {rejected}/{len(MUTANTS)} mutants REJECTED")
+    return 0 if ok else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

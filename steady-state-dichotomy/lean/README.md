@@ -15,11 +15,11 @@ sign, rate, Jacobian entry or root interval and checks that the file no longer c
 
 | Paper | Lean |
 |---|---|
-| Section 5: the mass-action system of the seven-reaction network, from its reaction list | `ZeroOneFour.lean`: `ZeroOneFour.f_from_network` |
+| Section 5: the mass-action system of the seven-reaction network, as transcribed from its reaction list (a comment; reactions are not formalised) | `ZeroOneFour.lean`: `ZeroOneFour.f_from_network` |
 | Section 5: Jacobian entries are the partial derivatives; the determinant | `ZeroOneFour.lean`: `jac_partials`, `det_jac` |
 | Section 5: positive steady states lie on the rational curve | `ZeroOneFour.lean`: `on_curve` |
 | Section 5: exactly four positive steady states, in the stated rational intervals, with `det Df` signs `−, +, −, +` | `ZeroOneFour.lean`: `ZeroOneFour.main` |
-| Theorem 6.1: the eight-reaction system from its reaction list; partials; determinant | `ZeroOneFive.lean`: `ZeroOneFive.f_from_network`, `jac_partials`, `det_jac` |
+| Theorem 6.1: the eight-reaction system as transcribed, reaction by reaction, from the reaction list (the list is a comment; reactions are not formalised); partials; determinant | `ZeroOneFive.lean`: `ZeroOneFive.f_from_network`, `jac_partials`, `det_jac` |
 | Theorem 6.1: the rational curve and the determinant identity at roots of the eliminant | `ZeroOneFive.lean`: `on_curve`, `detJ_root` |
 | Theorem 6.1: exactly five positive steady states with signs `−, +, −, +, −` | `ZeroOneFive.lean`: `ZeroOneFive.main` |
 
