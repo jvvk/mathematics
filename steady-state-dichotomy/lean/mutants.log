@@ -1,0 +1,46 @@
+PASS baseline LeanProofs/ZeroOneFour.lean: PASSED; no Lean error line
+PASS baseline LeanProofs/ZeroOneFive.lean: PASSED; no Lean error line
+REJECTED LeanProofs/ZeroOneFour.lean: five positive states instead of four
+    LeanProofs/ZeroOneFour.lean:200:70: error: Application type mismatch: The argument
+REJECTED LeanProofs/ZeroOneFour.lean: first state det J positive (signs +,+,-,+)
+    LeanProofs/ZeroOneFour.lean:201:26: error: Type mismatch
+REJECTED LeanProofs/ZeroOneFour.lean: largest root in (94,95)
+    LeanProofs/ZeroOneFour.lean:200:57: error: Application type mismatch: The argument
+REJECTED LeanProofs/ZeroOneFour.lean: P coefficient 218 -> 217
+    LeanProofs/ZeroOneFour.lean:72:59: error: unsolved goals
+REJECTED LeanProofs/ZeroOneFour.lean: inflow 0 -> X2 at rate 2
+    LeanProofs/ZeroOneFour.lean:29:44: error: unsolved goals
+REJECTED LeanProofs/ZeroOneFour.lean: network bookkeeping: X1+X2 -> 0 at rate 6
+    LeanProofs/ZeroOneFour.lean:29:44: error: unsolved goals
+REJECTED LeanProofs/ZeroOneFour.lean: Jacobian entry d f2/dz = -x
+    LeanProofs/ZeroOneFour.lean:56:56: error: unsolved goals
+REJECTED LeanProofs/ZeroOneFour.lean: det J coefficient -48 -> -47
+    LeanProofs/ZeroOneFour.lean:65:62: error: unsolved goals
+REJECTED LeanProofs/ZeroOneFour.lean: curve x = (8z-1)/(z+23)
+    LeanProofs/ZeroOneFour.lean:72:59: error: unsolved goals
+REJECTED LeanProofs/ZeroOneFour.lean: det J identity coefficient 191 -> 190
+    LeanProofs/ZeroOneFour.lean:120:98: error: unsolved goals
+REJECTED LeanProofs/ZeroOneFive.lean: six positive states instead of five
+    LeanProofs/ZeroOneFive.lean:232:84: error: Application type mismatch: The argument
+REJECTED LeanProofs/ZeroOneFive.lean: four positive states instead of five
+    LeanProofs/ZeroOneFive.lean:232:84: error: Application type mismatch: The argument
+REJECTED LeanProofs/ZeroOneFive.lean: last state det J positive
+    LeanProofs/ZeroOneFive.lean:237:4: error: Type mismatch
+REJECTED LeanProofs/ZeroOneFive.lean: smallest root interval shifted
+    LeanProofs/ZeroOneFive.lean:232:31: error: Application type mismatch: The argument
+REJECTED LeanProofs/ZeroOneFive.lean: rate X2 -> X1 doubled in f2
+    LeanProofs/ZeroOneFive.lean:29:52: error: unsolved goals
+REJECTED LeanProofs/ZeroOneFive.lean: inflow 0 -> X1+X2 at 1/2000 in f1
+    LeanProofs/ZeroOneFive.lean:29:52: error: unsolved goals
+REJECTED LeanProofs/ZeroOneFive.lean: network bookkeeping: X3 -> 0 at rate 1
+    LeanProofs/ZeroOneFive.lean:29:48: error: unsolved goals
+REJECTED LeanProofs/ZeroOneFive.lean: eliminant coefficient 101000 -> 100000
+    LeanProofs/ZeroOneFive.lean:81:96: error: unsolved goals
+REJECTED LeanProofs/ZeroOneFive.lean: Jacobian entry df3/dy = +2/5 z
+    LeanProofs/ZeroOneFive.lean:59:56: error: unsolved goals
+REJECTED LeanProofs/ZeroOneFive.lean: M coefficient 8/5 -> 7/5
+    LeanProofs/ZeroOneFive.lean:131:74: error: linarith failed to find a contradiction
+REJECTED LeanProofs/ZeroOneFive.lean: curve parametrisation D with 31999
+    LeanProofs/ZeroOneFive.lean:77:74: error: linarith failed to find a contradiction
+PASS: 2 baselines passed, 21/21 mutants REJECTED
+exit 0

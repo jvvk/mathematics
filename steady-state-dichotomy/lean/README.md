@@ -27,4 +27,6 @@ Not formalised: the dichotomy (Theorem 2.1) and its corollaries, whose barrier a
 proved by hand in Sections 3 and 4 from standard degree theory; the stability counts (exact Routh–Hurwitz
 certificates in `verify/`); and the minimality of seven reactions for four states, which rests on Tang and
 Zhang's classification. Every result above uses only Lean's standard axioms (axiom-validation.txt). The folder
-was compiled in an isolated build without the development cache (build-validation.log).
+was compiled in an isolated build without the development cache; `build-validation.log` records the full
+`lake build LeanProofs` (exit 0) and the `CheckClaims.lean` axiom report (exit 0). `mutants.log` records the 21 mutation
+tests: 2 baselines pass and every mutant is rejected by a Lean error in the mutated file.

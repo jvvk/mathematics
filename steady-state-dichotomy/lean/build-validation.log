@@ -1,41 +1,633 @@
-Isolated build 2026-10-20: fresh copy of lean/, lake exe cache get, lake build LeanProofs
-⚠ [8924/8927] Built LeanProofs.ZeroOneFour (206s)
+# lake build LeanProofs, then lake env lean CheckClaims.lean; isolated copy, 25 October 2026
+⚠ [8924/8927] Built LeanProofs.ZeroOneFour (36s)
 warning: LeanProofs/ZeroOneFour.lean:15:0: The module doc-string for a file should be the first command after the imports.
+Please, add a module doc-string (`/-! ... -/`) before `namespace ZeroOneFour`.
+
+Hint: Type `m(odule docstring) + [tab]` to insert a template via snippet.
+
+Note: This linter can be disabled with `set_option linter.style.header false`
 warning: LeanProofs/ZeroOneFour.lean:2:0: * `A seven-reaction`:
+Copyright line should start with 'Copyright (c) YYYY'
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
 warning: LeanProofs/ZeroOneFour.lean:2:77: * `generate steady states`:
+Copyright line should end with '. All rights reserved.'
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
 warning: LeanProofs/ZeroOneFour.lean:4:0: * `
+Reactions and rates: X1+X2 → 0 (7), X1+X3 → X2+X3 (1), X3 → X1 (1), X1+X2 → X3 (1),X2+X3 → X1+X2+X3 (1), 0 → X2 (1), X1 → X1+X3 (3). Mass action with concentrations (x, y, z) gives f below.
+
+Route (the paper's): f2 + 8 f3 = x(z+24) - (8z-1) puts every positive zero on the curve
+x = (8z-1)/(z+24), y = (z^2+3)/(8z-1), z > 1/8, where f1 = P(z)/((z+24)(8z-1)) with
+P = z^4 - 96 z^3 + 218 z^2 - 145 z + 24. Four sign changes of P give four roots; a quartic has at most four.
+On the curve det J = P'(z)/(z+24) at every root of P, and P' has a fixed sign on each root interval.`:
+If an authors line spans multiple lines, each line but the last must end with a trailing comma
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
 warning: LeanProofs/ZeroOneFour.lean:4:0: * `
+Reaction`:
+The authors line should begin with 'Authors: '
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
 warning: LeanProofs/ZeroOneFour.lean:5:9: * ` and `:
+Please, do not use 'and'; use ',' instead.
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
 warning: LeanProofs/ZeroOneFour.lean:6:47: * `.`:
+Please, do not end the authors' line with a period.
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
 warning: LeanProofs/ZeroOneFour.lean:3:0: * `(chem-tang-zhang-three-steady-states; witness and proof route from FOUR_STATES.md, Codex, 2026-10-16).`:
+Second copyright line should be "Released under Apache 2.0 license as described in the file LICENSE."
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
 warning: LeanProofs/ZeroOneFour.lean:40:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
 warning: LeanProofs/ZeroOneFour.lean:52:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
 warning: LeanProofs/ZeroOneFour.lean:53:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
 warning: LeanProofs/ZeroOneFour.lean:54:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
 warning: LeanProofs/ZeroOneFour.lean:55:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
 warning: LeanProofs/ZeroOneFour.lean:58:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
 warning: LeanProofs/ZeroOneFour.lean:63:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
 warning: LeanProofs/ZeroOneFour.lean:108:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
 warning: LeanProofs/ZeroOneFour.lean:109:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
 warning: LeanProofs/ZeroOneFour.lean:112:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
 warning: LeanProofs/ZeroOneFour.lean:115:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
 warning: LeanProofs/ZeroOneFour.lean:117:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
 warning: LeanProofs/ZeroOneFour.lean:125:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
 warning: LeanProofs/ZeroOneFour.lean:130:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
 warning: LeanProofs/ZeroOneFour.lean:140:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
 warning: LeanProofs/ZeroOneFour.lean:171:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFour.lean:171:39: Try this:
+  [apply] simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+info: LeanProofs/ZeroOneFour.lean:171:45: `refine ⟨?_, ?_, ?_⟩`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 171!
 warning: LeanProofs/ZeroOneFour.lean:171:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFour.lean:171:39: Try this:
+  [apply] simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+info: LeanProofs/ZeroOneFour.lean:171:69: `intro h`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 171!
 warning: LeanProofs/ZeroOneFour.lean:171:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFour.lean:171:39: Try this:
+  [apply] simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+info: LeanProofs/ZeroOneFour.lean:171:69: `intro h`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 171!
 warning: LeanProofs/ZeroOneFour.lean:171:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFour.lean:171:39: Try this:
+  [apply] simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+info: LeanProofs/ZeroOneFour.lean:171:69: `intro h`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 171!
 warning: LeanProofs/ZeroOneFour.lean:172:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFour.lean:172:39: Try this:
+  [apply] simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+info: LeanProofs/ZeroOneFour.lean:172:45: `refine ⟨?_, ?_⟩`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 172!
 warning: LeanProofs/ZeroOneFour.lean:172:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFour.lean:172:39: Try this:
+  [apply] simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+info: LeanProofs/ZeroOneFour.lean:172:65: `intro h`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 172!
 warning: LeanProofs/ZeroOneFour.lean:172:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFour.lean:172:39: Try this:
+  [apply] simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+info: LeanProofs/ZeroOneFour.lean:172:65: `intro h`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 172!
 warning: LeanProofs/ZeroOneFour.lean:173:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFour.lean:173:39: Try this:
+  [apply] simp only [Finset.mem_singleton]
+info: LeanProofs/ZeroOneFour.lean:173:45: `intro h`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 173!
 warning: LeanProofs/ZeroOneFour.lean:197:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFour.lean:197:39: Try this:
+  [apply] simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+info: LeanProofs/ZeroOneFour.lean:197:45: `refine ⟨?_, ?_, ?_⟩`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 197!
 warning: LeanProofs/ZeroOneFour.lean:197:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFour.lean:197:39: Try this:
+  [apply] simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+info: LeanProofs/ZeroOneFour.lean:197:69: `intro h`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 197!
 warning: LeanProofs/ZeroOneFour.lean:197:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFour.lean:197:39: Try this:
+  [apply] simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+info: LeanProofs/ZeroOneFour.lean:197:69: `intro h`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 197!
 warning: LeanProofs/ZeroOneFour.lean:197:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFour.lean:197:39: Try this:
+  [apply] simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+info: LeanProofs/ZeroOneFour.lean:197:69: `intro h`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 197!
 warning: LeanProofs/ZeroOneFour.lean:198:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFour.lean:198:39: Try this:
+  [apply] simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+info: LeanProofs/ZeroOneFour.lean:198:45: `refine ⟨?_, ?_⟩`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 198!
 warning: LeanProofs/ZeroOneFour.lean:198:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFour.lean:198:39: Try this:
+  [apply] simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+info: LeanProofs/ZeroOneFour.lean:198:65: `intro h`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 198!
 warning: LeanProofs/ZeroOneFour.lean:198:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFour.lean:198:39: Try this:
+  [apply] simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+info: LeanProofs/ZeroOneFour.lean:198:65: `intro h`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 198!
 warning: LeanProofs/ZeroOneFour.lean:199:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFour.lean:199:39: Try this:
+  [apply] simp only [Finset.mem_singleton]
+info: LeanProofs/ZeroOneFour.lean:199:45: `intro h`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 199!
+warning: LeanProofs/ZeroOneFour.lean:145:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/ZeroOneFour.lean:149:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/ZeroOneFour.lean:150:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/ZeroOneFour.lean:151:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/ZeroOneFour.lean:152:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/ZeroOneFour.lean:195:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/ZeroOneFour.lean:3:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/ZeroOneFour.lean:6:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/ZeroOneFour.lean:10:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+⚠ [8925/8927] Built LeanProofs.ZeroOneFive (37s)
+warning: LeanProofs/ZeroOneFive.lean:15:0: The module doc-string for a file should be the first command after the imports.
+Please, add a module doc-string (`/-! ... -/`) before `namespace ZeroOneFive`.
+
+Hint: Type `m(odule docstring) + [tab]` to insert a template via snippet.
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+warning: LeanProofs/ZeroOneFive.lean:2:0: * `An eight-reactio`:
+Copyright line should start with 'Copyright (c) YYYY'
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+warning: LeanProofs/ZeroOneFive.lean:2:83: * `ate steady states, the`:
+Copyright line should end with '. All rights reserved.'
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+warning: LeanProofs/ZeroOneFive.lean:4:0: * `
+Reactions and rates: X1 → X1+X3 (5), X1 → X2 (1), X1+X3 → X1+X2+X3 (1), X1+X2 → X2 (1), X2+X3 → X1 (2/5),X3 → 0 (1/2), 0 → X1+X2 (1/2500), X2 → X1 (1/100000). Concentrations (x, y, z).
+
+Route (same shape as the four-state proof): f3 is linear in x and, after that substitution, 100000·f2 is linear in
+y, so the curve f2 = f3 = 0 is rational in z: y = -N(z)/D(z), x = z(5+4y)/50. On it f1 = -E(z)/(1250 D(z)^2) with
+E of degree five. Five sign changes give five roots; a quintic has at most five. At a root
+det J = -M(z) E'(z)/(1250 D(z)^2) with M > 0, and E' has a fixed sign on each root interval.`:
+If an authors line spans multiple lines, each line but the last must end with a trailing comma
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+warning: LeanProofs/ZeroOneFive.lean:4:0: * `
+Reaction`:
+The authors line should begin with 'Authors: '
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+warning: LeanProofs/ZeroOneFive.lean:5:9: * ` and `:
+Please, do not use 'and'; use ',' instead.
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+warning: LeanProofs/ZeroOneFive.lean:6:51: * `.`:
+Please, do not end the authors' line with a period.
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+warning: LeanProofs/ZeroOneFive.lean:3:0: * `Bernstein maximum for this class (chem-tang-zhang-three-steady-states, session 5/6, 2026-10-16).`:
+Second copyright line should be "Released under Apache 2.0 license as described in the file LICENSE."
+
+
+Note: This linter can be disabled with `set_option linter.style.header false`
+warning: LeanProofs/ZeroOneFive.lean:37:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/ZeroOneFive.lean:44:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/ZeroOneFive.lean:55:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/ZeroOneFive.lean:56:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/ZeroOneFive.lean:57:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/ZeroOneFive.lean:58:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/ZeroOneFive.lean:61:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/ZeroOneFive.lean:63:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/ZeroOneFive.lean:69:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/ZeroOneFive.lean:116:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/ZeroOneFive.lean:120:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/ZeroOneFive.lean:126:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/ZeroOneFive.lean:144:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/ZeroOneFive.lean:153:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/ZeroOneFive.lean:157:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/ZeroOneFive.lean:161:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/ZeroOneFive.lean:200:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFive.lean:200:39: Try this:
+  [apply] simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+info: LeanProofs/ZeroOneFive.lean:200:45: `refine ⟨?_, ?_, ?_, ?_⟩`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 200!
+warning: LeanProofs/ZeroOneFive.lean:200:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFive.lean:200:39: Try this:
+  [apply] simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+info: LeanProofs/ZeroOneFive.lean:200:73: `intro h`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 200!
+warning: LeanProofs/ZeroOneFive.lean:200:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFive.lean:200:39: Try this:
+  [apply] simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+info: LeanProofs/ZeroOneFive.lean:200:73: `intro h`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 200!
+warning: LeanProofs/ZeroOneFive.lean:200:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFive.lean:200:39: Try this:
+  [apply] simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+info: LeanProofs/ZeroOneFive.lean:200:73: `intro h`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 200!
+warning: LeanProofs/ZeroOneFive.lean:200:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFive.lean:200:39: Try this:
+  [apply] simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+info: LeanProofs/ZeroOneFive.lean:200:73: `intro h`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 200!
+warning: LeanProofs/ZeroOneFive.lean:201:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFive.lean:201:39: Try this:
+  [apply] simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+info: LeanProofs/ZeroOneFive.lean:201:45: `refine ⟨?_, ?_, ?_⟩`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 201!
+warning: LeanProofs/ZeroOneFive.lean:201:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFive.lean:201:39: Try this:
+  [apply] simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+info: LeanProofs/ZeroOneFive.lean:201:69: `intro h`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 201!
+warning: LeanProofs/ZeroOneFive.lean:201:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFive.lean:201:39: Try this:
+  [apply] simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+info: LeanProofs/ZeroOneFive.lean:201:69: `intro h`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 201!
+warning: LeanProofs/ZeroOneFive.lean:201:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFive.lean:201:39: Try this:
+  [apply] simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+info: LeanProofs/ZeroOneFive.lean:201:69: `intro h`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 201!
+warning: LeanProofs/ZeroOneFive.lean:202:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFive.lean:202:39: Try this:
+  [apply] simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+info: LeanProofs/ZeroOneFive.lean:202:45: `refine ⟨?_, ?_⟩`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 202!
+warning: LeanProofs/ZeroOneFive.lean:202:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFive.lean:202:39: Try this:
+  [apply] simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+info: LeanProofs/ZeroOneFive.lean:202:65: `intro h`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 202!
+warning: LeanProofs/ZeroOneFive.lean:202:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFive.lean:202:39: Try this:
+  [apply] simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+info: LeanProofs/ZeroOneFive.lean:202:65: `intro h`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 202!
+warning: LeanProofs/ZeroOneFive.lean:203:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFive.lean:203:39: Try this:
+  [apply] simp only [Finset.mem_singleton]
+info: LeanProofs/ZeroOneFive.lean:203:45: `intro h`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 203!
+warning: LeanProofs/ZeroOneFive.lean:228:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFive.lean:228:39: Try this:
+  [apply] simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+info: LeanProofs/ZeroOneFive.lean:228:45: `refine ⟨?_, ?_, ?_, ?_⟩`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 228!
+warning: LeanProofs/ZeroOneFive.lean:228:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFive.lean:228:39: Try this:
+  [apply] simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+info: LeanProofs/ZeroOneFive.lean:228:73: `intro h`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 228!
+warning: LeanProofs/ZeroOneFive.lean:228:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFive.lean:228:39: Try this:
+  [apply] simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+info: LeanProofs/ZeroOneFive.lean:228:73: `intro h`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 228!
+warning: LeanProofs/ZeroOneFive.lean:228:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFive.lean:228:39: Try this:
+  [apply] simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+info: LeanProofs/ZeroOneFive.lean:228:73: `intro h`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 228!
+warning: LeanProofs/ZeroOneFive.lean:228:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFive.lean:228:39: Try this:
+  [apply] simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+info: LeanProofs/ZeroOneFive.lean:228:73: `intro h`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 228!
+warning: LeanProofs/ZeroOneFive.lean:229:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFive.lean:229:39: Try this:
+  [apply] simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+info: LeanProofs/ZeroOneFive.lean:229:45: `refine ⟨?_, ?_, ?_⟩`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 229!
+warning: LeanProofs/ZeroOneFive.lean:229:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFive.lean:229:39: Try this:
+  [apply] simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+info: LeanProofs/ZeroOneFive.lean:229:69: `intro h`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 229!
+warning: LeanProofs/ZeroOneFive.lean:229:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFive.lean:229:39: Try this:
+  [apply] simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+info: LeanProofs/ZeroOneFive.lean:229:69: `intro h`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 229!
+warning: LeanProofs/ZeroOneFive.lean:229:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFive.lean:229:39: Try this:
+  [apply] simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+info: LeanProofs/ZeroOneFive.lean:229:69: `intro h`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 229!
+warning: LeanProofs/ZeroOneFive.lean:230:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFive.lean:230:39: Try this:
+  [apply] simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+info: LeanProofs/ZeroOneFive.lean:230:45: `refine ⟨?_, ?_⟩`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 230!
+warning: LeanProofs/ZeroOneFive.lean:230:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFive.lean:230:39: Try this:
+  [apply] simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+info: LeanProofs/ZeroOneFive.lean:230:65: `intro h`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 230!
+warning: LeanProofs/ZeroOneFive.lean:230:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFive.lean:230:39: Try this:
+  [apply] simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+info: LeanProofs/ZeroOneFive.lean:230:65: `intro h`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 230!
+warning: LeanProofs/ZeroOneFive.lean:231:39: `simp` is a flexible tactic modifying `⊢`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: LeanProofs/ZeroOneFive.lean:231:39: Try this:
+  [apply] simp only [Finset.mem_singleton]
+info: LeanProofs/ZeroOneFive.lean:231:45: `intro h`
+modifies the current goal, which was modified by the flexible tactic `simp` on line 231!
+warning: LeanProofs/ZeroOneFive.lean:167:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/ZeroOneFive.lean:172:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/ZeroOneFive.lean:173:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/ZeroOneFive.lean:174:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/ZeroOneFive.lean:175:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/ZeroOneFive.lean:176:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/ZeroOneFive.lean:232:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/ZeroOneFive.lean:2:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/ZeroOneFive.lean:5:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/ZeroOneFive.lean:8:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: LeanProofs/ZeroOneFive.lean:9:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+✔ [8926/8927] Built LeanProofs (11s)
+Build completed successfully (8927 jobs).
+lake build LeanProofs exit 0
+
+ZeroOneFour.f_from_network : ∀ (x y z : ℝ),
+  ZeroOneFour.f1 x y z = -7 * x * y - 1 * x * z + 1 * z + 1 * y * z - 1 * x * y ∧
+    ZeroOneFour.f2 x y z = -7 * x * y + 1 * x * z - 1 * x * y + 1 ∧ ZeroOneFour.f3 x y z = 1 * x * y - 1 * z + 3 * x
+'ZeroOneFour.f_from_network' depends on axioms: [propext, Classical.choice, Quot.sound]
+ZeroOneFour.jac_partials : ∀ (x y z : ℝ),
+  HasDerivAt (fun t => ZeroOneFour.f1 t y z) (ZeroOneFour.jac x y z 0 0) x ∧
+    HasDerivAt (fun t => ZeroOneFour.f1 x t z) (ZeroOneFour.jac x y z 0 1) y ∧
+      HasDerivAt (fun t => ZeroOneFour.f1 x y t) (ZeroOneFour.jac x y z 0 2) z ∧
+        HasDerivAt (fun t => ZeroOneFour.f2 t y z) (ZeroOneFour.jac x y z 1 0) x ∧
+          HasDerivAt (fun t => ZeroOneFour.f2 x t z) (ZeroOneFour.jac x y z 1 1) y ∧
+            HasDerivAt (fun t => ZeroOneFour.f2 x y t) (ZeroOneFour.jac x y z 1 2) z ∧
+              HasDerivAt (fun t => ZeroOneFour.f3 t y z) (ZeroOneFour.jac x y z 2 0) x ∧
+                HasDerivAt (fun t => ZeroOneFour.f3 x t z) (ZeroOneFour.jac x y z 2 1) y ∧
+                  HasDerivAt (fun t => ZeroOneFour.f3 x y t) (ZeroOneFour.jac x y z 2 2) z
+'ZeroOneFour.jac_partials' depends on axioms: [propext, Classical.choice, Quot.sound]
+ZeroOneFour.det_jac : ∀ (x y z : ℝ), (ZeroOneFour.jac x y z).det = ZeroOneFour.detJ x y z
+'ZeroOneFour.det_jac' depends on axioms: [propext, Classical.choice, Quot.sound]
+@ZeroOneFour.on_curve : ∀ {x y z : ℝ},
+  0 < x →
+    0 < z →
+      ZeroOneFour.f1 x y z = 0 →
+        ZeroOneFour.f2 x y z = 0 →
+          ZeroOneFour.f3 x y z = 0 → 1 / 8 < z ∧ x = ZeroOneFour.X z ∧ y = ZeroOneFour.Y z ∧ ZeroOneFour.P z = 0
+'ZeroOneFour.on_curve' depends on axioms: [propext, Classical.choice, Quot.sound]
+ZeroOneFour.main : ∃ r₁ r₂ r₃ r₄,
+  r₁ ∈ Set.Ioo (6 / 25) (13 / 50) ∧
+    r₂ ∈ Set.Ioo (17 / 20) (87 / 100) ∧
+      r₃ ∈ Set.Ioo (6 / 5) (121 / 100) ∧
+        r₄ ∈ Set.Ioo 93 94 ∧
+          ZeroOneFour.S = {ZeroOneFour.g r₁, ZeroOneFour.g r₂, ZeroOneFour.g r₃, ZeroOneFour.g r₄} ∧
+            ZeroOneFour.S.ncard = 4 ∧
+              ZeroOneFour.detJ (ZeroOneFour.X r₁) (ZeroOneFour.Y r₁) r₁ < 0 ∧
+                0 < ZeroOneFour.detJ (ZeroOneFour.X r₂) (ZeroOneFour.Y r₂) r₂ ∧
+                  ZeroOneFour.detJ (ZeroOneFour.X r₃) (ZeroOneFour.Y r₃) r₃ < 0 ∧
+                    0 < ZeroOneFour.detJ (ZeroOneFour.X r₄) (ZeroOneFour.Y r₄) r₄
+'ZeroOneFour.main' depends on axioms: [propext, Classical.choice, Quot.sound]
+ZeroOneFive.f_from_network : ∀ (x y z : ℝ),
+  ZeroOneFive.f1 x y z = -1 * x - 1 * x * y + 2 / 5 * y * z + 1 / 2500 + 1 / 100000 * y ∧
+    ZeroOneFive.f2 x y z = 1 * x + 1 * x * z - 2 / 5 * y * z + 1 / 2500 - 1 / 100000 * y ∧
+      ZeroOneFive.f3 x y z = 5 * x - 2 / 5 * y * z - 1 / 2 * z
+'ZeroOneFive.f_from_network' depends on axioms: [propext, Classical.choice, Quot.sound]
+ZeroOneFive.jac_partials : ∀ (x y z : ℝ),
+  HasDerivAt (fun t => ZeroOneFive.f1 t y z) (ZeroOneFive.jac x y z 0 0) x ∧
+    HasDerivAt (fun t => ZeroOneFive.f1 x t z) (ZeroOneFive.jac x y z 0 1) y ∧
+      HasDerivAt (fun t => ZeroOneFive.f1 x y t) (ZeroOneFive.jac x y z 0 2) z ∧
+        HasDerivAt (fun t => ZeroOneFive.f2 t y z) (ZeroOneFive.jac x y z 1 0) x ∧
+          HasDerivAt (fun t => ZeroOneFive.f2 x t z) (ZeroOneFive.jac x y z 1 1) y ∧
+            HasDerivAt (fun t => ZeroOneFive.f2 x y t) (ZeroOneFive.jac x y z 1 2) z ∧
+              HasDerivAt (fun t => ZeroOneFive.f3 t y z) (ZeroOneFive.jac x y z 2 0) x ∧
+                HasDerivAt (fun t => ZeroOneFive.f3 x t z) (ZeroOneFive.jac x y z 2 1) y ∧
+                  HasDerivAt (fun t => ZeroOneFive.f3 x y t) (ZeroOneFive.jac x y z 2 2) z
+'ZeroOneFive.jac_partials' depends on axioms: [propext, Classical.choice, Quot.sound]
+ZeroOneFive.det_jac : ∀ (x y z : ℝ), (ZeroOneFive.jac x y z).det = ZeroOneFive.detJ x y z
+'ZeroOneFive.det_jac' depends on axioms: [propext, Classical.choice, Quot.sound]
+@ZeroOneFive.on_curve : ∀ {x y z : ℝ},
+  0 < y →
+    0 < z →
+      ZeroOneFive.f1 x y z = 0 →
+        ZeroOneFive.f2 x y z = 0 →
+          ZeroOneFive.f3 x y z = 0 →
+            ZeroOneFive.D z < 0 ∧ x = ZeroOneFive.X z ∧ y = ZeroOneFive.Y z ∧ ZeroOneFive.E z = 0
+'ZeroOneFive.on_curve' depends on axioms: [propext, Classical.choice, Quot.sound]
+@ZeroOneFive.detJ_root : ∀ {z : ℝ},
+  ZeroOneFive.D z ≠ 0 →
+    ZeroOneFive.E z = 0 →
+      ZeroOneFive.detJ (ZeroOneFive.X z) (ZeroOneFive.Y z) z =
+        -ZeroOneFive.M z * ZeroOneFive.dE z / (1250 * ZeroOneFive.D z ^ 2)
+'ZeroOneFive.detJ_root' depends on axioms: [propext, Classical.choice, Quot.sound]
+ZeroOneFive.main : ∃ r₁ r₂ r₃ r₄ r₅,
+  r₁ ∈ Set.Ioo (1 / 92549) (1 / 92548) ∧
+    r₂ ∈ Set.Ioo (5 / 41934) (4 / 33547) ∧
+      r₃ ∈ Set.Ioo (1107 / 69395) (1091 / 68392) ∧
+        r₄ ∈ Set.Ioo (18817 / 33654) (18122 / 32411) ∧
+          r₅ ∈ Set.Ioo (236675 / 108788) (256527 / 117913) ∧
+            ZeroOneFive.S = {ZeroOneFive.g r₁, ZeroOneFive.g r₂, ZeroOneFive.g r₃, ZeroOneFive.g r₄, ZeroOneFive.g r₅} ∧
+              ZeroOneFive.S.ncard = 5 ∧
+                ZeroOneFive.detJ (ZeroOneFive.X r₁) (ZeroOneFive.Y r₁) r₁ < 0 ∧
+                  0 < ZeroOneFive.detJ (ZeroOneFive.X r₂) (ZeroOneFive.Y r₂) r₂ ∧
+                    ZeroOneFive.detJ (ZeroOneFive.X r₃) (ZeroOneFive.Y r₃) r₃ < 0 ∧
+                      0 < ZeroOneFive.detJ (ZeroOneFive.X r₄) (ZeroOneFive.Y r₄) r₄ ∧
+                        ZeroOneFive.detJ (ZeroOneFive.X r₅) (ZeroOneFive.Y r₅) r₅ < 0
+'ZeroOneFive.main' depends on axioms: [propext, Classical.choice, Quot.sound]
+CheckClaims exit 0
