@@ -3,7 +3,7 @@
 <!-- visual:start -->
 <p align="center"><img src="https://raw.githubusercontent.com/jvvk/jvvk/4c7e74a608fb9968b9a93d987058b761e680a6e7/assets/strange-operator-twist.svg" width="760" alt="Bogner's strange operator carries a √2 twist"></p>
 
-<p align="center"><b>A Calabi-Yau operator with integral period and mirror map but fractional instanton numbers: read through a multicover formula twisted by √2, they become integers, as the cusp predicts; proved at each p ≥ 5 given a Frobenius structure.</b><br><sub>Explains a puzzle · conditional theorem · elementary algebra in Lean</sub></p>
+<p align="center"><b>A Calabi-Yau operator with integral period, a mirror map integral in every degree computed, and fractional instanton numbers: read through a multicover formula twisted by √2, they become integers, as the cusp predicts; proved at each p ≥ 5 given a Frobenius structure.</b><br><sub>Explains a puzzle · conditional theorem · elementary algebra in Lean</sub></p>
 
 <p align="center"><sub><a href="paper">paper</a> · <a href="lean">Lean proof</a> · <a href="verify">code</a> · <a href="../">all results</a></sub></p>
 <!-- visual:end -->
