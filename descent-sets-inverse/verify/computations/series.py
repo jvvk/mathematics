@@ -56,7 +56,10 @@ def brute(n):
     return cnt
 
 
-print("brute  (0..9):     ", [1] + [brute(n) for n in range(1, 10)])
+bvals = [1] + [brute(n) for n in range(1, 10)]
+print("brute  (0..9):     ", bvals)
+if bvals != g[:10]:
+    raise SystemExit(f"series and brute force disagree: {g[:10]} vs {bvals}")
 print("pi^4/48 =", pi ** 4 / 48)
 for n in [10, 20, 40, 80, 120, 159, 160]:
     r = Fr(g[n] * factorial(n), E[n] ** 2)

@@ -33,6 +33,9 @@
 
 \maketitle
 
+\noindent{\small\emph{Preprint, version 3, 18 November 2026 (corrections after an independent review; theorems unchanged from version 1 of 8 October 2026). Not peer reviewed.}}
+
+
 \begin{abstract}
 For a permutation $w$ of $\{1,\dots,n\}$ let $D(w)$ be its descent set. Stanley asked for the number
 $f(n)$ of pairs $(S,T)$ of subsets of $\{1,\dots,n-1\}$ that arise as $(D(w),D(w^{-1}))$, and in particular
@@ -339,8 +342,8 @@ The construction does better than the theorem guarantees. With $20000$ samples a
 certifies approximately $0.80$, $0.93$, $0.986$ and $0.9995$ of uniformly random pairs at $n=50,100,200,400$.
 At $n=400$ there are $11$ failures; the estimated failure probability is $0.00055$, with a $95\%$ Wilson interval approximately $[0.00031,0.00098]$, so relative sampling uncertainty is substantial. The supplementary output gives exact counts and
 binomial confidence intervals. Its own limit is structural: hooks with one extra row can absorb a size
-difference $\bigl||S|-|T|\bigr|$ of only a small fraction of $n$. With exact large-deviation rates in place of~\eqref{eq:mcd},
-the best balance of the three kinds of event used above gives a rate of about $1/100$.
+difference $\bigl||S|-|T|\bigr|$ of only a small fraction of $n$. We have not computed the best rate this construction can give with exact large-deviation rates in place
+of~\eqref{eq:mcd}.
 
 In the other direction, the exact rate is governed by a necessary condition of Gale--Ryser type.
 
@@ -548,7 +551,7 @@ Numerically, $n\bigl(g(n)n!/E_n^2-1\bigr)$ equals $2.1130$, $2.0694$ and $2.0296
 $\pi^4/48=2.0294$.
 
 \begin{remark}\label{rem:gessel}
-By a theorem of Gessel \cite{gessel}, $\beta_n(S,T)=\langle r_\alpha,r_\beta\rangle$, where $r_\alpha$ and
+By a theorem of Foulkes \cite{foulkes} (see also \cite{gessel} and \cite[Section~2.1]{gesselZhuang}), $\beta_n(S,T)=\langle r_\alpha,r_\beta\rangle$, where $r_\alpha$ and
 $r_\beta$ are the ribbon Schur functions of $S$ and $T$ (Section~\ref{sec:criterion}). Ribbon Schur functions
 are Schur positive, so the Cauchy--Schwarz inequality gives
 $\beta_n(S,T)^2\le\beta_n(S,S)\,\beta_n(T,T)$, and the maximum $M(n)$ of $\beta_n$ is attained on the
@@ -577,7 +580,7 @@ Dominance order compares partial sums: $\mu\le\lambda$ means that the first $k$ 
 at most those of $\lambda$, for every $k$. A ribbon Schur function $r_\alpha$ records the available shapes:
 the coefficient of $s_\lambda$ is the number of SYT of shape $\lambda$ with descent set $S$.
 Let $\alpha,\beta$ be the compositions of $n$ with descent sets $S,T$ and let $r_\alpha$ be the ribbon Schur
-function. By Gessel's theorem $(S,T)$ occurs if and only if $r_\alpha$ and $r_\beta$ share a Schur
+function. By Foulkes's theorem $(S,T)$ occurs if and only if $r_\alpha$ and $r_\beta$ share a Schur
 constituent. Every constituent $s_\lambda$ of $r_\alpha$ satisfies $\rows(\alpha)\le\lambda\le\cols(\alpha)^t$
 in dominance order, where $\rows(\alpha)$ and $\cols(\alpha)$ are the row and column lengths of the ribbon
 sorted into partitions \cite{mvw2012}. Dominance order on partitions of $n$ is a lattice, so the two intervals
@@ -646,7 +649,7 @@ not formally verified.
 
 All claims marked as computed were checked by computer. Each certificate produced by the construction of
 Section~\ref{sec:density} was verified as a lattice word of the stated shape with the stated descent set
-($339296$ row words for $n\le16$), and for $n\le9$ every certified pair was confirmed by enumeration. The failure probabilities in Remark~\ref{rem:rate} were computed in extended precision by summing over all pairs of partitions of $n$, and agree with the exact failure count at $n=20$. The supplementary archive contains the Lean sources with the pinned toolchain and Mathlib revision, a theorem-and-axiom driver, and the computation scripts with commands and saved outputs. The pairwise check compares tableau supports directly with dominance-interval intersections; it does not infer agreement merely from matching totals. A second program, sharing no code with the first, computes the Schur coefficients $c_\lambda(S)$ by a dynamic programme on Young's lattice; it repeated the pairwise check for every ordered pair with $n\le20$ and the diagonal maxima for $n\le22$. Every other number stated in the text was recomputed by separate code written for this purpose. Sampling output records seed $11$ and Wilson binomial confidence intervals. File hashes identify the exact source snapshot used for each check.
+($339296$ row words for $n\le16$), and for $n\le9$ every certified pair was confirmed by enumeration. The failure probabilities in Remark~\ref{rem:rate} were computed in extended precision by summing over all pairs of partitions of $n$, and agree with the exact failure count at $n=20$. The supplementary archive contains the Lean sources with the pinned toolchain and Mathlib revision, a theorem-and-axiom driver, and the computation scripts with commands and saved outputs. The pairwise check compares tableau supports directly with dominance-interval intersections; it does not infer agreement merely from matching totals. A second program, sharing no code with the first, computes the Schur coefficients $c_\lambda(S)$ by a dynamic programme on Young's lattice; it repeated the pairwise check for every ordered pair with $n\le20$ and the diagonal maxima for $n\le22$. Every other number stated in the text was recomputed by separate code written for this purpose. Sampling output records seed $11$ and Wilson binomial confidence intervals. The file \texttt{verify/SHA256SUMS} identifies the source and saved-output snapshot. The archive is the folder \texttt{descent-sets-inverse} at tag \texttt{descent-sets-inverse-v3} of \url{https://github.com/jvvk/mathematics}, and, identical to it, the Zenodo record \href{https://doi.org/10.5281/zenodo.24353519}{doi:10.5281/zenodo.24353519}.
 
 \subsection*{Acknowledgements}
 
@@ -667,6 +670,10 @@ Schensted algorithms for dual graded graphs.
 \bibitem{gaetz} M.~Gaetz, W.~Hardt and S.~Sridhar.
 Support equalities among ribbon Schur functions.
 \emph{Electron. J. Combin.}, 26(3):\#P3.52, 2019. \doi{10.37236/8229}.
+
+\bibitem{foulkes} H.~O.~Foulkes.
+Enumeration of permutations with prescribed up-down and inversion sequences.
+\emph{Discrete Math.}, 15(3):235--252, 1976.
 
 \bibitem{gessel} I.~M.~Gessel.
 Multipartite $P$-partitions and inner products of skew Schur functions.

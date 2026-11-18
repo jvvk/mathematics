@@ -255,3 +255,5 @@ claim("sampling", all(abs(props[k] - v) <= 0.5 * 10 ** -digits[k] + 1e-12 for k,
 
 json.dump(OUT, open("recheck.json", "w"), indent=1, default=str)
 print("ALL PASS" if all(v["pass"] for v in OUT.values()) else "SOME FAIL")
+if not all(v["pass"] for v in OUT.values()):
+    raise SystemExit(1)

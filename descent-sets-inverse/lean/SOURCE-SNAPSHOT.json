@@ -2,9 +2,13 @@
   "source_commit": "72b29cb59744580a1131d32a13aa1cb091a9fc2f",
   "lean_toolchain": "leanprover/lean4:v4.34.0",
   "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
-  "uncommitted_overrides": [],
+  "uncommitted_overrides": [
+    "scripts/mutants.toml (v3: converted from the v1 scripts/mutants.sh, 43 mutants)",
+    "scripts/mutate.py (house mutation harness)"
+  ],
   "files": {
     "CheckClaims.lean": "593b5a18b1bc1ee97236a4ae0503b47cbb336f78155171c11eaa2ec15ddf530c",
+    "LeanProofs.lean": "cda8a9200eda2042a0c64aa78bd9361976b596ed1da9062d92495082e1398eda",
     "LeanProofs/Stanley/AltBasic.lean": "ee7fde821b42a9910b5dd4fd2df0c8cf4e60404f443dcf9377498876d07c7759",
     "LeanProofs/Stanley/Alternating.lean": "e922730dc13569c913785c967a1388fde70b2436165babf77436e75c036dda6b",
     "LeanProofs/Stanley/Atoms.lean": "dbe4aaaba6d4b2d63754e294a3875228f0902ff868173af235bdc56ed034872e",
@@ -45,6 +49,7 @@
     "LeanProofs/Vendor/OAI/NumberTheory/JointDickman/Counting/SamplingConcentration.lean": "799f7a25422c763fce44f055649e64a739efac26e7cc0d663c12c8c44081af07",
     "LeanProofs/Vendor/OAI/NumberTheory/JointDickman/Counting/SamplingSkeleton.lean": "af7bb5cfa94623154ae36f590a4479ffba52bd4e00518c8feaaf8fc92b97199c",
     "LeanProofs/Vendor/OAI/NumberTheory/JointDickman/Probability/FiniteMcDiarmidDischarge.lean": "eb96de5a6d820bdacea0ee2df7ca52f14dc7c01218ab70fa937d40b1c5ba4f08",
-    "LeanProofs.lean": "cda8a9200eda2042a0c64aa78bd9361976b596ed1da9062d92495082e1398eda"
+    "scripts/mutants.toml": "f1e6792b2fc7d2d0e6d58a5a53b4dea17a46ebcf0f1b8bd4bab44cb55a599081",
+    "scripts/mutate.py": "12bd4df578e7e2880e4b7c5554c140d87bd22055dd7ad9f6513fd0400bb0b6c9"
   }
 }

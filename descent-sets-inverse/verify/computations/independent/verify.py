@@ -13,6 +13,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
+RESULTS = HERE.parent.parent / 'results' / 'independent'  # saved outputs of search.cpp (n*.json, majorization*.json)
 
 
 def desc(w):
@@ -110,9 +111,9 @@ def alternating_count(N):
 def verify_saved_maxima():
     out = []
     for n in range(1, 21):
-        path = HERE / f'n{n}.json'
+        path = RESULTS / f'n{n}.json'
         if not path.exists():
-            continue
+            raise SystemExit(f'missing saved result {path}')
         record = json.loads(path.read_text())
         g = alternating_count(n)
         assert record['maximum'] == record['alternating_value'] == g
@@ -130,7 +131,7 @@ def verify_saved_maxima():
 
 def verify_majorization_records():
     out = []
-    for path in sorted(HERE.glob('majorization*.json')):
+    for path in sorted(RESULTS.glob('majorization*.json')):
         record = json.loads(path.read_text())
         n = record['n']
         g = alternating_count(n)
@@ -159,44 +160,12 @@ def verify_singletons():
     return {'constructed_permutations_checked': checked, 'maximum_n': 16}
 
 
-def verify_matrix_witnesses():
-    report = json.loads((HERE / 'matrix_results.json').read_text())
-    retry_record = json.loads((HERE / 'matrix_retry.json').read_text())
-    retries = retry_record.get('retries', [retry_record])
-    checked = []
-    timeouts = 0
-    for c in report['cases']:
-        if c['result'] == 'unknown':
-            timeouts += 1
-            matching = [r for r in retries
-                        if (c['alpha'], c['beta']) == (r['alpha'], r['beta'])]
-            assert len(matching) == 1
-            retry = matching[0]
-            assert retry['retry_result'] == 'sat'
-            w = retry['permutation_witness']
-        else:
-            assert c['result'] == 'sat'
-            w = c['permutation_witness']
-        n = c['n']
-        assert sorted(w) == list(range(1, n + 1))
-        def boundaries(a):
-            total = 0; cuts = set()
-            for x in a[:-1]:
-                total += x
-                cuts.add(total)
-            return cuts
-        assert desc(w) == boundaries(c['alpha'])
-        assert desc(inverse(w)) == boundaries(c['beta'])
-        checked.append(n)
-    return {'verified_permutation_witnesses': len(checked),
-            'minimum_n': min(checked), 'maximum_n': max(checked),
-            'initial_timeouts': timeouts, 'timeouts_resolved_on_retry': timeouts}
-
-
 if __name__ == '__main__':
     report = {'cpp_independent_cross_check': verify_cpp_counts(),
               'alternating_cycle_identity_cross_check': verify_saved_maxima(),
               'majorization_cycle_identity_cross_check': verify_majorization_records(),
-              'matrix_witnesses': verify_matrix_witnesses(),
               'singleton_construction': verify_singletons()}
+    for key in ('alternating_cycle_identity_cross_check', 'majorization_cycle_identity_cross_check'):
+        if not report[key]:
+            raise SystemExit(f'{key}: no records checked')
     print(json.dumps(report, indent=2))

@@ -69,3 +69,7 @@ if __name__ == "__main__":
           pm = max(sum(cv[S].get(l, 0) * c for l, c in cv[T].items()) for S in cv for T in cv)
           line += f" | brute max={bm} pairs={[(bin(s), bin(t)) for s, t in barg]} cvec-pairmax={pm}"
       print(line, flush=True)
+      if max(diag.get(a1, 0), diag.get(a2, 0)) != m:
+          raise SystemExit(f"n={n}: no alternating set attains the maximum")
+      if n <= 8 and not (bm == pm == m):
+          raise SystemExit(f"n={n}: brute max {bm}, c-vector pair max {pm}, diagonal max {m} disagree")

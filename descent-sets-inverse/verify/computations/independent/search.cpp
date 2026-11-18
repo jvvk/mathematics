@@ -139,6 +139,7 @@ int main(int argc,char**argv) {
     std::cout<<"{\"n\":"<<N<<",\"maximum\":"<<best<<",\"alternating_value\":"<<diagonal[alt]<<",\"maximisers\":[";
     bool comma=false;for(int mask=0;mask<M;++mask)if(diagonal[mask]==best){std::cout<<(comma?",":"")<<mask;comma=true;}else second=std::max(second,diagonal[mask]);
     std::cout<<"],\"second\":"<<second<<",\"noninterval_supports\":"<<gaps<<std::flush;
+    if(diagonal[alt]!=best){std::cerr<<"alternating value differs from the maximum\n";return 1;}
     if(argc>2 && std::string(argv[2])=="majorization") { std::cout<<",\"weak_majorization_failure\":"<<majorization_failure<<"}\n";return 0; }
     if(argc>2 && std::string(argv[2])=="maxima") { std::cout<<"}\n";return 0; }
     U actual_total=0,predicted_total=0;

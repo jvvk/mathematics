@@ -5,17 +5,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#define MAXP 80000
+#define MAXP 210000   /* p(50) = 204226 */
 #define MAXN 50
 static int n, np, parts[MAXP][MAXN + 1], len[MAXP], cur[MAXN + 1];
 static long double wt[MAXP];
 static int top[MAXP][MAXN + 2], cps[MAXP][MAXN + 2];   /* prefix sums of parts; of conjugate */
 static void gen(int rem, int mx, int k) {
-  if (rem == 0) { for (int i = 0; i < k; i++) parts[np][i] = cur[i]; len[np] = k; np++; return; }
+  if (rem == 0) {
+    if (np >= MAXP) { fprintf(stderr, "too many partitions (MAXP = %d)\n", MAXP); exit(2); }
+    for (int i = 0; i < k; i++) parts[np][i] = cur[i]; len[np] = k; np++; return; }
   for (int x = rem < mx ? rem : mx; x >= 1; x--) { cur[k] = x; gen(rem - x, x, k + 1); }
 }
 int main(int argc, char **argv) {
-  n = atoi(argv[1]); gen(n, n, 0);
+  if (argc < 2) { fprintf(stderr, "usage: gr_check n\n"); return 2; }
+  n = atoi(argv[1]);
+  if (n < 1 || n > MAXN) { fprintf(stderr, "n must be in 1..%d\n", MAXN); return 2; }
+  gen(n, n, 0);
   for (int p = 0; p < np; p++) {
     int r = len[p]; long double lw = lgammal(r + 1);
     for (int i = 0; i < r;) { int j = i; while (j < r && parts[p][j] == parts[p][i]) j++; lw -= lgammal(j - i + 1); i = j; }
