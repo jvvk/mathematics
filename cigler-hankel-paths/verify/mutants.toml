@@ -1,0 +1,36 @@
+# Implementation mutants for check.py: each plants one error in the code and the unchanged checks must fail.
+# Run: python3 -I harness/mutate.py mutants.toml
+[check]
+cmd = ["python3", "-I", "{file}"]
+cwd = "."
+timeout = 600
+
+[[mutant]]
+name = "boundary weight also at height 1"
+file = "check.py"
+old = "s = c + x if k == 0 else c"
+new = "s = c + x if k <= 1 else c"
+
+[[mutant]]
+name = "H: band one diagonal short"
+file = "check.py"
+old = "        for m in range(k + 1):"
+new = "        for m in range(k):"
+
+[[mutant]]
+name = "H: corner powers of x one too high"
+file = "check.py"
+old = "M[l][j] = x**i2"
+new = "M[l][j] = x ** (i2 + 1)"
+
+[[mutant]]
+name = "determinant: row swap without sign change"
+file = "check.py"
+old = "            sign = -sign"
+new = "            sign = sign"
+
+[[mutant]]
+name = "Hankel matrix uses a_{i+j+1,k}"
+file = "check.py"
+old = "    return det([[a[i + j][k] for j in range(n)] for i in range(n)])"
+new = "    return det([[a[i + j + 1][k] for j in range(n)] for i in range(n)])"

@@ -1,0 +1,410 @@
+# Mutation suite for LeanProofs/Hankel456683 (MO 456683, Johann Cigler: D_{k,n}(x,c) = det(a_{i+j,k}(x,c))
+# does not depend on c and equals det H_{k,n}(x), for all k, n).
+# Run from anywhere:
+#   cd lean && python3 -I scripts/mutate.py scripts/mutants.toml [--only "[Defs]" | "[Walks]" | "[Step1]" | ...]
+# Inplace mode: a mutated definition must reach every downstream module, so each check rebuilds the
+# LeanProofs.Hankel456683 tree. After the run, `lake build LeanProofs.Hankel456683` restores the
+# .olean files. At least one mutant per named theorem and definition; each one is a wrong claim.
+# Parts (one per file, each under 10 minutes): [Defs] [Walks] [Step1] [Step2] [Step3] [Headline].
+[check]
+cmd = ["lake", "build", "LeanProofs.Hankel456683"]
+cwd = ".."
+timeout = 900
+mode = "inplace"
+fail_markers = ["error"]
+
+[[mutant]]
+name = '''[Defs] walk: horizontal weight s k -> s (k+1) (wrong height of the level step)'''
+file = "../LeanProofs/Hankel456683/Defs.lean"
+old = '''+ s k * walk s n l k +'''
+new = '''+ s (k + 1) * walk s n l k +'''
+
+[[mutant]]
+name = '''[Defs] walk: start [l = k] -> [l = k + 1]'''
+file = "../LeanProofs/Hankel456683/Defs.lean"
+old = '''| 0, l, k => if l = k then 1 else 0'''
+new = '''| 0, l, k => if l = k + 1 then 1 else 0'''
+
+[[mutant]]
+name = '''[Defs] ciglerS: s_0 = c + x -> s_0 = c (x dropped)'''
+file = "../LeanProofs/Hankel456683/Defs.lean"
+old = '''if l = 0 then c + x else c'''
+new = '''if l = 0 then c else c'''
+
+[[mutant]]
+name = '''[Defs] hankel: index shift f (i + j) -> f (i + j + 1)'''
+file = "../LeanProofs/Hankel456683/Defs.lean"
+old = '''Matrix.of fun i j => f (i + j)'''
+new = '''Matrix.of fun i j => f (i + j + 1)'''
+
+[[mutant]]
+name = '''[Defs] D: index shift a_{m,k} -> a_{m+1,k}'''
+file = "../LeanProofs/Hankel456683/Defs.lean"
+old = '''(hankel (fun m => a (ciglerS x c) m k) n).det'''
+new = '''(hankel (fun m => a (ciglerS x c) (m + 1) k) n).det'''
+
+[[mutant]]
+name = '''[Defs] D: index shift a_{m,k} -> a_{m,k+1}'''
+file = "../LeanProofs/Hankel456683/Defs.lean"
+old = '''(hankel (fun m => a (ciglerS x c) m k) n).det'''
+new = '''(hankel (fun m => a (ciglerS x c) m (k + 1)) n).det'''
+
+[[mutant]]
+name = '''[Defs] ciglerH: band 0 <= m <= k -> 0 <= m < k'''
+file = "../LeanProofs/Hankel456683/Defs.lean"
+old = '''m ≤ k ∧ (r : ℕ) = k - m + l'''
+new = '''m < k ∧ (r : ℕ) = k - m + l'''
+
+[[mutant]]
+name = '''[Defs] ciglerH: x^i -> x^(i+1)'''
+file = "../LeanProofs/Hankel456683/Defs.lean"
+old = '''then x ^ ((s : ℕ) - r - k)'''
+new = '''then x ^ ((s : ℕ) - r - k + 1)'''
+
+[[mutant]]
+name = '''[Defs] hE: x^(s-r-k) -> x^(s-r-k+1)'''
+file = "../LeanProofs/Hankel456683/Defs.lean"
+old = '''if k + r < s then x ^ (s - r - k)'''
+new = '''if k + r < s then x ^ (s - r - k + 1)'''
+
+[[mutant]]
+name = '''[Defs] hE: parity r + s = k mod 2 dropped'''
+file = "../LeanProofs/Hankel456683/Defs.lean"
+old = '''k ≤ r + s ∧ (r + s - k) % 2 = 0 then 1'''
+new = '''k ≤ r + s then 1'''
+
+[[mutant]]
+name = '''[Defs] ballot: off by one, B(j,i) -> B(j+1,i)'''
+file = "../LeanProofs/Hankel456683/Defs.lean"
+old = '''walk (fun _ => (0 : R)) j 0 i'''
+new = '''walk (fun _ => (0 : R)) (j + 1) 0 i'''
+
+[[mutant]]
+name = '''[Defs] ballot: off by one in height, B(j,i) -> B(j,i+1)'''
+file = "../LeanProofs/Hankel456683/Defs.lean"
+old = '''walk (fun _ => (0 : R)) j 0 i'''
+new = '''walk (fun _ => (0 : R)) j 0 (i + 1)'''
+
+[[mutant]]
+name = '''[Walks] walk_succ: k + 1 -> k + 2'''
+file = "../LeanProofs/Hankel456683/Walks.lean"
+old = '''+ s k * walk s n l k + walk s n l (k + 1) := rfl'''
+new = '''+ s k * walk s n l k + walk s n l (k + 2) := rfl'''
+
+[[mutant]]
+name = '''[Walks] walk_eq_zero_of_lt: l + n < k -> l + n <= k'''
+file = "../LeanProofs/Hankel456683/Walks.lean"
+old = '''∀ n l k, l + n < k → walk s n l k = 0'''
+new = '''∀ n l k, l + n ≤ k → walk s n l k = 0'''
+
+[[mutant]]
+name = '''[Walks] walk_top: weight 1 -> 2'''
+file = "../LeanProofs/Hankel456683/Walks.lean"
+old = '''∀ n l, walk s n l (l + n) = 1'''
+new = '''∀ n l, walk s n l (l + n) = 2'''
+
+[[mutant]]
+name = '''[Walks] walk_add: cut range l + i + 1 -> l + i'''
+file = "../LeanProofs/Hankel456683/Walks.lean"
+old = '''∑ m ∈ range (l + i + 1), walk s i l m * walk s j m k'''
+new = '''∑ m ∈ range (l + i), walk s i l m * walk s j m k'''
+
+[[mutant]]
+name = '''[Walks] walk_succ_left: s l -> s (l + 1)'''
+file = "../LeanProofs/Hankel456683/Walks.lean"
+old = '''+ s l * walk s j l k + walk s j (l + 1) k'''
+new = '''+ s (l + 1) * walk s j l k + walk s j (l + 1) k'''
+
+[[mutant]]
+name = '''[Walks] T: down-step term f (k - 1) -> f k'''
+file = "../LeanProofs/Hankel456683/Walks.lean"
+old = '''toFun f k := (if k = 0 then 0 else f (k - 1))'''
+new = '''toFun f k := (if k = 0 then 0 else f k)'''
+
+[[mutant]]
+name = '''[Walks] walk_eq_pow: T^n -> T^(n+1)'''
+file = "../LeanProofs/Hankel456683/Walks.lean"
+old = '''walk s n l k = (((T s) ^ n) (Pi.single l 1)) k'''
+new = '''walk s n l k = (((T s) ^ (n + 1)) (Pi.single l 1)) k'''
+
+[[mutant]]
+name = '''[Walks] T_add_const: c -> c * c on one side'''
+file = "../LeanProofs/Hankel456683/Walks.lean"
+old = '''T (fun h => s h + c) = T s + algebraMap'''
+new = '''T (fun h => s h + c * c) = T s + algebraMap'''
+
+[[mutant]]
+name = '''[Walks] pow_add_algebraMap_apply: c^(m-j) -> c^(m-j+1)'''
+file = "../LeanProofs/Hankel456683/Walks.lean"
+old = '''(m.choose j : R) * c ^ (m - j) * ((X ^ j) v) k'''
+new = '''(m.choose j : R) * c ^ (m - j + 1) * ((X ^ j) v) k'''
+
+[[mutant]]
+name = '''[Walks] walk_add_const (binomial transform): exponent c^(n-j) -> c^(n-j+1)'''
+file = "../LeanProofs/Hankel456683/Walks.lean"
+old = '''(n.choose j : R) * c ^ (n - j) * walk s j l k'''
+new = '''(n.choose j : R) * c ^ (n - j + 1) * walk s j l k'''
+
+[[mutant]]
+name = '''[Walks] walk_add_const (binomial transform): exponent c^(n-j) -> c^j'''
+file = "../LeanProofs/Hankel456683/Walks.lean"
+old = '''(n.choose j : R) * c ^ (n - j) * walk s j l k'''
+new = '''(n.choose j : R) * c ^ j * walk s j l k'''
+
+[[mutant]]
+name = '''[Step1] E_pow_apply: f (m + t) -> f (m + t + 1)'''
+file = "../LeanProofs/Hankel456683/Step1.lean"
+old = '''    f (m + t) := by'''
+new = '''    f (m + t + 1) := by'''
+
+[[mutant]]
+name = '''[Step1] binomial_eq_E: c^(m-j) -> c^(m-j+1)'''
+file = "../LeanProofs/Hankel456683/Step1.lean"
+old = '''∑ j ∈ range (m + 1), (m.choose j : R) * c ^ (m - j) * f (p + j) ='''
+new = '''∑ j ∈ range (m + 1), (m.choose j : R) * c ^ (m - j + 1) * f (p + j) ='''
+
+[[mutant]]
+name = '''[Step1] L: not unitriangular, c^(i-r) -> c^(i-r+1)'''
+file = "../LeanProofs/Hankel456683/Step1.lean"
+old = '''Matrix.of fun i r => ((i : ℕ).choose r : R) * c ^ ((i : ℕ) - r)'''
+new = '''Matrix.of fun i r => ((i : ℕ).choose r : R) * c ^ ((i : ℕ) - r + 1)'''
+
+[[mutant]]
+name = '''[Step1] det_L: 1 -> c'''
+file = "../LeanProofs/Hankel456683/Step1.lean"
+old = '''theorem det_L (c : R) (n : ℕ) : (L c n).det = 1 := by'''
+new = '''theorem det_L (c : R) (n : ℕ) : (L c n).det = c := by'''
+
+[[mutant]]
+name = '''[Step1] sum_fin_choose: range (i + 1) -> range i'''
+file = "../LeanProofs/Hankel456683/Step1.lean"
+old = '''      ∑ r ∈ range (i + 1), (i.choose r : R) * c ^ (i - r) * φ r := by'''
+new = '''      ∑ r ∈ range i, (i.choose r : R) * c ^ (i - r) * φ r := by'''
+
+[[mutant]]
+name = '''[Step1] hankel_binomial: transform exponent c^(m-j) -> c^(m-j+1)'''
+file = "../LeanProofs/Hankel456683/Step1.lean"
+old = '''hankel (fun m => ∑ j ∈ range (m + 1), (m.choose j : R) * c ^ (m - j) * f j) n ='''
+new = '''hankel (fun m => ∑ j ∈ range (m + 1), (m.choose j : R) * c ^ (m - j + 1) * f j) n ='''
+
+[[mutant]]
+name = '''[Step1] hankel_binomial: L A L^T -> L A L'''
+file = "../LeanProofs/Hankel456683/Step1.lean"
+old = '''      L c n * hankel f n * (L c n)ᵀ := by'''
+new = '''      L c n * hankel f n * (L c n) := by'''
+
+[[mutant]]
+name = '''[Step1] det_hankel_add_const: constant c -> height-dependent c * h'''
+file = "../LeanProofs/Hankel456683/Step1.lean"
+old = '''(hankel (fun m => a (fun h => s h + c) m k) n).det = (hankel (fun m => a s m k) n).det := by'''
+new = '''(hankel (fun m => a (fun h => s h + c * h) m k) n).det = (hankel (fun m => a s m k) n).det := by'''
+
+[[mutant]]
+name = '''[Step1] ciglerS_eq: + c -> + 2c'''
+file = "../LeanProofs/Hankel456683/Step1.lean"
+old = '''ciglerS x c = fun h => ciglerS x 0 h + c := by'''
+new = '''ciglerS x c = fun h => ciglerS x 0 h + 2 * c := by'''
+
+[[mutant]]
+name = '''[Step1] D_indep: D(x,c) = D(x,0) -> D(x,c) = D(0,c)'''
+file = "../LeanProofs/Hankel456683/Step1.lean"
+old = '''theorem D_indep (k n : ℕ) (x c : R) : D k n x c = D k n x 0 := by'''
+new = '''theorem D_indep (k n : ℕ) (x c : R) : D k n x c = D k n 0 c := by'''
+
+[[mutant]]
+name = '''[Step2] P: not unitriangular, a_{i,l} -> a_{i+1,l}'''
+file = "../LeanProofs/Hankel456683/Step2.lean"
+old = '''Matrix.of fun i l => walk s i 0 l'''
+new = '''Matrix.of fun i l => walk s (i + 1) 0 l'''
+
+[[mutant]]
+name = '''[Step2] P: not unitriangular, diagonal doubled'''
+file = "../LeanProofs/Hankel456683/Step2.lean"
+old = '''Matrix.of fun i l => walk s i 0 l'''
+new = '''Matrix.of fun i l => (if i = l then 2 else 1) * walk s i 0 l'''
+
+[[mutant]]
+name = '''[Step2] W: W_j(l -> k) -> W_(j+1)(l -> k)'''
+file = "../LeanProofs/Hankel456683/Step2.lean"
+old = '''Matrix.of fun l j => walk s j l k'''
+new = '''Matrix.of fun l j => walk s (j + 1) l k'''
+
+[[mutant]]
+name = '''[Step2] det_P: 1 -> 2'''
+file = "../LeanProofs/Hankel456683/Step2.lean"
+old = '''theorem det_P (s : ℕ → R) (n : ℕ) : (P s n).det = 1 := by'''
+new = '''theorem det_P (s : ℕ → R) (n : ℕ) : (P s n).det = 2 := by'''
+
+[[mutant]]
+name = '''[Step2] hankel_eq_P_mul_W: P W -> W P'''
+file = "../LeanProofs/Hankel456683/Step2.lean"
+old = '''hankel (fun m => a s m k) n = P s n * W s k n := by'''
+new = '''hankel (fun m => a s m k) n = W s k n * P s n := by'''
+
+[[mutant]]
+name = '''[Step2] det_hankel_eq_det_W: index shift k -> k + 1'''
+file = "../LeanProofs/Hankel456683/Step2.lean"
+old = '''(hankel (fun m => a s m k) n).det = (W s k n).det := by'''
+new = '''(hankel (fun m => a s m k) n).det = (W s (k + 1) n).det := by'''
+
+[[mutant]]
+name = '''[Step3] band_iff: parity even -> odd'''
+file = "../LeanProofs/Hankel456683/Step3.lean"
+old = '''(r ≤ s + k ∧ s ≤ r + k ∧ k ≤ r + s ∧ (r + s - k) % 2 = 0) := by'''
+new = '''(r ≤ s + k ∧ s ≤ r + k ∧ k ≤ r + s ∧ (r + s - k) % 2 = 1) := by'''
+
+[[mutant]]
+name = '''[Step3] above_iff: strict -> non-strict'''
+file = "../LeanProofs/Hankel456683/Step3.lean"
+old = '''(∃ i l : ℕ, 1 ≤ i ∧ r = l ∧ s = k + i + l) ↔ k + r < s := by'''
+new = '''(∃ i l : ℕ, 1 ≤ i ∧ r = l ∧ s = k + i + l) ↔ k + r ≤ s := by'''
+
+[[mutant]]
+name = '''[Step3] ciglerH_eq: H_{k,n} -> H_{k+1,n}'''
+file = "../LeanProofs/Hankel456683/Step3.lean"
+old = '''theorem ciglerH_eq (k n : ℕ) (x : R) : ciglerH k n x = Hmat k x n := by'''
+new = '''theorem ciglerH_eq (k n : ℕ) (x : R) : ciglerH k n x = Hmat (k + 1) x n := by'''
+
+[[mutant]]
+name = '''[Step3] hE_col_zero: [l = k] -> [l = 0]'''
+file = "../LeanProofs/Hankel456683/Step3.lean"
+old = '''hE k x l 0 = if l = k then 1 else 0 := by'''
+new = '''hE k x l 0 = if l = 0 then 1 else 0 := by'''
+
+[[mutant]]
+name = '''[Step3] hE_succ_succ: [l+i+2 = k] -> [l+i+1 = k]'''
+file = "../LeanProofs/Hankel456683/Step3.lean"
+old = '''hE k x (l + 1) (i + 1) = hE k x l i + if l + i + 2 = k then 1 else 0 := by'''
+new = '''hE k x (l + 1) (i + 1) = hE k x l i + if l + i + 1 = k then 1 else 0 := by'''
+
+[[mutant]]
+name = '''[Step3] hE_row_zero: x H_{0,i} -> H_{0,i}'''
+file = "../LeanProofs/Hankel456683/Step3.lean"
+old = '''hE k x 0 (i + 1) = x * hE k x 0 i + if i + 1 = k then 1 else 0 := by'''
+new = '''hE k x 0 (i + 1) = hE k x 0 i + if i + 1 = k then 1 else 0 := by'''
+
+[[mutant]]
+name = '''[Step3] local_identity (2): x[l=0]H_{0,i} term dropped'''
+file = "../LeanProofs/Hankel456683/Step3.lean"
+old = '''        (if l = 0 then x * hE k x 0 i else 0) := by'''
+new = '''        0 := by'''
+
+[[mutant]]
+name = '''[Step3] local_identity (2): x[l=0] -> x[l=1]'''
+file = "../LeanProofs/Hankel456683/Step3.lean"
+old = '''        (if l = 0 then x * hE k x 0 i else 0) := by'''
+new = '''        (if l = 1 then x * hE k x 0 i else 0) := by'''
+
+[[mutant]]
+name = '''[Step3] local_identity (2): H_{l,i-1} -> H_{l,i}'''
+file = "../LeanProofs/Hankel456683/Step3.lean"
+old = '''hE k x l (i + 1) + (if i = 0 then 0 else hE k x l (i - 1)) ='''
+new = '''hE k x l (i + 1) + (if i = 0 then 0 else hE k x l i) ='''
+
+[[mutant]]
+name = '''[Step3] ballot_zero: [i = 0] -> [i = 1]'''
+file = "../LeanProofs/Hankel456683/Step3.lean"
+old = '''(ballot 0 i : R) = if i = 0 then 1 else 0 := by'''
+new = '''(ballot 0 i : R) = if i = 1 then 1 else 0 := by'''
+
+[[mutant]]
+name = '''[Step3] ballot_succ: B(j, i+1) -> B(j, i)'''
+file = "../LeanProofs/Hankel456683/Step3.lean"
+old = '''(ballot (j + 1) i : R) = (if i = 0 then 0 else ballot j (i - 1)) + ballot j (i + 1) := by'''
+new = '''(ballot (j + 1) i : R) = (if i = 0 then 0 else ballot j (i - 1)) + ballot j i := by'''
+
+[[mutant]]
+name = '''[Step3] ballot_eq_zero_of_lt: j < i -> j <= i'''
+file = "../LeanProofs/Hankel456683/Step3.lean"
+old = '''theorem ballot_eq_zero_of_lt {j i : ℕ} (h : j < i) : (ballot j i : R) = 0 :='''
+new = '''theorem ballot_eq_zero_of_lt {j i : ℕ} (h : j ≤ i) : (ballot j i : R) = 0 :='''
+
+[[mutant]]
+name = '''[Step3] ballot_self: off by one, B(j,j) -> B(j+1,j)'''
+file = "../LeanProofs/Hankel456683/Step3.lean"
+old = '''theorem ballot_self (j : ℕ) : (ballot j j : R) = 1 := by'''
+new = '''theorem ballot_self (j : ℕ) : (ballot (j + 1) j : R) = 1 := by'''
+
+[[mutant]]
+name = '''[Step3] ciglerS_zero: x at height 0 -> 0'''
+file = "../LeanProofs/Hankel456683/Step3.lean"
+old = '''ciglerS x 0 l = if l = 0 then x else 0 := by'''
+new = '''ciglerS x 0 l = if l = 0 then 0 else 0 := by'''
+
+[[mutant]]
+name = '''[Step3] walk_eq_sum_hE_ballot (1): B(j,i) -> B(j+1,i) (ballot off by one)'''
+file = "../LeanProofs/Hankel456683/Step3.lean"
+old = '''∀ j l, walk (ciglerS x 0) j l k = ∑ i ∈ range (j + 1), hE k x l i * ballot j i'''
+new = '''∀ j l, walk (ciglerS x 0) j l k = ∑ i ∈ range (j + 1), hE k x l i * ballot (j + 1) i'''
+
+[[mutant]]
+name = '''[Step3] walk_eq_sum_hE_ballot (1): range (j + 1) -> range j'''
+file = "../LeanProofs/Hankel456683/Step3.lean"
+old = '''∀ j l, walk (ciglerS x 0) j l k = ∑ i ∈ range (j + 1), hE k x l i * ballot j i'''
+new = '''∀ j l, walk (ciglerS x 0) j l k = ∑ i ∈ range j, hE k x l i * ballot j i'''
+
+[[mutant]]
+name = '''[Step3] U: ballot numbers off by one, B(j,i) -> B(j,i+1)'''
+file = "../LeanProofs/Hankel456683/Step3.lean"
+old = '''  Matrix.of fun i j => ballot j i'''
+new = '''  Matrix.of fun i j => ballot j (i + 1)'''
+
+[[mutant]]
+name = '''[Step3] U: transposed, B(j,i) -> B(i,j)'''
+file = "../LeanProofs/Hankel456683/Step3.lean"
+old = '''  Matrix.of fun i j => ballot j i'''
+new = '''  Matrix.of fun i j => ballot i j'''
+
+[[mutant]]
+name = '''[Step3] det_U: 1 -> 0'''
+file = "../LeanProofs/Hankel456683/Step3.lean"
+old = '''theorem det_U (n : ℕ) : (U R n).det = 1 := by'''
+new = '''theorem det_U (n : ℕ) : (U R n).det = 0 := by'''
+
+[[mutant]]
+name = '''[Step3] W_eq_H_mul_U: H U -> U H'''
+file = "../LeanProofs/Hankel456683/Step3.lean"
+old = '''W (ciglerS x 0) k n = Hmat k x n * U R n := by'''
+new = '''W (ciglerS x 0) k n = U R n * Hmat k x n := by'''
+
+[[mutant]]
+name = '''[Step3] det_W_eq_det_ciglerH: c = 0 -> c = 1 inside W'''
+file = "../LeanProofs/Hankel456683/Step3.lean"
+old = '''    (W (ciglerS x 0) k n).det = (ciglerH k n x).det := by'''
+new = '''    (W (ciglerS x 1) k n).det = (ciglerH k n x).det := by'''
+
+[[mutant]]
+name = '''[Headline] D_eq_det_ciglerH: H_{k,n} -> H_{k,n+1}'''
+file = "../LeanProofs/Hankel456683/Headline.lean"
+old = '''theorem D_eq_det_ciglerH (k n : ℕ) (x c : R) : D k n x c = (ciglerH k n x).det := by'''
+new = '''theorem D_eq_det_ciglerH (k n : ℕ) (x c : R) : D k (n + 1) x c = (ciglerH k n x).det := by'''
+
+[[mutant]]
+name = '''[Headline] headline: index shift D_{k,n} -> D_{k+1,n}'''
+file = "../LeanProofs/Hankel456683/Headline.lean"
+old = '''(∀ c c' : R, D k n x c = D k n x c') ∧ ∀ c : R, D k n x c = (ciglerH k n x).det :='''
+new = '''(∀ c c' : R, D k n x c = D k n x c') ∧ ∀ c : R, D (k + 1) n x c = (ciglerH k n x).det :='''
+
+[[mutant]]
+name = '''[Headline] headline: independence of x instead of c'''
+file = "../LeanProofs/Hankel456683/Headline.lean"
+old = '''(∀ c c' : R, D k n x c = D k n x c') ∧'''
+new = '''(∀ c c' : R, D k n c x = D k n c' x) ∧'''
+
+[[mutant]]
+name = '''[Headline] headline_any_weights: constant c -> c * h'''
+file = "../LeanProofs/Hankel456683/Headline.lean"
+old = '''(hankel (fun m => a (fun h => s h + c) m k) n).det = (hankel (fun m => a s m k) n).det :='''
+new = '''(hankel (fun m => a (fun h => s h + c * h) m k) n).det = (hankel (fun m => a s m k) n).det :='''
+
+[[mutant]]
+name = '''[Headline] ciglerH_two_six: entry (0,3) x -> x^2'''
+file = "../LeanProofs/Hankel456683/Headline.lean"
+old = '''!![0, 0, 1, x, x ^ 2, x ^ 3;'''
+new = '''!![0, 0, 1, x ^ 2, x ^ 2, x ^ 3;'''
+
+[[mutant]]
+name = '''[Headline] D_one_three: x -> -x'''
+file = "../LeanProofs/Hankel456683/Headline.lean"
+old = '''theorem D_one_three (x c : R) : D 1 3 x c = x := by'''
+new = '''theorem D_one_three (x c : R) : D 1 3 x c = -x := by'''

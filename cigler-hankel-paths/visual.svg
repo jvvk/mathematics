@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 656 394" font-family="Helvetica,Arial,sans-serif">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="40" y="28" font-size="16" fill="#1d1c1a">det(a<tspan dy="4" font-size="11">i+j,k</tspan><tspan dy="-4">) does not depend on c and equals det H</tspan><tspan dy="4" font-size="11">k,n</tspan><tspan dy="-4">(x)</tspan></text>
+<text x="40" y="52" font-size="13" fill="#6b6860">H₂,₆(x): ones on the band, powers of x in the corner</text>
+<rect x="40" y="78" width="41" height="41" rx="6" fill="#f1eee7"/>
+<text x="60.5" y="106" font-size="17" text-anchor="middle" fill="#1d1c1a">0</text>
+<rect x="86" y="78" width="41" height="41" rx="6" fill="#f1eee7"/>
+<text x="106.5" y="106" font-size="17" text-anchor="middle" fill="#1d1c1a">0</text>
+<rect x="132" y="78" width="41" height="41" rx="6" fill="#2f5d8a"/>
+<text x="152.5" y="106" font-size="17" text-anchor="middle" fill="#ffffff">1</text>
+<rect x="178" y="78" width="41" height="41" rx="6" fill="#b7791f"/>
+<text x="198.5" y="106" font-size="17" text-anchor="middle" fill="#ffffff">x</text>
+<rect x="224" y="78" width="41" height="41" rx="6" fill="#b7791f"/>
+<text x="244.5" y="106" font-size="17" text-anchor="middle" fill="#ffffff">x²</text>
+<rect x="270" y="78" width="41" height="41" rx="6" fill="#b7791f"/>
+<text x="290.5" y="106" font-size="17" text-anchor="middle" fill="#ffffff">x³</text>
+<rect x="40" y="124" width="41" height="41" rx="6" fill="#f1eee7"/>
+<text x="60.5" y="152" font-size="17" text-anchor="middle" fill="#1d1c1a">0</text>
+<rect x="86" y="124" width="41" height="41" rx="6" fill="#2f5d8a"/>
+<text x="106.5" y="152" font-size="17" text-anchor="middle" fill="#ffffff">1</text>
+<rect x="132" y="124" width="41" height="41" rx="6" fill="#f1eee7"/>
+<text x="152.5" y="152" font-size="17" text-anchor="middle" fill="#1d1c1a">0</text>
+<rect x="178" y="124" width="41" height="41" rx="6" fill="#2f5d8a"/>
+<text x="198.5" y="152" font-size="17" text-anchor="middle" fill="#ffffff">1</text>
+<rect x="224" y="124" width="41" height="41" rx="6" fill="#b7791f"/>
+<text x="244.5" y="152" font-size="17" text-anchor="middle" fill="#ffffff">x</text>
+<rect x="270" y="124" width="41" height="41" rx="6" fill="#b7791f"/>
+<text x="290.5" y="152" font-size="17" text-anchor="middle" fill="#ffffff">x²</text>
+<rect x="40" y="170" width="41" height="41" rx="6" fill="#2f5d8a"/>
+<text x="60.5" y="198" font-size="17" text-anchor="middle" fill="#ffffff">1</text>
+<rect x="86" y="170" width="41" height="41" rx="6" fill="#f1eee7"/>
+<text x="106.5" y="198" font-size="17" text-anchor="middle" fill="#1d1c1a">0</text>
+<rect x="132" y="170" width="41" height="41" rx="6" fill="#2f5d8a"/>
+<text x="152.5" y="198" font-size="17" text-anchor="middle" fill="#ffffff">1</text>
+<rect x="178" y="170" width="41" height="41" rx="6" fill="#f1eee7"/>
+<text x="198.5" y="198" font-size="17" text-anchor="middle" fill="#1d1c1a">0</text>
+<rect x="224" y="170" width="41" height="41" rx="6" fill="#2f5d8a"/>
+<text x="244.5" y="198" font-size="17" text-anchor="middle" fill="#ffffff">1</text>
+<rect x="270" y="170" width="41" height="41" rx="6" fill="#b7791f"/>
+<text x="290.5" y="198" font-size="17" text-anchor="middle" fill="#ffffff">x</text>
+<rect x="40" y="216" width="41" height="41" rx="6" fill="#f1eee7"/>
+<text x="60.5" y="244" font-size="17" text-anchor="middle" fill="#1d1c1a">0</text>
+<rect x="86" y="216" width="41" height="41" rx="6" fill="#2f5d8a"/>
+<text x="106.5" y="244" font-size="17" text-anchor="middle" fill="#ffffff">1</text>
+<rect x="132" y="216" width="41" height="41" rx="6" fill="#f1eee7"/>
+<text x="152.5" y="244" font-size="17" text-anchor="middle" fill="#1d1c1a">0</text>
+<rect x="178" y="216" width="41" height="41" rx="6" fill="#2f5d8a"/>
+<text x="198.5" y="244" font-size="17" text-anchor="middle" fill="#ffffff">1</text>
+<rect x="224" y="216" width="41" height="41" rx="6" fill="#f1eee7"/>
+<text x="244.5" y="244" font-size="17" text-anchor="middle" fill="#1d1c1a">0</text>
+<rect x="270" y="216" width="41" height="41" rx="6" fill="#2f5d8a"/>
+<text x="290.5" y="244" font-size="17" text-anchor="middle" fill="#ffffff">1</text>
+<rect x="40" y="262" width="41" height="41" rx="6" fill="#f1eee7"/>
+<text x="60.5" y="290" font-size="17" text-anchor="middle" fill="#1d1c1a">0</text>
+<rect x="86" y="262" width="41" height="41" rx="6" fill="#f1eee7"/>
+<text x="106.5" y="290" font-size="17" text-anchor="middle" fill="#1d1c1a">0</text>
+<rect x="132" y="262" width="41" height="41" rx="6" fill="#2f5d8a"/>
+<text x="152.5" y="290" font-size="17" text-anchor="middle" fill="#ffffff">1</text>
+<rect x="178" y="262" width="41" height="41" rx="6" fill="#f1eee7"/>
+<text x="198.5" y="290" font-size="17" text-anchor="middle" fill="#1d1c1a">0</text>
+<rect x="224" y="262" width="41" height="41" rx="6" fill="#2f5d8a"/>
+<text x="244.5" y="290" font-size="17" text-anchor="middle" fill="#ffffff">1</text>
+<rect x="270" y="262" width="41" height="41" rx="6" fill="#f1eee7"/>
+<text x="290.5" y="290" font-size="17" text-anchor="middle" fill="#1d1c1a">0</text>
+<rect x="40" y="308" width="41" height="41" rx="6" fill="#f1eee7"/>
+<text x="60.5" y="336" font-size="17" text-anchor="middle" fill="#1d1c1a">0</text>
+<rect x="86" y="308" width="41" height="41" rx="6" fill="#f1eee7"/>
+<text x="106.5" y="336" font-size="17" text-anchor="middle" fill="#1d1c1a">0</text>
+<rect x="132" y="308" width="41" height="41" rx="6" fill="#f1eee7"/>
+<text x="152.5" y="336" font-size="17" text-anchor="middle" fill="#1d1c1a">0</text>
+<rect x="178" y="308" width="41" height="41" rx="6" fill="#2f5d8a"/>
+<text x="198.5" y="336" font-size="17" text-anchor="middle" fill="#ffffff">1</text>
+<rect x="224" y="308" width="41" height="41" rx="6" fill="#f1eee7"/>
+<text x="244.5" y="336" font-size="17" text-anchor="middle" fill="#1d1c1a">0</text>
+<rect x="270" y="308" width="41" height="41" rx="6" fill="#2f5d8a"/>
+<text x="290.5" y="336" font-size="17" text-anchor="middle" fill="#ffffff">1</text>
+<text x="346" y="100" font-size="14" fill="#1d1c1a">Three steps:</text>
+<text x="346" y="126" font-size="14" fill="#1d1c1a">1. a binomial transform removes c</text>
+<text x="346" y="152" font-size="14" fill="#1d1c1a">2. cutting each path gives a determinant</text>
+<text x="346" y="178" font-size="14" fill="#1d1c1a">   of path counts between heights</text>
+<text x="346" y="204" font-size="14" fill="#1d1c1a">3. that matrix = H × (ballot numbers)</text>
+</svg>
