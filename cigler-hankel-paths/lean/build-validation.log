@@ -1,1 +1,6 @@
+# Isolated build, 2026-11-18: lean/ copied (without .lake) to /private/tmp/claude-501/release-lean/cigler; only
+# the pinned Mathlib packages (.lake/packages, rev 5ed29652...) were linked in, so every LeanProofs module was compiled
+# from these sources; no build products of the development repository were used.
+# Sources: SOURCE-SNAPSHOT.json sha256 c54d6c4938b5a59a512a72beef681ac8ffe83d3f634921ef871c7bc88175a6c0
+# Command: lake build LeanProofs
 Build completed successfully (8932 jobs).
