@@ -1,19 +1,20 @@
+# python3 -I scripts/mutate.py scripts/mutants.toml, 18 November 2026, fail_pattern = 'error: (?:\./)*LeanProofs/\S+\.lean:\d+:\d+: '
 control passes: Defs.lean
 control passes: Main.lean
 control passes: Digits.lean
 control passes: Carry.lean
-rejected: M1 N = P instead of P - 1 (a=(1,2,3): the carry a_0 x_1 = x_0 + N reads 9 = 4 + 6) (exit 1, marker 'error': error: LeanProofs/Frobenius292507/Carry.lean:97:2: omega could not prove the goal:)
-rejected: M2 x with n product terms (range (n + 1)): carry identity fails (exit 1, marker 'error': error: LeanProofs/Frobenius292507/Carry.lean:72:2: Type mismatch: After simplification, term)
-rejected: M3 headline: (n - 2) N not in S (n=2, a=(1,2): x = (2,3), and 0 is in S) (exit 1, marker 'error': error: LeanProofs/Frobenius292507/Main.lean:134:3: Application type mismatch: The argument)
-rejected: M4 headline: every m >= (n - 1) N in S (non-strict; (n-1)N itself is not) (exit 1, marker 'error': error: LeanProofs/Frobenius292507/Main.lean:134:70: Application type mismatch: The argument)
-rejected: M5 headline: gcd hypothesis weakened to 0 < gcd (a=(1,1): x = (2,2), N = 0, and 0 is in S) (exit 1, marker 'error': error: LeanProofs/Frobenius292507/Main.lean:134:24: Application type mismatch: The argument)
-rejected: M6 headline: n >= 1 instead of n >= 2 (n=1: x_0 = 1, (n-1)N = 0 is in S) (exit 1, marker 'error': error: LeanProofs/Frobenius292507/Main.lean:134:11: Application type mismatch: The argument)
-rejected: M7 digit bound off by one: d_i <= a_{i-1} (v(d) can exceed N) (exit 1, marker 'error': error: LeanProofs/Frobenius292507/Digits.lean:148:2: Type mismatch)
-rejected: M8 carry identity with constant P instead of N (a=(1,2,3): 9 = 4 + 6 false) (exit 1, marker 'error': error: LeanProofs/Frobenius292507/Carry.lean:96:9: Tactic `unfold` failed to unfold `N` in)
-rejected: M9 sum identity = (n - 1) N (a=(1,2,3): 2*4 + 0*9 + 1*7 = 15 = 3*5, not 10) (exit 1, marker 'error': error: LeanProofs/Frobenius292507/Carry.lean:126:2: omega could not prove the goal:)
-rejected: M10 step 3: N >= 2 (a=(1,1,2): x = (3,4,5), gcd 1, N = 1) (exit 1, marker 'error': error: LeanProofs/Frobenius292507/Carry.lean:132:73: omega could not prove the goal:)
-rejected: M11 step 4: gcd(x_0, P) = 1 (a=(1,2,3): gcd(4, 6) = 2) (exit 1, marker 'error': error: LeanProofs/Frobenius292507/Carry.lean:164:22: Application type mismatch: The argument)
-rejected: M12 step 6(i): every t <= P is a digit value (t = P is not; max value is P - 1) (exit 1, marker 'error': error: LeanProofs/Frobenius292507/Digits.lean:179:71: Tactic `unfold` failed to unfold `N` in)
-rejected: M13 example: Frobenius number 9 instead of 10 (10 is the gap) (exit 1, marker 'error': error: LeanProofs/Frobenius292507/Main.lean:159:2: Tactic `assumption` failed)
-rejected: M14 example: generator x_1 = 8 instead of 9 (exit 1, marker 'error': error: LeanProofs/Frobenius292507/Main.lean:146:76: unsolved goals)
+rejected: M1 N = P instead of P - 1 (a=(1,2,3): the carry a_0 x_1 = x_0 + N reads 9 = 4 + 6) (exit 1, diagnostic: error: LeanProofs/Frobenius292507/Carry.lean:97:2: omega could not prove the goal:)
+rejected: M2 x with n product terms (range (n + 1)): carry identity fails (exit 1, diagnostic: error: LeanProofs/Frobenius292507/Carry.lean:72:2: Type mismatch: After simplification, term)
+rejected: M3 headline: (n - 2) N not in S (n=2, a=(1,2): x = (2,3), and 0 is in S) (exit 1, diagnostic: error: LeanProofs/Frobenius292507/Main.lean:134:3: Application type mismatch: The argument)
+rejected: M4 headline: every m >= (n - 1) N in S (non-strict; (n-1)N itself is not) (exit 1, diagnostic: error: LeanProofs/Frobenius292507/Main.lean:134:70: Application type mismatch: The argument)
+rejected: M5 headline: gcd hypothesis weakened to 0 < gcd (a=(1,1): x = (2,2), N = 0, and 0 is in S) (exit 1, diagnostic: error: LeanProofs/Frobenius292507/Main.lean:134:24: Application type mismatch: The argument)
+rejected: M6 headline: n >= 1 instead of n >= 2 (n=1: x_0 = 1, (n-1)N = 0 is in S) (exit 1, diagnostic: error: LeanProofs/Frobenius292507/Main.lean:134:11: Application type mismatch: The argument)
+rejected: M7 digit bound off by one: d_i <= a_{i-1} (v(d) can exceed N) (exit 1, diagnostic: error: LeanProofs/Frobenius292507/Digits.lean:148:2: Type mismatch)
+rejected: M8 carry identity with constant P instead of N (a=(1,2,3): 9 = 4 + 6 false) (exit 1, diagnostic: error: LeanProofs/Frobenius292507/Carry.lean:96:9: Tactic `unfold` failed to unfold `N` in)
+rejected: M9 sum identity = (n - 1) N (a=(1,2,3): 2*4 + 0*9 + 1*7 = 15 = 3*5, not 10) (exit 1, diagnostic: error: LeanProofs/Frobenius292507/Carry.lean:126:2: omega could not prove the goal:)
+rejected: M10 step 3: N >= 2 (a=(1,1,2): x = (3,4,5), gcd 1, N = 1) (exit 1, diagnostic: error: LeanProofs/Frobenius292507/Carry.lean:132:73: omega could not prove the goal:)
+rejected: M11 step 4: gcd(x_0, P) = 1 (a=(1,2,3): gcd(4, 6) = 2) (exit 1, diagnostic: error: LeanProofs/Frobenius292507/Carry.lean:164:22: Application type mismatch: The argument)
+rejected: M12 step 6(i): every t <= P is a digit value (t = P is not; max value is P - 1) (exit 1, diagnostic: error: LeanProofs/Frobenius292507/Digits.lean:179:71: Tactic `unfold` failed to unfold `N` in)
+rejected: M13 example: Frobenius number 9 instead of 10 (10 is the gap) (exit 1, diagnostic: error: LeanProofs/Frobenius292507/Main.lean:159:2: Tactic `assumption` failed)
+rejected: M14 example: generator x_1 = 8 instead of 9 (exit 1, diagnostic: error: LeanProofs/Frobenius292507/Main.lean:146:76: unsolved goals)
 14/14 mutants rejected, all controls pass
