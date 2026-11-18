@@ -10,6 +10,8 @@
     "MexSequence/Audit.lean": "f111ee65a2162071a329cf5a4f7c2b9536d47a6b40573298d13aab948cc9761f",
     "MexSequence/Basic.lean": "92036a61e6901e772c88ba05e2ba928aa3a4f5bdd0276e18f0a34d27d63508d8",
     "MexSequence/Main.lean": "c69903961cb23d87be33ae0946b6da58c05c858a6fd06b83d66cdeaea0e7c11b",
-    "MexSequence/Twins.lean": "5d7bf6d45babadcdb2e881ee44c71704bfd586393a54f94aebff0cf8a3ad8a23"
+    "MexSequence/Twins.lean": "5d7bf6d45babadcdb2e881ee44c71704bfd586393a54f94aebff0cf8a3ad8a23",
+    "scripts/mutants.toml": "34f5e77b3c8c1acb69b8cde50da00f5786cf832bb9fa80d450d0f93e187b0b33",
+    "scripts/mutate.py": "ac12aeab7dfe79dc539e13248e29820fc259e8e41840a88cdce5cde83336083d"
   }
 }

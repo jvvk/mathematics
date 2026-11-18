@@ -18,19 +18,19 @@
 
 \title{A Mex Sequence That Is Not Ultimately Periodic}
 \author{Vamshi Jandhyala}
-\date{Preprint, version 2, 23 October 2026 (expository revision; results unchanged from version 1 of 8 October). Not peer reviewed.}
+\date{Preprint, version 3, 18 November 2026 (corrections after an independent review; theorems unchanged from version 1 of 8 October). Not peer reviewed.}
 \subjclass[2020]{Primary 11B37; Secondary 11B13, 91A46}
 \keywords{mex sequence, minimum excluded value, ultimately periodic, sum-free set, Sprague-Grundy, formal verification}
 
 \begin{document}
 
 \begin{abstract}
-Start with a few nonnegative integers and keep appending the least nonnegative integer that is not a sum $a_i+a_{n-i}$ of two terms whose indices add up to the last index $n$ already written. Guy asked whether every such mex sequence is ultimately periodic. It is not: the sequence that starts $1,1,1,0,1,0,1,1$ is unbounded. The proof needs two facts. The zeros of the sequence sit at the positions with remainder $0$ or $3$ modulo $5$, and each zero copies an earlier value into the set whose least missing element is taken, so from the third block of five on, each block brings a value that no earlier block had. An appendix gives every term exactly. Both proofs are formally verified in Lean.
+Start with a few nonnegative integers and keep appending the least nonnegative integer that is not a sum $a_i+a_{n-i}$ of two terms whose indices add up to the last index $n$ already written. Guy asked whether every such mex sequence is ultimately periodic. It is not: the sequence that starts $1,1,1,0,1,0,1,1$ is unbounded. The proof needs two facts. The zeros of the sequence sit at the positions with remainder $0$ or $3$ modulo $5$, and each zero copies an earlier value into the set whose least missing element is taken, so from the third block of five on, each new twin value differs from every earlier twin value. An appendix gives every term exactly. Both proofs are formally verified in Lean.
 \end{abstract}
 
 \maketitle
 
-\noindent\emph{Status of this preprint.} Lemmas~\ref{lem:zeros} and~\ref{lem:twins}, Theorem~\ref{thm:main} and the exact values of Theorem~\ref{thm:exact} are formally verified in Lean~4 (Section~\ref{sec:lean}), using only Lean's standard axioms. Apart from the exact values, the remarks of Section~\ref{sec:remarks} are not formally verified, and this version has not yet been independently reviewed.
+\noindent\emph{Status of this preprint.} Lemmas~\ref{lem:zeros} and~\ref{lem:twins}, Theorem~\ref{thm:main} and the exact values of Theorem~\ref{thm:exact} are formally verified in Lean~4 (Section~\ref{sec:lean}), using only Lean's standard axioms. Apart from the exact values, the remarks of Section~\ref{sec:remarks} are not formally verified. Version~3 corrects points found in an independent review of version~2 by Codex (OpenAI); it has not been peer reviewed.
 
 \section{Introduction}
 
@@ -202,13 +202,13 @@ Lemma~\ref{lem:twins} gives a new twin value different from every earlier one in
 \[
  y\in Y\quad\Longleftrightarrow\quad y\notin Y+Y\qquad(y\ge k+2),
 \]
-where $Y+Y=\{u+v:u,v\in Y\}$ allows $u=v$. This is the greedy completion of a sum-free set: starting from a finite set of positive integers containing no sum of two of its members, admit each larger integer exactly when it is not such a sum. Every greedy completion arises in this way. For a sum-free set with largest member $s$, take the word of length $s$ with a zero at position $u-1$ for each member $u$ and ones elsewhere; its shifted zero set is the greedy completion. (The starting set must be sum-free: the word $0,0$ gives the members $1,2$, and $2=1+1$.) Cameron asked whether every such completion is ultimately periodic, and Calkin and Finch list starting sets whose completions appear not to be, such as $\{1,3,8,20,26\}$~\cite{CF}. So even the zero positions of mex sequences lead to Cameron's question. In our example they are periodic after the initial term, and it is the other values that grow.
+where $Y+Y=\{u+v:u,v\in Y\}$ allows $u=v$. When the shifted zero set of the starting word is sum-free, this is the greedy completion of that set: starting from a finite set of positive integers containing no sum of two of its members, admit each larger integer exactly when it is not such a sum. Every greedy completion arises in this way. For a sum-free set with largest member $s$, take the word of length $s$ with a zero at position $u-1$ for each member $u$ and ones elsewhere; its shifted zero set is the greedy completion. (The starting set must be sum-free: the word $0,0$ gives the members $1,2$, and $2=1+1$.) Cameron asked whether every such completion is ultimately periodic, and Calkin and Finch list starting sets whose completions appear not to be, such as $\{1,3,8,20,26\}$~\cite{CF}. So even the zero positions of mex sequences lead to Cameron's question. In our example they are periodic after the initial term, and it is the other values that grow.
 
 \emph{How the example was found.} We ran~\eqref{eq:rule} for every starting word of zeros and ones of length at most $8$, for $3000$ terms each. No word of length at most $7$ produced a value above $30$. Among the $256$ words of length $8$, exactly one produced a value above $100$: the word of Theorem~\ref{thm:main}, whose first $3000$ terms reach $797$.
 
 \emph{Another example.} The first $4000$ terms of the sequence started from $1,1,0,0,1,1,0,1,0,1,1,1$ suggest another unbounded example. For every comparison available in that computation, $74\le n\le3951$, the difference $a_{n+48}-a_n$ is $7$ at $18$ fixed remainders modulo $48$ and $0$ at the other remainders. This is computational evidence; we have not proved that the pattern persists.
 
-\emph{Open questions.} Our proved example has a repeating pattern of increments: from $n=15$ onward, moving $15$ positions ahead adds $4$ at the twin positions and $0$ elsewhere. The computations suggest a similar pattern for the second example. Call a sequence ultimately ``periodic plus linear'' when, after finitely many terms, $a_{n+p}-a_n$ depends only on the remainder of $n$ on division by some period $p$. Is every mex sequence ultimately of this form? Is there a mex sequence whose values grow faster than linearly, or one that is unbounded but returns to small values outside a periodic set of positions? And the question closest to the games remains open: is every mex sequence with addition without carries (OEIS A067018) ultimately periodic?
+\emph{Open questions.} Our proved example has a repeating pattern of increments: from $n=15$ onward, moving $15$ positions ahead adds $4$ at the twin positions and $0$ elsewhere. The computations suggest a similar pattern for the second example. Call a sequence ultimately ``periodic plus linear'' when, after finitely many terms, $a_{n+p}-a_n$ depends only on the remainder of $n$ on division by some period $p$. Our example has the special form that Horrocks and Nowakowski call \emph{sapp regular} for Grundy sequences of octal games with a pass~\cite{HN}: periodic in some residue classes and increasing by a fixed saltus in the others. Is every mex sequence ultimately periodic plus linear, or even sapp regular? Is there one that is unbounded but returns to small values outside a periodic set of positions? Faster than linear growth is impossible: the pair sums $a_i+a_{n-i}$ and $a_{n-i}+a_i$ coincide, so there are at most $\lfloor n/2\rfloor+1$ of them, and the least value missing from a set of that size is at most its size, so $a_{n+1}\le\lfloor n/2\rfloor+1$. And the question closest to the games remains open: is every mex sequence with addition without carries (OEIS A067018) ultimately periodic?
 
 \section{Formal verification}\label{sec:lean}
 
@@ -217,8 +217,9 @@ The results of Section~\ref{sec:proof} and Appendix~\ref{sec:exact} are checked 
 \item Lemmas~\ref{lem:zeros} and~\ref{lem:twins} and Theorem~\ref{thm:main} follow Section~\ref{sec:proof}, for any such sequence.
 \item Lemma~\ref{lem:last} and Theorem~\ref{thm:exact} give every term, and with it a second proof of Theorem~\ref{thm:main}. Lean shows that this closed form satisfies~\eqref{eq:rule}, so that it is a mex sequence and the only one with this starting word. Positions below $60$ are checked by evaluation; beyond them the check is a symbolic case analysis on the residues of the positions, organised differently from the proof in Appendix~\ref{sec:exact}.
 \end{itemize}
-The Lean code, and a program that recomputes in exact arithmetic every number quoted in this paper, are at
-\begin{center}\small\url{https://github.com/jvvk/mathematics/tree/main/mex-sequence-not-periodic}.\end{center}
+The Lean code is at the address below, with a program that recomputes in exact arithmetic every number quoted in this paper (the counts of the search in Section~\ref{sec:remarks} come from a separate search program) and checks each step of the proofs of Lemmas~\ref{lem:zeros} and~\ref{lem:twins} on the first $3000$ terms:
+\begin{center}\small\url{https://github.com/jvvk/mathematics/tree/main/mex-sequence-not-periodic}\end{center}
+and, identical to that folder at tag \texttt{mex-sequence-not-periodic-v3}, in the Zenodo record \href{https://doi.org/10.5281/zenodo.24352863}{doi:10.5281/zenodo.24352863}.
 
 \appendix
 
@@ -321,6 +322,7 @@ The proofs, text, verification programs and Lean formalisation were developed wi
 \bibitem{WW} E.~R.~Berlekamp, J.~H.~Conway and R.~K.~Guy, \emph{Winning Ways for Your Mathematical Plays}, Academic Press, London, 1982.
 \bibitem{CF} N.~J.~Calkin and S.~R.~Finch, Conditions on periodicity for sum-free sets, \emph{Experiment.\ Math.} \textbf{5} (1996), no.~2, 131--137, \href{https://doi.org/10.1080/10586458.1996.10504584}{doi:10.1080/10586458.1996.10504584}.
 \bibitem{Guy} R.~K.~Guy, \emph{Unsolved Problems in Number Theory}, 3rd ed., Problem Books in Mathematics, Springer, New York, 2004, Section E27, pp.~349--350, \href{https://doi.org/10.1007/978-0-387-26677-0}{doi:10.1007/978-0-387-26677-0}.
+\bibitem{HN} D.~G.~Horrocks and R.~J.~Nowakowski, Regularity in the $\mathcal{G}$-sequences of octal games with a pass, \emph{Integers} \textbf{3} (2003), \#G01, \url{https://math.colgate.edu/~integers/dg1/dg1.pdf}, accessed 18 November 2026.
 \bibitem{OEIS} OEIS Foundation, \emph{The On-Line Encyclopedia of Integer Sequences}, sequences A067016, A067017 and A067018, \url{https://oeis.org}, accessed 8 October 2026.
 \end{thebibliography}
 }

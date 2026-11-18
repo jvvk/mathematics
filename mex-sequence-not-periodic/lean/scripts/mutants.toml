@@ -1,0 +1,69 @@
+# Lean mutants for MexSequence (ten planted wrong changes; each must stop the build).
+#   cd lean && python3 -I scripts/mutate.py scripts/mutants.toml
+# Inplace: the harness restores every file; afterwards `lake build` restores the build.
+[check]
+cmd = ["lake", "build", "MexSequence"]
+cwd = ".."
+timeout = 1500
+mode = "inplace"
+fail_markers = ["error"]
+
+[[mutant]]
+name = "y slope 5"
+file = "../MexSequence/Basic.lean"
+old = "+ 4 * ((b - 3) / 3)"
+new = "+ 5 * ((b - 3) / 3)"
+
+[[mutant]]
+name = "w = 2 from block 2"
+file = "../MexSequence/Basic.lean"
+old = "else if b ≤ 2 then 3 else 2"
+new = "else if b ≤ 1 then 3 else 2"
+
+[[mutant]]
+name = "start a 7 = 0"
+file = "../MexSequence/Basic.lean"
+old = "a 6 = 1 ∧ a 7 = 1"
+new = "a 6 = 1 ∧ a 7 = 0"
+
+[[mutant]]
+name = "closed form: zeros at residues 0,2"
+file = "../MexSequence/Basic.lean"
+old = "n % 5 = 0 ∨ n % 5 = 3 then 0"
+new = "n % 5 = 0 ∨ n % 5 = 2 then 0"
+
+[[mutant]]
+name = "y cycle 2,4,5"
+file = "../MexSequence/Basic.lean"
+old = "then 2 else if (b - 3) % 3 = 1 then 5 else 4"
+new = "then 2 else if (b - 3) % 3 = 1 then 4 else 5"
+
+[[mutant]]
+name = "Lemma 1: zeros at residues 0,2"
+file = "../MexSequence/Twins.lean"
+old = "m ≠ 0 ∧ (m % 5 = 0 ∨ m % 5 = 3)"
+new = "m ≠ 0 ∧ (m % 5 = 0 ∨ m % 5 = 2)"
+
+[[mutant]]
+name = "Lemma 1: a 0 also zero"
+file = "../MexSequence/Twins.lean"
+old = "a m = 0 ↔ m ≠ 0 ∧"
+new = "a m = 0 ↔ True ∧"
+
+[[mutant]]
+name = "Lemma 2: twins at 5b+1, 5b+3"
+file = "../MexSequence/Twins.lean"
+old = "∀ b, a (5 * b + 1) = a (5 * b + 2) ∧"
+new = "∀ b, a (5 * b + 1) = a (5 * b + 3) ∧"
+
+[[mutant]]
+name = "Lemma 2: new from block 1"
+file = "../MexSequence/Twins.lean"
+old = "(2 ≤ b → ∀ c < b, a (5 * b + 1) ≠ a (5 * c + 1))"
+new = "(1 ≤ b → ∀ c < b, a (5 * b + 1) ≠ a (5 * c + 1))"
+
+[[mutant]]
+name = "Lemma 2: differs from 4th column"
+file = "../MexSequence/Twins.lean"
+old = "(2 ≤ b → ∀ c < b, a (5 * b + 1) ≠ a (5 * c + 1))"
+new = "(2 ≤ b → ∀ c < b, a (5 * b + 1) ≠ a (5 * c + 4))"

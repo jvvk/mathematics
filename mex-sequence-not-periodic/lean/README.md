@@ -31,5 +31,9 @@ second example).
 
 ## Mutation tests
 
-`./mutants.sh` copies the sources, plants one wrong change (a slope, a starting term, a residue, the
-claim of Lemma 1 or 2) and checks that the copy no longer compiles. All ten mutants are rejected.
+`python3 -I scripts/mutate.py scripts/mutants.toml` (from this folder) first checks that the unchanged
+sources build, then plants one wrong change at a time in place (a slope, a starting term, a residue, the
+claim of Lemma 1 or 2), runs `lake build MexSequence`, and restores the file. A mutant counts as rejected only
+when the build fails with a Lean error; timeouts, crashes and missing tools are reported as inconclusive, and
+the run exits nonzero unless every mutant is rejected. Run `lake build` afterwards to restore the build.
+`mutation-validation.log` records the run: all ten mutants are rejected.

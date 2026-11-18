@@ -1,7 +1,8 @@
 """Exact checks of every number quoted in paper/mex.tex, and of each proof step on the computed terms.
 
 Run: python3 verify_paper.py   (standard library only; a few seconds)
-Mutants at the end must all be KILLED.
+Negative controls at the end (false statements checked against the correct data) must all fail.
+Implementation mutants live in mutants.toml (python3 -I harness/mutate.py mutants.toml).
 """
 
 from __future__ import annotations
@@ -184,14 +185,14 @@ check(
 )
 
 
-# Mutants
+# Negative controls: each false statement must fail against the correct data.
 def mutant(name, fn):
     try:
         fn()
     except AssertionError:
-        print("MUTANT KILLED", name)
+        print("NEGATIVE CONTROL FAILS AS IT SHOULD", name)
         return
-    raise SystemExit("MUTANT SURVIVED " + name)
+    raise SystemExit("NEGATIVE CONTROL PASSED (it must fail) " + name)
 
 
 mutant("slope 3", lambda: check("m", all(y(b + 3) == y(b) + 3 for b in range(3, 50))))
@@ -245,14 +246,15 @@ for m in range(8, len(A)):
         assert 0 < i < m and 0 < j < m and i + j == m - 1
         assert A[i] == A[j] == 0
 check("zero-pair witnesses for every positive generated position", True)
-for b in range(2, 200):
+for b in range(2, (len(A) - 2) // 5):  # every block whose two twins are among the computed terms
     first = 5 * b + 1
     first_set = {A[i] + A[first - 1 - i] for i in range(first)}
     second_set = {A[i] + A[first - i] for i in range(first + 1)}
     assert second_set == first_set | {1 + A[first]}
     assert all(A[5 * c + 1] in first_set for c in range(b))
     assert A[first] == A[first + 1] and A[first] >= 2
-check("twins: same copied values and only the extra boundary sum", True)
+check("twins: same copied values and only the extra boundary sum, every computed block", True)
+check("bound a_(n+1) <= floor(n/2) + 1 (Section 5) for every computed term", all(A[n + 1] <= n // 2 + 1 for n in range(7, len(A) - 1)))
 check("last-column induction conclusion for all available blocks", all(
     A[5 * b + 4] == 2 for b in range(3, len(A) // 5)
 ))

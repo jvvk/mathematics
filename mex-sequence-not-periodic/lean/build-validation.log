@@ -1,0 +1,9 @@
+info: MexSequence/Audit.lean:7:0: 'MexE27.zeros' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: MexSequence/Audit.lean:8:0: 'MexE27.twins' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: MexSequence/Audit.lean:9:0: 'MexE27.unbounded_of_twins' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: MexSequence/Audit.lean:10:0: 'MexE27.not_eventually_periodic_of_twins' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: MexSequence/Audit.lean:12:0: 'MexE27.isMex_F' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: MexSequence/Audit.lean:13:0: 'MexE27.eq_F' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: MexSequence/Audit.lean:14:0: 'MexE27.unbounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: MexSequence/Audit.lean:15:0: 'MexE27.not_eventually_periodic' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (3098 jobs).

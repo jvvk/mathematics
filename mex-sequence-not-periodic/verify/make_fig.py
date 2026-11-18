@@ -36,5 +36,6 @@ ax.set_xlabel(r"$n$"); ax.set_ylabel(r"$a_n$")
 ax.spines[["top", "right"]].set_visible(False)
 ax.legend(frameon=False, fontsize=8, loc="upper left")
 fig.tight_layout()
-fig.savefig(Path(__file__).parent / "fig_sequence.pdf"); fig.savefig(Path(__file__).parent / "fig_sequence.png", dpi=170)
+out = Path(__file__).parent.parent / "paper" / "figs"  # the file LaTeX includes
+fig.savefig(out / "fig_sequence.pdf")
 print("closed form verified for n <", N, "; a_149 =", a[149])
