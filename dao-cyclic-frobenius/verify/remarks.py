@@ -1,4 +1,4 @@
-"""Counts quoted in Remarks 1 and 2 (minimality and pseudo-Frobenius sets). Run: python3 -I remarks.py"""
+"""Counts quoted in Remark 1 (minimality) and after Corollary 2 (pseudo-Frobenius sets). Run: python3 -I remarks.py"""
 import itertools
 import math
 import random
@@ -67,7 +67,7 @@ if __name__ == "__main__":
     t3, o3 = remark2()
     print(f"Remark 1 exhaustive: {t1} coprime lists, {b1} non-minimal")
     print(f"Remark 1 random: {t2} coprime lists, {b2} non-minimal")
-    print(f"Remark 2: {o3} of {t3} have PF = {{N, ..., (n-1)N}}")
+    print(f"Corollary 2 check: {o3} of {t3} have PF = {{N, ..., (n-1)N}}")
     good = (t1, b1, t2, b2, t3, o3) == (3703, 0, 14459, 0, 2186, 2186)
     print("ALL PASS" if good else "FAILED")
     if not good:

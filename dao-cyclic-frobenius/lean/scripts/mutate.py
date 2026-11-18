@@ -15,6 +15,8 @@ Suite format (paths relative to the suite file's directory unless absolute):
     mode = "copy"                             # copy: write <stem>Mut<suffix> beside the source (default)
                                               # inplace: mutate the source itself, restored afterwards
     fail_markers = ["error"]                  # stdout/stderr text that also counts as failure
+    fail_pattern = '\\.lean:\\d+:\\d+: '        # optional regex: a rejection then needs a nonzero exit AND a
+                                              # line matching it (a Lean source diagnostic, not a Lake I/O error)
 
     [[mutant]]
     name = "bound 1/3 instead of 1/2"
@@ -43,6 +45,7 @@ class Check:
     timeout: int
     mode: str
     fail_markers: list[str]
+    fail_pattern: re.Pattern[str] | None = None
 
 
 @dataclass
@@ -63,6 +66,7 @@ def load(suite: Path) -> tuple[Check, list[Mutant]]:
         timeout=int(c.get("timeout", 900)),
         mode=c.get("mode", "copy"),
         fail_markers=list(c.get("fail_markers", [])),
+        fail_pattern=re.compile(c["fail_pattern"]) if c.get("fail_pattern") else None,
     )
     if check.mode not in {"copy", "inplace"}:
         sys.exit(f"unknown mode {check.mode!r}")
@@ -85,7 +89,7 @@ INFRA = re.compile(
     r"object file .* does not exist|unknown module prefix|unknown package|could not resolve import|"
     r"failed to (?:download|load)|toolchain .* not (?:found|installed)|shared librar|"
     r"exited with code (?:1[3-9]\d|2\d\d)|segmentation fault|No space left|Read-only file system|"
-    r"Permission denied|Disk quota|I/O error|cannot write",
+    r"Permission denied|Disk quota|I/O error|cannot write|failed to (?:create|write|open|rename|remove)",
     re.IGNORECASE,
 )
 RESOURCE = re.compile(
@@ -146,6 +150,14 @@ def passes(check: Check, path: Path) -> tuple[bool, str]:
     # A missing or non-executable tool (shell status 126/127) says nothing about the mutant.
     if r.returncode in (126, 127):
         return False, f"INCONCLUSIVE command not runnable (exit {r.returncode})"
+    if check.fail_pattern is not None:
+        # Structured rule: only a nonzero exit with a matching diagnostic line is a rejection.
+        hit = next((ln.strip() for ln in out.splitlines() if check.fail_pattern.search(ln)), "")
+        if r.returncode == 0:
+            return True, "exit 0" + (f" (diagnostic present: {hit[:120]})" if hit else "")
+        if not hit:
+            return False, f"INCONCLUSIVE exit {r.returncode} without a line matching {check.fail_pattern.pattern!r}"
+        return False, f"exit {r.returncode}, diagnostic: {hit[:160]}"
     marked = [m for m in check.fail_markers if m in out]
     if r.returncode == 0 and not marked:
         return True, "exit 0"

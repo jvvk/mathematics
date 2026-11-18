@@ -9,7 +9,7 @@ cmd = ["lake", "build", "LeanProofs.Frobenius292507"]
 cwd = ".."
 timeout = 900
 mode = "inplace"
-fail_markers = ["error"]
+fail_pattern = '\.lean:\d+:\d+: '   # rejection = nonzero exit AND a Lean source diagnostic
 
 [[mutant]]
 name = "M1 N = P instead of P - 1 (a=(1,2,3): the carry a_0 x_1 = x_0 + N reads 9 = 4 + 6)"
