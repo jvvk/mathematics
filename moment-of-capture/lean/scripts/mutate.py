@@ -139,6 +139,9 @@ def main() -> int:
     check, muts = load(a.suite.resolve())
     if a.only:
         muts = [m for m in muts if a.only in m.name]
+    if not muts:
+        print(f"no mutants selected (--only {a.only!r}); nothing was tested", file=sys.stderr)
+        return 2
     if a.list:
         for m in muts:
             print(f"{m.name}  ({m.file.name})")

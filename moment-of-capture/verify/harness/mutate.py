@@ -92,6 +92,9 @@ RESOURCE = re.compile(
 )
 
 
+PYEXC = re.compile(r"^([A-Za-z_][\w.]*(?:Error|Exception|Exit|Interrupt))(?::|$)")
+
+
 def passes(check: Check, path: Path) -> tuple[bool, str]:
     cmd = ["nice", "-n", "15", *[a.replace("{file}", str(path)) for a in check.cmd]]
     try:
@@ -111,6 +114,14 @@ def passes(check: Check, path: Path) -> tuple[bool, str]:
     infra = INFRA.search(out)
     if infra and r.returncode != 0:
         return False, f"INCONCLUSIVE infrastructure ({infra.group(0)})"
+    # A Python mutant that dies of an unrelated exception (NameError, SyntaxError, ...) proves nothing either:
+    # only a failed assertion or a deliberate nonzero exit counts as a rejection.
+    # Judge by the type of the final exception Python reports on stderr (compile-time SyntaxErrors print no
+    # traceback header), never by substrings anywhere in the output.
+    if r.returncode != 0:
+        heads = [m.group(1) for m in map(PYEXC.match, r.stderr.splitlines()) if m]
+        if heads and heads[-1].rsplit(".", 1)[-1] != "AssertionError":
+            return False, f"INCONCLUSIVE python exception ({heads[-1]})"
     marked = [m for m in check.fail_markers if m in out]
     return r.returncode == 0 and not marked, f"exit {r.returncode}" + (
         f", marker {marked[0]!r}" if marked else ""
@@ -129,10 +140,7 @@ def main() -> int:
     if a.only:
         muts = [m for m in muts if a.only in m.name]
     if not muts:
-        print(
-            f"no mutants selected (--only {a.only!r}); nothing was tested",
-            file=sys.stderr,
-        )
+        print(f"no mutants selected (--only {a.only!r}); nothing was tested", file=sys.stderr)
         return 2
     if a.list:
         for m in muts:

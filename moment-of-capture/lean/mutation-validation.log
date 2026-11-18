@@ -1,0 +1,8 @@
+control passes: Main.lean
+rejected: M1 pre-period z - 5 (exit 1, marker 'error')
+rejected: M2 allow k = 2 (the counterexample) (exit 1, marker 'error')
+rejected: M3 G = floor((k-1)/4) (exit 1, marker 'error')
+rejected: M4 k = 2 has pre-period 3 (exit 1, marker 'error')
+rejected: M5 k = 6 captured at 28 (not the least end) (exit 1, marker 'error')
+rejected: M6 rule without the square (exit 1, marker 'error')
+6/6 mutants rejected, all controls pass

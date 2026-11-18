@@ -3,7 +3,7 @@
 <!-- visual:start -->
 <p align="center"><img src="visual.svg" width="760" alt="The case k = 6: the capturing run and the last mismatch"></p>
 
-<p align="center"><b>Finch's Conjecture 23 holds for every k ≥ 3 and fails for k = 2.</b><br><sub>Published conjecture settled · formally verified in Lean 4</sub></p>
+<p align="center"><b>Finch's Conjecture 23 holds for every k ≥ 3 and fails for k = 2.</b><br><sub>Published conjecture settled · Lean 4 for k ≥ 6 and k = 2, computation for k = 3</sub></p>
 
 <p align="center"><sub><a href="paper">paper</a> · <a href="lean">Lean proof</a> · <a href="verify">code</a> · <a href="../">all results</a></sub></p>
 <!-- visual:end -->
