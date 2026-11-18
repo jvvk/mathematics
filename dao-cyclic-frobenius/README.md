@@ -21,7 +21,7 @@ Preprint v2, 18 November 2026 (v1: 23 October), not peer reviewed. Zenodo: [doi:
 - `paper/`: `paper.tex` and `paper.pdf`.
 - `verify/verify_note.py`: Theorem 1 and the ladder description of every nonzero residue class and the zero-class formula (`kN ∈ S` exactly for `k = 0` or `k ≥ n`) against brute force, for all 2,379 coprime lists with `2 ≤ n ≤ 6` and entries at most 8, 8, 5, 4, 3; the worked example; two wrong formulas rejected.
 - `verify/recheck.py`: an independent program (no shared code) that recomputes the same Frobenius numbers by shortest paths on residues modulo the smallest generator.
-- `verify/remarks.py`: the counts in Remarks 1 and 2 (minimality in 3,703 and 14,459 cases; pseudo-Frobenius sets `{N, …, (n − 1)N}` in 2,186 cases).
+- `verify/remarks.py`: the counts in Remark 1 (minimality in 3,703 and 14,459 cases) and the computation following Corollary 2 (pseudo-Frobenius sets `{N, …, (n − 1)N}` in 2,186 cases, a check of the corollary, which is proved).
 - `lean/`: a Lake project pinned to Lean 4.34.0 and Mathlib. `lean/README.md` maps the results to Lean names; `SOURCE-SNAPSHOT.json` records the development commit and file hashes; `scripts/mutants.toml` plants fourteen wrong changes, each rejected.
 
 ## Reproduce

@@ -1,5 +1,5 @@
 """Certificate for the note: Theorem 1 by brute force, the ladder description, the worked example,
-and the counts in Remarks 1 and 2. Run: python3 -I verify_note.py  (prints ALL PASS)."""
+and the counts in Remark 1 and the computation following Corollary 2. Run: python3 -I verify_note.py  (prints ALL PASS)."""
 import itertools
 import math
 import random

@@ -15,8 +15,8 @@ Suite format (paths relative to the suite file's directory unless absolute):
     mode = "copy"                             # copy: write <stem>Mut<suffix> beside the source (default)
                                               # inplace: mutate the source itself, restored afterwards
     fail_markers = ["error"]                  # stdout/stderr text that also counts as failure
-    fail_pattern = '\\.lean:\\d+:\\d+: '        # optional regex: a rejection then needs a nonzero exit AND a
-                                              # line matching it (a Lean source diagnostic, not a Lake I/O error)
+    fail_pattern = 'error: \\S+\\.lean:\\d+:\\d+: '        # optional regex: a rejection then needs a nonzero exit AND a
+                                              # line matching it (a Lean source error, not a warning or a Lake I/O error)
 
     [[mutant]]
     name = "bound 1/3 instead of 1/2"

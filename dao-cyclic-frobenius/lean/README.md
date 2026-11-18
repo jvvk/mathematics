@@ -27,7 +27,7 @@ with `∑_{i < n} c i * x n a i = m`. The digit bound of the paper's `d_i ≤ a_
 Route: the formalisation follows the paper step by step for Theorem 1; the exact ladder equalities for each residue class are not stated separately (Theorem 1 uses only carrying up and down). Two differences in form, not substance: positivity
 `0 < s` stands for "a nonzero representation" (the two are equivalent), and in the case of a nonzero residue the
 bound `w(d) ≤ m` is derived from `w(d) ≤ nN` directly, without first noting that `d` is not the maximal vector.
-Remarks 1 and 2 (minimality, pseudo-Frobenius sets) are computations, checked by `../verify/remarks.py`, not here.
+Remark 1 (minimality) and the pseudo-Frobenius computation following Corollary 2 are checked by `../verify/remarks.py`, not here. Corollary 2 itself rests on Goto–Kien–Matsuoka–Truong, Theorem 1.2, and is not formalised.
 
 ## Build
 
