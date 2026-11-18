@@ -1,0 +1,41 @@
+k=62 G=16 z=14847 s=14783 s-k=14721 x[s-5..s]=120120 mu=14841 z-mu=6 OK
+k=63 no capture by 1000000000 (cutoff, not verified)
+k=66 G=17 z=6937 s=6869 s-k=6803 x[s-5..s]=120120 mu=6931 z-mu=6 OK
+k=67 G=17 z=6145 s=6077 s-k=6010 x[s-5..s]=012220 mu=6139 z-mu=6 OK
+k=70 G=18 z=12285 s=12213 s-k=12143 x[s-5..s]=120120 mu=12279 z-mu=6 OK
+k=71 G=18 z=6498 s=6426 s-k=6355 x[s-5..s]=011120 mu=6492 z-mu=6 OK
+k=74 no capture by 1000000000 (cutoff, not verified)
+k=75 G=19 z=3926 s=3850 s-k=3775 x[s-5..s]=011120 mu=3920 z-mu=6 OK
+k=78 no capture by 1000000000 (cutoff, not verified)
+k=79 G=20 z=18340 s=18260 s-k=18181 x[s-5..s]=012220 mu=18334 z-mu=6 OK
+k=82 no capture by 1000000000 (cutoff, not verified)
+k=83 G=21 z=45756 s=45672 s-k=45589 x[s-5..s]=011120 mu=45750 z-mu=6 OK
+k=86 G=22 z=30478 s=30390 s-k=30304 x[s-5..s]=120120 mu=30472 z-mu=6 OK
+k=87 G=22 z=23839 s=23751 s-k=23664 x[s-5..s]=011120 mu=23833 z-mu=6 OK
+k=90 G=23 z=31609 s=31517 s-k=31427 x[s-5..s]=120120 mu=31603 z-mu=6 OK
+k=91 G=23 z=32497 s=32405 s-k=32314 x[s-5..s]=012220 mu=32491 z-mu=6 OK
+k=94 no capture by 1000000000 (cutoff, not verified)
+k=95 G=24 z=60915 s=60819 s-k=60724 x[s-5..s]=012220 mu=60909 z-mu=6 OK
+k=98 no capture by 1000000000 (cutoff, not verified)
+k=99 G=25 z=35653 s=35553 s-k=35454 x[s-5..s]=012220 mu=35647 z-mu=6 OK
+k=102 G=26 z=210266 s=210162 s-k=210060 x[s-5..s]=120120 mu=210260 z-mu=6 OK
+k=103 G=26 z=93411 s=93307 s-k=93204 x[s-5..s]=012220 mu=93405 z-mu=6 OK
+k=106 G=27 z=29761 s=29653 s-k=29547 x[s-5..s]=120120 mu=29755 z-mu=6 OK
+k=107 no capture by 1000000000 (cutoff, not verified)
+k=110 G=28 z=332265 s=332153 s-k=332043 x[s-5..s]=120120 mu=332259 z-mu=6 OK
+k=111 G=28 z=427384 s=427272 s-k=427161 x[s-5..s]=011120 mu=427378 z-mu=6 OK
+k=114 G=29 z=157883 s=157767 s-k=157653 x[s-5..s]=120120 mu=157877 z-mu=6 OK
+k=115 G=29 z=115429 s=115313 s-k=115198 x[s-5..s]=011120 mu=115423 z-mu=6 OK
+k=118 G=30 z=216444 s=216324 s-k=216206 x[s-5..s]=120120 mu=216438 z-mu=6 OK
+k=119 G=30 z=532676 s=532556 s-k=532437 x[s-5..s]=012220 mu=532670 z-mu=6 OK
+k=122 G=31 z=280217 s=280093 s-k=279971 x[s-5..s]=120120 mu=280211 z-mu=6 OK
+k=123 G=31 z=211540 s=211416 s-k=211293 x[s-5..s]=012220 mu=211534 z-mu=6 OK
+k=126 G=32 z=29784 s=29656 s-k=29530 x[s-5..s]=120120 mu=29778 z-mu=6 OK
+k=127 no capture by 1000000000 (cutoff, not verified)
+k=130 G=33 z=27696 s=27564 s-k=27434 x[s-5..s]=120120 mu=27690 z-mu=6 OK
+k=131 G=33 z=348560 s=348428 s-k=348297 x[s-5..s]=012220 mu=348554 z-mu=6 OK
+k=134 no capture by 1000000000 (cutoff, not verified)
+k=135 G=34 z=127694 s=127558 s-k=127423 x[s-5..s]=012220 mu=127688 z-mu=6 OK
+k=138 G=35 z=982304 s=982164 s-k=982026 x[s-5..s]=220120 mu=982298 z-mu=6 OK
+k=139 G=35 z=603765 s=603625 s-k=603486 x[s-5..s]=012220 mu=603759 z-mu=6 OK
+verified 31, failed 0, cutoff 9

@@ -1,0 +1,21 @@
+{
+  "source_commit": "22831b9 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports FinchCapture only)",
+    "CheckClaims.lean (generated)",
+    "scripts/mutants.py (copy of lean-proofs scripts/finchcapture_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "2f036ecc65a78f78b3caed26acc83fbdeb964435de1d3f1690ae28439a4d313f",
+    "LeanProofs/FinchCapture/Main.lean": "c543e8c9367d35220bca715c4ab0b68745bd6d9a547c51ebc0898cdc49f232b4",
+    "LeanProofs/FinchCapture/Report.lean": "bc46e54cb8a5bfbca09fe82687521f227a67c1c5bf3c10883869f14e6e56e72c",
+    "LeanProofs/FinchCapture.lean": "2fb287b68422fb9ea0ff378c0a7f80e6db6d64669c9624cd698211bbda004f7a",
+    "LeanProofs.lean": "f1d90452c3e01206db2727597e577d86d052bc6eef6a0d57b1c301abf44d94e8",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutants.toml": "d5a977653f79cde34b07c3029772d78d1ff7e4c45ae3a7ed489fb8af3e64c444",
+    "scripts/mutate.py": "346952dccfd38521fb745632fc5ba56cb9175f5929caa131a50ae01ac0b3bc13"
+  }
+}

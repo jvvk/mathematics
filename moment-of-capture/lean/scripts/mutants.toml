@@ -1,0 +1,45 @@
+# Finch Conjecture 23 (arXiv 2610.34300), LeanProofs/FinchCapture/.
+#   cd lean && python3 -I scripts/mutate.py scripts/mutants.toml
+# Inplace: afterwards `lake build LeanProofs.FinchCapture` restores the .olean files.
+[check]
+cmd = ["lake", "build", "LeanProofs.FinchCapture"]
+cwd = ".."
+timeout = 1500
+mode = "inplace"
+fail_markers = ["error"]
+
+[[mutant]]
+name = "M1 pre-period z - 5"
+file = "../LeanProofs/FinchCapture/Main.lean"
+old = "    IsPreperiod k (z - 6) := by"
+new = "    IsPreperiod k (z - 5) := by"
+
+[[mutant]]
+name = "M2 allow k = 2 (the counterexample)"
+file = "../LeanProofs/FinchCapture/Main.lean"
+old = "theorem capture {k z : ℕ} (hk6 : 6 ≤ k)"
+new = "theorem capture {k z : ℕ} (hk6 : 2 ≤ k)"
+
+[[mutant]]
+name = "M3 G = floor((k-1)/4)"
+file = "../LeanProofs/FinchCapture/Main.lean"
+old = "def G (k : ℕ) : ℕ := (k + 2) / 4"
+new = "def G (k : ℕ) : ℕ := (k - 1) / 4"
+
+[[mutant]]
+name = "M4 k = 2 has pre-period 3"
+file = "../LeanProofs/FinchCapture/Main.lean"
+old = "theorem two_exception : IsCapture 2 9 ∧ IsPreperiod 2 0 := by"
+new = "theorem two_exception : IsCapture 2 9 ∧ IsPreperiod 2 3 := by"
+
+[[mutant]]
+name = "M5 k = 6 captured at 28 (not the least end)"
+file = "../LeanProofs/FinchCapture/Main.lean"
+old = "example : IsCapture 6 24 := by"
+new = "example : IsCapture 6 28 := by"
+
+[[mutant]]
+name = "M6 rule without the square"
+file = "../LeanProofs/FinchCapture/Main.lean"
+old = "xs k n n + xs k n (n + 1 - k) ^ 2)"
+new = "xs k n n + xs k n (n + 1 - k))"

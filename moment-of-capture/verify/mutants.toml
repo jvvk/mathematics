@@ -1,0 +1,57 @@
+# Planted errors for check_proof.py (Finch Conjecture 23).
+# python3 -I harness/mutate.py mutants.toml   (copy of the house mutation harness)
+[check]
+cmd = ["python3", "-I", "{file}"]
+cwd = "."
+timeout = 900
+
+[[mutant]]
+name = "Theorem: z - mu = 5"
+file = "check_proof.py"
+old = "    assert z - mu == 6, (\"Theorem\", k, z, mu)"
+new = "    assert z - mu == 5, (\"Theorem\", k, z, mu)"
+
+# Step 2 (s >= k + 5) is not tight: the smallest s - k observed is 10 (k = 6), so a stronger
+# bound survives; no mutant for it.
+
+[[mutant]]
+name = "Step 4 (k=2 mod 4): b_{s-4} = 0"
+file = "check_proof.py"
+old = "        assert b[s - 4] == 1 and x[z - 6] == 2, \"Step 4 (k=2 mod 4)\""
+new = "        assert b[s - 4] == 0 and x[z - 6] == 2, \"Step 4 (k=2 mod 4)\""
+
+[[mutant]]
+name = "Step 4 (k=3 mod 4): b_{s-5} = 1"
+file = "check_proof.py"
+old = "        assert b[s - 4] == 1 and b[s - 5] == 0 and x[z - 6] == 1, \"Step 4 (k=3 mod 4)\""
+new = "        assert b[s - 4] == 1 and b[s - 5] == 1 and x[z - 6] == 1, \"Step 4 (k=3 mod 4)\""
+
+[[mutant]]
+name = "Step 3: last block's middle entry swapped"
+file = "check_proof.py"
+old = "    assert x[z - 2] == (1 if k % 4 == 2 else 2), \"Step 3\""
+new = "    assert x[z - 2] == (2 if k % 4 == 2 else 1), \"Step 3\""
+
+[[mutant]]
+name = "Step 1 (k=2 mod 4): forced residue shifted"
+file = "check_proof.py"
+old = "        assert all(b[p] == 1 for p in range(s - k + 1, s, 4)), \"k=2 mod 4, d_{m+1}\""
+new = "        assert all(b[p] == 1 for p in range(s - k + 2, s, 4)), \"k=2 mod 4, d_{m+1}\""
+
+[[mutant]]
+name = "Step 1 (k=3 mod 4): pairs at the wrong residue"
+file = "check_proof.py"
+old = "        assert all(b[p] + b[p + 1] == 1 for p in range(s - k + 2, s, 4)), \"k=3 mod 4, pairs\""
+new = "        assert all(b[p] + b[p + 1] == 1 for p in range(s - k + 3, s, 4)), \"k=3 mod 4, pairs\""
+
+[[mutant]]
+name = "k = 2 is not an exception"
+file = "check_proof.py"
+old = "        assert (z, mu) == (9, 0), (\"k=2 exception\", z, mu)"
+new = "        assert z - mu == 6, (\"k=2 exception\", z, mu)"
+
+[[mutant]]
+name = "G = floor((k-1)/4)"
+file = "check_proof.py"
+old = "    G = -(-(k - 1) // 4)"
+new = "    G = (k - 1) // 4"

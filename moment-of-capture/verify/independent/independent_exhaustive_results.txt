@@ -1,0 +1,13 @@
+k=2: x[1:17] =[0, 1, 1, 2, 0, 1, 1, 2, 0, 1, 1, 2, 0, 1, 1, 2]; mu=0; s=5; z=9
+k=2 with r>=1 instead of r>=k+1: z=5
+k=3: x[1:16] =[0, 0, 1, 1, 1, 2, 0, 1, 2, 2, 0, 1, 2, 2, 0]; mu=5; s=7; z=11
+k=6: first two qualifying endpoints = [24, 28] ; z-mu = [6, 10]
+Literal full-state orbit check: PASS for every k=2..60
+Capturing k: [2, 3, 6, 7, 10, 11, 14, 15, 19, 22, 26, 27, 30, 31, 34, 38, 39, 43, 46, 47, 54, 58, 59]
+k=6: offsets for (m+4-k,m+1-k,m+2-k) = [[-2, 2], [-5, -1], [-4, 0]]
+k=7: offsets for (m+4-k,m+1-k,m+2-k) = [[-3, 1], [-6, -2], [-5, -1]]
+Step 1 list endpoints/membership: PASS for all eligible k=6..60
+Step 2 parenthetical k=4t+3: (s+1-k)-s mod 4 = 2 ; claimed 1
+Lemma 17 exhaustive nonzero-interior blocks: [(0, 1, 1, 2, 0), (0, 1, 2, 2, 0)]
+Prop. 12 exhaustive: PASS, 81 words for each k=2..60
+All ternary seeds k=2..9: PASS; seeds=29520, lemma blocks=89700, capture runs=12560

@@ -1,0 +1,22 @@
+Isolated build 2026-11-18: fresh copy of lean/, lake exe cache get, lake build LeanProofs
+⚠ [8924/8927] Built LeanProofs.FinchCapture.Main (177s)
+warning: LeanProofs/FinchCapture/Main.lean:6:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/FinchCapture/Main.lean:7:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/FinchCapture/Main.lean:8:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/FinchCapture/Main.lean:11:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/FinchCapture/Main.lean:12:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/FinchCapture/Main.lean:13:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/FinchCapture/Main.lean:14:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/FinchCapture/Main.lean:34:21: `if_neg` has been deprecated: Use `ite_eq_right` instead
+warning: LeanProofs/FinchCapture/Main.lean:45:20: `if_true` has been deprecated: Use `ite_true` instead
+warning: LeanProofs/FinchCapture/Main.lean:45:29: `if_neg` has been deprecated: Use `ite_eq_right` instead
+warning: LeanProofs/FinchCapture/Main.lean:45:65: `if_neg` has been deprecated: Use `ite_eq_right` instead
+warning: LeanProofs/FinchCapture/Main.lean:149:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/FinchCapture/Main.lean:161:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/FinchCapture/Main.lean:183:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/FinchCapture/Main.lean:185:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/FinchCapture/Main.lean:253:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/FinchCapture/Main.lean:288:100: This line exceeds the 100 character limit, please shorten it!
+✔ [8925/8927] Built LeanProofs.FinchCapture (191s)
+✔ [8926/8927] Built LeanProofs (210s)
+Build completed successfully (8927 jobs).

@@ -1,0 +1,13 @@
+@FinchCapture.capture_run : ∀ {k s t : ℕ},
+  1 ≤ t →
+    k = 4 * t + 2 ∨ k = 4 * t + 3 →
+      FinchCapture.Run k s (t + 1) →
+        ¬FinchCapture.Run k (s - 4) (t + 1) →
+          FinchCapture.x k (s + 4 * t + 2) ≠ FinchCapture.x k (s + 4 * t - 2) ∧
+            ∀ (n : ℕ), s + 4 * t - 2 < n → FinchCapture.x k (n + 4) = FinchCapture.x k n
+'FinchCapture.capture_run' depends on axioms: [propext, Classical.choice, Quot.sound]
+@FinchCapture.capture : ∀ {k z : ℕ},
+  6 ≤ k → k % 4 = 2 ∨ k % 4 = 3 → FinchCapture.IsCapture k z → FinchCapture.IsPreperiod k (z - 6)
+'FinchCapture.capture' depends on axioms: [propext, Classical.choice, Quot.sound]
+FinchCapture.two_exception : FinchCapture.IsCapture 2 9 ∧ FinchCapture.IsPreperiod 2 0
+'FinchCapture.two_exception' depends on axioms: [propext, Classical.choice, Quot.sound]
