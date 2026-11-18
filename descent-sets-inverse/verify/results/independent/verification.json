@@ -102,13 +102,6 @@
       "weak_majorization_failures": 0
     }
   ],
-  "matrix_witnesses": {
-    "verified_permutation_witnesses": 50,
-    "minimum_n": 22,
-    "maximum_n": 52,
-    "initial_timeouts": 1,
-    "timeouts_resolved_on_retry": 1
-  },
   "singleton_construction": {
     "constructed_permutations_checked": 31953,
     "maximum_n": 16

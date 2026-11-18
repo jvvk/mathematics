@@ -6,7 +6,7 @@ cmd = ["lake", "build", "LeanProofs"]
 cwd = ".."
 timeout = 1800
 mode = "inplace"
-fail_markers = ["error"]
+fail_pattern = 'error: (?:\./)*LeanProofs/\S+\.lean:\d+:\d+: '   # rejection = nonzero exit AND a Lean source error (file:line:col)
 
 [[mutant]]
 name = '''growth rule: asymmetric doubled-row case'''

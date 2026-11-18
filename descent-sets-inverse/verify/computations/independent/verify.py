@@ -129,11 +129,17 @@ def verify_saved_maxima():
     return out
 
 
+MAJORIZATION_NS = (20, 21, 22)  # the paper's majorization range
+
+
 def verify_majorization_records():
     out = []
-    for path in sorted(RESULTS.glob('majorization*.json')):
+    for n in MAJORIZATION_NS:
+        path = RESULTS / f'majorization{n}.json'
+        if not path.exists():
+            raise SystemExit(f'missing saved result {path}')
         record = json.loads(path.read_text())
-        n = record['n']
+        assert record['n'] == n
         g = alternating_count(n)
         assert record['maximum'] == record['alternating_value'] == g
         assert record['weak_majorization_failure'] == -1

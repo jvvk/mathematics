@@ -91,7 +91,7 @@ computations/block_obstruction.py counts obstructed pairs exactly for small n.
 Independent checks: computations/independent/ holds programs that share no code with the ones above.
 search.cpp computes Schur coefficients c_lambda(S) by a dynamic programme on Young's lattice
 (`clang++ -O3 -std=c++17 search.cpp -o search; ./search N`, or `./search N majorization`), and
-verify.py checks its n = 8 output (`counts8.txt`, shipped; `./search 8 pairs counts8.txt` regenerates it) against direct enumeration, and the saved records `results/independent/n*.json` and `majorization*.json` against the alternating-count identity, failing if any record is missing; outputs for n <= 22 are in
+verify.py checks its n = 8 output (`counts8.txt`, shipped; `./search 8 pairs counts8.txt` regenerates it) against direct enumeration, and the saved records `results/independent/n1.json` to `n20.json` and `majorization20.json` to `majorization22.json` against the alternating-count identity, exiting nonzero if any of these records is missing, records a weak-majorization failure, or disagrees with the identity; outputs for n <= 22 are in
 results/independent/. recheck.py (`python3 recheck.py path/to/figs/rowwords.tex`) recomputes every
 other number stated in the paper from first principles; gr_check.c (`cc -O3 gr_check.c -o gr_check -lm;
 ./gr_check N`) rechecks the Remark 3.4 rate numbers using the conjugate form of the dominance test.
