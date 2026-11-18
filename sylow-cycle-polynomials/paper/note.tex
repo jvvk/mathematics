@@ -24,7 +24,7 @@
 
 \title{Counting cycles in a Sylow 2-subgroup}
 \author{Vamshi Jandhyala}
-\date{}
+\date{Preprint, version 2, 18 November 2026 (corrections after an independent review; results unchanged from version 1 of 9 October 2026). Not peer reviewed.}
 
 \begin{document}
 \maketitle
@@ -87,7 +87,7 @@ This is the classical cycle index of a wreath product~\cite{Polya}, specialized 
 
 Stanley's question~\cite{MO} defines instead $f_1=q^2+q$ and $f_{n+1}=f_n\bigl(f_n+2^{2^{n-1}-1}\bigr)$, and observes that $f_n+2^{2^{n-1}-1}$ factors for $n\ge3$. The constant $2^{2^{n-1}-1}$ is $c_{n-1}$, one index behind the order of the group being added in~\eqref{eq:rec}. The two families agree at $n=1$ and part ways at once: $f_2=q^4+2q^3+2q^2+q$ has $f_2(1)=6$, while $G_4$ has $8$ elements. Stanley's addendum, for odd primes, has the index right. Both families factor, for the same reason, and we treat both.
 
-\section{Triangular numbers in disguise}
+\section{Triangular numbers in disguise}\label{sec:tri}
 
 The recurrence~\eqref{eq:rec} has a cleaner form after scaling. Let
 \[
@@ -197,13 +197,14 @@ Is $H_p\circ\Phi_p^{\,n}$ irreducible over $\mathbb Q$ for every odd prime $p\ne
 
 \section*{Verification}
 
-Every algebraic statement above is formally verified in Lean~4 with Mathlib~\cite{mathlib}: Lemma~\ref{lem:comp} with the norm computation, the recurrence and its factorization for both families, the agreement of top coefficients, and irreducibility over $\F_5$, $\mathbb Z$ and $\mathbb Q$ for every $n$. The proofs use only the standard axioms. Two things are not formalized: the identification of $P_n$ with the cycle count of $G_{2^n}$, which is the classical recurrence~\eqref{eq:rec}, and the computer data for odd primes. A separate program, sharing no code with the formal proofs, checks the cycle counts of $G_{2^n}$ by listing the group for $n\le4$, the factorizations for $n\le8$, irreducibility modulo~$5$ up to degree~$128$, Lemma~\ref{lem:comp} on random examples, and the data for odd primes. The code is at \url{https://github.com/jvvk/mathematics}.
+The main results are formally verified in Lean~4 with Mathlib~\cite{mathlib}: the factorization of both families, the agreement of top coefficients, and irreducibility over $\F_5$, $\mathbb Z$ and $\mathbb Q$ for every $n$, using only the standard axioms. The formal proof takes a slightly different route from the text. It proves Lemma~\ref{lem:comp} only when both polynomials are monic, and it never passes to the triangular-number map: it works with the unscaled recurrence, which modulo~$5$ is composition with the monic quadratic $x^2+3x$, conjugate to $T$ by the scaling of Section~\ref{sec:tri}. The general form of Lemma~\ref{lem:comp}, the normalization to $T$, the identification of $P_n$ with the cycle count of $G_{2^n}$ (the classical recurrence~\eqref{eq:rec}) and the computer data for odd primes are not formalized. A separate program, sharing no code with the formal proofs, checks the cycle counts of $G_{2^n}$ by listing the group for $n\le4$; for the printed family, the factorization, the normalization and the coefficient agreement for $n\le8$ and irreducibility modulo~$5$ up to degree~$128$; for the Sylow polynomials, the factorization for $n\le8$ and irreducibility modulo~$5$ of the scaled factors for $n\le7$; Lemma~\ref{lem:comp} on random examples, and the data for odd primes. The code is at \url{https://github.com/jvvk/mathematics}, and, identical to the folder \texttt{sylow-cycle-polynomials} at tag \texttt{sylow-cycle-polynomials-v2}, in the Zenodo record \href{https://doi.org/10.5281/zenodo.24353376}{doi:10.5281/zenodo.24353376}. The same argument was later posted by the author as a MathOverflow answer~\cite{Answer} (17 October 2026), after version~1 of this note.
 
 \section*{Acknowledgment}
 
 The author used two AI assistants, Codex (OpenAI) and Claude Opus~5.5 (Anthropic). Codex found the reduction to the triangular-number map and the modulo-$5$ argument, and wrote the first formal proof. Claude noticed the index slip, extended the argument and the formal proof to the Sylow polynomials, wrote the independent checking program and drafted the text. The author directed the work, checked the results and is responsible for the contents.
 
 \begin{thebibliography}{9}
+\bibitem{Answer} V. Jandhyala, answer to~\cite{MO}, \url{https://mathoverflow.net/a/516138}, 17 October 2026.
 \bibitem{Alekseyev} M. Alekseyev, answer to~\cite{MO}, \url{https://mathoverflow.net/a/489364}.
 \bibitem{GNOS} D. G\'omez-P\'erez, A. P. Nicol\'as, A. Ostafe and D. Sadornil, Stable polynomials over finite fields, \emph{Rev. Mat. Iberoam.} \textbf{30} (2014), 523--535.
 \bibitem{Grinberg} D. Grinberg, answer to~\cite{MO}, \url{https://mathoverflow.net/a/489336}.

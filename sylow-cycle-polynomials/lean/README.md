@@ -7,16 +7,18 @@ SOURCE-SNAPSHOT.json records the development commit and the hash of every file. 
     lake exe cache get
     lake build LeanProofs
     lake env lean CheckClaims.lean
-    python3 scripts/mutants.py
+    python3 -I scripts/mutate.py scripts/mutants.toml
 
 The first command fetches the pinned Mathlib cache, the second compiles the proofs, the third prints the
-statements and axioms of the headline results, and the last runs the mutation tests: each plants one wrong
-constant, hypothesis or definition and checks that the file no longer compiles.
+statements and axioms of the headline results, and the last runs the mutation tests: after a passing control build,
+each of nine mutants plants one wrong constant, hypothesis or definition in place and must stop
+`lake build LeanProofs.StanleySylow` with a Lean error; timeouts, crashes and missing tools count as
+inconclusive and fail the run. Run `lake build LeanProofs` afterwards. `mutation-validation.log` records the run.
 
 | Paper | Lean (namespace `StanleySylow`) |
 |---|---|
-| Lemma 1 (quadratic composition over a finite field, with the norm computation) | `Question.lean`: `norm_sub_eval`, `monic_comp_quad` |
-| Section 3, the scaled recurrence as composition with a quadratic | `Sylow.lean`: `Ps_succ_comp`; `Question.lean`: `f_succ_comp` |
+| Lemma 1, in the case where both polynomials are monic (the case the formal route uses), with the norm computation | `Question.lean`: `norm_sub_eval`, `monic_comp_quad` |
+| Section 3, the recurrence as composition with a quadratic (unscaled; the normalization to `T` is not formalized) | `Sylow.lean`: `Ps_succ_comp`; `Question.lean`: `f_succ_comp` |
 | Section 4, the factorization of the Sylow polynomials | `Sylow.lean`: `AS_comp`, `BS_comp`, `sylow_factorization`, `sylow_factors_monic`, `sylow_factors_degree` |
 | Section 4, agreement of the top coefficients | `Sylow.lean`: `sylow_top_coeffs_agree`, `top_coeffs_agree` |
 | Section 5, the critical orbit modulo 5 and the induction | `Question.lean`: `tower`, `tower_properties`; `Sylow.lean`: `tail1_irred` |

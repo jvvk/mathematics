@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Independent finite checks; the all-n proof is in ANSWER.md.
+"""Independent finite checks; the all-n proof is in ../paper/note.tex.
 
 Build the factors from the original integer recurrence, not the normalized
 composition. Test their reductions with the Frobenius/gcd irreducibility
@@ -9,6 +9,12 @@ to check the exact normalization identities.
 import json
 from pathlib import Path
 import sympy as s
+
+
+def require(ok: bool, what: str) -> None:
+    """Explicit check that survives python -O (an assert would be removed)."""
+    if not ok:
+        raise SystemExit(f"CHECK FAILED: {what}")
 
 P = 5
 
@@ -36,7 +42,7 @@ def mul(a, b):
 
 def rem(a, b):
     a, b = trim(a), trim(b)
-    assert b != [0]
+    require(b != [0], "line 39: b != [0]")
     inv = pow(b[-1], -1, P)
     while a != [0] and len(a) >= len(b):
         d = len(a) - len(b)
@@ -68,7 +74,7 @@ def powmod(a, n, modulus):
 def irreducible_power_two_degree(f):
     f = trim(f)
     degree = len(f) - 1
-    assert degree >= 2 and degree & (degree - 1) == 0
+    require(degree >= 2 and degree & (degree - 1) == 0, "line 71: degree >= 2 and degree & (degree - 1) == 0")
     x = [0, 1]
     z = x
     middle_gcd = None
@@ -93,7 +99,7 @@ def main():
         (mul([2, 4, 1], [4, 3, 1]), False),
     ]
     for f, expected in controls:
-        assert irreducible_power_two_degree(f) == expected
+        require(irreducible_power_two_degree(f) == expected, "line 96: irreducible_power_two_degree(f) == expected")
 
     q = s.Symbol('q')
     f = {1: s.Poly(q*q + q, q, domain=s.ZZ)}
@@ -106,19 +112,19 @@ def main():
     for n in range(3, 9):
         A = f[n-1] - 2*a[n-2]*f[n-2] + s.Poly(a[n-1], q)
         B = f[n-1] + 2*a[n-2]*f[n-2] + s.Poly(2*a[n-1], q)
-        assert A * B == f[n] + s.Poly(a[n], q)
-        assert A.LC() == B.LC() == 1
-        assert A.degree() == B.degree() == 2**(n-1)
-        assert s.Poly(a[n-2]**2*(u*u - u + s.Poly(2, q)), q, domain=s.ZZ) == A
-        assert s.Poly(a[n-2]**2*(u*u + 3*u + s.Poly(4, q)), q, domain=s.ZZ) == B
+        require(A * B == f[n] + s.Poly(a[n], q), "line 109: A * B == f[n] + s.Poly(a[n], q)")
+        require(A.LC() == B.LC() == 1, "line 110: A.LC() == B.LC() == 1")
+        require(A.degree() == B.degree() == 2**(n-1), "line 111: A.degree() == B.degree() == 2**(n-1)")
+        require(s.Poly(a[n-2]**2*(u*u - u + s.Poly(2, q)), q, domain=s.ZZ) == A, "line 112: s.Poly(a[n-2]**2*(u*u - u + s.Poly(2, q)), q, domain=s.ZZ) =")
+        require(s.Poly(a[n-2]**2*(u*u + 3*u + s.Poly(4, q)), q, domain=s.ZZ) == B, "line 113: s.Poly(a[n-2]**2*(u*u + 3*u + s.Poly(4, q)), q, domain=s.ZZ)")
         # The first degree/2 leading coefficients agree; the next does not.
         half = A.degree() // 2
-        assert A.all_coeffs()[:half] == B.all_coeffs()[:half]
-        assert A.all_coeffs()[half] != B.all_coeffs()[half]
+        require(A.all_coeffs()[:half] == B.all_coeffs()[:half], "line 116: A.all_coeffs()[:half] == B.all_coeffs()[:half]")
+        require(A.all_coeffs()[half] != B.all_coeffs()[half], "line 117: A.all_coeffs()[half] != B.all_coeffs()[half]")
         results = [irreducible_power_two_degree(coefficients(t)) for t in (A, B)]
-        assert all(results)
+        require(all(results), "line 119: all(results)")
         # Cross-check with a separate library implementation.
-        assert all(s.Poly(t.as_expr(), q, modulus=P).is_irreducible for t in (A, B))
+        require(all(s.Poly(t.as_expr(), q, modulus=P).is_irreducible for t in (A, B)), "line 121: all(s.Poly(t.as_expr(), q, modulus=P).is_irreducible for t i")
         rows.append({'n': n, 'degree_each': A.degree(),
                      'factorization_identity': True,
                      'normalization_identity': True,
@@ -129,17 +135,17 @@ def main():
     T = lambda x: 3*x*(x+1) % P
     minus = lambda x: (x*x-x+2) % P
     plus = lambda x: (x*x+3*x+4) % P
-    assert T(3) == T(1) == 1
-    assert (minus(3), plus(3), minus(1), plus(1)) == (3, 2, 2, 3)
-    assert (-pow(8, -1, P)) % P == 3
-    assert (-pow(4, -1, P)) % P == 1
-    assert {x*x % P for x in range(1, P)} == {1, 4}
+    require(T(3) == T(1) == 1, "line 132: T(3) == T(1) == 1")
+    require((minus(3), plus(3), minus(1), plus(1)) == (3, 2, 2, 3), "line 133: (minus(3), plus(3), minus(1), plus(1)) == (3, 2, 2, 3)")
+    require((-pow(8, -1, P)) % P == 3, "line 134: (-pow(8, -1, P)) % P == 3")
+    require((-pow(4, -1, P)) % P == 1, "line 135: (-pow(4, -1, P)) % P == 1")
+    require({x*x % P for x in range(1, P)} == {1, 4}, "line 136: {x*x % P for x in range(1, P)} == {1, 4}")
 
-    report = {'all_n_proof': 'ANSWER.md', 'finite_checks_are_not_the_proof': True,
+    report = {'all_n_proof': 'paper/note.tex', 'finite_checks_are_not_the_proof': True,
               'method': 'original integer recurrence; independent Frobenius/gcd test; SymPy cross-check',
               'controls_passed': len(controls), 'checks': rows,
               'critical_orbit_and_nonsquare_table': 'passed'}
-    (Path(__file__).parent / 'verification.json').write_text(json.dumps(report, indent=2)+'\n')
+    (Path(__file__).parent / 'codex_verification.json').write_text(json.dumps(report, indent=2)+'\n')
     print(json.dumps(report, indent=2))
 
 

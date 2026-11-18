@@ -1,0 +1,13 @@
+control passes: Sylow.lean
+control passes: Question.lean
+rejected: Sylow recurrence adds |G| one index late (the printed slip) (exit 1, marker 'error': error: LeanProofs/StanleySylow/Sylow.lean:28:72: unsolved goals)
+rejected: factor A: constant c_(n+1) -> 2 c_(n+1) (exit 1, marker 'error': error: LeanProofs/StanleySylow/Sylow.lean:42:72: unsolved goals)
+rejected: top coefficients: 2^n < i -> 2^n <= i (exit 1, marker 'error': error: LeanProofs/StanleySylow/Sylow.lean:80:53: omega could not prove the goal:)
+rejected: critical value of the tower: 3 -> 2 (exit 1, marker 'error': error: LeanProofs/StanleySylow/Sylow.lean:132:35: Application type mismatch: The argument)
+rejected: non-square: 2 -> 4 (exit 1, marker 'error': error: LeanProofs/StanleySylow/Question.lean:129:43: Tactic `decide` proved that the proposition)
+rejected: 1/4 in F_5: 4 -> 2 (exit 1, marker 'error': error: LeanProofs/StanleySylow/Question.lean:127:2: Tactic `decide` proved that the proposition)
+rejected: c_(n+1) = 2 c_n^2 -> 2 c_n (exit 1, marker 'error': error: LeanProofs/StanleySylow/Question.lean:226:14: unsolved goals)
+rejected: mod 5: claim c_0 = 2 (false: c_0 = 1) (exit 1, marker 'error': error: LeanProofs/StanleySylow/Sylow.lean:110:33: unsolved goals)
+rejected: c_k mod 5 = 3 from k = 1 (false: c_1 = 2) (exit 1, marker 'error': error: LeanProofs/StanleySylow/Question.lean:280:35: Tactic `decide` proved that the proposition)
+9/9 mutants rejected, all controls pass
+# 2026-11-18: two residue mutants that timed out (inconclusive) were replaced by false claims and rerun alone; their lines above are that rerun.

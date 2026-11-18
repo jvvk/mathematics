@@ -1,0 +1,64 @@
+# Lean mutants for LeanProofs/StanleySylow (MO 489315): each plants one wrong definition or claim and must
+# stop the build with a Lean error, after a passing control build. (2026-11-18: two v1 mutants that changed a
+# residue made norm_num time out, which says nothing about the claim; they were replaced by false claims Lean refutes.)
+#   cd lean && python3 -I scripts/mutate.py scripts/mutants.toml   (then `lake build LeanProofs` again)
+[check]
+cmd = ["lake", "build", "LeanProofs.StanleySylow"]
+cwd = ".."
+timeout = 1800
+mode = "inplace"
+fail_markers = ["error"]
+
+[[mutant]]
+name = '''Sylow recurrence adds |G| one index late (the printed slip)'''
+file = "../LeanProofs/StanleySylow/Sylow.lean"
+old = '''Ps n * (Ps n + C (a n))'''
+new = '''Ps n * (Ps n + C (a (n+1)))'''
+
+[[mutant]]
+name = '''factor A: constant c_(n+1) -> 2 c_(n+1)'''
+file = "../LeanProofs/StanleySylow/Sylow.lean"
+old = '''def AS (n : ℕ) : ℤ[X] := Ps (n+1) - C (2*a n) * Ps n + C (a (n+1))'''
+new = '''def AS (n : ℕ) : ℤ[X] := Ps (n+1) - C (2*a n) * Ps n + C (2*a (n+1))'''
+
+[[mutant]]
+name = '''mod 5: claim c_0 = 2 (false: c_0 = 1)'''
+file = "../LeanProofs/StanleySylow/Sylow.lean"
+old = '''have ha : reduce5 (a 1) = 2 := by norm_num [a, reduce5]'''
+new = '''have ha : reduce5 (a 0) = 2 := by norm_num [a, reduce5]'''
+
+[[mutant]]
+name = '''top coefficients: 2^n < i -> 2^n <= i'''
+file = "../LeanProofs/StanleySylow/Sylow.lean"
+old = '''(hi : 2 ^ n < i) : (AS n).coeff i'''
+new = '''(hi : 2 ^ n ≤ i) : (AS n).coeff i'''
+
+[[mutant]]
+name = '''critical value of the tower: 3 -> 2'''
+file = "../LeanProofs/StanleySylow/Sylow.lean"
+old = '''(h3 : ¬ IsSquare (H.eval 3))'''
+new = '''(h3 : ¬ IsSquare (H.eval 2))'''
+
+[[mutant]]
+name = '''non-square: 2 -> 4'''
+file = "../LeanProofs/StanleySylow/Question.lean"
+old = '''theorem ns_two : ¬ IsSquare (2 : F5) := by decide'''
+new = '''theorem ns_two : ¬ IsSquare (4 : F5) := by decide'''
+
+[[mutant]]
+name = '''c_k mod 5 = 3 from k = 1 (false: c_1 = 2)'''
+file = "../LeanProofs/StanleySylow/Question.lean"
+old = '''theorem a_mod5 (k : ℕ) : reduce5 (a (k+2)) = 3 := by'''
+new = '''theorem a_mod5 (k : ℕ) : reduce5 (a (k+1)) = 3 := by'''
+
+[[mutant]]
+name = '''1/4 in F_5: 4 -> 2'''
+file = "../LeanProofs/StanleySylow/Question.lean"
+old = '''theorem inv_four : (4 : F5)⁻¹ = 4 := by'''
+new = '''theorem inv_four : (4 : F5)⁻¹ = 2 := by'''
+
+[[mutant]]
+name = '''c_(n+1) = 2 c_n^2 -> 2 c_n'''
+file = "../LeanProofs/StanleySylow/Question.lean"
+old = '''| n+1 => 2 * a n ^ 2'''
+new = '''| n+1 => 2 * a n'''

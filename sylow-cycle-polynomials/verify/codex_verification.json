@@ -1,5 +1,5 @@
 {
-  "all_n_proof": "ANSWER.md",
+  "all_n_proof": "paper/note.tex",
   "finite_checks_are_not_the_proof": true,
   "method": "original integer recurrence; independent Frobenius/gcd test; SymPy cross-check",
   "controls_passed": 5,
