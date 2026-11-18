@@ -4,7 +4,8 @@
 #   cd lean && python3 -I scripts/mutate.py scripts/mutants.toml [--only "[Defs]" | "[Walks]" | "[Step1]" | ...]
 # Inplace mode: a mutated definition must reach every downstream module, so each check rebuilds the
 # LeanProofs.Hankel456683 tree. After the run, `lake build LeanProofs.Hankel456683` restores the
-# .olean files. At least one mutant per named theorem and definition; each one is a wrong claim.
+# .olean files. At least one mutant per named theorem and definition; each one is a false claim or a wrong definition
+# (2026-11-18: the former c = 0 -> c = 1 mutant stated a true identity and was replaced by det W = det H + 1).
 # Parts (one per file, each under 10 minutes): [Defs] [Walks] [Step1] [Step2] [Step3] [Headline].
 [check]
 cmd = ["lake", "build", "LeanProofs.Hankel456683"]
@@ -368,10 +369,10 @@ old = '''W (ciglerS x 0) k n = Hmat k x n * U R n := by'''
 new = '''W (ciglerS x 0) k n = U R n * Hmat k x n := by'''
 
 [[mutant]]
-name = '''[Step3] det_W_eq_det_ciglerH: c = 0 -> c = 1 inside W'''
+name = '''[Step3] det_W_eq_det_ciglerH: claim det W = det H + 1 (false)'''
 file = "../LeanProofs/Hankel456683/Step3.lean"
 old = '''    (W (ciglerS x 0) k n).det = (ciglerH k n x).det := by'''
-new = '''    (W (ciglerS x 1) k n).det = (ciglerH k n x).det := by'''
+new = '''    (W (ciglerS x 0) k n).det = (ciglerH k n x).det + 1 := by'''
 
 [[mutant]]
 name = '''[Headline] D_eq_det_ciglerH: H_{k,n} -> H_{k,n+1}'''

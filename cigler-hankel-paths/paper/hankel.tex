@@ -5,9 +5,9 @@
 \usepackage[hidelinks]{hyperref}
 
 \newtheorem{thm}{Theorem}
-\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{lemma}{Lemma}
 \theoremstyle{definition}
-\newtheorem{example}[thm]{Example}
+\newtheorem{example}{Example}
 \newtheorem{remark}[thm]{Remark}
 
 \title[Hankel determinants of path generating functions]{Cigler's Hankel determinants of path generating functions do not depend on the horizontal weight}
@@ -23,9 +23,10 @@
 Weight the horizontal steps of a Motzkin path by $c+x$ at height $0$ and by $c$ above it, and let $a_{n,k}$ count the
 paths of length $n$ from height $0$ to height $k$. Cigler observed that the Hankel determinants
 $\det(a_{i+j,k})_{0\le i,j<n}$ seem not to depend on $c$, and that they appear to equal the determinant of a
-band matrix $H_{k,n}(x)$ of ones and powers of $x$. We prove both statements for all $k$ and $n$. Three steps do it: a
-binomial transform removes $c$, cutting each path in two turns the Hankel determinant into a determinant of path counts
-between heights, and that path-count matrix factors as $H_{k,n}(x)$ times a unitriangular matrix of ballot numbers.
+band matrix $H_{k,n}(x)$ of ones and powers of $x$. The first statement follows from the classical invariance of Hankel
+determinants under binomial transforms. We prove the second for all $k$ and $n$: cutting each path in two turns the
+Hankel determinant into a determinant of path counts between heights, and that path-count matrix factors as $H_{k,n}(x)$
+times a unitriangular matrix of ballot numbers.
 The proof is formalised in Lean. Cigler's further quadratic recurrence for these determinants remains open.
 \end{abstract}
 
@@ -52,10 +53,10 @@ $a_{4,1}=4c^3+6c^2x+4cx^2+8c+x^3+3x$, so
 \[
 D_{1,3}=\det\begin{pmatrix}0&1&2c+x\\ 1&2c+x&3c^2+3cx+x^2+2\\ 2c+x&3c^2+3cx+x^2+2&a_{4,1}\end{pmatrix}=x.
 \]
-Every entry below the first row depends on $c$, and all of that dependence cancels.
+Several entries depend on $c$, and all of that dependence cancels.
 \end{example}
 
-Cigler computed many such values and conjectured that $c$ never matters~\cite[p.~5]{C23}. He also proposed an
+Cigler computed many such values and conjectured that $c$ never matters~\cite[p.~5]{C23}; he had asked the same question about shifting the horizontal weights in 2022~\cite{MSE}. He also proposed an
 explicit replacement. Let $H_{k,n}(x)=(h_{i,j})_{0\le i,j\le n-1}$ with $h_{k-m+l,\,m+l}=1$ for $0\le m\le k$ and
 $l\ge0$, with $h_{l,\,k+i+l}=x^i$ for $i\ge1$ and $l\ge0$, and with all other entries $0$. For example
 \[
@@ -73,13 +74,17 @@ D_{k,n}(x,c)=\det H_{k,n}(x).
 \]
 \end{thm}
 
-For $x=0$ the first statement is known: then $D_{k,n}$ takes only the values $0$ and $\pm1$~\cite[p.~5]{C23}. Chern and
-Shi~\cite{CS} evaluate the related determinants when the boundary weight is $b=0$ or $b=1$ in Cigler's notation, which
-is our $x$. The theorem covers every $x$.
+The first statement is not new. Adding $c$ to every horizontal weight replaces the sequence $m\mapsto a_{m,k}$ by its
+transform $\sum_j\binom mj c^{\,m-j}a_{j,k}$, and Hankel determinants are invariant under this transform: Layman proved
+it for $c=1$~\cite{L01}, and Spivey and Steil for every $c$ (their falling $c$-binomial transform)~\cite[Theorem~6.1]{SS06}.
+The short proof is in Section~\ref{sec:step1}. The content of
+Theorem~\ref{thm:main} is the second statement. For $x=0$ it was known that $D_{k,n}$ takes only the values $0$ and
+$\pm1$~\cite[p.~5]{C23}, and Chern and Shi~\cite{CS} evaluate the related determinants when the boundary weight is $b=0$
+or $b=1$ in Cigler's notation, which is our $x$. We found no earlier proof of the identity with $\det H_{k,n}(x)$ for
+general $x$.
 
-\emph{The route.} Adding the same constant $c$ to every horizontal weight is a binomial transform of the sequence
-$n\mapsto a_{n,k}$, and a binomial transform multiplies a Hankel matrix by a unitriangular matrix on each side, so $c$
-drops out (Section~\ref{sec:step1}). With $c=0$, cut each path of length $i+j$ after $i$ steps (Figure~\ref{fig:cut}).
+\emph{The route.} The classical step comes first: a binomial transform multiplies a Hankel matrix by a unitriangular
+matrix on each side, so $c$ drops out (Section~\ref{sec:step1}). With $c=0$, cut each path of length $i+j$ after $i$ steps (Figure~\ref{fig:cut}).
 The first piece runs from height $0$ to some height $l\le i$, and the matrix of those counts is again unitriangular, so
 the Hankel determinant equals a determinant of path counts from height $l$ to height $k$ in $j$ steps
 (Section~\ref{sec:step2}). Finally that matrix factors as $H_{k,n}(x)$ times a matrix of ballot numbers, which is
@@ -88,6 +93,7 @@ identity for the entries of $H$, equation~\eqref{eq:local}.
 
 \section{Removing \texorpdfstring{$c$}{c}}\label{sec:step1}
 
+This section is classical~\cite{L01,SS06}; we give the argument in the form used below.
 Each horizontal step carries weight $c$, plus an extra $x$ at height $0$. Expand the product of weights along a path
 of length $n$: choosing the summand $c$ at some set of horizontal steps and deleting those steps leaves a path of
 length $j$ with weights $(x,0,0,\dots)$, and the deleted steps can sit in any $n-j$ of the $n$ positions. Hence
@@ -210,8 +216,8 @@ $D_{k,n}(x,c)=D_{k,n}(x,0)=\det H_{k,n}(x)$.
 \section{Remarks}\label{sec:remarks}
 
 \emph{What the factorisation shows.} The ballot matrix $U$ is the same for every $k$ and every $x$. All the dependence
-on the target height and the boundary weight sits in $H$: its band of ones records walks that stay away from the floor,
-and its powers of $x$ record the horizontal steps taken on it.
+on the target height and the boundary weight sits in $H$: its band of ones carries the contributions with no
+horizontal step (such walks may still touch the floor), and its powers of $x$ count the horizontal steps taken on it.
 
 \emph{The open recurrence.} Cigler also observed that for $n\ge2k+2$,
 \[
@@ -227,9 +233,10 @@ Theorem~\ref{thm:main} is formalised in Lean~4 with Mathlib, over an arbitrary c
 be indeterminates. The matrix $H_{k,n}(x)$ is written exactly as in Cigler's definition, and the case $k=0$ is
 included. The formalisation also proves the general remark of Section~\ref{sec:step1} for every weight sequence, and
 checks the displayed $H_{2,6}(x)$ and the value $D_{1,3}=x$ of Example~\ref{ex:small}. It uses only Lean's standard
-axioms, and every planted wrong statement in a mutation suite is rejected. Separately, a program compares
-$D_{k,n}(x,c)$ with $\det H_{k,n}(x)$ symbolically for small cases and at random integer points for $1\le k\le5$ and
-$n<22$, checks each step of the proof on its own, and checks the open recurrence in the same range. The scripts and the
+axioms, and every planted wrong statement in a mutation suite is rejected. Separately, one program compares
+$D_{k,n}(x,c)$ at two values of $c$ with $\det H_{k,n}(x)$ at random integer points for $1\le k\le5$ and $n<22$, and
+checks the open recurrence in the same range; a second program, sharing no code with it, checks each step of the proof
+symbolically (the binomial transform, the cutting identity and the factorisation~\eqref{eq:factor}) for small $k$, $n$. The scripts and the
 Lean project are in the folder \texttt{cigler-hankel-paths} of \url{https://github.com/jvvk/mathematics} and, identical
 to that folder at tag \texttt{cigler-hankel-paths-v1}, in the Zenodo record \href{https://doi.org/10.5281/zenodo.24353081}{doi:10.5281/zenodo.24353081}.
 
@@ -247,8 +254,17 @@ described in Section~\ref{sec:verify}.
 \bibitem{C23} J.~Cigler, Some results and conjectures about Hankel determinants of sequences which are related to
 Catalan-like numbers, arXiv:2309.15557v1 (2023).
 
+\bibitem{L01} J.~W.~Layman, The Hankel transform and some of its properties, \emph{J.\ Integer Seq.} \textbf{4} (2001),
+Article 01.1.5.
+
+\bibitem{MSE} J.~Cigler, Hankel determinants related to Motzkin paths, Mathematics Stack Exchange question 4428971
+(16 April 2022), \url{https://math.stackexchange.com/q/4428971}, accessed 18 November 2026.
+
 \bibitem{MO} J.~Cigler, A conjecture about Hankel determinants of path generating functions, MathOverflow question
 456683 (2023), \url{https://mathoverflow.net/q/456683}, accessed 18 November 2026.
+
+\bibitem{SS06} M.~Z.~Spivey and L.~L.~Steil, The $k$-binomial transforms and the Hankel transform, \emph{J.\ Integer
+Seq.} \textbf{9} (2006), Article 06.1.1.
 
 \end{thebibliography}
 \end{document}

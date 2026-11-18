@@ -1,0 +1,5 @@
+'Hankel456683.headline' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hankel456683.D_eq_det_ciglerH' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hankel456683.headline_any_weights' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hankel456683.ciglerH_two_six' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Hankel456683.D_one_three' depends on axioms: [propext, Classical.choice, Quot.sound]
