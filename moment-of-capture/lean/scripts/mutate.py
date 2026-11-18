@@ -92,11 +92,27 @@ RESOURCE = re.compile(
 )
 
 
-PYEXC = re.compile(r"^([A-Za-z_][\w.]*(?:Error|Exception|Exit|Interrupt))(?::|$)")
+# Python checks run through this runner, which records the type of the exception actually raised: only a failed
+# assertion or a deliberate sys.exit counts as a rejection; any other exception (NameError, SyntaxError, a custom
+# class, a bare Exception) exits PYEXC_RC and is reported as inconclusive. Assertion messages are never parsed.
+PYEXC_RC = 98
+PY_RUNNER = (
+    "import runpy, sys, os\n"
+    "p = sys.argv[1]; sys.argv = sys.argv[1:]; sys.path.insert(0, os.path.dirname(os.path.abspath(p)))\n"
+    "try:\n    runpy.run_path(p, run_name='__main__')\n"
+    "except AssertionError:\n    raise\n"
+    "except SystemExit:\n    raise\n"
+    "except BaseException as e:\n"
+    "    sys.stderr.write('MUTATE-RUNNER exception type: ' + type(e).__name__ + '\\n'); sys.exit(%d)\n" % PYEXC_RC
+)
 
 
 def passes(check: Check, path: Path) -> tuple[bool, str]:
-    cmd = ["nice", "-n", "15", *[a.replace("{file}", str(path)) for a in check.cmd]]
+    args = list(check.cmd)
+    if Path(args[0]).name.startswith("python") and "{file}" in args:  # wrap Python checks in the runner
+        i = args.index("{file}")
+        args = args[:i] + ["-c", PY_RUNNER] + args[i:]
+    cmd = ["nice", "-n", "15", *[a.replace("{file}", str(path)) for a in args]]
     try:
         r = subprocess.run(
             cmd, cwd=check.cwd, capture_output=True, text=True, timeout=check.timeout
@@ -114,14 +130,9 @@ def passes(check: Check, path: Path) -> tuple[bool, str]:
     infra = INFRA.search(out)
     if infra and r.returncode != 0:
         return False, f"INCONCLUSIVE infrastructure ({infra.group(0)})"
-    # A Python mutant that dies of an unrelated exception (NameError, SyntaxError, ...) proves nothing either:
-    # only a failed assertion or a deliberate nonzero exit counts as a rejection.
-    # Judge by the type of the final exception Python reports on stderr (compile-time SyntaxErrors print no
-    # traceback header), never by substrings anywhere in the output.
-    if r.returncode != 0:
-        heads = [m.group(1) for m in map(PYEXC.match, r.stderr.splitlines()) if m]
-        if heads and heads[-1].rsplit(".", 1)[-1] != "AssertionError":
-            return False, f"INCONCLUSIVE python exception ({heads[-1]})"
+    if r.returncode == PYEXC_RC and "MUTATE-RUNNER exception type: " in r.stderr:
+        kind = r.stderr.rsplit("MUTATE-RUNNER exception type: ", 1)[1].split()[0]
+        return False, f"INCONCLUSIVE python exception ({kind})"
     marked = [m for m in check.fail_markers if m in out]
     return r.returncode == 0 and not marked, f"exit {r.returncode}" + (
         f", marker {marked[0]!r}" if marked else ""

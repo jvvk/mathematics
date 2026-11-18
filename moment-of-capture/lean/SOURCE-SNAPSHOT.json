@@ -16,6 +16,6 @@
     "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
     "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
     "scripts/mutants.toml": "a19760be135a3c3b8c6d6cb2706b5bbafd8ecab341e565ad468a701476975032",
-    "scripts/mutate.py": "e3457fbde06b2449efec8b600e50aa3247e588e87ccd98c036c154d2c3c21493"
+    "scripts/mutate.py": "ac12aeab7dfe79dc539e13248e29820fc259e8e41840a88cdce5cde83336083d"
   }
 }
