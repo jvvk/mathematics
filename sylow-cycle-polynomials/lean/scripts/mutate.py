@@ -26,6 +26,7 @@ Suite format (paths relative to the suite file's directory unless absolute):
 from __future__ import annotations
 
 import argparse
+import os
 import re
 import signal
 import subprocess
@@ -82,7 +83,9 @@ def target(check: Check, src: Path) -> Path:
 
 INFRA = re.compile(
     r"object file .* does not exist|unknown module prefix|unknown package|could not resolve import|"
-    r"failed to (?:download|load)|toolchain .* not (?:found|installed)|shared librar",
+    r"failed to (?:download|load)|toolchain .* not (?:found|installed)|shared librar|"
+    r"exited with code (?:1[3-9]\d|2\d\d)|segmentation fault|No space left|Read-only file system|"
+    r"Permission denied|Disk quota|I/O error|cannot write",
     re.IGNORECASE,
 )
 RESOURCE = re.compile(
@@ -113,12 +116,19 @@ def passes(check: Check, path: Path) -> tuple[bool, str]:
         i = args.index("{file}")
         args = args[:i] + ["-c", PY_RUNNER] + args[i:]
     cmd = ["nice", "-n", "15", *[a.replace("{file}", str(path)) for a in args]]
+    # Own process group, so a timeout can kill lake and every Lean child before the sources are restored.
+    p = subprocess.Popen(cmd, cwd=check.cwd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
+                         start_new_session=True)
     try:
-        r = subprocess.run(
-            cmd, cwd=check.cwd, capture_output=True, text=True, timeout=check.timeout
-        )
+        so, se = p.communicate(timeout=check.timeout)
     except subprocess.TimeoutExpired:
+        try:
+            os.killpg(p.pid, signal.SIGKILL)
+        except ProcessLookupError:
+            pass
+        p.communicate()
         return False, "INCONCLUSIVE timeout"
+    r = subprocess.CompletedProcess(cmd, p.returncode, so, se)
     out = r.stdout + r.stderr
     if r.returncode < 0:
         return False, f"INCONCLUSIVE crash (signal {-r.returncode})"

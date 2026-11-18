@@ -5,7 +5,8 @@
   "uncommitted_overrides": [
     "LeanProofs.lean (root imports StanleySylow only)",
     "CheckClaims.lean (new)",
-    "scripts/mutants.py (copy of lean-proofs scripts/stanleysylow_mutants.py)"
+    "scripts/mutants.toml (written for v2 from the v1 scripts/mutants.py list; two timeout-prone mutants replaced)",
+    "scripts/mutate.py (house mutation harness)"
   ],
   "files": {
     "CheckClaims.lean": "44ba270078b06cf68d24dc022bf5fda2e0a2dca31076f997e745a029f0a615c2",
@@ -18,6 +19,6 @@
     "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
     "lean-toolchain": "8733782dc070a99b312039cda424f601b80f3be6f6f512627da5ba25adc27632",
     "scripts/mutants.toml": "b5fc855352001f52df42950bae649224b49e5c1d3a3ad70d4b9c3f76f5bc78e3",
-    "scripts/mutate.py": "e950f064298508fdcf469a2cc3568b87cc9b927e6b19e85545f2285a8a1cee4d"
+    "scripts/mutate.py": "12bd4df578e7e2880e4b7c5554c140d87bd22055dd7ad9f6513fd0400bb0b6c9"
   }
 }

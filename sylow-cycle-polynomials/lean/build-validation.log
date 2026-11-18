@@ -1,5 +1,5 @@
 # Isolated build, 2026-11-18: lean/ copied (without .lake) to a scratch directory; only the pinned Mathlib packages
 # (.lake/packages, rev 5ed29652...) were linked in, so every LeanProofs module was compiled from these sources.
-# Sources: SOURCE-SNAPSHOT.json sha256 a7cb48a8df0802c1b396cf0a7cabcc17b09e784ab7522aa5cb7fe6807b4fe1e0
+# Sources: SOURCE-SNAPSHOT.json sha256 b8380aa5503b7b03e27483e6b32482ff6cd7879ed372a0215a06e0f3efae5d81
 # Command: lake build LeanProofs
 Build completed successfully (3099 jobs).
