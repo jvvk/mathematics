@@ -1,4 +1,5 @@
-"""Exact checks of every number quoted in paper/mex.tex, and of each proof step on the computed terms.
+"""Exact checks of every number quoted in paper/mex.tex (except the search counts, which come from search.py),
+of each step of Lemmas 1 and 2 on every block within the first 3000 terms, and of the conclusion of Lemma 3.
 
 Run: python3 verify_paper.py   (standard library only; a few seconds)
 Negative controls at the end (false statements checked against the correct data) must all fail.
@@ -246,7 +247,7 @@ for m in range(8, len(A)):
         assert 0 < i < m and 0 < j < m and i + j == m - 1
         assert A[i] == A[j] == 0
 check("zero-pair witnesses for every positive generated position", True)
-for b in range(2, (len(A) - 2) // 5):  # every block whose two twins are among the computed terms
+for b in range(2, (len(A) - 3) // 5 + 1):  # every block whose two twins are among the computed terms
     first = 5 * b + 1
     first_set = {A[i] + A[first - 1 - i] for i in range(first)}
     second_set = {A[i] + A[first - i] for i in range(first + 1)}

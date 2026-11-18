@@ -12,6 +12,6 @@
     "MexSequence/Main.lean": "c69903961cb23d87be33ae0946b6da58c05c858a6fd06b83d66cdeaea0e7c11b",
     "MexSequence/Twins.lean": "5d7bf6d45babadcdb2e881ee44c71704bfd586393a54f94aebff0cf8a3ad8a23",
     "scripts/mutants.toml": "34f5e77b3c8c1acb69b8cde50da00f5786cf832bb9fa80d450d0f93e187b0b33",
-    "scripts/mutate.py": "ac12aeab7dfe79dc539e13248e29820fc259e8e41840a88cdce5cde83336083d"
+    "scripts/mutate.py": "e950f064298508fdcf469a2cc3568b87cc9b927e6b19e85545f2285a8a1cee4d"
   }
 }

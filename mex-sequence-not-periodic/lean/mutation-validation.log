@@ -1,13 +1,13 @@
 control passes: Basic.lean
 control passes: Twins.lean
-rejected: y slope 5 (exit 1, marker 'error')
-rejected: w = 2 from block 2 (exit 1, marker 'error')
-rejected: start a 7 = 0 (exit 1, marker 'error')
-rejected: closed form: zeros at residues 0,2 (exit 1, marker 'error')
-rejected: y cycle 2,4,5 (exit 1, marker 'error')
-rejected: Lemma 1: zeros at residues 0,2 (exit 1, marker 'error')
-rejected: Lemma 1: a 0 also zero (exit 1, marker 'error')
-rejected: Lemma 2: twins at 5b+1, 5b+3 (exit 1, marker 'error')
-rejected: Lemma 2: new from block 1 (exit 1, marker 'error')
-rejected: Lemma 2: differs from 4th column (exit 1, marker 'error')
+rejected: y slope 5 (exit 1, marker 'error': error: MexSequence/Basic.lean:68:59: Tactic `decide` proved that the proposition)
+rejected: w = 2 from block 2 (exit 1, marker 'error': error: MexSequence/Basic.lean:68:59: Tactic `decide` proved that the proposition)
+rejected: start a 7 = 0 (exit 1, marker 'error': error: MexSequence/Twins.lean:30:4: unsolved goals)
+rejected: closed form: zeros at residues 0,2 (exit 1, marker 'error': error: MexSequence/Basic.lean:68:59: Tactic `decide` proved that the proposition)
+rejected: y cycle 2,4,5 (exit 1, marker 'error': error: MexSequence/Basic.lean:68:59: Tactic `decide` proved that the proposition)
+rejected: Lemma 1: zeros at residues 0,2 (exit 1, marker 'error': error: MexSequence/Twins.lean:30:4: unsolved goals)
+rejected: Lemma 1: a 0 also zero (exit 1, marker 'error': error: MexSequence/Twins.lean:30:4: unsolved goals)
+rejected: Lemma 2: twins at 5b+1, 5b+3 (exit 1, marker 'error': error: MexSequence/Twins.lean:67:15: unsolved goals)
+rejected: Lemma 2: new from block 1 (exit 1, marker 'error': error: MexSequence/Twins.lean:68:36: omega could not prove the goal:)
+rejected: Lemma 2: differs from 4th column (exit 1, marker 'error': error: MexSequence/Twins.lean:87:25: Type mismatch)
 10/10 mutants rejected, all controls pass

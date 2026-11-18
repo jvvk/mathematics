@@ -36,7 +36,7 @@ old = "A = mex_seq([1, 1, 1, 0, 1, 0, 1, 1], 3000)"
 new = "A = mex_seq([1, 1, 1, 0, 1, 0, 1, 0], 3000)"
 
 [[mutant]]
-name = "zero residues 0 and 2 in the Lemma 1 check"
+name = "closed form: twin cycle 2, 4, 5"
 file = "verify_paper.py"
-old = "(A[m] == 0) == (m % 5 in (0, 3))"
-new = "(A[m] == 0) == (m % 5 in (0, 2))"
+old = "[2, 5, 4][(b - 3) % 3]"
+new = "[2, 4, 5][(b - 3) % 3]"

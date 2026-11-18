@@ -133,10 +133,18 @@ def passes(check: Check, path: Path) -> tuple[bool, str]:
     if r.returncode == PYEXC_RC and "MUTATE-RUNNER exception type: " in r.stderr:
         kind = r.stderr.rsplit("MUTATE-RUNNER exception type: ", 1)[1].split()[0]
         return False, f"INCONCLUSIVE python exception ({kind})"
+    # A missing or non-executable tool (shell status 126/127) says nothing about the mutant.
+    if r.returncode in (126, 127):
+        return False, f"INCONCLUSIVE command not runnable (exit {r.returncode})"
     marked = [m for m in check.fail_markers if m in out]
-    return r.returncode == 0 and not marked, f"exit {r.returncode}" + (
-        f", marker {marked[0]!r}" if marked else ""
-    )
+    if r.returncode == 0 and not marked:
+        return True, "exit 0"
+    # A rejection needs a relevant diagnostic when the suite names one (e.g. a Lean "error"); any other failure is
+    # inconclusive. The first diagnostic line is kept in the report so the log shows why the mutant failed.
+    if check.fail_markers and not marked:
+        return False, f"INCONCLUSIVE exit {r.returncode} without a {check.fail_markers[0]!r} diagnostic"
+    line = next((ln.strip() for ln in out.splitlines() if marked and marked[0] in ln), "")
+    return False, f"exit {r.returncode}" + (f", marker {marked[0]!r}: {line[:160]}" if marked else "")
 
 
 def main() -> int:
