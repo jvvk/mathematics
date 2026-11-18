@@ -70,3 +70,5 @@ if __name__ == "__main__":
     print(f"Remark 2: {o3} of {t3} have PF = {{N, ..., (n-1)N}}")
     good = (t1, b1, t2, b2, t3, o3) == (3703, 0, 14459, 0, 2186, 2186)
     print("ALL PASS" if good else "FAILED")
+    if not good:
+        raise SystemExit(1)

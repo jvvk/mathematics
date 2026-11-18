@@ -1,6 +1,6 @@
 # Mutation suite for LeanProofs/Frobenius292507 (MO 292507, Hailong Dao: Frobenius number of the cyclic
 # semigroup <x_0, ..., x_{n-1}> is (n-1)(a_0...a_{n-1} - 1)).
-# Run:  scripts/frobenius292507_mutants.sh   (or python3 -I ~/.claude/skills/mutation-harness/mutate.py <this file>)
+# Run:  cd lean && python3 -I scripts/mutate.py scripts/mutants.toml
 # Inplace mode: a mutated definition must reach every downstream module, so each check rebuilds the
 # LeanProofs.Frobenius292507 tree. Afterwards `lake build LeanProofs.Frobenius292507` restores the .olean files.
 # Every mutant states something false (counterexample in its name); each targets a statement, not a proof step.

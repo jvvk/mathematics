@@ -17,14 +17,14 @@ with `∑_{i < n} c i * x n a i = m`. The digit bound of the paper's `d_i ≤ a_
 | Sum identity (2) | `sum_identity` | `Carry.lean` |
 | `N ≥ 1` and `gcd(x_n, N) = 1`, identity (3) | `N_pos`, `coprime_x0_N` | `Carry.lean` |
 | Place values, congruence (4) | `pi`, `x_cong` | `Carry.lean` |
-| Lemma 1 (mixed radix: bound `P − 1`, attained only by the maximal vector; every `0 ≤ t ≤ N` occurs) | `v_le`, `v_eq_N`, `v_surj` | `Digits.lean` |
+| Lemma 1, the parts used: the bound `P − 1`, attained only by the maximal vector, and every `0 ≤ t ≤ N` occurring (uniqueness of the digit vector for every value is not formalised) | `v_le`, `v_eq_N`, `v_surj` | `Digits.lean` |
 | Digit values: residues, `w(d) ≤ nN`, `w(max) = nN` | `w_cong`, `w_le`, `w_max` | `Semigroup.lean` |
 | Carrying up: `s + kN ∈ S` | `InS_add_N`, `InS_add_mul_N` | `Semigroup.lean` |
 | Carrying down to a digit vector, (5) | `carry_down` | `Semigroup.lean` |
 | **Theorem 1**: `(n − 1)N ∉ S` and every larger integer is in `S` | `not_InS`, `InS_of_gt`, `frobenius` | `Main.lean` |
 | The first case `(1, 2, 3)`: generators `4, 9, 7`, Frobenius number `10` | `generators123`, `example123` | `Main.lean` |
 
-Route: the formalisation follows the paper step by step. Two differences in form, not substance: positivity
+Route: the formalisation follows the paper step by step for Theorem 1; the exact ladder equalities for each residue class are not stated separately (Theorem 1 uses only carrying up and down). Two differences in form, not substance: positivity
 `0 < s` stands for "a nonzero representation" (the two are equivalent), and in the case of a nonzero residue the
 bound `w(d) ≤ m` is derived from `w(d) ≤ nN` directly, without first noting that `d` is not the maximal vector.
 Remarks 1 and 2 (minimality, pseudo-Frobenius sets) are computations, checked by `../verify/remarks.py`, not here.

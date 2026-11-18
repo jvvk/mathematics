@@ -51,6 +51,9 @@ def check_case(a: list[int]) -> tuple[bool, list[bool], int]:
     vals = digit_values(a, xs)
     if sorted(v % N for v in vals) != sorted(list(range(1, N)) + [0, 0]) or max(vals) != n * N:
         return False, rep, F
+    # zero class: kN in S exactly when k = 0 or k >= n
+    if any(rep[k * N] != (k == 0 or k >= n) for k in range(bound // N + 1)):
+        return False, rep, F
     for r in range(1, N):
         low = next(v for v in vals if v % N == r)
         members = [v for v in range(r, bound + 1, N) if rep[v]]

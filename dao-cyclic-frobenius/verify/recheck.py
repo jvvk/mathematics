@@ -49,3 +49,5 @@ for n, top in ((2, 8), (3, 8), (4, 5), (5, 4), (6, 3)):
             print("MISMATCH", a, g)
 print(f"recheck: {count} coprime lists, {bad} mismatches")
 print("ALL PASS" if bad == 0 else "FAILED")
+if bad:
+    raise SystemExit(1)
