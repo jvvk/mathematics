@@ -33,7 +33,7 @@ Route and differences from the paper.
 - Lemma 4 is proved without the paper's nonempty condition on the subsets (`exists_poset_orbitCount_ge'`,
   `1 ≤ m ≤ 2^j`): it needs only that the full set of tops is one of the subsets. The paper's form
   (`m ≤ 2^j − 1`) follows.
-- Inequality (2) goes through `2 (n)_J^3 ≤ 2 n^(3J) < 2^n ≤ 2 (2^t k!)^3`, with a finite check on
+- Inequality (3) goes through `2 (n)_J^3 ≤ 2 n^(3J) < 2^n ≤ 2 (2^t k!)^3`, with a finite check on
   `[181, 255]` and `3(r + 1)^2 + 1 ≤ 2^r` for `r ≥ 8` above it. The threshold 181 is the true threshold of this route.
 
 Not formalised: Theorem 1 (the exhaustive search over all posets with `n ≤ 11`), Lemma 3 (disjoint sums, by hand), and

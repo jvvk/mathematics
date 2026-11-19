@@ -85,7 +85,11 @@ def describe(g6: str) -> list[str]:
 
 
 ok = True
-for line in open(sys.argv[1] if len(sys.argv) > 1 else "search_out.txt"):
+rows = [ln for ln in open(sys.argv[1] if len(sys.argv) > 1 else "search_out.txt") if ln.strip()]
+seen = [int(ln.split()[0]) for ln in rows]
+if not rows or seen != list(range(1, len(rows) + 1)):
+    sys.exit(f"FAILED: expected rows n = 1, 2, ..., got {seen}")
+for line in rows:
     parts = line.split()
     n, maximisers = int(parts[0]), parts[4:]
     got = sorted(describe(g) for g in maximisers)

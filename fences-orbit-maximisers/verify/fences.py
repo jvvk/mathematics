@@ -100,7 +100,7 @@ def main() -> None:
     beats = [n for n in range(12, NMAX + 1) if factorial(n - J(n)) > fmax[n]]
     ok &= beats == list(range(58, NMAX + 1))
     print(f"construction beats every fence union exactly for n in 58..{NMAX} (within 12..{NMAX})")
-    # Small range (Lemma 3 and (4)): Q + U or R + U beats every fence union for n = 12 and 14..57; not at 9, 13.
+    # Small range (Lemma 3 and (2)): Q + U or R + U beats every fence union for n = 12 and 14..57; not at 9, 13.
     eQ, aQ = poset_e_aut(7, Q_COVERS)
     eR, aR = poset_e_aut(8, R_COVERS)
     ok &= (eQ, aQ, eR, aR) == (298, 1, 1613, 1)
