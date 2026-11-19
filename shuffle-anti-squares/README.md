@@ -17,7 +17,7 @@ The paper proves the conjecture with two explicit families,
 
 and extends the first: multiplying every zero run of `U_k` by any λ and replacing every one by a block of μ ones, μ odd, still gives an anti-square (Theorem 4; both conditions are needed). Since one cut can only rotate a word, it follows that some even word of every length from 24 needs at least two cuts before its pieces can be rearranged into a shuffle square (Corollary 6). Grytczuk, Pawlik and Ruciński had found such a word of length 24 and conjectured that two cuts always suffice ([arXiv:2503.22043](https://arxiv.org/abs/2503.22043), Section 6.3); a computer check confirms this for every anti-square up to length 34.
 
-Preprint v3, 19 November 2026 (v1: 8 October 2026). The author used AI tools (Claude, Anthropic) in this work, as described in the paper's acknowledgements, and takes full responsibility for its content.
+Preprint v3, 19 November 2026 (v1: 8 October 2026). Zenodo: [doi:10.5281/zenodo.24372234](https://doi.org/10.5281/zenodo.24372234), identical to this folder at tag `shuffle-anti-squares-v3`. The author used AI tools (Claude, Anthropic) in this work, as described in the paper's acknowledgements, and takes full responsibility for its content.
 
 **Version 2** (23 October 2026, tag `shuffle-anti-squares-v2`): expository revision of the paper (a new figure for Step 1 of the proof of Theorem 4 (why the long runs must line up across the two gaps)). The results, programs and Lean files are unchanged from v1.
 
