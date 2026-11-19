@@ -41,10 +41,10 @@ The counts in Table 1, the absence of anti-squares below length 24 and the two-c
 ```
 verify/run_all.sh                     # every computer check; needs cc, c++17, python3 and z3-solver
 cd paper && latexmk -pdf antisquares.tex
-cd ../lean && lake exe cache get && lake build LeanProofs && lake env lean CheckClaims.lean
+cd ../lean && lake exe cache get && ./build_serial.sh   # one module at a time; prints every claim and its axioms
 ```
 
-`run_all.sh` takes about 45 minutes on one core, most of it `indep` at length 34; the Lean build takes about 15 minutes after the Mathlib cache is fetched.
+`run_all.sh` takes about 45 minutes on one core, most of it `indep` at length 34; the Lean build takes about an hour on one core after the Mathlib cache is fetched; a plain `lake build` is faster but compiles the case-split files in parallel at up to ~10 GB each. `lean/axiom-validation.txt` is the saved axiom output.
 
 ## Licence
 
