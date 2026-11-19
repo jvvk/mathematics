@@ -1,0 +1,41 @@
+# python3 -I scripts/mutate.py scripts/mutants_twotri.toml and scripts/mutants_hulls.toml, after lake build LeanProofs, 19 November 2026.
+# Rejection = nonzero exit and a Lean error located in LeanProofs/TwoTri/. Paths shortened from the build directory.
+## mutants_twotri.toml
+control passes: Main.lean
+control passes: Upper.lean
+control passes: Cor.lean
+control passes: Nine.lean
+control passes: Lower.lean
+control passes: Insert.lean
+control passes: EdgeCount.lean
+control passes: Oct.lean
+control passes: Regen5d.lean
+control passes: Fan.lean
+control passes: Extend.lean
+rejected: Theorem 1 with f(n) = 4 (exit 1, diagnostic: LeanProofs/TwoTri/Main.lean:31:2: error: Tactic `apply` failed: could not unify the conclusion of `le_antisymm (Nat.sI)
+rejected: induction from n = 8 (exit 1, diagnostic: LeanProofs/TwoTri/Upper.lean:19:21: error: Application type mismatch: The argument)
+rejected: lower bound 6 (exit 1, diagnostic: LeanProofs/TwoTri/Cor.lean:213:14: error: omega could not prove the goal:)
+rejected: point 5 moved (exit 1, diagnostic: LeanProofs/TwoTri/Nine.lean:38:37: error: Tactic `decide` failed for proposition)
+rejected: triangulation A loses edge 78 (exit 1, diagnostic: LeanProofs/TwoTri/Nine.lean:38:37: error: Tactic `decide` failed for proposition)
+rejected: invariant witness off the face (exit 1, diagnostic: LeanProofs/TwoTri/Nine.lean:48:88: error: Tactic `decide` failed for proposition)
+rejected: sweep with a weak side condition (exit 1, diagnostic: LeanProofs/TwoTri/Lower.lean:68:4: error: linarith failed to find a contradiction)
+rejected: insertion without genericity (exit 1, diagnostic: LeanProofs/TwoTri/Insert.lean:113:86: error: Application type mismatch: The argument)
+rejected: edge count 3n-4-h (exit 1, diagnostic: LeanProofs/TwoTri/EdgeCount.lean:461:2: error: omega could not prove the goal:)
+rejected: oct formula off by one (exit 1, diagnostic: LeanProofs/TwoTri/Oct.lean:116:2: error: omega could not prove the goal:)
+rejected: pentagon oct = 2 (exit 1, diagnostic: LeanProofs/TwoTri/Oct.lean:151:2: error: omega could not prove the goal:)
+rejected: regeneration for six points (exit 1, diagnostic: LeanProofs/TwoTri/Regen5d.lean:156:2: error: omega could not prove the goal:)
+rejected: fan lemma with a margin (exit 1, diagnostic: LeanProofs/TwoTri/Fan.lean:204:60: error: linarith failed to find a contradiction)
+rejected: edge criterion with one edge fewer (exit 1, diagnostic: LeanProofs/TwoTri/Extend.lean:86:53: error: Tactic `decide` proved that the proposition)
+14/14 mutants rejected, all controls pass
+## mutants_hulls.toml
+control passes: Hulls.lean
+rejected: Theorem 2 with h >= 5 (exit 1, diagnostic: LeanProofs/TwoTri/Hulls.lean:491:23: error: Application type mismatch: The argument)
+rejected: pentagon from n = 8 (exit 1, diagnostic: LeanProofs/TwoTri/Hulls.lean:491:23: error: Application type mismatch: The argument)
+rejected: small-hull bound for a pentagon (exit 1, diagnostic: LeanProofs/TwoTri/Hulls.lean:476:47: error: Application type mismatch: The argument)
+rejected: seed A loses the edge v5v7 (exit 1, diagnostic: LeanProofs/TwoTri/Hulls.lean:225:15: error: omega could not prove the goal:)
+rejected: seed B fans from v5 (shares edges with A) (exit 1, diagnostic: LeanProofs/TwoTri/Hulls.lean:236:73: error: omega could not prove the goal:)
+rejected: wrong closing hull edge (exit 1, diagnostic: LeanProofs/TwoTri/Hulls.lean:163:93: error: omega could not prove the goal:)
+rejected: seven points: point 7 moved (exit 1, diagnostic: LeanProofs/TwoTri/Hulls.lean:375:36: error: Tactic `decide` failed for proposition)
+rejected: seed invariant witness off the face (exit 1, diagnostic: LeanProofs/TwoTri/Hulls.lean:294:39: error: unsolved goals)
+rejected: one-sided interleaving (exit 1, diagnostic: LeanProofs/TwoTri/Hulls.lean:36:2: error: omega could not prove the goal:)
+9/9 mutants rejected, all controls pass

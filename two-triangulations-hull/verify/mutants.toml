@@ -1,0 +1,26 @@
+# Planted errors in the certificates and the checker; each must make check_paper.py report FAILED and exit 1.
+#   cd verify && python3 -I ../lean/scripts/mutate.py mutants.toml
+[check]
+cmd = ["python3", "-I", "check_paper.py"]
+cwd = "."
+timeout = 1800
+mode = "inplace"
+fail_markers = ["FAILED"]
+
+[[mutant]]
+name = "n17: edge [0, 3] of A replaced by the loop [0, 0] (Codex referee, finding 3)"
+file = "certificates/n17.json"
+old = '"A": [[0, 1], [0, 3],'
+new = '"A": [[0, 1], [0, 0],'
+
+[[mutant]]
+name = "n17: edge [0, 3] of A replaced by [0, 99], an index outside P"
+file = "certificates/n17.json"
+old = '"A": [[0, 1], [0, 3],'
+new = '"A": [[0, 1], [0, 99],'
+
+[[mutant]]
+name = "n09: point 3 moved onto point 4 (not in general position)"
+file = "certificates/n09.json"
+old = "[29, 20], [28, 26]"
+new = "[28, 26], [28, 26]"

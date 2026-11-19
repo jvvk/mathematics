@@ -2,7 +2,8 @@
 
 Lean 4.34.0; Mathlib is pinned by `lake-manifest.json` to
 `5ed2965256430c3649e86755f9576b54eca72435` (v4.34.0).
-`SOURCE-SNAPSHOT.json` records the source commit and hashes of the exact archived files.
+`SOURCE-SNAPSHOT.json` records the source commit and the SHA-256 of every archived file (regenerated for version 3;
+the version 1 record had the hash of an earlier `CheckClaims.lean` driver).
 Only this paper's import closure is included; unrelated proofs and local caches are excluded.
 
 From this directory, with elan/Lean installed:
@@ -32,3 +33,8 @@ The convex seed is formalised on parabola points, which suffices for existence.
 - The seven-point hexagonal example and its chain: `TwoTri.Hulls.Seven.inv7`.
 - Theorem 2: `TwoTri.Hulls.theorem2`, with the enumeration hypothesis `PentagonGap`.
 - The remark after Theorem 2 (every good pair returns once |P| >= 7): `TwoTri.regeneration`.
+
+Mutation tests: `scripts/mutants_twotri.toml` (14 mutants, Theorem 1) and `scripts/mutants_hulls.toml` (9, Theorem 2),
+run by the house harness `scripts/mutate.py` after `lake build LeanProofs`. A mutant counts as rejected only if
+`lake env lean` on the edited file exits nonzero with a Lean error located in `LeanProofs/TwoTri/`; timeouts, crashes
+and infrastructure failures are inconclusive and fail the suite. The runs are in `mutation-validation.log`.

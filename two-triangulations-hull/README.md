@@ -14,7 +14,9 @@ Started from a convex polygon, the same construction settles every hull size: n 
 
 The question is from MathOverflow ([question 454425](https://mathoverflow.net/q/454425)). The nine-point example and the pentagonal case were first posted as the author's [MathOverflow answer](https://mathoverflow.net/a/515648) on 30 September 2026, with certificates in [triangulations-sharing-five-edges](https://github.com/jvvk/triangulations-sharing-five-edges).
 
-Preprint, 8 October 2026. The author used AI tools (Claude, and ChatGPT for a later revision) in developing the proofs, code and text, as the paper's acknowledgements describe, and takes full responsibility for its content.
+Preprint v3, 19 November 2026 (v1: 8 October), not peer reviewed. Zenodo: [doi:10.5281/zenodo.24366552](https://doi.org/10.5281/zenodo.24366552), identical to this folder at tag `two-triangulations-hull-v3`. The author used AI tools (Claude, and ChatGPT for a later revision) in developing the proofs, code and text, as the paper's acknowledgements describe, and takes full responsibility for its content.
+
+**Version 3** (19 November 2026, tag `two-triangulations-hull-v3`): after an independent review by Codex, Gerry Myerson's 2023 comment giving seven points with a hexagonal hull and only six shared edges is credited (the paper's seven-point seed differs in carrying a chain); `check_paper.py` rejects edges with invalid endpoints; `fmin.c` and `oct2.c` fail on truncated or unreadable input, and `verify/enumeration/run_enumeration.sh` checks the database hashes, record counts and every expected summary; the Lean mutants run under the house harness (`lean/scripts/*.toml`, each rejection a Lean error in the edited file); `SOURCE-SNAPSHOT.json` hashes match the archived files. Results unchanged.
 
 **Version 2** (23 October 2026, tag `two-triangulations-hull-v2`): expository revision of the paper (Alex Ravsky credited for the bound f(n) <= 7, the code reference pointed at this folder, and one sentence of Section 5 reworded). The results, programs and Lean files are unchanged from v1.
 
@@ -32,7 +34,12 @@ cd paper/figs && python3 make_figs.py && cd .. && latexmk -pdf paper.tex
 cd ../lean && lake exe cache get && lake build LeanProofs && lake env lean CheckClaims.lean
 ```
 
-The enumeration needs the order-type files; see `verify/README.md`.
+The enumeration needs the order-type files; see `verify/README.md`, then `cd verify && bash enumeration/run_enumeration.sh DATA_DIR` (about five minutes).
+
+```
+python3 -I lean/scripts/mutate.py verify/mutants.toml           # 3 planted certificate errors, each rejected
+cd lean && lake build LeanProofs && python3 -I scripts/mutate.py scripts/mutants_twotri.toml && python3 -I scripts/mutate.py scripts/mutants_hulls.toml
+```
 
 ## Licence
 

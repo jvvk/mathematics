@@ -103,7 +103,13 @@ int main(int argc, char **argv) {
     long long hist[64] = {0}, total = 0, shown = 0;
     int best = 1 << 30;
     unsigned char buf[4 * MAXP];
-    while ((limit < 0 || total < limit) && fread(buf, 4, n, f) == (size_t)n) {
+    while (limit < 0 || total < limit) {
+        size_t want = (size_t)(4) * n, got = fread(buf, 1, want, f);   /* bytes, so a partial coordinate counts */
+        if (got != want) {
+            if (got == 0 && feof(f) && !ferror(f)) break;            /* clean end of file */
+            fprintf(stderr, "%s after set %lld\n", ferror(f) ? "read error" : "truncated record", total);
+            return 3;
+        }
         for (int i = 0; i < n; i++) {
             X[i] = buf[4 * i] | (buf[4 * i + 1] << 8);
             Y[i] = buf[4 * i + 2] | (buf[4 * i + 3] << 8);

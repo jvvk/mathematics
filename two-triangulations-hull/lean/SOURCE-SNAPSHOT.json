@@ -3,7 +3,7 @@
   "lean_toolchain": "leanprover/lean4:v4.34.0",
   "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
   "files": {
-    "CheckClaims.lean": "5779da63d26e371cff191a250d04d8df2bccbc5f819132b47a04de6284d78f40",
+    "CheckClaims.lean": "b9c074158424b8bee189d02369cc50967126c805e94b31b1ac77b03905dfbfa6",
     "LeanProofs/TwoTri/Basic.lean": "9648f2a572f3e0e16a5e9a4ec7e60459589984b0b7f8c78c9e8af8ee9d020f48",
     "LeanProofs/TwoTri/Choose.lean": "80bd151b59e4006e80363563555b02e387a66ebe8bc60825eba5958b4454bb3c",
     "LeanProofs/TwoTri/Consec.lean": "1cd73b166bd0c0e915c541ff5d77517468cce64eaeacd22bf62b4b0fb19fde2a",
@@ -35,6 +35,10 @@
     "LeanProofs/TwoTri/Step.lean": "fd09ed4fc475e37d0b5a954f55d7db66da4ac23c8b1a8826cf5fe7169b43e20a",
     "LeanProofs/TwoTri/Transfer.lean": "4b0f8db55785c85cf54fd4ab47e920b353e16f012e5e971c29b0d605a8ff3e56",
     "LeanProofs/TwoTri/Upper.lean": "9f07ed90f301567d6571d6bf03fcb001edd35b79a4ae902b3c8ca653336cf9be",
-    "LeanProofs.lean": "1512fadeca645da82dbd0ad8420130390415dc0475e6908f6ef98630f38c206d"
-  }
+    "LeanProofs.lean": "1512fadeca645da82dbd0ad8420130390415dc0475e6908f6ef98630f38c206d",
+    "scripts/mutate.py": "15072a124fad268200bcc5a2d58f417912c6ae451adc1f3c44f895670dd4fcf1",
+    "scripts/mutants_twotri.toml": "ef4e3be384d5a4e6a684687e0641358c4be73ef589c8e21688774bdb7b038892",
+    "scripts/mutants_hulls.toml": "74aa68610ba50830c53ee72346113319e733eef417e317f183ed096c94266249"
+  },
+  "note": "Hashes regenerated for version 3 (19 November 2026) from the archived files; the version 1 record had the hash of an earlier CheckClaims.lean driver. The mutation scripts were replaced by the house harness suites."
 }

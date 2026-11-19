@@ -87,6 +87,11 @@ def hull_edges(P) -> set:
 
 
 def is_triangulation(P, E) -> bool:
+    """A set of segments between distinct points of P is a triangulation iff it has 3n - 3 - h edges and no two cross
+    (P in general position). Endpoints are validated first: a loop or an index outside P is not a segment."""
+    E = list(E)
+    if not all(len(e) == 2 and all(isinstance(v, int) and 0 <= v < len(P) for v in e) and e[0] != e[1] for e in E):
+        return False
     E = {tuple(sorted(e)) for e in E}
     h = len(hull_cycle(P))
     if len(E) != 3 * len(P) - 3 - h:

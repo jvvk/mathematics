@@ -1,0 +1,99 @@
+# Mutation suite for LeanProofs/TwoTri (Theorem 1), converted from scripts/mutants_twotri.sh (v1). Each mutant edits one source file in place
+# and must make `lake env lean` on that file fail with a Lean error located in it.
+#   cd lean && lake build LeanProofs && python3 -I scripts/mutate.py scripts/mutants_twotri.toml
+[check]
+cmd = ["lake", "env", "lean", "--threads=1", "{file}"]
+cwd = ".."
+timeout = 900
+mode = "inplace"
+fail_pattern = 'TwoTri/\S+\.lean:\d+:\d+: error'
+
+[[mutant]]
+name = '''Theorem 1 with f(n) = 4'''
+file = "../LeanProofs/TwoTri/Main.lean"
+old = '''f n = 5 := by'''
+new = '''f n = 4 := by'''
+
+[[mutant]]
+name = '''induction from n = 8'''
+file = "../LeanProofs/TwoTri/Upper.lean"
+old = '''theorem upper_rat (n : ℕ) (hn : 9 ≤ n)'''
+new = '''theorem upper_rat (n : ℕ) (hn : 8 ≤ n)'''
+
+[[mutant]]
+name = '''lower bound 6'''
+file = "../LeanProofs/TwoTri/Cor.lean"
+old = '''5 ≤ (A ∩ B).card ∧ ((A ∩ B).card = 5'''
+new = '''6 ≤ (A ∩ B).card ∧ ((A ∩ B).card = 5'''
+
+[[mutant]]
+name = '''point 5 moved'''
+file = "../LeanProofs/TwoTri/Nine.lean"
+old = '''def p5 : ℚ × ℚ := (28, 26)'''
+new = '''def p5 : ℚ × ℚ := (28, 30)'''
+
+[[mutant]]
+name = '''triangulation A loses edge 78'''
+file = "../LeanProofs/TwoTri/Nine.lean"
+old = '''s(p7, p8)}'''
+new = '''s(p6, p8)}'''
+
+[[mutant]]
+name = '''invariant witness off the face'''
+file = "../LeanProofs/TwoTri/Nine.lean"
+old = '''⟨1 / 2, by norm_num, by norm_num'''
+new = '''⟨1 / 10, by norm_num, by norm_num'''
+
+[[mutant]]
+name = '''sweep with a weak side condition'''
+file = "../LeanProofs/TwoTri/Lower.lean"
+old = '''(hside : ∀ r ∈ P, r ≠ u → ℓ u < ℓ r)'''
+new = '''(hside : ∀ r ∈ P, r ≠ u → ℓ u ≤ ℓ r)'''
+
+[[mutant]]
+name = '''insertion without genericity'''
+file = "../LeanProofs/TwoTri/Insert.lean"
+old = '''(hg : Generic P p) : IsTri (insert p P)'''
+new = '''(hg : True) : IsTri (insert p P)'''
+
+[[mutant]]
+name = '''edge count 3n-4-h'''
+file = "../LeanProofs/TwoTri/EdgeCount.lean"
+old = '''T.card + 3 + (hullEdges P).card = 3 * P.card := by
+  classical
+  obtain'''
+new = '''T.card + 4 + (hullEdges P).card = 3 * P.card := by
+  classical
+  obtain'''
+
+[[mutant]]
+name = '''oct formula off by one'''
+file = "../LeanProofs/TwoTri/Oct.lean"
+old = '''(minShared P : ℤ) = 6 * P.card - 6 -'''
+new = '''(minShared P : ℤ) = 6 * P.card - 5 -'''
+
+[[mutant]]
+name = '''pentagon oct = 2'''
+file = "../LeanProofs/TwoTri/Oct.lean"
+old = '''theorem pentagon : minShared P5 = 5 ∧ oct P5 = 1'''
+new = '''theorem pentagon : minShared P5 = 5 ∧ oct P5 = 2'''
+
+[[mutant]]
+name = '''regeneration for six points'''
+file = "../LeanProofs/TwoTri/Regen5d.lean"
+old = '''theorem regeneration {P : Finset (K × K)} (hP : GenPos P) (h7 : 7 ≤ P.card)'''
+new = '''theorem regeneration {P : Finset (K × K)} (hP : GenPos P) (h7 : 6 ≤ P.card)'''
+
+[[mutant]]
+name = '''fan lemma with a margin'''
+file = "../LeanProofs/TwoTri/Fan.lean"
+old = '''∃ w ∈ P, s(v, w) ∈ T ∧ dotd d v w < 0 := by
+  classical'''
+new = '''∃ w ∈ P, s(v, w) ∈ T ∧ dotd d v w < -1 := by
+  classical'''
+
+[[mutant]]
+name = '''edge criterion with one edge fewer'''
+file = "../LeanProofs/TwoTri/Extend.lean"
+old = '''(hcard : S.card + 3 + (hullEdges P).card = 3 * P.card) : IsTri P S'''
+new = '''(hcard : S.card + 2 + (hullEdges P).card = 3 * P.card) : IsTri P S'''

@@ -1,0 +1,6 @@
+control passes: n17.json
+control passes: n09.json
+rejected: n17: edge [0, 3] of A replaced by the loop [0, 0] (Codex referee, finding 3) (exit 1, marker 'FAILED': "FAILED": "n17.json: not triangulations",)
+rejected: n17: edge [0, 3] of A replaced by [0, 99], an index outside P (exit 1, marker 'FAILED': "FAILED": "n17.json: not triangulations",)
+rejected: n09: point 3 moved onto point 4 (not in general position) (exit 1, marker 'FAILED': "FAILED": "n09.json: general position / pentagonal hull",)
+3/3 mutants rejected, all controls pass

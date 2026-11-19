@@ -31,7 +31,9 @@ summary; any failed check stops it with a nonzero exit code. It is independent o
 The checker itself was mutation-tested: injecting a shared interior edge, adding one to the formula, reordering
 the faces along side 56, expecting a nontrivial automorphism, and expecting oct = 2 each make it fail. For
 Section 7, a shared edge in the seven-point example, a witness point outside the faces, a seed whose second fan
-starts at v5, and a wrong face each make it fail.
+starts at v5, and a wrong face each make it fail. `mutants.toml` holds three further planted errors in the certificates, run by the house harness
+(`python3 -I ../lean/scripts/mutate.py mutants.toml`): a self-loop and an out-of-range index in place of an edge, and
+a point moved onto another; each makes the checker fail.
 
 ## 2. The enumeration of Section 6 (needs the order-type database)
 
@@ -39,6 +41,8 @@ The point sets come from the order-type database of Aichholzer, Aurenhammer and 
 265-281), distributed by its authors at http://www.ist.tugraz.at/aichholzer/research/rp/triangulations/ordertypes/
 for non-commercial use. It is not redistributed here. Files used: `otypes04.b08` to `otypes08.b08`,
 `otypes09.b16`, `otypes10.b16`.
+
+    bash enumeration/run_enumeration.sh DATA_DIR    # from verify/: hashes, record counts, every summary below; ALL PASS
 
     cc -O2 -o fmin enumeration/fmin.c
     ./fmin otypes09.b16 9 7 -1 0      # about 6 s
@@ -72,7 +76,7 @@ exactly 7 order types reach 5 and all have h = 5. At n = 10 it is 734, all with 
 at n = 9 is 7 (row h=3 above).
 
 For n = 10 with a triangular hull, `enumeration/oct2.c` gives the value 7. Running `./oct2 otypes10.b16 10 4`
-(about 2 min, recorded on 2026-09-28, not rerun for this archive) prints the histogram
+(about 2 min; rerun for version 3 by `run_enumeration.sh`) prints the histogram
 `4:1084 5:14308463`. So oct >= 4 for every ten-point set, giving f(P) >= 7 when h = 3, and 7 is attained
 (order type 12277679 has h = 3 and oct = 4).
 

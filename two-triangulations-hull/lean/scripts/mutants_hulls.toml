@@ -1,0 +1,63 @@
+# Mutation suite for LeanProofs/Hulls (Theorem 2), converted from scripts/mutants_hulls.sh (v1; all edits in LeanProofs/TwoTri/Hulls.lean). Each mutant edits one source file in place
+# and must make `lake env lean` on that file fail with a Lean error located in it.
+#   cd lean && lake build LeanProofs && python3 -I scripts/mutate.py scripts/mutants_hulls.toml
+[check]
+cmd = ["lake", "env", "lean", "--threads=1", "{file}"]
+cwd = ".."
+timeout = 900
+mode = "inplace"
+fail_pattern = 'TwoTri/\S+\.lean:\d+:\d+: error'
+
+[[mutant]]
+name = '''Theorem 2 with h >= 5'''
+file = "../LeanProofs/TwoTri/Hulls.lean"
+old = '''HullOnly n h ↔ n = h ∨ 6 ≤ h ∨'''
+new = '''HullOnly n h ↔ n = h ∨ 5 ≤ h ∨'''
+
+[[mutant]]
+name = '''pentagon from n = 8'''
+file = "../LeanProofs/TwoTri/Hulls.lean"
+old = '''HullOnly n h ↔ n = h ∨ 6 ≤ h ∨ (h = 5 ∧ 9 ≤ n)'''
+new = '''HullOnly n h ↔ n = h ∨ 6 ≤ h ∨ (h = 5 ∧ 8 ≤ n)'''
+
+[[mutant]]
+name = '''small-hull bound for a pentagon'''
+file = "../LeanProofs/TwoTri/Hulls.lean"
+old = '''theorem not_hullOnly_small {n h : ℕ} (h3 : 3 ≤ h) (h4 : h ≤ 4)'''
+new = '''theorem not_hullOnly_small {n h : ℕ} (h3 : 3 ≤ h) (h4 : h ≤ 5)'''
+
+[[mutant]]
+name = '''seed A loses the edge v5v7'''
+file = "../LeanProofs/TwoTri/Hulls.lean"
+old = '''HullR h i j ∨ (i = 0 ∧ j = 2) ∨ (i = 2 ∧ j = 4) ∨ (i = 0 ∧ j = 4) ∨ (i = 4 ∧ 6 ≤ j)'''
+new = '''HullR h i j ∨ (i = 0 ∧ j = 2) ∨ (i = 2 ∧ j = 4) ∨ (i = 0 ∧ j = 4) ∨ (i = 4 ∧ 7 ≤ j)'''
+
+[[mutant]]
+name = '''seed B fans from v5 (shares edges with A)'''
+file = "../LeanProofs/TwoTri/Hulls.lean"
+old = '''HullR h i j ∨ (i = 1 ∧ j = 3) ∨ (i = 3 ∧ j = 5) ∨ (i = 1 ∧ j = 5) ∨ (i = 1 ∧ 6 ≤ j)'''
+new = '''HullR h i j ∨ (i = 1 ∧ j = 3) ∨ (i = 3 ∧ j = 5) ∨ (i = 1 ∧ j = 5) ∨ (i = 4 ∧ 6 ≤ j)'''
+
+[[mutant]]
+name = '''wrong closing hull edge'''
+file = "../LeanProofs/TwoTri/Hulls.lean"
+old = '''def HullR (h i j : ℕ) : Prop := j = i + 1 ∨ (i = 0 ∧ j = h - 1)'''
+new = '''def HullR (h i j : ℕ) : Prop := j = i + 1 ∨ (i = 0 ∧ j = h - 2)'''
+
+[[mutant]]
+name = '''seven points: point 7 moved'''
+file = "../LeanProofs/TwoTri/Hulls.lean"
+old = '''def q7 : ℚ × ℚ := (2, 1)'''
+new = '''def q7 : ℚ × ℚ := (3, 1)'''
+
+[[mutant]]
+name = '''seed invariant witness off the face'''
+file = "../LeanProofs/TwoTri/Hulls.lean"
+old = '''⟨13 / 20, by norm_num, by norm_num, by norm_num [InTri, orient, lerp, par]⟩'''
+new = '''⟨1 / 20, by norm_num, by norm_num, by norm_num [InTri, orient, lerp, par]⟩'''
+
+[[mutant]]
+name = '''one-sided interleaving'''
+file = "../LeanProofs/TwoTri/Hulls.lean"
+old = '''def Inter (i j k l : ℕ) : Prop := (i < k ∧ k < j ∧ j < l) ∨ (k < i ∧ i < l ∧ l < j)'''
+new = '''def Inter (i j k l : ℕ) : Prop := (i < k ∧ k < j ∧ j < l)'''

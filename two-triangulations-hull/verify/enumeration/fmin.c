@@ -128,7 +128,13 @@ int main(int argc, char **argv) {
     int shown[MAXP + 1][64] = {{0}};
     int w = strstr(argv[1], ".b08") ? 1 : strstr(argv[1], ".b32") ? 4 : 2;  /* bytes per coordinate */
     unsigned char buf[8 * MAXP];
-    while ((limit < 0 || total < limit) && fread(buf, 2 * w, n, f) == (size_t)n) {
+    while (limit < 0 || total < limit) {
+        size_t want = (size_t)(2 * w) * n, got = fread(buf, 1, want, f);   /* bytes, so a partial coordinate counts */
+        if (got != want) {
+            if (got == 0 && feof(f) && !ferror(f)) break;            /* clean end of file */
+            fprintf(stderr, "%s after set %lld\n", ferror(f) ? "read error" : "truncated record", total);
+            return 3;
+        }
         for (int i = 0; i < n; i++) {
             if (w == 1) { X[i] = buf[2 * i]; Y[i] = buf[2 * i + 1]; }
             else if (w == 4) {
