@@ -1,0 +1,22 @@
+# L: numerator (k+l+1)!
+# command: nice -n 15 lake env lean AlternatingSum/Step1Mut.lean
+# exit: 1
+## stdout
+AlternatingSum/Step1Mut.lean:46:71: error: unsolved goals
+u a b n i k l : ℕ
+hi : i ≤ n
+hk : k ≤ a
+hl : l ≤ b
+h1 : n ≤ i + k + l
+h2 : i + k + l ≤ a + b
+e1 : k + l - k = l
+e2 : a + b - k - l - (a - k) = b - l
+e3 : a + b - n - (a + b - k - l - i) = k + l + i - n
+e4 : u + (a + b - k - l) - i = u + a + b - k - l - i
+e5 : u + (k + l) + (a + b - k - l) - i = u + a + b - i
+e6 : u + a + b - i - (n - i) = u + a + b - n
+e7 : u + (a + b - k - l) = u + a + b - k - l
+⊢ ↑(k + l + 1)! = ↑(k + l)!
+
+## stderr
+

@@ -1,0 +1,7 @@
+# control Coeffs.lean
+# command: nice -n 15 lake env lean AlternatingSum/CoeffsMut.lean
+# exit: 0
+## stdout
+
+## stderr
+

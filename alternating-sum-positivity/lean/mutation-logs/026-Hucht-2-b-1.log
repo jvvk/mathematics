@@ -1,0 +1,25 @@
+# Hucht: 2^(b+1)
+# command: nice -n 15 lake env lean AlternatingSum/HuchtMut.lean
+# exit: 1
+## stdout
+AlternatingSum/HuchtMut.lean:130:4: error: Type mismatch
+  Eq.symm
+    (hucht_term b c k t (Decidable.byContradiction fun a_1 => hucht_identity._proof_1_13 a b n m t a_1) hk
+      (Decidable.byContradiction fun a_1 => hucht_identity._proof_1_14 a b n m t ht a_1) htj)
+has type
+  (-1) ^ t * 2 ^ (b - 2 * t) * ↑((b - t).choose (b - 2 * t)) * ↑((c - t).choose (b - t)) * ↑((c - t).choose k) =
+    2 ^ b * ↑(c.choose b) * ↑(c.choose k) *
+      (qrise ((1 - ↑b) / 2) t * qrise (-↑b / 2) t * qrise (-↑(c - k)) t / (qrise (-↑c) t ^ 2 * ↑t !))
+but is expected to have type
+  Tt t = 2 ^ (b + 1) * ↑(c.choose b) * ↑(c.choose k) * H t
+AlternatingSum/HuchtMut.lean:150:34: error: Application type mismatch: The argument
+  LT.lt.le hpref
+has type
+  0 ≤ 2 ^ b * ↑((a / 2 + b).choose b) * ↑((a / 2 + b).choose k)
+but is expected to have type
+  0 ≤ 2 ^ (b + 1) * ↑((a / 2 + b).choose b) * ↑((a / 2 + b).choose (m + (a + b - n)))
+in the application
+  pos_of_mul_pos_right hpos (LT.lt.le hpref)
+
+## stderr
+

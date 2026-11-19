@@ -1,0 +1,7 @@
+# control Binomial.lean
+# command: nice -n 15 lake env lean AlternatingSum/BinomialMut.lean
+# exit: 0
+## stdout
+
+## stderr
+

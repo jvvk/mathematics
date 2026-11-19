@@ -1,0 +1,19 @@
+# Taylor: degree n - a/2 + 1
+# command: nice -n 15 lake env lean AlternatingSum/TaylorMut.lean
+# exit: 1
+## stdout
+AlternatingSum/TaylorMut.lean:189:62: error: Application type mismatch: The argument
+  LT.lt.ne' htop
+has type
+  (∑ p ∈ antidiagonal (mono (r + r) b), termPoly ν p).coeff (n - (r + r) / 2) ≠ 0
+but is expected to have type
+  (∑ p ∈ antidiagonal (mono (r + r) b), termPoly ν p).coeff (n - (r + r) / 2 + 1) ≠ 0
+in the application
+  Polynomial.le_natDegree_of_ne_zero (LT.lt.ne' htop)
+AlternatingSum/TaylorMut.lean:193:48: error: mod_cast has type
+  n - (r + r) / 2 + 1 < k
+but is expected to have type
+  n - (r + r) / 2 < k
+
+## stderr
+

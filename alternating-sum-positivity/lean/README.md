@@ -44,3 +44,8 @@ exponent, a binomial, a parameter of the ₃F₂, the threshold of Corollary 2, 
 and compiles the copy against the original earlier modules. A mutant counts as rejected only if Lean reports an
 error in the mutated copy; a timeout or crash fails the run. All seventeen mutants are rejected, and the ten
 unchanged copies compile (`mutation-validation.log`, full logs in `mutation-logs/`).
+
+Of the seventeen mutants, twelve change a theorem statement and are rejected inside that declaration; five change
+a definition (the triple sum `L`, the series `E`, Taylor's inner sum, a parameter of Hucht's series) and are
+rejected in the first theorem whose proof depends on it. `axiom-validation.txt` is the output of
+`AlternatingSum/Audit.lean` from an isolated build (19 November 2026).

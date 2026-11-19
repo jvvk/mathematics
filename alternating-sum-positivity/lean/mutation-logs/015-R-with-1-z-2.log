@@ -1,0 +1,17 @@
+# R with (1+z)^2
+# command: nice -n 15 lake env lean AlternatingSum/SeriesMut.lean
+# exit: 1
+## stdout
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+AlternatingSum/SeriesMut.lean:64:43: error: unsolved goals
+m : ℕ
+h : subst ab (G m) * ((1 - ab 0) * (1 - ab 1)) ^ (m + 1) = 1
+⊢ 1 - X 1 * 2 + X 1 ^ 2 - X 0 ^ 2 = 1 + X 1 * 2 + X 1 ^ 2 - X 0 ^ 2
+
+## stderr
+

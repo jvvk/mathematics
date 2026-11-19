@@ -1,0 +1,16 @@
+# positivity: a < 2n
+# command: nice -n 15 lake env lean AlternatingSum/PositivityMut.lean
+# exit: 1
+## stdout
+AlternatingSum/PositivityMut.lean:94:34: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  e ≥ 0
+  d ≥ 0
+  d - e ≤ 0
+  d ≥ 0
+where
+ d := ↑n
+ e := ↑(a + b - n)
+
+## stderr
+

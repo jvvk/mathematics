@@ -1,0 +1,7 @@
+# control Leibniz.lean
+# command: nice -n 15 lake env lean AlternatingSum/LeibnizMut.lean
+# exit: 0
+## stdout
+
+## stderr
+

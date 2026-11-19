@@ -1,0 +1,7 @@
+# control Taylor.lean
+# command: nice -n 15 lake env lean AlternatingSum/TaylorMut.lean
+# exit: 0
+## stdout
+
+## stderr
+

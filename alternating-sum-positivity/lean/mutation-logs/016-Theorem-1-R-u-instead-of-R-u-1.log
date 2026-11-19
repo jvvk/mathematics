@@ -1,0 +1,23 @@
+# Theorem 1: R^u instead of R^(u+1)
+# command: nice -n 15 lake env lean AlternatingSum/MainMut.lean
+# exit: 1
+## stdout
+AlternatingSum/MainMut.lean:42:24: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  R ^ (?u + 1) * (R - 1) ^ ?ν
+in the target expression
+  ↑(u + a + b - n)! ^ 2 / ↑(a + b - n)! *
+      ∑ k ∈ range (a + 1),
+        ∑ l ∈ range (b + 1),
+          (-1) ^ k * ↑((k + l).choose k) * ↑((a + b - k - l).choose (a - k)) * c u (a + b - n) (k + l) (a + b - k - l) =
+    ↑(u + (a + b - n))! ^ 2 / ↑(a + b - n)! * (coeff (mono a b)) (R ^ u * (R - 1) ^ (a + b - n))
+
+u a b n : ℕ
+hn : n ≤ a + b
+⊢ ↑(u + a + b - n)! ^ 2 / ↑(a + b - n)! *
+      ∑ k ∈ range (a + 1),
+        ∑ l ∈ range (b + 1),
+          (-1) ^ k * ↑((k + l).choose k) * ↑((a + b - k - l).choose (a - k)) * c u (a + b - n) (k + l) (a + b - k - l) =
+    ↑(u + (a + b - n))! ^ 2 / ↑(a + b - n)! * (coeff (mono a b)) (R ^ u * (R - 1) ^ (a + b - n))
+
+## stderr
+

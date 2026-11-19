@@ -1,0 +1,20 @@
+# extreme case: C(u+a/2+1, a/2)
+# command: nice -n 15 lake env lean AlternatingSum/CorollariesMut.lean
+# exit: 1
+## stdout
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+AlternatingSum/CorollariesMut.lean:99:46: error: unsolved goals
+u a b : ℕ
+ha : Even a
+h1 : (u + a / 2).choose u = (u + a / 2).choose (a / 2)
+h2 : (2 * u + a + 1 + b).choose (2 * u + a + 1) = (2 * u + a + b + 1).choose b
+⊢ ↑u ! ^ 2 * ↑((u + a / 2).choose (a / 2)) * ↑((1 + u * 2 + a + b).choose b) =
+    ↑u ! ^ 2 * ↑((1 + u * 2 + a + b).choose b) * ↑((1 + u + a / 2).choose (a / 2))
+
+## stderr
+

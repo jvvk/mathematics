@@ -1,0 +1,15 @@
+# Hucht: parameter (2-b)/2
+# command: nice -n 15 lake env lean AlternatingSum/HuchtMut.lean
+# exit: 1
+## stdout
+AlternatingSum/HuchtMut.lean:122:6: error: Type mismatch
+  sum_subset ?m.670 fun t x ht => hz1 t ?m.674
+has type
+  ∑ x ∈ ?m.666, H x = ∑ x ∈ ?m.667, H x
+but is expected to have type
+  F32 b j c = ∑ t ∈ range (b / 2 + j + 1), H t
+AlternatingSum/HuchtMut.lean:122:30: error: `simp` made no progress
+AlternatingSum/HuchtMut.lean:122:83: error: `simp` made no progress
+
+## stderr
+

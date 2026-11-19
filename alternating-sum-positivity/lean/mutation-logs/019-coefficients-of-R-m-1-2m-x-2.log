@@ -1,0 +1,37 @@
+# coefficients of R^(m+1): 2m+x+2
+# command: nice -n 15 lake env lean AlternatingSum/CoeffsMut.lean
+# exit: 1
+## stdout
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+AlternatingSum/CoeffsMut.lean:167:2: error: unsolved goals
+case pos.e_a.e_a
+m y r : ℕ
+hr : (r + r) / 2 = r
+hsum :
+  ∑ t ∈ range (y + 1),
+      (PowerSeries.coeff t) (inv1 1 ^ (m + 1)) * (↑((m + r).choose m) * (PowerSeries.coeff (y - t)) (inv1 1 ^ r)) =
+    ↑((m + r).choose m) * (PowerSeries.coeff y) (inv1 1 ^ (m + 1) * inv1 1 ^ r)
+⊢ 1 + m * 2 + r * 2 + y = 2 + m * 2 + r * 2 + y
+
+case pos.e_a.e_a
+m y r : ℕ
+hr : (r + r) / 2 = r
+hsum :
+  ∑ t ∈ range (y + 1),
+      (PowerSeries.coeff t) (inv1 1 ^ (m + 1)) * (↑((m + r).choose m) * (PowerSeries.coeff (y - t)) (inv1 1 ^ r)) =
+    ↑((m + r).choose m) * (PowerSeries.coeff y) (inv1 1 ^ (m + 1) * inv1 1 ^ r)
+⊢ 1 + m * 2 + r * 2 = 2 + m * 2 + r * 2
+
+## stderr
+

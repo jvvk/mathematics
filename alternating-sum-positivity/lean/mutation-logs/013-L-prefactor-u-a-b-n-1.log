@@ -1,0 +1,16 @@
+# L: prefactor (u+a+b-n+1)!
+# command: nice -n 15 lake env lean AlternatingSum/Step1Mut.lean
+# exit: 1
+## stdout
+AlternatingSum/Step1Mut.lean:75:34: error: Type mismatch
+  sum_comm
+has type
+  ∑ x ∈ ?m.233, ∑ y ∈ ?m.234, ?m.235 x y = ∑ y ∈ ?m.234, ∑ x ∈ ?m.233, ?m.235 x y
+but is expected to have type
+  (∑ x ∈ range (n + 1),
+      ∑ i ∈ range (b + 1), ↑(u + a + b - n + 1)! * if inRange a b n x x✝¹ i then term u a b n x x✝¹ i else 0) =
+    ∑ l ∈ range (b + 1),
+      ∑ i ∈ range (n + 1), ↑(u + a + b - n)! * if inRange a b n i x✝¹ l then term u a b n i x✝¹ l else 0
+
+## stderr
+

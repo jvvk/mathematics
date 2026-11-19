@@ -1,0 +1,7 @@
+# control Series.lean
+# command: nice -n 15 lake env lean AlternatingSum/SeriesMut.lean
+# exit: 0
+## stdout
+
+## stderr
+

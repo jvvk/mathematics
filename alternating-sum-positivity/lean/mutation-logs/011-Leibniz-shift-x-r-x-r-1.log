@@ -1,0 +1,67 @@
+# Leibniz: shift x+r -> x+r+1
+# command: nice -n 15 lake env lean AlternatingSum/LeibnizMut.lean
+# exit: 1
+## stdout
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+AlternatingSum/LeibnizMut.lean:39:9: error: unsolved goals
+case zero
+f g : ℕ → ℚ
+x : ℕ
+⊢ f x * g x = g x * f (1 + x)
+AlternatingSum/LeibnizMut.lean:59:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  B
+in the target expression
+  ∑ x_1 ∈ range (n + 1), ↑(n.choose x_1) * D (x_1 + 1) g x * D (n - x_1) f (x + x_1 + 1 + 1) +
+      ∑ x_1 ∈ range (n + 1), ↑(n.choose x_1) * D x_1 g x * D (n - x_1 + 1) f (x + x_1 + 1) =
+    ∑ r ∈ range (n + 1 + 1), ↑((n + 1).choose r) * D r g x * D (n + 1 - r) f (x + r + 1)
+
+case succ
+n : ℕ
+ih :
+  ∀ (f g : ℕ → ℚ) (x : ℕ),
+    D n (fun q => f q * g q) x = ∑ r ∈ range (n + 1), ↑(n.choose r) * D r g x * D (n - r) f (x + r + 1)
+f g : ℕ → ℚ
+x : ℕ
+hsplit : (fwdDiff 1 fun q => f q * g q) = (fun q => f (q + 1) * fwdDiff 1 g q) + fun q => fwdDiff 1 f q * g q
+A : ℚ := ∑ r ∈ range (n + 1), ↑(n.choose r) * D (r + 1) g x * D (n - r) f (x + r + 1)
+B : ℚ := ∑ r ∈ range (n + 1), ↑(n.choose r) * D r g x * D (n - r + 1) f (x + r)
+hB : B = ∑ r ∈ range n, ↑(n.choose (r + 1)) * D (r + 1) g x * D (n - r) f (x + r + 1) + D 0 g x * D (n + 1) f x
+⊢ ∑ x_1 ∈ range (n + 1), ↑(n.choose x_1) * D (x_1 + 1) g x * D (n - x_1) f (x + x_1 + 1 + 1) +
+      ∑ x_1 ∈ range (n + 1), ↑(n.choose x_1) * D x_1 g x * D (n - x_1 + 1) f (x + x_1 + 1) =
+    ∑ r ∈ range (n + 1 + 1), ↑((n + 1).choose r) * D r g x * D (n + 1 - r) f (x + r + 1)
+AlternatingSum/LeibnizMut.lean:135:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ∑ x ∈ range (ν + 1),
+    (↑(ν.choose x) * if x ≤ j then ↑((u + j).choose (j - x)) else 0) *
+      if ν - x ≤ s then ↑((x + (u + s)).choose (s - (ν - x))) else 0
+in the target expression
+  (∑ i ∈ range (n + 1),
+      if n ≤ i + s ∧ i ≤ j then ↑(ν.choose (j - i)) * ↑((u + j).choose i) * ↑((u + s + j - i).choose (n - i)) else 0) =
+    ∑ x ∈ range (ν + 1),
+      (↑(ν.choose x) * if x ≤ j then ↑((u + j).choose (j - x)) else 0) *
+        if ν - x ≤ s then ↑((x + 1 + (u + s)).choose (s - (ν - x))) else 0
+
+u ν s j n : ℕ
+hn : n + ν = s + j
+f : ℕ → ℚ := fun q => ↑((q + (u + s)).choose s)
+g : ℕ → ℚ := fun q => ↑((q + (u + j)).choose j)
+hN :
+  D ν (fun q => f q * g q) 0 =
+    ∑ p ∈ range (ν + 1), (-1) ^ p * ↑(ν.choose p) * ↑((u + ν - p + s).choose s) * ↑((u + ν - p + j).choose j)
+hR :
+  ∀ x ∈ range (ν + 1),
+    ((↑(ν.choose x) * if x ≤ j then ↑((u + j).choose (j - x)) else 0) *
+        if ν - x ≤ s then ↑((x + (u + s)).choose (s - (ν - x))) else 0) =
+      if x ≤ j ∧ ν - x ≤ s then ↑(ν.choose x) * ↑((u + j).choose (j - x)) * ↑((x + (u + s)).choose (s - (ν - x))) else 0
+⊢ (∑ i ∈ range (n + 1),
+      if n ≤ i + s ∧ i ≤ j then ↑(ν.choose (j - i)) * ↑((u + j).choose i) * ↑((u + s + j - i).choose (n - i)) else 0) =
+    ∑ x ∈ range (ν + 1),
+      (↑(ν.choose x) * if x ≤ j then ↑((u + j).choose (j - x)) else 0) *
+        if ν - x ≤ s then ↑((x + 1 + (u + s)).choose (s - (ν - x))) else 0
+
+## stderr
+

@@ -1,0 +1,28 @@
+control passes: Leibniz.lean
+control passes: Step1.lean
+control passes: Series.lean
+control passes: Main.lean
+control passes: Coeffs.lean
+control passes: Corollaries.lean
+control passes: Positivity.lean
+control passes: Taylor.lean
+control passes: Binomial.lean
+control passes: Hucht.lean
+rejected: Leibniz: shift x+r -> x+r+1 (exit 1, diagnostic: AlternatingSum/LeibnizMut.lean:39:9: error: unsolved goals)
+rejected: Step 3: drop the alternating sign (exit 1, diagnostic: AlternatingSum/LeibnizMut.lean:128:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern)
+rejected: L: prefactor (u+a+b-n+1)! (exit 1, diagnostic: AlternatingSum/Step1Mut.lean:75:34: error: Type mismatch)
+rejected: L: numerator (k+l+1)! (exit 1, diagnostic: AlternatingSum/Step1Mut.lean:46:71: error: unsolved goals)
+rejected: R with (1+z)^2 (exit 1, diagnostic: AlternatingSum/SeriesMut.lean:64:43: error: unsolved goals)
+rejected: Theorem 1: R^u instead of R^(u+1) (exit 1, diagnostic: AlternatingSum/MainMut.lean:42:24: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern)
+rejected: Theorem 1: prefactor not squared (exit 1, diagnostic: AlternatingSum/MainMut.lean:41:64: error: unsolved goals)
+rejected: Theorem 1: (R-1)^(nu+1) (exit 1, diagnostic: AlternatingSum/MainMut.lean:41:68: error: unsolved goals)
+rejected: coefficients of R^(m+1): 2m+x+2 (exit 1, diagnostic: AlternatingSum/CoeffsMut.lean:167:2: error: unsolved goals)
+rejected: extreme case: C(u+a/2+1, a/2) (exit 1, diagnostic: AlternatingSum/CorollariesMut.lean:99:46: error: unsolved goals)
+rejected: G > 0 (false for odd a) (exit 1, diagnostic: AlternatingSum/CorollariesMut.lean:122:36: error: failed to synthesize)
+rejected: positivity: a < 2n (exit 1, diagnostic: AlternatingSum/PositivityMut.lean:94:34: error: omega could not prove the goal:)
+rejected: Taylor: degree n - a/2 + 1 (exit 1, diagnostic: AlternatingSum/TaylorMut.lean:189:62: error: Application type mismatch: The argument)
+rejected: Taylor inner sum: 2^(2d-b+1) (exit 1, diagnostic: AlternatingSum/BinomialMut.lean:176:2: error: unsolved goals)
+rejected: Taylor formula: m < n only (exit 1, diagnostic: AlternatingSum/BinomialMut.lean:218:10: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern)
+rejected: Hucht: 2^(b+1) (exit 1, diagnostic: AlternatingSum/HuchtMut.lean:130:4: error: Type mismatch)
+rejected: Hucht: parameter (2-b)/2 (exit 1, diagnostic: AlternatingSum/HuchtMut.lean:122:6: error: Type mismatch)
+17/17 mutants rejected, all controls pass

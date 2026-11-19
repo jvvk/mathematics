@@ -1,0 +1,24 @@
+# Taylor inner sum: 2^(2d-b+1)
+# command: nice -n 15 lake env lean AlternatingSum/BinomialMut.lean
+# exit: 1
+## stdout
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+AlternatingSum/BinomialMut.lean:176:2: error: unsolved goals
+a b n m : ℕ
+ha : Even a
+hn : n ≤ a + b
+d : ℕ
+hd : (b + 1) / 2 ≤ d ∧ d ≤ b
+⊢ ↑(d.choose (d * 2 - b)) * ↑((d + a / 2).choose d) * ↑((d + a / 2).choose (m + (a + b - n))) * (-1) ^ (b - d) *
+        2 ^ (d * 2 - b) *
+      2 =
+    ↑(d.choose (d * 2 - b)) * ↑((d + a / 2).choose d) * ↑((d + a / 2).choose (m + (a + b - n))) * (-1) ^ (b - d) *
+      2 ^ (d * 2 - b)
+
+## stderr
+

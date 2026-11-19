@@ -1,0 +1,26 @@
+# Taylor formula: m < n only
+# command: nice -n 15 lake env lean AlternatingSum/BinomialMut.lean
+# exit: 1
+## stdout
+AlternatingSum/BinomialMut.lean:218:10: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ∑ m ∈ range (n + 1), ↑(u.choose m) * Tinner a b n m
+in the target expression
+  ∑ m ∈ range (u + n + 1), ↑(u.choose m) * (coeff (mono a b)) (R * (R - 1) ^ (m + (a + b - n))) =
+    ∑ m ∈ range n, ↑(u.choose m) * Tinner a b n m
+
+case e_a
+u a b n : ℕ
+ha : Even a
+hn : n ≤ a + b
+hz : ∀ (m : ℕ), n < m → (coeff (mono a b)) (R * (R - 1) ^ (m + (a + b - n))) = 0
+e1 :
+  ∑ m ∈ range (u + 1), ↑(u.choose m) * (coeff (mono a b)) (R * (R - 1) ^ (m + (a + b - n))) =
+    ∑ m ∈ range (u + n + 1), ↑(u.choose m) * (coeff (mono a b)) (R * (R - 1) ^ (m + (a + b - n)))
+e2 :
+  ∑ m ∈ range (n + 1), ↑(u.choose m) * Tinner a b n m =
+    ∑ m ∈ range (u + n + 1), ↑(u.choose m) * (coeff (mono a b)) (R * (R - 1) ^ (m + (a + b - n)))
+⊢ ∑ m ∈ range (u + n + 1), ↑(u.choose m) * (coeff (mono a b)) (R * (R - 1) ^ (m + (a + b - n))) =
+    ∑ m ∈ range n, ↑(u.choose m) * Tinner a b n m
+
+## stderr
+

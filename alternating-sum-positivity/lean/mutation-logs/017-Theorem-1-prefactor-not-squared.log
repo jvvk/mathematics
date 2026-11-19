@@ -1,0 +1,12 @@
+# Theorem 1: prefactor not squared
+# command: nice -n 15 lake env lean AlternatingSum/MainMut.lean
+# exit: 1
+## stdout
+AlternatingSum/MainMut.lean:41:64: error: unsolved goals
+u a b n : ℕ
+hn : n ≤ a + b
+⊢ ↑(u + a + b - n)! ^ 2 / ↑(a + b - n)! * ∑ s ∈ range (a + b + 1), c u (a + b - n) s (a + b - s) * P s (a + b - s) a =
+    ↑(u + a + b - n)! ^ 1 / ↑(a + b - n)! * ∑ x ∈ range (a + b + 1), c u (a + b - n) x (a + b - x) * P x (a + b - x) a
+
+## stderr
+

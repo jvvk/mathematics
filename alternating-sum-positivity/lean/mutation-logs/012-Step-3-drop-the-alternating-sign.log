@@ -1,0 +1,24 @@
+# Step 3: drop the alternating sign
+# command: nice -n 15 lake env lean AlternatingSum/LeibnizMut.lean
+# exit: 1
+## stdout
+AlternatingSum/LeibnizMut.lean:128:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ∑ p ∈ range (ν + 1), (-1) ^ p * ↑(ν.choose p) * ↑((u + ν - p + s).choose s) * ↑((u + ν - p + j).choose j)
+in the target expression
+  (∑ i ∈ range (n + 1),
+      if n ≤ i + s ∧ i ≤ j then ↑(ν.choose (j - i)) * ↑((u + j).choose i) * ↑((u + s + j - i).choose (n - i)) else 0) =
+    ∑ p ∈ range (ν + 1), 1 ^ p * ↑(ν.choose p) * ↑((u + ν - p + s).choose s) * ↑((u + ν - p + j).choose j)
+
+u ν s j n : ℕ
+hn : n + ν = s + j
+f : ℕ → ℚ := fun q => ↑((q + (u + s)).choose s)
+g : ℕ → ℚ := fun q => ↑((q + (u + j)).choose j)
+hN :
+  D ν (fun q => f q * g q) 0 =
+    ∑ p ∈ range (ν + 1), (-1) ^ p * ↑(ν.choose p) * ↑((u + ν - p + s).choose s) * ↑((u + ν - p + j).choose j)
+⊢ (∑ i ∈ range (n + 1),
+      if n ≤ i + s ∧ i ≤ j then ↑(ν.choose (j - i)) * ↑((u + j).choose i) * ↑((u + s + j - i).choose (n - i)) else 0) =
+    ∑ p ∈ range (ν + 1), 1 ^ p * ↑(ν.choose p) * ↑((u + ν - p + s).choose s) * ↑((u + ν - p + j).choose j)
+
+## stderr
+

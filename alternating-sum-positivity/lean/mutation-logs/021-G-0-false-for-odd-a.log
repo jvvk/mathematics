@@ -1,0 +1,11 @@
+# G > 0 (false for odd a)
+# command: nice -n 15 lake env lean AlternatingSum/CorollariesMut.lean
+# exit: 1
+## stdout
+AlternatingSum/CorollariesMut.lean:122:36: error: failed to synthesize
+  Zero ?m.17
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+
+## stderr
+
