@@ -1,0 +1,78 @@
+# wrong closing hull edge
+# command: nice -n 15 lake env lean --threads=1 LeanProofs/TwoTri/Hulls.lean
+# exit: 1
+## stdout
+LeanProofs/TwoTri/Hulls.lean:163:93: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  a ≥ 1
+where
+ a := ↑(h - 2)
+LeanProofs/TwoTri/Hulls.lean:183:39: error: unsolved goals
+h : ℕ
+h3 : 3 ≤ h
+hj : h - 2 < h
+hij : 0 < h - 2
+hs : s(par 0, par (h - 2)) ∈ eset h (HullR h)
+k : ℕ
+hk : k < h
+hc : par k ∈ cvx h
+h1 : par k ≠ par 0
+h2 : par k ≠ par (h - 2)
+this : k ≠ 0
+e : k = h - 1
+⊢ par (h - 1) = par (h - 2)
+LeanProofs/TwoTri/Hulls.lean:184:41: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  a ≥ 2
+where
+ a := ↑(h - 1)
+LeanProofs/TwoTri/Hulls.lean:195:21: error: Application type mismatch: The argument
+  rfl
+has type
+  ?m.168 = ?m.168
+but is expected to have type
+  s(par 0, par (h - 2)) = s(par 0, par (h - 1))
+in the application
+  Or.inl rfl
+LeanProofs/TwoTri/Hulls.lean:197:58: error: Application type mismatch: The argument
+  rfl
+has type
+  ?m.236 = ?m.236
+but is expected to have type
+  h - 1 = h - 2
+in the application
+  ⟨rfl, rfl⟩
+LeanProofs/TwoTri/Hulls.lean:221:73: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  a ≥ 5
+where
+ a := ↑(h - 2)
+LeanProofs/TwoTri/Hulls.lean:228:36: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  a ≥ 4
+where
+ a := ↑(h - 2)
+LeanProofs/TwoTri/Hulls.lean:236:73: error: omega could not prove the goal:
+No usable constraints found. You may need to unfold definitions so `omega` can see linear arithmetic facts about `Nat` and `Int`, which may also involve multiplication, division, and modular remainder by constants.
+LeanProofs/TwoTri/Hulls.lean:244:36: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  a ≥ 4
+where
+ a := ↑(h - 2)
+LeanProofs/TwoTri/Hulls.lean:323:45: error: omega could not prove the goal:
+No usable constraints found. You may need to unfold definitions so `omega` can see linear arithmetic facts about `Nat` and `Int`, which may also involve multiplication, division, and modular remainder by constants.
+LeanProofs/TwoTri/Hulls.lean:329:50: error: omega could not prove the goal:
+No usable constraints found. You may need to unfold definitions so `omega` can see linear arithmetic facts about `Nat` and `Int`, which may also involve multiplication, division, and modular remainder by constants.
+LeanProofs/TwoTri/Hulls.lean:333:73: error: omega could not prove the goal:
+No usable constraints found. You may need to unfold definitions so `omega` can see linear arithmetic facts about `Nat` and `Int`, which may also involve multiplication, division, and modular remainder by constants.
+LeanProofs/TwoTri/Hulls.lean:335:50: error: omega could not prove the goal:
+No usable constraints found. You may need to unfold definitions so `omega` can see linear arithmetic facts about `Nat` and `Int`, which may also involve multiplication, division, and modular remainder by constants.
+LeanProofs/TwoTri/Hulls.lean:341:15: error: omega could not prove the goal:
+No usable constraints found. You may need to unfold definitions so `omega` can see linear arithmetic facts about `Nat` and `Int`, which may also involve multiplication, division, and modular remainder by constants.
+LeanProofs/TwoTri/Hulls.lean:347:73: error: omega could not prove the goal:
+No usable constraints found. You may need to unfold definitions so `omega` can see linear arithmetic facts about `Nat` and `Int`, which may also involve multiplication, division, and modular remainder by constants.
+LeanProofs/TwoTri/Hulls.lean:349:15: error: omega could not prove the goal:
+No usable constraints found. You may need to unfold definitions so `omega` can see linear arithmetic facts about `Nat` and `Int`, which may also involve multiplication, division, and modular remainder by constants.
+
+## stderr
+

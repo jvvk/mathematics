@@ -1,0 +1,30 @@
+# seed A loses the edge v5v7
+# command: nice -n 15 lake env lean --threads=1 LeanProofs/TwoTri/Hulls.lean
+# exit: 1
+## stdout
+LeanProofs/TwoTri/Hulls.lean:225:15: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  0 ≤ b ≤ 6
+  b ≥ 6
+  a ≥ 6
+  a - b ≥ 1
+where
+ a := ↑h
+ b := ↑j
+LeanProofs/TwoTri/Hulls.lean:228:46: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  a ≥ 6
+where
+ a := ↑(h - 1)
+LeanProofs/TwoTri/Hulls.lean:232:46: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  b ≥ 0
+  b ≥ 7
+  a ≥ 6
+  a - b ≥ 1
+where
+ a := ↑h
+ b := ↑j
+
+## stderr
+

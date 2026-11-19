@@ -1,0 +1,126 @@
+# one-sided interleaving
+# command: nice -n 15 lake env lean --threads=1 LeanProofs/TwoTri/Hulls.lean
+# exit: 1
+## stdout
+LeanProofs/TwoTri/Hulls.lean:36:2: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  d ≥ 0
+  c ≥ 0
+  c - d ≥ 1
+  b ≥ 0
+  b - c ≤ -1
+  b - d ≥ 1
+  a ≥ 0
+  a - b ≥ 1
+  a - c ≥ 1
+  a - d ≥ 1
+where
+ a := ↑j
+ b := ↑i
+ c := ↑l
+ d := ↑k
+LeanProofs/TwoTri/Hulls.lean:229:52: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  b ≥ 0
+  b ≥ 3
+  a ≥ 6
+  a - b ≥ 1
+where
+ a := ↑h
+ b := ↑j
+LeanProofs/TwoTri/Hulls.lean:230:52: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  b ≥ 5
+  b ≥ 4
+  a ≥ 6
+  a - b ≥ 1
+where
+ a := ↑h
+ b := ↑j
+LeanProofs/TwoTri/Hulls.lean:231:52: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  b ≥ 0
+  b ≥ 5
+  a ≥ 6
+  a - b ≥ 1
+where
+ a := ↑h
+ b := ↑j
+LeanProofs/TwoTri/Hulls.lean:232:56: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  c ≥ 5
+  b ≥ 0
+  b - c ≥ 2
+  a ≥ 6
+  a - b ≥ 1
+where
+ a := ↑h
+ b := ↑j
+ c := ↑i
+LeanProofs/TwoTri/Hulls.lean:246:52: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  b ≥ 0
+  b ≥ 4
+  a ≥ 6
+  a - b ≥ 1
+where
+ a := ↑h
+ b := ↑j
+LeanProofs/TwoTri/Hulls.lean:247:52: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  b ≥ 6
+  b ≥ 5
+  a ≥ 6
+  a - b ≥ 1
+where
+ a := ↑h
+ b := ↑j
+LeanProofs/TwoTri/Hulls.lean:248:52: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  b ≥ 0
+  b ≥ 6
+  a ≥ 6
+  a - b ≥ 1
+where
+ a := ↑h
+ b := ↑j
+LeanProofs/TwoTri/Hulls.lean:249:56: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  c ≥ 5
+  b ≥ 0
+  b - c ≥ 2
+  a ≥ 6
+  a - b ≥ 1
+where
+ a := ↑h
+ b := ↑j
+ c := ↑i
+LeanProofs/TwoTri/Hulls.lean:329:50: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  b ≥ 1
+  0 ≤ a ≤ 3
+  a - b ≥ 2
+where
+ a := ↑j
+ b := ↑i
+LeanProofs/TwoTri/Hulls.lean:342:52: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  0 ≤ a ≤ 4
+  a ≥ 3
+where
+ a := ↑j
+LeanProofs/TwoTri/Hulls.lean:343:52: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  0 ≤ a ≤ 4
+  a ≥ 4
+where
+ a := ↑j
+LeanProofs/TwoTri/Hulls.lean:352:52: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  0 ≤ a ≤ 4
+  a ≥ 4
+where
+ a := ↑j
+
+## stderr
+

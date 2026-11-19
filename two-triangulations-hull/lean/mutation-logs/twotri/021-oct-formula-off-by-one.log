@@ -1,0 +1,22 @@
+# oct formula off by one
+# command: nice -n 15 lake env lean --threads=1 LeanProofs/TwoTri/Oct.lean
+# exit: 1
+## stdout
+LeanProofs/TwoTri/Oct.lean:116:2: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  d ≥ 0
+  c ≥ 0
+  b ≥ 0
+  b - d ≤ 0
+  a ≥ 3
+  6*a - b - 2*c ≥ 6
+where
+ a := ↑P.card
+ b := ↑(maxSplit P)
+ c := ↑(hullEdges P).card
+ d := ↑(P.card.choose 2)
+LeanProofs/TwoTri/Oct.lean:151:2: error: omega could not prove the goal:
+No usable constraints found. You may need to unfold definitions so `omega` can see linear arithmetic facts about `Nat` and `Int`, which may also involve multiplication, division, and modular remainder by constants.
+
+## stderr
+

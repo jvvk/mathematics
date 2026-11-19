@@ -1,5 +1,5 @@
 # python3 -I scripts/mutate.py scripts/mutants_twotri.toml and scripts/mutants_hulls.toml, after lake build LeanProofs, 19 November 2026.
-# Rejection = nonzero exit and a Lean error located in LeanProofs/TwoTri/. Paths shortened from the build directory.
+# Rejection = nonzero exit below 128 and a Lean error located in the edited file; full output of every run in mutation-logs/.
 ## mutants_twotri.toml
 control passes: Main.lean
 control passes: Upper.lean

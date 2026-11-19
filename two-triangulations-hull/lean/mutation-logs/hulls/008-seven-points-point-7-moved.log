@@ -1,0 +1,52 @@
+# seven points: point 7 moved
+# command: nice -n 15 lake env lean --threads=1 LeanProofs/TwoTri/Hulls.lean
+# exit: 1
+## stdout
+LeanProofs/TwoTri/Hulls.lean:375:36: error: Tactic `decide` failed for proposition
+  GenPos P7
+because its `Decidable` instance
+  instDecidableGenPos P7
+did not reduce to `isTrue` or `isFalse`.
+
+Reduction got stuck at the `Decidable` instance
+  match
+    ((((↑⟨q2, ⋯⟩).1 - (↑⟨q1, ⋯⟩).1) * ((↑⟨q3, ⋯⟩).2 - (↑⟨q1, ⋯⟩).2)).sub
+        (((↑⟨q2, ⋯⟩).2 - (↑⟨q1, ⋯⟩).2) * ((↑⟨q3, ⋯⟩).1 - (↑⟨q1, ⋯⟩).1))).num,
+    ↑0 with
+  | Int.ofNat a, Int.ofNat b =>
+    match decEq a b with
+    | isTrue h => isTrue ⋯
+    | isFalse h => isFalse ⋯
+  | Int.ofNat a, Int.negSucc a_1 => isFalse ⋯
+  | Int.negSucc a, Int.ofNat a_1 => isFalse ⋯
+  | Int.negSucc a, Int.negSucc b =>
+    match decEq a b with
+    | isTrue h => isTrue ⋯
+    | isFalse h => isFalse ⋯
+LeanProofs/TwoTri/Hulls.lean:379:37: error: Tactic `decide` failed for proposition
+  IsTri P7 B7
+because its `Decidable` instance
+  instDecidableIsTri P7 B7
+did not reduce to `isTrue` or `isFalse`.
+
+Reduction got stuck at the `Decidable` instance
+  match crossB ↑⟨s(q1, q2), ⋯⟩ ↑⟨s(q1, q2), ⋯⟩, true with
+  | false, false => isTrue ⋯
+  | false, true => isFalse ⋯
+  | true, false => isFalse ⋯
+  | true, true => isTrue ⋯
+LeanProofs/TwoTri/Hulls.lean:385:68: error: Tactic `decide` failed for proposition
+  Face P7 B7 q2 q4 q5
+because its `Decidable` instance
+  instDecidableFace P7 B7 q2 q4 q5
+did not reduce to `isTrue` or `isFalse`.
+
+Reduction got stuck at the `Decidable` instance
+  match Rat.blt 0 (orient q2 q4 q5), true with
+  | false, false => isTrue ⋯
+  | false, true => isFalse ⋯
+  | true, false => isFalse ⋯
+  | true, true => isTrue ⋯
+
+## stderr
+

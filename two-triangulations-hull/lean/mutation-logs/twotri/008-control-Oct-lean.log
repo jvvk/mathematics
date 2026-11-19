@@ -1,0 +1,7 @@
+# control Oct.lean
+# command: nice -n 15 lake env lean --threads=1 LeanProofs/TwoTri/Oct.lean
+# exit: 0
+## stdout
+
+## stderr
+

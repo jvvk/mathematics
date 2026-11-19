@@ -1,0 +1,103 @@
+# fan lemma with a margin
+# command: nice -n 15 lake env lean --threads=1 LeanProofs/TwoTri/Fan.lean
+# exit: 1
+## stdout
+LeanProofs/TwoTri/Fan.lean:204:60: error: linarith failed to find a contradiction
+K : Type u_1
+inst✝² : Field K
+inst✝¹ : LinearOrder K
+inst✝ : IsStrictOrderedRing K
+P : Finset (K × K)
+hP : GenPos P
+T : Finset (Sym2 (K × K))
+hT : IsTri P T
+v : K × K
+hv : v ∈ P
+d x₁ : K × K
+hx₁ : x₁ ∈ P
+hx₁neg : dotd d v x₁ < 0
+Hm : Finset (K × K) := {r ∈ P | dotd d v r < 0}
+x₀ : K × K
+hx₀H : x₀ ∈ Hm
+hx₀min : ∀ y ∈ Hm, 0 ≤ orient v x₀ y
+hx₀ : x₀ ∈ P
+hx₀neg : dotd d v x₀ < 0
+H : ∀ w ∈ P, s(v, w) ∈ T → -1 ≤ dotd d v w
+hvx : v ≠ x₀
+h : s(v, x₀) ∈ T
+this : -1 ≤ dotd d v x₀
+⊢ False
+failed
+LeanProofs/TwoTri/Fan.lean:268:4: error: linarith failed to find a contradiction
+K : Type u_1
+inst✝² : Field K
+inst✝¹ : LinearOrder K
+inst✝ : IsStrictOrderedRing K
+P : Finset (K × K)
+hP : GenPos P
+T : Finset (Sym2 (K × K))
+hT : IsTri P T
+v : K × K
+hv : v ∈ P
+d x₁ : K × K
+hx₁ : x₁ ∈ P
+hx₁neg : dotd d v x₁ < 0
+Hm : Finset (K × K) := {r ∈ P | dotd d v r < 0}
+x₀ : K × K
+hx₀H : x₀ ∈ Hm
+hx₀min : ∀ y ∈ Hm, 0 ≤ orient v x₀ y
+hx₀ : x₀ ∈ P
+hx₀neg : dotd d v x₀ < 0
+H : ∀ w ∈ P, s(v, w) ∈ T → -1 ≤ dotd d v w
+hvx : v ≠ x₀
+hn : s(v, x₀) ∉ T
+B : Finset (Sym2 (K × K)) := {g ∈ T | Cross s(v, x₀) g}
+hBne : B.Nonempty
+a₁ a₂ : K × K
+hg₀B : s(a₁, a₂) ∈ B
+hg₀min : ∀ x' ∈ B, crossP v x₀ s(a₁, a₂) ≤ crossP v x₀ x'
+hg₀T : s(a₁, a₂) ∈ T
+hg₀c : SCross v x₀ a₁ a₂
+hgP : a₁ ∈ P ∧ a₂ ∈ P ∧ a₁ ≠ a₂
+τ σ : K
+hτ0 : 0 < τ
+hτ1 : τ < 1
+hσ0 : 0 < σ
+hσ1 : σ < 1
+hden : ∀ (q' q : K × K), SCross v x₀ q' q → orient q' q v - orient q' q x₀ ≠ 0
+hτp : τ = crossP v x₀ s(a₁, a₂)
+hfirst :
+  ∀ q' ∈ P, ∀ q ∈ P, s(q', q) ∈ T → ∀ (t ν : K), 0 < t → t < τ → 0 ≤ ν → ν ≤ 1 → lerp v x₀ t = lerp q' q ν → False
+hsep : orient v x₀ a₁ * orient v x₀ a₂ < 0
+n1 : orient v x₀ a₁ ≠ 0
+n2 : orient v x₀ a₂ ≠ 0
+p q₀ : K × K
+hp : p ∈ P
+hq₀ : q₀ ∈ P
+hgT : s(q₀, p) ∈ T
+hpneg : dotd d v p < 0
+hppos : 0 < orient v x₀ p
+hq₀neg : orient v x₀ q₀ < 0
+μ : K
+hμ0 : 0 < μ
+hμ1 : μ < 1
+w : K × K := lerp v x₀ τ
+ew : w = lerp a₁ a₂ σ
+hw_neg : dotd d v w < 0
+hw : w = lerp q₀ p μ
+hwdef : w = lerp v x₀ τ
+hvwp : 0 < orient v w p
+C : Finset (K × K) := {y ∈ P | y = p ∨ InTri v w p y}
+y : K × K
+hyC : y ∈ C
+hymin : ∀ y_1 ∈ C, 0 ≤ orient v y y_1
+hy : y ∈ P
+hyC' : y = p ∨ InTri v w p y
+hT' : s(v, y) ∈ T
+hyneg : dotd d v y < 0
+this : -1 ≤ dotd d v y
+⊢ False
+failed
+
+## stderr
+

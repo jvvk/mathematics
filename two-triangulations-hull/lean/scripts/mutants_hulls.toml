@@ -6,7 +6,9 @@ cmd = ["lake", "env", "lean", "--threads=1", "{file}"]
 cwd = ".."
 timeout = 900
 mode = "inplace"
+log_dir = "../mutation-logs/hulls"   # complete stdout/stderr of every run
 fail_pattern = 'TwoTri/\S+\.lean:\d+:\d+: error'
+diagnostic_in_target = true   # the error must be located in the edited file itself
 
 [[mutant]]
 name = '''Theorem 2 with h >= 5'''

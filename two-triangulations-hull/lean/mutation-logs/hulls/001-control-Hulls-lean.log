@@ -1,0 +1,7 @@
+# control Hulls.lean
+# command: nice -n 15 lake env lean --threads=1 LeanProofs/TwoTri/Hulls.lean
+# exit: 0
+## stdout
+
+## stderr
+

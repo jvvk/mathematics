@@ -2,7 +2,8 @@
 
 Lean 4.34.0; Mathlib is pinned by `lake-manifest.json` to
 `5ed2965256430c3649e86755f9576b54eca72435` (v4.34.0).
-`SOURCE-SNAPSHOT.json` records the source commit and the SHA-256 of every archived file (regenerated for version 3;
+`SOURCE-SNAPSHOT.json` records the source commit and the SHA-256 of every listed source and script file (regenerated for version 3; the
+Lake configuration files are pinned separately;
 the version 1 record had the hash of an earlier `CheckClaims.lean` driver).
 Only this paper's import closure is included; unrelated proofs and local caches are excluded.
 

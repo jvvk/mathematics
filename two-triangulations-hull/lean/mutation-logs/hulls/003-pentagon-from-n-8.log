@@ -1,0 +1,15 @@
+# pentagon from n = 8
+# command: nice -n 15 lake env lean --threads=1 LeanProofs/TwoTri/Hulls.lean
+# exit: 1
+## stdout
+LeanProofs/TwoTri/Hulls.lean:491:23: error: Application type mismatch: The argument
+  hullOnly_of h3 hhn
+has type
+  n = h ∨ 6 ≤ h ∨ h = 5 ∧ 9 ≤ n → HullOnly n h
+but is expected to have type
+  n = h ∨ 6 ≤ h ∨ h = 5 ∧ 8 ≤ n → HullOnly n h
+in the application
+  { mp := fun H => ?m.23, mpr := hullOnly_of h3 hhn }
+
+## stderr
+

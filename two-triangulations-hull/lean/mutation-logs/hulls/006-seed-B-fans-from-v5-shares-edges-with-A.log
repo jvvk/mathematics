@@ -1,0 +1,60 @@
+# seed B fans from v5 (shares edges with A)
+# command: nice -n 15 lake env lean --threads=1 LeanProofs/TwoTri/Hulls.lean
+# exit: 1
+## stdout
+LeanProofs/TwoTri/Hulls.lean:236:73: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  b ≥ 6
+  b ≥ 5
+  a ≥ 6
+  a ≥ 6
+  a - b ≥ 1
+where
+ a := ↑h
+ b := ↑l
+LeanProofs/TwoTri/Hulls.lean:244:46: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  b ≥ 5
+  a ≥ 5
+  a ≥ 2
+  a - b ≤ -1
+where
+ a := ↑j
+ b := ↑(h - 1)
+LeanProofs/TwoTri/Hulls.lean:245:52: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  b ≥ 6
+  b ≥ 3
+  a ≥ 6
+  a - b ≥ 1
+where
+ a := ↑h
+ b := ↑j
+LeanProofs/TwoTri/Hulls.lean:249:46: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  c ≥ 5
+  b ≥ 0
+  b - c ≥ 2
+  a ≥ 6
+  a - b ≥ 1
+where
+ a := ↑h
+ b := ↑j
+ c := ↑i
+LeanProofs/TwoTri/Hulls.lean:261:65: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  b ≥ 6
+  b ≥ 6
+  a ≥ 6
+  a - b ≥ 1
+where
+ a := ↑h
+ b := ↑j
+LeanProofs/TwoTri/Hulls.lean:290:82: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  a ≥ 7
+where
+ a := ↑h
+
+## stderr
+

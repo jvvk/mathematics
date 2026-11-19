@@ -1,0 +1,14 @@
+# control Lower.lean
+# command: nice -n 15 lake env lean --threads=1 LeanProofs/TwoTri/Lower.lean
+# exit: 0
+## stdout
+LeanProofs/TwoTri/Lower.lean:121:34: warning: This simp argument is unused:
+  orient_self23
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [ℓ, hcyc]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+
+## stderr
+

@@ -36,9 +36,9 @@
     "LeanProofs/TwoTri/Transfer.lean": "4b0f8db55785c85cf54fd4ab47e920b353e16f012e5e971c29b0d605a8ff3e56",
     "LeanProofs/TwoTri/Upper.lean": "9f07ed90f301567d6571d6bf03fcb001edd35b79a4ae902b3c8ca653336cf9be",
     "LeanProofs.lean": "1512fadeca645da82dbd0ad8420130390415dc0475e6908f6ef98630f38c206d",
-    "scripts/mutate.py": "15072a124fad268200bcc5a2d58f417912c6ae451adc1f3c44f895670dd4fcf1",
-    "scripts/mutants_twotri.toml": "ef4e3be384d5a4e6a684687e0641358c4be73ef589c8e21688774bdb7b038892",
-    "scripts/mutants_hulls.toml": "74aa68610ba50830c53ee72346113319e733eef417e317f183ed096c94266249"
+    "scripts/mutate.py": "197561653de9ab9359e0849b3feb86598db451a1a867f154055cb1f972c38ed8",
+    "scripts/mutants_twotri.toml": "e379cb6cc39472f041ad3ee2b76acb3a0e2a7a72469d4d9cdef76c2336c278f0",
+    "scripts/mutants_hulls.toml": "41ce9142aebb30a003a7c1e0f96103d10df31d4373a1308ab15bae16cf399579"
   },
   "note": "Hashes regenerated for version 3 (19 November 2026) from the archived files; the version 1 record had the hash of an earlier CheckClaims.lean driver. The mutation scripts were replaced by the house harness suites."
 }

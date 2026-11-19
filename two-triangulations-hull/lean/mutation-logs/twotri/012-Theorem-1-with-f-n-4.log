@@ -1,0 +1,27 @@
+# Theorem 1 with f(n) = 4
+# command: nice -n 15 lake env lean --threads=1 LeanProofs/TwoTri/Main.lean
+# exit: 1
+## stdout
+LeanProofs/TwoTri/Main.lean:31:2: error: Tactic `apply` failed: could not unify the conclusion of `le_antisymm (Nat.sInf_le hmem)`
+  sInf (sharedCounts n) = 5
+with the goal
+  f n = 4
+
+Note: The full type of `le_antisymm (Nat.sInf_le hmem)` is
+  5 ≤ sInf (sharedCounts n) → sInf (sharedCounts n) = 5
+
+n : ℕ
+hn : 9 ≤ n
+P : Finset (ℝ × ℝ)
+hcard : P.card = n
+hP : GenPos P
+hh : (hullEdges P).card = 5
+A B : Finset (Sym2 (ℝ × ℝ))
+hA : IsTri P A
+hB : IsTri P B
+hAB : A ∩ B = hullEdges P
+hmem : 5 ∈ sharedCounts n
+⊢ f n = 4
+
+## stderr
+

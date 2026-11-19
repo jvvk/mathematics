@@ -1,0 +1,7 @@
+# control Regen5d.lean
+# command: nice -n 15 lake env lean --threads=1 LeanProofs/TwoTri/Regen5d.lean
+# exit: 0
+## stdout
+
+## stderr
+

@@ -1,0 +1,26 @@
+# lower bound 6
+# command: nice -n 15 lake env lean --threads=1 LeanProofs/TwoTri/Cor.lean
+# exit: 1
+## stdout
+LeanProofs/TwoTri/Cor.lean:24:71: warning: Variable name `s` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _s
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+LeanProofs/TwoTri/Cor.lean:213:14: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  d ≥ 5
+  c ≥ 0
+  c - d ≥ 0
+  0 ≤ b ≤ 5
+  b - c ≥ 0
+  a ≥ 5
+where
+ a := ↑P.card
+ b := ↑(A ∩ B).card
+ c := ↑(unav P).card
+ d := ↑(hullEdges P).card
+
+## stderr
+

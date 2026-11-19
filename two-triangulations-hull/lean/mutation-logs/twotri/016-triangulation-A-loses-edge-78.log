@@ -1,0 +1,19 @@
+# triangulation A loses edge 78
+# command: nice -n 15 lake env lean --threads=1 LeanProofs/TwoTri/Nine.lean
+# exit: 1
+## stdout
+LeanProofs/TwoTri/Nine.lean:38:37: error: Tactic `decide` failed for proposition
+  IsTri P9 A9
+because its `Decidable` instance
+  instDecidableIsTri P9 A9
+did not reduce to `isTrue` or `isFalse`.
+
+Reduction got stuck at the `Decidable` instance
+  match crossB ↑⟨s(p1, p2), ⋯⟩ ↑⟨s(p1, p2), ⋯⟩, true with
+  | false, false => isTrue ⋯
+  | false, true => isFalse ⋯
+  | true, false => isFalse ⋯
+  | true, true => isTrue ⋯
+
+## stderr
+

@@ -1,0 +1,13 @@
+# edge criterion with one edge fewer
+# command: nice -n 15 lake env lean --threads=1 LeanProofs/TwoTri/Extend.lean
+# exit: 1
+## stdout
+LeanProofs/TwoTri/Extend.lean:86:53: error: Tactic `decide` proved that the proposition
+  Nine.A9.card + 2 + 5 = 3 * 9
+is false
+LeanProofs/TwoTri/Extend.lean:88:53: error: Tactic `decide` proved that the proposition
+  Nine.B9.card + 2 + 5 = 3 * 9
+is false
+
+## stderr
+

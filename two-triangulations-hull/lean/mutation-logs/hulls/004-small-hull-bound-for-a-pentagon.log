@@ -1,0 +1,23 @@
+# small-hull bound for a pentagon
+# command: nice -n 15 lake env lean --threads=1 LeanProofs/TwoTri/Hulls.lean
+# exit: 1
+## stdout
+LeanProofs/TwoTri/Hulls.lean:476:47: error: Application type mismatch: The argument
+  h4
+has type
+  (hullEdges P).card ≤ 5
+but is expected to have type
+  (hullEdges P).card ≤ 4
+in the application
+  six_unavoidable hP ?m.92 hlt h4
+LeanProofs/TwoTri/Hulls.lean:494:32: error: Application type mismatch: The argument
+  h4
+has type
+  h ≤ 4
+but is expected to have type
+  h ≤ 5
+in the application
+  not_hullOnly_small h3 h4
+
+## stderr
+

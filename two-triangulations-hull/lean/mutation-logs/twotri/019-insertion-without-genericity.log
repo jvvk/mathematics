@@ -1,0 +1,21 @@
+# insertion without genericity
+# command: nice -n 15 lake env lean --threads=1 LeanProofs/TwoTri/Insert.lean
+# exit: 1
+## stdout
+LeanProofs/TwoTri/Insert.lean:25:70: warning: Variable name `hpP` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hpP
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+LeanProofs/TwoTri/Insert.lean:113:86: error: Application type mismatch: The argument
+  hg
+has type
+  True
+but is expected to have type
+  ∀ a ∈ P, ∀ b ∈ P, a ≠ b → orient a b p ≠ 0
+in the application
+  exit_cross hP hx hy hz hb hbx hby hbz (he b hb) hp hg
+
+## stderr
+

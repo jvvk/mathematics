@@ -1,0 +1,19 @@
+# invariant witness off the face
+# command: nice -n 15 lake env lean --threads=1 LeanProofs/TwoTri/Nine.lean
+# exit: 1
+## stdout
+LeanProofs/TwoTri/Nine.lean:48:88: error: Tactic `decide` failed for proposition
+  InTri p4 p7 p9 (lerp p6 p5 (1 / 10))
+because its `Decidable` instance
+  instDecidableInTri p4 p7 p9 (lerp p6 p5 (1 / 10))
+did not reduce to `isTrue` or `isFalse`.
+
+Reduction got stuck at the `Decidable` instance
+  match Rat.blt 0 (orient p4 p7 (lerp p6 p5 (1 / 10))), true with
+  | false, false => isTrue ⋯
+  | false, true => isFalse ⋯
+  | true, false => isFalse ⋯
+  | true, true => isTrue ⋯
+
+## stderr
+

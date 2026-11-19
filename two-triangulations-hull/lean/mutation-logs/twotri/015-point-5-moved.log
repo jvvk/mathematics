@@ -1,0 +1,43 @@
+# point 5 moved
+# command: nice -n 15 lake env lean --threads=1 LeanProofs/TwoTri/Nine.lean
+# exit: 1
+## stdout
+LeanProofs/TwoTri/Nine.lean:38:37: error: Tactic `decide` failed for proposition
+  IsTri P9 A9
+because its `Decidable` instance
+  instDecidableIsTri P9 A9
+did not reduce to `isTrue` or `isFalse`.
+
+Reduction got stuck at the `Decidable` instance
+  match crossB ↑⟨s(p1, p2), ⋯⟩ ↑⟨s(p1, p2), ⋯⟩, true with
+  | false, false => isTrue ⋯
+  | false, true => isFalse ⋯
+  | true, false => isFalse ⋯
+  | true, true => isTrue ⋯
+LeanProofs/TwoTri/Nine.lean:39:37: error: Tactic `decide` failed for proposition
+  IsTri P9 B9
+because its `Decidable` instance
+  instDecidableIsTri P9 B9
+did not reduce to `isTrue` or `isFalse`.
+
+Reduction got stuck at the `Decidable` instance
+  match crossB ↑⟨s(p1, p2), ⋯⟩ ↑⟨s(p1, p2), ⋯⟩, true with
+  | false, false => isTrue ⋯
+  | false, true => isFalse ⋯
+  | true, false => isFalse ⋯
+  | true, true => isTrue ⋯
+LeanProofs/TwoTri/Nine.lean:49:41: error: Tactic `decide` failed for proposition
+  InTri p4 p3 p7 (lerp p6 p5 (3 / 4))
+because its `Decidable` instance
+  instDecidableInTri p4 p3 p7 (lerp p6 p5 (3 / 4))
+did not reduce to `isTrue` or `isFalse`.
+
+Reduction got stuck at the `Decidable` instance
+  match Rat.blt 0 (orient p4 p3 (lerp p6 p5 (3 / 4))), true with
+  | false, false => isTrue ⋯
+  | false, true => isFalse ⋯
+  | true, false => isFalse ⋯
+  | true, true => isTrue ⋯
+
+## stderr
+

@@ -1,0 +1,23 @@
+# edge count 3n-4-h
+# command: nice -n 15 lake env lean --threads=1 LeanProofs/TwoTri/EdgeCount.lean
+# exit: 1
+## stdout
+LeanProofs/TwoTri/EdgeCount.lean:342:10: warning: Unused tactic linter: `(exfalso; linarith)` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+LeanProofs/TwoTri/EdgeCount.lean:342:10: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+LeanProofs/TwoTri/EdgeCount.lean:446:10: warning: `if_neg` has been deprecated: Use `ite_eq_right` instead
+LeanProofs/TwoTri/EdgeCount.lean:461:2: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  b ≥ 2
+  a ≥ 0
+  a - 3*b ≤ 0
+  a - b ≥ 0
+where
+ a := ↑(∑ v ∈ P, (down P T k v).card)
+ b := ↑(∑ v ∈ P, if v = m then 0 else 1)
+
+## stderr
+

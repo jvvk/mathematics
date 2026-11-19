@@ -1,0 +1,14 @@
+# seed invariant witness off the face
+# command: nice -n 15 lake env lean --threads=1 LeanProofs/TwoTri/Hulls.lean
+# exit: 1
+## stdout
+LeanProofs/TwoTri/Hulls.lean:294:39: error: unsolved goals
+h : ℕ
+h7 : 7 ≤ h
+mA : ∀ (i j : ℕ), i < j → j < h → AR h i j → s(par i, par j) ∈ eset h (AR h)
+mB : ∀ (i j : ℕ), i < j → j < h → BR h i j → s(par i, par j) ∈ eset h (BR h)
+ne : ∀ (i j : ℕ), i ≠ j → par i ≠ par j
+⊢ False
+
+## stderr
+

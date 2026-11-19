@@ -1,0 +1,13 @@
+# control Insert.lean
+# command: nice -n 15 lake env lean --threads=1 LeanProofs/TwoTri/Insert.lean
+# exit: 0
+## stdout
+LeanProofs/TwoTri/Insert.lean:25:70: warning: Variable name `hpP` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hpP
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+
+## stderr
+

@@ -1,0 +1,55 @@
+# sweep with a weak side condition
+# command: nice -n 15 lake env lean --threads=1 LeanProofs/TwoTri/Lower.lean
+# exit: 1
+## stdout
+LeanProofs/TwoTri/Lower.lean:68:4: error: linarith failed to find a contradiction
+case h
+K : Type u_1
+inst✝² : Field K
+inst✝¹ : LinearOrder K
+inst✝ : IsStrictOrderedRing K
+P : Finset (K × K)
+ℓ : K × K → K
+hℓ : ∀ (a b : K × K) (t : K), ℓ (lerp a b t) = (1 - t) * ℓ a + t * ℓ b
+u q : K × K
+hside : ∀ r ∈ P, r ≠ u → ℓ u ≤ ℓ r
+hq : q ∈ P
+hqu : q ≠ u
+hnear : ∀ r ∈ P, r ≠ u → ℓ q ≤ ℓ r
+c d : K × K
+ht : s(c, d) ∈ segs P
+hc : Cross s(u, q) s(c, d)
+hc' : c ∈ P
+hd' : d ∈ P
+hx : SCross u q c d
+τ σ : K
+hτ1 : τ < 1
+hσ0 : 0 < σ
+hσ1 : σ < 1
+e : lerp u q τ = lerp c d σ
+hcu : c ≠ u
+hdu : d ≠ u
+h1 : (1 - τ) * ℓ u + τ * ℓ q = (1 - σ) * ℓ c + σ * ℓ d
+hu : ℓ u ≤ ℓ q
+hc2 : ℓ q ≤ ℓ c
+hd2 : ℓ q ≤ ℓ d
+⊢ False
+failed
+LeanProofs/TwoTri/Lower.lean:133:74: error: Application type mismatch: The argument
+  hside
+has type
+  ∀ r ∈ P, r ≠ u → ℓ u < ℓ r
+but is expected to have type
+  ∀ r ∈ P, r ≠ u → ℓ u ≤ ℓ r
+in the application
+  sweep hℓ hside
+LeanProofs/TwoTri/Lower.lean:121:34: warning: This simp argument is unused:
+  orient_self23
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [ℓ, hcyc]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+
+## stderr
+

@@ -1,0 +1,23 @@
+# induction from n = 8
+# command: nice -n 15 lake env lean --threads=1 LeanProofs/TwoTri/Upper.lean
+# exit: 1
+## stdout
+LeanProofs/TwoTri/Upper.lean:19:21: error: Application type mismatch: The argument
+  Nine.card_P9
+has type
+  Nine.P9.card = 9
+but is expected to have type
+  Nine.P9.card = 8
+in the application
+  And.intro Nine.card_P9
+LeanProofs/TwoTri/Upper.lean:36:65: error: Application type mismatch: The argument
+  hn
+has type
+  9 ≤ n
+but is expected to have type
+  8 ≤ n
+in the application
+  upper_rat n hn
+
+## stderr
+
