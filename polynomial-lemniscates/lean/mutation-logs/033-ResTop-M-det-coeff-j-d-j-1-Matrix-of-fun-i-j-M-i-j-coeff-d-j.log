@@ -1,0 +1,69 @@
+# [ResTop] M.det.coeff (∑ j, d j - 1) = (Matrix.of fun i j => (M i j).coeff (d j)
+# command: nice -n 15 lake env lean LeanProofs/Lemniscates/ResTop.lean
+# exit: 1
+## stdout
+LeanProofs/Lemniscates/ResTop.lean:135:59: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ?a * ∑ i ∈ ?s, ?f i
+in the target expression
+  ∑ b, (Equiv.Perm.sign b • ∏ i, M (b i) i).coeff (∑ j, d j - 1) =
+    ∑ σ, Equiv.Perm.sign σ • ∏ i, Matrix.of (fun i j => (M i j).coeff (d j)) (σ i) i
+
+K : Type u_1
+inst✝³ : CommRing K
+n : Type u_2
+inst✝² : Fintype n
+inst✝¹ : DecidableEq n
+inst✝ : Nonempty n
+M : Matrix n n K[X]
+d : n → ℕ
+e : n → K
+h : ∀ (i j : n), (M i j).natDegree ≤ d j
+hd : ∀ (j : n), 1 ≤ d j
+he : ∀ (i j : n), (M i j).coeff (d j - 1) = e j * (M i j).coeff (d j)
+⊢ ∑ b, (Equiv.Perm.sign b • ∏ i, M (b i) i).coeff (∑ j, d j - 1) =
+    ∑ σ, Equiv.Perm.sign σ • ∏ i, Matrix.of (fun i j => (M i j).coeff (d j)) (σ i) i
+
+Note: The target expression is not type-correct under the `implicit` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  function expected
+    M (b i)
+LeanProofs/Lemniscates/ResTop.lean:180:12: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ∑ j, e j
+in the target expression
+  (p.sylvester q m n).det.coeff (m * d₂ + n * d₁ - 1) = (Matrix.of fun i j => (p.sylvester q m n i j).coeff (d j)).det
+
+K : Type u_1
+inst✝ : CommRing K
+p q : K[X][X]
+m n d₁ d₂ : ℕ
+pt qt : K[X]
+e₁ e₂ : K
+hmn : 1 ≤ m + n
+hd₁ : 1 ≤ d₁
+hd₂ : 1 ≤ d₂
+hp : ∀ (k : ℕ), (p.coeff k).natDegree ≤ d₁
+hq : ∀ (k : ℕ), (q.coeff k).natDegree ≤ d₂
+hpt : ∀ (k : ℕ), (p.coeff k).coeff d₁ = pt.coeff k
+hqt : ∀ (k : ℕ), (q.coeff k).coeff d₂ = qt.coeff k
+he₁ : ∀ (k : ℕ), (p.coeff k).coeff (d₁ - 1) = e₁ * (p.coeff k).coeff d₁
+he₂ : ∀ (k : ℕ), (q.coeff k).coeff (d₂ - 1) = e₂ * (q.coeff k).coeff d₂
+this✝ : Nonempty (Fin (m + n))
+d : Fin (m + n) → ℕ := fun j => Fin.addCases (fun x => d₂) (fun x => d₁) j
+e : Fin (m + n) → K := fun j => Fin.addCases (fun x => e₂) (fun x => e₁) j
+hsum : ∑ j, d j = m * d₂ + n * d₁
+hesum : ∑ j, e j = ↑m * e₂ + ↑n * e₁
+hcol : ∀ (i j : Fin (m + n)), (p.sylvester q m n i j).natDegree ≤ d j
+hdj : ∀ (j : Fin (m + n)), 1 ≤ d j
+hej : ∀ (i j : Fin (m + n)), (p.sylvester q m n i j).coeff (d j - 1) = e j * (p.sylvester q m n i j).coeff (d j)
+htop : (Matrix.of fun i j => (p.sylvester q m n i j).coeff (d j)) = pt.sylvester qt m n
+this :
+  (p.sylvester q m n).det.coeff (m * d₂ + n * d₁ - 1) = (Matrix.of fun i j => (p.sylvester q m n i j).coeff (d j)).det
+⊢ (p.resultant q m n).coeff (m * d₂ + n * d₁ - 1) = (↑m * e₂ + ↑n * e₁) * pt.resultant qt m n
+
+Note: The target expression is not type-correct under the `implicit` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  function expected
+    p.sylvester q m n i
+
+## stderr
+

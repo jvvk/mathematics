@@ -1,0 +1,27 @@
+# [CaseII] g₁.natDegree * f₂.natDegree + g₂.natDegree * f₁.natDegree - 3 := by
+# command: nice -n 15 lake env lean LeanProofs/Lemniscates/CaseII.lean
+# exit: 1
+## stdout
+LeanProofs/Lemniscates/CaseII.lean:104:29: error: mod_cast has type
+  N - 3 < k
+but is expected to have type
+  N - 2 < k
+LeanProofs/Lemniscates/CaseII.lean:131:47: error: unsolved goals
+f₁ f₂ : ℂ[X]
+r₁ r₂ : ℝ
+hf₁ : f₁.Monic
+hf₂ : f₂.Monic
+hn₁ : 2 ≤ f₁.natDegree
+hn₂ : 2 ≤ f₂.natDegree
+ζ : ℂ
+hζ₁ : eval ζ f₁ = 0
+hζ₂ : eval ζ f₂ = 0
+hR : R f₁ f₂ (conjP f₁) (conjP f₂) ↑r₁ ↑r₂ ≠ 0
+F : Finset ℂ
+hF : ∀ z ∈ F, ‖eval z f₁‖ ^ 2 = r₁ ∧ ‖eval z f₂‖ ^ 2 = r₂
+hdeg : (R f₁ f₂ (conjP f₁) (conjP f₂) ↑r₁ ↑r₂).natDegree ≤ f₁.natDegree * f₂.natDegree + f₂.natDegree * f₁.natDegree - 3
+hsub : F ⊆ (R f₁ f₂ (conjP f₁) (conjP f₂) ↑r₁ ↑r₂).roots.toFinset
+⊢ f₁.natDegree * f₂.natDegree * 2 - 3 = f₁.natDegree * f₂.natDegree * 2 - 2
+
+## stderr
+

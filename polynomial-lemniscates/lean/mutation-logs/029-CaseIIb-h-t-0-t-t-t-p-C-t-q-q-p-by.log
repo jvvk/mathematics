@@ -1,0 +1,25 @@
+# [CaseIIb] (h : ∀ t : ℝ, 0 < t → t < δ → t ^ p ≤ C * t ^ q) : q < p := by
+# command: nice -n 15 lake env lean LeanProofs/Lemniscates/CaseIIb.lean
+# exit: 1
+## stdout
+LeanProofs/Lemniscates/CaseIIb.lean:63:78: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  a ≥ 0
+  a ≥ 0
+where
+ a := ↑p
+LeanProofs/Lemniscates/CaseIIb.lean:285:32: error: Type mismatch
+  exps_le (b * m₁) (a * m₂) (K * (2 * c₁) ^ m₂ / (c₂ / 2) ^ m₁) δ hδ fun t ht htδ => ?m.1734
+has type
+  a * m₂ < b * m₁
+but is expected to have type
+  a * m₂ ≤ b * m₁
+LeanProofs/Lemniscates/CaseIIb.lean:290:32: error: Type mismatch
+  exps_le (a * m₂) (b * m₁) (K * (2 * c₂) ^ m₁ / (c₁ / 2) ^ m₂) δ hδ fun t ht htδ => ?m.1828
+has type
+  b * m₁ < a * m₂
+but is expected to have type
+  b * m₁ ≤ a * m₂
+
+## stderr
+

@@ -1,0 +1,60 @@
+# [Corollaries] (F : Finset ℂ) (hF : ∀ z ∈ F, z ∈ oval a b ρ₁ ∧ z ∈ oval c d ρ₂) : F.c
+# command: nice -n 15 lake env lean LeanProofs/Lemniscates/Corollaries.lean
+# exit: 1
+## stdout
+LeanProofs/Lemniscates/Corollaries.lean:69:4: error: Tactic `assumption` failed
+
+case pos
+a b c d : ℂ
+ρ₁ ρ₂ : ℝ
+h₁ : 0 < ρ₁
+h₂ : 0 < ρ₂
+hne : oval a b ρ₁ ≠ oval c d ρ₂
+F : Finset ℂ
+hF : ∀ z ∈ F, z ∈ oval a b ρ₁ ∧ z ∈ oval c d ρ₂
+f₁ : ℂ[X] := (X - C a) * (X - C b)
+f₂ : ℂ[X] := (X - C c) * (X - C d)
+hf₁ : ((X - C a) * (X - C b)).Monic
+hf₂ : ((X - C c) * (X - C d)).Monic
+hd₁ : ((X - C a) * (X - C b)).natDegree = 2
+hd₂ : ((X - C c) * (X - C d)).natDegree = 2
+hmem : ∀ (p q : ℂ) (ρ : ℝ) (z : ℂ), 0 < ρ → (z ∈ oval p q ρ ↔ ‖eval z ((X - C p) * (X - C q))‖ ^ 2 = ρ ^ 2)
+hF' : ∀ z ∈ F, ‖eval z f₁‖ ^ 2 = ρ₁ ^ 2 ∧ ‖eval z f₂‖ ^ 2 = ρ₂ ^ 2
+h6 : 2 * f₁.natDegree * f₂.natDegree - 2 = 6
+hcop : IsCoprime f₁ f₂
+this : F.card ≤ 6
+⊢ F.card ≤ 5
+LeanProofs/Lemniscates/Corollaries.lean:91:4: error: Tactic `assumption` failed
+
+case neg
+a b c d : ℂ
+ρ₁ ρ₂ : ℝ
+h₁ : 0 < ρ₁
+h₂ : 0 < ρ₂
+hne : oval a b ρ₁ ≠ oval c d ρ₂
+F : Finset ℂ
+hF : ∀ z ∈ F, z ∈ oval a b ρ₁ ∧ z ∈ oval c d ρ₂
+f₁ : ℂ[X] := (X - C a) * (X - C b)
+f₂ : ℂ[X] := (X - C c) * (X - C d)
+hf₁ : ((X - C a) * (X - C b)).Monic
+hf₂ : ((X - C c) * (X - C d)).Monic
+hd₁ : ((X - C a) * (X - C b)).natDegree = 2
+hd₂ : ((X - C c) * (X - C d)).natDegree = 2
+hmem : ∀ (p q : ℂ) (ρ : ℝ) (z : ℂ), 0 < ρ → (z ∈ oval p q ρ ↔ ‖eval z ((X - C p) * (X - C q))‖ ^ 2 = ρ ^ 2)
+hF' : ∀ z ∈ F, ‖eval z f₁‖ ^ 2 = ρ₁ ^ 2 ∧ ‖eval z f₂‖ ^ 2 = ρ₂ ^ 2
+h6 : 2 * f₁.natDegree * f₂.natDegree - 2 = 6
+ζ : ℂ
+hζ₁ : eval ζ f₁ = 0
+hζ₂ : eval ζ f₂ = 0
+hR : ¬R f₁ f₂ (conjP f₁) (conjP f₂) ↑(ρ₁ ^ 2) ↑(ρ₂ ^ 2) = 0
+this : F.card ≤ 6
+⊢ F.card ≤ 5
+LeanProofs/Lemniscates/Corollaries.lean:143:66: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+LeanProofs/Lemniscates/Corollaries.lean:143:66: warning: Unused tactic linter: `linarith` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+
+## stderr
+

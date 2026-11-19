@@ -1,0 +1,7 @@
+# control Integral.lean
+# command: nice -n 15 lake env lean LeanProofs/Lemniscates/Integral.lean
+# exit: 0
+## stdout
+
+## stderr
+

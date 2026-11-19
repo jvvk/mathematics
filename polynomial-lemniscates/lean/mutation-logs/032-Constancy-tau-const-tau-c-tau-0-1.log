@@ -1,0 +1,13 @@
+# [Constancy] tau_const: tau(c) = tau(0) + 1
+# command: nice -n 15 lake env lean LeanProofs/Lemniscates/Constancy.lean
+# exit: 1
+## stdout
+LeanProofs/Lemniscates/Constancy.lean:31:2: error: Type mismatch
+  eq_of_sqrt_growth (Polynomial.differentiable (τ D φ)) (fun c => ?m.74) c 0
+has type
+  eval c (τ D φ) = eval 0 (τ D φ)
+but is expected to have type
+  eval c (τ D φ) = eval 0 (τ D φ) + 1
+
+## stderr
+

@@ -1,0 +1,26 @@
+# [Level0] (D.f'.nextCoeff - D.f'.natDegree * m) * (-D.g.nextCoeff - D.g.natDegre
+# command: nice -n 15 lake env lean LeanProofs/Lemniscates/Level0.lean
+# exit: 1
+## stdout
+LeanProofs/Lemniscates/Level0.lean:324:2: error: unsolved goals
+case refine_2
+D : Deform.Data
+hr : D.r = 0
+m m' : ℂ
+this✝ : Module.Finite ℂ (RI D.f' D.g)
+this : Module.Finite ℂ (RI D.f D.g')
+h1 :
+  finrank ℂ (RI D.f' D.g) = D.f'.natDegree * D.g.natDegree ∧
+    (LinearMap.trace ℂ (RI D.f' D.g)) ((Algebra.lmul ℂ (RI D.f' D.g)) ((mkI D.f' D.g) (φ m m'))) =
+      (-D.f'.nextCoeff - ↑D.f'.natDegree * m) * (-D.g.nextCoeff - ↑D.g.natDegree * m')
+h2 :
+  finrank ℂ (RI D.f D.g') = D.f.natDegree * D.g'.natDegree ∧
+    (LinearMap.trace ℂ (RI D.f D.g')) ((Algebra.lmul ℂ (RI D.f D.g')) ((mkI D.f D.g') (φ m m'))) =
+      (-D.f.nextCoeff - ↑D.f.natDegree * m) * (-D.g'.nextCoeff - ↑D.g'.natDegree * m')
+⊢ (-D.f'.nextCoeff - ↑D.f'.natDegree * m) * (-D.g.nextCoeff - ↑D.g.natDegree * m') +
+      (-D.f.nextCoeff - ↑D.f.natDegree * m) * (-D.g'.nextCoeff - ↑D.g'.natDegree * m') =
+    (D.f'.nextCoeff - ↑D.f'.natDegree * m) * (-D.g.nextCoeff - ↑D.g.natDegree * m') +
+      (-D.f.nextCoeff - ↑D.f.natDegree * m) * (-D.g'.nextCoeff - ↑D.g'.natDegree * m')
+
+## stderr
+

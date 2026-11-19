@@ -1,0 +1,47 @@
+# [GrowthGen] (hn : 1 ≤ f.natDegree) (hn' : 0 < f'.natDegree) (hg : IsCoprime g' g) 
+# command: nice -n 15 lake env lean LeanProofs/Lemniscates/GrowthGen.lean
+# exit: 1
+## stdout
+LeanProofs/Lemniscates/GrowthGen.lean:122:67: error: Application type mismatch: The argument
+  hn
+has type
+  1 ≤ f.natDegree
+but is expected to have type
+  2 ≤ f.natDegree
+in the application
+  pow_le_pow_right₀ hZ1 hn
+LeanProofs/Lemniscates/GrowthGen.lean:180:58: error: Application type mismatch: The argument
+  hn
+has type
+  2 ≤ f.natDegree
+but is expected to have type
+  1 ≤ f.natDegree
+in the application
+  one_side f g f' g' r hf hf' hn
+LeanProofs/Lemniscates/GrowthGen.lean:181:58: error: Application type mismatch: The argument
+  hm
+has type
+  2 ≤ g.natDegree
+but is expected to have type
+  1 ≤ g.natDegree
+in the application
+  one_side g f g' f' r hg hg' hm
+LeanProofs/Lemniscates/GrowthGen.lean:219:61: error: Application type mismatch: The argument
+  hn₂
+has type
+  2 ≤ f₂.natDegree
+but is expected to have type
+  1 ≤ f₂.natDegree
+in the application
+  one_side f₂ g₂ f₁ g₁ 0 hf₂ hf₁ hn₂
+LeanProofs/Lemniscates/GrowthGen.lean:220:61: error: Application type mismatch: The argument
+  hm₂
+has type
+  2 ≤ g₂.natDegree
+but is expected to have type
+  1 ≤ g₂.natDegree
+in the application
+  one_side g₂ f₂ g₁ f₁ 0 hg₂ hg₁ hm₂
+
+## stderr
+

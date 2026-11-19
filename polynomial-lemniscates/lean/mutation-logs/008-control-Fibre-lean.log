@@ -1,0 +1,7 @@
+# control Fibre.lean
+# command: nice -n 15 lake env lean LeanProofs/Lemniscates/Fibre.lean
+# exit: 0
+## stdout
+
+## stderr
+

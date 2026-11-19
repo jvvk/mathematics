@@ -1,0 +1,20 @@
+# [Fibre] (LinearMap.trace ℂ[X] S (Algebra.lmul ℂ[X] S x)).eval (c + 1) := by
+# command: nice -n 15 lake env lean LeanProofs/Lemniscates/Fibre.lean
+# exit: 1
+## stdout
+LeanProofs/Lemniscates/Fibre.lean:131:71: error: unsolved goals
+S : Type u_1
+inst✝⁵ : CommRing S
+inst✝⁴ : Algebra ℂ[X] S
+inst✝³ : Algebra ℂ S
+inst✝² : IsScalarTower ℂ ℂ[X] S
+inst✝¹ : Free ℂ[X] S
+inst✝ : Module.Finite ℂ[X] S
+c : ℂ
+x : S
+i : Free.ChooseBasisIndex ℂ[X] S
+x✝ : i ∈ Finset.univ
+⊢ eval c ((b.repr (x * b i)) i) = eval (c + 1) ((b.repr (x * b i)) i)
+
+## stderr
+

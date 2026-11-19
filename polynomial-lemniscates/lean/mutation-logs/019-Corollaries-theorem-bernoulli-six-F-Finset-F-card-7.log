@@ -1,0 +1,34 @@
+# [Corollaries] theorem bernoulli_six : ∃ F : Finset ℂ, F.card = 7 ∧
+# command: nice -n 15 lake env lean LeanProofs/Lemniscates/Corollaries.lean
+# exit: 1
+## stdout
+LeanProofs/Lemniscates/Corollaries.lean:144:65: error: Tactic `rfl` failed: The left-hand side
+  pts.length
+is not definitionally equal to the right-hand side
+  7
+
+s : ℝ := √2
+hs : s = √2
+hs2 : s ^ 2 = 2
+hs0 : 0 ≤ s
+hs54 : 5 < 4 * s
+Y : ℝ := (4 * s - 5) / 4
+hY : Y = (4 * s - 5) / 4
+hY0 : 0 < Y
+v : ℝ := √Y
+hv2 : v ^ 2 = Y
+hv0 : 0 < v
+t : ℝ := √(2 / 3)
+ht2 : t ^ 2 = 2 / 3
+ht0 : 0 < t
+u : ℝ := √(1 / 12)
+hu2 : u ^ 2 = 1 / 12
+hu0 : 0 < u
+pts : List ℂ :=
+  [{ re := 1 / 2, im := v }, { re := 1 / 2, im := -v }, { re := 1 / 2 + t, im := u }, { re := 1 / 2 + t, im := -u },
+    { re := 1 / 2 - t, im := u }, { re := 1 / 2 - t, im := -u }]
+hnd : pts.Nodup
+⊢ pts.length = 7
+
+## stderr
+

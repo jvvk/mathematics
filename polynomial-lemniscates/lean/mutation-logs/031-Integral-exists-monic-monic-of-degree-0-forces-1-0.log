@@ -1,0 +1,42 @@
+# [Integral] exists_monic: monic of degree 0 (forces 1 = 0)
+# command: nice -n 15 lake env lean LeanProofs/Lemniscates/Integral.lean
+# exit: 1
+## stdout
+LeanProofs/Lemniscates/Integral.lean:106:2: error: unsolved goals
+case refine_2
+B : Type u_1
+inst✝¹ : CommRing B
+inst✝ : Algebra ℂ B
+x y h : B
+f g f' g' : ℂ[X]
+r : ℂ
+hf : f.Monic
+hf' : f'.Monic
+hfd : 0 < f.natDegree
+hfd' : 0 < f'.natDegree
+hg : IsCoprime g g'
+h₁ : (aeval x) f * (aeval y) g = h
+h₂ : (aeval x) f' * (aeval y) g' = (algebraMap ℂ B) r
+P : ℂ[X][X][X] := lift f g X
+Q : ℂ[X][X][X] := lift f' g' (C r)
+m : ℕ := g.natDegree
+hgd : 0 < m
+n : ℕ := g'.natDegree
+u v : ℂ[X][X][X]
+hP : (ψ x y h) P = 0
+hQ : (ψ x y h) Q = 0
+hres : (map C g).resultant (map C g') m n = C (g.resultant g')
+hne : g.resultant g' ≠ 0
+R : ℂ[X][X] := P.resultant Q m n
+huv : P * u + Q * v = C R
+hR : eval₂ (aeval h).toRingHom x R = 0
+N : ℕ := m * f'.natDegree + n * f.natDegree
+hdeg : R.natDegree ≤ N
+htop : R.coeff N = (map C g).resultant (map C g') m n
+hcoeff : R.coeff N = C (g.resultant g')
+hN : R.natDegree = N
+hlc : R.leadingCoeff = C (g.resultant g')
+⊢ (C (C (g.resultant g')⁻¹) * R).natDegree = 0 ∧ 0 = 0
+
+## stderr
+

@@ -1,0 +1,54 @@
+# [CaseI] S.card = f₁.natDegree * g₂.natDegree + f₂.natDegree * g₁.natDegree + 1
+# command: nice -n 15 lake env lean LeanProofs/Lemniscates/CaseI.lean
+# exit: 1
+## stdout
+LeanProofs/Lemniscates/CaseI.lean:122:4: error: Type mismatch
+  hdim
+has type
+  finrank ℂ (Q D₂' 0) = D₂'.f'.natDegree * D₂'.g.natDegree + D₂'.f.natDegree * D₂'.g'.natDegree
+but is expected to have type
+  finrank ℂ (M D₂' ⧸ Fibre.J 0) = f₁.natDegree * g₂.natDegree + f₂.natDegree * g₁.natDegree + 1
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+LeanProofs/Lemniscates/CaseI.lean:214:36: error: unsolved goals
+f₁ f₂ : ℂ[X]
+hf₁ : f₁.Monic
+hf₂ : f₂.Monic
+cf : IsCoprime f₁ f₂
+r₁ r₂ : ℝ
+hr₂ : r₂ ≠ 0
+F : Finset ℂ
+hF : ∀ z ∈ F, ‖eval z f₁‖ ^ 2 = r₁ ∧ ‖eval z f₂‖ ^ 2 = r₂
+n₁ : ℕ := f₁.natDegree
+hn₁ : 2 ≤ n₁
+n₂ : ℕ := f₂.natDegree
+hn₂ : 2 ≤ n₂
+H : Hyp f₁ f₂ (conjP f₁) (conjP f₂)
+c₁ : ℂ := -f₁.nextCoeff / ↑n₁
+c₂ : ℂ := -f₂.nextCoeff / ↑n₂
+m : ℂ := (c₁ + c₂) / 2
+hn₁0 : ↑n₁ ≠ 0
+hn₂0 : ↑n₂ ≠ 0
+hs₁ : -f₁.nextCoeff = ↑n₁ * c₁
+hs₂ : -f₂.nextCoeff = ↑n₂ * c₂
+S : Multiset (ℂ × ℂ)
+hcard : S.card = f₁.natDegree * (conjP f₂).natDegree + f₂.natDegree * (conjP f₁).natDegree + 1
+hsum :
+  (Multiset.map (fun p => (p.1 - m) * (p.2 - (starRingEnd ℂ) m)) S).sum =
+    (-f₁.nextCoeff - ↑f₁.natDegree * m) * (-(conjP f₂).nextCoeff - ↑(conjP f₂).natDegree * (starRingEnd ℂ) m) +
+      (-f₂.nextCoeff - ↑f₂.natDegree * m) * (-(conjP f₁).nextCoeff - ↑(conjP f₁).natDegree * (starRingEnd ℂ) m)
+hz : ∀ p ∈ S, eval p.1 f₁ * eval p.2 (conjP f₁) = ↑r₁ ∧ eval p.1 f₂ * eval p.2 (conjP f₂) = ↑r₂
+hall : ∀ (Z W : ℂ), eval Z f₁ * eval W (conjP f₁) = ↑r₁ → eval Z f₂ * eval W (conjP f₂) = ↑r₂ → (Z, W) ∈ S
+v : ℝ := -(↑n₁ * ↑n₂ / 2) * Complex.normSq (c₁ - c₂)
+hv : v ≤ 0
+hvar : (Multiset.map (φ m) S).sum = ↑v
+hσ : ∀ p ∈ S, σ p ∈ S
+hreal : ∀ z ∈ F, (z, (starRingEnd ℂ) z) ∈ S
+⊢ 1 + f₁.natDegree * f₂.natDegree * 2 = n₁ * n₂ * 2
+
+## stderr
+

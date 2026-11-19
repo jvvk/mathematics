@@ -1,0 +1,13 @@
+# [CaseI] F.card ≤ 2 * f₁.natDegree * f₂.natDegree - 3 := by
+# command: nice -n 15 lake env lean LeanProofs/Lemniscates/CaseI.lean
+# exit: 1
+## stdout
+LeanProofs/Lemniscates/CaseI.lean:217:2: error: Type mismatch
+  real_card_le m S hN h3 hσ hv hvar F hreal
+has type
+  F.card ≤ 2 * n₁ * n₂ - 2
+but is expected to have type
+  F.card ≤ 2 * n₁ * n₂ - 3
+
+## stderr
+

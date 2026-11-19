@@ -1,0 +1,20 @@
+# [Corollaries] M n₁ n₂ = 2 * n₁ * n₂ - 2 ↔ (n₁ = 2 ∧ n₂ = 2) ∨ (n₁ = 2 ∧ n₂ = 4) := b
+# command: nice -n 15 lake env lean LeanProofs/Lemniscates/Corollaries.lean
+# exit: 1
+## stdout
+LeanProofs/Lemniscates/Corollaries.lean:143:66: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+LeanProofs/Lemniscates/Corollaries.lean:143:66: warning: Unused tactic linter: `linarith` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+LeanProofs/Lemniscates/Corollaries.lean:165:2: error: unsolved goals
+case mp.«3»
+n₂ : ℕ
+⊢ False
+LeanProofs/Lemniscates/Corollaries.lean:182:41: error: Tactic `decide` proved that the proposition
+  M 2 4 = 2 * 2 * 4 - 2
+is false
+
+## stderr
+

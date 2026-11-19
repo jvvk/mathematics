@@ -1,0 +1,7 @@
+# control Level0.lean
+# command: nice -n 15 lake env lean LeanProofs/Lemniscates/Level0.lean
+# exit: 0
+## stdout
+
+## stderr
+

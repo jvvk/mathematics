@@ -1,0 +1,35 @@
+# [Level0] finrank ℂ (RI f g) = f.natDegree + g.natDegree ∧
+# command: nice -n 15 lake env lean LeanProofs/Lemniscates/Level0.lean
+# exit: 1
+## stdout
+LeanProofs/Lemniscates/Level0.lean:188:2: error: unsolved goals
+case refine_1
+f g : ℂ[X]
+hf : f.Monic
+hg : g.Monic
+hfd : 0 < f.natDegree
+hgd : 0 < g.natDegree
+m m' : ℂ
+this✝ : Module.Finite ℂ (AdjoinRoot f)
+this : Module.Finite ℂ (AdjoinRoot g)
+⊢ f.natDegree * g.natDegree = f.natDegree + g.natDegree
+LeanProofs/Lemniscates/Level0.lean:323:2: error: unsolved goals
+case refine_1
+D : Deform.Data
+hr : D.r = 0
+m m' : ℂ
+this✝ : Module.Finite ℂ (RI D.f' D.g)
+this : Module.Finite ℂ (RI D.f D.g')
+h1 :
+  finrank ℂ (RI D.f' D.g) = D.f'.natDegree + D.g.natDegree ∧
+    (LinearMap.trace ℂ (RI D.f' D.g)) ((Algebra.lmul ℂ (RI D.f' D.g)) ((mkI D.f' D.g) (φ m m'))) =
+      (-D.f'.nextCoeff - ↑D.f'.natDegree * m) * (-D.g.nextCoeff - ↑D.g.natDegree * m')
+h2 :
+  finrank ℂ (RI D.f D.g') = D.f.natDegree + D.g'.natDegree ∧
+    (LinearMap.trace ℂ (RI D.f D.g')) ((Algebra.lmul ℂ (RI D.f D.g')) ((mkI D.f D.g') (φ m m'))) =
+      (-D.f.nextCoeff - ↑D.f.natDegree * m) * (-D.g'.nextCoeff - ↑D.g'.natDegree * m')
+⊢ D.f'.natDegree + D.g.natDegree + (D.f.natDegree + D.g'.natDegree) =
+    D.f'.natDegree * D.g.natDegree + D.f.natDegree * D.g'.natDegree
+
+## stderr
+

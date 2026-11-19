@@ -1,0 +1,7 @@
+# control GrowthGen.lean
+# command: nice -n 15 lake env lean LeanProofs/Lemniscates/GrowthGen.lean
+# exit: 0
+## stdout
+
+## stderr
+

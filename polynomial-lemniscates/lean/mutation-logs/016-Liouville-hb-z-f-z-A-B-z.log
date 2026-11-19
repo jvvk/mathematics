@@ -1,0 +1,13 @@
+# [Liouville] (hb : ∀ z, ‖f z‖ ≤ A + B * ‖z‖)
+# command: nice -n 15 lake env lean LeanProofs/Lemniscates/Liouville.lean
+# exit: 1
+## stdout
+LeanProofs/Lemniscates/Liouville.lean:43:42: error: Type mismatch
+  hb z
+has type
+  ‖f z‖ ≤ A + B * ‖z‖
+but is expected to have type
+  ‖f z‖ ≤ A + B * √‖z‖
+
+## stderr
+

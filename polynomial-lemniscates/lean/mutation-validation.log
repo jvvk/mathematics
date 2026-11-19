@@ -1,0 +1,34 @@
+control passes: Pairing.lean
+control passes: Liouville.lean
+control passes: TheoremA.lean
+control passes: Corollaries.lean
+control passes: CaseI.lean
+control passes: Level0.lean
+control passes: TraceFormula.lean
+control passes: Fibre.lean
+control passes: GrowthGen.lean
+control passes: CaseII.lean
+control passes: CaseIIb.lean
+control passes: Integral.lean
+control passes: Constancy.lean
+control passes: ResTop.lean
+rejected: [Pairing] (S.filter (fun p => σ p = p)).card ≤ 5 := by (exit 1, diagnostic: LeanProofs/Lemniscates/Pairing.lean:73:4: error: omega could not prove the goal:)
+rejected: [Liouville] (hb : ∀ z, ‖f z‖ ≤ A + B * ‖z‖) (exit 1, diagnostic: LeanProofs/Lemniscates/Liouville.lean:43:42: error: Type mismatch)
+rejected: [TheoremA] hfin.toFinset.card ≤ 2 * P₁.natDegree * P₂.natDegree - 3 := by (exit 1, diagnostic: LeanProofs/Lemniscates/TheoremA.lean:74:4: error: Type mismatch)
+rejected: [Corollaries] (F : Finset ℂ) (hF : ∀ z ∈ F, z ∈ oval a b ρ₁ ∧ z ∈ oval c d ρ₂) : F.c (exit 1, diagnostic: LeanProofs/Lemniscates/Corollaries.lean:69:4: error: Tactic `assumption` failed)
+rejected: [Corollaries] theorem bernoulli_six : ∃ F : Finset ℂ, F.card = 7 ∧ (exit 1, diagnostic: LeanProofs/Lemniscates/Corollaries.lean:144:65: error: Tactic `rfl` failed: The left-hand side)
+rejected: [Corollaries] M n₁ n₂ = 2 * n₁ * n₂ - 2 ↔ (n₁ = 2 ∧ n₂ = 2) ∨ (n₁ = 2 ∧ n₂ = 4) := b (exit 1, diagnostic: LeanProofs/Lemniscates/Corollaries.lean:165:2: error: unsolved goals)
+rejected: [CaseI] F.card ≤ 2 * f₁.natDegree * f₂.natDegree - 3 := by (exit 1, diagnostic: LeanProofs/Lemniscates/CaseI.lean:217:2: error: Type mismatch)
+rejected: [CaseI] S.card = f₁.natDegree * g₂.natDegree + f₂.natDegree * g₁.natDegree + 1 (exit 1, diagnostic: LeanProofs/Lemniscates/CaseI.lean:122:4: error: Type mismatch)
+rejected: [Level0] (D.f'.nextCoeff - D.f'.natDegree * m) * (-D.g.nextCoeff - D.g.natDegre (exit 1, diagnostic: LeanProofs/Lemniscates/Level0.lean:324:2: error: unsolved goals)
+rejected: [Level0] finrank ℂ (RI f g) = f.natDegree + g.natDegree ∧ (exit 1, diagnostic: LeanProofs/Lemniscates/Level0.lean:188:2: error: unsolved goals)
+rejected: [TraceFormula] theorem card_S : (S a b).card = finrank ℂ A + 1 := by (exit 1, diagnostic: LeanProofs/Lemniscates/TraceFormula.lean:161:2: error: Type mismatch: After simplification, term)
+rejected: [Fibre] (LinearMap.trace ℂ[X] S (Algebra.lmul ℂ[X] S x)).eval (c + 1) := by (exit 1, diagnostic: LeanProofs/Lemniscates/Fibre.lean:131:71: error: unsolved goals)
+rejected: [GrowthGen] (hn : 1 ≤ f.natDegree) (hn' : 0 < f'.natDegree) (hg : IsCoprime g' g)  (exit 1, diagnostic: LeanProofs/Lemniscates/GrowthGen.lean:122:67: error: Application type mismatch: The argument)
+rejected: [CaseII] g₁.natDegree * f₂.natDegree + g₂.natDegree * f₁.natDegree - 3 := by (exit 1, diagnostic: LeanProofs/Lemniscates/CaseII.lean:104:29: error: mod_cast has type)
+rejected: [CaseIIb] (h : ∀ t : ℝ, 0 < t → t < δ → t ^ p ≤ C * t ^ q) : q < p := by (exit 1, diagnostic: LeanProofs/Lemniscates/CaseIIb.lean:63:78: error: omega could not prove the goal:)
+rejected: [CaseIIb] f₁ ^ f₁.natDegree = f₂ ^ f₂.natDegree := by (exit 1, diagnostic: LeanProofs/Lemniscates/CaseIIb.lean:331:6: error: Tactic `rewrite` failed: Did not find an occurrence of the patter)
+rejected: [Integral] exists_monic: monic of degree 0 (forces 1 = 0) (exit 1, diagnostic: LeanProofs/Lemniscates/Integral.lean:106:2: error: unsolved goals)
+rejected: [Constancy] tau_const: tau(c) = tau(0) + 1 (exit 1, diagnostic: LeanProofs/Lemniscates/Constancy.lean:31:2: error: Type mismatch)
+rejected: [ResTop] M.det.coeff (∑ j, d j - 1) = (Matrix.of fun i j => (M i j).coeff (d j) (exit 1, diagnostic: LeanProofs/Lemniscates/ResTop.lean:135:59: error: Tactic `rewrite` failed: Did not find an occurrence of the patter)
+19/19 mutants rejected, all controls pass

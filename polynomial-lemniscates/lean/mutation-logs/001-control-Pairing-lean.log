@@ -1,0 +1,7 @@
+# control Pairing.lean
+# command: nice -n 15 lake env lean LeanProofs/Lemniscates/Pairing.lean
+# exit: 0
+## stdout
+
+## stderr
+

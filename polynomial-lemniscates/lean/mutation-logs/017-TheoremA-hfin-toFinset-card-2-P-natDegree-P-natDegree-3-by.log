@@ -1,0 +1,19 @@
+# [TheoremA] hfin.toFinset.card ≤ 2 * P₁.natDegree * P₂.natDegree - 3 := by
+# command: nice -n 15 lake env lean LeanProofs/Lemniscates/TheoremA.lean
+# exit: 1
+## stdout
+LeanProofs/Lemniscates/TheoremA.lean:74:4: error: Type mismatch
+  caseI hf₁ hf₂ hn₁ hn₂ hcop (LT.lt.ne' hr₂) hfin.toFinset hF
+has type
+  hfin.toFinset.card ≤ 2 * f₁.natDegree * f₂.natDegree - 2
+but is expected to have type
+  hfin.toFinset.card ≤ 2 * f₁.natDegree * f₂.natDegree - 3
+LeanProofs/Lemniscates/TheoremA.lean:93:4: error: Type mismatch
+  count_of_R_ne_zero hf₁ hf₂ hn₁ hn₂ hζ₁ hζ₂ hR hfin.toFinset hF
+has type
+  hfin.toFinset.card ≤ 2 * f₁.natDegree * f₂.natDegree - 2
+but is expected to have type
+  hfin.toFinset.card ≤ 2 * f₁.natDegree * f₂.natDegree - 3
+
+## stderr
+

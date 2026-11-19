@@ -1,0 +1,13 @@
+# [TraceFormula] theorem card_S : (S a b).card = finrank ℂ A + 1 := by
+# command: nice -n 15 lake env lean LeanProofs/Lemniscates/TraceFormula.lean
+# exit: 1
+## stdout
+LeanProofs/Lemniscates/TraceFormula.lean:161:2: error: Type mismatch: After simplification, term
+  Eq.symm this
+ has type
+  (S a b).card = finrank ℂ A
+but is expected to have type
+  (S a b).card = finrank ℂ A + 1
+
+## stderr
+

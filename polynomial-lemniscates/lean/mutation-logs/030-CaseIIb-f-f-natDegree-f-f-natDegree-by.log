@@ -1,0 +1,52 @@
+# [CaseIIb] f₁ ^ f₁.natDegree = f₂ ^ f₂.natDegree := by
+# command: nice -n 15 lake env lean LeanProofs/Lemniscates/CaseIIb.lean
+# exit: 1
+## stdout
+LeanProofs/Lemniscates/CaseIIb.lean:331:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  f₁ ^ f₂.natDegree
+in the target expression
+  f₁ ^ f₁.natDegree = f₂ ^ f₂.natDegree
+
+f₁ f₂ : ℂ[X]
+hf₁ : f₁.Monic
+hf₂ : f₂.Monic
+hn₁ : 0 < f₁.natDegree
+hn₂ : 0 < f₂.natDegree
+r₁ r₂ : ℝ
+hr₁ : 0 < r₁
+hr₂ : 0 < r₂
+hR : R f₁ f₂ (conjP f₁) (conjP f₂) ↑r₁ ↑r₂ = 0
+ε₁ : ℝ
+hε₁ : ε₁ > 0
+ε₂ : ℝ
+hε₂ : ε₂ > 0
+K : ℝ
+hK : 0 ≤ K
+hcmp :
+  ∀ (x y w : ℂ),
+    x * eval w (conjP f₁) = ↑r₁ →
+      y * eval w (conjP f₂) = ↑r₂ →
+        ‖x‖ < ε₁ ∨ ‖y‖ < ε₂ → ‖y‖ ^ f₁.natDegree ≤ K * ‖x‖ ^ f₂.natDegree ∧ ‖x‖ ^ f₂.natDegree ≤ K * ‖y‖ ^ f₁.natDegree
+hcmp' :
+  ∀ (Z : ℂ),
+    eval Z f₁ ≠ 0 →
+      eval Z f₂ ≠ 0 →
+        ‖eval Z f₁‖ < ε₁ ∨ ‖eval Z f₂‖ < ε₂ →
+          ‖eval Z f₂‖ ^ f₁.natDegree ≤ K * ‖eval Z f₁‖ ^ f₂.natDegree ∧
+            ‖eval Z f₁‖ ^ f₂.natDegree ≤ K * ‖eval Z f₂‖ ^ f₁.natDegree
+hmult : ∀ (ζ : ℂ), rootMultiplicity ζ f₁ * f₂.natDegree = rootMultiplicity ζ f₂ * f₁.natDegree
+hroots : (f₁ ^ f₂.natDegree).roots = (f₂ ^ f₁.natDegree).roots
+e₁ : (Multiset.map (fun a => X - C a) (f₁ ^ f₂.natDegree).roots).prod = f₁ ^ f₂.natDegree
+e₂ : (Multiset.map (fun a => X - C a) (f₂ ^ f₁.natDegree).roots).prod = f₂ ^ f₁.natDegree
+⊢ f₁ ^ f₁.natDegree = f₂ ^ f₂.natDegree
+LeanProofs/Lemniscates/CaseIIb.lean:427:45: error: Application type mismatch: The argument
+  hpow
+has type
+  f₁ ^ f₁.natDegree = f₂ ^ f₂.natDegree
+but is expected to have type
+  f₁ ^ f₂.natDegree = f₂ ^ f₁.natDegree
+in the application
+  nested hpow
+
+## stderr
+

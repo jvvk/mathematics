@@ -1,0 +1,7 @@
+# control TraceFormula.lean
+# command: nice -n 15 lake env lean LeanProofs/Lemniscates/TraceFormula.lean
+# exit: 0
+## stdout
+
+## stderr
+
