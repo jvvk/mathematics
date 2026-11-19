@@ -188,22 +188,23 @@ check(
 
 tex = (HERE.parent / "paper" / "paper.tex").read_text()
 plots = re.findall(r"plot coordinates \{([^}]*)\}", tex)
-heights = [[int(y) for _, y in re.findall(r"\((\d+),(\d+)\)", pl)] for pl in plots]
+points = [[(int(x), int(y)) for x, y in re.findall(r"\((\d+),(\d+)\)", pl)] for pl in plots]
 w5 = F(F(w3))
 v5 = G(F(v3))
 
 
 def height(u):
+    """the plotted path of u as complete (x, y) pairs: x = position, y = 2 P(x) - x"""
     p = prefix(u)
-    return [2 * p[i] - i for i in range(len(p))]
+    return [(i, 2 * p[i] - i) for i in range(len(p))]
 
 
 check(
     "Figure 1: the three plotted paths are w_5, T(w_5), v_5",
-    len(heights) == 3
-    and heights[0] == height(w5)
-    and heights[1] == height(T(w5))
-    and heights[2] == height(v5),
+    len(points) == 3
+    and points[0] == height(w5)
+    and points[1] == height(T(w5))
+    and points[2] == height(v5),
 )
 check(
     "Figure 1: w_5 and v_5 are the block words of c and s on [32, 64]",
@@ -257,6 +258,17 @@ check(
     ok,
 )
 check("there are 26,364 such words", count == 26364)
+
+# Lemma 2.3(1), monotonicity: u <= v implies F(u) <= F(v) and G(u) <= G(v), on every pair of Dyck words, L <= 12.
+mono_pairs, mono_ok = 0, True
+for L in range(2, 13, 2):
+    words = list(dyck_words(L))
+    for u in words:
+        for v in words:
+            if le(u, v):
+                mono_pairs += 1
+                mono_ok &= le(F(u), F(v)) and le(G(u), G(v))
+check(f"Lemma 2.3(1): monotonicity of F and G on all {mono_pairs} comparable pairs of Dyck words, L <= 12", mono_ok)
 
 
 # ---------- 5. the Remark: without symmetry the midpoint identity and the bound (3.1) fail ----------
@@ -332,6 +344,10 @@ mutant(
 )
 mutant("Proposition 4.1 with F and G exchanged for s", lambda: check("m", swapped_blocks_ok()))
 mutant(
-    "Figure 1 with the dashed path = w_5", lambda: check("m", heights[1] == height(w5))
+    "Figure 1 with the dashed path = w_5", lambda: check("m", points[1] == height(w5))
+)
+mutant(
+    "Figure 1 with the x-coordinate of (1,1) changed to 999 (Codex referee, finding 6)",
+    lambda: check("m", [points[0][0], (999, 1)] + points[0][2:] == height(w5)),
 )
 print("ALL CHECKS PASSED")

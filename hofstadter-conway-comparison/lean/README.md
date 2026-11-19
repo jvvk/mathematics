@@ -12,7 +12,7 @@ it is compiled.
 ```
 lake exe cache get     # Mathlib build cache
 lake build             # compiles every module and runs the axiom audit
-./mutants.sh           # sixteen mutants, each rejected; the unchanged copy builds
+python3 -I scripts/mutate.py scripts/mutants.toml   # sixteen mutants, each rejected with a Lean error
 ```
 
 ## Where each result is
@@ -21,7 +21,7 @@ lake build             # compiles every module and runs the axiom audit
 |---|---|---|
 | The sequences `c` and `s` | `c`, `s` | `Basic.lean` |
 | Dyck, irreducible and symmetric words | `Dyck`, `Irred`, `Symm` | `Basic.lean` |
-| Lemma 2.1 (prefix and letter forms of symmetry) | `symm_iff_letter` | `Corollary.lean` |
+| Lemma 2.1 (prefix and letter forms of symmetry), for Dyck words (the paper states it for every balanced word) | `symm_iff_letter` | `Corollary.lean` |
 | The operators `F`, `G`: thresholds and recurrences (2.2), (2.3) | `ASpec`, `BSpec`, `Arec`, `Brec`, `FP`, `GP`, `FP_spec`, `GP_spec`, `FP_succ`, `GP_succ` | `Ops.lean` |
 | Lemma 2.2 (thresholds exist, increments 0 or 1, Dyck outputs; part (5)) | `A_next`, `B_next`, `FP_dyck`, `GP_dyck`, `ASpec.letter_zero` | `Ops.lean` |
 | Lemma 2.3 (monotonicity, irreducibility, symmetry) | `FP_mono`, `GP_mono`, `FP_irred`, `FP_symm`, `GP_symm` | `Ops.lean` |
@@ -39,7 +39,10 @@ the same small check the paper does by hand; nothing else is decided by computat
 
 ## Mutation tests
 
-`./mutants.sh` copies the sources to `HofstadterConway/Mut`, plants a single wrong change (in the
-definitions of `c` and `s`, the recurrences (2.2) and (2.3), the perturbation `T`, the key lemma, the
-odd-block bound, Theorem 1, Lemma 2.1, Corollary 4.2 or Lemma 4.3) and builds the copy. All sixteen mutants are
-rejected, and the unchanged copy builds.
+`scripts/mutants.toml` plants a single wrong change per mutant (in the definitions of `c` and `s`, the
+recurrences (2.2) and (2.3), the perturbation `T`, the key lemma, the odd-block bound, Theorem 1, Lemma 2.1,
+Corollary 4.2 or Lemma 4.3), edits the source in place and rebuilds with `lake build HofstadterConway`, then
+restores it. The house harness `scripts/mutate.py` counts a mutant as rejected only if the build exits nonzero
+with a Lean error located in a `HofstadterConway` file; timeouts, crashes and infrastructure failures are
+inconclusive and fail the suite. All sixteen are rejected after a passing control build; the run is in
+`mutation-validation.log`. (Version 1 used `mutants.sh`, which counted any build failure as a rejection.)

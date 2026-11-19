@@ -1,0 +1,25 @@
+# python3 -I scripts/mutate.py scripts/mutants.toml, after lake build, 19 November 2026; rejection = nonzero exit and a Lean error in a HofstadterConway file.
+control passes: Basic.lean
+control passes: Ops.lean
+control passes: Tee.lean
+control passes: Key.lean
+control passes: Main.lean
+control passes: Corollary.lean
+control passes: Blocks.lean
+rejected: c reads c(n-1-x) (exit 1, diagnostic: error: HofstadterConway/Blocks.lean:15:55: Tactic `rfl` failed: The left-hand side)
+rejected: s reads s(n-1-x) (exit 1, diagnostic: error: HofstadterConway/Blocks.lean:21:55: Tactic `rfl` failed: The left-hand side)
+rejected: s(2) = 2 (exit 1, diagnostic: error: HofstadterConway/Blocks.lean:34:27: unsolved goals)
+rejected: recurrence (2.4) shifted (exit 1, diagnostic: error: HofstadterConway/Ops.lean:187:2: Type mismatch)
+rejected: recurrence (2.5) unshifted (exit 1, diagnostic: error: HofstadterConway/Ops.lean:194:2: Type mismatch)
+rejected: T without the lowering (exit 1, diagnostic: error: HofstadterConway/Tee.lean:18:68: unsolved goals)
+rejected: T without the central swap (exit 1, diagnostic: error: HofstadterConway/Tee.lean:20:51: unsolved goals)
+rejected: key lemma with a gap of 1 (theorem statement) (exit 1, diagnostic: error: HofstadterConway/Key.lean:171:4: Type mismatch)
+rejected: odd blocks strictly below T (exit 1, diagnostic: error: HofstadterConway/Main.lean:39:6: Type mismatch)
+rejected: Theorem 1: s < c (exit 1, diagnostic: error: HofstadterConway/Main.lean:67:35: omega could not prove the goal:)
+rejected: Theorem 1: strict (exit 1, diagnostic: error: HofstadterConway/Main.lean:91:6: Tactic `rewrite` failed: Did not find an occurrence of the pattern)
+rejected: Lemma 2.1: letters sum to 2 (exit 1, diagnostic: error: HofstadterConway/Corollary.lean:25:4: omega could not prove the goal:)
+rejected: Corollary 4.2: s(2^k) = 2^k (exit 1, diagnostic: error: HofstadterConway/Corollary.lean:54:22: omega could not prove the goal:)
+rejected: Corollary 4.2: sign parity swapped (exit 1, diagnostic: error: HofstadterConway/Corollary.lean:93:52: omega could not prove the goal:)
+rejected: Corollary 4.2: s jumps by 2 (exit 1, diagnostic: error: HofstadterConway/Corollary.lean:67:23: omega could not prove the goal:)
+rejected: Lemma 4.3: v_(k+1) in place of v_k (exit 1, diagnostic: error: HofstadterConway/Blocks.lean:108:12: Type mismatch)
+16/16 mutants rejected, all controls pass

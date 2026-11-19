@@ -19,7 +19,7 @@
 
 \title[The Hofstadter--Conway sequence and its alternating variant]{A comparison theorem for the Hofstadter--Conway\\ \$10{,}000 sequence and its alternating variant}
 \author{Vamshi Jandhyala}
-\date{Preprint, version 1, 8 October 2026. Not peer reviewed.}
+\date{Preprint, version 2, 19 November 2026 (version 1: 8 October 2026). Not peer reviewed.}
 \subjclass[2020]{11B37, 05A15}
 \keywords{Hofstadter--Conway sequence, meta-Fibonacci recurrence, nested recurrence, Dyck path}
 
@@ -31,7 +31,7 @@ Let $c$ be the Hofstadter--Conway \$10{,}000 sequence, $c(n)=c(c(n-1))+c(n-c(n-1
 
 \maketitle
 
-\noindent\emph{Status of this preprint.} Every result of this paper is formally verified in Lean~4 (Section~\ref{sec:remarks}), using only Lean's standard axioms. This version has not yet been independently reviewed.
+\noindent\emph{Status of this preprint.} The lemmas, Proposition~\ref{prop:blocks}, Corollary~\ref{cor:heights} and Theorem~\ref{thm:main} are formally verified in Lean~4 (Section~\ref{sec:remarks} states the scope), using only Lean's standard axioms. Version 2, 19 November 2026, follows an independent review by Codex (OpenAI): it credits the earlier results on $s$ by Alkan and Aybar and the author's MathOverflow answer, states the scope of the formal and computer checks exactly, and corrects one description of $\cT$. The theorem and proofs are unchanged from version 1 of 8 October 2026.
 
 \section{Introduction}
 
@@ -54,7 +54,7 @@ For every integer $n\ge1$,
 \]
 \end{theorem}
 
-Equivalently, $n-c(n)\le s(n)\le c(n)$ for all $n$.
+Equivalently, $n-c(n)\le s(n)\le c(n)$ for all $n$. The author posted the proof below as a MathOverflow answer~\cite{Ans} on 16 October 2026, after version~1 of this preprint.
 
 \subsection*{Outline} Encode the increments of $c$ on the block $[2^k,2^{k+1}]$ as a binary word $w_k$ of length $2^k$, and do the same for $s$, complementing the word on blocks where $s$ lies below $n/2$; call the result $v_k$. Section~\ref{sec:ops} defines two operators $\cF$ and $\cG$ that double the length of a Dyck word, and Section~\ref{sec:blocks} shows that $w_{k+1}=\cF(w_k)$ while $v_{k+1}$ is $\cF(v_k)$ or $\cG(v_k)$ according to the parity of $k$. Theorem~\ref{thm:main} becomes the statement that the lattice path of $v_k$ never rises above that of $w_k$. Plain induction fails because $\cG$ can overtake $\cF$ in one step. The remedy, in Section~\ref{sec:lemma}, is to carry a stronger hypothesis through two steps at once: $v_k$ lies below a perturbation $\cT(w_k)$ of $w_k$ that lowers its path by one level away from the ends. The key lemma (Lemma~\ref{lem:key}) holds for Dyck words that are symmetric under reversal and complement, and all the words $w_k$ have this symmetry. Figure~\ref{fig:k5} shows the three paths for $k=5$.
 
@@ -77,7 +77,7 @@ Equivalently, $n-c(n)\le s(n)\le c(n)$ for all $n$.
 \label{fig:k5}
 \end{figure}
 
-As by-products, the construction shows that $s$ is well defined and \emph{slow} (its increments are $0$ or $1$), that $s(2^k)=2^{k-1}$, and that $s(n)-\frac n2$ is non-negative on $[2^k,2^{k+1}]$ for even $k$ and non-positive for odd $k$.
+As by-products, the construction reproves that $s$ is well defined and \emph{slow} (its increments are $0$ or $1$), which Alkan and Aybar stated as the case $i=1$ of a theorem on a family of such recursions~\cite{AA,AAslides}, and shows that $s(2^k)=2^{k-1}$ and that $s(n)-\frac n2$ is non-negative on $[2^k,2^{k+1}]$ for even $k$ and non-positive for odd $k$.
 
 \section{Dyck words and two threshold operators}\label{sec:ops}
 
@@ -175,7 +175,7 @@ Hence $A(2L-j)=L-j+A(j)$ and $B(2L-j)=L-j+B(j)$, which is \eqref{eq:sym} for the
 \[
 \cT(u)=u_2u_3\cdots u_m\;b\;(1-b)\;u_{m+1}\cdots u_{L-1},\qquad b=1-u_m.
 \]
-The first $1$ and the last $0$ of $u$ are removed and a complementary pair is inserted at the centre. When the centre of $u$ is a peak ($u_mu_{m+1}=10$) it becomes a valley, and vice versa. Away from the centre, the path of $\cT(u)$ is the path of $u$ lowered by one level.
+The first $1$ and the last $0$ of $u$ are removed and a complementary pair is inserted at the centre. When the centre of $u$ is a peak ($u_mu_{m+1}=10$) it becomes a valley, and vice versa. Away from the centre, the path of $\cT(u)$ is the path of $u$ lowered by one level and moved one step away from the centre: writing $h_u(i)=2P_u(i)-i$, one has $h_{\cT(u)}(i)=h_u(i+1)-1$ for $i<m$, $h_{\cT(u)}(i)=h_u(i-1)-1$ for $i>m$, and $h_{\cT(u)}(m)=h_u(m)-2u_m$ at the centre.
 
 \begin{lemma}\label{lem:T}
 Let $u$ be a symmetric irreducible Dyck word of length $L=2m\ge4$, and $u'=\cT(u)$. Then $u'$ is a symmetric Dyck word and $u'\le u$. More precisely, $\delta(i)=P_u(i)-P_{u'}(i)$ is given by
@@ -237,7 +237,7 @@ Now $\delta(y)=0$ says $u'_y=1$: for $y<m$ it gives $u_{y+1}=1$ and $u'_y=u_{y+1
 \smallskip\noindent\emph{Step 4: domination by $\cT(w)$.} By \eqref{eq:delta} applied to $w$, the prefix count of $\cT(w)$ is $W(i)-1+w_{i+1}$ for $i<M$ and $W(M)-w_M$ at $i=M$. For $i<M$: if $w_{i+1}=1$ this is $W(i)\ge Z(i)$; if $w_{i+1}=0$, Step~2 gives $Z(i)\ne W(i)$, so $Z(i)\le W(i)-1$. At $i=M$: if $w_M=0$ the bound is $Z(M)\le W(M)$; if $w_M=1$ then $w_{M+1}=0$ by symmetry, and Step~2 again gives $Z(M)\le W(M)-1$. For $i>M$ the bound follows from the case $4L-i<M$, since $\cT(w)$ and $\cG(\cF(u'))$ are both symmetric.
 \end{proof}
 
-\begin{remark}
+\begin{remark}\label{rem:sym}
 Symmetry enters through the midpoint identity, which gives the bound $y\le m$ in Step~2. Without symmetry both fail. Among irreducible Dyck words $u$, the identity $H(M-W(M))=m$ first fails at length $12$ (for $3$ words), and the bound~\eqref{eq:mid} first fails at length $16$ (for $8$ words).
 \end{remark}
 
@@ -317,10 +317,11 @@ For the even blocks between them, $v_{k+1}=\cF(v_k)\le\cF(\cT(w_k))\le\cF(w_k)=w
 \section{Remarks}\label{sec:remarks}
 
 \begin{enumerate}
-\item The proof gives more than Theorem~\ref{thm:main}: for odd $k\ge3$ the path of $|2s(n)-n|$ on $[2^k,2^{k+1}]$ lies below the path of $2c(n)-n$ lowered by one level away from the ends, with the centre adjusted as in $\cT$ (Figure~\ref{fig:k5}).
-\item The argument uses no enumeration. As an independent check, the conclusions of Lemmas~\ref{lem:ops}, \ref{lem:props}, \ref{lem:T} and~\ref{lem:key} were tested by computer on all $26{,}364$ symmetric irreducible Dyck words of length at most $34$, Proposition~\ref{prop:blocks} on every block up to $2^{20}$, and Theorem~\ref{thm:main} and Corollary~\ref{cor:heights} on all $n\le2^{20}$.
-\item Every result of Sections~\ref{sec:ops} to~\ref{sec:proof} is also proved in the Lean~4 proof assistant with the Mathlib library: Lemma~\ref{lem:sym}, Lemmas~\ref{lem:ops} to~\ref{lem:key}, Proposition~\ref{prop:blocks} (including that $c$ and $s$ satisfy their recurrences with every argument in range), Corollary~\ref{cor:heights}, Lemma~\ref{lem:wsym}, Theorem~\ref{thm:main}, and the sharper statement of Remark~1. The proofs follow the paper; the base case $\cT(w_3)=v_3$ is checked by evaluation, as in Section~\ref{sec:proof}. They use no axioms beyond the standard ones, and sixteen deliberately altered statements and definitions are rejected by the proof checker. The Lean code and the verification program are at
-\begin{center}\small\url{https://github.com/jvvk/mathematics/tree/main/hofstadter-conway-comparison}.\end{center}
+\item The proof gives more than Theorem~\ref{thm:main}: for odd $k\ge3$ the path of $|2s(n)-n|$ on $[2^k,2^{k+1}]$ lies below the path of $\cT(w_k)$, that is, the path of $2c(n)-n$ lowered by one level and moved one step away from the centre, with the centre adjusted as in Section~\ref{sec:ops} (Figure~\ref{fig:k5}).
+\item The argument uses no enumeration. As an independent check, the following were tested by computer: the recurrences \eqref{eq:A} and~\eqref{eq:B} against the threshold definition on every Dyck word of length at most $12$; the monotonicity of Lemma~\ref{lem:props} on every comparable pair of Dyck words of length at most $12$; and, on all $26{,}364$ symmetric irreducible Dyck words of length at most $34$, that $\cF(u)$ and $\cG(u)$ are Dyck, $\cF(u)$ irreducible and both symmetric, Lemma~\ref{lem:T} including~\eqref{eq:delta}, the midpoint identity $H(M-W(M))=m$, the contact claim and the conclusion of Lemma~\ref{lem:key}. Lemma~\ref{lem:ops}(1), (2) and~(5) were not tested separately. Also tested were Proposition~\ref{prop:blocks} on every block up to $2^{20}$, and Theorem~\ref{thm:main} and Corollary~\ref{cor:heights} on all $n\le2^{20}$.
+\item The results of Sections~\ref{sec:ops} to~\ref{sec:proof} are also proved in the Lean~4 proof assistant with the Mathlib library: Lemma~\ref{lem:sym} for Dyck words (the case used; the paper states it for every balanced word), Lemmas~\ref{lem:ops} to~\ref{lem:key}, Proposition~\ref{prop:blocks} (including that $c$ and $s$ satisfy their recurrences with every argument in range), Corollary~\ref{cor:heights}, Lemma~\ref{lem:wsym}, Theorem~\ref{thm:main}, and the sharper statement of Remark~1. The computational statements of Remark~\ref{rem:sym} (the counts of words for which the midpoint identity and the bound~\eqref{eq:mid} fail) are checked by the verification program only. The proofs follow the paper; the base case $\cT(w_3)=v_3$ is checked by evaluation, as in Section~\ref{sec:proof}. They use no axioms beyond the standard ones, and sixteen deliberately altered statements and definitions are each rejected with a Lean error. The Lean code and the verification program are at
+\begin{center}\small folder \texttt{hofstadter-conway-comparison} at tag \texttt{hofstadter-conway-comparison-v2} of \url{https://github.com/jvvk/mathematics},\end{center}
+and, identical to it, the Zenodo record \href{https://doi.org/10.5281/zenodo.24366939}{doi:10.5281/zenodo.24366939}.
 \item Alkan also asked for a combinatorial description of $s$. Proposition~\ref{prop:blocks} gives one in the same spirit as the analysis of $c$ by Kubo and Vakil: each block of $s$ is obtained from the previous one by one of two explicit threshold operators, alternating with the parity of $k$.
 \end{enumerate}
 
@@ -329,6 +330,8 @@ The proofs, text, verification programs and Lean formalisation were developed wi
 
 \begin{thebibliography}{9}
 \bibitem{AA} A.~Alkan and O.~\"O.~Aybar, \emph{On families of solutions for meta-Fibonacci recursions related to Hofstadter--Conway \$10000 sequence}, in: Chaos and Complex Systems, Springer Proceedings in Complexity, Springer, Cham, 2020, pp.~149--158, \href{https://doi.org/10.1007/978-3-030-35441-1_14}{doi:10.1007/978-3-030-35441-1\_14}.
+\bibitem{AAslides} A.~Alkan and O.~\"O.~Aybar, \emph{On families of solutions for meta-Fibonacci recursions related to Hofstadter--Conway \$10000 sequence}, slides, 5th International Interdisciplinary Chaos Symposium on Chaos and Complex Systems, 12 May 2019, slide 25, \url{https://oeis.org/A004001/a004001_5.pdf}.
+\bibitem{Ans} V.~Jandhyala (MathOverflow user jvvk), answer to~\cite{MO}, \url{https://mathoverflow.net/a/516095}, 16 October 2026.
 \bibitem{KV} T.~Kubo and R.~Vakil, \emph{On Conway's recursive sequence}, Discrete Math.\ 152 (1996), 225--252, \href{https://doi.org/10.1016/0012-365X(94)00303-Z}{doi:10.1016/0012-365X(94)00303-Z}.
 \bibitem{Mallows} C.~L.~Mallows, \emph{Conway's challenge sequence}, Amer.\ Math.\ Monthly 98 (1991), 5--20, \href{https://doi.org/10.1080/00029890.1991.11995694}{doi:10.1080/00029890.1991.11995694}.
 \bibitem{MO} A.~Alkan, \emph{A question related to the Hofstadter--Conway \$10000 sequence}, MathOverflow question 366772 (2020), \url{https://mathoverflow.net/q/366772}, accessed 8 October 2026.

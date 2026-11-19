@@ -1,0 +1,115 @@
+# Mutation suite for HofstadterConway, converted from mutants.sh (v1). Each mutant edits one source file in place;
+# `lake build HofstadterConway` must then fail with a Lean error located in a HofstadterConway file
+# (downstream files are rebuilt too, as the v1 script did through Corollary.lean).
+# The v1 key-lemma mutant edited the statement and two inner `have`s; here it edits the theorem statement only.
+#   cd lean && lake build && python3 -I scripts/mutate.py scripts/mutants.toml
+[check]
+cmd = ["lake", "build", "HofstadterConway"]
+cwd = ".."
+timeout = 2400
+mode = "inplace"
+fail_pattern = 'error: (?:\./)*HofstadterConway/\S+\.lean:\d+:\d+: '
+
+[[mutant]]
+name = '''c reads c(n-1-x)'''
+file = "../HofstadterConway/Basic.lean"
+old = '''    if _h : 1 ≤ x ∧ x ≤ n + 2 then c x + c (n + 3 - x) else 0'''
+new = '''    if _h : 1 ≤ x ∧ x ≤ n + 2 then c x + c (n + 2 - x) else 0'''
+
+[[mutant]]
+name = '''s reads s(n-1-x)'''
+file = "../HofstadterConway/Basic.lean"
+old = '''    if _h : 1 ≤ x ∧ x ≤ n + 2 then n + 3 - s x - s (n + 3 - x) else 0'''
+new = '''    if _h : 1 ≤ x ∧ x ≤ n + 2 then n + 3 - s x - s (n + 2 - x) else 0'''
+
+[[mutant]]
+name = '''s(2) = 2'''
+file = "../HofstadterConway/Basic.lean"
+old = '''def s : ℕ → ℕ
+  | 0 => 0
+  | 1 => 1
+  | 2 => 1'''
+new = '''def s : ℕ → ℕ
+  | 0 => 0
+  | 1 => 1
+  | 2 => 2'''
+
+[[mutant]]
+name = '''recurrence (2.4) shifted'''
+file = "../HofstadterConway/Ops.lean"
+old = '''  | j + 1 => P (Arec P j) + P (j + 1 - Arec P j)'''
+new = '''  | j + 1 => P (Arec P j) + P (j - Arec P j)'''
+
+[[mutant]]
+name = '''recurrence (2.5) unshifted'''
+file = "../HofstadterConway/Ops.lean"
+old = '''  | j + 1 => P (Brec P j + 1) + P (j - Brec P j)'''
+new = '''  | j + 1 => P (Brec P j) + P (j - Brec P j)'''
+
+[[mutant]]
+name = '''T without the lowering'''
+file = "../HofstadterConway/Tee.lean"
+old = '''  if i < L / 2 then P (i + 1) - 1 else if i = L / 2 then P (L / 2 - 1) else P (i - 1)'''
+new = '''  if i < L / 2 then P (i + 1) else if i = L / 2 then P (L / 2 - 1) else P (i - 1)'''
+
+[[mutant]]
+name = '''T without the central swap'''
+file = "../HofstadterConway/Tee.lean"
+old = '''  if i < L / 2 then P (i + 1) - 1 else if i = L / 2 then P (L / 2 - 1) else P (i - 1)'''
+new = '''  if i < L / 2 then P (i + 1) - 1 else if i = L / 2 then P (L / 2) else P (i - 1)'''
+
+[[mutant]]
+name = '''key lemma with a gap of 1 (theorem statement)'''
+file = "../HofstadterConway/Key.lean"
+old = '''theorem key (i : ℕ) :
+    GP (2 * L) (FP L (TP L P)) i ≤ TP (2 * (2 * L)) (FP (2 * L) (FP L P)) i := by'''
+new = '''theorem key (i : ℕ) :
+    GP (2 * L) (FP L (TP L P)) i + 1 ≤ TP (2 * (2 * L)) (FP (2 * L) (FP L P)) i := by'''
+
+[[mutant]]
+name = '''odd blocks strictly below T'''
+file = "../HofstadterConway/Main.lean"
+old = '''theorem odd_blocks (n : ℕ) : ∀ i, vP (2 * n + 3) i ≤ TP (2 ^ (2 * n + 3)) (wP (2 * n + 3)) i := by'''
+new = '''theorem odd_blocks (n : ℕ) : ∀ i, vP (2 * n + 3) i < TP (2 ^ (2 * n + 3)) (wP (2 * n + 3)) i := by'''
+
+[[mutant]]
+name = '''Theorem 1: s < c'''
+file = "../HofstadterConway/Main.lean"
+old = '''theorem main (n : ℕ) (hn : 1 ≤ n) : n ≤ c n + s n ∧ s n ≤ c n := by'''
+new = '''theorem main (n : ℕ) (hn : 1 ≤ n) : n ≤ c n + s n ∧ s n < c n := by'''
+
+[[mutant]]
+name = '''Theorem 1: strict'''
+file = "../HofstadterConway/Main.lean"
+old = '''    |(s n : ℚ) - n / 2| ≤ c n - n / 2 := by'''
+new = '''    |(s n : ℚ) - n / 2| < c n - n / 2 := by'''
+
+[[mutant]]
+name = '''Lemma 2.1: letters sum to 2'''
+file = "../HofstadterConway/Corollary.lean"
+old = '''    Symm L P ↔ ∀ i, 1 ≤ i → i ≤ L → letter P (L + 1 - i) + letter P i = 1 := by'''
+new = '''    Symm L P ↔ ∀ i, 1 ≤ i → i ≤ L → letter P (L + 1 - i) + letter P i = 2 := by'''
+
+[[mutant]]
+name = '''Corollary 4.2: s(2^k) = 2^k'''
+file = "../HofstadterConway/Corollary.lean"
+old = '''theorem c_s_pow (k : ℕ) (hk : 1 ≤ k) : c (2 ^ k) = 2 ^ (k - 1) ∧ s (2 ^ k) = 2 ^ (k - 1) := by'''
+new = '''theorem c_s_pow (k : ℕ) (hk : 1 ≤ k) : c (2 ^ k) = 2 ^ (k - 1) ∧ s (2 ^ k) = 2 ^ k := by'''
+
+[[mutant]]
+name = '''Corollary 4.2: sign parity swapped'''
+file = "../HofstadterConway/Corollary.lean"
+old = '''    (k % 2 = 0 → n ≤ 2 * s n) ∧ (k % 2 = 1 → 2 * s n ≤ n) := by'''
+new = '''    (k % 2 = 1 → n ≤ 2 * s n) ∧ (k % 2 = 0 → 2 * s n ≤ n) := by'''
+
+[[mutant]]
+name = '''Corollary 4.2: s jumps by 2'''
+file = "../HofstadterConway/Corollary.lean"
+old = '''theorem s_slow (n : ℕ) (hn : 1 ≤ n) : s n ≤ s (n + 1) ∧ s (n + 1) ≤ s n + 1 := by'''
+new = '''theorem s_slow (n : ℕ) (hn : 1 ≤ n) : s n + 1 ≤ s (n + 1) ∧ s (n + 1) ≤ s n + 1 := by'''
+
+[[mutant]]
+name = '''Lemma 4.3: v_(k+1) in place of v_k'''
+file = "../HofstadterConway/Blocks.lean"
+old = '''theorem v_symm : ∀ k, 1 ≤ k → Symm (2 ^ k) (vP k) := by'''
+new = '''theorem v_symm : ∀ k, 1 ≤ k → Symm (2 ^ k) (vP (k + 1)) := by'''

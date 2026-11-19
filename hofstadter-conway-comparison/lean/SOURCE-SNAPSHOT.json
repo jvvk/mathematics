@@ -1,7 +1,7 @@
 {
   "source_repo": "lean-proofs (private)",
   "source_commit": "c6dcd06f80d72f574c609c139d9934e0f1bcf431",
-  "note": "HofstadterConway/*.lean are LeanProofs/HofConway at this commit, with imports renamed from LeanProofs.HofConway to HofstadterConway; HofstadterConway.lean is new. Built in this layout on 8 October 2026: 3101 jobs, every axiom audit (22 results) standard or a subset; mutants.sh: sixteen mutants rejected, the unchanged copy builds.",
+  "note": "Hashes regenerated for version 2 (19 November 2026); mutants.sh replaced by the house harness suite.",
   "lean_toolchain": "leanprover/lean4:v4.34.0",
   "mathlib_rev": "v4.34.0",
   "files": {
@@ -13,6 +13,9 @@
     "HofstadterConway/Main.lean": "01098711e38decff9590be6c4b38a6830e6affe5ecfe1e329193df1576720bcf",
     "HofstadterConway/Ops.lean": "d7e2d71c6e0dc62f5bd04a62473b30327dd860739374a19adf5c11fb38d4ea5b",
     "HofstadterConway/Tee.lean": "abfbd8fbbb658db675274b83e564f09f9ef9860548d4078c37e89a14c6885baa",
-    "HofstadterConway.lean": "b2496602a317a2e1f3265a17d2fc0e10c3c8e02bfb85212055aa8aa61f600d6e"
+    "HofstadterConway.lean": "b2496602a317a2e1f3265a17d2fc0e10c3c8e02bfb85212055aa8aa61f600d6e",
+    "scripts/mutate.py": "15072a124fad268200bcc5a2d58f417912c6ae451adc1f3c44f895670dd4fcf1",
+    "scripts/mutants.toml": "9171f4a55cefd5dfc2de5bb5f97f5ff4abd21e7e0fd7d59d033128b9f9b9d831",
+    "axiom-validation.txt": "323c047f2925c7f30e586d6692c201e30541db940b3a6df1e4e1b2d666e13ccf"
   }
 }
