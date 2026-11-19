@@ -176,9 +176,9 @@ The binomial basis is just as direct. Writing $R^{u+1}=R\,(1+(R-1))^u=\sum_m\bin
 \[
  L(u,a,b,n)=\frac{(u+\nu)!^2}{\nu!}\sum_{m\ge0}\binom um\,\coef{w^az^b}R\,(R-1)^{m+\nu},
 \]
-with every inner coefficient nonnegative. This is the formula Taylor conjectured: its inner coefficients are his inner sums. For $u=0$ only the term $m=0$ survives, and the formula becomes Abdesselam's single-sum identity, which Rosengren proved in~\cite{MO2}. Comparing the two cases, $\coef{w^az^b}R\,(R-1)^{m+\nu}=L(0,a,b,n-m)/(\nu+m)!$, so
+with every inner coefficient nonnegative. This is the formula Taylor conjectured: its inner coefficients are his inner sums. For $u=0$ only the term $m=0$ survives, and the formula becomes Abdesselam's single-sum identity, which Rosengren proved in~\cite{MO2}. Comparing the two cases, $\coef{w^az^b}R\,(R-1)^{m+\nu}=L(0,a,b,n-m)/(\nu+m)!$ for $0\le m\le n$, while for $m>n$ the coefficient vanishes because every monomial of $(R-1)^{m+\nu}$ has total degree at least $m+\nu>a+b$. So
 \[
- \frac{\nu!\,L(u,a,b,n)}{(u+\nu)!^2}=\sum_{m\ge0}\binom um\frac{L(0,a,b,n-m)}{(\nu+m)!},
+ \frac{\nu!\,L(u,a,b,n)}{(u+\nu)!^2}=\sum_{m=0}^{n}\binom um\frac{L(0,a,b,n-m)}{(\nu+m)!},
 \]
 which reduces Taylor's formula for every $u$ to the case $u=0$. With Rosengren's identity, this reduction alone already gives Taylor's expansion; what the generating function adds is the nonnegativity of the inner coefficients and the exact degree below. Indeed, $R-1=R(1-E)$ with $E=(1-z)^2-w^2=1/R$, so
 \[
