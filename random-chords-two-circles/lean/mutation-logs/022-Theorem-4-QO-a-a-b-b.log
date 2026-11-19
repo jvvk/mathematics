@@ -1,0 +1,36 @@
+# Theorem 4: |QO| = a(a+b)/b
+# command: nice -n 15 python3 -I scripts/lake_serial.py . RandomChords.Audit
+# exit: 1
+## stdout
+[1/11] RandomChords.Basic
+Build completed successfully (2778 jobs).
+[2/11] RandomChords.Branches
+Build completed successfully (2779 jobs).
+[3/11] RandomChords.OneCircle
+Build completed successfully (2780 jobs).
+[4/11] RandomChords.TwoCircles
+Build completed successfully (2781 jobs).
+[5/11] RandomChords.Moments
+Build completed successfully (2789 jobs).
+[6/11] RandomChords.Centres
+✖ [2793/2793] Building RandomChords.Centres (1.9s)
+trace: .> LEAN_PATH=.lake/packages/Cli/.lake/build/lib/lean:.lake/packages/batteries/.lake/build/lib/lean:.lake/packages/Qq/.lake/build/lib/lean:.lake/packages/aesop/.lake/build/lib/lean:.lake/packages/proofwidgets/.lake/build/lib/lean:.lake/packages/importGraph/.lake/build/lib/lean:.lake/packages/LeanSearchClient/.lake/build/lib/lean:.lake/packages/plausible/.lake/build/lib/lean:.lake/packages/mathlib/.lake/build/lib/lean:.lake/build/lib/lean <local> RandomChords/Centres.lean -o .lake/build/lib/lean/RandomChords/Centres.olean -i .lake/build/lib/lean/RandomChords/Centres.ilean -c .lake/build/ir/RandomChords/Centres.c --setup .lake/build/ir/RandomChords/Centres.setup.json --json
+warning: RandomChords/Centres.lean:95:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+error: RandomChords/Centres.lean:269:2: Type mismatch
+  weights_iff ha hb hD o
+has type
+  |o / D * a| = |o| ∧ |(-((1 + o / D) * b))| = |(-b)| ∨ |o / D * a| = |(-b)| ∧ |(-((1 + o / D) * b))| = |o| ↔
+    o = 0 ∨ D = a + b ∧ o = b * (a + b) / a
+but is expected to have type
+  |(o / D * a, -((1 + o / D) * b)).1| = |(o, -b).1| ∧ |(o / D * a, -((1 + o / D) * b)).2| = |(o, -b).2| ∨
+      |(o / D * a, -((1 + o / D) * b)).1| = |(o, -b).2| ∧ |(o / D * a, -((1 + o / D) * b)).2| = |(o, -b).1| ↔
+    o = 0 ∨ D = a + b ∧ o = a * (a + b) / b
+Some required targets logged failures:
+- RandomChords.Centres
+
+## stderr
+error: build failed
+FAIL RandomChords.Centres (lake exit 1)
+

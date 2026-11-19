@@ -1,0 +1,84 @@
+# mirrored Theorem 4: b(a+b)/a
+# command: nice -n 15 python3 -I scripts/lake_serial.py . RandomChords.Audit
+# exit: 1
+## stdout
+[1/11] RandomChords.Basic
+Build completed successfully (2778 jobs).
+[2/11] RandomChords.Branches
+Build completed successfully (2779 jobs).
+[3/11] RandomChords.OneCircle
+Build completed successfully (2780 jobs).
+[4/11] RandomChords.TwoCircles
+Build completed successfully (2781 jobs).
+[5/11] RandomChords.Moments
+✔ [2789/2789] Built RandomChords.Moments (1.8s)
+Build completed successfully (2789 jobs).
+[6/11] RandomChords.Centres
+⚠ [2793/2793] Replayed RandomChords.Centres
+warning: RandomChords/Centres.lean:95:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+Build completed successfully (2793 jobs).
+[7/11] RandomChords.Corollaries
+⚠ [2793/2794] Replayed RandomChords.Centres
+warning: RandomChords/Centres.lean:95:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✖ [2794/2794] Building RandomChords.Corollaries (1.5s)
+trace: .> LEAN_PATH=.lake/packages/Cli/.lake/build/lib/lean:.lake/packages/batteries/.lake/build/lib/lean:.lake/packages/Qq/.lake/build/lib/lean:.lake/packages/aesop/.lake/build/lib/lean:.lake/packages/proofwidgets/.lake/build/lib/lean:.lake/packages/importGraph/.lake/build/lib/lean:.lake/packages/LeanSearchClient/.lake/build/lib/lean:.lake/packages/plausible/.lake/build/lib/lean:.lake/packages/mathlib/.lake/build/lib/lean:.lake/build/lib/lean <local> RandomChords/Corollaries.lean -o .lake/build/lib/lean/RandomChords/Corollaries.olean -i .lake/build/lib/lean/RandomChords/Corollaries.ilean -c .lake/build/ir/RandomChords/Corollaries.c --setup .lake/build/ir/RandomChords/Corollaries.setup.json --json
+info: RandomChords/Corollaries.lean:159:43: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+error: RandomChords/Corollaries.lean:159:31: unsolved goals
+a b D : ℝ
+ha : 0 < a
+hb : 0 < b
+hD : a + b ≤ D
+q o' : ℝ
+e1 : Measure.map (dAB' a b D q o') volume = Measure.map (dAB b a D q o') volume
+e2 : Measure.map (dAA a D q o') volume = Measure.map (dBC a q o') volume
+h1 : D = b + a
+h2 : o' = a * (b + a) / b
+⊢ a * b * b⁻¹ + a ^ 2 * b⁻¹ = a * b * a⁻¹ + b ^ 2 * a⁻¹
+info: RandomChords/Corollaries.lean:161:43: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+error: RandomChords/Corollaries.lean:161:31: unsolved goals
+a b D : ℝ
+ha : 0 < a
+hb : 0 < b
+hD : a + b ≤ D
+q o' : ℝ
+e1 : Measure.map (dAB' a b D q o') volume = Measure.map (dAB b a D q o') volume
+e2 : Measure.map (dAA a D q o') volume = Measure.map (dBC a q o') volume
+h1 : D = a + b
+h2 : o' = b * (a + b) / a
+⊢ b * a * a⁻¹ + b ^ 2 * a⁻¹ = b * a * b⁻¹ + a ^ 2 * b⁻¹
+error: RandomChords/Corollaries.lean:197:97: unsolved goals
+r : ℝ
+hr : 0 < r
+x : ℤ → ℝ
+hx : ∀ (k : ℤ), x (k + 1) = x k + r ^ k + r ^ (k + 1)
+k : ℤ
+hk0 : 0 < r ^ k
+hk1 : 0 < r ^ (k + 1)
+hz1 : r ^ (k + 1) = r ^ k * r
+hz2 : r ^ (k + 2) = r ^ k * r * r
+hzm : r ^ k = r ^ (k - 1) * r
+e1 : x (k + 1) - (r ^ k + r ^ (k + 1)) = x k
+e3 : x (k + 1) + (r ^ (k + 1) + r ^ (k + 2)) = x (k + 2)
+e2 : x k - (r ^ (k - 1) + r ^ k) = x (k - 1)
+⊢ 1 = r ^ 2
+Some required targets logged failures:
+- RandomChords.Corollaries
+
+## stderr
+error: build failed
+FAIL RandomChords.Corollaries (lake exit 1)
+

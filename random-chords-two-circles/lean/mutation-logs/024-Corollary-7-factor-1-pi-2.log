@@ -1,0 +1,65 @@
+# Corollary 7: factor 1/pi^2
+# command: nice -n 15 python3 -I scripts/lake_serial.py . RandomChords.Audit
+# exit: 1
+## stdout
+[1/11] RandomChords.Basic
+Build completed successfully (2778 jobs).
+[2/11] RandomChords.Branches
+Build completed successfully (2779 jobs).
+[3/11] RandomChords.OneCircle
+Build completed successfully (2780 jobs).
+[4/11] RandomChords.TwoCircles
+Build completed successfully (2781 jobs).
+[5/11] RandomChords.Moments
+Build completed successfully (2789 jobs).
+[6/11] RandomChords.Centres
+⚠ [2793/2793] Replayed RandomChords.Centres
+warning: RandomChords/Centres.lean:95:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+Build completed successfully (2793 jobs).
+[7/11] RandomChords.Corollaries
+⚠ [2793/2794] Replayed RandomChords.Centres
+warning: RandomChords/Centres.lean:95:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✔ [2794/2794] Built RandomChords.Corollaries (1.6s)
+Build completed successfully (2794 jobs).
+[8/11] RandomChords.HitProb
+⚠ [2793/2795] Replayed RandomChords.Centres
+warning: RandomChords/Centres.lean:95:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✖ [2795/2795] Building RandomChords.HitProb (2.3s)
+trace: .> LEAN_PATH=.lake/packages/Cli/.lake/build/lib/lean:.lake/packages/batteries/.lake/build/lib/lean:.lake/packages/Qq/.lake/build/lib/lean:.lake/packages/aesop/.lake/build/lib/lean:.lake/packages/proofwidgets/.lake/build/lib/lean:.lake/packages/importGraph/.lake/build/lib/lean:.lake/packages/LeanSearchClient/.lake/build/lib/lean:.lake/packages/plausible/.lake/build/lib/lean:.lake/packages/mathlib/.lake/build/lib/lean:.lake/build/lib/lean <local> RandomChords/HitProb.lean -o .lake/build/lib/lean/RandomChords/HitProb.olean -i .lake/build/lib/lean/RandomChords/HitProb.ilean -c .lake/build/ir/RandomChords/HitProb.c --setup .lake/build/ir/RandomChords/HitProb.setup.json --json
+info: RandomChords/HitProb.lean:177:4: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+error: RandomChords/HitProb.lean:177:2: unsolved goals
+r : ℝ
+hr : 0 < r
+⊢ (∫ (v : ℝ) in 0..π * (1 / 2), hitF r v) * π⁻¹ ^ 2 * 2 = (∫ (v : ℝ) in 0..π * (1 / 2), hitF r v) * π⁻¹ ^ 2
+error: RandomChords/HitProb.lean:228:8: Application type mismatch: The argument
+  h
+has type
+  Tendsto (fun x ↦ 2 / π ^ 2 * ∫ (v : ℝ) in 0..π / 2, hitF x v) atTop (𝓝 1)
+but is expected to have type
+  Tendsto Hint atTop (𝓝 1)
+in the application
+  Tendsto.congr' (Eventually.mono (eventually_gt_atTop 0) fun r hr ↦ Eq.symm (H_formula hr)) h
+error: RandomChords/HitProb.lean:308:9: typeclass instance problem is stuck
+  NormedSpace ℝ ?m.79
+
+Note: Lean will not try to resolve this typeclass instance problem because the second and fourth type arguments to `NormedSpace` contain metavariables. These arguments must be fully determined before Lean will try to resolve the typeclass.
+
+Hint: Adding type annotations and supplying implicit arguments to functions can give Lean more information for typeclass resolution. For example, if you have a variable `x` that you intend to be a `Nat`, but Lean reports it as having an unresolved type like `?m`, replacing `x` with `(x : Nat)` can get typeclass resolution un-stuck.
+Some required targets logged failures:
+- RandomChords.HitProb
+
+## stderr
+error: build failed
+FAIL RandomChords.HitProb (lake exit 1)
+

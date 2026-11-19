@@ -1,0 +1,50 @@
+# Lemma 3: weights in order only
+# command: nice -n 15 python3 -I scripts/lake_serial.py . RandomChords.Audit
+# exit: 1
+## stdout
+[1/11] RandomChords.Basic
+Build completed successfully (2778 jobs).
+[2/11] RandomChords.Branches
+Build completed successfully (2779 jobs).
+[3/11] RandomChords.OneCircle
+Build completed successfully (2780 jobs).
+[4/11] RandomChords.TwoCircles
+Build completed successfully (2781 jobs).
+[5/11] RandomChords.Moments
+✖ [2789/2789] Building RandomChords.Moments (1.7s)
+trace: .> LEAN_PATH=.lake/packages/Cli/.lake/build/lib/lean:.lake/packages/batteries/.lake/build/lib/lean:.lake/packages/Qq/.lake/build/lib/lean:.lake/packages/aesop/.lake/build/lib/lean:.lake/packages/proofwidgets/.lake/build/lib/lean:.lake/packages/importGraph/.lake/build/lib/lean:.lake/packages/LeanSearchClient/.lake/build/lib/lean:.lake/packages/plausible/.lake/build/lib/lean:.lake/packages/mathlib/.lake/build/lib/lean:.lake/build/lib/lean <local> RandomChords/Moments.lean -o .lake/build/lib/lean/RandomChords/Moments.olean -i .lake/build/lib/lean/RandomChords/Moments.ilean -c .lake/build/ir/RandomChords/Moments.c --setup .lake/build/ir/RandomChords/Moments.setup.json --json
+error: RandomChords/Moments.lean:233:6: Tactic `left` failed: left tactic works for inductive types with exactly 2 constructors
+
+case mp.inl
+w w' : ℝ × ℝ
+h : lawW w = lawW w'
+hM : |w.1| + |w.2| = |w'.1| + |w'.2|
+h2 : π ^ 2 * (w'.1 ^ 2 + w'.2 ^ 2) / 2 = π ^ 2 * (w.1 ^ 2 + w.2 ^ 2) / 2
+hq : |w.1| ^ 2 + |w.2| ^ 2 = |w'.1| ^ 2 + |w'.2| ^ 2
+hp : |w.1| * |w.2| = |w'.1| * |w'.2|
+hroot : (|w.1| - |w'.1|) * (|w.1| - |w'.2|) = 0
+h1 : |w.1| - |w'.1| = 0
+⊢ |w.1| = |w'.1| ∧ |w.2| = |w'.2|
+error: RandomChords/Moments.lean:234:6: Tactic `right` failed: right tactic works for inductive types with exactly 2 constructors
+
+case mp.inr
+w w' : ℝ × ℝ
+h : lawW w = lawW w'
+hM : |w.1| + |w.2| = |w'.1| + |w'.2|
+h2 : π ^ 2 * (w'.1 ^ 2 + w'.2 ^ 2) / 2 = π ^ 2 * (w.1 ^ 2 + w.2 ^ 2) / 2
+hq : |w.1| ^ 2 + |w.2| ^ 2 = |w'.1| ^ 2 + |w'.2| ^ 2
+hp : |w.1| * |w.2| = |w'.1| * |w'.2|
+hroot : (|w.1| - |w'.1|) * (|w.1| - |w'.2|) = 0
+h1 : |w.1| - |w'.2| = 0
+⊢ |w.1| = |w'.1| ∧ |w.2| = |w'.2|
+error: RandomChords/Moments.lean:235:12: Tactic `cases` failed with a nested error:
+Dependent elimination failed: Failed to solve equation
+  Real.sup✝ w'.1 (-w'.1) = Real.sup✝ w.1 (-w.1)
+at case `Eq.refl`
+Some required targets logged failures:
+- RandomChords.Moments
+
+## stderr
+error: build failed
+FAIL RandomChords.Moments (lake exit 1)
+

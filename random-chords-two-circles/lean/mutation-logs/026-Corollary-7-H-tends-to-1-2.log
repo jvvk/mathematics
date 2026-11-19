@@ -1,0 +1,48 @@
+# Corollary 7: H tends to 1/2
+# command: nice -n 15 python3 -I scripts/lake_serial.py . RandomChords.Audit
+# exit: 1
+## stdout
+[1/11] RandomChords.Basic
+Build completed successfully (2778 jobs).
+[2/11] RandomChords.Branches
+Build completed successfully (2779 jobs).
+[3/11] RandomChords.OneCircle
+Build completed successfully (2780 jobs).
+[4/11] RandomChords.TwoCircles
+Build completed successfully (2781 jobs).
+[5/11] RandomChords.Moments
+Build completed successfully (2789 jobs).
+[6/11] RandomChords.Centres
+⚠ [2793/2793] Replayed RandomChords.Centres
+warning: RandomChords/Centres.lean:95:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+Build completed successfully (2793 jobs).
+[7/11] RandomChords.Corollaries
+⚠ [2793/2794] Replayed RandomChords.Centres
+warning: RandomChords/Centres.lean:95:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+Build completed successfully (2794 jobs).
+[8/11] RandomChords.HitProb
+⚠ [2793/2795] Replayed RandomChords.Centres
+warning: RandomChords/Centres.lean:95:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✖ [2795/2795] Building RandomChords.HitProb (2.4s)
+trace: .> LEAN_PATH=.lake/packages/Cli/.lake/build/lib/lean:.lake/packages/batteries/.lake/build/lib/lean:.lake/packages/Qq/.lake/build/lib/lean:.lake/packages/aesop/.lake/build/lib/lean:.lake/packages/proofwidgets/.lake/build/lib/lean:.lake/packages/importGraph/.lake/build/lib/lean:.lake/packages/LeanSearchClient/.lake/build/lib/lean:.lake/packages/plausible/.lake/build/lib/lean:.lake/packages/mathlib/.lake/build/lib/lean:.lake/build/lib/lean <local> RandomChords/HitProb.lean -o .lake/build/lib/lean/RandomChords/HitProb.olean -i .lake/build/lib/lean/RandomChords/HitProb.ilean -c .lake/build/ir/RandomChords/HitProb.c --setup .lake/build/ir/RandomChords/HitProb.setup.json --json
+error: RandomChords/HitProb.lean:228:8: Application type mismatch: The argument
+  h
+has type
+  Tendsto (fun x ↦ 2 / π ^ 2 * ∫ (v : ℝ) in 0..π / 2, hitF x v) atTop (𝓝 1)
+but is expected to have type
+  Tendsto Hint atTop (𝓝 (1 / 2))
+in the application
+  Tendsto.congr' (Eventually.mono (eventually_gt_atTop 0) fun r hr ↦ Eq.symm (H_formula hr)) h
+Some required targets logged failures:
+- RandomChords.HitProb
+
+## stderr
+error: build failed
+FAIL RandomChords.HitProb (lake exit 1)
+

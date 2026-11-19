@@ -1,0 +1,38 @@
+# Lemma 2: contributions sum to 2
+# command: nice -n 15 python3 -I scripts/lake_serial.py . RandomChords.Audit
+# exit: 1
+## stdout
+[1/11] RandomChords.Basic
+Build completed successfully (2778 jobs).
+[2/11] RandomChords.Branches
+Build completed successfully (2779 jobs).
+[3/11] RandomChords.OneCircle
+Build completed successfully (2780 jobs).
+[4/11] RandomChords.TwoCircles
+✖ [2781/2781] Building RandomChords.TwoCircles (2.3s)
+trace: .> LEAN_PATH=.lake/packages/Cli/.lake/build/lib/lean:.lake/packages/batteries/.lake/build/lib/lean:.lake/packages/Qq/.lake/build/lib/lean:.lake/packages/aesop/.lake/build/lib/lean:.lake/packages/proofwidgets/.lake/build/lib/lean:.lake/packages/importGraph/.lake/build/lib/lean:.lake/packages/LeanSearchClient/.lake/build/lib/lean:.lake/packages/plausible/.lake/build/lib/lean:.lake/packages/mathlib/.lake/build/lib/lean:.lake/build/lib/lean <local> RandomChords/TwoCircles.lean -o .lake/build/lib/lean/RandomChords/TwoCircles.olean -i .lake/build/lib/lean/RandomChords/TwoCircles.ilean -c .lake/build/ir/RandomChords/TwoCircles.c --setup .lake/build/ir/RandomChords/TwoCircles.setup.json --json
+info: RandomChords/TwoCircles.lean:178:43: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+error: RandomChords/TwoCircles.lean:177:50: unsolved goals
+a b D : ℝ
+x : ℝ × ℝ
+⊢ 4 = 2
+error: RandomChords/TwoCircles.lean:287:5: unsolved goals
+a b D : ℝ
+ha : 0 < a
+hb : 0 < b
+hD : a + b ≤ D
+x : ℝ × ℝ
+hx : x ∈ sq
+⊢ False
+Some required targets logged failures:
+- RandomChords.TwoCircles
+
+## stderr
+error: build failed
+FAIL RandomChords.TwoCircles (lake exit 1)
+

@@ -1,0 +1,27 @@
+# Lemma 1: law 2 • uniform
+# command: nice -n 15 python3 -I scripts/lake_serial.py . RandomChords.Audit
+# exit: 1
+## stdout
+[1/11] RandomChords.Basic
+Build completed successfully (2778 jobs).
+[2/11] RandomChords.Branches
+✔ [2779/2779] Built RandomChords.Branches (1.6s)
+Build completed successfully (2779 jobs).
+[3/11] RandomChords.OneCircle
+✖ [2780/2780] Building RandomChords.OneCircle (1.6s)
+trace: .> LEAN_PATH=.lake/packages/Cli/.lake/build/lib/lean:.lake/packages/batteries/.lake/build/lib/lean:.lake/packages/Qq/.lake/build/lib/lean:.lake/packages/aesop/.lake/build/lib/lean:.lake/packages/proofwidgets/.lake/build/lib/lean:.lake/packages/importGraph/.lake/build/lib/lean:.lake/packages/LeanSearchClient/.lake/build/lib/lean:.lake/packages/plausible/.lake/build/lib/lean:.lake/packages/mathlib/.lake/build/lib/lean:.lake/build/lib/lean <local> RandomChords/OneCircle.lean -o .lake/build/lib/lean/RandomChords/OneCircle.olean -i .lake/build/lib/lean/RandomChords/OneCircle.ilean -c .lake/build/ir/RandomChords/OneCircle.c --setup .lake/build/ir/RandomChords/OneCircle.setup.json --json
+error: RandomChords/OneCircle.lean:98:10: Application type mismatch: The argument
+  key.left
+has type
+  Measure.map (angles1 b) volume = 4 • volume.restrict sq
+but is expected to have type
+  Measure.map (angles1 b) volume = 2 • volume.restrict sq
+in the application
+  And.intro key.left
+Some required targets logged failures:
+- RandomChords.OneCircle
+
+## stderr
+error: build failed
+FAIL RandomChords.OneCircle (lake exit 1)
+

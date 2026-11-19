@@ -1,0 +1,78 @@
+# (2): 2 a^2 D h
+# command: nice -n 15 python3 -I scripts/lake_serial.py . RandomChords.Audit
+# exit: 1
+## stdout
+[1/11] RandomChords.Basic
+Build completed successfully (2778 jobs).
+[2/11] RandomChords.Branches
+Build completed successfully (2779 jobs).
+[3/11] RandomChords.OneCircle
+Build completed successfully (2780 jobs).
+[4/11] RandomChords.TwoCircles
+Build completed successfully (2781 jobs).
+[5/11] RandomChords.Moments
+Build completed successfully (2789 jobs).
+[6/11] RandomChords.Centres
+⚠ [2793/2793] Replayed RandomChords.Centres
+warning: RandomChords/Centres.lean:95:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+Build completed successfully (2793 jobs).
+[7/11] RandomChords.Corollaries
+⚠ [2793/2794] Replayed RandomChords.Centres
+warning: RandomChords/Centres.lean:95:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+Build completed successfully (2794 jobs).
+[8/11] RandomChords.HitProb
+⚠ [2793/2795] Replayed RandomChords.Centres
+warning: RandomChords/Centres.lean:95:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✔ [2795/2795] Built RandomChords.HitProb (2.4s)
+Build completed successfully (2795 jobs).
+[9/11] RandomChords.Remarks
+⚠ [2793/2796] Replayed RandomChords.Centres
+warning: RandomChords/Centres.lean:95:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✖ [2796/2796] Building RandomChords.Remarks (2.5s)
+trace: .> LEAN_PATH=.lake/packages/Cli/.lake/build/lib/lean:.lake/packages/batteries/.lake/build/lib/lean:.lake/packages/Qq/.lake/build/lib/lean:.lake/packages/aesop/.lake/build/lib/lean:.lake/packages/proofwidgets/.lake/build/lib/lean:.lake/packages/importGraph/.lake/build/lib/lean:.lake/packages/LeanSearchClient/.lake/build/lib/lean:.lake/packages/plausible/.lake/build/lib/lean:.lake/packages/mathlib/.lake/build/lib/lean:.lake/build/lib/lean <local> RandomChords/Remarks.lean -o .lake/build/lib/lean/RandomChords/Remarks.olean -i .lake/build/lib/lean/RandomChords/Remarks.ilean -c .lake/build/ir/RandomChords/Remarks.c --setup .lake/build/ir/RandomChords/Remarks.setup.json --json
+info: RandomChords/Remarks.lean:404:2: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+error: RandomChords/Remarks.lean:400:87: unsolved goals
+a b D : ℝ
+ha : 0 < a
+hb : 0 < b
+hD : a + b ≤ D
+h k : ℝ
+hD0 : D ≠ 0
+⊢ h * b ^ 2 * D * 2 + h ^ 2 * a ^ 2 + h ^ 2 * b ^ 2 - h ^ 2 * D ^ 2 - k ^ 2 * a ^ 2 - k ^ 2 * b ^ 2 + k ^ 2 * D ^ 2 =
+    h * a ^ 2 * D * 2 + h ^ 2 * a ^ 2 + h ^ 2 * b ^ 2 - h ^ 2 * D ^ 2 - k ^ 2 * a ^ 2 - k ^ 2 * b ^ 2 + k ^ 2 * D ^ 2
+error: RandomChords/Remarks.lean:427:4: Tactic `assumption` failed
+
+a b D : ℝ
+ha : 0 < a
+hb : 0 < b
+hD : a + b ≤ D
+h k : ℝ
+heq : Measure.map (dOff a b D h k) volume = Measure.map (dOffC b h k) volume
+hD0 : D ≠ 0
+hΔ : 0 < D ^ 2 - a ^ 2 - b ^ 2
+e : ∫ (ω : Ang × Ang), dOff a b D h k ω ^ 2 = ∫ (ω : Ang × Ang), dOffC b h k ω ^ 2
+hm : 0 = ((D ^ 2 - a ^ 2 - b ^ 2) * (k ^ 2 - h ^ 2) + 2 * a ^ 2 * D * h) / (2 * D ^ 2)
+this : (D ^ 2 - a ^ 2 - b ^ 2) * (k ^ 2 - h ^ 2) + 2 * a ^ 2 * D * h = 0
+⊢ (D ^ 2 - a ^ 2 - b ^ 2) * (k ^ 2 - h ^ 2) + 2 * b ^ 2 * D * h = 0
+error: RandomChords/Remarks.lean:450:64: unsolved goals
+⊢ False
+Some required targets logged failures:
+- RandomChords.Remarks
+
+## stderr
+error: build failed
+FAIL RandomChords.Remarks (lake exit 1)
+

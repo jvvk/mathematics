@@ -1,0 +1,54 @@
+# (T): weight 1 - mu
+# command: nice -n 15 python3 -I scripts/lake_serial.py . RandomChords.Audit
+# exit: 1
+## stdout
+[1/11] RandomChords.Basic
+Build completed successfully (2778 jobs).
+[2/11] RandomChords.Branches
+Build completed successfully (2779 jobs).
+[3/11] RandomChords.OneCircle
+Build completed successfully (2780 jobs).
+[4/11] RandomChords.TwoCircles
+Build completed successfully (2781 jobs).
+[5/11] RandomChords.Moments
+✔ [2789/2789] Built RandomChords.Moments (1.8s)
+Build completed successfully (2789 jobs).
+[6/11] RandomChords.Centres
+✖ [2793/2793] Building RandomChords.Centres (1.9s)
+trace: .> LEAN_PATH=.lake/packages/Cli/.lake/build/lib/lean:.lake/packages/batteries/.lake/build/lib/lean:.lake/packages/Qq/.lake/build/lib/lean:.lake/packages/aesop/.lake/build/lib/lean:.lake/packages/proofwidgets/.lake/build/lib/lean:.lake/packages/importGraph/.lake/build/lib/lean:.lake/packages/LeanSearchClient/.lake/build/lib/lean:.lake/packages/plausible/.lake/build/lib/lean:.lake/packages/mathlib/.lake/build/lib/lean:.lake/build/lib/lean <local> RandomChords/Centres.lean -o .lake/build/lib/lean/RandomChords/Centres.olean -i .lake/build/lib/lean/RandomChords/Centres.ilean -c .lake/build/ir/RandomChords/Centres.c --setup .lake/build/ir/RandomChords/Centres.setup.json --json
+warning: RandomChords/Centres.lean:95:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+error: RandomChords/Centres.lean:139:2: ring failed, ring expressions not equal
+a b D : ℝ
+ha : 0 < a
+hb : 0 < b
+hD : a + b ≤ D
+q o : ℝ
+ω : Ang × Ang
+hD0 : D ≠ 0
+A : ℝ × ℝ := ⋯
+hA : A = A
+B : ℝ × ℝ := ⋯
+hω : A ≠ B
+hB : B = B
+hm : (nrmD (B - A)).1 ^ 2 + (nrmD (B - A)).2 ^ 2 = 1
+hperp : (nrmD (B - A)).1 * (B.1 - A.1) + (nrmD (B - A)).2 * (B.2 - A.2) = 0
+hA1 : -1 ≤ off (nrmD (B - A)) A (-D, 0) a
+hA2 : off (nrmD (B - A)) A (-D, 0) a ≤ 1
+hB1 : -1 ≤ off (nrmD (B - A)) B (0, 0) b
+hB2 : off (nrmD (B - A)) B (0, 0) b ≤ 1
+⊢ -((nrmD (B - A)).1 * o * B.1 * 2) - o * (nrmD (B - A)).2 * B.2 * 2 = 0
+error: RandomChords/Centres.lean:166:8: Type mismatch
+  dAB_eq ha hb hD q o ω hω
+has type
+  dAB a b D q o ω = wsum (o / D * a, -((1 - o / D) * b)) (angles2 a b D ω)
+but is expected to have type
+  dAB a b D q o ω = (wsum (o / D * a, -((1 + o / D) * b)) ∘ angles2 a b D) ω
+Some required targets logged failures:
+- RandomChords.Centres
+
+## stderr
+error: build failed
+FAIL RandomChords.Centres (lake exit 1)
+

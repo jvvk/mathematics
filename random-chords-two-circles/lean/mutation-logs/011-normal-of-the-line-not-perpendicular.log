@@ -1,0 +1,38 @@
+# normal of the line not perpendicular
+# command: nice -n 15 python3 -I scripts/lake_serial.py . RandomChords.Audit
+# exit: 1
+## stdout
+[1/11] RandomChords.Basic
+✖ [2778/2778] Building RandomChords.Basic (1.5s)
+trace: .> LEAN_PATH=.lake/packages/Cli/.lake/build/lib/lean:.lake/packages/batteries/.lake/build/lib/lean:.lake/packages/Qq/.lake/build/lib/lean:.lake/packages/aesop/.lake/build/lib/lean:.lake/packages/proofwidgets/.lake/build/lib/lean:.lake/packages/importGraph/.lake/build/lib/lean:.lake/packages/LeanSearchClient/.lake/build/lib/lean:.lake/packages/plausible/.lake/build/lib/lean:.lake/packages/mathlib/.lake/build/lib/lean:.lake/build/lib/lean <local> RandomChords/Basic.lean -o .lake/build/lib/lean/RandomChords/Basic.olean -i .lake/build/lib/lean/RandomChords/Basic.ilean -c .lake/build/ir/RandomChords/Basic.c --setup .lake/build/ir/RandomChords/Basic.setup.json --json
+error: RandomChords/Basic.lean:123:2: unsolved goals
+case inl.refine_1
+l φ : ℝ
+hl : l ≠ 0
+hφ : 0 < sin φ
+h : l < 0
+h1 : ¬0 < l * sin φ
+⊢ -cos φ = cos φ
+error: RandomChords/Basic.lean:126:2: unsolved goals
+case inr.refine_1
+l φ : ℝ
+hl : l ≠ 0
+hφ : 0 < sin φ
+h : 0 < l
+h1 : 0 < l * sin φ
+⊢ -cos φ = cos φ
+error: RandomChords/Basic.lean:144:20: Application type mismatch: The argument
+  Measurable.div (Measurable.mul measurable_sgn (Measurable.neg measurable_snd)) measurable_len
+has type
+  Measurable (sgn * -Prod.snd / len)
+but is expected to have type
+  Measurable fun a ↦ sgn a * a.2 / len a
+in the application
+  Measurable.prodMk (Measurable.div (Measurable.mul measurable_sgn (Measurable.neg measurable_snd)) measurable_len)
+Some required targets logged failures:
+- RandomChords.Basic
+
+## stderr
+error: build failed
+FAIL RandomChords.Basic (lake exit 1)
+

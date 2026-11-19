@@ -1,0 +1,65 @@
+# branch theorem: constant c + 1
+# command: nice -n 15 python3 -I scripts/lake_serial.py . RandomChords.Audit
+# exit: 1
+## stdout
+[1/11] RandomChords.Basic
+✔ [2778/2778] Built RandomChords.Basic (1.5s)
+Build completed successfully (2778 jobs).
+[2/11] RandomChords.Branches
+✖ [2779/2779] Building RandomChords.Branches (1.5s)
+trace: .> LEAN_PATH=.lake/packages/Cli/.lake/build/lib/lean:.lake/packages/batteries/.lake/build/lib/lean:.lake/packages/Qq/.lake/build/lib/lean:.lake/packages/aesop/.lake/build/lib/lean:.lake/packages/proofwidgets/.lake/build/lib/lean:.lake/packages/importGraph/.lake/build/lib/lean:.lake/packages/LeanSearchClient/.lake/build/lib/lean:.lake/packages/plausible/.lake/build/lib/lean:.lake/packages/mathlib/.lake/build/lib/lean:.lake/build/lib/lean <local> RandomChords/Branches.lean -o .lake/build/lib/lean/RandomChords/Branches.olean -i .lake/build/lib/lean/RandomChords/Branches.ilean -c .lake/build/ir/RandomChords/Branches.c --setup .lake/build/ir/RandomChords/Branches.setup.json --json
+error: RandomChords/Branches.lean:142:22: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  c * volume (s ∩ E)
+in the target expression
+  volume (F ⁻¹' E) = (c + 1) * volume (s ∩ E)
+
+case refine_1
+ι : Type u_1
+inst✝ : Fintype ι
+F : Ang × Ang → ℝ × ℝ
+hF : Measurable F
+s : Set (ℝ × ℝ)
+hs : MeasurableSet s
+c : ℝ≥0∞
+ψ : ι → ℝ × ℝ → ℝ × ℝ
+ψ' : ι → ℝ × ℝ → ℝ × ℝ →L[ℝ] ℝ × ℝ
+dom : ι → Set (ℝ × ℝ)
+hdom : ∀ (i : ι), MeasurableSet (dom i)
+hdoms : ∀ (i : ι), dom i ⊆ s
+t : ι → ℝ × ℝ
+hbox : ∀ (i : ι), MapsTo (ψ i) (dom i) (box (t i))
+hderiv : ∀ (i : ι), ∀ x ∈ dom i, HasFDerivWithinAt (ψ i) (ψ' i x) (dom i) x
+hinv : ∀ (i : ι), ∀ x ∈ dom i, F (proj (ψ i x)) = x
+hdisj : ∀ (i j : ι), i ≠ j → ∀ x ∈ dom i, x ∈ dom j → proj (ψ i x) ≠ proj (ψ j x)
+J : ι → ℝ × ℝ → ℝ≥0∞
+hJm : ∀ (i : ι), Measurable (J i)
+hJ : ∀ (i : ι), ∀ x ∈ dom i, ENNReal.ofReal |(ψ' i x).det| = J i x
+hJ0 : ∀ (i : ι), ∀ x ∈ s \ dom i, J i x = 0
+hsum : ∀ x ∈ s, ∑ i, J i x = c
+htot : c * volume s = volume univ
+this : volume.IsAddHaarMeasure
+I : ι → Set (ℝ × ℝ) → Set (Ang × Ang) := fun i E ↦ proj '' ψ i '' (dom i ∩ E)
+hI : I = fun i E ↦ proj '' ψ i '' (dom i ∩ E)
+hinj : ∀ (i : ι), InjOn (ψ i) (dom i)
+hpiece :
+  ∀ (i : ι) (E : Set (ℝ × ℝ)),
+    MeasurableSet E → MeasurableSet (I i E) ∧ volume (I i E) = ∫⁻ (x : ℝ × ℝ) in dom i ∩ E, J i x
+hext :
+  ∀ (i : ι) (E : Set (ℝ × ℝ)), MeasurableSet E → ∫⁻ (x : ℝ × ℝ) in dom i ∩ E, J i x = ∫⁻ (x : ℝ × ℝ) in s ∩ E, J i x
+hdisjI : ∀ (E E' : Set (ℝ × ℝ)), Pairwise fun i j ↦ Disjoint (I i E) (I j E')
+hunion : ∀ (E : Set (ℝ × ℝ)), MeasurableSet E → volume (⋃ i, I i E) = c * volume (s ∩ E)
+U : Set (Ang × Ang) := ⋃ i, I i univ
+hU : U = ⋃ i, I i univ
+hUm : MeasurableSet U
+hUc : volume Uᶜ = 0
+hae : ∀ᵐ (ω : Ang × Ang), ω ∈ U
+E : Set (ℝ × ℝ)
+hE : MeasurableSet E
+⊢ volume (F ⁻¹' E) = (c + 1) * volume (s ∩ E)
+Some required targets logged failures:
+- RandomChords.Branches
+
+## stderr
+error: build failed
+FAIL RandomChords.Branches (lake exit 1)
+

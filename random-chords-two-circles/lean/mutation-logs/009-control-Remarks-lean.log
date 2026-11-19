@@ -1,0 +1,84 @@
+# control Remarks.lean
+# command: nice -n 15 python3 -I scripts/lake_serial.py . RandomChords.Audit
+# exit: 0
+## stdout
+[1/11] RandomChords.Basic
+Build completed successfully (2778 jobs).
+[2/11] RandomChords.Branches
+Build completed successfully (2779 jobs).
+[3/11] RandomChords.OneCircle
+Build completed successfully (2780 jobs).
+[4/11] RandomChords.TwoCircles
+Build completed successfully (2781 jobs).
+[5/11] RandomChords.Moments
+Build completed successfully (2789 jobs).
+[6/11] RandomChords.Centres
+⚠ [2793/2793] Replayed RandomChords.Centres
+warning: RandomChords/Centres.lean:95:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+Build completed successfully (2793 jobs).
+[7/11] RandomChords.Corollaries
+⚠ [2793/2794] Replayed RandomChords.Centres
+warning: RandomChords/Centres.lean:95:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+Build completed successfully (2794 jobs).
+[8/11] RandomChords.HitProb
+⚠ [2793/2795] Replayed RandomChords.Centres
+warning: RandomChords/Centres.lean:95:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+Build completed successfully (2795 jobs).
+[9/11] RandomChords.Remarks
+⚠ [2793/2796] Replayed RandomChords.Centres
+warning: RandomChords/Centres.lean:95:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+Build completed successfully (2796 jobs).
+[10/11] RandomChords.Offsets
+⚠ [2793/2794] Replayed RandomChords.Centres
+warning: RandomChords/Centres.lean:95:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+Build completed successfully (2794 jobs).
+[11/11] RandomChords.Audit
+⚠ [2793/2798] Replayed RandomChords.Centres
+warning: RandomChords/Centres.lean:95:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+ℹ [2798/2798] Replayed RandomChords.Audit
+info: RandomChords/Audit.lean:6:0: 'Chords.map_eq_of_branches' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RandomChords/Audit.lean:7:0: 'Chords.lemma1' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RandomChords/Audit.lean:8:0: 'Chords.lemma2' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RandomChords/Audit.lean:9:0: 'Chords.lemma2_offsets' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RandomChords/Audit.lean:10:0: 'Chords.direction_law' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RandomChords/Audit.lean:11:0: 'Chords.half_chords_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RandomChords/Audit.lean:12:0: 'Chords.sum_jac' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RandomChords/Audit.lean:13:0: 'Chords.lemma3' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RandomChords/Audit.lean:14:0: 'Chords.dAB_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RandomChords/Audit.lean:15:0: 'Chords.dBC_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RandomChords/Audit.lean:16:0: 'Chords.law_dAB' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RandomChords/Audit.lean:17:0: 'Chords.law_dBC'' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RandomChords/Audit.lean:18:0: 'Chords.theorem4' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RandomChords/Audit.lean:19:0: 'Chords.cor5' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RandomChords/Audit.lean:20:0: 'Chords.cor5_hit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RandomChords/Audit.lean:21:0: 'Chords.theorem4_mirror' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RandomChords/Audit.lean:22:0: 'Chords.cor6' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RandomChords/Audit.lean:23:0: 'Chords.H_formula' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RandomChords/Audit.lean:24:0: 'Chords.H_continuousOn' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RandomChords/Audit.lean:25:0: 'Chords.H_strictMonoOn' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RandomChords/Audit.lean:26:0: 'Chords.H_tendsto_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RandomChords/Audit.lean:27:0: 'Chords.H_tendsto_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RandomChords/Audit.lean:28:0: 'Chords.hit_eq_H' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RandomChords/Audit.lean:29:0: 'Chords.cor8' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RandomChords/Audit.lean:30:0: 'Chords.concentric' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RandomChords/Audit.lean:31:0: 'Chords.offaxis_moment' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RandomChords/Audit.lean:32:0: 'Chords.offaxis_necessary' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RandomChords/Audit.lean:33:0: 'Chords.offaxis_perp' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RandomChords/Audit.lean:34:0: 'Chords.offaxis_example' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (2798 jobs).
+build=0
+
+## stderr
+

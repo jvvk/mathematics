@@ -1,0 +1,66 @@
+# direction: divide by 2D
+# command: nice -n 15 python3 -I scripts/lake_serial.py . RandomChords.Audit
+# exit: 1
+## stdout
+[1/11] RandomChords.Basic
+Build completed successfully (2778 jobs).
+[2/11] RandomChords.Branches
+Build completed successfully (2779 jobs).
+[3/11] RandomChords.OneCircle
+Build completed successfully (2780 jobs).
+[4/11] RandomChords.TwoCircles
+Build completed successfully (2781 jobs).
+[5/11] RandomChords.Moments
+Build completed successfully (2789 jobs).
+[6/11] RandomChords.Centres
+⚠ [2793/2793] Replayed RandomChords.Centres
+warning: RandomChords/Centres.lean:95:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+Build completed successfully (2793 jobs).
+[7/11] RandomChords.Corollaries
+⚠ [2793/2794] Replayed RandomChords.Centres
+warning: RandomChords/Centres.lean:95:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+Build completed successfully (2794 jobs).
+[8/11] RandomChords.HitProb
+⚠ [2793/2795] Replayed RandomChords.Centres
+warning: RandomChords/Centres.lean:95:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+Build completed successfully (2795 jobs).
+[9/11] RandomChords.Remarks
+⚠ [2793/2796] Replayed RandomChords.Centres
+warning: RandomChords/Centres.lean:95:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✔ [2796/2796] Built RandomChords.Remarks (2.5s)
+Build completed successfully (2796 jobs).
+[10/11] RandomChords.Offsets
+⚠ [2793/2794] Replayed RandomChords.Centres
+warning: RandomChords/Centres.lean:95:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✖ [2794/2794] Building RandomChords.Offsets (1.4s)
+trace: .> LEAN_PATH=.lake/packages/Cli/.lake/build/lib/lean:.lake/packages/batteries/.lake/build/lib/lean:.lake/packages/Qq/.lake/build/lib/lean:.lake/packages/aesop/.lake/build/lib/lean:.lake/packages/proofwidgets/.lake/build/lib/lean:.lake/packages/importGraph/.lake/build/lib/lean:.lake/packages/LeanSearchClient/.lake/build/lib/lean:.lake/packages/plausible/.lake/build/lib/lean:.lake/packages/mathlib/.lake/build/lib/lean:.lake/build/lib/lean <local> RandomChords/Offsets.lean -o .lake/build/lib/lean/RandomChords/Offsets.olean -i .lake/build/lib/lean/RandomChords/Offsets.ilean -c .lake/build/ir/RandomChords/Offsets.c --setup .lake/build/ir/RandomChords/Offsets.setup.json --json
+error: RandomChords/Offsets.lean:58:4: Type mismatch
+  Measurable.aemeasurable hg
+has type
+  AEMeasurable (fun x ↦ (a * cos x.1 - b * cos x.2) / D) ?m.247
+but is expected to have type
+  4 • Measure.map (fun x ↦ (a * cos x.1 - b * cos x.2) / D) (volume.restrict sq) =
+    4 • Measure.map (fun x ↦ (a * cos x.1 - b * cos x.2) / (2 * D)) (volume.restrict sq)
+error: RandomChords/Offsets.lean:59:2: Type mismatch
+  Filter.mp_mem hae ?m.249
+has type
+  ?m.254 ∈ ae volume
+but is expected to have type
+  AEMeasurable (fun x ↦ (a * cos x.1 - b * cos x.2) / D) (volume.restrict sq)
+Some required targets logged failures:
+- RandomChords.Offsets
+
+## stderr
+error: build failed
+FAIL RandomChords.Offsets (lake exit 1)
+

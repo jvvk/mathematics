@@ -1,0 +1,66 @@
+# Corollary 5: ab = c^2
+# command: nice -n 15 python3 -I scripts/lake_serial.py . RandomChords.Audit
+# exit: 1
+## stdout
+[1/11] RandomChords.Basic
+Build completed successfully (2778 jobs).
+[2/11] RandomChords.Branches
+Build completed successfully (2779 jobs).
+[3/11] RandomChords.OneCircle
+Build completed successfully (2780 jobs).
+[4/11] RandomChords.TwoCircles
+Build completed successfully (2781 jobs).
+[5/11] RandomChords.Moments
+Build completed successfully (2789 jobs).
+[6/11] RandomChords.Centres
+⚠ [2793/2793] Built RandomChords.Centres (1.0s)
+warning: RandomChords/Centres.lean:95:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+Build completed successfully (2793 jobs).
+[7/11] RandomChords.Corollaries
+⚠ [2793/2794] Replayed RandomChords.Centres
+warning: RandomChords/Centres.lean:95:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✖ [2794/2794] Building RandomChords.Corollaries (1.5s)
+trace: .> LEAN_PATH=.lake/packages/Cli/.lake/build/lib/lean:.lake/packages/batteries/.lake/build/lib/lean:.lake/packages/Qq/.lake/build/lib/lean:.lake/packages/aesop/.lake/build/lib/lean:.lake/packages/proofwidgets/.lake/build/lib/lean:.lake/packages/importGraph/.lake/build/lib/lean:.lake/packages/LeanSearchClient/.lake/build/lib/lean:.lake/packages/plausible/.lake/build/lib/lean:.lake/packages/mathlib/.lake/build/lib/lean:.lake/build/lib/lean <local> RandomChords/Corollaries.lean -o .lake/build/lib/lean/RandomChords/Corollaries.olean -i .lake/build/lib/lean/RandomChords/Corollaries.ilean -c .lake/build/ir/RandomChords/Corollaries.c --setup .lake/build/ir/RandomChords/Corollaries.setup.json --json
+error: RandomChords/Corollaries.lean:47:25: linarith failed to find a contradiction
+case refine_1.mp.inr.h1
+a b : ℝ
+ha : 0 < a
+hb : 0 < b
+c : ℝ
+hc : 0 < c
+q : ℝ
+h : (b + c) * a = b * (a + b)
+a✝ : a * b < c ^ 2
+⊢ False
+failed
+error: RandomChords/Corollaries.lean:51:18: linarith failed to find a contradiction
+case refine_1.mpr.h1
+a b : ℝ
+ha : 0 < a
+hb : 0 < b
+c : ℝ
+hc : 0 < c
+q : ℝ
+h : a * b = c ^ 2
+a✝ : (b + c) * a < b * (a + b)
+⊢ False
+failed
+error: RandomChords/Corollaries.lean:58:37: Application type mismatch: The argument
+  h
+has type
+  a * c = b ^ 2
+but is expected to have type
+  a * b = c ^ 2
+in the application
+  (cor5 ha hb hc q).left.mpr h
+Some required targets logged failures:
+- RandomChords.Corollaries
+
+## stderr
+error: build failed
+FAIL RandomChords.Corollaries (lake exit 1)
+

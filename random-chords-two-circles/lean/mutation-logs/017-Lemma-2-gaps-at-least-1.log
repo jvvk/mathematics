@@ -1,0 +1,28 @@
+# Lemma 2: gaps at least 1
+# command: nice -n 15 python3 -I scripts/lake_serial.py . RandomChords.Audit
+# exit: 1
+## stdout
+[1/11] RandomChords.Basic
+Build completed successfully (2778 jobs).
+[2/11] RandomChords.Branches
+Build completed successfully (2779 jobs).
+[3/11] RandomChords.OneCircle
+Build completed successfully (2780 jobs).
+[4/11] RandomChords.TwoCircles
+✖ [2781/2781] Building RandomChords.TwoCircles (2.2s)
+trace: .> LEAN_PATH=.lake/packages/Cli/.lake/build/lib/lean:.lake/packages/batteries/.lake/build/lib/lean:.lake/packages/Qq/.lake/build/lib/lean:.lake/packages/aesop/.lake/build/lib/lean:.lake/packages/proofwidgets/.lake/build/lib/lean:.lake/packages/importGraph/.lake/build/lib/lean:.lake/packages/LeanSearchClient/.lake/build/lib/lean:.lake/packages/plausible/.lake/build/lib/lean:.lake/packages/mathlib/.lake/build/lib/lean:.lake/build/lib/lean <local> RandomChords/TwoCircles.lean -o .lake/build/lib/lean/RandomChords/TwoCircles.olean -i .lake/build/lib/lean/RandomChords/TwoCircles.ilean -c .lake/build/ir/RandomChords/TwoCircles.c --setup .lake/build/ir/RandomChords/TwoCircles.setup.json --json
+error: RandomChords/TwoCircles.lean:95:67: Application type mismatch: The argument
+  hsq
+has type
+  (a * sin x.1 + b * sin x.2) ^ 2 ≤ gfeet a b D x ^ 2
+but is expected to have type
+  (a * sin x.1 + b * sin x.2 + 1) ^ 2 ≤ gfeet a b D x ^ 2
+in the application
+  (pow_le_pow_iff_left₀ ?m.518 (LT.lt.le hg) two_ne_zero).mp hsq
+Some required targets logged failures:
+- RandomChords.TwoCircles
+
+## stderr
+error: build failed
+FAIL RandomChords.TwoCircles (lake exit 1)
+

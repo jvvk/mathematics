@@ -1,0 +1,20 @@
+# torus mass twice the square
+# command: nice -n 15 python3 -I scripts/lake_serial.py . RandomChords.Audit
+# exit: 1
+## stdout
+[1/11] RandomChords.Basic
+✖ [2778/2778] Building RandomChords.Basic (1.5s)
+trace: .> LEAN_PATH=.lake/packages/Cli/.lake/build/lib/lean:.lake/packages/batteries/.lake/build/lib/lean:.lake/packages/Qq/.lake/build/lib/lean:.lake/packages/aesop/.lake/build/lib/lean:.lake/packages/proofwidgets/.lake/build/lib/lean:.lake/packages/importGraph/.lake/build/lib/lean:.lake/packages/LeanSearchClient/.lake/build/lib/lean:.lake/packages/plausible/.lake/build/lib/lean:.lake/packages/mathlib/.lake/build/lib/lean:.lake/build/lib/lean <local> RandomChords/Basic.lean -o .lake/build/lib/lean/RandomChords/Basic.olean -i .lake/build/lib/lean/RandomChords/Basic.ilean -c .lake/build/ir/RandomChords/Basic.c --setup .lake/build/ir/RandomChords/Basic.setup.json --json
+error: RandomChords/Basic.lean:99:42: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  4
+in the target expression
+  2 * ENNReal.ofReal (π * π) = ENNReal.ofReal (2 * π * (2 * π))
+
+⊢ 2 * ENNReal.ofReal (π * π) = ENNReal.ofReal (2 * π * (2 * π))
+Some required targets logged failures:
+- RandomChords.Basic
+
+## stderr
+error: build failed
+FAIL RandomChords.Basic (lake exit 1)
+

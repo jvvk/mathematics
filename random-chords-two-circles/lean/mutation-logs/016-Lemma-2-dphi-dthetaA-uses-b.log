@@ -1,0 +1,62 @@
+# Lemma 2: dphi/dthetaA uses b
+# command: nice -n 15 python3 -I scripts/lake_serial.py . RandomChords.Audit
+# exit: 1
+## stdout
+[1/11] RandomChords.Basic
+Build completed successfully (2778 jobs).
+[2/11] RandomChords.Branches
+Build completed successfully (2779 jobs).
+[3/11] RandomChords.OneCircle
+✔ [2780/2780] Built RandomChords.OneCircle (1.7s)
+Build completed successfully (2780 jobs).
+[4/11] RandomChords.TwoCircles
+✖ [2781/2781] Building RandomChords.TwoCircles (2.2s)
+trace: .> LEAN_PATH=.lake/packages/Cli/.lake/build/lib/lean:.lake/packages/batteries/.lake/build/lib/lean:.lake/packages/Qq/.lake/build/lib/lean:.lake/packages/aesop/.lake/build/lib/lean:.lake/packages/proofwidgets/.lake/build/lib/lean:.lake/packages/importGraph/.lake/build/lib/lean:.lake/packages/LeanSearchClient/.lake/build/lib/lean:.lake/packages/plausible/.lake/build/lib/lean:.lake/packages/mathlib/.lake/build/lib/lean:.lake/build/lib/lean <local> RandomChords/TwoCircles.lean -o .lake/build/lib/lean/RandomChords/TwoCircles.olean -i .lake/build/lib/lean/RandomChords/TwoCircles.ilean -c .lake/build/ir/RandomChords/TwoCircles.c --setup .lake/build/ir/RandomChords/TwoCircles.setup.json --json
+error: RandomChords/TwoCircles.lean:121:101: unsolved goals
+case hl
+a b D : ℝ
+ha : 0 < a
+hb : 0 < b
+hD : a + b ≤ D
+x : ℝ × ℝ
+hx : x ∈ sq
+hw1 : -1 < wcos a b D x
+hw2 : wcos a b D x < 1
+hD0 : D ≠ 0
+h1 : HasFDerivAt (fun x ↦ cos x.1) (-sin x.1 • ContinuousLinearMap.fst ℝ ℝ ℝ) x
+h2 : HasFDerivAt (fun x ↦ cos x.2) (-sin x.2 • ContinuousLinearMap.snd ℝ ℝ ℝ) x
+hw :
+  HasFDerivAt (wcos a b D)
+    ((-(a * sin x.1) / D) • ContinuousLinearMap.fst ℝ ℝ ℝ + (b * sin x.2 / D) • ContinuousLinearMap.snd ℝ ℝ ℝ) x
+harc :
+  HasFDerivAt (arccos ∘ wcos a b D)
+    (-(1 / √(1 - wcos a b D x ^ 2)) •
+      ((-(a * sin x.1) / D) • ContinuousLinearMap.fst ℝ ℝ ℝ + (b * sin x.2 / D) • ContinuousLinearMap.snd ℝ ℝ ℝ))
+    x
+hg : gfeet a b D x = D * √(1 - wcos a b D x ^ 2)
+hsq : 0 < √(1 - wcos a b D x ^ 2)
+⊢ a * sin x.1 = sin x.1 * b
+info: RandomChords/TwoCircles.lean:163:32: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+error: RandomChords/TwoCircles.lean:161:91: unsolved goals
+a b D : ℝ
+ha : 0 < a
+hb : 0 < b
+hD : a + b ≤ D
+ε η : Bool
+x : ℝ × ℝ
+hx : x ∈ sq
+hg : gfeet a b D x ≠ 0
+⊢ gfeet a b D x + sgnB ε * b * sin x.1 - b * sgnB η * sin x.2 =
+    gfeet a b D x + sgnB ε * sin x.1 * a - b * sgnB η * sin x.2
+Some required targets logged failures:
+- RandomChords.TwoCircles
+
+## stderr
+error: build failed
+FAIL RandomChords.TwoCircles (lake exit 1)
+

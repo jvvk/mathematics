@@ -1,0 +1,40 @@
+# Lemma 3: second moment over 4
+# command: nice -n 15 python3 -I scripts/lake_serial.py . RandomChords.Audit
+# exit: 1
+## stdout
+[1/11] RandomChords.Basic
+Build completed successfully (2778 jobs).
+[2/11] RandomChords.Branches
+Build completed successfully (2779 jobs).
+[3/11] RandomChords.OneCircle
+Build completed successfully (2780 jobs).
+[4/11] RandomChords.TwoCircles
+✔ [2781/2781] Built RandomChords.TwoCircles (2.3s)
+Build completed successfully (2781 jobs).
+[5/11] RandomChords.Moments
+✖ [2789/2789] Building RandomChords.Moments (1.8s)
+trace: .> LEAN_PATH=.lake/packages/Cli/.lake/build/lib/lean:.lake/packages/batteries/.lake/build/lib/lean:.lake/packages/Qq/.lake/build/lib/lean:.lake/packages/aesop/.lake/build/lib/lean:.lake/packages/proofwidgets/.lake/build/lib/lean:.lake/packages/importGraph/.lake/build/lib/lean:.lake/packages/LeanSearchClient/.lake/build/lib/lean:.lake/packages/plausible/.lake/build/lib/lean:.lake/packages/mathlib/.lake/build/lib/lean:.lake/build/lib/lean <local> RandomChords/Moments.lean -o .lake/build/lib/lean/RandomChords/Moments.olean -i .lake/build/lib/lean/RandomChords/Moments.ilean -c .lake/build/ir/RandomChords/Moments.c --setup .lake/build/ir/RandomChords/Moments.setup.json --json
+info: RandomChords/Moments.lean:210:2: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+error: RandomChords/Moments.lean:182:62: unsolved goals
+w : ℝ × ℝ
+e :
+  ∀ (p : ℝ × ℝ),
+    wsum w p ^ 2 = w.1 ^ 2 * (cos p.1 ^ 2 * 1) + 2 * w.1 * w.2 * (cos p.1 * cos p.2) + w.2 ^ 2 * (1 * cos p.2 ^ 2)
+hb : ∀ (p : ℝ × ℝ), |cos p.1 ^ 2 * 1| ≤ 1
+i1 : Integrable (fun p ↦ cos p.1 ^ 2 * 1) (volume.restrict sq)
+i2 : Integrable (fun p ↦ cos p.1 * cos p.2) (volume.restrict sq)
+i3 : Integrable (fun p ↦ 1 * cos p.2 ^ 2) (volume.restrict sq)
+i12 : Integrable (fun x ↦ w.1 ^ 2 * (cos x.1 ^ 2 * 1) + 2 * w.1 * w.2 * (cos x.1 * cos x.2)) (volume.restrict sq)
+⊢ w.1 ^ 2 * π ^ 2 * (1 / 2) + π ^ 2 * w.2 ^ 2 * (1 / 2) = w.1 ^ 2 * π ^ 2 * (1 / 4) + π ^ 2 * w.2 ^ 2 * (1 / 4)
+Some required targets logged failures:
+- RandomChords.Moments
+
+## stderr
+error: build failed
+FAIL RandomChords.Moments (lake exit 1)
+

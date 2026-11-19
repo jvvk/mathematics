@@ -1,0 +1,63 @@
+# concentric: a x_A = a x_B
+# command: nice -n 15 python3 -I scripts/lake_serial.py . RandomChords.Audit
+# exit: 1
+## stdout
+[1/11] RandomChords.Basic
+Build completed successfully (2778 jobs).
+[2/11] RandomChords.Branches
+Build completed successfully (2779 jobs).
+[3/11] RandomChords.OneCircle
+Build completed successfully (2780 jobs).
+[4/11] RandomChords.TwoCircles
+Build completed successfully (2781 jobs).
+[5/11] RandomChords.Moments
+Build completed successfully (2789 jobs).
+[6/11] RandomChords.Centres
+⚠ [2793/2793] Replayed RandomChords.Centres
+warning: RandomChords/Centres.lean:95:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+Build completed successfully (2793 jobs).
+[7/11] RandomChords.Corollaries
+⚠ [2793/2794] Replayed RandomChords.Centres
+warning: RandomChords/Centres.lean:95:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+Build completed successfully (2794 jobs).
+[8/11] RandomChords.HitProb
+⚠ [2793/2795] Replayed RandomChords.Centres
+warning: RandomChords/Centres.lean:95:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+Build completed successfully (2795 jobs).
+[9/11] RandomChords.Remarks
+⚠ [2793/2796] Replayed RandomChords.Centres
+warning: RandomChords/Centres.lean:95:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✖ [2796/2796] Building RandomChords.Remarks (2.5s)
+trace: .> LEAN_PATH=.lake/packages/Cli/.lake/build/lib/lean:.lake/packages/batteries/.lake/build/lib/lean:.lake/packages/Qq/.lake/build/lib/lean:.lake/packages/aesop/.lake/build/lib/lean:.lake/packages/proofwidgets/.lake/build/lib/lean:.lake/packages/importGraph/.lake/build/lib/lean:.lake/packages/LeanSearchClient/.lake/build/lib/lean:.lake/packages/plausible/.lake/build/lib/lean:.lake/packages/mathlib/.lake/build/lib/lean:.lake/build/lib/lean <local> RandomChords/Remarks.lean -o .lake/build/lib/lean/RandomChords/Remarks.olean -i .lake/build/lib/lean/RandomChords/Remarks.ilean -c .lake/build/ir/RandomChords/Remarks.c --setup .lake/build/ir/RandomChords/Remarks.setup.json --json
+error: RandomChords/Remarks.lean:36:2: ring failed, ring expressions not equal
+a b : ℝ
+ha : 0 < a
+hb : 0 < b
+ω : Ang × Ang
+hp :
+  (nrmD (pt 0 b ω.2 - pt 0 a ω.1)).1 * ((pt 0 b ω.2).1 - (pt 0 a ω.1).1) +
+      (nrmD (pt 0 b ω.2 - pt 0 a ω.1)).2 * ((pt 0 b ω.2).2 - (pt 0 a ω.1).2) =
+    0
+⊢ -((nrmD (pt 0 b ω.2 - pt 0 a ω.1)).1 * (pt 0 a ω.1).1) + (nrmD (pt 0 b ω.2 - pt 0 a ω.1)).1 * (pt 0 a ω.1).1 * b +
+                (nrmD (pt 0 b ω.2 - pt 0 a ω.1)).1 * (pt 0 b ω.2).1 -
+              (nrmD (pt 0 b ω.2 - pt 0 a ω.1)).1 * (pt 0 b ω.2).1 * a -
+            (nrmD (pt 0 b ω.2 - pt 0 a ω.1)).2 * (pt 0 a ω.1).2 +
+          (nrmD (pt 0 b ω.2 - pt 0 a ω.1)).2 * (pt 0 a ω.1).2 * b +
+        (nrmD (pt 0 b ω.2 - pt 0 a ω.1)).2 * (pt 0 b ω.2).2 -
+      (nrmD (pt 0 b ω.2 - pt 0 a ω.1)).2 * (pt 0 b ω.2).2 * a =
+    0
+Some required targets logged failures:
+- RandomChords.Remarks
+
+## stderr
+error: build failed
+FAIL RandomChords.Remarks (lake exit 1)
+
