@@ -1,0 +1,132 @@
+# Mutation suite for LeanProofs/Lemniscates (MSE 1250327). Replaces mutants.py.
+# Run (from lean/, after lake build): python3 -I scripts/mutate.py scripts/mutants.toml
+# In place: each mutant edits one statement in its source file, compiles that file against the built tree, and
+# restores it. A rejection needs a nonzero exit AND a Lean error located in the mutated file; timeouts and crashes
+# are inconclusive and fail the run. Every mutant is a false statement (not merely one the unchanged proof misses);
+# full output of every run is kept in mutation-logs/.
+[check]
+cmd = ["lake", "env", "lean", "{file}"]
+cwd = ".."
+timeout = 900
+mode = "inplace"
+fail_pattern = 'LeanProofs/Lemniscates/\S+\.lean:\d+:\d+: error'
+diagnostic_in_target = true
+log_dir = "../mutation-logs"
+
+[[mutant]]
+name = '''[Pairing] (S.filter (fun p => σ p = p)).card ≤ 5 := by'''
+file = "../LeanProofs/Lemniscates/Pairing.lean"
+old = '''(S.filter (fun p => σ p = p)).card ≤ 6 := by'''
+new = '''(S.filter (fun p => σ p = p)).card ≤ 5 := by'''
+
+[[mutant]]
+name = '''[Liouville] (hb : ∀ z, ‖f z‖ ≤ A + B * ‖z‖)'''
+file = "../LeanProofs/Lemniscates/Liouville.lean"
+old = '''(hb : ∀ z, ‖f z‖ ≤ A + B * Real.sqrt ‖z‖)'''
+new = '''(hb : ∀ z, ‖f z‖ ≤ A + B * ‖z‖)'''
+
+[[mutant]]
+name = '''[TheoremA] hfin.toFinset.card ≤ 2 * P₁.natDegree * P₂.natDegree - 3 := by'''
+file = "../LeanProofs/Lemniscates/TheoremA.lean"
+old = '''hfin.toFinset.card ≤ 2 * P₁.natDegree * P₂.natDegree - 2 := by'''
+new = '''hfin.toFinset.card ≤ 2 * P₁.natDegree * P₂.natDegree - 3 := by'''
+
+[[mutant]]
+name = '''[Corollaries] (F : Finset ℂ) (hF : ∀ z ∈ F, z ∈ oval a b ρ₁ ∧ z ∈ oval c d ρ₂) : F.c'''
+file = "../LeanProofs/Lemniscates/Corollaries.lean"
+old = '''(F : Finset ℂ) (hF : ∀ z ∈ F, z ∈ oval a b ρ₁ ∧ z ∈ oval c d ρ₂) : F.card ≤ 6 := by'''
+new = '''(F : Finset ℂ) (hF : ∀ z ∈ F, z ∈ oval a b ρ₁ ∧ z ∈ oval c d ρ₂) : F.card ≤ 5 := by'''
+
+[[mutant]]
+name = '''[Corollaries] theorem bernoulli_six : ∃ F : Finset ℂ, F.card = 7 ∧'''
+file = "../LeanProofs/Lemniscates/Corollaries.lean"
+old = '''theorem bernoulli_six : ∃ F : Finset ℂ, F.card = 6 ∧'''
+new = '''theorem bernoulli_six : ∃ F : Finset ℂ, F.card = 7 ∧'''
+
+[[mutant]]
+name = '''[Corollaries] M n₁ n₂ = 2 * n₁ * n₂ - 2 ↔ (n₁ = 2 ∧ n₂ = 2) ∨ (n₁ = 2 ∧ n₂ = 4) := b'''
+file = "../LeanProofs/Lemniscates/Corollaries.lean"
+old = '''    M n₁ n₂ = 2 * n₁ * n₂ - 2 ↔ (n₁ = 2 ∧ n₂ = 2) ∨ (n₁ = 2 ∧ n₂ = 3) := by'''
+new = '''    M n₁ n₂ = 2 * n₁ * n₂ - 2 ↔ (n₁ = 2 ∧ n₂ = 2) ∨ (n₁ = 2 ∧ n₂ = 4) := by'''
+
+[[mutant]]
+name = '''[CaseI] F.card ≤ 2 * f₁.natDegree * f₂.natDegree - 3 := by'''
+file = "../LeanProofs/Lemniscates/CaseI.lean"
+old = '''F.card ≤ 2 * f₁.natDegree * f₂.natDegree - 2 := by
+  set n₁'''
+new = '''F.card ≤ 2 * f₁.natDegree * f₂.natDegree - 3 := by
+  set n₁'''
+
+[[mutant]]
+name = '''[CaseI] S.card = f₁.natDegree * g₂.natDegree + f₂.natDegree * g₁.natDegree + 1'''
+file = "../LeanProofs/Lemniscates/CaseI.lean"
+old = '''S.card = f₁.natDegree * g₂.natDegree + f₂.natDegree * g₁.natDegree ∧'''
+new = '''S.card = f₁.natDegree * g₂.natDegree + f₂.natDegree * g₁.natDegree + 1 ∧'''
+
+[[mutant]]
+name = '''[Level0] (D.f'.nextCoeff - D.f'.natDegree * m) * (-D.g.nextCoeff - D.g.natDegre'''
+file = "../LeanProofs/Lemniscates/Level0.lean"
+old = '''      (-D.f'.nextCoeff - D.f'.natDegree * m) * (-D.g.nextCoeff - D.g.natDegree * m') +'''
+new = '''      (D.f'.nextCoeff - D.f'.natDegree * m) * (-D.g.nextCoeff - D.g.natDegree * m') +'''
+
+[[mutant]]
+name = '''[Level0] finrank ℂ (RI f g) = f.natDegree + g.natDegree ∧'''
+file = "../LeanProofs/Lemniscates/Level0.lean"
+old = '''    finrank ℂ (RI f g) = f.natDegree * g.natDegree ∧'''
+new = '''    finrank ℂ (RI f g) = f.natDegree + g.natDegree ∧'''
+
+[[mutant]]
+name = '''[TraceFormula] theorem card_S : (S a b).card = finrank ℂ A + 1 := by'''
+file = "../LeanProofs/Lemniscates/TraceFormula.lean"
+old = '''theorem card_S : (S a b).card = finrank ℂ A := by'''
+new = '''theorem card_S : (S a b).card = finrank ℂ A + 1 := by'''
+
+[[mutant]]
+name = '''[Fibre] (LinearMap.trace ℂ[X] S (Algebra.lmul ℂ[X] S x)).eval (c + 1) := by'''
+file = "../LeanProofs/Lemniscates/Fibre.lean"
+old = '''      (LinearMap.trace ℂ[X] S (Algebra.lmul ℂ[X] S x)).eval c := by'''
+new = '''      (LinearMap.trace ℂ[X] S (Algebra.lmul ℂ[X] S x)).eval (c + 1) := by'''
+
+[[mutant]]
+name = '''[GrowthGen] (hn : 1 ≤ f.natDegree) (hn' : 0 < f'.natDegree) (hg : IsCoprime g' g) '''
+file = "../LeanProofs/Lemniscates/GrowthGen.lean"
+old = '''(hn : 2 ≤ f.natDegree) (hn' : 0 < f'.natDegree) (hg : IsCoprime g' g) (R₀ : ℝ) :'''
+new = '''(hn : 1 ≤ f.natDegree) (hn' : 0 < f'.natDegree) (hg : IsCoprime g' g) (R₀ : ℝ) :'''
+
+[[mutant]]
+name = '''[CaseII] g₁.natDegree * f₂.natDegree + g₂.natDegree * f₁.natDegree - 3 := by'''
+file = "../LeanProofs/Lemniscates/CaseII.lean"
+old = '''      g₁.natDegree * f₂.natDegree + g₂.natDegree * f₁.natDegree - 2 := by'''
+new = '''      g₁.natDegree * f₂.natDegree + g₂.natDegree * f₁.natDegree - 3 := by'''
+
+[[mutant]]
+name = '''[CaseIIb] (h : ∀ t : ℝ, 0 < t → t < δ → t ^ p ≤ C * t ^ q) : q < p := by'''
+file = "../LeanProofs/Lemniscates/CaseIIb.lean"
+old = '''(h : ∀ t : ℝ, 0 < t → t < δ → t ^ p ≤ C * t ^ q) : q ≤ p := by'''
+new = '''(h : ∀ t : ℝ, 0 < t → t < δ → t ^ p ≤ C * t ^ q) : q < p := by'''
+
+[[mutant]]
+name = '''[CaseIIb] f₁ ^ f₁.natDegree = f₂ ^ f₂.natDegree := by'''
+file = "../LeanProofs/Lemniscates/CaseIIb.lean"
+old = '''    f₁ ^ f₂.natDegree = f₂ ^ f₁.natDegree := by
+  classical'''
+new = '''    f₁ ^ f₁.natDegree = f₂ ^ f₂.natDegree := by
+  classical'''
+
+[[mutant]]
+name = '''[Integral] exists_monic: monic of degree 0 (forces 1 = 0)'''
+file = "../LeanProofs/Lemniscates/Integral.lean"
+old = '''    ∃ p : ℂ[X][X], p.Monic ∧ p.eval₂ (aeval h).toRingHom x = 0 := by'''
+new = '''    ∃ p : ℂ[X][X], p.Monic ∧ p.natDegree = 0 ∧ p.eval₂ (aeval h).toRingHom x = 0 := by'''
+
+[[mutant]]
+name = '''[Constancy] tau_const: tau(c) = tau(0) + 1'''
+file = "../LeanProofs/Lemniscates/Constancy.lean"
+old = '''    (τ D φ).eval c = (τ D φ).eval 0 := by'''
+new = '''    (τ D φ).eval c = (τ D φ).eval 0 + 1 := by'''
+
+[[mutant]]
+name = '''[ResTop] M.det.coeff (∑ j, d j - 1) = (Matrix.of fun i j => (M i j).coeff (d j)'''
+file = "../LeanProofs/Lemniscates/ResTop.lean"
+old = '''    M.det.coeff (∑ j, d j - 1) = (∑ j, e j) * (Matrix.of fun i j => (M i j).coeff (d j)).det := by'''
+new = '''    M.det.coeff (∑ j, d j - 1) = (Matrix.of fun i j => (M i j).coeff (d j)).det := by'''

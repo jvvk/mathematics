@@ -6,7 +6,7 @@ Lean 4.34.0; Mathlib is pinned by `lake-manifest.json` to 5ed2965256430c3649e867
     lake exe cache get
     lake build LeanProofs
     lake env lean CheckClaims.lean
-    python3 scripts/mutants.py
+    python3 -I scripts/mutate.py scripts/mutants.toml
 
 The paper's statements and their Lean names (all in `LeanProofs/Lemniscates/`):
 

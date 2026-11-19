@@ -4,7 +4,7 @@ Example (2,2): P1 = z^2 - 1, P2 = (z - 1)^2 - 1 (Bernoulli lemniscates with foci
 Example (2,3): P1 = (z - 1/10)^2 - 1, P2 = z^3/8000 - 1, levels 1.
 Each intersection point z = x + iy solves the real system |P1|^2 - 1 = 0, |P2|^2 - 1 = 0.
 Floating Newton finds approximate solutions; for each, a box X around it is certified to contain
-exactly one solution by the Krawczyk test K(X) in int(X), with all arithmetic in mpmath intervals.
+exactly one solution by the Krawczyk test K(X) in int(X), with all arithmetic in mpmath intervals; the coefficients are exact rationals, entered as outward-rounded enclosures.
 Pairwise disjoint certified boxes give a rigorous lower bound on the number of points.
 
     python3 certify_points.py
@@ -12,6 +12,7 @@ Pairwise disjoint certified boxes give a rigorous lower bound on the number of p
 from __future__ import annotations
 
 import itertools
+from fractions import Fraction
 
 import mpmath as mp
 from mpmath import iv
@@ -23,6 +24,12 @@ iv.dps = 50
 def real_system(P):
     """F(x, y) = (|P(x+iy)|^2 - 1, ...) for a polynomial P given by complex coefficients (high first)."""
     return P
+
+
+def num(c, ctx):
+    """A coefficient given exactly (int or Fraction) as a number of ctx: for iv, an outward-rounded enclosure."""
+    c = Fraction(c)
+    return ctx.mpf(c.numerator) / ctx.mpf(c.denominator)
 
 
 def poly_eval(coeffs, z):
@@ -41,7 +48,7 @@ def F(c1, c2, x, y, ctx):
         acc = (ctx.mpf(0), ctx.mpf(0))
         for (re, im) in coeffs:
             acc = cmul(acc, (x, y))
-            acc = (acc[0] + re, acc[1] + im)
+            acc = (acc[0] + num(re, ctx), acc[1] + num(im, ctx))
         return acc
     p, q = ev(c1), ev(c2)
     return [p[0] ** 2 + p[1] ** 2 - 1, q[0] ** 2 + q[1] ** 2 - 1]
@@ -59,7 +66,7 @@ def jac(c1, c2, x, y, ctx):
             der = cmul(der, (x, y))
             der = (der[0] + acc[0], der[1] + acc[1])
             acc = cmul(acc, (x, y))
-            acc = (acc[0] + re, acc[1] + im)
+            acc = (acc[0] + num(re, ctx), acc[1] + num(im, ctx))
         return acc, der
     rows = []
     for c in (c1, c2):
@@ -124,10 +131,10 @@ def certify(name, c1, c2, R, grid):
 
 
 if __name__ == "__main__":
-    q = mp.mpf(1) / 10
-    # coefficients (re, im), highest degree first
+    q = Fraction(1, 10)
+    # coefficients (re, im), highest degree first, as exact rationals; interval evaluation encloses them
     ex22 = ([(1, 0), (0, 0), (-1, 0)], [(1, 0), (-2, 0), (0, 0)])
-    ex23 = ([(1, 0), (-2 * q, 0), (q * q - 1, 0)], [(mp.mpf(1) / 8000, 0), (0, 0), (0, 0), (-1, 0)])
+    ex23 = ([(1, 0), (-2 * q, 0), (q * q - 1, 0)], [(Fraction(1, 8000), 0), (0, 0), (0, 0), (-1, 0)])
     n22 = certify("(2,2) z^2-1, (z-1)^2-1", *ex22, R=2.5, grid=24)
     n23 = certify("(2,3) (z-1/10)^2-1, z^3/8000-1", *ex23, R=2.5, grid=30)
     assert (n22, n23) == (6, 10)

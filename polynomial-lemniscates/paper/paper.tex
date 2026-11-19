@@ -26,7 +26,7 @@
 
 \title{Polynomial lemniscates meet in at most $2n_1n_2-2$ points}
 \author{Vamshi Jandhyala}
-\date{Preprint, version 1, 8 October 2026. Not peer reviewed.}
+\date{Preprint, version 2, 19 November 2026 (version 1, 8 October 2026). Not peer reviewed.}
 \subjclass[2020]{30C10; 14H50; 14P05; 68V20}
 \keywords{lemniscate, Cassini oval, level curves of polynomials, resultant, trace, formal verification}
 
@@ -40,7 +40,8 @@ $(n_1,n_2)=(2,2)$ and $(2,3)$, so the maximum is $6$ and $10$ there; in particul
 two Bernoulli lemniscates, meet in at most six points, which answers a question from Mathematics Stack Exchange.
 The proof treats $z$ and $\cl z$ as independent variables: the $2n_1n_2$ complex solutions, counted with
 multiplicity, have a weighted sum that equals $-\tfrac{n_1n_2}{2}|c_1-c_2|^2\le0$ for explicit centres $c_1,c_2$,
-and this forces two of them off the real locus. Every proof is formally verified in Lean.
+so either two of them lie off the real locus or all of them sit at a single point. Every proof is formally
+verified in Lean, except that the ten common points of the $(2,3)$ example are certified by interval arithmetic.
 \end{abstract}
 \maketitle
 
@@ -52,7 +53,8 @@ has not yet been independently reviewed.
 \section{Introduction}\label{sec:intro}
 
 How many points can two lemniscates of Bernoulli have in common? The question was asked on Mathematics Stack
-Exchange in 2015 \cite{mse}. A lemniscate of Bernoulli is a quartic curve with nodes at the two circular points at
+Exchange in 2015 \cite{mse}; the author's answer there \cite{mseA} (4 October 2026) proves the bound six for two
+translates of the same lemniscate by an elimination argument, which this note replaces by one that covers all pairs. A lemniscate of Bernoulli is a quartic curve with nodes at the two circular points at
 infinity, so B\'ezout's theorem gives $16$ intersections in the complex projective plane, of which at least $8$ sit
 at the circular points; that leaves at most $8$ real ones. Experiments suggested that $6$ is the truth, and the
 asker wanted to know where the other two complex points are.
@@ -70,7 +72,7 @@ points (black).}\label{fig:six}
 \end{figure}
 
 For a nonconstant rational function $P$ and $\rho>0$, the lemniscate $\{z\in\C:|P(z)|=\rho\}$ is the set of
-real points of an algebraic curve of degree $2\deg P$. Orevkov and Pakovich \cite{op} proved that two such
+real points of an algebraic curve of degree at most $2\deg P$ (exactly $2\deg P$ when $P$ is a polynomial). Orevkov and Pakovich \cite{op} proved that two such
 lemniscates, of degrees $n_1$ and $n_2$, have at most $2n_1n_2$ common points when they have finitely many, and that
 $2n_1n_2$ is attained by rational functions of every pair of degrees; this sharpened the bound $(n_1+n_2)^2$ of
 Pakovich and Shparlinski \cite[Theorem~2.2]{ps}. For polynomials they constructed lemniscates
@@ -114,7 +116,8 @@ permutes the solutions, and its fixed points are the pairs $(z,\cl z)$. The hear
 where $c_k$ is the centroid of the roots of $f_k$. In words: after centring at the midpoint of the two centroids,
 the weighted sum of the products $(Z-m)(W-\cl m)$ over all solutions is a real number that is never positive. A
 real solution $(z,\cl z)$ contributes $|z-m|^2\ge0$. So if all solutions were real, every one of them would sit at
-$z=m$; hence at least one solution is not real, and with it its partner under $\sigma$. That accounts for two of the
+$z=m$, and there would be a single common point. Otherwise at least one solution is not real, and with it its
+partner under $\sigma$. That accounts for two of the
 $2n_1n_2$ solutions and gives Theorem~\ref{thm:main} in the coprime case (Section~\ref{sec:pairing}). For the two
 Bernoulli lemniscates of Figure~\ref{fig:six}, $c_1=0$, $c_2=1$, the sum is $-2$, and the two missing points the
 asker looked for are the solutions $(\tfrac12\mp t,\tfrac12\pm t)$ with $t^2=\tfrac54+\sqrt2$ (Figure~\ref{fig:pair}).
@@ -468,7 +471,7 @@ theorem theoremA (P₁ P₂ : ℂ[X]) (hn₁ : 2 ≤ P₁.natDegree) (hn₂ : 2 
     hfin.toFinset.card ≤ 2 * P₁.natDegree * P₂.natDegree - 2
 \end{verbatim}\end{small}
 The corollaries are \texttt{oval\_le\_six}, \texttt{bernoulli\_six} and \texttt{M\_eq\_iff}. A mutation test plants
-$19$ wrong variants (bounds off by one, wrong signs, dropped hypotheses) and checks that each is rejected. The ten points of Corollary~\ref{cor:23} and the six of Corollary~\ref{cor:cassini} are certified by
+$19$ false variants of statements (bounds off by one, wrong signs, weakened hypotheses) and checks that Lean rejects each one with an error in the mutated file. The ten points of Corollary~\ref{cor:23} and the six of Corollary~\ref{cor:cassini} are certified by
 the Krawczyk test in interval arithmetic; an independent program recomputes all $2n_1n_2$ complex solutions of both
 examples from an exact resultant and confirms the counts, identity \eqref{eq:identity} and the numbers in
 Figure~\ref{fig:pair}. A symbolic computation confirms \eqref{eq:identity} for $n_1=n_2=2$ with all coefficients and
@@ -477,7 +480,8 @@ levels as free variables. The Lean sources, these programs and their outputs are
 
 \section*{Acknowledgement}
 The proofs, text, verification programs and Lean formalisation were developed with the AI assistant Claude
-(Anthropic), under the author's direction. The author is responsible for the contents.
+(Anthropic), under the author's direction. Codex (OpenAI) refereed version~1; its review led to the corrections in
+version~2. The author is responsible for the contents.
 
 \begin{thebibliography}{9}
 
@@ -490,6 +494,8 @@ International Conference on Certified Programs and Proofs (CPP 2020)}, ACM, 2020
 \bibitem{mse} Mostafa, Maximum number of intersection points of two different Bernoulli lemniscates, Mathematics
 Stack Exchange question 1250327, 24 April 2015. \url{https://math.stackexchange.com/q/1250327} (accessed 8 October
 2026).
+\bibitem{mseA} V.~Jandhyala, answer to Mathematics Stack Exchange question 1250327, 4 October 2026.
+\url{https://math.stackexchange.com/a/5151057}
 \bibitem{op} S.~Orevkov and F.~Pakovich, On intersection of lemniscates of rational functions, \emph{Arnold Math. J.}
 \textbf{11} (2025), no.~1, 7--26. \url{https://doi.org/10.56994/ARMJ.011.001.002}
 \bibitem{ps} F.~Pakovich and I.~E.~Shparlinski, Level curves of rational functions and unimodular points on rational
