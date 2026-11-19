@@ -12,6 +12,9 @@ Run: python check_theorem.py            (expect PASS)
      python check_theorem.py --mutant M  (M in moment, case, gp, constant; expect AssertionError)
 """
 
+if not __debug__:  # the checks are assertions; refuse to run with python -O, which would skip them
+    raise SystemExit("run without -O / PYTHONOPTIMIZE: the checks are assertions")
+
 import sys
 from fractions import Fraction as F
 from itertools import product

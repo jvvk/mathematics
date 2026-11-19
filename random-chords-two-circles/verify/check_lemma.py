@@ -2,6 +2,9 @@
 A = P + a*uA and B = Q + uB has normalised offsets (XA, XB) with density 1/(pi^2 sqrt(1-x^2) sqrt(1-y^2)).
 Sum over the four preimages of 1/(4 pi^2 |Jacobian|), Jacobian by central differences.
 Also checks the chord identity  sum |AB| = 4 m'.(Q-P).  Mutant: overlapping circles must FAIL."""
+
+if not __debug__:  # the checks are assertions; refuse to run with python -O, which would skip them
+    raise SystemExit("run without -O / PYTHONOPTIMIZE: the checks are assertions")
 import numpy as np, sys
 def offsets(tA, tB, a, D):
     uA = np.array([np.cos(tA), np.sin(tA)]); uB = np.array([np.cos(tB), np.sin(tB)])

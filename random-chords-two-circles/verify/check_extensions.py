@@ -1,6 +1,9 @@
 """Independent finite checks of the simplified proofs and added consequences.
 These checks illustrate the proofs; they do not establish them or priority.
 """
+
+if not __debug__:  # the checks are assertions; refuse to run with python -O, which would skip them
+    raise SystemExit("run without -O / PYTHONOPTIMIZE: the checks are assertions")
 from fractions import Fraction as F
 from itertools import product
 import math

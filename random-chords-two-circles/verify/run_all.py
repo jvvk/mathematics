@@ -1,5 +1,8 @@
 """Run both checkers, then each deliberate mutant, which must fail with AssertionError."""
 
+if not __debug__:  # the checks are assertions; refuse to run with python -O, which would skip them
+    raise SystemExit("run without -O / PYTHONOPTIMIZE: the checks are assertions")
+
 import subprocess
 import sys
 from pathlib import Path
@@ -12,7 +15,8 @@ for script, mutant in runs:
     cmd = [sys.executable, str(root / script)] + (
         ["--mutant", mutant] if mutant else []
     )
-    r = subprocess.run(cmd, capture_output=True, text=True, timeout=300)
+    env = {k: v for k, v in __import__("os").environ.items() if k != "PYTHONOPTIMIZE"}
+    r = subprocess.run(cmd, capture_output=True, text=True, timeout=300, env=env)
     if mutant:
         assert r.returncode == 1 and "AssertionError" in r.stderr, (
             mutant,

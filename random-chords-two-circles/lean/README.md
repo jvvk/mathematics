@@ -28,13 +28,17 @@ Not formalised: the numerical value `0.38712871…` of Corollary 8 and its agree
 dilogarithm expression (computed by the ancillary scripts), and the classical formula of Santaló cited
 after Lemma 2 (a remark; the proof of Lemma 2 does not use it).
 
-`./mutants.sh` plants 23 wrong changes (definitions, statements and hypotheses across
-every file) in a copy of the sources; each must fail to build, and the unchanged copy must build.
+`scripts/mutants.toml`, run by `scripts/mutate.py`, plants 23 wrong changes (definitions, statements and
+hypotheses across every file) one at a time in the sources, rebuilds through `Audit.lean` with
+`scripts/lake_serial.py` (one module at a time) and restores the file; each must fail with a Lean error in a
+`RandomChords` source, and the unchanged sources must build. Timeouts and crashes fail the run. The summary is
+saved as `mutation-validation.log`, the full output of every run in `mutation-logs/`.
 
 ## Build
 
 ```
 lake exe cache get     # Mathlib build cache
 lake build             # compiles every module and runs the axiom audit
-./mutants.sh           # 23 mutants, each rejected; the unchanged copy builds
+lake env lean RandomChords/Audit.lean > axiom-validation.txt && python3 -I scripts/check_axioms.py axiom-validation.txt
+python3 -I scripts/mutate.py scripts/mutants.toml   # 23 mutants, each rejected; the unchanged sources build
 ```

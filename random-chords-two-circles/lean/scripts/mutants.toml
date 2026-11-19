@@ -1,0 +1,155 @@
+# Mutation suite for RandomChords (MathOverflow 499477). Replaces mutants.sh.
+# Run (from lean/, after a full build): python3 -I scripts/mutate.py scripts/mutants.toml
+# In place: each mutant edits one statement of a source file, rebuilds through Audit.lean with scripts/lake_serial.py
+# (one module at a time; unchanged modules are reused) and restores the file. A mutated definition fails in the
+# modules that use it, so the error may be in a dependent file. A rejection needs a nonzero exit AND a Lean error
+# in a RandomChords source file; timeouts and crashes are inconclusive and fail the run. Logs in mutation-logs/.
+[check]
+cmd = ["python3", "-I", "scripts/lake_serial.py", ".", "RandomChords.Audit"]
+cwd = ".."
+timeout = 2400
+mode = "inplace"
+fail_pattern = 'RandomChords/\S+\.lean:\d+:\d+: error'
+log_dir = "../mutation-logs"
+
+[[mutant]]
+name = '''normal of the line not perpendicular'''
+file = "../RandomChords/Basic.lean"
+old = '''def nrmD (d : ℝ × ℝ) : ℝ × ℝ := (sgn d * -d.2 / len d, sgn d * d.1 / len d)'''
+new = '''def nrmD (d : ℝ × ℝ) : ℝ × ℝ := (sgn d * d.2 / len d, sgn d * d.1 / len d)'''
+
+[[mutant]]
+name = '''torus mass twice the square'''
+file = "../RandomChords/Basic.lean"
+old = '''lemma four_mul_volume_sq : 4 * volume sq = volume (univ : Set (Ang × Ang)) := by'''
+new = '''lemma four_mul_volume_sq : 2 * volume sq = volume (univ : Set (Ang × Ang)) := by'''
+
+[[mutant]]
+name = '''branch theorem: constant c + 1'''
+file = "../RandomChords/Branches.lean"
+old = '''    Measure.map F volume = c • volume.restrict s ∧'''
+new = '''    Measure.map F volume = (c + 1) • volume.restrict s ∧'''
+
+[[mutant]]
+name = '''Lemma 1: law 2 • uniform'''
+file = "../RandomChords/OneCircle.lean"
+old = '''    Measure.map (angles1 b) volume = (4 : ℝ≥0∞) • volume.restrict sq ∧'''
+new = '''    Measure.map (angles1 b) volume = (2 : ℝ≥0∞) • volume.restrict sq ∧'''
+
+[[mutant]]
+name = '''Lemma 1: C at phi + theta'''
+file = "../RandomChords/OneCircle.lean"
+old = '''    ((1 : ℝ) • ContinuousLinearMap.fst ℝ ℝ ℝ + (-sgnB η) • ContinuousLinearMap.snd ℝ ℝ ℝ)'''
+new = '''    ((1 : ℝ) • ContinuousLinearMap.fst ℝ ℝ ℝ + (sgnB η) • ContinuousLinearMap.snd ℝ ℝ ℝ)'''
+
+[[mutant]]
+name = '''Lemma 2: dphi/dthetaA uses b'''
+file = "../RandomChords/TwoCircles.lean"
+old = '''def c1 (x : ℝ × ℝ) : ℝ := a * sin x.1 / gfeet a b D x'''
+new = '''def c1 (x : ℝ × ℝ) : ℝ := b * sin x.1 / gfeet a b D x'''
+
+[[mutant]]
+name = '''Lemma 2: gaps at least 1'''
+file = "../RandomChords/TwoCircles.lean"
+old = '''    a * sin x.1 + b * sin x.2 ≤ gfeet a b D x := by'''
+new = '''    a * sin x.1 + b * sin x.2 + 1 ≤ gfeet a b D x := by'''
+
+[[mutant]]
+name = '''Lemma 2: contributions sum to 2'''
+file = "../RandomChords/TwoCircles.lean"
+old = '''    ∑ p : Bool × Bool, jac a b D p.1 p.2 x = 4 := by'''
+new = '''    ∑ p : Bool × Bool, jac a b D p.1 p.2 x = 2 := by'''
+
+[[mutant]]
+name = '''Lemma 2 for overlapping discs'''
+file = "../RandomChords/TwoCircles.lean"
+old = '''theorem lemma2 (ha : 0 < a) (hb : 0 < b) (hD : a + b ≤ D) :'''
+new = '''theorem lemma2 (ha : 0 < a) (hb : 0 < b) (hD : a ≤ D) :'''
+
+[[mutant]]
+name = '''Lemma 3: second moment over 4'''
+file = "../RandomChords/Moments.lean"
+old = '''    ∫ x, x ^ 2 ∂(lawW w) = π ^ 2 * (w.1 ^ 2 + w.2 ^ 2) / 2 := by'''
+new = '''    ∫ x, x ^ 2 ∂(lawW w) = π ^ 2 * (w.1 ^ 2 + w.2 ^ 2) / 4 := by'''
+
+[[mutant]]
+name = '''(T): weight 1 - mu'''
+file = "../RandomChords/Centres.lean"
+old = '''    dAB a b D q o ω = wsum (o / D * a, -((1 + o / D) * b)) (angles2 a b D ω) := by'''
+new = '''    dAB a b D q o ω = wsum (o / D * a, -((1 - o / D) * b)) (angles2 a b D ω) := by'''
+
+[[mutant]]
+name = '''Theorem 4: |QO| = a(a+b)/b'''
+file = "../RandomChords/Centres.lean"
+old = '''
+    Measure.map (dAB a b D q o) volume = Measure.map (dBC b q o) volume ↔
+      o = 0 ∨ (D = a + b ∧ o = b * (a + b) / a) := by'''
+new = '''
+    Measure.map (dAB a b D q o) volume = Measure.map (dBC b q o) volume ↔
+      o = 0 ∨ (D = a + b ∧ o = a * (a + b) / b) := by'''
+
+[[mutant]]
+name = '''Corollary 5: ab = c^2'''
+file = "../RandomChords/Corollaries.lean"
+old = '''      a * c = b ^ 2) ∧'''
+new = '''      a * b = c ^ 2) ∧'''
+
+[[mutant]]
+name = '''Corollary 7: factor 1/pi^2'''
+file = "../RandomChords/HitProb.lean"
+old = '''def Hint (r : ℝ) : ℝ := 2 / π ^ 2 * ∫ v in (0)..(π / 2), hitF r v'''
+new = '''def Hint (r : ℝ) : ℝ := 1 / π ^ 2 * ∫ v in (0)..(π / 2), hitF r v'''
+
+[[mutant]]
+name = '''Corollary 7: H decreasing'''
+file = "../RandomChords/HitProb.lean"
+old = '''theorem H_strictMonoOn : StrictMonoOn H (Ioi 0) := by'''
+new = '''theorem H_strictMonoOn : StrictAntiOn H (Ioi 0) := by'''
+
+[[mutant]]
+name = '''Corollary 7: H tends to 1/2'''
+file = "../RandomChords/HitProb.lean"
+old = '''theorem H_tendsto_one : Tendsto H atTop (𝓝 1) := by'''
+new = '''theorem H_tendsto_one : Tendsto H atTop (𝓝 (1 / 2)) := by'''
+
+[[mutant]]
+name = '''Corollary 8: arccos(2 cos v + 1)'''
+file = "../RandomChords/HitProb.lean"
+old = '''theorem cor8 : H 1 = 2 / π ^ 2 * ∫ v in (0)..(π / 2), arccos (2 * cos v - 1) := by'''
+new = '''theorem cor8 : H 1 = 2 / π ^ 2 * ∫ v in (0)..(π / 2), arccos (2 * cos v + 1) := by'''
+
+[[mutant]]
+name = '''(2): 2 a^2 D h'''
+file = "../RandomChords/Remarks.lean"
+old = '''      ((D ^ 2 - a ^ 2 - b ^ 2) * (k ^ 2 - h ^ 2) + 2 * b ^ 2 * D * h) / (2 * D ^ 2) := by'''
+new = '''      ((D ^ 2 - a ^ 2 - b ^ 2) * (k ^ 2 - h ^ 2) + 2 * a ^ 2 * D * h) / (2 * D ^ 2) := by'''
+
+[[mutant]]
+name = '''example: 1/40'''
+file = "../RandomChords/Remarks.lean"
+old = '''      (∫ ω, dOffC 1 3 (3 / 10) ω ^ 2) / (4 * π ^ 2) = 1 / 50 := by'''
+new = '''      (∫ ω, dOffC 1 3 (3 / 10) ω ^ 2) / (4 * π ^ 2) = 1 / 40 := by'''
+
+[[mutant]]
+name = '''concentric: a x_A = a x_B'''
+file = "../RandomChords/Remarks.lean"
+old = '''      b * off (nrm (pt (-0) a ω.1) (pt 0 b ω.2)) (pt 0 b ω.2) (0, 0) b := by'''
+new = '''      a * off (nrm (pt (-0) a ω.1) (pt 0 b ω.2)) (pt 0 b ω.2) (0, 0) b := by'''
+
+[[mutant]]
+name = '''direction: divide by 2D'''
+file = "../RandomChords/Offsets.lean"
+old = '''      (4 : ℝ≥0∞) • (volume.restrict sq).map (fun x : ℝ × ℝ => (a * cos x.1 - b * cos x.2) / D) := by'''
+new = '''      (4 : ℝ≥0∞) • (volume.restrict sq).map (fun x : ℝ × ℝ => (a * cos x.1 - b * cos x.2) / (2 * D)) := by'''
+
+[[mutant]]
+name = '''Lemma 3: weights in order only'''
+file = "../RandomChords/Moments.lean"
+old = '''      (|w.1| = |w'.1| ∧ |w.2| = |w'.2|) ∨ (|w.1| = |w'.2| ∧ |w.2| = |w'.1|) := by'''
+new = '''      (|w.1| = |w'.1| ∧ |w.2| = |w'.2|) := by'''
+
+[[mutant]]
+name = '''mirrored Theorem 4: b(a+b)/a'''
+file = "../RandomChords/Corollaries.lean"
+old = '''      o' = 0 ∨ (D = a + b ∧ o' = a * (a + b) / b) := by'''
+new = '''      o' = 0 ∨ (D = a + b ∧ o' = b * (a + b) / a) := by'''

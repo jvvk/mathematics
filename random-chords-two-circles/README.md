@@ -10,9 +10,9 @@
 
 Three circles touch in a row with radii `a`, `b`, `c` in geometric progression. Choose `A` uniformly on the first circle and `B`, `C` uniformly on the second. Dan observed numerically, and asked on MathOverflow (question 499477) why, that the lines `AB` and `BC` meet the third circle with the same probability.
 
-The paper explains it through a fact about two circles. For independent uniform points `A`, `B` on two circles whose discs have disjoint interiors, the signed offsets of the line `AB` from the two centres, each divided by its radius, are independent with the arcsine law (Lemma 2). The proof is a change of variables over the four pairs of points on a line, whose contributions add to a constant because the half-chords cancel. From this, Theorem 4 decides exactly which points `O` on the line of centres see `AB` and the chord `BC` at the same distance in distribution: `O` is the second centre, or the circles touch and `|QO| = b(a + b)/a`. This answers Dan's question for every ratio, extends it to every circle about the third centre and to chains of circles, shows that the progression is necessary, and gives a single integral for the common hit probability.
+The paper explains it through a fact about two circles. For independent uniform points `A`, `B` on two circles whose discs have disjoint interiors, the signed offsets of the line `AB` from the two centres, each divided by its radius, are independent with the arcsine law (Lemma 2). The proof is a change of variables over the four pairs of points on a line, whose contributions add to a constant because the half-chords cancel. From this, Theorem 4 decides exactly which points `O` on the line of centres see `AB` and the chord `BC` at the same distance in distribution: `O` is the second centre, or the circles touch and `|QO| = b(a + b)/a`. This answers Dan's question for every ratio, extends it to every circle about the third centre and to chains of circles, shows that the progression is necessary for equality of the distance distributions, and gives a single integral for the common hit probability.
 
-Preprint v1, 8 October 2026, not peer reviewed. Every proved result of the paper is also formally verified in Lean 4 (`lean/`, standard axioms only). The exposition has not yet been independently reviewed. The author used AI tools (Claude, Anthropic; Codex, OpenAI) in this work, as described in the paper's acknowledgements, and is responsible for its content.
+Preprint v2, 19 November 2026 (v1: 8 October 2026), not peer reviewed. **Version 2**, after a referee review by Codex (OpenAI), which found no prior work: the necessity claim is stated for the distance distributions, as in the paper; the Python checks refuse to run with assertions disabled; the Lean axioms are checked against a whitelist and the output saved; the Lean mutants run on the house harness. The mathematics is unchanged. Every proved result of the paper is also formally verified in Lean 4 (`lean/`, standard axioms only). The exposition has not yet been independently reviewed. The author used AI tools (Claude, Anthropic; Codex, OpenAI) in this work, as described in the paper's acknowledgements, and is responsible for its content.
 
 ## Contents
 
@@ -27,7 +27,8 @@ cd verify
 python3 run_all.py                      # needs numpy and mpmath; under a minute
 cd ../paper && latexmk -pdf paper.tex
 cd ../lean && lake exe cache get && lake build   # builds every module and prints the axiom audit
-./mutants.sh                                     # 23 mutants, each rejected
+lake env lean RandomChords/Audit.lean > axiom-validation.txt && python3 -I scripts/check_axioms.py axiom-validation.txt
+python3 -I scripts/mutate.py scripts/mutants.toml   # 23 mutants, each rejected
 ```
 
 ## Licence
