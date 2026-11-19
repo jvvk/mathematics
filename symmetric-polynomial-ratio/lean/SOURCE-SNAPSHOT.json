@@ -1,7 +1,7 @@
 {
   "source_repo": "lean-proofs (private)",
   "source_commit": "0625f3eb8c435662b5323c442217266576d80c9e",
-  "note": "SymmetricRatio/{Basic,Roots,Convex,Main,Bridge}.lean are LeanProofs/Haddou at this commit, with imports renamed from LeanProofs.Haddou to SymmetricRatio; Audit.lean and SymmetricRatio.lean are new. Built in this layout on 9 October 2026: 3185 jobs, 13 axiom audits standard; mutants.sh: eleven mutants rejected, five controls compile.",
+  "note": "SymmetricRatio/{Basic,Roots,Convex,Main,Bridge}.lean are LeanProofs/Haddou at this commit, with imports renamed from LeanProofs.Haddou to SymmetricRatio; Audit.lean and SymmetricRatio.lean are new. Built in this layout on 9 October 2026: 3185 jobs, 13 axiom audits standard; mutants.sh: eleven mutants rejected, five controls compile. Rebuilt 19 November 2026 (v2): same files and hashes, 13 axiom audits standard; scripts/mutants.toml (house harness, replacing mutants.sh): 11/11 rejected with an error in the mutated copy, five controls compile.",
   "lean_toolchain": "leanprover/lean4:v4.34.0",
   "mathlib_rev": "v4.34.0",
   "files": {

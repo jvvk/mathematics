@@ -1,0 +1,17 @@
+control passes: Bridge.lean
+control passes: Main.lean
+control passes: Basic.lean
+control passes: Convex.lean
+control passes: Roots.lean
+rejected: final: StrictAntiOn (exit 1, diagnostic: SymmetricRatio/BridgeMut.lean:164:2: error: Type mismatch)
+rejected: final: on (0, oo) (exit 1, diagnostic: SymmetricRatio/BridgeMut.lean:164:2: error: Type mismatch)
+rejected: final: cube not square (exit 1, diagnostic: SymmetricRatio/BridgeMut.lean:163:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern)
+rejected: final: allow i = 0 (exit 1, diagnostic: SymmetricRatio/BridgeMut.lean:164:31: error: Application type mismatch: The argument)
+rejected: vec: x's first, ones last (exit 1, diagnostic: SymmetricRatio/BridgeMut.lean:128:37: error: unsolved goals)
+rejected: Hf: choose index off by one (exit 1, diagnostic: SymmetricRatio/BridgeMut.lean:83:4: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern)
+rejected: HP_deriv: (l+2) for (l+1) (exit 1, diagnostic: SymmetricRatio/MainMut.lean:49:39: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern)
+rejected: P_rec: (N+l+2) for (N+l+1) (exit 1, diagnostic: SymmetricRatio/BasicMut.lean:146:55: error: unsolved goals)
+rejected: W_rec: 2y P^2 (exit 1, diagnostic: SymmetricRatio/BasicMut.lean:249:2: error: ring failed, ring expressions not equal)
+rejected: convexity at t >= 0 (exit 1, diagnostic: SymmetricRatio/ConvexMut.lean:78:30: error: linarith failed to find a contradiction)
+rejected: roots nonnegative claimed (exit 1, diagnostic: SymmetricRatio/RootsMut.lean:200:10: error: Type mismatch)
+11/11 mutants rejected, all controls pass

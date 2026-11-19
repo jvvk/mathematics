@@ -1,0 +1,7 @@
+# control Convex.lean
+# command: nice -n 15 lake env lean SymmetricRatio/ConvexMut.lean
+# exit: 0
+## stdout
+
+## stderr
+

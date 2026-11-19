@@ -1,0 +1,7 @@
+# control Bridge.lean
+# command: nice -n 15 lake env lean SymmetricRatio/BridgeMut.lean
+# exit: 0
+## stdout
+
+## stderr
+

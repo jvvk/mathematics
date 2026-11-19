@@ -16,13 +16,14 @@ Lean 4 (v4.34.0) with Mathlib `v4.34.0`. Every theorem below depends only on `pr
 
 Route: the formalisation follows the paper except in two places. `P_ℓ(i) = H_i` is proved through the Pascal
 recursion for `h_ℓ` (`Hf_rec`) rather than the generating function (2), and the recurrence (3) is proved
-coefficient by coefficient. The remarks (the case `ℓ = 1`, the symmetry `x ↦ 1/x`, the Meixner identification,
-real `n`) are checked by `../verify/verify_paper.py`, not here.
+coefficient by coefficient. The case `ℓ = 1`, the symmetry `x ↦ 1/x` and the Meixner identification are checked by
+`../verify/verify_paper.py` for integer `n`, not here. The extension to real `n` in Remark 1 is proved only on
+paper: both Lean and the Python checks take `n` to be an integer.
 
 ## Build
 
 ```
 lake exe cache get     # Mathlib build cache
 lake build             # compiles every module and runs the axiom audit
-./mutants.sh           # eleven mutants, each rejected; the five unchanged copies compile
+python3 -I scripts/mutate.py scripts/mutants.toml   # eleven mutants, each rejected with an error in the mutated copy
 ```

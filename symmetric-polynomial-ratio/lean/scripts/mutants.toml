@@ -1,0 +1,79 @@
+# Mutation suite for SymmetricRatio (MathOverflow 467261). Replaces mutants.sh.
+# Run (from lean/, after lake build): python3 -I scripts/mutate.py scripts/mutants.toml
+# Copy mode: each mutant plants one wrong change in a copy of its source file, compiled against the built tree.
+# A rejection needs a nonzero exit AND a Lean error located in the mutated copy; timeouts and crashes are
+# inconclusive and fail the run. Full output of every run is kept in mutation-logs/.
+[check]
+cmd = ["lake", "env", "lean", "{file}"]
+cwd = ".."
+timeout = 900
+mode = "copy"
+fail_pattern = 'SymmetricRatio/\S+Mut\.lean:\d+:\d+: error'
+diagnostic_in_target = true
+log_dir = "../mutation-logs"
+
+[[mutant]]
+name = '''final: StrictAntiOn'''
+file = "../SymmetricRatio/Bridge.lean"
+old = '''    StrictMonoOn (fun x => h n ℓ i x'''
+new = '''    StrictAntiOn (fun x => h n ℓ i x'''
+
+[[mutant]]
+name = '''final: on (0, oo)'''
+file = "../SymmetricRatio/Bridge.lean"
+old = '''(h n ℓ (i + 1) x * h n ℓ (i - 1) x)) (Set.Ioi 1)'''
+new = '''(h n ℓ (i + 1) x * h n ℓ (i - 1) x)) (Set.Ioi 0)'''
+
+[[mutant]]
+name = '''final: cube not square'''
+file = "../SymmetricRatio/Bridge.lean"
+old = '''StrictMonoOn (fun x => h n ℓ i x ^ 2'''
+new = '''StrictMonoOn (fun x => h n ℓ i x ^ 3'''
+
+[[mutant]]
+name = '''final: allow i = 0'''
+file = "../SymmetricRatio/Bridge.lean"
+old = '''(hℓ : 1 ≤ ℓ) (hi : 1 ≤ i) (hin'''
+new = '''(hℓ : 1 ≤ ℓ) (hi : 0 ≤ i) (hin'''
+
+[[mutant]]
+name = '''vec: x's first, ones last'''
+file = "../SymmetricRatio/Bridge.lean"
+old = '''fun j => if (j : ℕ) < p then 1 else x'''
+new = '''fun j => if (j : ℕ) < p then x else 1'''
+
+[[mutant]]
+name = '''Hf: choose index off by one'''
+file = "../SymmetricRatio/Bridge.lean"
+old = '''(((p + q + ℓ - 1).choose (ℓ - k)'''
+new = '''(((p + q + ℓ).choose (ℓ - k)'''
+
+[[mutant]]
+name = '''HP_deriv: (l+2) for (l+1)'''
+file = "../SymmetricRatio/Main.lean"
+old = '''      C ((ℓ : ℝ) + 1) * HP N (ℓ + 1) t - C ((N : ℝ) + ℓ + 1) * HP N ℓ t := by'''
+new = '''      C ((ℓ : ℝ) + 2) * HP N (ℓ + 1) t - C ((N : ℝ) + ℓ + 1) * HP N ℓ t := by'''
+
+[[mutant]]
+name = '''P_rec: (N+l+2) for (N+l+1)'''
+file = "../SymmetricRatio/Basic.lean"
+old = '''        - C ((1 + y) * ((N : ℝ) + ℓ + 1)) * P N y ℓ := by'''
+new = '''        - C ((1 + y) * ((N : ℝ) + ℓ + 2)) * P N y ℓ := by'''
+
+[[mutant]]
+name = '''W_rec: 2y P^2'''
+file = "../SymmetricRatio/Basic.lean"
+old = '''      C y * P N y (ℓ + 1) ^ 2 + C ((1 + y)'''
+new = '''      C (2 * y) * P N y (ℓ + 1) ^ 2 + C ((1 + y)'''
+
+[[mutant]]
+name = '''convexity at t >= 0'''
+file = "../SymmetricRatio/Convex.lean"
+old = '''(ℓ : ℕ) {t : ℝ} (ht : 1 ≤ t) :'''
+new = '''(ℓ : ℕ) {t : ℝ} (ht : 0 ≤ t) :'''
+
+[[mutant]]
+name = '''roots nonnegative claimed'''
+file = "../SymmetricRatio/Roots.lean"
+old = '''      (∀ j < ℓ, r j < 0) := by'''
+new = '''      (∀ j < ℓ, 0 < r j) := by'''

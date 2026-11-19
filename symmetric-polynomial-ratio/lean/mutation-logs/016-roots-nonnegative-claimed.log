@@ -1,0 +1,47 @@
+# roots nonnegative claimed
+# command: nice -n 15 lake env lean SymmetricRatio/RootsMut.lean
+# exit: 1
+## stdout
+SymmetricRatio/RootsMut.lean:200:10: error: Type mismatch
+  hneg (i - 1) (Decidable.byContradiction fun a => real_rooted._proof_1_16 N ℓ i hi hi0 h a)
+has type
+  0 < r (i - 1)
+but is expected to have type
+  r (i - 1) < 0
+SymmetricRatio/RootsMut.lean:218:6: error: linarith failed to find a contradiction
+case succ.refine_2
+N : ℕ
+y : ℝ
+hy : 0 < y
+ℓ : ℕ
+r : ℕ → ℝ
+hr : ∀ (i k : ℕ), i < k → k < ℓ → r i < r k
+hroot : ∀ j < ℓ, eval (r j) (P N y ℓ) = 0
+hneg : ∀ j < ℓ, 0 < r j
+f : ℝ → ℝ := fun t => eval t (P N y (ℓ + 1))
+hf : f = fun t => eval t (P N y (ℓ + 1))
+hlc : 0 < (P N y ℓ).leadingCoeff
+hsign_r : ∀ j < ℓ, 0 < (-1) ^ (ℓ - j) * f (r j)
+hdeg : (P N y (ℓ + 1)).natDegree = ℓ + 1
+M : ℝ
+hM : M < min (r 0) 0
+hMsign : 0 < (-1) ^ (ℓ + 1) * eval M (P N y (ℓ + 1))
+q : ℕ → ℝ := fun i => if i = 0 then M else if i ≤ ℓ then r (i - 1) else 0
+hq : q = fun i => if i = 0 then M else if i ≤ ℓ then r (i - 1) else 0
+hsign : ∀ i ≤ ℓ + 1, 0 < (-1) ^ (ℓ + 1 - i) * f (q i)
+hqinc : ∀ i < ℓ + 1, q i < q (i + 1)
+hprod : ∀ i < ℓ + 1, f (q i) * f (q (i + 1)) < 0
+s : ℕ → ℝ
+hs : ∀ i < ℓ + 1, q i < s i ∧ s i < q (i + 1) ∧ f (s i) = 0
+hmono : ∀ (i j : ℕ), i ≤ j → j ≤ ℓ + 1 → q i ≤ q j
+j : ℕ
+hj : j < ℓ + 1
+h1 : s j < q (j + 1)
+h2 : q (j + 1) ≤ q (ℓ + 1)
+h3 : q (ℓ + 1) = 0
+a✝ : s j ≤ 0
+⊢ False
+failed
+
+## stderr
+

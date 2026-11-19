@@ -1,0 +1,36 @@
+# HP_deriv: (l+2) for (l+1)
+# command: nice -n 15 lake env lean SymmetricRatio/MainMut.lean
+# exit: 1
+## stdout
+SymmetricRatio/MainMut.lean:49:39: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ∑ x ∈ range (ℓ + 1 + 1), C (↑ℓ + 1) * ?m.100 x
+in the target expression
+  ∑ x ∈ range (ℓ + 1),
+        (X - C 1) * (C (↑((N + (ℓ + 1)).choose (ℓ + 1 - x)) * ↑(t.multichoose x)) * (C ↑x * (X - C 1) ^ (x - 1))) +
+      (X - C 1) *
+        (C (↑((N + (ℓ + 1)).choose (ℓ + 1 - (ℓ + 1))) * ↑(t.multichoose (ℓ + 1))) *
+          (C ↑(ℓ + 1) * (X - C 1) ^ (ℓ + 1 - 1))) =
+    ∑ i ∈ range (ℓ + 1 + 1),
+        C (↑ℓ + 2) * (C (↑((N + (ℓ + 1)).choose (ℓ + 1 - i)) * ↑(t.multichoose i)) * (X - C 1) ^ i) -
+      ∑ i ∈ range (ℓ + 1), C (↑N + ↑ℓ + 1) * (C (↑((N + ℓ).choose (ℓ - i)) * ↑(t.multichoose i)) * (X - C 1) ^ i)
+
+N ℓ t : ℕ
+⊢ ∑ x ∈ range (ℓ + 1),
+        (X - C 1) * (C (↑((N + (ℓ + 1)).choose (ℓ + 1 - x)) * ↑(t.multichoose x)) * (C ↑x * (X - C 1) ^ (x - 1))) +
+      (X - C 1) *
+        (C (↑((N + (ℓ + 1)).choose (ℓ + 1 - (ℓ + 1))) * ↑(t.multichoose (ℓ + 1))) *
+          (C ↑(ℓ + 1) * (X - C 1) ^ (ℓ + 1 - 1))) =
+    ∑ i ∈ range (ℓ + 1 + 1),
+        C (↑ℓ + 2) * (C (↑((N + (ℓ + 1)).choose (ℓ + 1 - i)) * ↑(t.multichoose i)) * (X - C 1) ^ i) -
+      ∑ i ∈ range (ℓ + 1), C (↑N + ↑ℓ + 1) * (C (↑((N + ℓ).choose (ℓ - i)) * ↑(t.multichoose i)) * (X - C 1) ^ i)
+SymmetricRatio/MainMut.lean:83:2: error: Type mismatch: After simplification, term
+  this
+ has type
+  (x - 1) * eval x (derivative (HP N (ℓ + 1) t)) =
+    (↑ℓ + 2) * eval x (HP N (ℓ + 1) t) - (↑N + ↑ℓ + 1) * eval x (HP N ℓ t)
+but is expected to have type
+  (x - 1) * eval x (derivative (HP N (ℓ + 1) t)) =
+    (↑ℓ + 1) * eval x (HP N (ℓ + 1) t) - (↑N + ↑ℓ + 1) * eval x (HP N ℓ t)
+
+## stderr
+

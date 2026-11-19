@@ -1,0 +1,64 @@
+# P_rec: (N+l+2) for (N+l+1)
+# command: nice -n 15 lake env lean SymmetricRatio/BasicMut.lean
+# exit: 1
+## stdout
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+SymmetricRatio/BasicMut.lean:146:55: error: unsolved goals
+N : ℕ
+y : ℝ
+ℓ : ℕ
+hX :
+  X * ∑ k ∈ range (ℓ + 3), C (a N y (ℓ + 1) k) * b k =
+    ∑ k ∈ range (ℓ + 3), C (↑k * a N y (ℓ + 1) (k - 1)) * b k - ∑ k ∈ range (ℓ + 3), C (↑k * a N y (ℓ + 1) k) * b k
+k : ℕ
+x✝ : k ∈ range (ℓ + 3)
+⊢ C 2 * C ↑ℓ * C (a N y (1 + ℓ) k) * b k + C 2 * C 1 * C (a N y (1 + ℓ) k) * b k +
+                            C y * C ↑ℓ * C (a N y (1 + ℓ) k) * b k -
+                          C y * C ↑ℓ * C (a N y ℓ k) * b k +
+                        C y * C 1 * C (a N y (1 + ℓ) k) * b k -
+                      C y * C 1 * C (a N y ℓ k) * b k -
+                    C y * C ↑N * C (a N y ℓ k) * b k -
+                  C y * C (a N y (1 + ℓ) k) * C ↑k * b k +
+                C y * C ↑k * C (a N y (1 + ℓ) (k - 1)) * b k -
+              C ↑ℓ * C 1 * C (a N y ℓ k) * b k -
+            C 1 * C ↑N * C (a N y ℓ k) * b k +
+          C 1 * C (a N y (1 + ℓ) k) * b k -
+        C 1 ^ 2 * C (a N y ℓ k) * b k +
+      C ↑N * C (a N y (1 + ℓ) k) * b k =
+    -(C 2 * C y * C (a N y ℓ k) * b k) + C 2 * C ↑ℓ * C (a N y (1 + ℓ) k) * b k +
+                            C 2 * C 1 * C (a N y (1 + ℓ) k) * b k -
+                          C 2 * C 1 * C (a N y ℓ k) * b k +
+                        C y * C ↑ℓ * C (a N y (1 + ℓ) k) * b k -
+                      C y * C ↑ℓ * C (a N y ℓ k) * b k +
+                    C y * C 1 * C (a N y (1 + ℓ) k) * b k -
+                  C y * C ↑N * C (a N y ℓ k) * b k -
+                C y * C (a N y (1 + ℓ) k) * C ↑k * b k +
+              C y * C ↑k * C (a N y (1 + ℓ) (k - 1)) * b k -
+            C ↑ℓ * C 1 * C (a N y ℓ k) * b k -
+          C 1 * C ↑N * C (a N y ℓ k) * b k +
+        C 1 * C (a N y (1 + ℓ) k) * b k +
+      C ↑N * C (a N y (1 + ℓ) k) * b k
+SymmetricRatio/BasicMut.lean:249:2: error: ring failed, ring expressions not equal
+N : ℕ
+y : ℝ
+ℓ : ℕ
+h :
+  C (↑ℓ + 2) * P N y (ℓ + 2) =
+    (C ((2 + y) * (↑ℓ + 1) + ↑N + 1) + C y * X) * P N y (ℓ + 1) - C ((1 + y) * (↑N + ↑ℓ + 2)) * P N y ℓ
+hd :
+  C (↑ℓ + 2) * derivative (P N y (ℓ + 2)) =
+    C y * P N y (ℓ + 1) + (C ((2 + y) * (↑ℓ + 1) + ↑N + 1) + C y * X) * derivative (P N y (ℓ + 1)) -
+      C ((1 + y) * (↑N + ↑ℓ + 2)) * derivative (P N y ℓ)
+⊢ -(P N y (ℓ + 1) * C ((1 + y) * (↑N + ↑ℓ + 2)) * derivative (P N y ℓ)) +
+          P N y (ℓ + 1) * derivative (P N y ℓ) * C ((1 + y) * (↑N + ↑ℓ + 1)) +
+        derivative (P N y (ℓ + 1)) * C ((1 + y) * (↑N + ↑ℓ + 2)) * P N y ℓ -
+      derivative (P N y (ℓ + 1)) * C ((1 + y) * (↑N + ↑ℓ + 1)) * P N y ℓ =
+    0
+
+## stderr
+

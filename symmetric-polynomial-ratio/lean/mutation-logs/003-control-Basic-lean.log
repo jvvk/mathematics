@@ -1,0 +1,7 @@
+# control Basic.lean
+# command: nice -n 15 lake env lean SymmetricRatio/BasicMut.lean
+# exit: 0
+## stdout
+
+## stderr
+

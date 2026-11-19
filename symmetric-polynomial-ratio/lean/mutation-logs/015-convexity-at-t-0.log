@@ -1,0 +1,58 @@
+# convexity at t >= 0
+# command: nice -n 15 lake env lean SymmetricRatio/ConvexMut.lean
+# exit: 1
+## stdout
+SymmetricRatio/ConvexMut.lean:78:30: error: linarith failed to find a contradiction
+N : ℕ
+y : ℝ
+hy : 0 < y
+ℓ : ℕ
+t : ℝ
+ht : 0 ≤ t
+f : ℝ → ℝ := fun s => eval s (P N y ℓ) / eval s (P N y (ℓ + 1))
+r : ℕ → ℝ
+hr : ∀ (i k : ℕ), i < k → k < ℓ + 1 → r i < r k
+hroot : ∀ j < ℓ + 1, eval (r j) (P N y (ℓ + 1)) = 0
+hneg : ∀ j < ℓ + 1, r j < 0
+S : Finset ℕ := range (ℓ + 1)
+hinj : Set.InjOn r ↑S
+lc : ℝ := (P N y (ℓ + 1)).leadingCoeff
+hlc : 0 < lc
+w : ℕ → ℝ := fun i => Lagrange.nodalWeight S r i
+c : ℕ → ℝ := fun i => eval (r i) (P N y ℓ) * w i / lc
+hpf : ∀ (s : ℝ), (∀ i ∈ S, s ≠ r i) → f s = ∑ i ∈ S, c i / (s - r i)
+hc : ∀ i ∈ S, 0 < c i
+hoff : ∀ (s : ℝ), 0 ≤ s → ∀ i ∈ S, s ≠ r i
+a✝ : t - 1 < 0
+⊢ False
+failed
+SymmetricRatio/ConvexMut.lean:81:63: error: linarith failed to find a contradiction
+N : ℕ
+y : ℝ
+hy : 0 < y
+ℓ : ℕ
+t : ℝ
+ht : 0 ≤ t
+f : ℝ → ℝ := fun s => eval s (P N y ℓ) / eval s (P N y (ℓ + 1))
+r : ℕ → ℝ
+hr : ∀ (i k : ℕ), i < k → k < ℓ + 1 → r i < r k
+hroot : ∀ j < ℓ + 1, eval (r j) (P N y (ℓ + 1)) = 0
+hneg : ∀ j < ℓ + 1, r j < 0
+S : Finset ℕ := range (ℓ + 1)
+hinj : Set.InjOn r ↑S
+lc : ℝ := (P N y (ℓ + 1)).leadingCoeff
+hlc : 0 < lc
+w : ℕ → ℝ := fun i => Lagrange.nodalWeight S r i
+c : ℕ → ℝ := fun i => eval (r i) (P N y ℓ) * w i / lc
+hpf : ∀ (s : ℝ), (∀ i ∈ S, s ≠ r i) → f s = ∑ i ∈ S, c i / (s - r i)
+hc : ∀ i ∈ S, 0 < c i
+hoff : ∀ (s : ℝ), 0 ≤ s → ∀ i ∈ S, s ≠ r i
+i : ℕ
+hi : i ∈ S
+this : r i < 0
+a✝ : t - r i ≤ 1
+⊢ False
+failed
+
+## stderr
+

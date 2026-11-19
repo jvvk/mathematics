@@ -1,0 +1,19 @@
+# W_rec: 2y P^2
+# command: nice -n 15 lake env lean SymmetricRatio/BasicMut.lean
+# exit: 1
+## stdout
+SymmetricRatio/BasicMut.lean:249:2: error: ring failed, ring expressions not equal
+N : ℕ
+y : ℝ
+ℓ : ℕ
+h :
+  C (↑ℓ + 2) * P N y (ℓ + 2) =
+    (C ((2 + y) * (↑ℓ + 1) + ↑N + 1) + C y * X) * P N y (ℓ + 1) - C ((1 + y) * (↑N + ↑ℓ + 1)) * P N y ℓ
+hd :
+  C (↑ℓ + 2) * derivative (P N y (ℓ + 2)) =
+    C y * P N y (ℓ + 1) + (C ((2 + y) * (↑ℓ + 1) + ↑N + 1) + C y * X) * derivative (P N y (ℓ + 1)) -
+      C ((1 + y) * (↑N + ↑ℓ + 1)) * derivative (P N y ℓ)
+⊢ P N y (ℓ + 1) ^ 2 * C y - P N y (ℓ + 1) ^ 2 * C (2 * y) = 0
+
+## stderr
+

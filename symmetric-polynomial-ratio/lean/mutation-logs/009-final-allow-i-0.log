@@ -1,0 +1,15 @@
+# final: allow i = 0
+# command: nice -n 15 lake env lean SymmetricRatio/BridgeMut.lean
+# exit: 1
+## stdout
+SymmetricRatio/BridgeMut.lean:164:31: error: Application type mismatch: The argument
+  hi
+has type
+  0 ≤ i
+but is expected to have type
+  1 ≤ i
+in the application
+  psi_strictMonoOn N m i hi
+
+## stderr
+

@@ -1,0 +1,13 @@
+# final: on (0, oo)
+# command: nice -n 15 lake env lean SymmetricRatio/BridgeMut.lean
+# exit: 1
+## stdout
+SymmetricRatio/BridgeMut.lean:164:2: error: Type mismatch
+  psi_strictMonoOn N m i hi
+has type
+  StrictMonoOn (fun x => H N (m + 1) i x ^ 2 / (H N (m + 1) (i + 1) x * H N (m + 1) (i - 1) x)) (Set.Ioi 1)
+but is expected to have type
+  StrictMonoOn (fun x => H N (m + 1) i x ^ 2 / (H N (m + 1) (i + 1) x * H N (m + 1) (i - 1) x)) (Set.Ioi 0)
+
+## stderr
+

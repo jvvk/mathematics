@@ -1,0 +1,49 @@
+# Hf: choose index off by one
+# command: nice -n 15 lake env lean SymmetricRatio/BridgeMut.lean
+# exit: 1
+## stdout
+SymmetricRatio/BridgeMut.lean:83:4: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  p + 1 + q + (ℓ + 1) - 1
+in the target expression
+  ∑ x_1 ∈ range (ℓ + 1), ↑((p + 1 + q + (ℓ + 1)).choose (ℓ + 1 - x_1)) * ↑(q.multichoose x_1) * (x - 1) ^ x_1 +
+      ↑((p + 1 + q + (ℓ + 1)).choose (ℓ + 1 - (ℓ + 1))) * ↑(q.multichoose (ℓ + 1)) * (x - 1) ^ (ℓ + 1) =
+    ∑ k ∈ range (ℓ + 1), ↑((p + 1 + q + ℓ).choose (ℓ - k)) * ↑(q.multichoose k) * (x - 1) ^ k +
+      (∑ x_1 ∈ range (ℓ + 1), ↑((p + q + (ℓ + 1)).choose (ℓ + 1 - x_1)) * ↑(q.multichoose x_1) * (x - 1) ^ x_1 +
+        ↑((p + q + (ℓ + 1)).choose (ℓ + 1 - (ℓ + 1))) * ↑(q.multichoose (ℓ + 1)) * (x - 1) ^ (ℓ + 1))
+
+p q ℓ : ℕ
+x : ℝ
+⊢ ∑ x_1 ∈ range (ℓ + 1), ↑((p + 1 + q + (ℓ + 1)).choose (ℓ + 1 - x_1)) * ↑(q.multichoose x_1) * (x - 1) ^ x_1 +
+      ↑((p + 1 + q + (ℓ + 1)).choose (ℓ + 1 - (ℓ + 1))) * ↑(q.multichoose (ℓ + 1)) * (x - 1) ^ (ℓ + 1) =
+    ∑ k ∈ range (ℓ + 1), ↑((p + 1 + q + ℓ).choose (ℓ - k)) * ↑(q.multichoose k) * (x - 1) ^ k +
+      (∑ x_1 ∈ range (ℓ + 1), ↑((p + q + (ℓ + 1)).choose (ℓ + 1 - x_1)) * ↑(q.multichoose x_1) * (x - 1) ^ x_1 +
+        ↑((p + q + (ℓ + 1)).choose (ℓ + 1 - (ℓ + 1))) * ↑(q.multichoose (ℓ + 1)) * (x - 1) ^ (ℓ + 1))
+SymmetricRatio/BridgeMut.lean:118:24: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ↑((0 + q + ℓ - 1).choose (ℓ - k)) * ↑(q.multichoose k)
+in the target expression
+  ↑((0 + q + ℓ).choose (ℓ - k)) * ↑(q.multichoose k) * (x - 1) ^ k = ↑(q.multichoose ℓ) * ((x - 1) ^ k * ↑(ℓ.choose k))
+
+q ℓ : ℕ
+x : ℝ
+key : ∀ k ∈ range (ℓ + 1), ↑((0 + q + ℓ - 1).choose (ℓ - k)) * ↑(q.multichoose k) = ↑(q.multichoose ℓ) * ↑(ℓ.choose k)
+hx : x ^ ℓ = (x - 1 + 1) ^ ℓ
+k : ℕ
+hk : k ∈ range (ℓ + 1)
+this : ↑((0 + q + ℓ - 1).choose (ℓ - k)) * ↑(q.multichoose k) = ↑(q.multichoose ℓ) * ↑(ℓ.choose k)
+⊢ ↑((0 + q + ℓ).choose (ℓ - k)) * ↑(q.multichoose k) * (x - 1) ^ k = ↑(q.multichoose ℓ) * ((x - 1) ^ k * ↑(ℓ.choose k))
+SymmetricRatio/BridgeMut.lean:150:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  N + 1 - t + t + ℓ - 1
+in the target expression
+  ↑((N + 1 - t + t + ℓ).choose (ℓ - k)) * ↑(t.multichoose k) * (x - 1) ^ k =
+    ↑((N + ℓ).choose (ℓ - k)) * ↑(t.multichoose k) * (x - 1) ^ k
+
+N ℓ t : ℕ
+ht : t ≤ N + 1
+x : ℝ
+k : ℕ
+x✝ : k ∈ range (ℓ + 1)
+⊢ ↑((N + 1 - t + t + ℓ).choose (ℓ - k)) * ↑(t.multichoose k) * (x - 1) ^ k =
+    ↑((N + ℓ).choose (ℓ - k)) * ↑(t.multichoose k) * (x - 1) ^ k
+
+## stderr
+

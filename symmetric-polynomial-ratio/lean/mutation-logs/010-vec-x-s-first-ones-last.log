@@ -1,0 +1,23 @@
+# vec: x's first, ones last
+# command: nice -n 15 lake env lean SymmetricRatio/BridgeMut.lean
+# exit: 1
+## stdout
+SymmetricRatio/BridgeMut.lean:128:37: error: unsolved goals
+x : ℝ
+m : ℕ
+a✝ : 0 ≤ m
+ℓ : ℕ
+j : Fin m
+⊢ 1 = x
+SymmetricRatio/BridgeMut.lean:137:48: error: unsolved goals
+x : ℝ
+p : ℕ
+ih : ∀ (m : ℕ), p ≤ m → ∀ (ℓ : ℕ), S ℓ (vec m p x) = Hf p (m - p) ℓ x
+m' : ℕ
+hm : p + 1 ≤ m' + 1
+ℓ : ℕ
+ihl : S ℓ (vec (m' + 1) (p + 1) x) = Hf (p + 1) (m' + 1 - (p + 1)) ℓ x
+⊢ x = 1
+
+## stderr
+

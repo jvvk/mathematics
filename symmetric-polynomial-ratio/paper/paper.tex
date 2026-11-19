@@ -14,14 +14,14 @@
 
 \title[A ratio of complete homogeneous symmetric polynomials]{Monotonicity of a ratio of complete homogeneous symmetric polynomials}
 \author{Vamshi Jandhyala}
-\date{Preprint, version 1, 9 October 2026. Not peer reviewed.}
+\date{Preprint, version 2, 19 November 2026 (version 1, 9 October 2026). Not peer reviewed.}
 \subjclass[2020]{05E05, 26D05, 33C45}
 \keywords{complete homogeneous symmetric polynomial, Tur\'an-type inequality, Meixner polynomials, interlacing}
 
 \begin{document}
 
 \begin{abstract}
-For the complete homogeneous symmetric polynomial $h_\ell$ in $n$ variables, write $H_i(x)=h_\ell(1^{[n-i]},x^{[i]})$ for its value when $i$ of the variables equal $x$ and the rest equal $1$. Ait-Haddou conjectured that $\Psi_{i,n}=H_i^2/(H_{i+1}H_{i-1})$ is strictly increasing on $(1,\infty)$ for $2\le i\le n-2$. We prove this for every $\ell\ge1$ and every $1\le i\le n-1$. Treating the number $i$ of $x$'s as a continuous variable $t$, the logarithmic derivative of $\Psi_{i,n}$ becomes a positive multiple of a second difference in $t$ of a ratio of two consecutive polynomials of a Meixner family, and that ratio is convex because their zeros interlace.
+For the complete homogeneous symmetric polynomial $h_\ell$ in $n$ variables, write $H_i(x)=h_\ell(1^{[n-i]},x^{[i]})$ for its value when $i$ of the variables equal $x$ and the rest equal $1$. Ait-Haddou conjectured that $\Psi_{i,n}=H_i^2/(H_{i+1}H_{i-1})$ is strictly increasing on $(1,\infty)$ for $2\le i\le n-2$. Sra proved this, for every $\ell\ge1$ and $1\le i\le n-1$, in a preprint released on 7 October 2026, as the one-row case of a theorem on Schur polynomials. This note gives an independent proof, found and posted the same day. Treating the number $i$ of $x$'s as a continuous variable $t$, the logarithmic derivative of $\Psi_{i,n}$ becomes a positive multiple of a second difference in $t$ of a ratio of two consecutive polynomials of a Meixner family, and that ratio is convex because their zeros interlace.
 \end{abstract}
 
 \maketitle
@@ -30,7 +30,7 @@ For the complete homogeneous symmetric polynomial $h_\ell$ in $n$ variables, wri
 
 \section{Introduction}
 
-Take a symmetric polynomial in $n$ variables, set every variable to $1$, and then move $i$ of them to a common value $x$. How does the value depend on $i$? For the complete homogeneous symmetric polynomials Ait-Haddou asked whether a measure of curvature in $i$, the ratio $\Psi_{i,n}$ below, strictly increases as $x$ moves above $1$. This note shows that it does; since $\Psi_{i,n}(1)=1$, it follows that the values are strictly log-concave in $i$ for every positive $x\ne1$.
+Take a symmetric polynomial in $n$ variables, set every variable to $1$, and then move $i$ of them to a common value $x$. How does the value depend on $i$? For the complete homogeneous symmetric polynomials Ait-Haddou asked whether a measure of curvature in $i$, the ratio $\Psi_{i,n}$ below, strictly increases as $x$ moves above $1$. It does (Theorem~\ref{thm:main}, first proved by Sra~\cite{SraT}); since $\Psi_{i,n}(1)=1$, it follows that the values are strictly log-concave in $i$ for every positive $x\ne1$.
 
 The complete homogeneous symmetric polynomial of degree $\ell$ in $n$ variables is
 \[
@@ -44,7 +44,7 @@ In 2024 Ait-Haddou asked on MathOverflow~\cite{MO} whether, for every $\ell\ge1$
 \[
 \Psi_{i,n}(x)=\frac{H_i(x)^2}{H_{i+1}(x)\,H_{i-1}(x)},\qquad 2\le i\le n-2,
 \]
-is strictly increasing on $(1,\infty)$, and reported a proof for $\Psi_{2,4}$. The question received two bounties and no answer until~\cite{MOA}. It belongs to a line of work on monotonicity and inequalities for ratios of symmetric polynomials~\cite{CGS,Sra,AHM,KT,XY,MS}; here a single polynomial $h_\ell$ is compared at three neighbouring points.
+is strictly increasing on $(1,\infty)$, and reported a proof for $\Psi_{2,4}$. The question received two bounties and stayed open until 7 October 2026, when it was answered twice, independently. Sra~\cite{SraT} released a preprint that proves the monotonicity for every Schur polynomial $s_\lambda$ in place of $h_\ell$; the case asked about is his Corollary~1.2. A few hours later the argument of this note was posted as an answer~\cite{MOA}. Sra's preprint has priority. It also contains a second proof for $h_\ell$ through Meixner polynomials, the family used here, and the two proofs use it differently: Sra factors $\Psi_{i,n}$ over the zeros of the Meixner polynomial and uses the monotone motion of those zeros in the parameter $1/x$, while the proof below fixes $x$ and uses the convexity in $t$ of the ratio of two consecutive Meixner polynomials, which follows from the interlacing of their zeros. The question belongs to a line of work on monotonicity and inequalities for ratios of symmetric polynomials~\cite{CGS,Sra,AHM,KT,XY,MS}; here a single polynomial $h_\ell$ is compared at three neighbouring points.
 
 \emph{A first case.} For $\ell=1$, $H_i=n+iy$ with $y=x-1$, so
 \[
@@ -105,6 +105,8 @@ The degree and leading coefficient come from the term $k=\ell$. For $t\ge0$ ever
 \begin{lemma}\label{lem:deriv}
 For $\ell\ge1$, $\displaystyle y\frac{\partial}{\partial y}P_\ell(t)=\ell\,P_\ell(t)-(n+\ell-1)\,P_{\ell-1}(t)$.
 \end{lemma}
+
+\noindent Lemma~\ref{lem:deriv} is a case of Koepf's derivative rule for Meixner polynomials in their parameter~\cite[Theorem~9]{Koepf}: in his notation, $P_\ell(t)=m_\ell^{(n,1/x)}(-t)/\ell!$. A direct proof is short.
 
 \begin{proof}
 The operator $y\,\partial/\partial y$ multiplies the $k$-th term of~\eqref{eq:P} by $k$. With $N=n+\ell-1$,
@@ -175,7 +177,7 @@ This is the convexity visible in Figure~\ref{fig:f}. Summing with the weights $B
 \section{Remarks}
 
 \begin{remark}
-The proof shows more than was asked: $t\mapsto P_{\ell-1}(t)/P_\ell(t)$ is convex on $(r_{\max},\infty)\supset[0,\infty)$ for every real $n>0$, so the conclusion holds with $n$ real and $i$ any real number in $[1,n-1]$, with $H_t$ defined by~\eqref{eq:P}. The range $1\le i\le n-1$ is the largest for which $\Psi_{i,n}$ is defined.
+The proof shows more than was asked: $t\mapsto P_{\ell-1}(t)/P_\ell(t)$ is convex on $(r_{\max},\infty)\supset[0,\infty)$ for every real $n>0$, so the conclusion holds with $n$ real and $i$ replaced by any real $t\ge1$, with $H_t$ defined by~\eqref{eq:P}; since $P_\ell>0$ on $[0,\infty)$ there is no upper limit on $t$. For integer multiplicities, $1\le i\le n-1$ is exactly the range in which $i-1$, $i$ and $i+1$ all lie in $\{0,\dots,n\}$.
 \end{remark}
 
 \begin{remark}
@@ -183,20 +185,21 @@ The inequality $\Psi_{i,n}>1$ on $(1,\infty)$ says that $P_\ell(t)^2-P_\ell(t-1)
 \end{remark}
 
 \begin{remark}
-The interlacing in Lemma~\ref{lem:zeros} and the positivity of the weights $B_r$ are classical for orthogonal polynomials; the new step is Proposition~\ref{prop:red}, which turns the derivative in the parameter $x$ into a difference in the variable $t$.
+The interlacing in Lemma~\ref{lem:zeros} and the positivity of the weights $B_r$ are classical for orthogonal polynomials; so is Lemma~\ref{lem:deriv}, by Koepf's rule. What this note adds is Proposition~\ref{prop:red}, which uses that rule to turn the derivative in the parameter $x$ into a second difference in the variable $t$.
 \end{remark}
 
-\emph{Verification.} The identities of Lemmas~\ref{lem:P}--\ref{lem:zeros} and Proposition~\ref{prop:red} were checked in exact arithmetic for small $n$ and $\ell$, and the theorem on grids of rational points, by a script that also confirms the example $\ell=1$, the symmetry $\Psi_{i,n}(x)=\Psi_{n-i,n}(1/x)$ and the data of Figure~\ref{fig:f}, and rejects deliberately altered statements. It is at
+\emph{Verification.} The identities of Lemmas~\ref{lem:P}--\ref{lem:zeros} and Proposition~\ref{prop:red} were checked for small integers $n$ and $\ell$, the polynomial identities in exact arithmetic and the statements about zeros (reality, interlacing, signs of $B_r$) numerically, and the theorem on grids of rational points, by a script that also confirms the example $\ell=1$, the symmetry $\Psi_{i,n}(x)=\Psi_{n-i,n}(1/x)$ and the data of Figure~\ref{fig:f}, and rejects deliberately altered statements. It is at
 \begin{center}\small\url{https://github.com/jvvk/mathematics/tree/main/symmetric-polynomial-ratio}.\end{center}
 
 \section*{Acknowledgements}
-The proof, text and verification program were developed with the AI assistant Claude (Anthropic), under the author's direction. The author thanks Rachid Ait-Haddou for the question. The author is responsible for the contents.
+The proof, text and verification program were developed with the AI assistant Claude (Anthropic), under the author's direction. Codex (OpenAI) refereed version~1 and found the prior work of Sra and Koepf credited in version~2. The author thanks Rachid Ait-Haddou for the question. The author is responsible for the contents.
 
 \begin{thebibliography}{99}
 \bibitem{AHM} R.~Ait-Haddou and M.-L.~Mazure, \emph{The fundamental blossoming inequality in Chebyshev spaces~I: applications to Schur functions}, Found.\ Comput.\ Math.\ \textbf{18} (2018), 135--158, \href{https://doi.org/10.1007/s10208-016-9334-8}{doi:10.1007/s10208-016-9334-8}.
 \bibitem{Chihara} T.~S.~Chihara, \emph{An Introduction to Orthogonal Polynomials}, Gordon and Breach, New York, 1978.
 \bibitem{CGS} A.~Cuttler, C.~Greene and M.~Skandera, \emph{Inequalities for symmetric means}, European J.\ Combin.\ \textbf{32} (2011), 745--761, \href{https://doi.org/10.1016/j.ejc.2011.01.020}{doi:10.1016/j.ejc.2011.01.020}.
 \bibitem{Duran} A.~J.~Dur\'an, \emph{Symmetries for Casorati determinants of classical discrete orthogonal polynomials}, Proc.\ Amer.\ Math.\ Soc.\ \textbf{142} (2014), 915--930, \href{https://doi.org/10.1090/S0002-9939-2013-11802-2}{doi:10.1090/S0002-9939-2013-11802-2}.
+\bibitem{Koepf} W.~Koepf, \emph{Identities for families of orthogonal polynomials and special functions}, Integral Transforms Spec.\ Funct.\ \textbf{5} (1997), 69--102, \href{https://doi.org/10.1080/10652469708819127}{doi:10.1080/10652469708819127}.
 \bibitem{KS} S.~Karlin and G.~Szeg\H{o}, \emph{On certain determinants whose elements are orthogonal polynomials}, J.\ Analyse Math.\ \textbf{8} (1960/61), 1--157.
 \bibitem{KT} A.~Khare and T.~Tao, \emph{On the sign patterns of entrywise positivity preservers in fixed dimension}, Amer.\ J.\ Math.\ \textbf{143} (2021), 1863--1929, \href{https://doi.org/10.1353/ajm.2021.0049}{doi:10.1353/ajm.2021.0049}.
 \bibitem{KLS} R.~Koekoek, P.~A.~Lesky and R.~F.~Swarttouw, \emph{Hypergeometric Orthogonal Polynomials and Their $q$-Analogues}, Springer, Berlin, 2010.
@@ -204,6 +207,7 @@ The proof, text and verification program were developed with the AI assistant Cl
 \bibitem{MO} R.~Ait-Haddou, \emph{Monotonicity of ratio of symmetric polynomials}, MathOverflow question 467261 (18 March 2024), \url{https://mathoverflow.net/q/467261}, accessed 9 October 2026.
 \bibitem{MOA} V.~Jandhyala, answer to MathOverflow question 467261 (7 October 2026), \url{https://mathoverflow.net/a/515799}.
 \bibitem{Sra} S.~Sra, \emph{On inequalities for normalized Schur functions}, European J.\ Combin.\ \textbf{51} (2016), 492--494, \href{https://doi.org/10.1016/j.ejc.2015.07.005}{doi:10.1016/j.ejc.2015.07.005}.
+\bibitem{SraT} S.~Sra, \emph{Monotonicity of Tur\'an-ratios of symmetric polynomials}, preprint, version~1, released 7 October 2026, \url{https://suvrit.github.io/papers/sym-turan/}; also Hexagon 2610.00720v1.
 \bibitem{Szego} G.~Szeg\H{o}, \emph{Orthogonal Polynomials}, 4th ed., Amer.\ Math.\ Soc.\ Colloq.\ Publ.\ 23, Providence, RI, 1975.
 \bibitem{XY} J.~Xu and Y.~Yao, \emph{Majorization and inequalities among complete homogeneous symmetric functions}, European J.\ Combin.\ \textbf{136} (2026), 104389, \href{https://doi.org/10.1016/j.ejc.2026.104389}{doi:10.1016/j.ejc.2026.104389}.
 \end{thebibliography}
