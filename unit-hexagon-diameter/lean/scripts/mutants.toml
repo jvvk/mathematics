@@ -1,0 +1,159 @@
+# Mutation suite for LeanProofs/UnitHexagon (MO 481323). Replaces mutants.py.
+# Run (from lean/, after lake build): python3 -I scripts/mutate.py scripts/mutants.toml
+# Copy mode: each mutant plants one wrong change in a copy of its source file, compiled against the built tree.
+# A rejection needs a nonzero exit AND a Lean error located in the mutated copy; timeouts and crashes are
+# inconclusive and fail the run. Full output of every run is kept in mutation-logs/.
+[check]
+cmd = ["lake", "env", "lean", "{file}"]
+cwd = ".."
+timeout = 900
+mode = "copy"
+fail_pattern = 'UnitHexagon/\S+Mut\.lean:\d+:\d+: error'
+diagnostic_in_target = true
+log_dir = "../mutation-logs"
+
+[[mutant]]
+name = '''turns: weaker hypothesis 2a+b <= pi+1'''
+file = "../LeanProofs/UnitHexagon/Turns.lean"
+old = '''
+(h1 : 2 * α + β ≤ π) (h2 : α + 2 * β ≤ π) :
+    ∃ s x'''
+new = '''
+(h1 : 2 * α + β ≤ π + 1) (h2 : α + 2 * β ≤ π) :
+    ∃ s x'''
+
+[[mutant]]
+name = '''turns: max angle > 2pi/5'''
+file = "../LeanProofs/UnitHexagon/Turns.lean"
+old = '''π / 2 < α + β ∧ π / 3 < max α β'''
+new = '''π / 2 < α + β ∧ 2 * π / 5 < max α β'''
+
+[[mutant]]
+name = '''projection: sqrt 3 instead of sqrt 2'''
+file = "../LeanProofs/UnitHexagon/Projection.lean"
+old = '''
+(h02 : ‖X₀ - X₂‖ ≤ Real.sqrt 2) (h31 : X₃ ≠ X₁) (h10 : X₀ ≠ X₁)
+    {w₀'''
+new = '''
+(h02 : ‖X₀ - X₂‖ ≤ Real.sqrt 3) (h31 : X₃ ≠ X₁) (h10 : X₀ ≠ X₁)
+    {w₀'''
+
+[[mutant]]
+name = '''four-hull: wrong sign in K'''
+file = "../LeanProofs/UnitHexagon/FourHull.lean"
+old = '''
+      Real.sin γ - Real.sin (β + γ) + Real.sin (α + β + γ) := by
+  set S'''
+new = '''
+      Real.sin γ + Real.sin (β + γ) + Real.sin (α + β + γ) := by
+  set S'''
+
+[[mutant]]
+name = '''four-hull: factor 2 instead of 4'''
+file = "../LeanProofs/UnitHexagon/FourHull.lean"
+old = '''
+      4 * Real.sin (γ / 2) * Real.cos ((β + γ) / 2) * Real.cos (γ + β / 2) := by
+  have h1'''
+new = '''
+      2 * Real.sin (γ / 2) * Real.cos ((β + γ) / 2) * Real.cos (γ + β / 2) := by
+  have h1'''
+
+[[mutant]]
+name = '''four-hull: wrong outer-angle order'''
+file = "../LeanProofs/UnitHexagon/FourHull.lean"
+old = '''(hb' : β ≤ π / 2) (hc' : γ ≤ π / 2) (hS : π < α + β + γ) (hca : γ ≤ α) :'''
+new = '''(hb' : β ≤ π / 2) (hc' : γ ≤ π / 2) (hS : π < α + β + γ) (hca : α ≤ γ) :'''
+
+[[mutant]]
+name = '''four-hull: S > 3pi/2'''
+file = "../LeanProofs/UnitHexagon/FourHull.lean"
+old = '''(h0 : 0 ≤ t₀) (h4 : 0 ≤ t₄) (hne : ¬ (t₀ = 0 ∧ t₄ = 0)) : π < α + β + γ'''
+new = '''(h0 : 0 ≤ t₀) (h4 : 0 ≤ t₄) (hne : ¬ (t₀ = 0 ∧ t₄ = 0)) : 3 * π / 2 < α + β + γ'''
+
+[[mutant]]
+name = '''triangle: apex included in the median bound'''
+file = "../LeanProofs/UnitHexagon/Triangle.lean"
+old = '''lemma median_lt_one {y₀ x y : ℝ} (hy₀ : 0 ≤ y₀) (hy₀h : y₀ < h)'''
+new = '''lemma median_lt_one {y₀ x y : ℝ} (hy₀ : 0 ≤ y₀) (hy₀h : y₀ ≤ h)'''
+
+[[mutant]]
+name = '''triangle: unit neighbour of Z off the base'''
+file = "../LeanProofs/UnitHexagon/Triangle.lean"
+old = '''    y = 0 ∧ (x = a ∨ x = -a) := by'''
+new = '''    y = h ∧ (x = a ∨ x = -a) := by'''
+
+[[mutant]]
+name = '''triangle: cosine rule bound 2'''
+file = "../LeanProofs/UnitHexagon/Triangle.lean"
+old = '''(hd : 2 - 2 * Real.cos θ ≤ 1) :'''
+new = '''(hd : 2 - 2 * Real.cos θ ≤ 2) :'''
+
+[[mutant]]
+name = '''triangle: turns need not alternate'''
+file = "../LeanProofs/UnitHexagon/Triangle.lean"
+old = '''
+theorem invariant_along_path (left convex : ℕ → Prop) (k : ℕ)
+    (hl : ∀ i < k, (left (i + 1) ↔ ¬ left i)) (hc : ∀ i < k, (convex (i + 1) ↔ ¬ convex i)) :'''
+new = '''
+theorem invariant_along_path (left convex : ℕ → Prop) (k : ℕ)
+    (hl : ∀ i < k, (left (i + 1) ↔ ¬ left i)) (hc : ∀ i < k, (convex (i + 1) ↔ convex i)) :'''
+
+[[mutant]]
+name = '''pocket: r > 2k/3'''
+file = "../LeanProofs/UnitHexagon/Counting.lean"
+old = '''(hC : ∀ i ∈ C, 3 * π / 2 ≤ φ i) : 3 * C.card < 2 * k'''
+new = '''(hC : ∀ i ∈ C, 3 * π / 2 ≤ φ i) : 3 * C.card < k'''
+
+[[mutant]]
+name = '''hexagon: exactly two reflex'''
+file = "../LeanProofs/UnitHexagon/Counting.lean"
+old = '''(hsum : ∑ i, ι i = 4 * π) : R.card = 1 ∨ R.card = 2'''
+new = '''(hsum : ∑ i, ι i = 4 * π) : R.card = 2'''
+
+[[mutant]]
+name = '''octagon: exactly two reflex'''
+file = "../LeanProofs/UnitHexagon/Counting.lean"
+old = '''(hsum : ∑ i, ι i = 6 * π) : R.card = 2 ∨ R.card = 3'''
+new = '''(hsum : ∑ i, ι i = 6 * π) : R.card = 2'''
+
+[[mutant]]
+name = '''rays: wrong weight in the triangle turn'''
+file = "../LeanProofs/UnitHexagon/Rays.lean"
+old = '''cross (F - E) (A - F) = -μ * orient A C E ∧'''
+new = '''cross (F - E) (A - F) = -ν * orient A C E ∧'''
+
+[[mutant]]
+name = '''rays: d need not be inside the hull'''
+file = "../LeanProofs/UnitHexagon/Rays.lean"
+old = '''(hfd : 0 < cross f d) (heb : 0 < cross e b) (hed : 0 < cross e d) :'''
+new = '''(hfd : 0 < cross f d) (heb : 0 < cross e b) (hed : 0 < cross e b) :'''
+
+[[mutant]]
+name = '''sharp: sign identity with 3t'''
+file = "../LeanProofs/UnitHexagon/Sharpness.lean"
+old = '''2 * Ey t - r2 t = 16 * t * (1 - 2 * t) / (5 * (1 + t ^ 2))'''
+new = '''2 * Ey t - r2 t = 16 * t * (1 - 3 * t) / (5 * (1 + t ^ 2))'''
+
+[[mutant]]
+name = '''sharp: D off the unit circle about C'''
+file = "../LeanProofs/UnitHexagon/Sharpness.lean"
+old = '''def Dx (t : ℝ) : ℝ := 2 * t ^ 2 / (1 + t ^ 2)'''
+new = '''def Dx (t : ℝ) : ℝ := 3 * t ^ 2 / (1 + t ^ 2)'''
+
+[[mutant]]
+name = '''sharp: limit k = 1'''
+file = "../LeanProofs/UnitHexagon/Sharpness.lean"
+old = '''lemma kk_zero : kk 0 = 3 / 2 := by'''
+new = '''lemma kk_zero : kk 0 = 1 := by'''
+
+[[mutant]]
+name = '''sharp: E convex'''
+file = "../LeanProofs/UnitHexagon/Sharpness.lean"
+old = '''    cross (V t 4 - V t 3) (V t 5 - V t 4) < 0 ∧'''
+new = '''    0 < cross (V t 4 - V t 3) (V t 5 - V t 4) ∧'''
+
+[[mutant]]
+name = '''sharp: diameter limit below 2'''
+file = "../LeanProofs/UnitHexagon/Sharpness.lean"
+old = '''    (∀ i j, d2 (V t i) (V t j) < 2 + ε) ∧'''
+new = '''    (∀ i j, d2 (V t i) (V t j) < 3 / 2 + ε) ∧'''

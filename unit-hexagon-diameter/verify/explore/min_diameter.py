@@ -20,7 +20,11 @@ def verts(phi):
 def seg_dist(p, q, r, s):
     def orient(a, b, c):
         return (b[0] - a[0]) * (c[1] - a[1]) - (b[1] - a[1]) * (c[0] - a[0])
-    if orient(p, q, r) * orient(p, q, s) <= 0 and orient(r, s, p) * orient(r, s, q) <= 0:
+    def on(a, b, c):  # c on the closed segment ab, given collinear
+        return min(a[0], b[0]) <= c[0] <= max(a[0], b[0]) and min(a[1], b[1]) <= c[1] <= max(a[1], b[1])
+    o1, o2, o3, o4 = orient(p, q, r), orient(p, q, s), orient(r, s, p), orient(r, s, q)
+    if (o1 * o2 < 0 and o3 * o4 < 0) or (o1 == 0 and on(p, q, r)) or (o2 == 0 and on(p, q, s)) \
+            or (o3 == 0 and on(r, s, p)) or (o4 == 0 and on(r, s, q)):
         return 0.0
     def pt(x, a, b):
         d = b - a

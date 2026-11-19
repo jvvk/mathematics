@@ -51,13 +51,19 @@ check(
 
 
 def seg_meet(p, q, r, t) -> bool:
-    """Closed segments pq and rt intersect (floating, generic position)."""
+    """Closed segments pq and rt intersect (floating point; collinear cases by on-segment tests)."""
 
     def orient(u, v, w):
         return (v[0] - u[0]) * (w[1] - u[1]) - (v[1] - u[1]) * (w[0] - u[0])
 
+    def on(u, v, w):  # w on the closed segment uv, given collinear
+        return min(u[0], v[0]) <= w[0] <= max(u[0], v[0]) and min(u[1], v[1]) <= w[1] <= max(u[1], v[1])
+
     o1, o2, o3, o4 = orient(p, q, r), orient(p, q, t), orient(r, t, p), orient(r, t, q)
-    return o1 * o2 <= 0 and o3 * o4 <= 0
+    if o1 * o2 < 0 and o3 * o4 < 0:
+        return True
+    return ((o1 == 0 and on(p, q, r)) or (o2 == 0 and on(p, q, t))
+            or (o3 == 0 and on(r, t, p)) or (o4 == 0 and on(r, t, q)))
 
 
 rng = random.Random(481323)
@@ -181,14 +187,17 @@ def cross(p, q):
 
 
 def sign_exact(x) -> int:
-    x = sp.nsimplify(x) if x.is_number else x
-    v = sp.N(x, 60)
-    if abs(v) < sp.Float(10) ** -50:
-        z = sp.simplify(x)
-        if z == 0:
-            return 0
-        v = sp.N(z, 200)
-    return 1 if v > 0 else -1
+    """Certified sign of an exact algebraic number: evaluate at rising precision until the value clears its
+    error bound; only a value too small at every precision is tested for exact zero (minimal polynomial X)."""
+    x = sp.sympify(x)
+    for prec in (60, 300, 1500):
+        v = sp.N(x, prec)
+        if abs(v) > sp.Float(10, prec) ** -(prec - 10):
+            return 1 if v > 0 else -1
+    X = sp.Symbol("X")
+    if sp.minimal_polynomial(x, X) == X:
+        return 0
+    raise RuntimeError(f"sign undecided for {x}")
 
 
 def segs_intersect_exact(p, q, r, s_) -> bool:
@@ -245,9 +254,16 @@ Vlim = [
     sp.Matrix([sp.Rational(3, 5), sp.Rational(1, 5)]),
     sp.Matrix([0, 1]),
 ]
-F_lim = (
-    sp.limit(family_F := (lambda: None) or 0, t, 0) if False else None
-)  # placeholder kept simple below
+# the family's actual limit as t -> 0+, computed symbolically, must be Vlim
+kt = sp.sqrt(1 / Et.dot(Et) - sp.Rational(1, 4))
+Ft = Et / 2 + kt * sp.Matrix([-Et[1], Et[0]])
+fam_t = [sp.Matrix([0, 0]), sp.Matrix([1, 0]), sp.Matrix([1, 1]), Dt, Et, Ft]
+lims = [sp.Matrix([sp.limit(c, t, 0, "+") for c in P]) for P in fam_t]
+check(
+    "sharp: the family's vertices tend to the stated limit as t -> 0+",
+    all(sp.simplify(L - W) == sp.zeros(2, 1) for L, W in zip(lims, Vlim)),
+    str([tuple(L) for L in lims]),
+)
 lim_diam = max(sp.sqrt((p - q).dot(p - q)) for p, q in itertools.combinations(Vlim, 2))
 check(
     "sharp: limit vertex set has diameter sqrt 2",
@@ -313,7 +329,11 @@ for delta in (0.05, 0.01, 0.002):
     print(f"      separation >= {delta}: {len(simple)} simple optima, smallest diameter "
           f"{min(simple, default=float('nan')):.6f}")
 
+if not best or not all(math.isfinite(sep) and math.isfinite(d) for sep, d in best):
+    check("numerics: optimiser returned finite feasible candidates", False, f"{len(best)} candidates")
 simple_runs = [(sep, d) for sep, d in best if sep > 1e-6]
+if not simple_runs:
+    check("numerics: at least one simple local optimum found", False, "none: inconclusive")
 below = [(sep, d) for sep, d in simple_runs if d <= math.sqrt(2) - 1e-9]
 mins = min((d for _, d in simple_runs), default=float("nan"))
 check(

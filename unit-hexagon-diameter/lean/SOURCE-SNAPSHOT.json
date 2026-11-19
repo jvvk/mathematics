@@ -5,10 +5,11 @@
   "uncommitted_overrides": [
     "LeanProofs.lean (root imports UnitHexagon only)",
     "CheckClaims.lean (new)",
-    "scripts/mutants.py (copy of lean-proofs scripts/unithexagon_mutants.py)"
+    "scripts/mutants.toml and scripts/mutate.py (house mutation harness, v2; replaces the v1 scripts/mutants.py)"
   ],
   "files": {
     "CheckClaims.lean": "5e9db0b884040d864b8fc285dd05c367540f0598c1d67b37796991a4d74eeb1d",
+    "LeanProofs.lean": "aa32afba95a594cc135b08f479518c64861885b00af3016d3c9a63dabcbbca31",
     "LeanProofs/UnitHexagon/Counting.lean": "b6679e29ee84ee4303e93b428c4f36f7faf742b7cb3e9943cd1551940be7f90b",
     "LeanProofs/UnitHexagon/FourHull.lean": "e3feda9f2c924270af4605b1e69023454991d942fbb84684cbf3c5b964d8c943",
     "LeanProofs/UnitHexagon/Main.lean": "cc2063fb631d87738c85cefd9834cdbaa7c6f03f8e3e0a7a25d44ef4cab68c8d",
@@ -17,7 +18,7 @@
     "LeanProofs/UnitHexagon/Sharpness.lean": "2e46ffe17482f199a8069e45f13590fa39652bd4e6286e7e039b910f6151fa73",
     "LeanProofs/UnitHexagon/Triangle.lean": "5017fd900a1bd568ba924ada5202fbe3eb242c99e7d32b834327e3507bbcf82a",
     "LeanProofs/UnitHexagon/Turns.lean": "41f1a0b6392b78cf79d3f1b5d5ebf1a4513ef3aa6987ffe2ba781465b2e0f172",
-    "LeanProofs.lean": "aa32afba95a594cc135b08f479518c64861885b00af3016d3c9a63dabcbbca31",
-    "scripts/mutants.py": "4c402a05ec5ded503b70931c5a988e911a12c8c20f195a058d1b4222e3d4d403"
+    "scripts/mutants.toml": "ece8da2d1b315a0918818a06997adfecd91e2b3dbbc143ee43aad0337f211b3e",
+    "scripts/mutate.py": "197561653de9ab9359e0849b3feb86598db451a1a867f154055cb1f972c38ed8"
   }
 }

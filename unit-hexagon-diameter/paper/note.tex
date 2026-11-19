@@ -26,7 +26,7 @@
 
 \title{Six unit sticks and the diameter of a hexagon}
 \author{Vamshi Jandhyala}
-\date{}
+\date{Preprint, version 2, 19 November 2026 (version 1, 9 October 2026). Not peer reviewed.}
 
 \begin{document}
 \maketitle
@@ -119,8 +119,8 @@ thin two-stick sliver.
 \paragraph{The plan.} A diameter of at most $\sqrt2$ makes every angle of the polygon
 sharp: at most a right angle on the inside at a convex corner, at least three right
 angles at a reflex corner. Sharp angles are expensive. Two sharp turns in the same
-direction swing the third stick back across the first, so turns must keep changing
-sign, and the angle sum leaves room for only one or two reflex corners. Those reflex
+direction, sharp enough in the sense of Lemma~\ref{lem:turns}, swing the third stick back
+across the first, so turns must keep changing sign, and the angle sum leaves room for only one or two reflex corners. Those reflex
 corners must hide in ``pockets'' of the convex hull, and each pocket has to pay for
 itself with reflex corners. Counting what is left for the hull leads, in each case, to
 one of three small configurations, each excluded by a short lemma.
@@ -150,7 +150,9 @@ interior angle is at least $3\pi/2$.
 
 \emph{Two sharp turns in the same direction are impossible.} Try it: walk along a unit
 stick, turn left by more than a right angle, walk again, and turn left sharply once more.
-The third stick heads back across the first (Figure~\ref{fig:turns}). Boilley made this
+When the two turns are sharp enough the third stick heads back across the first
+(Figure~\ref{fig:turns}); two turns of $80^\circ$ each are not, and Lemma~\ref{lem:turns} gives
+the exact condition. Boilley made this
 observation in the Mathematics Stack Exchange discussion~\cite{Boilley}; here is a sharp
 form of it.
 
@@ -607,7 +609,9 @@ OpenAI's Codex was used to explore proofs and to draft an earlier version of the
 its exact local checks. Anthropic's Claude (Opus~5.5) was used to check every step,
 simplify Lemma~\ref{lem:fourhull} and Proposition~\ref{prop:triangle}, write the
 independent recheck and the Lean formalization, and draft this text. The author checked
-the proofs and takes responsibility for the content.
+the proofs and takes responsibility for the content. Codex (OpenAI) also refereed version~1, which led
+to the stricter checks of version~2. A summary of the proof was posted as an answer to the question
+on MathOverflow~\cite{OwnMO}.
 
 \begin{thebibliography}{9}
 \bibitem{BinganeAudet}
@@ -630,6 +634,10 @@ of sides unless it is the square itself, Mathematics Stack Exchange, question 49
 \bibitem{JetfiRexMO}
 JetfiRex, same title, MathOverflow, question 481323, 26 October 2024,
 \url{https://mathoverflow.net/q/481323} (accessed 8 October 2026).
+
+\bibitem{OwnMO}
+V.~Jandhyala, answer to~\cite{JetfiRexMO}, MathOverflow, 17 October 2026,
+\url{https://mathoverflow.net/a/516121}.
 
 \bibitem{mathlib}
 The mathlib Community, The Lean mathematical library, in \emph{Proceedings of the 9th ACM
