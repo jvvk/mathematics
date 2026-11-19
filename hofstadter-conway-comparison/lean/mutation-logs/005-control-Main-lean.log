@@ -1,0 +1,63 @@
+# control Main.lean
+# command: nice -n 15 lake build HofstadterConway
+# exit: 0
+## stdout
+⚠ [3093/3101] Replayed HofstadterConway.Ops
+warning: HofstadterConway/Ops.lean:254:17: Variable name `hD` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hD
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: HofstadterConway/Ops.lean:259:17: Variable name `hD` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hD
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3096/3101] Replayed HofstadterConway.Blocks
+warning: HofstadterConway/Blocks.lean:25:20: `if_pos` has been deprecated: Use `ite_eq_left` instead
+warning: HofstadterConway/Blocks.lean:29:20: `if_pos` has been deprecated: Use `ite_eq_left` instead
+warning: HofstadterConway/Blocks.lean:75:52: `if_pos` has been deprecated: Use `ite_eq_left` instead
+warning: HofstadterConway/Blocks.lean:79:52: `if_neg` has been deprecated: Use `ite_eq_right` instead
+warning: HofstadterConway/Blocks.lean:122:0: automatically included section variable(s) unused in theorem `HofConway.c_block_succ`:
+  hL
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit hL in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: HofstadterConway/Blocks.lean:224:49: `if_neg` has been deprecated: Use `ite_eq_right` instead
+warning: HofstadterConway/Blocks.lean:241:8: `if_neg` has been deprecated: Use `ite_eq_right` instead
+warning: HofstadterConway/Blocks.lean:243:43: `if_pos` has been deprecated: Use `ite_eq_left` instead
+warning: HofstadterConway/Blocks.lean:244:8: `if_pos` has been deprecated: Use `ite_eq_left` instead
+warning: HofstadterConway/Blocks.lean:246:43: `if_neg` has been deprecated: Use `ite_eq_right` instead
+⚠ [3097/3101] Replayed HofstadterConway.Main
+warning: HofstadterConway/Main.lean:121:34: `if_pos` has been deprecated: Use `ite_eq_left` instead
+warning: HofstadterConway/Main.lean:130:75: `if_pos` has been deprecated: Use `ite_eq_left` instead
+ℹ [3099/3101] Replayed HofstadterConway.Audit
+info: HofstadterConway/Audit.lean:5:0: 'HofConway.symm_iff_letter' depends on axioms: [propext, Quot.sound]
+info: HofstadterConway/Audit.lean:6:0: 'HofConway.FP_dyck' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HofstadterConway/Audit.lean:7:0: 'HofConway.GP_dyck' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HofstadterConway/Audit.lean:8:0: 'HofConway.FP_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HofstadterConway/Audit.lean:9:0: 'HofConway.GP_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HofstadterConway/Audit.lean:10:0: 'HofConway.FP_irred' depends on axioms: [propext, Quot.sound]
+info: HofstadterConway/Audit.lean:11:0: 'HofConway.FP_symm' depends on axioms: [propext, Quot.sound]
+info: HofstadterConway/Audit.lean:12:0: 'HofConway.GP_symm' depends on axioms: [propext, Quot.sound]
+info: HofstadterConway/Audit.lean:13:0: 'HofConway.TP_dyck' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HofstadterConway/Audit.lean:14:0: 'HofConway.TP_le' depends on axioms: [propext, Quot.sound]
+info: HofstadterConway/Audit.lean:15:0: 'HofConway.TP_symm' depends on axioms: [propext, Quot.sound]
+info: HofstadterConway/Audit.lean:16:0: 'HofConway.key' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HofstadterConway/Audit.lean:17:0: 'HofConway.blocks' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HofstadterConway/Audit.lean:18:0: 'HofConway.v_symm' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HofstadterConway/Audit.lean:19:0: 'HofConway.c_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HofstadterConway/Audit.lean:20:0: 'HofConway.s_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HofstadterConway/Audit.lean:21:0: 'HofConway.c_s_pow' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HofstadterConway/Audit.lean:22:0: 'HofConway.s_slow' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HofstadterConway/Audit.lean:23:0: 'HofConway.s_sign' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HofstadterConway/Audit.lean:24:0: 'HofConway.odd_blocks' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HofstadterConway/Audit.lean:25:0: 'HofConway.main' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HofstadterConway/Audit.lean:26:0: 'HofConway.hofstadter_conway_dominates' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (3101 jobs).
+
+## stderr
+

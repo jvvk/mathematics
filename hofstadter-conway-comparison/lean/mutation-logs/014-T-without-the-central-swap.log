@@ -1,0 +1,29 @@
+# T without the central swap
+# command: nice -n 15 lake build HofstadterConway
+# exit: 1
+## stdout
+⚠ [3093/3101] Replayed HofstadterConway.Ops
+warning: HofstadterConway/Ops.lean:254:17: Variable name `hD` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hD
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: HofstadterConway/Ops.lean:259:17: Variable name `hD` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hD
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✖ [3094/3101] Building HofstadterConway.Tee (1.7s)
+trace: .> LEAN_PATH=.lake/packages/Cli/.lake/build/lib/lean:.lake/packages/batteries/.lake/build/lib/lean:.lake/packages/Qq/.lake/build/lib/lean:.lake/packages/aesop/.lake/build/lib/lean:.lake/packages/proofwidgets/.lake/build/lib/lean:.lake/packages/importGraph/.lake/build/lib/lean:.lake/packages/LeanSearchClient/.lake/build/lib/lean:.lake/packages/plausible/.lake/build/lib/lean:.lake/packages/mathlib/.lake/build/lib/lean:.lake/build/lib/lean ~/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lean HofstadterConway/Tee.lean -o .lake/build/lib/lean/HofstadterConway/Tee.olean -i .lake/build/lib/lean/HofstadterConway/Tee.ilean -c .lake/build/ir/HofstadterConway/Tee.c --setup .lake/build/ir/HofstadterConway/Tee.setup.json --json
+error: HofstadterConway/Tee.lean:20:51: unsolved goals
+L : ℕ
+P : ℕ → ℕ
+⊢ P (L / 2) = P (L / 2 - 1)
+Some required targets logged failures:
+- HofstadterConway.Tee
+
+## stderr
+error: build failed
+

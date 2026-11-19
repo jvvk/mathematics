@@ -1,4 +1,4 @@
-# python3 -I scripts/mutate.py scripts/mutants.toml, after lake build, 19 November 2026; rejection = nonzero exit and a Lean error in a HofstadterConway file.
+# python3 -I scripts/mutate.py scripts/mutants.toml, after lake build, 19 November 2026; rejection = nonzero exit below 128 and a Lean error in a HofstadterConway file; full output of every run in mutation-logs/.
 control passes: Basic.lean
 control passes: Ops.lean
 control passes: Tee.lean

@@ -1,0 +1,52 @@
+# s reads s(n-1-x)
+# command: nice -n 15 lake build HofstadterConway
+# exit: 1
+## stdout
+✔ [3092/3101] Built HofstadterConway.Basic (1.5s)
+⚠ [3093/3101] Built HofstadterConway.Ops (3.2s)
+warning: HofstadterConway/Ops.lean:254:17: Variable name `hD` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hD
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: HofstadterConway/Ops.lean:259:17: Variable name `hD` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hD
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [3094/3101] Built HofstadterConway.Tee (1.8s)
+✔ [3095/3101] Built HofstadterConway.Key (1.0s)
+✖ [3096/3101] Building HofstadterConway.Blocks (1.0s)
+trace: .> LEAN_PATH=.lake/packages/Cli/.lake/build/lib/lean:.lake/packages/batteries/.lake/build/lib/lean:.lake/packages/Qq/.lake/build/lib/lean:.lake/packages/aesop/.lake/build/lib/lean:.lake/packages/proofwidgets/.lake/build/lib/lean:.lake/packages/importGraph/.lake/build/lib/lean:.lake/packages/LeanSearchClient/.lake/build/lib/lean:.lake/packages/plausible/.lake/build/lib/lean:.lake/packages/mathlib/.lake/build/lib/lean:.lake/build/lib/lean ~/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lean HofstadterConway/Blocks.lean -o .lake/build/lib/lean/HofstadterConway/Blocks.olean -i .lake/build/lib/lean/HofstadterConway/Blocks.ilean -c .lake/build/ir/HofstadterConway/Blocks.c --setup .lake/build/ir/HofstadterConway/Blocks.setup.json --json
+error: HofstadterConway/Blocks.lean:21:55: Tactic `rfl` failed: The left-hand side
+  if _h : 1 ≤ s (m + 2) ∧ s (m + 2) ≤ m + 2 then m + 3 - s (s (m + 2)) - s (m + 2 - s (m + 2)) else 0
+is not definitionally equal to the right-hand side
+  if 1 ≤ s (m + 2) ∧ s (m + 2) ≤ m + 2 then m + 3 - s (s (m + 2)) - s (m + 3 - s (m + 2)) else 0
+
+m : ℕ
+h : 3 ≤ m + 3
+⊢ (if _h : 1 ≤ s (m + 2) ∧ s (m + 2) ≤ m + 2 then m + 3 - s (s (m + 2)) - s (m + 2 - s (m + 2)) else 0) =
+    if 1 ≤ s (m + 2) ∧ s (m + 2) ≤ m + 2 then m + 3 - s (s (m + 2)) - s (m + 3 - s (m + 2)) else 0
+warning: HofstadterConway/Blocks.lean:25:20: `if_pos` has been deprecated: Use `ite_eq_left` instead
+warning: HofstadterConway/Blocks.lean:29:20: `if_pos` has been deprecated: Use `ite_eq_left` instead
+warning: HofstadterConway/Blocks.lean:75:52: `if_pos` has been deprecated: Use `ite_eq_left` instead
+warning: HofstadterConway/Blocks.lean:79:52: `if_neg` has been deprecated: Use `ite_eq_right` instead
+warning: HofstadterConway/Blocks.lean:122:0: automatically included section variable(s) unused in theorem `HofConway.c_block_succ`:
+  hL
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit hL in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: HofstadterConway/Blocks.lean:224:49: `if_neg` has been deprecated: Use `ite_eq_right` instead
+warning: HofstadterConway/Blocks.lean:241:8: `if_neg` has been deprecated: Use `ite_eq_right` instead
+warning: HofstadterConway/Blocks.lean:243:43: `if_pos` has been deprecated: Use `ite_eq_left` instead
+warning: HofstadterConway/Blocks.lean:244:8: `if_pos` has been deprecated: Use `ite_eq_left` instead
+warning: HofstadterConway/Blocks.lean:246:43: `if_neg` has been deprecated: Use `ite_eq_right` instead
+Some required targets logged failures:
+- HofstadterConway.Blocks
+
+## stderr
+error: build failed
+

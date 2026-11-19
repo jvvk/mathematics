@@ -8,6 +8,7 @@ cmd = ["lake", "build", "HofstadterConway"]
 cwd = ".."
 timeout = 2400
 mode = "inplace"
+log_dir = "../mutation-logs"   # complete stdout/stderr of every run
 fail_pattern = 'error: (?:\./)*HofstadterConway/\S+\.lean:\d+:\d+: '
 
 [[mutant]]

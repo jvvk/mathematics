@@ -5,8 +5,10 @@ Written from the paper's definitions only (it imports none of the research scrip
   2. the operators F, G by their threshold definition agree with the recurrences (2.2), (2.3) on all Dyck words
      of length <= 12, and generate the block words of c and s for every block up to 2^20 (Proposition 4.1);
   3. the worked example (A, B for u = 1100), w_3, v_3, T(w_3) = v_3, and the coordinates of Figure 1;
-  4. Lemmas 2.2-2.4 and the key lemma on all symmetric irreducible Dyck words of length <= 34 (26,364 words),
-     including the midpoint identity and the contact claim;
+  4. on all symmetric irreducible Dyck words of length <= 34 (26,364 words): F(u), G(u) Dyck, F(u) irreducible,
+     both symmetric (Lemmas 2.2(4), 2.3(2), 2.3(3)); Lemma 2.4 including (2.6); the midpoint identity, the contact
+     claim and the conclusion of the key lemma 3.1. Lemma 2.2(1), (2) and (5) are not tested separately;
+  4b. the monotonicity of Lemma 2.3(1) on every comparable pair of Dyck words of length <= 12;
   5. Remark 3.2: among all irreducible words, the midpoint identity first fails at length 12 and the bound (3.1) at 16.
 Planted mutants at the end must all be KILLED.
 
@@ -254,7 +256,7 @@ for L in range(4, 35, 2):
         if not lemma_checks(u):
             ok = False
 check(
-    "Lemmas 2.2-2.4 and the key lemma on all symmetric irreducible Dyck words, L <= 34",
+    "Lemma 2.2(4), Lemma 2.3(2)-(3), Lemma 2.4 with (2.6), midpoint identity, contact claim, key lemma: all symmetric irreducible Dyck words, L <= 34",
     ok,
 )
 check("there are 26,364 such words", count == 26364)
