@@ -1,0 +1,13 @@
+# product: plus sin squared
+# command: nice -n 15 lake env lean LeanProofs/TangentCircles/ChordsMut.lean
+# exit: 1
+## stdout
+LeanProofs/TangentCircles/ChordsMut.lean:59:2: error: Type mismatch
+  key (p + q)
+has type
+  cos (η - (p + q)) * cos (η + (p + q)) = cos (p + q) ^ 2 - sin η ^ 2
+but is expected to have type
+  cos (η - (p + q)) * cos (η + (p + q)) = cos (p + q) ^ 2 + sin η ^ 2
+
+## stderr
+

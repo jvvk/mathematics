@@ -70,7 +70,7 @@ for a, b, c in [(1, 1, 1), (1, 2, 3), (0.1, 1, 5), (2, 7, 0.3)]:
     chk(f"angle T_C A I = A/2 {a,b,c}", abs(angle(A, TC, I) - angA / 2) < 1e-9)
     chk(f"tan(A/2)tan(B/2) = rho^2/ab < 1 {a,b,c}",
         abs(np.tan(angA / 2) * np.tan(angB / 2) - rho ** 2 / (a * b)) < 1e-12 and rho < np.sqrt(a * b))
-    if a != b:  # with equal radii this mutant coincides with the claim, so it tests nothing there
+    if not (a == b == c):  # only for three equal radii do the centroid and the incentre coincide
         mutant(f"I = centroid instead of incentre {a,b,c}",
            np.allclose([abs(cr2(B - A, (A + B + C) / 3 - A)) / np.linalg.norm(B - A)], rho))
 

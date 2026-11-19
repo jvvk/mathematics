@@ -1,0 +1,11 @@
+# tidy: swapped weights
+# command: nice -n 15 lake env lean LeanProofs/TangentCircles/ChordsMut.lean
+# exit: 1
+## stdout
+LeanProofs/TangentCircles/ChordsMut.lean:66:2: error: ring failed, ring expressions not equal
+a b p q : ℝ
+h : a * sin p * cos q = b * sin q * cos p
+⊢ -(a * cos p ^ 2) + a * cos q ^ 2 + b * cos p ^ 2 - b * cos q ^ 2 = 0
+
+## stderr
+

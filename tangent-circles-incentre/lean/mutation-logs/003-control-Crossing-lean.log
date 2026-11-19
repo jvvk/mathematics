@@ -1,0 +1,7 @@
+# control Crossing.lean
+# command: nice -n 15 lake env lean LeanProofs/TangentCircles/CrossingMut.lean
+# exit: 0
+## stdout
+
+## stderr
+

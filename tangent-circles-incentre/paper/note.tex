@@ -29,7 +29,7 @@
 \vspace{-2em}
 
 \begin{abstract}
-Three circles touch externally in pairs, and a triangle is formed by choosing one point at random
+Three circles of positive radii touch externally in pairs, and a triangle is formed by choosing one point at random
 on each. The triangle contains the incentre of the triangle of centres with probability exactly
 $\frac12$, whatever the three radii. Dan reduced this to a statement about two touching circles and
 checked that statement numerically; we prove it:
@@ -41,7 +41,7 @@ becomes a lune.
 
 \section{A ring of three circles}
 
-Draw three circles, each touching the other two, and pick a point at random on each of them.
+Draw three circles, each touching the other two from outside, and pick a point at random on each of them.
 How often does the triangle of the three points contain the incentre of the triangle formed
 by the centres? It is worth guessing before reading on, and a few sketches like
 Figure~\ref{fig:ring} suggest that the answer is not obvious.
@@ -223,7 +223,7 @@ reaching.
 Throughout, statements about the random chord hold almost surely. We set aside the events that
 $P$ or $Q$ is the point of contact $T$, that $P=Q$, that the line $PQ$ is tangent to a circle or
 parallel to the common tangent, and (in Section~\ref{sec:proofmain}) that a side of the triangle passes
-through the incentre. Each event forces one of the two independent uniform angles to take one of
+through the incentre; Section~\ref{sec:sphere} adds the fold $u=\eta=0$ of its map. Each event forces one of the two independent uniform angles to take one of
 finitely many values given the other, so each has probability $0$.
 
 \begin{proof}[Proof of Theorem~\ref{thm:angle}]
@@ -339,8 +339,9 @@ $(-\pi,\pi)\times(-1,1)$. By Archimedes' theorem on the sphere and its circumscr
 area element of the unit sphere in longitude and height is $dL\,dH$, so $S$ is uniform.
 \end{proof}
 
-Each pair $(P,Q)$ of the map comes from one of eight pairs with the same $(s,v)$: two lines through
-$Z$ and four pairs on each. The map does not preserve area sheet by sheet; only the eight sheets
+Generically, each pair $(P,Q)$ of the map comes from one of eight pairs with the same $(s,v)$: two lines through
+$Z$ and four pairs on each. The two lines coincide only on the fold $u=\eta=0$, a null set, which we exclude
+along with the events listed in Section~3. The map does not preserve area sheet by sheet; only the eight sheets
 together do.
 
 \begin{figure}[ht]

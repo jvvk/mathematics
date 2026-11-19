@@ -1,0 +1,16 @@
+# half-chord B: wrong sign of 2q
+# command: nice -n 15 lake env lean LeanProofs/TangentCircles/ChordsMut.lean
+# exit: 1
+## stdout
+LeanProofs/TangentCircles/ChordsMut.lean:40:13: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  cos (?x + ?y)
+in the target expression
+  (b * cos ω * cos q - b * sin q * sin ω) ^ 2 - (b * sin q) ^ 2 = b ^ 2 * cos ω * cos (ω - 2 * q)
+
+b z q ω : ℝ
+hz : z * cos q = b * sin q
+e : ((b * cos ω - z * sin ω) ^ 2 - z ^ 2) * cos q ^ 2 = (b * cos ω * cos q - z * cos q * sin ω) ^ 2 - (z * cos q) ^ 2
+⊢ (b * cos ω * cos q - b * sin q * sin ω) ^ 2 - (b * sin q) ^ 2 = b ^ 2 * cos ω * cos (ω - 2 * q)
+
+## stderr
+

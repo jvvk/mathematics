@@ -1,0 +1,7 @@
+# control Incircle.lean
+# command: nice -n 15 lake env lean LeanProofs/TangentCircles/IncircleMut.lean
+# exit: 0
+## stdout
+
+## stderr
+

@@ -1,0 +1,7 @@
+# control Chords.lean
+# command: nice -n 15 lake env lean LeanProofs/TangentCircles/ChordsMut.lean
+# exit: 0
+## stdout
+
+## stderr
+

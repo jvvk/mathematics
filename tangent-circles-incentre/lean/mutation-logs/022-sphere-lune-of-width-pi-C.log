@@ -1,0 +1,23 @@
+# sphere: lune of width pi - C
+# command: nice -n 15 lake env lean LeanProofs/TangentCircles/SphereMut.lean
+# exit: 1
+## stdout
+LeanProofs/TangentCircles/SphereMut.lean:39:31: error: linarith failed to find a contradiction
+case mp
+s α β γ : ℝ
+h : α + β + γ = π / 2
+hs : α + β < s
+a✝ : 2 * s ≤ 2 * γ
+⊢ False
+failed
+LeanProofs/TangentCircles/SphereMut.lean:39:31: error: linarith failed to find a contradiction
+case mpr
+s α β γ : ℝ
+h : α + β + γ = π / 2
+hs : 2 * γ < 2 * s
+a✝ : s ≤ α + β
+⊢ False
+failed
+
+## stderr
+

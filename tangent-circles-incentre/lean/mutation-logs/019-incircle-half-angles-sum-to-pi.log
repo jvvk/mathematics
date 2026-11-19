@@ -1,0 +1,52 @@
+# incircle: half-angles sum to pi
+# command: nice -n 15 lake env lean LeanProofs/TangentCircles/IncircleMut.lean
+# exit: 1
+## stdout
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+LeanProofs/TangentCircles/IncircleMut.lean:41:75: error: unsolved goals
+a b c ρ : ℝ
+ha : 0 < a
+hb : 0 < b
+hc : 0 < c
+hρ : 0 < ρ
+hheron : ρ ^ 2 * (a + b + c) = a * b * c
+hab : ρ / a * (ρ / b) < 1
+hkey : (ρ / a + ρ / b) / (1 - ρ / a * (ρ / b)) = (ρ / c)⁻¹
+⊢ π * (1 / 2) = π
+LeanProofs/TangentCircles/IncircleMut.lean:62:2: error: linarith failed to find a contradiction
+case h1
+a b c ρ : ℝ
+ha : 0 < a
+hb : 0 < b
+hc : 0 < c
+hρ : 0 < ρ
+hheron : ρ ^ 2 * (a + b + c) = a * b * c
+this : arctan (ρ / a) + arctan (ρ / b) + arctan (ρ / c) = π
+hπ : 0 < π
+a✝ : π - 2 * (arctan (ρ / a) + arctan (ρ / b)) < 2 * arctan (ρ / c)
+⊢ False
+failed
+LeanProofs/TangentCircles/IncircleMut.lean:72:2: error: linarith failed to find a contradiction
+case h1
+a b c ρ : ℝ
+ha : 0 < a
+hb : 0 < b
+hc : 0 < c
+hρ : 0 < ρ
+hheron : ρ ^ 2 * (a + b + c) = a * b * c
+this : arctan (ρ / a) + arctan (ρ / b) + arctan (ρ / c) = π
+hπ : 0 < π
+a✝ :
+  π - 2 * (arctan (ρ / a) + arctan (ρ / b)) + (π - 2 * (arctan (ρ / b) + arctan (ρ / c))) +
+      (π - 2 * (arctan (ρ / c) + arctan (ρ / a))) <
+    π
+⊢ False
+failed
+
+## stderr
+

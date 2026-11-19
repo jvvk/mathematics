@@ -1,0 +1,21 @@
+# density form: cos(p+q)
+# command: nice -n 15 lake env lean LeanProofs/TangentCircles/CrossingMut.lean
+# exit: 1
+## stdout
+LeanProofs/TangentCircles/CrossingMut.lean:96:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (a + b) * cos p * cos q * cos (p - q)
+in the target expression
+  (a + b) * cos p * cos q * cos (p + q) / (a * b) = a / (a ^ 2 + z ^ 2) + b / (b ^ 2 + z ^ 2)
+
+a b z p q : ℝ
+ha : 0 < a
+hb : 0 < b
+hp : 0 < cos p
+hq : 0 < cos q
+hzp : z * cos p = a * sin p
+hzq : z * cos q = b * sin q
+h : a * sin p * cos q = b * sin q * cos p
+⊢ (a + b) * cos p * cos q * cos (p + q) / (a * b) = a / (a ^ 2 + z ^ 2) + b / (b ^ 2 + z ^ 2)
+
+## stderr
+

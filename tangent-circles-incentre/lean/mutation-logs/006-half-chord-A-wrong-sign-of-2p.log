@@ -1,0 +1,16 @@
+# half-chord A: wrong sign of 2p
+# command: nice -n 15 lake env lean LeanProofs/TangentCircles/ChordsMut.lean
+# exit: 1
+## stdout
+LeanProofs/TangentCircles/ChordsMut.lean:30:13: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  cos (?x - ?y)
+in the target expression
+  (a * cos ω * cos p + a * sin p * sin ω) ^ 2 - (a * sin p) ^ 2 = a ^ 2 * cos ω * cos (ω + 2 * p)
+
+a z p ω : ℝ
+hz : z * cos p = a * sin p
+e : ((a * cos ω + z * sin ω) ^ 2 - z ^ 2) * cos p ^ 2 = (a * cos ω * cos p + z * cos p * sin ω) ^ 2 - (z * cos p) ^ 2
+⊢ (a * cos ω * cos p + a * sin p * sin ω) ^ 2 - (a * sin p) ^ 2 = a ^ 2 * cos ω * cos (ω + 2 * p)
+
+## stderr
+

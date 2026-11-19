@@ -1,0 +1,25 @@
+# integral: 2 pi
+# command: nice -n 15 lake env lean LeanProofs/TangentCircles/IntegralMut.lean
+# exit: 1
+## stdout
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+LeanProofs/TangentCircles/IntegralMut.lean:76:76: error: unsolved goals
+s : ℝ
+hs : |s| < π / 2
+e : ℝ := π / 2 - |s|
+he : 0 < e
+hc : 0 < cos s
+mem : ∀ η ∈ Ioo (-e) e, |η| < e
+hcont : ContinuousOn (u s) (Icc (-e) e)
+hderiv : ∀ η ∈ Ioo (-e) e, HasDerivAt (u s) (g s η) η
+hint : IntervalIntegrable (g s) volume (-e) e
+hse : sin e = cos s
+⊢ π = π * 2
+
+## stderr
+

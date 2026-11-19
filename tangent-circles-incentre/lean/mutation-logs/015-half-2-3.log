@@ -1,0 +1,22 @@
+# half: 2/3
+# command: nice -n 15 lake env lean LeanProofs/TangentCircles/CrossingMut.lean
+# exit: 1
+## stdout
+LeanProofs/TangentCircles/CrossingMut.lean:75:58: error: unsolved goals
+a b : ℝ
+ha : 0 < a
+hb : 0 < b
+⊢ 3 = 2 ^ 2
+LeanProofs/TangentCircles/CrossingMut.lean:82:37: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  2 / 3
+in the target expression
+  F a b √(a * b) - F a b r = 1 / 2 - ∫ (z : ℝ) in 0..r, f a b z
+
+a b : ℝ
+ha : 0 < a
+hb : 0 < b
+r : ℝ
+⊢ F a b √(a * b) - F a b r = 1 / 2 - ∫ (z : ℝ) in 0..r, f a b z
+
+## stderr
+

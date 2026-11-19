@@ -1,0 +1,31 @@
+# incircle: Heron with a + b
+# command: nice -n 15 lake env lean LeanProofs/TangentCircles/IncircleMut.lean
+# exit: 1
+## stdout
+LeanProofs/TangentCircles/IncircleMut.lean:32:37: error: linarith failed to find a contradiction
+a b c ρ : ℝ
+ha : 0 < a
+hb : 0 < b
+hc : 0 < c
+hρ : 0 < ρ
+hheron : ρ ^ 2 * (a + b) = a * b * c
+a✝ : a * b * c ≤ ρ ^ 2 * c
+⊢ False
+failed
+LeanProofs/TangentCircles/IncircleMut.lean:53:4: error: linarith failed to find a contradiction
+case h2
+a b c ρ : ℝ
+ha : 0 < a
+hb : 0 < b
+hc : 0 < c
+hρ : 0 < ρ
+hheron : ρ ^ 2 * (a + b) = a * b * c
+hab : ρ / a * (ρ / b) < 1
+hden : a * b - ρ ^ 2 ≠ 0
+e1 : (ρ / a + ρ / b) / (1 - ρ / a * (ρ / b)) = ρ * (a + b) / (a * b - ρ ^ 2)
+a✝ : c * (a * b - ρ ^ 2) < ρ * (a + b) * ρ
+⊢ False
+failed
+
+## stderr
+

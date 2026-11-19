@@ -1,0 +1,24 @@
+# integral: derivative without the square root
+# command: nice -n 15 lake env lean LeanProofs/TangentCircles/IntegralMut.lean
+# exit: 1
+## stdout
+LeanProofs/TangentCircles/IntegralMut.lean:45:84: error: unsolved goals
+case e'_9
+s : ℝ
+hs : |s| < π / 2
+η : ℝ
+hη : |η| < π / 2 - |s|
+hc : 0 < cos s
+hlt : |sin η| < cos s
+hx : |sin η / cos s| < 1
+h1 : sin η / cos s ≠ -1
+h2 : sin η / cos s ≠ 1
+hd : HasDerivAt (arcsin ∘ fun x => sin x / cos s) (1 / √(1 - (sin η / cos s) ^ 2) * (cos η / cos s)) η
+hu : u s = arcsin ∘ fun x => sin x / cos s
+hpos : 0 < cos s ^ 2 - sin η ^ 2
+e : 1 - (sin η / cos s) ^ 2 = (cos s ^ 2 - sin η ^ 2) / cos s ^ 2
+⊢ cos η * √(cos s ^ 2 - sin η ^ 2) = cos η * (cos s ^ 2 - sin η ^ 2)
+LeanProofs/TangentCircles/IntegralMut.lean:73:2: error: failed to prove positivity/nonnegativity/nonzeroness
+
+## stderr
+
