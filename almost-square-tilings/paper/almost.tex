@@ -39,8 +39,9 @@ why one squared square can reach only one parity of $n$ and another cannot be us
 \end{abstract}
 \maketitle
 
-\noindent\emph{Status of this preprint.} Every finite check behind the theorem is rerun by a checker
-that shares no code with the programs that found the tilings (Section~\ref{sec:verify}). This version
+\noindent\emph{Status of this preprint.} The finite data behind the theorem are rechecked by a checker
+that shares no code with the programs that found the tilings, and the theorem is proved in Lean
+(Section~\ref{sec:verify}). This version
 has not yet been independently reviewed.
 
 \section{The question}
@@ -551,7 +552,7 @@ proves Theorem~\ref{thm:main}. \qed
 
 \section{Verification}\label{sec:verify}
 
-Every claim in Sections~\ref{sec:proof} and~\ref{sec:small} is a finite check, and the data and
+The claims of Sections~\ref{sec:proof} and~\ref{sec:small} rest on finite data, and the data and
 programs are at \url{https://github.com/jvvk/mathematics/tree/main/almost-square-tilings}: the layouts of the squared squares, the $128$ inflations
 with their thresholds (the $111$ used and some spares), the $151$ explicit tilings and the six small
 ones, both searches for $n\le19$, checksums, and a script that reruns the checker, the search in C for $n\le19$, the second search for $n\le18$ ($n=19$ on request, a few minutes) and the checksums. A checker

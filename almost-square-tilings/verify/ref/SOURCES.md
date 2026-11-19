@@ -1,8 +1,8 @@
 # Catalogue inputs for `src/fill.py`
 
 These are Bouwkamp codes of perfect squared rectangles and squares, as published by David Moews
-(http://xraysgi.ims.uconn.edu:8080/, retrieved 26 September 2026; the server no longer responds, and the pages are
-not in the Internet Archive, so the copies used are kept here). The enumerations themselves are due to
+(retrieved 26 September 2026 from http://xraysgi.ims.uconn.edu:8080/; the same files are now at
+https://djm.cc/dmoews.html). Copies are kept here so that the search can be rerun as it was. The enumerations themselves are due to
 C. J. Bouwkamp and A. J. W. Duijvestijn; see Moews's page for the references.
 
 | File | Contents | Source file on Moews's page |

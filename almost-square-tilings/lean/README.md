@@ -33,7 +33,7 @@ settled by two independent programs in the paper's ancillary files.
 | Figure 1, Table 1, worked sums              | `moron_admissible`, `moron_sizes`, `moron_moment`, `moron_signed` (Examples) |
 | Section 2 example (v(112) = 0)              | `ex112_inflation`, `ex112_signed`, `ex112_clash`, `ex112_t2` (Examples) |
 
-Mutation tests: `./mutants.sh` (28 mutants, each must be rejected; 11 unmutated baselines, each must pass).
+Mutation tests: `python3 -I scripts/mutate.py scripts/mutants.toml` (28 mutants, each must be rejected with a Lean error in the mutated copy; the unmutated copies must compile; a summary in `mutation-validation.log` and the full output of every run in `mutation-logs/`).
 
 The constructive direction follows the paper: each residue class is stored as its shift and threshold,
 checked against the hypotheses of Lemma 4 at `t₀` (in 8 kernel pieces, peak ~4.4 GB), and its tilings
