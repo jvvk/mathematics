@@ -10,7 +10,7 @@ axioms of each one when it is compiled.
 ```
 lake exe cache get     # Mathlib build cache
 lake build             # compiles every module and runs the axiom audit
-./mutants.sh           # seventeen mutants, each rejected; ten unchanged controls, each compiled
+python3 -I scripts/mutate.py scripts/mutants.toml   # seventeen mutants, each rejected; ten controls compile
 ```
 
 ## Where each result is
@@ -39,7 +39,8 @@ Corollary 3 is stated for `G` defined by the right side of (2).
 
 ## Mutation tests
 
-`./mutants.sh` copies one source file at a time, plants a single wrong change (a sign, a shift, an
+`scripts/mutants.toml`, run by `scripts/mutate.py`, copies one source file at a time, plants a single wrong change (a sign, a shift, an
 exponent, a binomial, a parameter of the ₃F₂, the threshold of Corollary 2, the degree in Corollary 4)
-and compiles the copy against the original earlier modules. All seventeen mutants are rejected, and
-the ten unchanged copies compile.
+and compiles the copy against the original earlier modules. A mutant counts as rejected only if Lean reports an
+error in the mutated copy; a timeout or crash fails the run. All seventeen mutants are rejected, and the ten
+unchanged copies compile (`mutation-validation.log`, full logs in `mutation-logs/`).

@@ -1,6 +1,6 @@
 """Exact checks of every claim in paper.tex (positivity of Abdesselam's sum L).
 
-Run: nice -n 15 ~/.venvs/main/bin/python verify_paper.py   (single core, under a minute)
+Run: nice -n 15 python3 verify_paper.py   (single core; about three minutes on an Apple M-series laptop)
 Mutants at the end must all be KILLED.
 """
 from __future__ import annotations
@@ -123,7 +123,6 @@ mutant("R^u instead of R^(u+1)", lambda: check("m", theorem_ok(1, 1, 3, 3, lambd
 mutant("prefactor (u+nu)! not squared",
        lambda: check("m", theorem_ok(2, 2, 3, 3, pref=lambda u, nu: Fraction(f(u + nu), f(nu)))))
 mutant("R with (1+z)^2", lambda: check("m", theorem_ok(1, 1, 3, 3, lambda u, nu: (1 / ((1 + z) ** 2 - w ** 2)) ** (u + 1) * (1 / ((1 + z) ** 2 - w ** 2) - 1) ** nu)))
-print("ALL CHECKS PASSED")
 
 # 6. Taylor's binomial-basis formula and Hucht's 3F2, implemented here from the MathOverflow text
 #    (no code shared with ../check.py).
@@ -204,6 +203,37 @@ def degree_ok(shift: int = 0) -> bool:
     return True
 
 
+def taylor_full_ok(shift: int = 0) -> bool:
+    """Taylor's complete formula against the triple sum: L = (u+nu)!^2/nu! sum_m C(u+shift, m) inner(m), a even."""
+    for u in range(4):
+        for a in range(0, 7, 2):
+            for b in range(5):
+                for n in range(a + b + 1):
+                    nu = a + b - n
+                    rhs = Fraction(f(u + nu) ** 2, f(nu)) * sum(comb(u + shift, m) * taylor_inner(a, b, n, m) for m in range(n + 1))
+                    if rhs != L(u, a, b, n):
+                        return False
+    return True
+
+
+def reduction_ok(shift: int = 0) -> bool:
+    """nu! L(u,a,b,n)/(u+nu)!^2 = sum_m C(u,m) L(0,a,b,n-m)/(nu+m+shift)!, all a."""
+    for u in range(4):
+        for a in range(6):
+            for b in range(5):
+                for n in range(a + b + 1):
+                    nu = a + b - n
+                    lhs = Fraction(f(nu) * L(u, a, b, n), f(u + nu) ** 2)
+                    if lhs != sum(Fraction(comb(u, m) * L(0, a, b, n - m), f(nu + m + shift)) for m in range(n + 1)):
+                        return False
+    return True
+
+
+check("Taylor's complete binomial-basis formula = L  (u<=3, a<=6 even, b<=4)", taylor_full_ok())
+check("reduction to u = 0: nu! L/(u+nu)!^2 = sum_m C(u,m) L(0,a,b,n-m)/(nu+m)!  (u<=3, a<=5, b<=4)", reduction_ok())
+mutant("Taylor's formula with C(u+1, m)", lambda: check("m", taylor_full_ok(1)))
+mutant("reduction with (nu+m+1)!", lambda: check("m", reduction_ok(1)))
+
 check("Taylor's degree: exactly n - a/2 in u (a<=6 even, b<=3, n>=a/2)", degree_ok())
 
 
@@ -222,4 +252,4 @@ def rpow_ok(shift: int = 0) -> bool:
 check("equation (4): coefficients of R^(u+1) (u<=3, x<=7, y<=5)", rpow_ok())
 mutant("equation (4) with 2u+2h+2+y", lambda: check("m", rpow_ok(1)))
 mutant("degree n - a/2 + 1", lambda: check("m", degree_ok(1)))
-print("ALL EXTRA CHECKS PASSED")
+print("ALL CHECKS PASSED")

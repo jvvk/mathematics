@@ -1,0 +1,115 @@
+# Mutation suite for AlternatingSum (MathOverflow 498232). Replaces mutants.sh.
+# Run (from lean/, after lake build): python3 -I scripts/mutate.py scripts/mutants.toml
+# Copy mode: each mutant plants one wrong change in a copy of its source file, compiled against the built tree.
+# A rejection needs a nonzero exit AND a Lean error located in the mutated copy; timeouts and crashes are
+# inconclusive and fail the run. Full output of every run is kept in mutation-logs/.
+[check]
+cmd = ["lake", "env", "lean", "{file}"]
+cwd = ".."
+timeout = 1500
+mode = "copy"
+fail_pattern = 'AlternatingSum/\S+Mut\.lean:\d+:\d+: error'
+diagnostic_in_target = true
+log_dir = "../mutation-logs"
+
+[[mutant]]
+name = '''Leibniz: shift x+r -> x+r+1'''
+file = "../AlternatingSum/Leibniz.lean"
+old = '''D (n - r) f (x + r) := by'''
+new = '''D (n - r) f (x + r + 1) := by'''
+
+[[mutant]]
+name = '''Step 3: drop the alternating sign'''
+file = "../AlternatingSum/Leibniz.lean"
+old = '''    ∑ p ∈ range (ν + 1), (-1 : ℚ) ^ p * (ν.choose p : ℚ) * ((u + ν - p + s).choose s : ℚ) *'''
+new = '''    ∑ p ∈ range (ν + 1), (1 : ℚ) ^ p * (ν.choose p : ℚ) * ((u + ν - p + s).choose s : ℚ) *'''
+
+[[mutant]]
+name = '''L: prefactor (u+a+b-n+1)!'''
+file = "../AlternatingSum/Step1.lean"
+old = '''((u + a + b - n) ! : ℚ) * ∑ i ∈ range (n + 1)'''
+new = '''((u + a + b - n + 1) ! : ℚ) * ∑ i ∈ range (n + 1)'''
+
+[[mutant]]
+name = '''L: numerator (k+l+1)!'''
+file = "../AlternatingSum/Step1.lean"
+old = '''* (k + l) ! * (a + b - k - l) !'''
+new = '''* (k + l + 1) ! * (a + b - k - l) !'''
+
+[[mutant]]
+name = '''R with (1+z)^2'''
+file = "../AlternatingSum/Series.lean"
+old = '''noncomputable def E : PS := (1 - X 1) ^ 2 - X 0 ^ 2'''
+new = '''noncomputable def E : PS := (1 + X 1) ^ 2 - X 0 ^ 2'''
+
+[[mutant]]
+name = '''Theorem 1: R^u instead of R^(u+1)'''
+file = "../AlternatingSum/Main.lean"
+old = '''coeff (mono a b) (R ^ (u + 1) * (R - 1) ^ (a + b - n))'''
+new = '''coeff (mono a b) (R ^ u * (R - 1) ^ (a + b - n))'''
+
+[[mutant]]
+name = '''Theorem 1: prefactor not squared'''
+file = "../AlternatingSum/Main.lean"
+old = '''L u a b n = ((u + (a + b - n)) ! : ℚ) ^ 2'''
+new = '''L u a b n = ((u + (a + b - n)) ! : ℚ) ^ 1'''
+
+[[mutant]]
+name = '''Theorem 1: (R-1)^(nu+1)'''
+file = "../AlternatingSum/Main.lean"
+old = '''(R - 1) ^ (a + b - n)) := by'''
+new = '''(R - 1) ^ (a + b - n + 1)) := by'''
+
+[[mutant]]
+name = '''coefficients of R^(m+1): 2m+x+2'''
+file = "../AlternatingSum/Coeffs.lean"
+old = '''((2 * m + x + 1 + y).choose (2 * m + x + 1) : ℚ)'''
+new = '''((2 * m + x + 2 + y).choose (2 * m + x + 2) : ℚ)'''
+
+[[mutant]]
+name = '''extreme case: C(u+a/2+1, a/2)'''
+file = "../AlternatingSum/Corollaries.lean"
+old = '''((u + a / 2).choose (a / 2) : ℚ) := by'''
+new = '''((u + a / 2 + 1).choose (a / 2) : ℚ) := by'''
+
+[[mutant]]
+name = '''G > 0 (false for odd a)'''
+file = "../AlternatingSum/Corollaries.lean"
+old = '''(N : ℝ) (hN : 1 ≤ N) : 0 ≤ Gmom u a b N'''
+new = '''(N : ℝ) (hN : 1 ≤ N) : 0 < Gmom u a b N'''
+
+[[mutant]]
+name = '''positivity: a < 2n'''
+file = "../AlternatingSum/Positivity.lean"
+old = '''0 < L u a b n ↔ Even a ∧ a ≤ 2 * n'''
+new = '''0 < L u a b n ↔ Even a ∧ a < 2 * n'''
+
+[[mutant]]
+name = '''Taylor: degree n - a/2 + 1'''
+file = "../AlternatingSum/Taylor.lean"
+old = '''(Even a → a ≤ 2 * n → P.natDegree = n - a / 2)'''
+new = '''(Even a → a ≤ 2 * n → P.natDegree = n - a / 2 + 1)'''
+
+[[mutant]]
+name = '''Taylor inner sum: 2^(2d-b+1)'''
+file = "../AlternatingSum/Binomial.lean"
+old = '''(-1) ^ (b - d) * 2 ^ (2 * d - b) * (d.choose (2 * d - b) : ℚ)'''
+new = '''(-1) ^ (b - d) * 2 ^ (2 * d - b + 1) * (d.choose (2 * d - b) : ℚ)'''
+
+[[mutant]]
+name = '''Taylor formula: m < n only'''
+file = "../AlternatingSum/Binomial.lean"
+old = '''∑ m ∈ range (n + 1), (u.choose m : ℚ) * Tinner a b n m := by'''
+new = '''∑ m ∈ range n, (u.choose m : ℚ) * Tinner a b n m := by'''
+
+[[mutant]]
+name = '''Hucht: 2^(b+1)'''
+file = "../AlternatingSum/Hucht.lean"
+old = '''Tinner a b n m = 2 ^ b * ((a / 2 + b).choose b : ℚ)'''
+new = '''Tinner a b n m = 2 ^ (b + 1) * ((a / 2 + b).choose b : ℚ)'''
+
+[[mutant]]
+name = '''Hucht: parameter (2-b)/2'''
+file = "../AlternatingSum/Hucht.lean"
+old = '''  ∑ t ∈ range (j + 1), qrise ((1 - b) / 2) t'''
+new = '''  ∑ t ∈ range (j + 1), qrise ((2 - b) / 2) t'''
