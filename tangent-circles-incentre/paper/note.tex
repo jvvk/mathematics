@@ -22,16 +22,17 @@
 
 \title{Three tangent circles and a fair coin}
 \author{Vamshi Jandhyala}
-\date{}
+\date{Preprint, version 2, 19 November 2026 (version 1, 9 October 2026). Not peer reviewed.}
 
 \begin{document}
 \maketitle
 \vspace{-2em}
 
 \begin{abstract}
-Three circles touch in pairs, and a triangle is formed by choosing one point at random on
-each. The triangle contains the incentre of the triangle of centres with probability exactly
-$\frac12$, whatever the three radii. The proof rests on one lemma about two touching circles:
+Three circles touch externally in pairs, and a triangle is formed by choosing one point at random
+on each. The triangle contains the incentre of the triangle of centres with probability exactly
+$\frac12$, whatever the three radii. Dan reduced this to a statement about two touching circles and
+checked that statement numerically; we prove it:
 a random chord joining them crosses their common tangent at a point from which the two
 centres are seen at an angle that is uniformly distributed. A refinement turns the pair of
 random points into a uniform point on a sphere, on which each way of missing the incentre
@@ -80,21 +81,26 @@ $I$ of the triangle of centres $O_AO_BO_C$; on the right it does not.}
 The answer is a fair coin.
 
 \begin{theorem}\label{thm:main}
-For any three mutually tangent circles, with one uniform random point on each, chosen
+For any three circles of positive radii, each externally tangent to the other two, with one
+uniform random point on each, chosen
 independently, the triangle of the three points contains the incentre of the triangle of
 centres with probability $\frac12$.
 \end{theorem}
 
 Dan asked this on Mathematics Stack Exchange for three equal circles~\cite{DanEqual}, and
 there it was settled by an integral: Dan reduced it to a single integral, and user170231
-evaluated it with a contour argument~\cite{user170231}. Dan then asked about unequal radii,
-where simulations gave $\frac12$ again~\cite{DanAny}, and isolated a statement about two
-circles that would explain it~\cite{DanLemma}. On MathOverflow~\cite{DanMO} he asked for a
-proof that shows why the answer is $\frac12$. This note proves the theorem for all radii by
-proving that two-circle statement, in the following form.
+evaluated it with a contour argument~\cite{user170231}. Dan then asked about unequal radii, where simulations gave $\frac12$ again~\cite{DanAny}. In
+an answer there~\cite{DanReduction} he reduced the theorem to a statement about two circles: if
+the chord between two of them crosses their common tangent according to a certain law, then each
+side of the random triangle misses the incentre with probability
+$\frac12-\bigl(\arctan(\rho/a)+\arctan(\rho/b)\bigr)/\pi$, and the three probabilities add up to
+$\frac12$. He asked for a proof of that law separately~\cite{DanLemma}, having checked it
+numerically, and on MathOverflow~\cite{DanMO} for a proof that shows why the answer is
+$\frac12$. The new part of this note is a proof of the two-circle law, in the following form;
+with Dan's reduction it proves Theorem~\ref{thm:main} for all radii.
 
 \begin{theorem}\label{thm:angle}
-Two circles touch at $T$, and a chord $PQ$ joins a uniform random point $P$ of one to an
+Two circles of positive radii touch externally at $T$, and a chord $PQ$ joins a uniform random point $P$ of one to an
 independent uniform random point $Q$ of the other. Let $Z$ be the point where $PQ$ crosses the
 common tangent at $T$. Then $Z$ lies on either side of $T$ with probability $\frac12$, and the
 angle $\theta=\angle O_AZO_B$ at which $Z$ sees the two centres is uniformly distributed on
@@ -200,12 +206,12 @@ probability.}
 \end{figure}
 
 Put $T$ at the origin, the tangent on the $y$-axis, $O_A=(-a,0)$ and $O_B=(b,0)$, and let
-$Z=(0,z)$. Write $p$ and $q$ for the angles that the segment $TZ$ subtends at the two centres, so
-that
+$Z=(0,z)$. Write $p=\arctan(z/a)$ and $q=\arctan(z/b)$ for the signed angles, with principal
+values in $(-\frac\pi2,\frac\pi2)$, that the segment $TZ$ subtends at the two centres, so that
 \begin{equation}\label{eq:pq}
-  \tan p=\frac za,\qquad \tan q=\frac zb,\qquad \theta=\pi-p-q .
+  \tan p=\frac za,\qquad \tan q=\frac zb,\qquad \theta=\pi-|p+q| .
 \end{equation}
-Theorem~\ref{thm:angle} says that $s=p+q$ is uniform on $(-\frac\pi2,\frac\pi2)$; equivalently, $z$
+Theorem~\ref{thm:angle} says that the signed sum $s=p+q$ is uniform on $(-\frac\pi2,\frac\pi2)$; equivalently, $z$
 has density
 \begin{equation}\label{eq:density}
   f(z)=\frac1\pi\left(\frac{a}{a^2+z^2}+\frac{b}{b^2+z^2}\right),\qquad |z|<\sqrt{ab},
@@ -214,8 +220,16 @@ which is the derivative of $s/\pi$. In words: the crossing point is spread like 
 of the two Cauchy laws centred at $T$ with scales $a$ and $b$, cut off where the chords stop
 reaching.
 
+Throughout, statements about the random chord hold almost surely. We set aside the events that
+$P$ or $Q$ is the point of contact $T$, that $P=Q$, that the line $PQ$ is tangent to a circle or
+parallel to the common tangent, and (in Section~\ref{sec:proofmain}) that a side of the triangle passes
+through the incentre. Each event forces one of the two independent uniform angles to take one of
+finitely many values given the other, so each has probability $0$.
+
 \begin{proof}[Proof of Theorem~\ref{thm:angle}]
-We change variables from the pair of points to the line through them, and then count lines.
+We change variables from the pair of points to the line through them, and then count lines. This
+parametrisation by crossing height and direction, with its four preimages, was suggested by Maxicl in
+comments on Dan's question~\cite{Maxicl}; the computation below carries it out.
 
 \emph{From points to lines.} Describe the line $PQ$ by its crossing height $z$ and its direction
 $(\cos\omega,\sin\omega)$, with $|\omega|<\frac\pi2$. Moving $(z,\omega)$ by $(dz,d\omega)$ moves the
@@ -275,11 +289,11 @@ The proof is a computation, and I do not know a way to see the uniformity direct
 substitution~\eqref{eq:u} is the one honest piece of luck: it makes the inner integral equal to $\pi$
 for every $z$.
 
-\section{Proof of Theorem~\ref{thm:main}}
+\section{Proof of Theorem~\ref{thm:main}}\label{sec:proofmain}
 
-Apply Theorem~\ref{thm:angle} to the circles about $O_A$ and $O_B$, measuring $z$ along $T_CI$
+This step is Dan's reduction~\cite{DanReduction}, written in the present notation. Apply Theorem~\ref{thm:angle} to the circles about $O_A$ and $O_B$, measuring $z$ along $T_CI$
 towards $I$. The incentre is at height $\rho=T_CI$, the inradius, and by Lemma~\ref{lem:miss} the side
-$PQ$ misses $I$ exactly when $z>\rho$, that is when $\theta<\angle O_AIO_B$. The bisectors give
+$PQ$ misses $I$ exactly when $z>\rho$, that is when $z>0$ and $\theta<\angle O_AIO_B$. The bisectors give
 $\angle O_AIO_B=\pi-\frac A2-\frac B2=\frac\pi2+\frac C2$. (This is also why $\rho<\sqrt{ab}$: the
 incentre lies within the range of crossing points.) Hence
 \[
@@ -360,20 +374,23 @@ the $\frac12$ without integrating. Theorem~\ref{thm:sphere} narrows the target. 
 see, without computation, why the eight-sheeted map $S$ preserves area; or why, in the remark of
 Section~4, a side misses as often as the opposite vertex falls inside the incircle.
 
-\paragraph{Verification.} The algebra and calculus of Sections~2 to~5 are formally verified in Lean~4
-with Mathlib~\cite{mathlib}: the chord identities, the integral of~\eqref{eq:u} over its whole range
+\paragraph{Verification.} Selected identities and integrals used in the proofs are formally verified in
+Lean~4 with Mathlib~\cite{mathlib}: the chord identities, the integral of~\eqref{eq:u} over its whole range
 (equal to $\pi$), the density~\eqref{eq:density} and its distribution function, the half-angle
 identity behind $A+B+C=\pi$, the final sum, and the folding step of Theorem~\ref{thm:sphere}. The
-change of variables~\eqref{eq:jacobian} as a statement about measures, and the plane geometry of
+probability laws themselves, the map to the sphere as a statement about measures, the
+change of variables~\eqref{eq:jacobian}, and the plane geometry of
 Lemmas~\ref{lem:sectors} and~\ref{lem:miss}, are checked by hand and by simulation: an independent
 program confirms Theorem~\ref{thm:main} for four radius triples, the per-side probabilities, the
 uniform angle, and the joint law of $(s,v)$. Code and proofs are at
 \url{https://github.com/jvvk/mathematics/tree/main/tangent-circles-incentre}.
 
-\paragraph{Acknowledgements.} Dan posed the problem and the two-circle statement, and user170231,
+\paragraph{Acknowledgements.} Dan posed the problem, reduced it to the two-circle statement and
+posed that statement; Maxicl suggested the coordinates used in Section~3; user170231,
 Jack D'Aurizio, dnqxt and Blue contributed to the discussion on Mathematics Stack Exchange.
 Anthropic's Claude (Opus~5.5) was used to find the proofs, write the Lean formalisation and the
-checking programs, and draft this text. The author checked the proofs and takes responsibility for
+checking programs, and draft this text; Codex (OpenAI) refereed version~1 and found the prior
+contributions credited in version~2. The author checked the proofs and takes responsibility for
 the content.
 
 \begin{thebibliography}{9}
@@ -384,7 +401,8 @@ question 5084455, 21 July 2025, with the author's answer 5084456,
 \url{https://math.stackexchange.com/q/5084455} (accessed 9 October 2026).
 
 \bibitem{user170231}
-user170231, answer 5084571 to~\cite{DanEqual}, Mathematics Stack Exchange, 21 July 2025,
+user170231, answer 5084571 to Dan's question 5084499 (the integral from~\cite{DanEqual}),
+Mathematics Stack Exchange, 21 July 2025,
 \url{https://math.stackexchange.com/a/5084571} (accessed 9 October 2026).
 
 \bibitem{DanAny}
@@ -396,6 +414,14 @@ triangle contains incentre of $\triangle ABC$ is $1/2$?, Mathematics Stack Excha
 Dan, The probability that a line segment, whose endpoints are random points on two tangent
 circles, crosses a line segment tangent to the circles, Mathematics Stack Exchange, question
 5087823, 4 August 2025, \url{https://math.stackexchange.com/q/5087823} (accessed 9 October 2026).
+
+\bibitem{DanReduction}
+Dan, answer 5087836 to~\cite{DanAny}, Mathematics Stack Exchange, 4 August 2025,
+\url{https://math.stackexchange.com/a/5087836} (accessed 19 November 2026).
+
+\bibitem{Maxicl}
+Maxicl, comments of 16 and 17 August 2026 on~\cite{DanLemma}, Mathematics Stack Exchange,
+\url{https://math.stackexchange.com/questions/5087823/#comment11112567_5087823} (accessed 19 November 2026).
 
 \bibitem{DanMO}
 Dan, Random triangle on a ring of three tangent circles: show that the probability that the

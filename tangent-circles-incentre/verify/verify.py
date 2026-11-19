@@ -11,6 +11,8 @@
 
 from __future__ import annotations
 
+import sys
+
 import numpy as np
 from scipy.integrate import quad
 
@@ -99,3 +101,4 @@ for a, b, c in [(1, 1, 1), (1, 2, 3), (0.1, 1, 5), (2, 7, 0.3)]:
     ok &= bad
 
 print("ALL PASS" if ok else "SOME FAILED")
+sys.exit(0 if ok else 1)

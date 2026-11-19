@@ -11,6 +11,8 @@ Step 4: angle T_C A I = A/2; tan(A/2) tan(B/2) = rho^2/(ab); P(z > rho) = P(z < 
 
 from __future__ import annotations
 
+import sys
+
 import numpy as np
 from scipy.integrate import quad
 
@@ -68,8 +70,9 @@ for a, b, c in [(1, 1, 1), (1, 2, 3), (0.1, 1, 5), (2, 7, 0.3)]:
     chk(f"angle T_C A I = A/2 {a,b,c}", abs(angle(A, TC, I) - angA / 2) < 1e-9)
     chk(f"tan(A/2)tan(B/2) = rho^2/ab < 1 {a,b,c}",
         abs(np.tan(angA / 2) * np.tan(angB / 2) - rho ** 2 / (a * b)) < 1e-12 and rho < np.sqrt(a * b))
-    mutant(f"I = centroid instead of incentre {a,b,c}",
-           np.allclose([abs(cr2(B - A, (A + B + C) / 3 - A)) / np.linalg.norm(B - A)], rho) and a != b)
+    if a != b:  # with equal radii this mutant coincides with the claim, so it tests nothing there
+        mutant(f"I = centroid instead of incentre {a,b,c}",
+           np.allclose([abs(cr2(B - A, (A + B + C) / 3 - A)) / np.linalg.norm(B - A)], rho))
 
 
 # ---------------- Step 3 ----------------
@@ -100,7 +103,8 @@ for a, b in [(1, 1), (1, 3), (0.2, 5)]:
         f"max |dev|/se = {np.max(np.abs(emp - th_) / se):.2f}")
     chk(f"P(z>r)=P(z<-r) a={a} b={b}", abs(np.mean(z > 0.5 * L) - np.mean(z < -0.5 * L)) < 0.001)
     wrong = (a / (a * a + ((edges[:-1] + edges[1:]) / 2) ** 2)) * 2 / np.pi * np.diff(edges)  # Cauchy(a) only
-    mutant(f"density = Cauchy(a) alone a={a} b={b}", np.max(np.abs(emp - wrong) / se) < 5 and a != b)
+    if a != b:  # with equal radii this mutant coincides with the claim, so it tests nothing there
+        mutant(f"density = Cauchy(a) alone a={a} b={b}", np.max(np.abs(emp - wrong) / se) < 5)
 
     # (b) Jacobian: |d(z,w)/d(th,ph)| = c_A c_B / (cos w |PQ|)
     jac_mut: list[bool] = []
@@ -160,3 +164,4 @@ for a, b in [(1, 1), (1, 3), (0.2, 5)]:
     mutant(f"f without the 4-to-1 factor a={a} b={b}", abs(val / 4 - f(zz, a, b)) < 1e-6)
 
 print("ALL PASS" if ok else "SOME FAILED")
+sys.exit(0 if ok else 1)
