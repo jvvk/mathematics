@@ -31,7 +31,7 @@ def run_antisq(words: list[str]) -> dict[str, bool]:
         raise Inconclusive(f"./antisq exited {res.returncode}: {res.stderr.strip()}")
     out = res.stdout.split()
     brute = dict(zip(out[1::2], (v == "1" for v in out[0::2])))
-    if len(out) != 2 * len(words) or set(brute) != set(words) or any(v not in "01" for v in out[0::2]):
+    if len(out) != 2 * len(words) or set(brute) != set(words) or any(v not in ("0", "1") for v in out[0::2]):
         raise Inconclusive("./antisq output does not answer every word exactly once")
     return brute
 

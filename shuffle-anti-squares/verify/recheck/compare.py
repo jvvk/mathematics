@@ -15,7 +15,7 @@ def rep(w: str) -> str:
 
 def read_rows(path: str) -> list[list[str]]:
     rows = [l.split() for l in open(path) if l.strip()]
-    if any(len(r) != 2 or r[1] not in "01" or set(r[0]) - set("01") for r in rows):
+    if any(len(r) != 2 or r[1] not in ("0", "1") or set(r[0]) - set("01") for r in rows):
         raise ValueError(f"{path}: malformed line")
     return rows
 
