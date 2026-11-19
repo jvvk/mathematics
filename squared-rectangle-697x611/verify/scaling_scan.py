@@ -4,8 +4,28 @@ f(m,n) (if <= K) = min over t | gcd(m,n) of best[(m/t, n/t)]. A rectangle R = (a
 divisor-scaled base (a/t, b/t) whose f exceeds k (i.e. no tiling of the base with <= k squares) is a counterexample;
 it is PROVEN if k <= K, since the base then provably needs > k squares."""
 import glob, math, sys
+
+
+def require_complete(out_dir: str, K: int) -> None:
+    """The enumeration must have finished cleanly for every order: run.sh (or mutant.sh) writes one summary line
+    per order, with plantri's count matched and no failed or unresolved case."""
+    import os, re
+    path = os.path.join(out_dir, "summary.txt")
+    if not os.path.isfile(path):
+        print(f"no {path}: the enumeration did not finish")
+        sys.exit(2)
+    done = {}
+    for line in open(path):
+        m = re.match(r"nv=(\d+) .*graphs=(\d+) .*exact-check-failures=(\d+) unresolved=(\d+)", line)
+        if m:
+            done[int(m.group(1))] = (int(m.group(2)), int(m.group(3)), int(m.group(4)))
+    for nv in range(4, K + 4):
+        if nv not in done or done[nv][0] == 0 or done[nv][1] or done[nv][2]:
+            print(f"order nv={nv} missing or not clean in {path}")
+            sys.exit(2)
 K = int(sys.argv[1])
 import os
+require_complete("out", K)
 need = [f"out/best_{nv}.txt" for nv in range(4, K + 4)]
 if not all(os.path.isfile(fn) for fn in need):
     sys.exit(f"missing enumeration files for K = {K} (run run.sh {K} first)")

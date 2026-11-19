@@ -25,4 +25,9 @@ done
 low=0
 for f in out/hits_*.txt; do low=$((low + $(grep -c '^HIT k=\([1-9]\|1[0-3]\) ' "$f" || true))); done
 [ "$low" -eq 0 ] || { echo "FAIL: $low tilings similar to 697 x 611 with at most 13 squares"; exit 1; }
-echo "PASS: no rectangle similar to 697 x 611 is tiled by 13 or fewer squares (K = $K)" | tee -a out/summary.txt
+upto=$(( K < 13 ? K : 13 ))
+if [ "$K" -ge 13 ]; then
+  echo "PASS: no rectangle similar to 697 x 611 is tiled by 13 or fewer squares (K = $K)" | tee -a out/summary.txt
+else
+  echo "no rectangle similar to 697 x 611 is tiled by $upto or fewer squares (K = $K < 13: the lower bound needs K >= 13)" | tee -a out/summary.txt
+fi

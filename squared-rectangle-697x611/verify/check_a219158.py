@@ -2,10 +2,40 @@
 f_K(m,n) = min over t | gcd(m,n) of best(m/t, n/t) from networks with <= K squares; must equal A219158 whenever
 A219158 <= K, and be absent (> K) otherwise.
 Exit 0: full agreement. Exit 1: a mismatch. Exit 2: missing or incomplete input (needs best_4 .. best_{K+3})."""
-import glob, math, sys
+import glob, math, os, sys
+import traceback
+
+
+def _infrastructure_failure(kind, value, tb):  # any uncaught exception is an infrastructure failure: exit 2, never 1
+    traceback.print_exception(kind, value, tb)
+    sys.stdout.flush()
+    os._exit(2)
+
+
+sys.excepthook = _infrastructure_failure
+
+
+def require_complete(out_dir: str, K: int) -> None:
+    """The enumeration must have finished cleanly for every order: run.sh (or mutant.sh) writes one summary line
+    per order, with plantri's count matched and no failed or unresolved case."""
+    import os, re
+    path = os.path.join(out_dir, "summary.txt")
+    if not os.path.isfile(path):
+        print(f"no {path}: the enumeration did not finish")
+        sys.exit(2)
+    done = {}
+    for line in open(path):
+        m = re.match(r"nv=(\d+) .*graphs=(\d+) .*exact-check-failures=(\d+) unresolved=(\d+)", line)
+        if m:
+            done[int(m.group(1))] = (int(m.group(2)), int(m.group(3)), int(m.group(4)))
+    for nv in range(4, K + 4):
+        if nv not in done or done[nv][0] == 0 or done[nv][1] or done[nv][2]:
+            print(f"order nv={nv} missing or not clean in {path}")
+            sys.exit(2)
 
 K = int(sys.argv[1])
 OUT = sys.argv[2] if len(sys.argv) > 2 else "out"
+require_complete(OUT, K)
 need = [f"{OUT}/best_{nv}.txt" for nv in range(4, K + 4)]
 missing = [fn for fn in need if not __import__("os").path.isfile(fn)]
 if missing:
@@ -17,7 +47,14 @@ for fn in need:
         a, b, k = map(int, line.split())
         if k <= K:
             best[(a, b)] = min(best.get((a, b), 99), k)
-vals = [int(l.split()[1]) for l in open("b219158.txt") if l.strip() and not l.startswith("#")]
+try:
+    vals = [int(l.split()[1]) for l in open("b219158.txt") if l.strip() and not l.startswith("#")]
+except (OSError, ValueError, IndexError) as e:
+    print("cannot read b219158.txt:", e)
+    sys.exit(2)
+if len(vals) != 388 * 389 // 2:
+    print(f"b219158.txt has {len(vals)} values, expected {388 * 389 // 2}")
+    sys.exit(2)
 it = iter(vals)
 agree = mism = checked_le = 0
 bad = []
