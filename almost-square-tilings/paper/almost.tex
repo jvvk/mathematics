@@ -22,7 +22,7 @@
 \author{Vamshi Jandhyala}
 \subjclass[2020]{05B45, 52C20}
 \keywords{Tiling, dissection, almost-square, perfect squared square}
-\date{Preprint, version 3, 23 October 2026 (version 1: 8 October; version 2: expository revision; results unchanged throughout). Not peer reviewed.}
+\date{Preprint, version 4, 19 November 2026 (version 1: 8 October 2026; versions 2 and 3: expository revisions and stricter checks; results unchanged throughout). Not peer reviewed.}
 
 \begin{document}
 \raggedbottom
@@ -90,7 +90,8 @@ turn it into a proof.
 
 The question comes from Erich Friedman's Problem of the Month for May
 2012~\cite{friedman-0512}. Solvers found tilings for every $n$ from $20$ to $55$ and for
-$n=10,12,14,15,18$; Friedman's list of unsolved problems from the column then recorded the
+$n=10,12,14,15,18$, and for the other $n$ from $6$ to $19$ the table there records the smallest waste
+they found, which is positive, without a proof that it cannot be zero; Friedman's list of unsolved problems from the column then recorded the
 conjecture that every $n\ge20$ works~\cite{friedman-unsolved}.
 
 A neighbouring problem uses every size from $1$ to $m$ at once. The almost-square packing problem asks
@@ -108,7 +109,8 @@ if and only if $n\in\{4,10,12,14,15,18\}$ or $n\ge20$.
 \end{thm}
 
 The new parts are a construction for every $n\ge56$, where the only earlier case we know of is $n=119$,
-and the impossibility for every $n\le19$ outside the list. The proof has three steps. Section~\ref{sec:inflation} shows that moving cut lines preserves a
+and a proof that every $n\le19$ outside the list is impossible, which the earlier searches suggested but
+did not establish. The proof has three steps. Section~\ref{sec:inflation} shows that moving cut lines preserves a
 dissection, using one counting identity, and that one good set of moves works for all large scales.
 Section~\ref{sec:parity} uses the same identity to explain which squared squares can be inflated
 and which values of $n$ they reach. Section~\ref{sec:proof} supplies the finite data for large $n$,
@@ -553,10 +555,13 @@ Every claim in Sections~\ref{sec:proof} and~\ref{sec:small} is a finite check, a
 programs are at \url{https://github.com/jvvk/mathematics/tree/main/almost-square-tilings}: the layouts of the squared squares, the $128$ inflations
 with their thresholds (the $111$ used and some spares), the $151$ explicit tilings and the six small
 ones, both searches for $n\le19$, checksums, and a script that reruns the checker, the search in C for $n\le19$, the second search for $n\le18$ ($n=19$ on request, a few minutes) and the checksums. A checker
-sharing no code with the programs that found the tilings rebuilds each tiling cell by cell; it checks
-every explicit tiling, every inflation at its first two scales and the conditions of
-Lemma~\ref{lem:scales} for $300$ further scales, and confirms that every $n$ with $20\le n\le20000$ is
-covered. To make sure the checker is not vacuous, the certificate was corrupted in four ways (moving
+sharing no code with the programs that found the tilings rebuilds each tiling cell by cell and requires
+distinct sizes from $1$ to $n-1$; it checks the $151$ explicit tilings and the six small ones, every inflation
+at its first two scales and the conditions of Lemma~\ref{lem:scales} for $300$ further scales,
+recomputes each class's offset $v(S)$ from its shifts, and confirms that every $n$ with $20\le n\le20000$
+is covered. The checker samples scales; that Lemma~\ref{lem:scales} holds at every scale is proved in
+Section~\ref{sec:inflation} and in Lean, and Table~\ref{tab:area} and Proposition~\ref{prop:three}
+are checked in Lean only. To make sure the checker is not vacuous, the certificate was corrupted in four ways (moving
 one tile, deleting a tiling, changing one shift value, removing a residue class), and each corruption
 was reported. The checker also caught a real error in an early certificate, a threshold computed
 without the collision points of Lemma~\ref{lem:scales}.
@@ -587,8 +592,9 @@ page. This work was carried out with Claude (Anthropic), working at the author's
 Claude Code in September and October 2026: the inflation construction, the parity lemma, the search
 and checking programs and drafts of this paper came from that collaboration.
 The checker and the searches share that origin, so the checker was kept short enough to read in full,
-and the corruption tests above guard against a checker that accepts too much. The author takes
-responsibility for the contents.
+and the corruption tests above guard against a checker that accepts too much. Codex (OpenAI) refereed
+version~3; its review led to the stricter checks of version~4. The author takes responsibility for the
+contents.
 
 \begin{thebibliography}{12}
 \bibitem{bsst} R.~L. Brooks, C.~A.~B. Smith, A.~H. Stone and W.~T. Tutte, The dissection of

@@ -64,15 +64,23 @@ def decide(n: int) -> tuple[str, float]:
             for var, k, w, h, x, y in placements
             if is_true(m.eval(var))
         ]
-        err = check(lines, W, H)
+        err = check(lines, W, H, n)
         return ("SAT, tiling VALID" if err is None else f"SAT but INVALID: {err}"), dt
     return ("UNSAT" if r == unsat else "UNKNOWN"), dt
 
 
+SOLVABLE = {4, 10, 12, 14, 15, 18}  # Theorem 1 below n = 20
+
+
 def main() -> None:
+    bad = 0
     for n in map(int, sys.argv[1:]):
         verdict, dt = decide(n)
-        print(f"n={n}: {verdict} ({dt:.1f} s)", flush=True)
+        want = "SAT, tiling VALID" if n in SOLVABLE else "UNSAT"
+        ok = verdict == want or (want == "UNSAT" and verdict.startswith("UNSAT"))
+        bad += not ok
+        print(f"n={n}: {verdict} ({dt:.1f} s){'' if ok else '  <-- expected ' + want}", flush=True)
+    sys.exit(1 if bad else 0)  # UNKNOWN, an invalid witness or an unexpected verdict all fail
 
 
 if __name__ == "__main__":

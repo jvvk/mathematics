@@ -1,0 +1,184 @@
+# Mutation suite for AlmostSquares (Friedman #20). Replaces mutants.sh.
+# Run (from lean/, after lake build): python3 -I scripts/mutate.py scripts/mutants.toml
+# Copy mode: each mutant plants one wrong change in a copy of its source file, compiled against the built tree
+# with one thread. A rejection needs a nonzero exit AND a Lean error located in the mutated copy; timeouts and
+# crashes are inconclusive and fail the run. Full output of every run is kept in mutation-logs/.
+[check]
+cmd = ["lake", "env", "lean", "--threads=1", "{file}"]
+cwd = ".."
+timeout = 900
+mode = "copy"
+fail_pattern = 'AlmostSquares/\S+Mut\.lean:\d+:\d+: error'
+diagnostic_in_target = true
+log_dir = "../mutation-logs"
+
+[[mutant]]
+name = '''balance: right side (f W - f 0) -> f W'''
+file = "../AlmostSquares/Inflation.lean"
+old = '''      (f W - f 0) * (g H - g 0) := by'''
+new = '''      f W * (g H - g 0) := by'''
+
+[[mutant]]
+name = '''inflation: strict -> monotone'''
+file = "../AlmostSquares/Inflation.lean"
+old = '''    (hX : StrictMonoOn X (CutX W ts)) (hY : StrictMonoOn Y (CutY H ts)) :'''
+new = '''    (hX : MonotoneOn X (CutX W ts)) (hY : StrictMonoOn Y (CutY H ts)) :'''
+
+[[mutant]]
+name = '''inflation: size min -> max'''
+file = "../AlmostSquares/Inflation.lean"
+old = '''        T'.size = t * T.w + min (u (T.x + T.w) - u T.x) (v (T.y + T.h) - v T.y) := by'''
+new = '''        T'.size = t * T.w + max (u (T.x + T.w) - u T.x) (v (T.y + T.h) - v T.y) := by'''
+
+[[mutant]]
+name = '''signed identity: S (uS - vS) -> S (uS + vS)'''
+file = "../AlmostSquares/Inflation.lean"
+old = '''      S * (u S - v S) := by'''
+new = '''      S * (u S + v S) := by'''
+
+[[mutant]]
+name = '''parity: |T| -> |T| + 1'''
+file = "../AlmostSquares/Parity.lean"
+old = '''    ((T.map (coordSum u v)).sum - T.length) % 2 = 0'''
+new = '''    ((T.map (coordSum u v)).sum - T.length - 1) % 2 = 0'''
+
+[[mutant]]
+name = '''prop 112: even -> odd'''
+file = "../AlmostSquares/Parity.lean"
+old = '''theorem prop_112 (u v : ℤ → ℤ) (h : IsInflation 112 sq112 u v) : Even (v 112) := by'''
+new = '''theorem prop_112 (u v : ℤ → ℤ) (h : IsInflation 112 sq112 u v) : Odd (v 112) := by'''
+
+[[mutant]]
+name = '''prop 110: odd -> even'''
+file = "../AlmostSquares/Parity.lean"
+old = '''theorem prop_110 (u v : ℤ → ℤ) (h : IsInflation 110 sq110 u v) : Odd (v 110) := by'''
+new = '''theorem prop_110 (u v : ℤ → ℤ) (h : IsInflation 110 sq110 u v) : Even (v 110) := by'''
+
+[[mutant]]
+name = '''stack T112 loses the 6-square'''
+file = "../AlmostSquares/Parity.lean"
+old = '''def T112 : List Tile := [sq 42 70 0, sq 18 70 42, sq 6 82 60, sq 11 82 66, sq 8 85 77, sq 27 85 85]'''
+new = '''def T112 : List Tile := [sq 42 70 0, sq 18 70 42, sq 11 82 66, sq 8 85 77, sq 27 85 85]'''
+
+[[mutant]]
+name = '''sq139: one square moved'''
+file = "../AlmostSquares/Parity.lean"
+old = '''  sq 1 29 30,'''
+new = '''  sq 1 30 30,'''
+
+[[mutant]]
+name = '''integer corners: x -> x/2'''
+file = "../AlmostSquares/Real.lean"
+old = '''    ∀ T ∈ ts, IsInt T.x ∧ IsInt T.y := fun T hT =>'''
+new = '''    ∀ T ∈ ts, IsInt (T.x / 2) ∧ IsInt T.y := fun T hT =>'''
+
+[[mutant]]
+name = '''real theorem: drop 18 from the list'''
+file = "../AlmostSquares/Real.lean"
+old = '''    (∃ ts : List RTile, RAdmissible n ts) ↔ n ∈ [4, 10, 12, 14, 15, 18] ∨ 20 ≤ n := by'''
+new = '''    (∃ ts : List RTile, RAdmissible n ts) ↔ n ∈ [4, 10, 12, 14, 15] ∨ 20 ≤ n := by'''
+
+[[mutant]]
+name = '''Moron: v(10) = 1 -> 2'''
+file = "../AlmostSquares/Examples.lean"
+old = '''def moronV (b : ℤ) : ℤ := if b = 10 then 1 else 0'''
+new = '''def moronV (b : ℤ) : ℤ := if b = 10 then 2 else 0'''
+
+[[mutant]]
+name = '''Moron: 43 -> 44'''
+file = "../AlmostSquares/Examples.lean"
+old = '''    ((moron.filter (fun T => eps moronU moronV T = 1)).map Tile.w).sum = 43 := by decide +kernel'''
+new = '''    ((moron.filter (fun T => eps moronU moronV T = 1)).map Tile.w).sum = 44 := by decide +kernel'''
+
+[[mutant]]
+name = '''112 example: signed sum 112 -> 111'''
+file = "../AlmostSquares/Examples.lean"
+old = '''theorem ex112_signed : (sq112.map (fun T => eps u112 v112 T * T.w)).sum = 112 ∧'''
+new = '''theorem ex112_signed : (sq112.map (fun T => eps u112 v112 T * T.w)).sum = 111 ∧'''
+
+[[mutant]]
+name = '''112 example: t = 2 -> t = 1'''
+file = "../AlmostSquares/Examples.lean"
+old = '''theorem ex112_t2 : Admissible 224 (sq112.map (img (scaleShift 2 u112) (scaleShift 2 v112))) :='''
+new = '''theorem ex112_t2 : Admissible 112 (sq112.map (img (scaleShift 1 u112) (scaleShift 1 v112))) :='''
+
+[[mutant]]
+name = '''Lemma 4: drop the collision hypothesis'''
+file = "../AlmostSquares/Scales.lean"
+old = '''
+    (hcol : ∀ T ∈ ts, ∀ U ∈ ts, T.w ≠ U.w →
+      ∀ t : ℤ, t * T.w + cmin u v T = t * U.w + cmin u v U → t < t0)
+'''
+new = ''''''
+
+[[mutant]]
+name = '''collision check: < t0 -> <= t0'''
+file = "../AlmostSquares/Classes.lean"
+old = '''    decide ((cmin u v U - cmin u v T) / (T.w - U.w) < t0)'''
+new = '''    decide ((cmin u v U - cmin u v T) / (T.w - U.w) ≤ t0)'''
+
+[[mutant]]
+name = '''class data: one shift value changed'''
+file = "../AlmostSquares/Inflations.lean"
+old = '''  ⟨112, -120, 3, [(29, -32), (33, -35), (50, -54), (54, -58), (63, -67), (65, -70), (70, -74), (82, -88), (85, -91), (88, -94), (93, -99), (112, -119)], [(33, -36), (37, -40), (42, -46), (53, -57), (60, -65), (62, -67), (66, -72), (77, -82), (85, -91), (112, -120)]⟩,'''
+new = '''  ⟨112, -120, 3, [(29, -31), (33, -35), (50, -54), (54, -58), (63, -67), (65, -70), (70, -74), (82, -88), (85, -91), (88, -94), (93, -99), (112, -119)], [(33, -36), (37, -40), (42, -46), (53, -57), (60, -65), (62, -67), (66, -72), (77, -82), (85, -91), (112, -120)]⟩,'''
+
+[[mutant]]
+name = '''coverage: even residues -> odd'''
+file = "../AlmostSquares/Main.lean"
+old = '''theorem resid112 : ∀ r : ℕ, r < 112 → r % 2 = 0 → inflations.any (fun I =>'''
+new = '''theorem resid112 : ∀ r : ℕ, r < 112 → r % 2 = 1 → inflations.any (fun I =>'''
+
+[[mutant]]
+name = '''Bouwkamp 112: last group 33 -> 34'''
+file = "../AlmostSquares/Bouwkamp.lean"
+old = '''  [[50, 35, 27], [8, 19], [15, 17, 11], [6, 24], [29, 25, 9, 2], [7, 18], [16], [42], [4, 37], [33]]'''
+new = '''  [[50, 35, 27], [8, 19], [15, 17, 11], [6, 24], [29, 25, 9, 2], [7, 18], [16], [42], [4, 37], [34]]'''
+
+[[mutant]]
+name = '''Bouwkamp: 139 code checked against 110 layout'''
+file = "../AlmostSquares/Bouwkamp.lean"
+old = '''theorem sq139_code : codeIs code139 139 139 sq139 = true := by decide +kernel'''
+new = '''theorem sq139_code : codeIs code139 139 139 sq110 = true := by decide +kernel'''
+
+[[mutant]]
+name = '''Table 2: last entry 56 -> 55'''
+file = "../AlmostSquares/Counts.lean"
+old = '''    [0, 0, 1, 0, 1, 2, 1, 3, 6, 5, 3, 13, 14, 18, 30, 27, 42, 56] := by decide +kernel'''
+new = '''    [0, 0, 1, 0, 1, 2, 1, 3, 6, 5, 3, 13, 14, 18, 30, 27, 42, 55] := by decide +kernel'''
+
+[[mutant]]
+name = '''cnt: empty case counts every t'''
+file = "../AlmostSquares/Counts.lean"
+old = '''  | 0, t => if t = 0 then 1 else 0'''
+new = '''  | 0, t => 1'''
+
+[[mutant]]
+name = '''uncovered: 151 -> 150'''
+file = "../AlmostSquares/Counts.lean"
+old = '''theorem uncovered_count : uncovered.length = 151 ∧'''
+new = '''theorem uncovered_count : uncovered.length = 150 ∧'''
+
+[[mutant]]
+name = '''thresholds: t0 <= 3 -> t0 <= 2'''
+file = "../AlmostSquares/Counts.lean"
+old = '''      (I.V - (r : ℤ)) % 112 = 0 ∧ I.t0 ≤ 3 ∧ I.t0 * I.S + I.V ≤ 360)) = true) ∧'''
+new = '''      (I.V - (r : ℤ)) % 112 = 0 ∧ I.t0 ≤ 2 ∧ I.t0 * I.S + I.V ≤ 360)) = true) ∧'''
+
+[[mutant]]
+name = '''pieces: 22 -> 21'''
+file = "../AlmostSquares/Counts.lean"
+old = '''theorem pieces : (base 112).length = 21 ∧ (base 110).length = 22 := by decide +kernel'''
+new = '''theorem pieces : (base 112).length = 21 ∧ (base 110).length = 21 := by decide +kernel'''
+
+[[mutant]]
+name = '''57x55: 67 -> 68'''
+file = "../AlmostSquares/Reach.lean"
+old = '''theorem reach57_count : (reach57.map Reach.n).dedup.length = 67 ∧'''
+new = '''theorem reach57_count : (reach57.map Reach.n).dedup.length = 68 ∧'''
+
+[[mutant]]
+name = '''Moron: n = 60 -> 61'''
+file = "../AlmostSquares/Reach.lean"
+old = '''theorem moron_60 : rectOK 33 32 moron 2 (tab [(14, -2), (18, -2), (24, -3), (25, -3), (33, -5)]) (tab [(9, -1), (10, -2), (14, -1), (17, -2), (32, -4)]) 60 = true := by'''
+new = '''theorem moron_60 : rectOK 33 32 moron 2 (tab [(14, -2), (18, -2), (24, -3), (25, -3), (33, -5)]) (tab [(9, -1), (10, -2), (14, -1), (17, -2), (32, -4)]) 61 = true := by'''
