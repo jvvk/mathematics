@@ -22,6 +22,7 @@ import sys
 
 import numpy as np
 import sympy as sp
+from mpmath import iv
 from scipy.optimize import minimize
 
 QUICK = "--quick" in sys.argv
@@ -186,14 +187,44 @@ def cross(p, q):
     return p[0] * q[1] - p[1] * q[0]
 
 
+def _iv(e):
+    """Interval enclosure of an exact sympy expression built from rationals, +, *, integer powers and square
+    roots, in mpmath's outward-rounded interval arithmetic."""
+    if e.is_Rational:
+        return iv.mpf(int(e.p)) / int(e.q)
+    if e.is_Add:
+        acc = iv.mpf(0)
+        for a in e.args:
+            acc += _iv(a)
+        return acc
+    if e.is_Mul:
+        acc = iv.mpf(1)
+        for a in e.args:
+            acc *= _iv(a)
+        return acc
+    if e.is_Pow:
+        base, ex = e.args
+        if ex.is_Integer:
+            return _iv(base) ** int(ex)
+        if ex == sp.Rational(1, 2):
+            return iv.sqrt(_iv(base))
+        if ex == -sp.Rational(1, 2):
+            return 1 / iv.sqrt(_iv(base))
+    raise ValueError(f"no interval rule for {e.func}")
+
+
 def sign_exact(x) -> int:
-    """Certified sign of an exact algebraic number: evaluate at rising precision until the value clears its
-    error bound; only a value too small at every precision is tested for exact zero (minimal polynomial X)."""
+    """Certified sign of an exact algebraic number: an interval enclosure (outward rounding) that excludes 0
+    decides the sign; otherwise the precision rises, and a number whose enclosures always contain 0 is tested
+    for exact zero by its minimal polynomial."""
     x = sp.sympify(x)
-    for prec in (60, 300, 1500):
-        v = sp.N(x, prec)
-        if abs(v) > sp.Float(10, prec) ** -(prec - 10):
-            return 1 if v > 0 else -1
+    for dps in (50, 300, 1500):
+        iv.dps = dps
+        enc = _iv(x)
+        if enc.a > 0:
+            return 1
+        if enc.b < 0:
+            return -1
     X = sp.Symbol("X")
     if sp.minimal_polynomial(x, X) == X:
         return 0

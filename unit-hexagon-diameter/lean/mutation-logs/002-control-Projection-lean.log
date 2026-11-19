@@ -1,0 +1,7 @@
+# control Projection.lean
+# command: nice -n 15 lake env lean LeanProofs/UnitHexagon/ProjectionMut.lean
+# exit: 0
+## stdout
+
+## stderr
+

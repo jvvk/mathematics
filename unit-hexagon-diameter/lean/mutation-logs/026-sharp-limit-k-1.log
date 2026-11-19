@@ -1,0 +1,14 @@
+# sharp: limit k = 1
+# command: nice -n 15 lake env lean LeanProofs/UnitHexagon/SharpnessMut.lean
+# exit: 1
+## stdout
+LeanProofs/UnitHexagon/SharpnessMut.lean:283:22: error: unsolved goals
+⊢ 0 ≤ ?m.183
+LeanProofs/UnitHexagon/SharpnessMut.lean:289:35: error: unsolved goals
+k0 : kk 0 = 1
+hD : Dx 0 = 0 ∧ Dy 0 = 1
+hE : Ex 0 = 3 / 5 ∧ Ey 0 = 1 / 5
+⊢ False
+
+## stderr
+

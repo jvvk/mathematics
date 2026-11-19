@@ -2,7 +2,7 @@
 
 Lean 4.34.0 with Mathlib v4.34.0. Build with `lake exe cache get && lake build LeanProofs`, then
 `lake env lean CheckClaims.lean` prints each result's axioms (only `propext`, `Classical.choice`,
-`Quot.sound`). `python3 -I scripts/mutate.py scripts/mutants.toml` checks that Lean rejects each of 21 wrong variants with an error in the mutated copy (summary in `mutation-validation.log`, full output in `mutation-logs/`).
+`Quot.sound`). `python3 -I scripts/mutate.py scripts/mutants.toml` checks that Lean rejects each of 21 wrong variants with an error in the mutated copy; it writes the full output of every run to `mutation-logs/`, and its printed summary is saved as `mutation-validation.log`.
 
 | Paper | Lean (namespace `UnitHexagon`) | File |
 |---|---|---|

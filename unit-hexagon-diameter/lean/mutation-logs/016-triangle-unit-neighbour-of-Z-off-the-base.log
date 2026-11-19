@@ -1,0 +1,15 @@
+# triangle: unit neighbour of Z off the base
+# command: nice -n 15 lake env lean LeanProofs/UnitHexagon/TriangleMut.lean
+# exit: 1
+## stdout
+LeanProofs/UnitHexagon/TriangleMut.lean:141:10: error: Application type mismatch: The argument
+  rfl
+has type
+  ?m.265 = ?m.265
+but is expected to have type
+  0 = h
+in the application
+  And.intro rfl
+
+## stderr
+

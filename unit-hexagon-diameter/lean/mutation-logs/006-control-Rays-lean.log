@@ -1,0 +1,7 @@
+# control Rays.lean
+# command: nice -n 15 lake env lean LeanProofs/UnitHexagon/RaysMut.lean
+# exit: 0
+## stdout
+
+## stderr
+

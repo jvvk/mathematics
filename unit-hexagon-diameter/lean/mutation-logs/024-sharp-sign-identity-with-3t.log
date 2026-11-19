@@ -1,0 +1,19 @@
+# sharp: sign identity with 3t
+# command: nice -n 15 lake env lean LeanProofs/UnitHexagon/SharpnessMut.lean
+# exit: 1
+## stdout
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+LeanProofs/UnitHexagon/SharpnessMut.lean:138:84: error: unsolved goals
+t : ℝ
+ht : 0 < t
+this : 0 < 1 + t ^ 2
+⊢ t * 80 - t ^ 2 * 160 + t ^ 3 * 80 - t ^ 4 * 160 = t * 80 - t ^ 2 * 240 + t ^ 3 * 80 - t ^ 4 * 240
+LeanProofs/UnitHexagon/SharpnessMut.lean:176:4: error: failed to prove positivity/nonnegativity/nonzeroness
+
+## stderr
+

@@ -1,0 +1,31 @@
+# turns: max angle > 2pi/5
+# command: nice -n 15 lake env lean LeanProofs/UnitHexagon/TurnsMut.lean
+# exit: 1
+## stdout
+LeanProofs/UnitHexagon/TurnsMut.lean:71:34: error: linarith failed to find a contradiction
+case right.inl
+α β : ℝ
+ha' : α ≤ π / 2
+hb' : β ≤ π / 2
+h : π < α + 2 * β
+hc : max α β ≤ 2 * π / 5
+this✝ : α ≤ max α β
+this : β ≤ max α β
+hle : 2 * α + β ≤ α + 2 * β
+⊢ False
+failed
+LeanProofs/UnitHexagon/TurnsMut.lean:72:33: error: linarith failed to find a contradiction
+case right.inr
+α β : ℝ
+ha' : α ≤ π / 2
+hb' : β ≤ π / 2
+h : π < 2 * α + β
+hc : max α β ≤ 2 * π / 5
+this✝ : α ≤ max α β
+this : β ≤ max α β
+hle : α + 2 * β ≤ 2 * α + β
+⊢ False
+failed
+
+## stderr
+

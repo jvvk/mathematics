@@ -1,0 +1,23 @@
+# turns: weaker hypothesis 2a+b <= pi+1
+# command: nice -n 15 lake env lean LeanProofs/UnitHexagon/TurnsMut.lean
+# exit: 1
+## stdout
+LeanProofs/UnitHexagon/TurnsMut.lean:35:73: error: Application type mismatch: The argument
+  h1
+has type
+  2 * α + β ≤ π + 1
+but is expected to have type
+  2 * α + β ≤ π
+in the application
+  sin_le_sin_add (LT.lt.le ha) (LT.lt.le hb) h1
+LeanProofs/UnitHexagon/TurnsMut.lean:57:58: error: Application type mismatch: The argument
+  hc
+has type
+  max (2 * α + β) (α + 2 * β) ≤ π
+but is expected to have type
+  max (2 * α + β) ?m.98 ≤ π + 1
+in the application
+  LE.le.trans (le_max_left (2 * α + β) ?m.98) hc
+
+## stderr
+

@@ -1,0 +1,31 @@
+# four-hull: wrong sign in K
+# command: nice -n 15 lake env lean LeanProofs/UnitHexagon/FourHullMut.lean
+# exit: 1
+## stdout
+LeanProofs/UnitHexagon/FourHullMut.lean:53:2: error: ring failed, ring expressions not equal
+α β γ : ℝ
+S : ℝ := ⋯
+e1 : -sin (β + γ) = sin α * cos S - cos α * sin S
+e2 : -sin γ = sin (α + β) * cos S - cos (α + β) * sin S
+r1 : α - S = -(β + γ)
+r2 : α + β - S = -γ
+⊢ -(sin (β + γ) * 2) = 0
+LeanProofs/UnitHexagon/FourHullMut.lean:122:6: error: linarith failed to find a contradiction
+case inl.inl
+α β γ : ℝ
+ha : 0 < α
+hb : 0 < β
+hc : 0 < γ
+ha' : α ≤ π / 2
+hb' : β ≤ π / 2
+hc' : γ ≤ π / 2
+hS : π < α + β + γ
+hP0 : 0 ≤ sin α - sin (α + β) + sin (α + β + γ)
+hP4 : 0 ≤ sin γ + sin (β + γ) + sin (α + β + γ)
+h : γ ≤ α
+hK : sin γ - sin (β + γ) + sin (α + β + γ) < 0
+⊢ False
+failed
+
+## stderr
+

@@ -1,0 +1,17 @@
+# rays: d need not be inside the hull
+# command: nice -n 15 lake env lean LeanProofs/UnitHexagon/RaysMut.lean
+# exit: 1
+## stdout
+LeanProofs/UnitHexagon/RaysMut.lean:43:13: error: linarith failed to find a contradiction
+e f b d : ℝ × ℝ
+hef : 0 < cross e f
+hfb : cross f b < 0
+hfd : 0 < cross f d
+heb hed : 0 < cross e b
+id : cross b d * cross e f = cross f d * cross e b - cross f b * cross e d
+a✝ : cross f d * cross e b - cross f b * cross e d ≤ 0
+⊢ False
+failed
+
+## stderr
+

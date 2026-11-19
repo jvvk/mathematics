@@ -1,0 +1,58 @@
+# four-hull: wrong outer-angle order
+# command: nice -n 15 lake env lean LeanProofs/UnitHexagon/FourHullMut.lean
+# exit: 1
+## stdout
+LeanProofs/UnitHexagon/FourHullMut.lean:95:40: error: linarith failed to find a contradiction
+α β γ : ℝ
+ha : 0 < α
+hb : 0 < β
+hc : 0 < γ
+ha' : α ≤ π / 2
+hb' : β ≤ π / 2
+hc' : γ ≤ π / 2
+hS : π < α + β + γ
+hca : α ≤ γ
+hsS : sin (α + β + γ) < 0
+hcase : π < 2 * γ + β
+a✝ : α + β + γ - π < 2 * γ + β - π
+⊢ False
+failed
+LeanProofs/UnitHexagon/FourHullMut.lean:110:17: error: linarith failed to find a contradiction
+case h1
+α β γ : ℝ
+ha : 0 < α
+hb : 0 < β
+hc : 0 < γ
+ha' : α ≤ π / 2
+hb' : β ≤ π / 2
+hc' : γ ≤ π / 2
+hS : π < α + β + γ
+hca : α ≤ γ
+hsS : sin (α + β + γ) < 0
+hcase : π < 2 * γ + β
+hmono : sin (α + β + γ) ≤ sin (2 * γ + β)
+hs : 0 < sin (γ / 2)
+hcn : cos (γ + β / 2) < 0
+heq : β + γ = π
+a✝ : α < π / 2
+⊢ False
+failed
+LeanProofs/UnitHexagon/FourHullMut.lean:121:41: error: Application type mismatch: The argument
+  h
+has type
+  γ ≤ α
+but is expected to have type
+  α ≤ γ
+in the application
+  K_neg ha hb hc ha' hb' hc' hS h
+LeanProofs/UnitHexagon/FourHullMut.lean:125:42: error: Application type mismatch: The argument
+  h
+has type
+  α ≤ γ
+but is expected to have type
+  γ ≤ α
+in the application
+  K_neg hc hb ha hc' hb' ha' hS' h
+
+## stderr
+

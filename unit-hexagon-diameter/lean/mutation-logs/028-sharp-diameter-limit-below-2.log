@@ -1,0 +1,15 @@
+# sharp: diameter limit below 2
+# command: nice -n 15 lake env lean LeanProofs/UnitHexagon/SharpnessMut.lean
+# exit: 1
+## stdout
+LeanProofs/UnitHexagon/SharpnessMut.lean:333:20: error: Application type mismatch: The argument
+  h1
+has type
+  ∀ (i j : Fin 6), d2 (V t i) (V t j) < 2 + ε
+but is expected to have type
+  ∀ (i j : Fin 6), d2 (V t i) (V t j) < 3 / 2 + ε
+in the application
+  And.intro h1
+
+## stderr
+

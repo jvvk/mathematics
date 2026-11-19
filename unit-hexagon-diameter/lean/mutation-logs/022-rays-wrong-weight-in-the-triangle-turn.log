@@ -1,0 +1,15 @@
+# rays: wrong weight in the triangle turn
+# command: nice -n 15 lake env lean LeanProofs/UnitHexagon/RaysMut.lean
+# exit: 1
+## stdout
+LeanProofs/UnitHexagon/RaysMut.lean:34:9: error: Application type mismatch: The argument
+  key
+has type
+  cross (F - E) (A - F) = -μ * orient A C E
+but is expected to have type
+  cross (F - E) (A - F) = -ν * orient A C E
+in the application
+  And.intro key
+
+## stderr
+

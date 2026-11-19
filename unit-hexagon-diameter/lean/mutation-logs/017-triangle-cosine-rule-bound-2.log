@@ -1,0 +1,14 @@
+# triangle: cosine rule bound 2
+# command: nice -n 15 lake env lean LeanProofs/UnitHexagon/TriangleMut.lean
+# exit: 1
+## stdout
+LeanProofs/UnitHexagon/TriangleMut.lean:215:76: error: linarith failed to find a contradiction
+θ : ℝ
+hπ : θ ≤ π
+hd : 2 - 2 * cos θ ≤ 2
+a✝ : cos θ < 1 / 2
+⊢ False
+failed
+
+## stderr
+

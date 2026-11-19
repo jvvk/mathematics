@@ -1,0 +1,30 @@
+# triangle: apex included in the median bound
+# command: nice -n 15 lake env lean LeanProofs/UnitHexagon/TriangleMut.lean
+# exit: 1
+## stdout
+LeanProofs/UnitHexagon/TriangleMut.lean:116:37: error: linarith failed to find a contradiction
+a h : ℝ
+ha : 0 < a
+hh : 0 < h
+hah : a ^ 2 + h ^ 2 = 1
+y₀ x y : ℝ
+hy₀ : 0 ≤ y₀
+hy₀h : y₀ ≤ h
+hy : 0 ≤ y
+hx : h * |x| ≤ a * (h - y)
+hyh : y ≤ h
+hx2 : h ^ 2 * x ^ 2 ≤ a ^ 2 * (h - y) ^ 2
+a✝ : 1 ≤ a ^ 2 + y₀ ^ 2
+⊢ False
+failed
+LeanProofs/UnitHexagon/TriangleMut.lean:166:39: error: Application type mismatch: The argument
+  hvh
+has type
+  v < h
+but is expected to have type
+  v ≤ h
+in the application
+  median_lt_one ha hh hah hv hvh
+
+## stderr
+

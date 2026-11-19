@@ -1,0 +1,41 @@
+# projection: sqrt 3 instead of sqrt 2
+# command: nice -n 15 lake env lean LeanProofs/UnitHexagon/ProjectionMut.lean
+# exit: 1
+## stdout
+LeanProofs/UnitHexagon/ProjectionMut.lean:39:4: error: Tactic `assumption` failed
+
+V : Type u_1
+inst✝¹ : NormedAddCommGroup V
+inst✝ : InnerProductSpace ℝ V
+X₀ X₁ X₂ X₃ : V
+h01 : ‖X₀ - X₁‖ = 1
+h23 : ‖X₃ - X₂‖ = 1
+h02 : ‖X₀ - X₂‖ ≤ √3
+h31 : X₃ ≠ X₁
+h10 : X₀ ≠ X₁
+w₀ w₂ w₃ : ℝ
+hw₀ : 0 ≤ w₀
+hw₂ : 0 ≤ w₂
+hw₃ : 0 ≤ w₃
+hw : w₀ + w₂ + w₃ = 1
+hX : X₁ = w₀ • X₀ + w₂ • X₂ + w₃ • X₃
+b : V := X₁ - X₂
+h12 : ‖b‖ = 1
+f₀ : ℝ := ⟪X₀ - X₂, b⟫
+f₃ : ℝ := ⟪X₃ - X₂, b⟫
+hb : ⟪b, b⟫ = 1
+e0 : X₀ - X₁ = X₀ - X₂ - b
+hf0 : 2 * f₀ = ‖X₀ - X₂‖ ^ 2
+this : ‖X₀ - X₂‖ ^ 2 ≤ 3
+⊢ ‖X₀ - X₂‖ ^ 2 ≤ 2
+LeanProofs/UnitHexagon/ProjectionMut.lean:76:39: error: Application type mismatch: The argument
+  h02
+has type
+  ‖X₀ - X₂‖ ≤ √2
+but is expected to have type
+  ‖X₀ - X₂‖ ≤ √3
+in the application
+  projection_weights h01 h12 h23 h02
+
+## stderr
+

@@ -1,0 +1,7 @@
+# control Sharpness.lean
+# command: nice -n 15 lake env lean LeanProofs/UnitHexagon/SharpnessMut.lean
+# exit: 0
+## stdout
+
+## stderr
+

@@ -1,0 +1,34 @@
+# triangle: turns need not alternate
+# command: nice -n 15 lake env lean LeanProofs/UnitHexagon/TriangleMut.lean
+# exit: 1
+## stdout
+LeanProofs/UnitHexagon/TriangleMut.lean:232:4: error: Tactic `tauto` failed
+
+case succ
+left convex : ℕ → Prop
+k : ℕ
+hl : ∀ i < k, left (i + 1) ↔ ¬left i
+hc : ∀ i < k, convex (i + 1) ↔ convex i
+j : ℕ
+ih : j ≤ k → ((convex j ↔ left j) ↔ (convex 0 ↔ left 0))
+hi : j + 1 ≤ k
+⊢ (convex j ↔ ¬left j) ↔ (convex j ↔ left j)
+LeanProofs/UnitHexagon/TriangleMut.lean:240:50: error: Application type mismatch: The argument
+  hc
+has type
+  ∀ i < k, convex (i + 1) ↔ ¬convex i
+but is expected to have type
+  ∀ i < k, convex (i + 1) ↔ convex i
+in the application
+  invariant_along_path left convex k hl hc
+LeanProofs/UnitHexagon/TriangleMut.lean:241:50: error: Application type mismatch: The argument
+  hc
+has type
+  ∀ i < k, convex (i + 1) ↔ ¬convex i
+but is expected to have type
+  ∀ i < k, convex (i + 1) ↔ convex i
+in the application
+  invariant_along_path left convex k hl hc
+
+## stderr
+

@@ -1,0 +1,23 @@
+# sharp: E convex
+# command: nice -n 15 lake env lean LeanProofs/UnitHexagon/SharpnessMut.lean
+# exit: 1
+## stdout
+LeanProofs/UnitHexagon/SharpnessMut.lean:249:27: error: linarith failed to find a contradiction
+case refine_3
+t : ℝ
+ht : 0 < t
+ht' : t < 1 / 2
+dx : 0 < Dx t
+dy : 1 < Dy t
+ex : 0 < Ex t
+ey : 0 < Ey t
+right✝ : Ey t < 1
+fx : Fx t < 0
+fy : 0 < Fy t
+fy' : Fy t < 1
+a✝ : Dx t * (-4 / 5) + Fy t * (3 / 5) + Dy t * (-3 / 5) + Fx t * (4 / 5) ≤ 0
+⊢ False
+failed
+
+## stderr
+

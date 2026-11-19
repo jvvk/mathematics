@@ -1,0 +1,29 @@
+control passes: Turns.lean
+control passes: Projection.lean
+control passes: FourHull.lean
+control passes: Triangle.lean
+control passes: Counting.lean
+control passes: Rays.lean
+control passes: Sharpness.lean
+rejected: turns: weaker hypothesis 2a+b <= pi+1 (exit 1, diagnostic: LeanProofs/UnitHexagon/TurnsMut.lean:35:73: error: Application type mismatch: The argument)
+rejected: turns: max angle > 2pi/5 (exit 1, diagnostic: LeanProofs/UnitHexagon/TurnsMut.lean:71:34: error: linarith failed to find a contradiction)
+rejected: projection: sqrt 3 instead of sqrt 2 (exit 1, diagnostic: LeanProofs/UnitHexagon/ProjectionMut.lean:39:4: error: Tactic `assumption` failed)
+rejected: four-hull: wrong sign in K (exit 1, diagnostic: LeanProofs/UnitHexagon/FourHullMut.lean:53:2: error: ring failed, ring expressions not equal)
+rejected: four-hull: factor 2 instead of 4 (exit 1, diagnostic: LeanProofs/UnitHexagon/FourHullMut.lean:74:2: error: ring failed, ring expressions not equal)
+rejected: four-hull: wrong outer-angle order (exit 1, diagnostic: LeanProofs/UnitHexagon/FourHullMut.lean:95:40: error: linarith failed to find a contradiction)
+rejected: four-hull: S > 3pi/2 (exit 1, diagnostic: LeanProofs/UnitHexagon/FourHullMut.lean:154:16: error: linarith failed to find a contradiction)
+rejected: triangle: apex included in the median bound (exit 1, diagnostic: LeanProofs/UnitHexagon/TriangleMut.lean:116:37: error: linarith failed to find a contradiction)
+rejected: triangle: unit neighbour of Z off the base (exit 1, diagnostic: LeanProofs/UnitHexagon/TriangleMut.lean:141:10: error: Application type mismatch: The argument)
+rejected: triangle: cosine rule bound 2 (exit 1, diagnostic: LeanProofs/UnitHexagon/TriangleMut.lean:215:76: error: linarith failed to find a contradiction)
+rejected: triangle: turns need not alternate (exit 1, diagnostic: LeanProofs/UnitHexagon/TriangleMut.lean:232:4: error: Tactic `tauto` failed)
+rejected: pocket: r > 2k/3 (exit 1, diagnostic: LeanProofs/UnitHexagon/CountingMut.lean:34:2: error: mod_cast has type)
+rejected: hexagon: exactly two reflex (exit 1, diagnostic: LeanProofs/UnitHexagon/CountingMut.lean:74:2: error: omega could not prove the goal:)
+rejected: octagon: exactly two reflex (exit 1, diagnostic: LeanProofs/UnitHexagon/CountingMut.lean:84:2: error: omega could not prove the goal:)
+rejected: rays: wrong weight in the triangle turn (exit 1, diagnostic: LeanProofs/UnitHexagon/RaysMut.lean:34:9: error: Application type mismatch: The argument)
+rejected: rays: d need not be inside the hull (exit 1, diagnostic: LeanProofs/UnitHexagon/RaysMut.lean:43:13: error: linarith failed to find a contradiction)
+rejected: sharp: sign identity with 3t (exit 1, diagnostic: LeanProofs/UnitHexagon/SharpnessMut.lean:138:84: error: unsolved goals)
+rejected: sharp: D off the unit circle about C (exit 1, diagnostic: LeanProofs/UnitHexagon/SharpnessMut.lean:104:41: error: linarith failed to find a contradiction)
+rejected: sharp: limit k = 1 (exit 1, diagnostic: LeanProofs/UnitHexagon/SharpnessMut.lean:283:22: error: unsolved goals)
+rejected: sharp: E convex (exit 1, diagnostic: LeanProofs/UnitHexagon/SharpnessMut.lean:249:27: error: linarith failed to find a contradiction)
+rejected: sharp: diameter limit below 2 (exit 1, diagnostic: LeanProofs/UnitHexagon/SharpnessMut.lean:333:20: error: Application type mismatch: The argument)
+21/21 mutants rejected, all controls pass

@@ -1,0 +1,7 @@
+# control Triangle.lean
+# command: nice -n 15 lake env lean LeanProofs/UnitHexagon/TriangleMut.lean
+# exit: 0
+## stdout
+
+## stderr
+

@@ -1,0 +1,13 @@
+# four-hull: factor 2 instead of 4
+# command: nice -n 15 lake env lean LeanProofs/UnitHexagon/FourHullMut.lean
+# exit: 1
+## stdout
+LeanProofs/UnitHexagon/FourHullMut.lean:74:2: error: ring failed, ring expressions not equal
+β γ : ℝ
+h1 : 2 * cos ((β + γ) / 2) * cos (γ + β / 2) = cos (γ / 2) + cos (3 * γ / 2 + β)
+h2 : 2 * sin (γ / 2) * cos (γ / 2) = sin γ
+h3 : 2 * sin (γ / 2) * cos (3 * γ / 2 + β) = sin (2 * γ + β) - sin (β + γ)
+⊢ sin (γ / 2) * cos ((β + γ) / 2) * cos (γ + β / 2) * 2 = 0
+
+## stderr
+

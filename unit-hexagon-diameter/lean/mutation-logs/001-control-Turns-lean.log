@@ -1,0 +1,7 @@
+# control Turns.lean
+# command: nice -n 15 lake env lean LeanProofs/UnitHexagon/TurnsMut.lean
+# exit: 0
+## stdout
+
+## stderr
+

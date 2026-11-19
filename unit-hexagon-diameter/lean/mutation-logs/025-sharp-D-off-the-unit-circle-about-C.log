@@ -1,0 +1,69 @@
+# sharp: D off the unit circle about C
+# command: nice -n 15 lake env lean LeanProofs/UnitHexagon/SharpnessMut.lean
+# exit: 1
+## stdout
+LeanProofs/UnitHexagon/SharpnessMut.lean:104:41: error: linarith failed to find a contradiction
+t : ℝ
+ht : 0 < t
+ht' : t < 1 / 2
+a✝ : 2 / 5 * (1 + t ^ 2) ≤ 3 * t ^ 2
+⊢ False
+failed
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+LeanProofs/UnitHexagon/SharpnessMut.lean:138:84: error: unsolved goals
+t : ℝ
+ht : 0 < t
+this : 0 < 1 + t ^ 2
+⊢ t * 80 - t ^ 2 * 190 + t ^ 3 * 80 - t ^ 4 * 315 = t * 80 - t ^ 2 * 160 + t ^ 3 * 80 - t ^ 4 * 160
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+LeanProofs/UnitHexagon/SharpnessMut.lean:158:55: error: unsolved goals
+t : ℝ
+ht : 0 < t
+this : 0 < 1 + t ^ 2
+⊢ 1 + t ^ 4 * 4 = 1 + t ^ 2 * 2 + t ^ 4
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+LeanProofs/UnitHexagon/SharpnessMut.lean:242:57: error: unsolved goals
+t : ℝ
+ht : 0 < t
+ht' : t < 1 / 2
+dx : 0 < Dx t
+dy : 1 < Dy t
+ex : 0 < Ex t
+ey : 0 < Ey t
+right✝ : Ey t < 1
+fx : Fx t < 0
+fy : 0 < Fy t
+fy' : Fy t < 1
+this : 0 < 1 + t ^ 2
+⊢ 4 - t * 6 - t ^ 2 * 4 - t ^ 3 * 6 - t ^ 4 * 8 = 4 - t * 6 - t ^ 3 * 6 - t ^ 4 * 4
+LeanProofs/UnitHexagon/SharpnessMut.lean:257:13: error: Type mismatch
+  Continuous.div (Continuous.comp' (continuous_const_mul 2) (Continuous.fun_pow continuous_id' 2))
+    (Continuous.const_add (Continuous.fun_pow continuous_id' 2) 1) fun t => LT.lt.ne' (q_pos t)
+has type
+  Continuous ((fun t => 2 * t ^ 2) / fun t => 1 + t ^ 2)
+but is expected to have type
+  Continuous fun t => 3 * t ^ 2 / (1 + t ^ 2)
+LeanProofs/UnitHexagon/SharpnessMut.lean:281:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  1 / ((2 * 0 ^ 2 / (1 + 0 ^ 2) + 3 / 5) ^ 2 + (1 + 2 * 0 / (1 + 0 ^ 2) - 4 / 5) ^ 2) - 1 / 4
+in the target expression
+  √(1 / ((3 * 0 ^ 2 / (1 + 0 ^ 2) + 3 / 5) ^ 2 + (1 + 2 * 0 / (1 + 0 ^ 2) - 4 / 5) ^ 2) - 1 / 4) = 3 / 2
+
+⊢ √(1 / ((3 * 0 ^ 2 / (1 + 0 ^ 2) + 3 / 5) ^ 2 + (1 + 2 * 0 / (1 + 0 ^ 2) - 4 / 5) ^ 2) - 1 / 4) = 3 / 2
+
+## stderr
+

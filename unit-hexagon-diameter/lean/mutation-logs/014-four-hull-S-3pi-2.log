@@ -1,0 +1,29 @@
+# four-hull: S > 3pi/2
+# command: nice -n 15 lake env lean LeanProofs/UnitHexagon/FourHullMut.lean
+# exit: 1
+## stdout
+LeanProofs/UnitHexagon/FourHullMut.lean:154:16: error: linarith failed to find a contradiction
+case h2
+α β γ t₀ t₄ : ℝ
+hsum : π - α + (π - β) + (π - γ) + t₀ + t₄ = 2 * π
+h0 : 0 ≤ t₀
+h4 : 0 ≤ t₄
+hne : ¬(t₀ = 0 ∧ t₄ = 0)
+hc : α + β + γ ≤ 3 * π / 2
+a✝ : 0 < t₀
+⊢ False
+failed
+LeanProofs/UnitHexagon/FourHullMut.lean:154:29: error: linarith failed to find a contradiction
+case h2
+α β γ t₀ t₄ : ℝ
+hsum : π - α + (π - β) + (π - γ) + t₀ + t₄ = 2 * π
+h0 : 0 ≤ t₀
+h4 : 0 ≤ t₄
+hne : ¬(t₀ = 0 ∧ t₄ = 0)
+hc : α + β + γ ≤ 3 * π / 2
+a✝ : 0 < t₄
+⊢ False
+failed
+
+## stderr
+
