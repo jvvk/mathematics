@@ -12,13 +12,13 @@ Three circles touch in a row with radii `a`, `b`, `c` in geometric progression. 
 
 The paper explains it through a fact about two circles. For independent uniform points `A`, `B` on two circles whose discs have disjoint interiors, the signed offsets of the line `AB` from the two centres, each divided by its radius, are independent with the arcsine law (Lemma 2). The proof is a change of variables over the four pairs of points on a line, whose contributions add to a constant because the half-chords cancel. From this, Theorem 4 decides exactly which points `O` on the line of centres see `AB` and the chord `BC` at the same distance in distribution: `O` is the second centre, or the circles touch and `|QO| = b(a + b)/a`. This answers Dan's question for every ratio, extends it to every circle about the third centre and to chains of circles, shows that the progression is necessary for equality of the distance distributions, and gives a single integral for the common hit probability.
 
-Preprint v2, 19 November 2026 (v1: 8 October 2026), not peer reviewed. **Version 2**, after a referee review by Codex (OpenAI), which found no prior work: the necessity claim is stated for the distance distributions, as in the paper; the Python checks refuse to run with assertions disabled; the Lean axioms are checked against a whitelist and the output saved; the Lean mutants run on the house harness. The mathematics is unchanged. Every proved result of the paper is also formally verified in Lean 4 (`lean/`, standard axioms only). The exposition has not yet been independently reviewed. The author used AI tools (Claude, Anthropic; Codex, OpenAI) in this work, as described in the paper's acknowledgements, and is responsible for its content.
+Preprint v2, 19 November 2026 (v1: 8 October 2026), not peer reviewed. **Version 2**, after a referee review by Codex (OpenAI), whose prior-work search found no further priority conflict (some collapsed Stack Exchange comments could not be retrieved): the necessity claim is stated for the distance distributions, as in the paper; the Python checks refuse to run with assertions disabled; the Lean axiom audit is saved and checked: exactly the requested theorems, each once, standard axioms only; the Lean mutants run on the house harness. The mathematics is unchanged. Every proved result of the paper is also formally verified in Lean 4 (`lean/`, standard axioms only). The exposition has not yet been independently reviewed. The author used AI tools (Claude, Anthropic; Codex, OpenAI) in this work, as described in the paper's acknowledgements, and is responsible for its content.
 
 ## Contents
 
 - `paper/`: `paper.tex`, `paper.pdf`, the two figures and the scripts that draw them.
 - `verify/`: three checkers and `run_all.py` (`README.md` lists what each checks). They check the change-of-variables calculation, the weight comparison and centre classification, the off-axis second-moment identity and the hit-probability integrals, in exact rational arithmetic where possible; nine deliberately false variants must each fail.
-- `lean/`: a Lake project pinned to Lean 4.34.0 and Mathlib v4.34.0. `lean/README.md` maps each result of the paper to its Lean name; `RandomChords/Audit.lean` prints the axioms of every one. `SOURCE-SNAPSHOT.json` records the development commit and the hash of every file. `mutants.sh` plants 23 wrong changes and checks that each fails to build. Not formalised: the numerical value in Corollary 8 and its agreement with Dan's dilogarithm expression (both computed in `verify/`), and Santaló's formula, which the paper cites in a remark but does not use.
+- `lean/`: a Lake project pinned to Lean 4.34.0 and Mathlib v4.34.0. `lean/README.md` maps each result of the paper to its Lean name; `RandomChords/Audit.lean` prints the axioms of every one. `SOURCE-SNAPSHOT.json` records the development commit and the hash of every file. `scripts/mutants.toml` (run by `scripts/mutate.py`) plants 23 wrong changes and checks that Lean rejects each; `axiom-validation.txt` is the saved axiom audit, checked by `scripts/check_axioms.py`. Not formalised: the numerical value in Corollary 8 and its agreement with Dan's dilogarithm expression (both computed in `verify/`), and Santaló's formula, which the paper cites in a remark but does not use.
 
 ## Reproduce
 
@@ -28,7 +28,7 @@ python3 run_all.py                      # needs numpy and mpmath; under a minute
 cd ../paper && latexmk -pdf paper.tex
 cd ../lean && lake exe cache get && lake build   # builds every module and prints the axiom audit
 lake env lean RandomChords/Audit.lean > axiom-validation.txt && python3 -I scripts/check_axioms.py axiom-validation.txt
-python3 -I scripts/mutate.py scripts/mutants.toml   # 23 mutants, each rejected
+python3 -I scripts/mutate.py scripts/mutants.toml | tee mutation-validation.log   # 23 mutants, each rejected
 ```
 
 ## Licence

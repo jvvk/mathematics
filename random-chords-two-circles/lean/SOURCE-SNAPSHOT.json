@@ -1,10 +1,11 @@
 {
   "source_repo": "lean-proofs (private)",
   "source_commit": "d0721174315a7a1af4b7d76770283a06f31f814f",
-  "note": "RandomChords/*.lean are LeanProofs/Chords at this commit, with imports renamed from LeanProofs.Chords to RandomChords; RandomChords.lean is new. Built in this layout on 8 October 2026: 2800 jobs, every axiom audit (29 results) standard; mutants.sh: 23 mutants rejected, the unchanged copy builds.",
+  "note": "RandomChords/*.lean are LeanProofs/Chords at this commit, with imports renamed from LeanProofs.Chords to RandomChords; RandomChords.lean is new. Built in this layout on 8 October 2026: 2800 jobs, every axiom audit (29 results) standard; mutants.sh: 23 mutants rejected, the unchanged copy builds. v2 (19 November 2026): mutants.sh replaced by scripts/mutants.toml + mutate.py (in place, serial rebuild via scripts/lake_serial.py); axiom-validation.txt is the audit of these sources, checked by scripts/check_axioms.py (29 of 29, standard axioms).",
   "lean_toolchain": "leanprover/lean4:v4.34.0",
   "mathlib_rev": "v4.34.0",
   "files": {
+    "RandomChords.lean": "bbbadd21abd15df8da96b21cb9cba29e3f146247906f632af41aff1277eebe53",
     "RandomChords/Audit.lean": "1fed2a8b1ea72b8af2c1e1ef40331eb46e580f88d43533cc1beeefe56adc45d2",
     "RandomChords/Basic.lean": "dd9cd8550020a24ec2a5f6051a031e1d2e79498f79b3382e0a08cee0e4ecb7e9",
     "RandomChords/Branches.lean": "4bfcb65ecbc0d32ee65e10a6a4aacc701aa82464adc9291546768da4928ed64f",
@@ -16,6 +17,10 @@
     "RandomChords/OneCircle.lean": "9f8469ca23c2f3d9ddb822d2bca5e3b1f64852b447b471cf6bd3a21bf7cd4bcd",
     "RandomChords/Remarks.lean": "263080b2581b10ebf6ad9f51b6aad720fef944586bd8c8482a133cff61338e09",
     "RandomChords/TwoCircles.lean": "386cc0a0ac4458d52c93715d0cc39e7cd297aeaa0e785608c2605a73448c86d8",
-    "RandomChords.lean": "bbbadd21abd15df8da96b21cb9cba29e3f146247906f632af41aff1277eebe53"
+    "axiom-validation.txt": "187aca559d6c50a034d561c13830ee5a8d0e7faf2daa01362e4dd7d885aaa629",
+    "scripts/check_axioms.py": "122e9308284c7de3d87c90e4310fae1351f937ea7021dad71948d62f88382f13",
+    "scripts/lake_serial.py": "fce40bcf1487e7f1f5b8c9b8c5b96e260eb4f093c52dce7ff2a2d3010d439a38",
+    "scripts/mutants.toml": "ae31fa4a577b0562158f342ad0ee60618ce56456629ddf46152b3039909a8ecd",
+    "scripts/mutate.py": "197561653de9ab9359e0849b3feb86598db451a1a867f154055cb1f972c38ed8"
   }
 }

@@ -31,8 +31,8 @@ after Lemma 2 (a remark; the proof of Lemma 2 does not use it).
 `scripts/mutants.toml`, run by `scripts/mutate.py`, plants 23 wrong changes (definitions, statements and
 hypotheses across every file) one at a time in the sources, rebuilds through `Audit.lean` with
 `scripts/lake_serial.py` (one module at a time) and restores the file; each must fail with a Lean error in a
-`RandomChords` source, and the unchanged sources must build. Timeouts and crashes fail the run. The summary is
-saved as `mutation-validation.log`, the full output of every run in `mutation-logs/`.
+`RandomChords` source, and the unchanged sources must build. Timeouts and crashes fail the run. The full output of every run goes to `mutation-logs/`; the summary is saved by
+running the command as `python3 -I scripts/mutate.py scripts/mutants.toml | tee mutation-validation.log`.
 
 ## Build
 
@@ -40,5 +40,5 @@ saved as `mutation-validation.log`, the full output of every run in `mutation-lo
 lake exe cache get     # Mathlib build cache
 lake build             # compiles every module and runs the axiom audit
 lake env lean RandomChords/Audit.lean > axiom-validation.txt && python3 -I scripts/check_axioms.py axiom-validation.txt
-python3 -I scripts/mutate.py scripts/mutants.toml   # 23 mutants, each rejected; the unchanged sources build
+python3 -I scripts/mutate.py scripts/mutants.toml | tee mutation-validation.log   # 23 mutants, each rejected
 ```

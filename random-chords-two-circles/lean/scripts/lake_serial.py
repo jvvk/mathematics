@@ -36,8 +36,10 @@ for m in deps:
 env = dict(os.environ, LEAN_NUM_THREADS="1")
 for i, m in enumerate(order, 1):
     print(f"[{i}/{len(order)}] {m}", flush=True)
-    r = subprocess.run(["nice", "-n", "15", "lake", "build", m], cwd=proj, env=env, capture_output=True, text=True)
+    # Lake's full output passes straight through; its exit status is preserved (a signal n becomes 128 + n),
+    # so a caller can tell a Lean error (status 1) from a crash or a kill.
+    r = subprocess.run(["nice", "-n", "15", "lake", "build", m], cwd=proj, env=env)
     if r.returncode != 0:
-        print(r.stdout[-3000:], r.stderr[-2000:])
-        sys.exit(f"FAIL {m}")
+        print(f"FAIL {m} (lake exit {r.returncode})", file=sys.stderr, flush=True)
+        sys.exit(128 - r.returncode if r.returncode < 0 else r.returncode)
 print("build=0")

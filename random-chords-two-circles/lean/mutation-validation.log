@@ -1,0 +1,34 @@
+control passes: Basic.lean
+control passes: Branches.lean
+control passes: OneCircle.lean
+control passes: TwoCircles.lean
+control passes: Moments.lean
+control passes: Centres.lean
+control passes: Corollaries.lean
+control passes: HitProb.lean
+control passes: Remarks.lean
+control passes: Offsets.lean
+rejected: normal of the line not perpendicular (exit 1, diagnostic: error: RandomChords/Basic.lean:123:2: unsolved goals)
+rejected: torus mass twice the square (exit 1, diagnostic: error: RandomChords/Basic.lean:99:42: Tactic `rewrite` failed: Did not find an occurrence of the pattern)
+rejected: branch theorem: constant c + 1 (exit 1, diagnostic: error: RandomChords/Branches.lean:142:22: Tactic `rewrite` failed: Did not find an occurrence of the pattern)
+rejected: Lemma 1: law 2 • uniform (exit 1, diagnostic: error: RandomChords/OneCircle.lean:98:10: Application type mismatch: The argument)
+rejected: Lemma 1: C at phi + theta (exit 1, diagnostic: error: RandomChords/OneCircle.lean:34:93: unsolved goals)
+rejected: Lemma 2: dphi/dthetaA uses b (exit 1, diagnostic: error: RandomChords/TwoCircles.lean:121:101: unsolved goals)
+rejected: Lemma 2: gaps at least 1 (exit 1, diagnostic: error: RandomChords/TwoCircles.lean:95:67: Application type mismatch: The argument)
+rejected: Lemma 2: contributions sum to 2 (exit 1, diagnostic: error: RandomChords/TwoCircles.lean:177:50: unsolved goals)
+rejected: Lemma 2 for overlapping discs (exit 1, diagnostic: error: RandomChords/TwoCircles.lean:259:41: Application type mismatch: The argument)
+rejected: Lemma 3: second moment over 4 (exit 1, diagnostic: error: RandomChords/Moments.lean:182:62: unsolved goals)
+rejected: (T): weight 1 - mu (exit 1, diagnostic: error: RandomChords/Centres.lean:139:2: ring failed, ring expressions not equal)
+rejected: Theorem 4: |QO| = a(a+b)/b (exit 1, diagnostic: error: RandomChords/Centres.lean:269:2: Type mismatch)
+rejected: Corollary 5: ab = c^2 (exit 1, diagnostic: error: RandomChords/Corollaries.lean:47:25: linarith failed to find a contradiction)
+rejected: Corollary 7: factor 1/pi^2 (exit 1, diagnostic: error: RandomChords/HitProb.lean:177:2: unsolved goals)
+rejected: Corollary 7: H decreasing (exit 1, diagnostic: error: RandomChords/HitProb.lean:302:60: Application type mismatch: The argument)
+rejected: Corollary 7: H tends to 1/2 (exit 1, diagnostic: error: RandomChords/HitProb.lean:228:8: Application type mismatch: The argument)
+rejected: Corollary 8: arccos(2 cos v + 1) (exit 1, diagnostic: error: RandomChords/HitProb.lean:305:80: unsolved goals)
+rejected: (2): 2 a^2 D h (exit 1, diagnostic: error: RandomChords/Remarks.lean:400:87: unsolved goals)
+rejected: example: 1/40 (exit 1, diagnostic: error: RandomChords/Remarks.lean:450:64: unsolved goals)
+rejected: concentric: a x_A = a x_B (exit 1, diagnostic: error: RandomChords/Remarks.lean:36:2: ring failed, ring expressions not equal)
+rejected: direction: divide by 2D (exit 1, diagnostic: error: RandomChords/Offsets.lean:58:4: Type mismatch)
+rejected: Lemma 3: weights in order only (exit 1, diagnostic: error: RandomChords/Moments.lean:233:6: Tactic `left` failed: left tactic works for inductive types with exactly 2 constructors)
+rejected: mirrored Theorem 4: b(a+b)/a (exit 1, diagnostic: error: RandomChords/Corollaries.lean:159:31: unsolved goals)
+23/23 mutants rejected, all controls pass

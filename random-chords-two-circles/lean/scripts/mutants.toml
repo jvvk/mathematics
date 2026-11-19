@@ -9,7 +9,7 @@ cmd = ["python3", "-I", "scripts/lake_serial.py", ".", "RandomChords.Audit"]
 cwd = ".."
 timeout = 2400
 mode = "inplace"
-fail_pattern = 'RandomChords/\S+\.lean:\d+:\d+: error'
+fail_pattern = 'error: (?:\./)*RandomChords/\S+\.lean:\d+:\d+: '
 log_dir = "../mutation-logs"
 
 [[mutant]]
