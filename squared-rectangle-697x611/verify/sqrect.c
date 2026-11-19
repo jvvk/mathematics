@@ -12,7 +12,8 @@
    Input: plantri planar_code on stdin. For each (G, pole): exact integer currents (double solve, rounded with the
    spanning-tree count D, verified exactly by L N = D b), reduced shape (W, H) with gcd of the square sides 1.
    Output: best[W][H] = fewest squares for reduced shape W x H (W, H <= LIM), dumped at the end, and a line for
-   every tiling whose reduced shape is 697 x 611 or 1394 x 1222 (either orientation).
+   every tiling whose rectangle is similar to 697 x 611 (any scale, either orientation). Exits 3 if any exact check
+   fails or any numerically singular system belongs to a connected network (unresolved).
    Usage: plantri -qc2m2 NV | sqrect OUTFILE */
 #include <math.h>
 #include <stdint.h>
@@ -25,7 +26,7 @@
 #define LIM 1500
 
 static unsigned char best[LIM + 1][LIM + 1]; /* 0 = none */
-static long long ngraphs = 0, ntilings = 0, nfail = 0;
+static long long ngraphs = 0, ntilings = 0, nfail = 0, nunresolved = 0, nhits = 0;
 
 static long long gcdll(long long a, long long b) {
     if (a < 0) a = -a;
@@ -38,16 +39,40 @@ static long long gcdll(long long a, long long b) {
     return a;
 }
 
-static void report(int k, long long W, long long H, int nA, int ne, int (*E)[2], int pole, const long long *N) {
-    long long a = W < H ? W : H, b = W < H ? H : W;
-    if ((a == 611 && b == 697) || (a == 1222 && b == 1394)) {
+/* Report every tiling whose rectangle is similar to 697 x 611 (any scale), with potentials divided by g so that
+   the square sides and the shape W x H are those of the reduced tiling. */
+static void report(int k, long long W, long long H, long long g, int nA, int ne, int (*E)[2], int pole,
+                   const long long *N) {
+    if (W * 611 == H * 697 || W * 697 == H * 611) {
+        nhits++;
         printf("HIT k=%d %lldx%lld  G: nv=%d ne=%d edges:", k, W, H, nA, ne);
         for (int i = 0; i < ne; i++) printf(" %d-%d%s", E[i][0], E[i][1], i == pole ? "*" : "");
         printf("  potentials:");
-        for (int v = 0; v < nA; v++) printf(" %lld", N[v]);
+        for (int v = 0; v < nA; v++) printf(" %lld", N[v] / g);
         printf("\n");
         fflush(stdout);
     }
+}
+
+/* Exact connectivity of G minus edge p (union-find), to classify a numerically singular system. */
+static int connected_without(int nA, int ne, int (*E)[2], int p) {
+    int par[MAXV];
+    for (int v = 0; v < nA; v++) par[v] = v;
+    for (int i = 0; i < ne; i++) {
+        if (i == p) continue;
+        int a = E[i][0], b = E[i][1];
+        while (par[a] != a) a = par[a];
+        while (par[b] != b) b = par[b];
+        if (a != b) par[a] = b;
+    }
+    int r0 = 0;
+    while (par[r0] != r0) r0 = par[r0];
+    for (int v = 1; v < nA; v++) {
+        int r = v;
+        while (par[r] != r) r = par[r];
+        if (r != r0) return 0;
+    }
+    return 1;
 }
 
 static void solve_graph(int nA, int ne, int (*E)[2]) {
@@ -99,7 +124,11 @@ static void solve_graph(int nA, int ne, int (*E)[2]) {
                     for (int j = c; j <= m; j++) A[r][j] -= f * A[c][j];
             }
         }
-        if (singular) continue; /* G - p disconnected: not a squared rectangle */
+        if (singular) {
+            /* G - p disconnected: no squared rectangle. Connected but numerically singular: unresolved. */
+            if (connected_without(nA, ne, E, p)) nunresolved++;
+            continue;
+        }
         double x[MAXV];
         for (int r = m - 1; r >= 0; r--) {
             double acc = A[r][m];
@@ -140,7 +169,9 @@ static void solve_graph(int nA, int ne, int (*E)[2]) {
             long long a = W < H ? W : H, b = W < H ? H : W;
             if (!best[a][b] || best[a][b] > k) best[a][b] = (unsigned char)k;
         }
-        report(k, W, H, nA, ne, E, p, N);
+        for (int v = 0; v < nA; v++)
+            if (N[v] % g) nunresolved++; /* potentials must be multiples of g (sums of square sides) */
+        report(k, W, H, g, nA, ne, E, p, N);
     }
 }
 
@@ -218,10 +249,19 @@ int main(int argc, char **argv) {
         solve_graph(nA, ne, E);
     }
     FILE *f = fopen(argv[1], "w");
+    if (!f) {
+        fprintf(stderr, "cannot open %s\n", argv[1]);
+        return 3;
+    }
     for (int a = 1; a <= LIM; a++)
         for (int b = a; b <= LIM; b++)
             if (best[a][b]) fprintf(f, "%d %d %d\n", a, b, best[a][b]);
-    fclose(f);
-    fprintf(stderr, "graphs=%lld tilings=%lld exact-check-failures=%lld\n", ngraphs, ntilings, nfail);
-    return 0;
+    if (fclose(f) != 0) {
+        fprintf(stderr, "write error\n");
+        return 3;
+    }
+    fprintf(stderr, "graphs=%lld tilings=%lld exact-check-failures=%lld unresolved=%lld hits=%lld\n", ngraphs,
+            ntilings, nfail, nunresolved, nhits);
+    if (ferror(stdin)) return 3;
+    return (nfail || nunresolved) ? 3 : 0; /* any unresolved candidate invalidates an exclusion */
 }

@@ -1,0 +1,17 @@
+nv=4 (1 squares): graphs=1 tilings=2 exact-check-failures=0 unresolved=0 hits=0
+nv=5 (2 squares): graphs=1 tilings=3 exact-check-failures=0 unresolved=0 hits=0
+nv=6 (3 squares): graphs=2 tilings=8 exact-check-failures=0 unresolved=0 hits=0
+nv=7 (4 squares): graphs=3 tilings=15 exact-check-failures=0 unresolved=0 hits=0
+nv=8 (5 squares): graphs=9 tilings=48 exact-check-failures=0 unresolved=0 hits=0
+nv=9 (6 squares): graphs=18 tilings=123 exact-check-failures=0 unresolved=0 hits=0
+nv=10 (7 squares): graphs=62 tilings=474 exact-check-failures=0 unresolved=0 hits=0
+nv=11 (8 squares): graphs=198 tilings=1692 exact-check-failures=0 unresolved=0 hits=0
+nv=12 (9 squares): graphs=803 tilings=7660 exact-check-failures=0 unresolved=0 hits=0
+nv=13 (10 squares): graphs=3378 tilings=35571 exact-check-failures=0 unresolved=0 hits=0
+nv=14 (11 squares): graphs=15882 tilings=182237 exact-check-failures=0 unresolved=0 hits=0
+nv=15 (12 squares): graphs=77185 tilings=961508 exact-check-failures=0 unresolved=0 hits=0
+nv=16 (13 squares): graphs=393075 tilings=5272992 exact-check-failures=0 unresolved=0 hits=0
+nv=17 (14 squares): graphs=2049974 tilings=29464137 exact-check-failures=0 unresolved=0 hits=2
+nv=18 (15 squares): graphs=10938182 tilings=167647326 exact-check-failures=0 unresolved=0 hits=84
+nv=19 (16 squares): graphs=59312272 tilings=965387313 exact-check-failures=0 unresolved=0 hits=242
+PASS: no rectangle similar to 697 x 611 is tiled by 13 or fewer squares (K = 16)

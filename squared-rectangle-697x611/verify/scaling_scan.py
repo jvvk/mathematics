@@ -5,8 +5,12 @@ divisor-scaled base (a/t, b/t) whose f exceeds k (i.e. no tiling of the base wit
 it is PROVEN if k <= K, since the base then provably needs > k squares."""
 import glob, math, sys
 K = int(sys.argv[1])
+import os
+need = [f"out/best_{nv}.txt" for nv in range(4, K + 4)]
+if not all(os.path.isfile(fn) for fn in need):
+    sys.exit(f"missing enumeration files for K = {K} (run run.sh {K} first)")
 best = {}
-for fn in glob.glob("out/best_*.txt"):
+for fn in need:
     for l in open(fn):
         a, b, k = map(int, l.split())
         if k <= K: best[(a, b)] = min(best.get((a, b), 99), k)

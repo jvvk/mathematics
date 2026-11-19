@@ -9,17 +9,18 @@
 
 \title{The $697\times611$ rectangle needs exactly fourteen squares}
 \author{Vamshi Jandhyala}
-\date{Preprint, 9 October 2026. Not peer reviewed.}
+\date{Preprint, version 2, 19 November 2026 (version 1, 9 October 2026). Not peer reviewed.}
 
 \begin{document}
 \begin{abstract}
 Let $f(m,n)$ be the least number of integer-sided squares that tile an $m\times n$ rectangle. A 2017
 answer on MathOverflow named $697\times611$ as the one rectangle with sides at most $760$ that might
 violate the conjecture that scaling a rectangle never lowers $f$: it had a known tiling by $17$
-squares, while its double $1394\times1222$ had one by $16$. We show that $f(697,611)=14$. The tiling is
-explicit; the lower bound comes from enumerating every squared rectangle with at most $13$ squares
-through the electrical networks of Brooks, Smith, Stone and Tutte, an enumeration that reproduces all
-known values of $f$ for sides up to $388$.
+squares, while its double $1394\times1222$ had one by $16$. We show that $f(697,611)=14$. The fourteen-square tiling was posted by the author on MathOverflow in
+September 2026; the lower bound is new. It comes from enumerating every squared rectangle with at most $13$
+squares through the electrical networks of Brooks, Smith, Stone and Tutte, which finds no tiling of any
+rectangle similar to $697\times611$, so no multiple of it needs fewer than $14$ squares either. The same
+enumeration reproduces every known value of $f$ that is at most $14$, for sides up to $388$.
 \end{abstract}
 \maketitle
 
@@ -95,16 +96,23 @@ The program \path{verify/sqrect.c} reads every quadrangulation with $5$ to $16$ 
 plantri, takes each edge in turn as the pole, and solves for the currents. The currents are computed in
 floating point, scaled by the number of spanning trees and rounded, and then verified exactly in integer
 arithmetic: with $L$ the Laplacian and $D$ the number of spanning trees, the rounded potentials $N$
-must satisfy $LN=Db$. No run has failed this check. Each tiling is reduced by the greatest common
-divisor of its square sides and its shape recorded. Since $697=17\cdot41$ and $611=13\cdot47$ are
-coprime, a tiling of $697\times611$ by $k\le13$ squares would be recorded with exactly this shape. None
-is: the shape first appears with $14$ squares, from two networks, each giving a tiling by the fourteen
-squares of Figure~\ref{fig:tiling}.
+must satisfy $LN=Db$. A system that is singular in floating point is skipped only when the network
+without the pole edge is disconnected, which is checked exactly; otherwise the run fails, as it does if
+any exact check fails. No run has failed. Each tiling is reduced by the greatest common divisor of its
+square sides, and its rectangle $W\times H$ is reported when $611W=697H$ or $697W=611H$, so tilings of
+every multiple of $697\times611$ are caught. None appears with $13$ or fewer squares; with $14$ squares
+there are exactly two, from two networks, each a tiling of $697\times611$ itself by the fourteen squares
+of Figure~\ref{fig:tiling}. The program \path{verify/run.sh} also checks that it reads every
+quadrangulation plantri writes.
 \end{proof}
 
-Theorem~\ref{thm:main} follows from the tiling and Proposition~\ref{prop:lower}. Since
-$f(1394,1222)\le f(697,611)=14$, the doubled rectangle also needs at most fourteen squares, fewer than
-the sixteen previously known.
+Theorem~\ref{thm:main} follows from the tiling and Proposition~\ref{prop:lower}. More is true. Dividing a
+tiling of $697t\times611t$ by the greatest common divisor of its square sides gives a tiling, by the same
+number of squares, of a rectangle similar to $697\times611$, so Proposition~\ref{prop:lower} gives
+$f(697t,611t)\ge14$, and scaling the tiling of Figure~\ref{fig:tiling} gives equality: $f(697t,611t)=14$
+for every $t\ge1$. In particular the doubled rectangle $1394\times1222$ needs exactly fourteen squares,
+fewer than the sixteen previously known, and $697\times611$ is not a counterexample to the minimal
+squaring conjecture.
 
 \section{Checks}
 
@@ -130,9 +138,10 @@ squares than a rectangle it is a multiple of.
 
 The author used an AI tool (Claude, Anthropic) to write and run the enumeration and is responsible for
 the content. The tiling was first posted as an answer to the MathOverflow question~\cite{mo} on
-29 September 2026. Programs, the OEIS comparison and the plantri 5.8 sources (Apache 2.0 licence) are
+29 September 2026~\cite{moa}. Programs, the OEIS comparison and the plantri 5.8 sources (Apache 2.0 licence) are
 in the \path{verify} folder accompanying this note; \path{verify/run.sh} reproduces
-Proposition~\ref{prop:lower} in under a minute on a laptop.
+Proposition~\ref{prop:lower} in under a minute on a laptop. Codex (OpenAI) refereed version~1; its review led
+to the similarity test in Proposition~\ref{prop:lower} and to stricter failure handling in the programs.
 
 \begin{thebibliography}{9}
 \bibitem{plantri} G.~Brinkmann and B.~D.~McKay, Fast generation of planar graphs,
@@ -141,6 +150,7 @@ Proposition~\ref{prop:lower} in under a minute on a laptop.
 rectangles into squares, \emph{Duke Math. J.} \textbf{7} (1940), 312--340.
 \bibitem{mo} Wolfgang, Tiling a rectangle with the smallest number of squares, MathOverflow question
 116382 (2012), \url{https://mathoverflow.net/q/116382}, accessed 9 October 2026.
+\bibitem{moa} V.~Jandhyala, answer to~\cite{mo} (29 September 2026), \url{https://mathoverflow.net/a/515613}.
 \bibitem{pegg} E.~Pegg Jr, answer to~\cite{mo} (9 July 2017), \url{https://mathoverflow.net/a/275053}.
 \bibitem{oeis} D.~Radcliffe, Minimum number of integer-sided squares needed to tile an $m\times n$
 rectangle, OEIS A219158 and its b-file, \url{https://oeis.org/A219158}, accessed 9 October 2026.

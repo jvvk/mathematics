@@ -1,12 +1,18 @@
 """Compare f_K(m,n) from the network enumeration with OEIS A219158 (exact minimum squares, all m <= n <= 388).
 f_K(m,n) = min over t | gcd(m,n) of best(m/t, n/t) from networks with <= K squares; must equal A219158 whenever
-A219158 <= K, and be absent (> K) otherwise."""
+A219158 <= K, and be absent (> K) otherwise.
+Exit 0: full agreement. Exit 1: a mismatch. Exit 2: missing or incomplete input (needs best_4 .. best_{K+3})."""
 import glob, math, sys
 
 K = int(sys.argv[1])
 OUT = sys.argv[2] if len(sys.argv) > 2 else "out"
+need = [f"{OUT}/best_{nv}.txt" for nv in range(4, K + 4)]
+missing = [fn for fn in need if not __import__("os").path.isfile(fn)]
+if missing:
+    print("missing enumeration files:", missing)
+    sys.exit(2)
 best = {}
-for fn in glob.glob(f"{OUT}/best_*.txt"):
+for fn in need:
     for line in open(fn):
         a, b, k = map(int, line.split())
         if k <= K:
@@ -28,3 +34,6 @@ for n in range(1, 389):
             mism += 1; bad.append((m, n, v, ours))
 print(f"K={K}: rectangles with A219158 <= K: {checked_le}, agree {agree}; mismatches (either way) {mism}")
 print("first mismatches:", bad[:10])
+if checked_le == 0:
+    sys.exit(2)
+sys.exit(1 if mism else 0)

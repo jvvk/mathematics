@@ -44,6 +44,8 @@ if __name__ == "__main__":
     W, H = map(int, line.split()[2].split("x"))
     print("squares:", len(S), sorted(S, reverse=True))
     print("area check:", sum(s * s for s in S), "vs", W * H, "->", sum(s * s for s in S) == W * H)
-    P = place(W, H, S)
+    area_ok = sum(s * s for s in S) == W * H
+    P = place(W, H, S) if area_ok else None
     print("explicit tiling found:", P is not None)
     if P: print("placements (x, y, side):", P)
+    sys.exit(0 if area_ok and P is not None else 1)
