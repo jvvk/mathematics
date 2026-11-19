@@ -1,4 +1,4 @@
-"""Independent check of Remark 5 (shares no code with code/): a word is a shuffle square iff the empty buffer is
+"""Independent check of Remark 5 for K <= 20 (Grytczuk, Pawlik and Rucinski prove it for every K; see the paper) (shares no code with code/): a word is a shuffle square iff the empty buffer is
 reachable, where buffers evolve as in He-Post (arXiv 2512.12077, Prop. 2.1): B_t = {w+c} u {w[1:] : w[0] = c}."""
 
 
@@ -22,6 +22,9 @@ def some_rotation_ss(w: str) -> bool:
 
 if __name__ == "__main__":
     assert is_ss("1100") and not is_ss("0110") and not some_rotation_ss("000001001111000011101111")
+    failed = False
     for a, b in [(5, 7), (3, 5)]:
         bad = [K for K in range(0, 21) if not some_rotation_ss("0" * K + "1" * a + "0" * K + "1" * b)]
         print(f"0^K 1^{a} 0^K 1^{b}: K <= 20 with no shuffle-square rotation: {bad}")
+        failed |= bool(bad)
+    raise SystemExit(1 if failed else 0)

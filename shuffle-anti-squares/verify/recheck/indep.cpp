@@ -62,6 +62,7 @@ static bool two_cuts_ok(const std::vector<int>& t) {
 }
 
 int main(int argc, char** argv) {
+  if (argc != 2 || atoi(argv[1]) < 2 || atoi(argv[1]) > 40) { fprintf(stderr, "usage: indep N  (2 <= N <= 40)\n"); return 2; }
   n = atoi(argv[1]);
   std::vector<int> a(n + 1, 0);
   long long even = 0, anti = 0, bad = 0;
@@ -97,5 +98,5 @@ int main(int argc, char** argv) {
     i = n;
   }
   fprintf(stderr, "n=%d even_necklaces=%lld anti_square_necklaces=%lld needing_3_cuts=%lld\n", n, even, anti, bad);
-  return 0;
+  return bad ? 1 : 0;  // nonzero if some anti-square has a rotation needing three or more cuts
 }

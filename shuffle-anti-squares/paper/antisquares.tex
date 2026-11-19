@@ -28,8 +28,8 @@ the shorter lengths are covered by the family $\zz{k+5}\,1\,\zz{2}\,1111\,\zz{k+
 fact an anti-square for every $k$. The first family has a short human proof. Both families have been verified
 for all $k$ in the Lean proof assistant. The proof for the first family extends to every word obtained from it
 by multiplying each zero run by a constant and replacing each one by the same odd number of ones. Since one
-cut can only rotate a word, some even binary words of every length from 24 need two cuts to become a shuffle
-square. The same authors and Ruci\'nski found such a word of length 24 and conjectured that two cuts always
+cut can only rotate a word, some even binary words of every length from 24 need at least two cuts to become a
+shuffle square. Grytczuk, Pawlik and Ruci\'nski found such a word of length 24 and conjectured that two cuts always
 suffice; by computer this holds up to length 34.
 \end{abstract}
 
@@ -322,7 +322,7 @@ anti-square for every $k$.
 
 For $W_k$ the reduction of Section~\ref{sec:runs} leaves one system of linear equations and inequalities in
 $k$ and the shares $x_g$ for each cut gap and each way of dividing the twelve ones between the copies. There
-are $12 \times 462$ such systems, and none has a solution, even over the reals with $k \ge 0$. We checked this
+are $12 \times 462$ such systems, and none has a solution in integers with $k \ge 0$. We checked this
 in three independent ways: by an exhaustive search over all rotations and splittings of $W_k$ for
 $0 \le k \le 19$; with the SMT solver Z3 for the parametric systems; and in the Lean~4 proof assistant, where
 we defined interleavings and shuffle squares from scratch, proved Lemma~\ref{lem:split} in the form of a
@@ -352,8 +352,11 @@ letter.}\label{tab:counts}
 Both families have two long gaps, each longer than all the short gaps together, separating two clusters with an
 odd number of ones. The parity argument of Section~\ref{sec:U} uses only this, while the short gaps do the rest;
 the words $\zz{K}1^5\zz{K}1^7$ and $\zz{K}1^3\zz{K}1^5$, which have the same shape without short gaps, are not
-anti-squares for any $K \le 20$ (by exhaustive check). It would be interesting to know the least number of ones in an anti-square of length $2n$ for
-large $n$, and whether it stays bounded.
+anti-squares for any $K$: they have four runs, and Grytczuk, Pawlik and Ruci\'nski showed that every even
+binary word with at most four runs has a rotation that is a shuffle square~\cite[Proposition~2 and Remark~1]{GPR}
+(an exhaustive check for $K \le 20$ agrees). The words $U_k$ show that eight ones suffice at every even length
+from $34$, and by Table~\ref{tab:counts} no anti-square of length at most $34$ has fewer. It would be
+interesting to know whether some longer anti-square has six ones or fewer.
 \end{remark}
 
 \section{Cutting distance}\label{sec:cut}
@@ -363,7 +366,7 @@ cuts. Cutting a word into pieces and rearranging them gives another word with th
 $\operatorname{cut}(T, \mathcal{S}_2)$ be the least number of cuts that turns the even binary word $T$ into a
 shuffle square, let $s(2, n)$ be its maximum over even binary words of length $n$, and let $s(2) = \sup_n s(2,
 n)$. They conjectured that $s(2) = 1$~\cite[Conjecture 4]{GPP2}, having checked $s(2, n) \le 1$ for $n \le 20$.
-With Ruci\'nski they later showed that an anti-square of length $24$ needs exactly two cuts, conjectured that
+Grytczuk, Pawlik and Ruci\'nski~\cite{GPR} later showed that an anti-square of length $24$ needs exactly two cuts, conjectured that
 two cuts always suffice, that is $s(2) \le 2$, and noted that it is not even known whether $s(2)$ is
 finite~\cite[Section 6.3]{GPR}.
 
@@ -395,10 +398,9 @@ two-cut example of $W_0$ in Section~\ref{sec:cut}. Its proof of Theorem~\ref{thm
 Section~\ref{sec:U} line by line: for each of the ten runs in which the cut can fall, it splits into cases on
 which blocks of ones of the two copies overlap, and closes every case by linear arithmetic; a solver was used
 only to choose the order of the case splits. The development depends on no axioms beyond propositional
-extensionality, the axiom of choice and quotient soundness. Four statements rest on exhaustive computer search
+extensionality, the axiom of choice and quotient soundness. Three statements rest on exhaustive computer search
 and are not formalised: the counts in Table~\ref{tab:counts}, the absence of anti-squares below length $24$,
-the claim that two cuts suffice up to length $34$ in Section~\ref{sec:cut}, and the check in
-Remark~\ref{rem:shape}. Each was confirmed by a second program that shares no code with the first, and the
+and the claim that two cuts suffice up to length $34$ in Section~\ref{sec:cut}. Each was confirmed by a second program that shares no code with the first, and the
 counts up to length $28$ also agree with the search of~\cite{GPP}.
 
 \section*{Acknowledgements}
@@ -410,7 +412,9 @@ and verification programs, to explore the case analysis, to find and draft the p
 Theorem~\ref{thm:blow} and the observations of Section~\ref{sec:cut}, and to produce the Lean formalisation,
 including the choice of case splits for Theorem~\ref{thm:blow}. It was used to search quickly and to obtain
 machine-checked proofs: Theorems~\ref{main} and~\ref{thm:blow} and Corollary~\ref{cor:cut} are verified in
-Lean, as described above. The author takes full responsibility for the content of this paper.
+Lean, as described above. Codex (OpenAI) refereed the second version; its review led to the citation in
+Remark~\ref{rem:shape} and to stricter failure handling in the verification programs. The author takes full
+responsibility for the content of this paper.
 
 \begin{thebibliography}{9}
 \bibitem{BV} L.~Bulteau and S.~Vialette, Recognizing binary shuffle squares is NP-hard,
@@ -420,7 +424,7 @@ arXiv:2308.13882v2 (2024).
 \bibitem{GPP2} J.~Grytczuk, B.~Pawlik and M.~Pleszczy\'nski, More variations on shuffle squares,
 \emph{Symmetry} 15 (2023), 1982, doi:10.3390/sym15111982.
 \bibitem{GPR} J.~Grytczuk, B.~Pawlik and A.~Ruci\'nski, Shuffle squares and ordered nest-free graphs,
-arXiv:2503.22043v2 (2025); a shorter version appeared as Shuffle squares and nest-free graphs, in
+arXiv:2503.22043v2 (29 November 2025); a shorter version appeared as Shuffle squares and nest-free graphs, in
 \emph{Combinatorics on Words} (WORDS 2025), Lecture Notes in Comput. Sci., Springer, 2025, 166--178,
 doi:10.1007/978-3-031-97548-6\_15.
 \bibitem{HHNT} X.~He, E.~Huang, I.~Nam and R.~Thaper, Shuffle squares and reverse shuffle squares,

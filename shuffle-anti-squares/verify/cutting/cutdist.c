@@ -94,5 +94,6 @@ int main(void) {
         buf[n] = 0; printf("%s %d\n", buf, mx);
     }
     fprintf(stderr, "necklaces=%lld words=%lld needing>=3=%lld\n", necks, words, bad);
-    return 0;
+    if (ferror(stdin)) { fprintf(stderr, "read error\n"); return 3; }
+    return bad ? 1 : 0;   /* nonzero if some rotation needs three or more cuts */
 }

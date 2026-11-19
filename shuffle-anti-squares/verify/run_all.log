@@ -1,0 +1,84 @@
+== search: antisq at every even length up to 34
+L=2 even necklaces=2 anti-square necklaces=0
+L=4 even necklaces=4 anti-square necklaces=0
+L=6 even necklaces=8 anti-square necklaces=0
+L=8 even necklaces=20 anti-square necklaces=0
+L=10 even necklaces=56 anti-square necklaces=0
+L=12 even necklaces=180 anti-square necklaces=0
+L=14 even necklaces=596 anti-square necklaces=0
+L=16 even necklaces=2068 anti-square necklaces=0
+L=18 even necklaces=7316 anti-square necklaces=0
+L=20 even necklaces=26272 anti-square necklaces=0
+L=22 even necklaces=95420 anti-square necklaces=0
+L=24 even necklaces=349716 anti-square necklaces=4
+L=26 even necklaces=1290872 anti-square necklaces=102
+L=28 even necklaces=4794088 anti-square necklaces=406
+L=30 even necklaces=17896832 anti-square necklaces=2616
+L=32 even necklaces=67110932 anti-square necklaces=10980
+L=34 even necklaces=252648992 anti-square necklaces=43964
+../results/anti_24.txt necklaces 4 classes 1
+../results/anti_26.txt necklaces 102 classes 26
+../results/anti_28.txt necklaces 406 classes 103
+../results/anti_30.txt necklaces 2616 classes 660
+../results/anti_32.txt necklaces 10980 classes 2758
+../results/anti_34.txt necklaces 43964 classes 11026
+PROVED: for every integer k >= 0, no rotation of W_k is a shuffle square (all 12 x 462 systems UNSAT).
+validated 201 words, mismatches 0, anti-squares among them 1
+26 anti-squares + 300 mutants (0 anti) checked, mismatches 0
+pump run 0 only (0^{k+5}, b fixed)       -> counterexample k=2 (00000001001111000011101111): caught, confirmed by brute force
+b = a (both k+5, shift one zero)         -> counterexample k=0 (000001001111000001111111): caught, confirmed by brute force
+move the lone 0 into gap 2               -> counterexample k=0 (000001000111100001111111): caught, confirmed by brute force
+move one zero from gap 1 to gap 8        -> counterexample k=0 (000001011110000111001111): caught, confirmed by brute force
+control: pump both long gaps by 2k (= W_{2k}) -> UNSAT as expected
+ALL EXPECTATIONS MET
+== cutting: two cuts suffice for every rotation of every anti-square up to length 34
+necklaces=4 words=96 needing>=3=0
+necklaces=102 words=2652 needing>=3=0
+necklaces=406 words=11368 needing>=3=0
+necklaces=2616 words=78480 needing>=3=0
+necklaces=10980 words=351360 needing>=3=0
+necklaces=43964 words=1494776 needing>=3=0
+L=24 words=96 needing>=3=0
+L=26 words=2652 needing>=3=0
+L=30 words=300 needing>=3=0
+witness for 000001001111000011101111 -> (1, 6, 'BAC')
+controls OK
+== recheck: independent enumerator and two-cut test, every even length up to 34
+n=2 even_necklaces=2 anti_square_necklaces=0 needing_3_cuts=0
+n=4 even_necklaces=4 anti_square_necklaces=0 needing_3_cuts=0
+n=6 even_necklaces=8 anti_square_necklaces=0 needing_3_cuts=0
+n=8 even_necklaces=20 anti_square_necklaces=0 needing_3_cuts=0
+n=10 even_necklaces=56 anti_square_necklaces=0 needing_3_cuts=0
+n=12 even_necklaces=180 anti_square_necklaces=0 needing_3_cuts=0
+n=14 even_necklaces=596 anti_square_necklaces=0 needing_3_cuts=0
+n=16 even_necklaces=2068 anti_square_necklaces=0 needing_3_cuts=0
+n=18 even_necklaces=7316 anti_square_necklaces=0 needing_3_cuts=0
+n=20 even_necklaces=26272 anti_square_necklaces=0 needing_3_cuts=0
+n=22 even_necklaces=95420 anti_square_necklaces=0 needing_3_cuts=0
+n=24 even_necklaces=349716 anti_square_necklaces=4 needing_3_cuts=0
+n=26 even_necklaces=1290872 anti_square_necklaces=102 needing_3_cuts=0
+n=28 even_necklaces=4794088 anti_square_necklaces=406 needing_3_cuts=0
+n=30 even_necklaces=17896832 anti_square_necklaces=2616 needing_3_cuts=0
+n=32 even_necklaces=67110932 anti_square_necklaces=10980 needing_3_cuts=0
+n=34 even_necklaces=252648992 anti_square_necklaces=43964 needing_3_cuts=0
+n=2 anti-square necklaces=0 -> OK
+n=4 anti-square necklaces=0 -> OK
+n=6 anti-square necklaces=0 -> OK
+n=8 anti-square necklaces=0 -> OK
+n=10 anti-square necklaces=0 -> OK
+n=12 anti-square necklaces=0 -> OK
+n=14 anti-square necklaces=0 -> OK
+n=16 anti-square necklaces=0 -> OK
+n=18 anti-square necklaces=0 -> OK
+n=20 anti-square necklaces=0 -> OK
+n=22 anti-square necklaces=0 -> OK
+n=24 necklaces=4 same_as_original=True classes=1 (table 1) fewest=12 (table 12) all_two_cut=True -> OK
+n=26 necklaces=102 same_as_original=True classes=26 (table 26) fewest=10 (table 10) all_two_cut=True -> OK
+n=28 necklaces=406 same_as_original=True classes=103 (table 103) fewest=10 (table 10) all_two_cut=True -> OK
+n=30 necklaces=2616 same_as_original=True classes=660 (table 660) fewest=10 (table 10) all_two_cut=True -> OK
+n=32 necklaces=10980 same_as_original=True classes=2758 (table 2758) fewest=8 (table 8) all_two_cut=True -> OK
+n=34 necklaces=43964 same_as_original=True classes=11026 (table 11026) fewest=8 (table 8) all_two_cut=True -> OK
+ALL OK
+0^K 1^5 0^K 1^7: K <= 20 with no shuffle-square rotation: []
+0^K 1^3 0^K 1^5: K <= 20 with no shuffle-square rotation: []
+ALL CHECKS PASSED

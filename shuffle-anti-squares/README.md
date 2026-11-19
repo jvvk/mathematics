@@ -15,11 +15,13 @@ The paper proves the conjecture with two explicit families,
 - `U_k = 0^(k+9) 1 0^5 11 0^(k+9) 1 0^2 1 0 111` (length 2k + 34), with a short proof by hand, and
 - `W_k = 0^(k+5) 1 0^2 1111 0^(k+4) 111 0 1111` (length 2k + 24),
 
-and extends the first: multiplying every zero run of `U_k` by any λ and replacing every one by a block of μ ones, μ odd, still gives an anti-square (Theorem 4; both conditions are needed). Since one cut can only rotate a word, it follows that some even word of every length from 24 needs two cuts before its pieces can be rearranged into a shuffle square (Corollary 6). Grytczuk, Pawlik and Ruciński had found such a word of length 24 and conjectured that two cuts always suffice ([arXiv:2503.22043](https://arxiv.org/abs/2503.22043), Section 6.3); a computer check confirms this for every anti-square up to length 34.
+and extends the first: multiplying every zero run of `U_k` by any λ and replacing every one by a block of μ ones, μ odd, still gives an anti-square (Theorem 4; both conditions are needed). Since one cut can only rotate a word, it follows that some even word of every length from 24 needs at least two cuts before its pieces can be rearranged into a shuffle square (Corollary 6). Grytczuk, Pawlik and Ruciński had found such a word of length 24 and conjectured that two cuts always suffice ([arXiv:2503.22043](https://arxiv.org/abs/2503.22043), Section 6.3); a computer check confirms this for every anti-square up to length 34.
 
-Preprint, 8 October 2026. The author used AI tools (Claude, Anthropic) in this work, as described in the paper's acknowledgements, and takes full responsibility for its content.
+Preprint v3, 19 November 2026 (v1: 8 October 2026). The author used AI tools (Claude, Anthropic) in this work, as described in the paper's acknowledgements, and takes full responsibility for its content.
 
 **Version 2** (23 October 2026, tag `shuffle-anti-squares-v2`): expository revision of the paper (a new figure for Step 1 of the proof of Theorem 4 (why the long runs must line up across the two gaps)). The results, programs and Lean files are unchanged from v1.
+
+**Version 3** (19 November 2026, tag `shuffle-anti-squares-v3`): after a referee review by Codex (OpenAI). Remark 5 now cites Grytczuk, Pawlik and Ruciński's proof for every K, and its closing question is replaced by the one still open (are fewer than eight ones ever enough?); "need two cuts" reads "need at least two cuts"; the Z3 claim is stated over the integers, as proved. The verification programs now fail loudly (nonzero exit on any counterexample, mismatch, missing input or inconclusive solver answer), the Z3 mutation check separates its positive control from its mutants, and `verify/run_all.sh` reproduces every search, including the independent one at every even length up to 34. The theorems and the Lean files are unchanged.
 
 ## Contents
 
@@ -28,25 +30,21 @@ Preprint, 8 October 2026. The author used AI tools (Claude, Anthropic) in this w
 - `verify/`:
   - `search/`: `antisq.c` enumerates necklaces and finds every anti-square (Table 1); `classes.py` counts classes under rotation, reversal and exchange of letters; `ilp_proof.py`, `validate_neg.py`, `mutation.py` are the Z3 proof for `W_k` with its validation and mutants.
   - `cutting/`: `cutdist.c` tests every rotation of every anti-square for a two-cut rearrangement (Section 5); `cutdist_check.py` is a second tester.
-  - `recheck/`: programs that share no code with the above. `indep.cpp` recomputes the anti-squares and the two-cut check for every length up to 34; `remark5.py` checks Remark 5 with the buffer method of He and Post.
+  - `recheck/`: programs that share no code with the above. `indep.cpp` recomputes the anti-squares and the two-cut check for every length up to 34; `compare.py` matches it against the original search at every even length up to 34 and recomputes Table 1; `remark5.py` checks Remark 5 for K ≤ 20 with the buffer method of He and Post (Grytczuk, Pawlik and Ruciński's Proposition 2 covers every K).
   - `lean_gen/`: the generators of the Lean proof of Theorem 4. For each of the ten runs in which a cut can fall, `tree.py` uses Z3 only to choose an order of case splits; `emit.py` and `emit_main.py` write them out as Lean, where every case is closed by `omega`. The saved trees (`tree_*.pkl`) regenerate the Lean files byte for byte.
   - `results/`: the anti-square necklaces of lengths 24 to 34.
 
-The counts in Table 1, the absence of anti-squares below length 24, the two-cut check up to length 34 and Remark 5 are exhaustive computer searches, not Lean proofs; each was confirmed by a second, independently written program.
+The counts in Table 1, the absence of anti-squares below length 24 and the two-cut check up to length 34 are exhaustive computer searches, not Lean proofs; each was confirmed by a second, independently written program. `verify/run_all.sh` runs both programs at every even length up to 34 and exits nonzero on any discrepancy, missing output or inconclusive solver answer.
 
 ## Reproduce
 
 ```
-cd verify/search && cc -O2 -o antisq antisq.c && for n in 24 26 28 30 32 34; do ./antisq $n > anti_$n.txt; done
-python3 classes.py anti_*.txt                                  # Table 1
-python3 ilp_proof.py && python3 validate_neg.py && python3 mutation.py      # needs z3-solver
-cd ../cutting && cc -O2 -o cutdist cutdist.c && ./cutdist < ../results/anti_34.txt > /dev/null
-cd ../recheck && c++ -O2 -std=c++17 -o indep indep.cpp && ./indep 34 > anti_34.txt && python3 remark5.py
-cd ../../paper && latexmk -pdf antisquares.tex
+verify/run_all.sh                     # every computer check; needs cc, c++17, python3 and z3-solver
+cd paper && latexmk -pdf antisquares.tex
 cd ../lean && lake exe cache get && lake build LeanProofs && lake env lean CheckClaims.lean
 ```
 
-Length 34 takes about 25 minutes for `indep` and a few minutes for the others on one core; the Lean build takes about 15 minutes after the Mathlib cache is fetched.
+`run_all.sh` takes about 45 minutes on one core, most of it `indep` at length 34; the Lean build takes about 15 minutes after the Mathlib cache is fetched.
 
 ## Licence
 

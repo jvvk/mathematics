@@ -15,7 +15,25 @@ import random
 import subprocess
 import sys
 
-from z3 import And, Int, Solver, Sum, sat
+from z3 import And, Int, Solver, Sum, sat, unsat
+
+
+class Inconclusive(RuntimeError):
+    """The solver answered neither sat nor unsat, or a helper program failed."""
+
+
+def run_antisq(words: list[str]) -> dict[str, bool]:
+    """Brute-force anti-square test of each word by ./antisq (stdin mode); fails unless every word is answered."""
+    res = subprocess.run(
+        ["./antisq"], input="\n".join(words) + "\n", capture_output=True, text=True, timeout=3600
+    )
+    if res.returncode != 0:
+        raise Inconclusive(f"./antisq exited {res.returncode}: {res.stderr.strip()}")
+    out = res.stdout.split()
+    brute = dict(zip(out[1::2], (v == "1" for v in out[0::2])))
+    if len(out) != 2 * len(words) or set(brute) != set(words) or any(v not in "01" for v in out[0::2]):
+        raise Inconclusive("./antisq output does not answer every word exactly once")
+    return brute
 
 
 def copy_zero_runs(ones: tuple[int, ...], z: list, m: int) -> list:
@@ -54,8 +72,11 @@ def some_rotation_is_square(circ: list, extra: list = ()) -> tuple[bool, object]
             s = Int("s")
             x = [Int(f"x{i}") for i in range(m + 1)]
             sv.add(*extra, *rotation_constraints(circ, t, s, x, A))
-            if sv.check() == sat:
+            r = sv.check()
+            if r == sat:
                 return True, (t, A, sv.model())
+            if r != unsat:
+                raise Inconclusive(f"solver returned {r} (cut gap {t}, A = {A})")
     return False, None
 
 
@@ -69,7 +90,7 @@ def circ_gaps(w: str) -> list[int]:
     ]
 
 
-def validate(trials: int) -> None:
+def validate(trials: int) -> bool:
     rng = random.Random(7)
     words = []
     while len(words) < trials:
@@ -78,10 +99,7 @@ def validate(trials: int) -> None:
         if w.count("1") % 2 == 0 and w.count("0") % 2 == 0 and 0 < w.count("1") <= 8:
             words.append(w)
     words += ["000001001111000011101111"]  # the length-24 anti-square
-    out = subprocess.run(
-        ["./antisq"], input="\n".join(words) + "\n", capture_output=True, text=True
-    ).stdout.split()
-    brute = dict(zip(out[1::2], (v == "1" for v in out[0::2])))
+    brute = run_antisq(words)
     bad = 0
     for w in words:
         anti_ilp = not some_rotation_is_square(circ_gaps(w))[0]
@@ -91,9 +109,10 @@ def validate(trials: int) -> None:
     print(
         f"validated {len(words)} words, mismatches {bad}, anti-squares among them {sum(brute.values())}"
     )
+    return bad == 0
 
 
-def family_proof() -> None:
+def family_proof() -> bool:
     k = Int("k")
     a, b = k + 5, k + 4
     circ = [a, 2, 0, 0, 0, b, 0, 0, 1, 0, 0, 0]  # gap before each of the 12 ones
@@ -101,14 +120,27 @@ def family_proof() -> None:
     if found:
         t, A, mdl = info
         print("COUNTEREXAMPLE: k =", mdl[k], "cut gap", t, "A =", A)
+        return False
     else:
         print(
             "PROVED: for every integer k >= 0, no rotation of W_k is a shuffle square (all 12 x 462 systems UNSAT)."
         )
+        return True
 
+
+USAGE = "usage: python3 ilp_proof.py [prove | validate TRIALS]   (default: prove)"
 
 if __name__ == "__main__":
-    if sys.argv[1] == "validate":
-        validate(int(sys.argv[2]))
-    else:
-        family_proof()
+    args = sys.argv[1:] or ["prove"]
+    try:
+        if args == ["prove"]:
+            ok = family_proof()
+        elif len(args) == 2 and args[0] == "validate" and args[1].isdigit():
+            ok = validate(int(args[1]))
+        else:
+            print(USAGE, file=sys.stderr)
+            sys.exit(2)
+    except (Inconclusive, subprocess.TimeoutExpired) as e:
+        print("INCONCLUSIVE:", e, file=sys.stderr)
+        sys.exit(3)
+    sys.exit(0 if ok else 1)

@@ -42,6 +42,7 @@ def rotations(s: str) -> list[str]:
 
 if __name__ == "__main__":
     random.seed(20261008)
+    failed = False
     # Sanity: the tester agrees the inputs are anti-squares (no rotation is a shuffle square).
     for L, sample in ((24, None), (26, None), (30, 300)):
         necks = [l.strip() for l in open(f"../results/anti_{L}.txt") if l.strip()]
@@ -51,9 +52,13 @@ if __name__ == "__main__":
         assert all(not is_shuffle_square(w) for w in words), "input not anti-square"
         bad = [w for w in words if two_cut_witness(w) is None]
         print(f"L={L} words={len(words)} needing>=3={len(bad)}")
+        failed |= bool(bad)
     # Negative control: allowing only rotations (BCA, CAB) must fail on every anti-square.
     w0 = open("../results/anti_24.txt").readline().strip()
     assert two_cut_witness(w0, orders=("BCA", "CAB", "ABC")) is None
     # Control 2: a random non-anti-square word with a rotation fix should be found.
-    print("witness for", w0, "->", two_cut_witness(w0))
+    wit = two_cut_witness(w0)
+    print("witness for", w0, "->", wit)
+    assert wit is not None, "no two-cut witness for the length-24 anti-square"
     print("controls OK")
+    sys.exit(1 if failed else 0)
