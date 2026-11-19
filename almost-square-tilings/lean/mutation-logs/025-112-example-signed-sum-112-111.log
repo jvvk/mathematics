@@ -1,0 +1,11 @@
+# 112 example: signed sum 112 -> 111
+# command: nice -n 15 lake env lean --threads=1 AlmostSquares/ExamplesMut.lean
+# exit: 1
+## stdout
+AlmostSquares/ExamplesMut.lean:52:79: error: Tactic `decide` proved that the proposition
+  (List.map (fun T => eps u112 v112 T * T.w) sq112).sum = 111 ∧
+    (List.map Tile.w (List.filter (fun T => decide (eps u112 v112 T = 1)) sq112)).sum = 273
+is false
+
+## stderr
+

@@ -1,0 +1,29 @@
+# prop 110: odd -> even
+# command: nice -n 15 lake env lean --threads=1 AlmostSquares/ParityMut.lean
+# exit: 1
+## stdout
+AlmostSquares/ParityMut.lean:208:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  Odd ?m.45
+in the target expression
+  Even (v 110)
+
+u v : ℤ → ℤ
+h : IsInflation 110 sq110 u v
+hs : ∀ q ∈ T110, q ∈ sq110
+hp :
+  2 ∣
+    u 0 + u 26 + v 0 + v 26 +
+        (u 24 + u 46 + v 28 + v 50 +
+          (u 92 + u 110 + v 0 + v 18 +
+            (u 75 + u 91 + v 17 + v 33 +
+              (u 46 + u 60 + v 36 + v 50 +
+                (u 63 + u 75 + v 21 + v 33 +
+                  (u 54 + u 63 + v 21 + v 30 +
+                    (u 54 + u 60 + v 30 + v 36 + (u 24 + u 26 + v 26 + v 28 + (u 91 + u 92 + v 17 + v 18))))))))) -
+      10
+this✝ : u 0 = 0
+this : u 110 - v 110 = 1
+⊢ Even (v 110)
+
+## stderr
+

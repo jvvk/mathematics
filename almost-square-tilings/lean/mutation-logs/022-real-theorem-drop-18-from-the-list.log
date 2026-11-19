@@ -1,0 +1,15 @@
+# real theorem: drop 18 from the list
+# command: nice -n 15 lake env lean --threads=1 AlmostSquares/RealMut.lean
+# exit: 1
+## stdout
+AlmostSquares/RealMut.lean:438:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  n ∈ [4, 10, 12, 14, 15, 18] ∨ 20 ≤ n
+in the target expression
+  (∃ ts, RAdmissible n ts) ↔ n ∈ [4, 10, 12, 14, 15] ∨ 20 ≤ n
+
+n : ℕ
+hn : 1 ≤ n
+⊢ (∃ ts, RAdmissible n ts) ↔ n ∈ [4, 10, 12, 14, 15] ∨ 20 ≤ n
+
+## stderr
+

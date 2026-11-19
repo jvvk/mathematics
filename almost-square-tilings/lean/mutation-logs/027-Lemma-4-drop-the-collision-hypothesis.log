@@ -1,0 +1,8 @@
+# Lemma 4: drop the collision hypothesis
+# command: nice -n 15 lake env lean --threads=1 AlmostSquares/ScalesMut.lean
+# exit: 1
+## stdout
+AlmostSquares/ScalesMut.lean:74:20: error(lean.unknownIdentifier): Unknown identifier `hcol`
+
+## stderr
+

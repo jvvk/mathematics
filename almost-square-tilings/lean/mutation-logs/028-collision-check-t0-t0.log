@@ -1,0 +1,20 @@
+# collision check: < t0 -> <= t0
+# command: nice -n 15 lake env lean --threads=1 AlmostSquares/ClassesMut.lean
+# exit: 1
+## stdout
+AlmostSquares/ClassesMut.lean:76:4: error: Tactic `assumption` failed
+
+case inr
+t0 : ℤ
+u v : ℤ → ℤ
+T U : Tile
+hw : T.w ≠ U.w
+t : ℤ
+he : t * T.w + cmin u v T = t * U.w + cmin u v U
+hd : T.w - U.w ≠ 0
+he' : cmin u v U - cmin u v T = t * (T.w - U.w)
+h : t ≤ t0
+⊢ t < t0
+
+## stderr
+

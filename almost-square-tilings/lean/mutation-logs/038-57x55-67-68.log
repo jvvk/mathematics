@@ -1,0 +1,10 @@
+# 57x55: 67 -> 68
+# command: nice -n 15 lake env lean --threads=1 AlmostSquares/ReachMut.lean
+# exit: 1
+## stdout
+AlmostSquares/ReachMut.lean:106:75: error: Tactic `decide` proved that the proposition
+  (List.map Reach.n reach57).dedup.length = 68 ∧ ((List.map Reach.n reach57).all fun n => uncovered.contains n) = true
+is false
+
+## stderr
+

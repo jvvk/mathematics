@@ -1,0 +1,7 @@
+# control Bouwkamp.lean
+# command: nice -n 15 lake env lean --threads=1 AlmostSquares/BouwkampMut.lean
+# exit: 0
+## stdout
+
+## stderr
+

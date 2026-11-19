@@ -1,0 +1,13 @@
+# Bouwkamp: 139 code checked against 110 layout
+# command: nice -n 15 lake env lean --threads=1 AlmostSquares/BouwkampMut.lean
+# exit: 1
+## stdout
+AlmostSquares/BouwkampMut.lean:79:63: error: (kernel) application type mismatch
+  id (Eq.refl true)
+argument has type
+  true = true
+but function has type
+  decide (codeIs code139 139 139 sq110 = true) = true → decide (codeIs code139 139 139 sq110 = true) = true
+
+## stderr
+

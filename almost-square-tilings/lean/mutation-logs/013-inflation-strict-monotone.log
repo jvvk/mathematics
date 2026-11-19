@@ -1,0 +1,50 @@
+# inflation: strict -> monotone
+# command: nice -n 15 lake env lean --threads=1 AlmostSquares/InflationMut.lean
+# exit: 1
+## stdout
+AlmostSquares/InflationMut.lean:185:49: error(lean.invalidField): Invalid field `le_iff_le`: The environment does not contain `Function.le_iff_le`, so it is not possible to project the field `le_iff_le` from an expression
+  hX
+of type
+  ?m.171 ∈ CutX W ts → ∀ ⦃b : ℤ⦄, b ∈ CutX W ts → ?m.171 ≤ b → X ?m.171 ≤ X b
+AlmostSquares/InflationMut.lean:193:21: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  g - h ≥ 1
+  f ≥ 1
+  e ≥ 1
+  d ≥ 0
+  c ≥ 0
+  b ≥ 0
+  a ≥ 0
+where
+ a := W
+ b := H
+ c := X W
+ d := Y H
+ e := T.w
+ f := T.h
+ g := Y (T.y + T.h)
+ h := Y T.y
+AlmostSquares/InflationMut.lean:198:19: error(lean.invalidField): Invalid field `le_iff_le`: The environment does not contain `Function.le_iff_le`, so it is not possible to project the field `le_iff_le` from an expression
+  hX
+of type
+  ?m.346 ∈ CutX W ts → ∀ ⦃b : ℤ⦄, b ∈ CutX W ts → ?m.346 ≤ b → X ?m.346 ≤ X b
+AlmostSquares/InflationMut.lean:210:20: error(lean.invalidField): Invalid field `le_iff_le`: The environment does not contain `Function.le_iff_le`, so it is not possible to project the field `le_iff_le` from an expression
+  hX
+of type
+  ?m.414 ∈ CutX W ts → ∀ ⦃b : ℤ⦄, b ∈ CutX W ts → ?m.414 ≤ b → X ?m.414 ≤ X b
+AlmostSquares/InflationMut.lean:211:20: error(lean.invalidField): Invalid field `le_iff_le`: The environment does not contain `Function.le_iff_le`, so it is not possible to project the field `le_iff_le` from an expression
+  hX
+of type
+  ?m.420 ∈ CutX W ts → ∀ ⦃b : ℤ⦄, b ∈ CutX W ts → ?m.420 ≤ b → X ?m.420 ≤ X b
+AlmostSquares/InflationMut.lean:236:92: error: Application type mismatch: The argument
+  hX
+has type
+  StrictMonoOn (scaleShift t u) (CutX W ts)
+but is expected to have type
+  MonotoneOn ?m.146 (CutX W ts)
+in the application
+  dissects_img hW hH hd ?m.146 ?m.147 ?m.148 ?m.149 hX
+AlmostSquares/InflationMut.lean:236:40: error: `simp` made no progress
+
+## stderr
+

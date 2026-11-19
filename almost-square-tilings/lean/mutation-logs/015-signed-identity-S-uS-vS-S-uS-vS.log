@@ -1,0 +1,28 @@
+# signed identity: S (uS - vS) -> S (uS + vS)
+# command: nice -n 15 lake env lean --threads=1 AlmostSquares/InflationMut.lean
+# exit: 1
+## stdout
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+AlmostSquares/InflationMut.lean:274:25: error: unsolved goals
+S : ℤ
+hS : 0 ≤ S
+ts : List Tile
+hd : Dissects S S ts
+hsq : ∀ T ∈ ts, T.w = T.h
+u v : ℤ → ℤ
+hu0 : u 0 = 0
+hv0 : v 0 = 0
+h1 : (List.map (fun T => (u (T.x + T.w) - u T.x) * T.h) ts).sum = u S * S
+h2 : (List.map (fun T => T.w * (v (T.y + T.h) - v T.y)) ts).sum = S * v S
+e :
+  List.map (fun T => (u (T.x + T.w) - u T.x - (v (T.y + T.h) - v T.y)) * T.w) ts =
+    List.map (fun T => (u (T.x + T.w) - u T.x) * T.h - T.w * (v (T.y + T.h) - v T.y)) ts
+⊢ u S * S - S * v S = u S * S + S * v S
+
+## stderr
+

@@ -1,0 +1,7 @@
+# control Scales.lean
+# command: nice -n 15 lake env lean --threads=1 AlmostSquares/ScalesMut.lean
+# exit: 0
+## stdout
+
+## stderr
+

@@ -1,0 +1,10 @@
+# pieces: 22 -> 21
+# command: nice -n 15 lake env lean --threads=1 AlmostSquares/CountsMut.lean
+# exit: 1
+## stdout
+AlmostSquares/CountsMut.lean:88:71: error: Tactic `decide` proved that the proposition
+  (base 112).length = 21 ∧ (base 110).length = 21
+is false
+
+## stderr
+

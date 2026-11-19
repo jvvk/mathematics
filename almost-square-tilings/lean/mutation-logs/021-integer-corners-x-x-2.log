@@ -1,0 +1,23 @@
+# integer corners: x -> x/2
+# command: nice -n 15 lake env lean --threads=1 AlmostSquares/RealMut.lean
+# exit: 1
+## stdout
+AlmostSquares/RealMut.lean:186:3: error: Application type mismatch: The argument
+  left_isInt ht T hT
+has type
+  IsInt T.x
+but is expected to have type
+  IsInt (T.x / 2)
+in the application
+  And.intro (left_isInt ht T hT)
+AlmostSquares/RealMut.lean:227:79: error: Application type mismatch: The argument
+  (hint T hT).left
+has type
+  IsInt (T.x / 2)
+but is expected to have type
+  IsInt T.x
+in the application
+  floor_eq_of_isInt (hint T hT).left
+
+## stderr
+

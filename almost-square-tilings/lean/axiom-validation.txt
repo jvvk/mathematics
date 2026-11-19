@@ -1,0 +1,45 @@
+'AlmostSq.almost_square_tilings_real' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ AlmostSq.noTiling_16._native.native_decide.ax_1_1,
+ AlmostSq.noTiling_17._native.native_decide.ax_1_1,
+ AlmostSq.noTiling_19._native.native_decide.ax_1_1]
+'AlmostSq.almost_square_tilings' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ AlmostSq.noTiling_16._native.native_decide.ax_1_1,
+ AlmostSq.noTiling_17._native.native_decide.ax_1_1,
+ AlmostSq.noTiling_19._native.native_decide.ax_1_1]
+'AlmostSq.friedman_twenty' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AlmostSq.balance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AlmostSq.inflation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AlmostSq.dissects_img' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AlmostSq.all_scales' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AlmostSq.inflOK_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AlmostSq.inflCovers_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AlmostSq.parity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AlmostSq.parity_even' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AlmostSq.prop_112' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AlmostSq.prop_110' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AlmostSq.prop_139' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AlmostSq.sq112_code' depends on axioms: [propext]
+'AlmostSq.sq110_code' depends on axioms: [propext]
+'AlmostSq.sq139_code' depends on axioms: [propext]
+'AlmostSq.moron_code' depends on axioms: [propext]
+'AlmostSq.shift_moments' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AlmostSq.signed_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AlmostSq.integer_corners' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AlmostSq.noTilingF_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AlmostSq.noTiling_16' depends on axioms: [propext, AlmostSq.noTiling_16._native.native_decide.ax_1_1]
+'AlmostSq.noTiling_17' depends on axioms: [propext, AlmostSq.noTiling_17._native.native_decide.ax_1_1]
+'AlmostSq.noTiling_19' depends on axioms: [propext, AlmostSq.noTiling_19._native.native_decide.ax_1_1]
+'AlmostSq.table2' does not depend on any axioms
+'AlmostSq.uncovered_count' does not depend on any axioms
+'AlmostSq.thresholds' does not depend on any axioms
+'AlmostSq.residues' does not depend on any axioms
+'AlmostSq.pieces' does not depend on any axioms
+'AlmostSq.figure7' does not depend on any axioms
+'AlmostSq.reach57_count' does not depend on any axioms
+'AlmostSq.moron_60' depends on axioms: [propext]
+'AlmostSq.moron_98' depends on axioms: [propext]
+'AlmostSq.moron_admissible' depends on axioms: [propext, Classical.choice, Quot.sound]

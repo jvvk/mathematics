@@ -1,0 +1,36 @@
+# thresholds: t0 <= 3 -> t0 <= 2
+# command: nice -n 15 lake env lean --threads=1 AlmostSquares/CountsMut.lean
+# exit: 1
+## stdout
+AlmostSquares/CountsMut.lean:78:2: error: (kernel) application type mismatch
+  id (Eq.refl true)
+argument has type
+  true = true
+but function has type
+  decide
+        ((∀ r < 112,
+            r % 2 = 0 →
+              (inflations.any fun I => decide (I.S = 112 ∧ (I.V - ↑r) % 112 = 0 ∧ I.t0 ≤ 2 ∧ I.t0 * I.S + I.V ≤ 360)) =
+                true) ∧
+          (∀ r < 110,
+              r % 2 = 1 →
+                (inflations.any fun I =>
+                    decide (I.S = 110 ∧ (I.V - ↑r) % 110 = 0 ∧ I.t0 ≤ 3 ∧ I.t0 * I.S + I.V ≤ 360)) =
+                  true) ∧
+            (List.filter (fun I => decide (3 < I.t0)) inflations).length = 2) =
+      true →
+    decide
+        ((∀ r < 112,
+            r % 2 = 0 →
+              (inflations.any fun I => decide (I.S = 112 ∧ (I.V - ↑r) % 112 = 0 ∧ I.t0 ≤ 2 ∧ I.t0 * I.S + I.V ≤ 360)) =
+                true) ∧
+          (∀ r < 110,
+              r % 2 = 1 →
+                (inflations.any fun I =>
+                    decide (I.S = 110 ∧ (I.V - ↑r) % 110 = 0 ∧ I.t0 ≤ 3 ∧ I.t0 * I.S + I.V ≤ 360)) =
+                  true) ∧
+            (List.filter (fun I => decide (3 < I.t0)) inflations).length = 2) =
+      true
+
+## stderr
+

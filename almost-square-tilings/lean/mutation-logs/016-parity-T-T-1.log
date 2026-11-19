@@ -1,0 +1,22 @@
+# parity: |T| -> |T| + 1
+# command: nice -n 15 lake env lean --threads=1 AlmostSquares/ParityMut.lean
+# exit: 1
+## stdout
+AlmostSquares/ParityMut.lean:31:13: error: unsolved goals
+u v : ℤ → ℤ
+x✝ : ∀ q ∈ [], eps u v q = 1 ∨ eps u v q = -1
+⊢ False
+AlmostSquares/ParityMut.lean:72:2: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  c ≥ 0
+where
+ c := ↑T.length / 2
+AlmostSquares/ParityMut.lean:198:2: error: omega could not prove the goal:
+No usable constraints found. You may need to unfold definitions so `omega` can see linear arithmetic facts about `Nat` and `Int`, which may also involve multiplication, division, and modular remainder by constants.
+AlmostSquares/ParityMut.lean:209:2: error: omega could not prove the goal:
+No usable constraints found. You may need to unfold definitions so `omega` can see linear arithmetic facts about `Nat` and `Int`, which may also involve multiplication, division, and modular remainder by constants.
+AlmostSquares/ParityMut.lean:218:2: error: omega could not prove the goal:
+No usable constraints found. You may need to unfold definitions so `omega` can see linear arithmetic facts about `Nat` and `Int`, which may also involve multiplication, division, and modular remainder by constants.
+
+## stderr
+

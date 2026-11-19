@@ -1,0 +1,60 @@
+# balance: right side (f W - f 0) -> f W
+# command: nice -n 15 lake env lean --threads=1 AlmostSquares/InflationMut.lean
+# exit: 1
+## stdout
+AlmostSquares/InflationMut.lean:69:27: error: unsolved goals
+W H : ℤ
+hW : 0 ≤ W
+hH : 0 ≤ H
+ts : List Tile
+hd : Dissects W H ts
+f g : ℤ → ℤ
+h1 :
+  List.map (fun T => (f (T.x + T.w) - f T.x) * (g (T.y + T.h) - g T.y)) ts =
+    List.map (fun T => ∑ p ∈ T.cells, fd f p.1 * fd g p.2) ts
+hf : ∑ x ∈ Ico 0 W, fd f x = f W - f 0
+hg : ∑ x ∈ Ico 0 H, fd g x = g H - g 0
+⊢ (f W - f 0) * (g H - g 0) = f W * (g H - g 0)
+AlmostSquares/InflationMut.lean:215:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  X 0
+in the target expression
+  (List.map (fun T => (X (T.x + T.w) - X T.x) * (Y (T.y + T.h) - Y T.y)) ts).sum = X W * (Y H - Y 0)
+
+case refine_3
+W H : ℤ
+hW : 0 ≤ W
+hH : 0 ≤ H
+ts : List Tile
+hd : Dissects W H ts
+X Y : ℤ → ℤ
+hX0 : X 0 = 0
+hY0 : Y 0 = 0
+hX : StrictMonoOn X (CutX W ts)
+hY : StrictMonoOn Y (CutY H ts)
+cx : ∀ T ∈ ts, T.x ∈ CutX W ts ∧ T.x + T.w ∈ CutX W ts
+cy : ∀ T ∈ ts, T.y ∈ CutY H ts ∧ T.y + T.h ∈ CutY H ts
+x0 : 0 ∈ CutX W ts
+xW : W ∈ CutX W ts
+y0 : 0 ∈ CutY H ts
+yH : H ∈ CutY H ts
+hXW : 0 ≤ X W
+hYH : 0 ≤ Y H
+hpos : ∀ T' ∈ List.map (img X Y) ts, 0 < T'.w ∧ 0 < T'.h
+hb : (List.map (fun T => (X (T.x + T.w) - X T.x) * (Y (T.y + T.h) - Y T.y)) ts).sum = X W * (Y H - Y 0)
+⊢ (List.map (fun T => T.w * T.h) (List.map (img X Y) ts)).sum = X W * Y H
+AlmostSquares/InflationMut.lean:252:19: warning: Variable name `hu0` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hu0
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+AlmostSquares/InflationMut.lean:257:40: warning: This simp argument is unused:
+  hu0
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [id, add_sub_cancel_left, sub_zero] at this
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+
+## stderr
+

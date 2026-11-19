@@ -1,0 +1,40 @@
+control passes: Inflation.lean
+control passes: Parity.lean
+control passes: Real.lean
+control passes: Examples.lean
+control passes: Scales.lean
+control passes: Classes.lean
+control passes: Inflations.lean
+control passes: Main.lean
+control passes: Bouwkamp.lean
+control passes: Counts.lean
+control passes: Reach.lean
+rejected: balance: right side (f W - f 0) -> f W (exit 1, diagnostic: AlmostSquares/InflationMut.lean:69:27: error: unsolved goals)
+rejected: inflation: strict -> monotone (exit 1, diagnostic: AlmostSquares/InflationMut.lean:185:49: error(lean.invalidField): Invalid field `le_iff_le`: The environment does no)
+rejected: inflation: size min -> max (exit 1, diagnostic: AlmostSquares/InflationMut.lean:246:10: error: typeclass instance problem is stuck)
+rejected: signed identity: S (uS - vS) -> S (uS + vS) (exit 1, diagnostic: AlmostSquares/InflationMut.lean:274:25: error: unsolved goals)
+rejected: parity: |T| -> |T| + 1 (exit 1, diagnostic: AlmostSquares/ParityMut.lean:31:13: error: unsolved goals)
+rejected: prop 112: even -> odd (exit 1, diagnostic: AlmostSquares/ParityMut.lean:197:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern)
+rejected: prop 110: odd -> even (exit 1, diagnostic: AlmostSquares/ParityMut.lean:208:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern)
+rejected: stack T112 loses the 6-square (exit 1, diagnostic: AlmostSquares/ParityMut.lean:198:2: error: omega could not prove the goal:)
+rejected: sq139: one square moved (exit 1, diagnostic: AlmostSquares/ParityMut.lean:177:55: error: Tactic `decide` proved that the proposition)
+rejected: integer corners: x -> x/2 (exit 1, diagnostic: AlmostSquares/RealMut.lean:186:3: error: Application type mismatch: The argument)
+rejected: real theorem: drop 18 from the list (exit 1, diagnostic: AlmostSquares/RealMut.lean:438:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern)
+rejected: Moron: v(10) = 1 -> 2 (exit 1, diagnostic: AlmostSquares/ExamplesMut.lean:27:18: error: Tactic `decide` proved that the proposition)
+rejected: Moron: 43 -> 44 (exit 1, diagnostic: AlmostSquares/ExamplesMut.lean:40:82: error: Tactic `decide` proved that the proposition)
+rejected: 112 example: signed sum 112 -> 111 (exit 1, diagnostic: AlmostSquares/ExamplesMut.lean:52:79: error: Tactic `decide` proved that the proposition)
+rejected: 112 example: t = 2 -> t = 1 (exit 1, diagnostic: AlmostSquares/ExamplesMut.lean:60:18: error: Tactic `decide` proved that the proposition)
+rejected: Lemma 4: drop the collision hypothesis (exit 1, diagnostic: AlmostSquares/ScalesMut.lean:74:20: error(lean.unknownIdentifier): Unknown identifier `hcol`)
+rejected: collision check: < t0 -> <= t0 (exit 1, diagnostic: AlmostSquares/ClassesMut.lean:76:4: error: Tactic `assumption` failed)
+rejected: class data: one shift value changed (exit 1, diagnostic: AlmostSquares/InflationsMut.lean:27:61: error: Tactic `decide` proved that the proposition)
+rejected: coverage: even residues -> odd (exit 1, diagnostic: AlmostSquares/MainMut.lean:56:2: error: (kernel) application type mismatch)
+rejected: Bouwkamp 112: last group 33 -> 34 (exit 1, diagnostic: AlmostSquares/BouwkampMut.lean:77:63: error: (kernel) application type mismatch)
+rejected: Bouwkamp: 139 code checked against 110 layout (exit 1, diagnostic: AlmostSquares/BouwkampMut.lean:79:63: error: (kernel) application type mismatch)
+rejected: Table 2: last entry 56 -> 55 (exit 1, diagnostic: AlmostSquares/CountsMut.lean:66:72: error: Tactic `decide` proved that the proposition)
+rejected: cnt: empty case counts every t (exit 1, diagnostic: AlmostSquares/CountsMut.lean:30:4: error: unsolved goals)
+rejected: uncovered: 151 -> 150 (exit 1, diagnostic: AlmostSquares/CountsMut.lean:114:77: error: (kernel) application type mismatch)
+rejected: thresholds: t0 <= 3 -> t0 <= 2 (exit 1, diagnostic: AlmostSquares/CountsMut.lean:78:2: error: (kernel) application type mismatch)
+rejected: pieces: 22 -> 21 (exit 1, diagnostic: AlmostSquares/CountsMut.lean:88:71: error: Tactic `decide` proved that the proposition)
+rejected: 57x55: 67 -> 68 (exit 1, diagnostic: AlmostSquares/ReachMut.lean:106:75: error: Tactic `decide` proved that the proposition)
+rejected: Moron: n = 60 -> 61 (exit 1, diagnostic: AlmostSquares/ReachMut.lean:110:2: error: Tactic `decide` proved that the proposition)
+28/28 mutants rejected, all controls pass

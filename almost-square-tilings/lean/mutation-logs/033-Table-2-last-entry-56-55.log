@@ -1,0 +1,10 @@
+# Table 2: last entry 56 -> 55
+# command: nice -n 15 lake env lean --threads=1 AlmostSquares/CountsMut.lean
+# exit: 1
+## stdout
+AlmostSquares/CountsMut.lean:66:72: error: Tactic `decide` proved that the proposition
+  List.map areaSets (List.range' 2 18) = [0, 0, 1, 0, 1, 2, 1, 3, 6, 5, 3, 13, 14, 18, 30, 27, 42, 55]
+is false
+
+## stderr
+

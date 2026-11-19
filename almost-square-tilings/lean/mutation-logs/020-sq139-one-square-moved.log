@@ -1,0 +1,13 @@
+# sq139: one square moved
+# command: nice -n 15 lake env lean --threads=1 AlmostSquares/ParityMut.lean
+# exit: 1
+## stdout
+AlmostSquares/ParityMut.lean:177:55: error: Tactic `decide` proved that the proposition
+  dissectsCheck 139 139 sq139 = true
+is false
+AlmostSquares/ParityMut.lean:215:40: error: Tactic `decide` proved that the proposition
+  ∀ q ∈ T139, q ∈ sq139
+is false
+
+## stderr
+

@@ -1,0 +1,11 @@
+# Moron: 43 -> 44
+# command: nice -n 15 lake env lean --threads=1 AlmostSquares/ExamplesMut.lean
+# exit: 1
+## stdout
+AlmostSquares/ExamplesMut.lean:40:82: error: Tactic `decide` proved that the proposition
+  (List.map (fun T => eps moronU moronV T * T.w) moron).sum = 0 ∧
+    (List.map Tile.w (List.filter (fun T => decide (eps moronU moronV T = 1)) moron)).sum = 44
+is false
+
+## stderr
+

@@ -1,0 +1,7 @@
+# control Counts.lean
+# command: nice -n 15 lake env lean --threads=1 AlmostSquares/CountsMut.lean
+# exit: 0
+## stdout
+
+## stderr
+

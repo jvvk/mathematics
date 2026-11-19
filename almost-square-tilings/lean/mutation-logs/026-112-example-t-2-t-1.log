@@ -1,0 +1,10 @@
+# 112 example: t = 2 -> t = 1
+# command: nice -n 15 lake env lean --threads=1 AlmostSquares/ExamplesMut.lean
+# exit: 1
+## stdout
+AlmostSquares/ExamplesMut.lean:60:18: error: Tactic `decide` proved that the proposition
+  check 112 (List.map (img (scaleShift 1 u112) (scaleShift 1 v112)) sq112) = true
+is false
+
+## stderr
+

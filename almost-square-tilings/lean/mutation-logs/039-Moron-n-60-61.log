@@ -1,0 +1,12 @@
+# Moron: n = 60 -> 61
+# command: nice -n 15 lake env lean --threads=1 AlmostSquares/ReachMut.lean
+# exit: 1
+## stdout
+AlmostSquares/ReachMut.lean:110:2: error: Tactic `decide` proved that the proposition
+  rectOK 33 32 moron 2 (tab [(14, -2), (18, -2), (24, -3), (25, -3), (33, -5)])
+      (tab [(9, -1), (10, -2), (14, -1), (17, -2), (32, -4)]) 61 =
+    true
+is false
+
+## stderr
+

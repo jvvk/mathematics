@@ -1,0 +1,7 @@
+# control Inflation.lean
+# command: nice -n 15 lake env lean --threads=1 AlmostSquares/InflationMut.lean
+# exit: 0
+## stdout
+
+## stderr
+

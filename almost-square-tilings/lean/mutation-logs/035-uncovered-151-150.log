@@ -1,0 +1,17 @@
+# uncovered: 151 -> 150
+# command: nice -n 15 lake env lean --threads=1 AlmostSquares/CountsMut.lean
+# exit: 1
+## stdout
+AlmostSquares/CountsMut.lean:114:77: error: (kernel) application type mismatch
+  id (Eq.refl true)
+argument has type
+  true = true
+but function has type
+  decide (List.length uncovered = 150 ∧ (List.all uncovered fun n => (List.map Prod.fst explicit).contains n) = true) =
+      true →
+    decide
+        (List.length uncovered = 150 ∧ (List.all uncovered fun n => (List.map Prod.fst explicit).contains n) = true) =
+      true
+
+## stderr
+

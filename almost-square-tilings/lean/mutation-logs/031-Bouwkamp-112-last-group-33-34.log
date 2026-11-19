@@ -1,0 +1,13 @@
+# Bouwkamp 112: last group 33 -> 34
+# command: nice -n 15 lake env lean --threads=1 AlmostSquares/BouwkampMut.lean
+# exit: 1
+## stdout
+AlmostSquares/BouwkampMut.lean:77:63: error: (kernel) application type mismatch
+  id (Eq.refl true)
+argument has type
+  true = true
+but function has type
+  decide (codeIs code112 112 112 sq112 = true) = true → decide (codeIs code112 112 112 sq112 = true) = true
+
+## stderr
+

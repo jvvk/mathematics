@@ -1,0 +1,10 @@
+# class data: one shift value changed
+# command: nice -n 15 lake env lean --threads=1 AlmostSquares/InflationsMut.lean
+# exit: 1
+## stdout
+AlmostSquares/InflationsMut.lean:27:61: error: Tactic `decide` proved that the proposition
+  inflations0.all inflOK = true
+is false
+
+## stderr
+

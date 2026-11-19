@@ -1,0 +1,29 @@
+# coverage: even residues -> odd
+# command: nice -n 15 lake env lean --threads=1 AlmostSquares/MainMut.lean
+# exit: 1
+## stdout
+AlmostSquares/MainMut.lean:56:2: error: (kernel) application type mismatch
+  id (Eq.refl true)
+argument has type
+  true = true
+but function has type
+  decide
+        (∀ r < 112,
+          r % 2 = 1 →
+            (inflations.any fun I => decide (I.S = 112 ∧ (I.V - ↑r) % 112 = 0 ∧ I.t0 * 112 + I.V ≤ 600)) = true) =
+      true →
+    decide
+        (∀ r < 112,
+          r % 2 = 1 →
+            (inflations.any fun I => decide (I.S = 112 ∧ (I.V - ↑r) % 112 = 0 ∧ I.t0 * 112 + I.V ≤ 600)) = true) =
+      true
+AlmostSquares/MainMut.lean:68:10: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  0 ≤ b ≤ 55
+  56*a + b ≥ 300
+where
+ a := ↑n / 112
+ b := ↑(n % 112) / 2
+
+## stderr
+
