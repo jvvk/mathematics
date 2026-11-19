@@ -4,7 +4,7 @@ checked by brute force for small m. Run: python3 -I fences.py   (prints ALL PASS
 import itertools
 import sys
 from fractions import Fraction
-from math import factorial
+from math import comb, factorial
 
 NMAX = 200
 KNOWN_G = {1: 1, 2: 1, 3: 3, 4: 6, 5: 25, 6: 75, 7: 525, 8: 2384, 9: 15372, 10: 107280, 11: 798435}
@@ -32,6 +32,24 @@ def brute_e_aut(m: int) -> tuple[int, int]:
     e = sum(all(p.index(a) < p.index(b) for a, b in rel) for p in itertools.permutations(range(m)))
     aut = sum({(s[a], s[b]) for a, b in rel} == rel for s in itertools.permutations(range(m)))
     return e, aut
+
+
+def poset_e_aut(n: int, covers: set[tuple[int, int]]) -> tuple[int, int]:
+    """e(P) and #Aut(P) by brute force over permutations, from the cover relations (closed transitively)."""
+    lt = set(covers)
+    while True:
+        new = {(a, d) for a, b in lt for c, d in lt if b == c} - lt
+        if not new:
+            break
+        lt |= new
+    e = sum(all(p.index(a) < p.index(b) for a, b in lt) for p in itertools.permutations(range(n)))
+    aut = sum({(s[a], s[b]) for a, b in lt} == lt for s in itertools.permutations(range(n)))
+    return e, aut
+
+
+# Q: the fence a<b>c<d>e<f (0..5) with g (6) below d; R: Q with h (7) above c.
+Q_COVERS = {(0, 1), (2, 1), (2, 3), (4, 3), (4, 5), (6, 3)}
+R_COVERS = Q_COVERS | {(2, 7)}
 
 
 def fence_union_max(E: list[int], N: int) -> list[Fraction]:
@@ -82,10 +100,18 @@ def main() -> None:
     beats = [n for n in range(12, NMAX + 1) if factorial(n - J(n)) > fmax[n]]
     ok &= beats == list(range(58, NMAX + 1))
     print(f"construction beats every fence union exactly for n in 58..{NMAX} (within 12..{NMAX})")
+    # Small range (Lemma 3 and (4)): Q + U or R + U beats every fence union for n = 12 and 14..57; not at 9, 13.
+    eQ, aQ = poset_e_aut(7, Q_COVERS)
+    eR, aR = poset_e_aut(8, R_COVERS)
+    ok &= (eQ, aQ, eR, aR) == (298, 1, 1613, 1)
+    ok &= comb(12, 7) * 298 * fmax[5] == 5900400 and fmax[12] == 4227300 and fmax[13] == 54954900
+    small = [n for n in range(8, 58)
+             if max(comb(n, 7) * eQ * fmax[n - 7], comb(n, 8) * eR * fmax[n - 8]) > fmax[n]]
+    ok &= small == [8, 10, 11, 12] + list(range(14, 58))
+    print("Q + U or R + U beats every fence union exactly for n in {8, 10, 11, 12} and 14..57 (within 8..57)")
     analytic = [n for n in range(2, 5001) if (factorial(n) // factorial(n - J(n))) ** 3 < 2 ** (n - 1)]
     ok &= analytic[0] == 181 and analytic == list(range(181, 5001))
     print("analytic inequality (n!/(n-J)!)^3 < 2^(n-1) holds exactly for n in 181..5000")
-    # mutant: dropping the dual copies of odd fences changes the n <= 11 pattern
     print("ALL PASS" if ok else "FAILED")
     sys.exit(0 if ok else 1)
 

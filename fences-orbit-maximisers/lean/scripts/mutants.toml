@@ -1,5 +1,5 @@
 # Mutation suite for LeanProofs/Orbits516140 (MO 516140, answer 516154: orbits of linear extensions).
-# Run: python3 -I ~/.claude/skills/mutation-harness/mutate.py scripts/orbits516140.toml
+# Run (from lean/, after lake build): python3 -I scripts/mutate.py scripts/mutants.toml
 # Copy mode: each mutant is one statement or definition change, compiled as a copy of its own file
 # against the built tree. Parts: [Basic] [Count] [Aut] [Posets] [Fences].
 # Equivalent mutant avoided: weakening the order-reflecting condition in autCands to order-preserving
@@ -9,7 +9,7 @@ cmd = ["lake", "env", "lean", "{file}"]
 cwd = ".."
 timeout = 900
 mode = "copy"
-fail_markers = ["error"]
+fail_pattern = 'LeanProofs/\S+Mut\.lean:\d+:\d+: error'   # rejection = nonzero exit AND a Lean error in the mutated copy
 
 [[mutant]]
 name = '''[Basic] smul_eq_self_iff: phi^2 = 1 instead of phi = 1'''

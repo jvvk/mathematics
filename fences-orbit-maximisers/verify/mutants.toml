@@ -1,0 +1,46 @@
+# Planted errors in the two fence programs; each must make the program exit nonzero.
+#   cd verify && python3 -I ../lean/scripts/mutate.py mutants.toml
+[check]
+cmd = ["python3", "-I", "{file}"]
+cwd = "."
+timeout = 900
+mode = "copy"
+fail_markers = ["FAILED"]
+
+[[mutant]]
+name = "fences.py: R without its extra element (R = Q plus an isolated point)"
+file = "fences.py"
+old = "R_COVERS = Q_COVERS | {(2, 7)}"
+new = "R_COVERS = Q_COVERS | set()"
+
+[[mutant]]
+name = "fences.py: Q + U uses binom(n, 6)"
+file = "fences.py"
+old = "max(comb(n, 7) * eQ * fmax[n - 7]"
+new = "max(comb(n, 6) * eQ * fmax[n - 7]"
+
+[[mutant]]
+# (Dropping the dual copies of odd fences is an equivalent mutant: no optimal fence union for n <= 200 uses an
+#  odd fence with at least three elements, so the maxima do not change.)
+name = "fences.py: odd fences counted without their reflection (#Aut 1 instead of 2)"
+file = "fences.py"
+old = "types += [(m, w / 2), (m, w / 2)]"
+new = "types += [(m, w), (m, w)]"
+
+[[mutant]]
+name = "recheck: g below d dropped from Q"
+file = "recheck_fences.py"
+old = "(4, 5), (6, 3)]"
+new = "(4, 5), (6, 5)]"
+
+[[mutant]]
+name = "recheck: automorphisms ignore the order (count all bijections)"
+file = "recheck_fences.py"
+old = "if all(rel[i][k] == rel[img[i]][t] and rel[k][i] == rel[t][img[i]] for i in range(k)):"
+new = "if True:"
+
+[[mutant]]
+name = "recheck: R + U uses F(n - 7)"
+file = "recheck_fences.py"
+old = "comb(n, 8) * Fraction(er, ar) * F[n - 8]"
+new = "comb(n, 8) * Fraction(er, ar) * F[n - 7]"

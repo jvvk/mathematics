@@ -8,17 +8,19 @@
 <p align="center"><sub><a href="paper">paper</a> · <a href="lean">Lean proof</a> · <a href="verify">code</a> · <a href="../">all results</a></sub></p>
 <!-- visual:end -->
 
-The automorphism group of a finite poset `P` acts freely on its linear extensions, so the number of orbits is `f(P) = e(P)/#Aut(P)`. Richard Stanley asked on MathOverflow (question 516140) about the largest value `g(n)` over `n`-element posets, and whether the maximisers are disjoint unions of fences. The note finds `g(n)` and every maximiser for `n ≤ 11` by exhaustive search: fence unions maximise exactly for `n ≤ 7` and `n = 9`, and the first failure is an eight-element poset with `f = 2384` against `2100` for the best fence union. It then proves that for every `n ≥ 58` no maximiser is a union of fences. The proof sets Graham's construction (posted as an answer on the thread, credited in the paper) against a new bound for fence unions: `t` disjoint comparable pairs allow at most `n!/2^t` linear extensions. The range `12 ≤ n ≤ 57` stays open.
+The automorphism group of a finite poset `P` acts freely on its linear extensions, so the number of orbits is `f(P) = e(P)/#Aut(P)`. Richard Stanley asked on MathOverflow (question 516140) about the largest value `g(n)` over `n`-element posets, and whether the maximisers are disjoint unions of fences. The note finds `g(n)` and every maximiser for `n ≤ 11` by exhaustive search: fence unions maximise exactly for `n ≤ 7` and `n = 9`, and the first failure is an eight-element poset with `f = 2384` against `2100` for the best fence union. It then proves that for `n = 12` and every `n ≥ 14` no maximiser is a union of fences, so fence unions maximise for `n ≤ 7` and `n = 9` and for no other `n` except possibly `n = 13`. For `12 ≤ n ≤ 57` the competitor is the seven-element poset `Q` (or the eight-element `R`) beside an optimal fence union, compared exactly. For `n ≥ 58` it is Graham's construction (posted as an answer on the thread, credited in the paper), set against an upper bound for fence unions that follows from the standard chain-partition bound on linear extensions. The table of Theorem 1 first appeared in the author's [MathOverflow answer](https://mathoverflow.net/a/516154) of 18 October 2026.
 
-Preprint v1, 23 October 2026, not peer reviewed. Theorem 2 for `n ≥ 181`, with Lemma 1, Proposition 2 and Lemma 3, is formally verified in Lean 4 (`lean/`, standard axioms only); the range `58 ≤ n ≤ 180` and Theorem 1 are exact computations. The author used AI tools (Claude, Anthropic) in this work, as described in the paper's acknowledgement, and is responsible for its content.
+Preprint v2, 19 November 2026 (v1: 23 October), not peer reviewed. Zenodo: [doi:10.5281/zenodo.24365603](https://doi.org/10.5281/zenodo.24365603), identical to this folder at tag `fences-orbit-maximisers-v2`. Theorem 2 for `n ≥ 181`, with Lemma 1, Proposition 2 and Lemma 4, is formally verified in Lean 4 (`lean/`, standard axioms only); Lemma 3 is proved by hand, and the ranges `12 ≤ n ≤ 57` and `58 ≤ n ≤ 180` and Theorem 1 are exact computations.
+
+**Version 2** (19 November 2026, tag `fences-orbit-maximisers-v2`): after an independent review by Codex, Theorem 2 is extended from `n ≥ 58` to `n = 12` and `n ≥ 14` (new Lemma 3 and the comparison with `Q + U` and `R + U`); Lemma 1 is credited as a case of the chain-partition bound (Pak 2021, Bochkov–Petrov 2020); the earlier MathOverflow answer is cited; the Figure 1 caption is corrected; every check exits nonzero on failure, `search.sh` and the Sage script compare the maximisers up to isomorphism, and the Lean mutants run under the house harness. The author used AI tools (Claude, Anthropic) in this work, as described in the paper's acknowledgement, and is responsible for its content.
 
 ## Contents
 
 - `paper/`: `paper.tex` and `paper.pdf`.
-- `verify/search.sh`: Theorem 1. Every poset on `n ≤ 11` points from nauty's `genposetg`, `e(P)` by dynamic programming over down-sets and `#Aut(P)` by backtracking (`orbits.c`), maxima by `maxima.py`; the output is compared with `expected.txt` (poset counts match OEIS A000112).
-- `verify/sage_g8.sage`: an independent recomputation of `g(n)` and the maximisers for `n ≤ 8` with Sage's own poset generator and counters. `describe.py` decodes a maximiser into its components.
-- `verify/fences.py`: the exact best fence union for every `n ≤ 200` against Graham's bound `(n − J(n))!`, the brute-force checks of `e(Z_m) = E_m` and `#Aut(Z_m)`, and the exact check of inequality (2).
-- `verify/recheck_fences.py`: an independent program (no shared code) for the same fence-union comparison.
+- `verify/search.sh`: Theorem 1. Every poset on `n ≤ 11` points from nauty's `genposetg`, `e(P)` by dynamic programming over down-sets and `#Aut(P)` by backtracking (`orbits.c`), maxima by `maxima.py`; the output is compared with `expected.txt` (poset counts match OEIS A000112), and `check_maximisers.py` checks every maximiser against Theorem 1 up to isomorphism.
+- `verify/sage_g8.sage`: an independent recomputation of `g(n)` and the maximisers for `n ≤ 8` with Sage's own poset generator and counters, asserting agreement up to isomorphism. `describe.py` decodes a maximiser into its components.
+- `verify/fences.py`: the exact best fence union for every `n ≤ 200` against `Q + U` and `R + U` (`n ≤ 57`) and against Graham's bound `(n − J(n))!`, the brute-force checks of `e(Z_m) = E_m`, `#Aut(Z_m)`, `e(Q)` and `e(R)`, and the exact check of inequality (3).
+- `verify/recheck_fences.py`: an independent program (no shared code) for the same comparisons. `verify/mutants.toml` plants six errors in the two programs, each rejected (`python3 -I ../lean/scripts/mutate.py mutants.toml`).
 - `lean/`: a Lake project pinned to Lean 4.34.0 and Mathlib. `lean/README.md` maps the results to Lean names; `SOURCE-SNAPSHOT.json` records the development commit and file hashes; `scripts/mutants.toml` plants 61 wrong changes, each rejected.
 
 ## Reproduce
@@ -31,7 +33,7 @@ python3 recheck_fences.py         # ALL PASS
 sage sage_g8.sage                 # optional, needs SageMath
 cd ../paper && latexmk -pdf paper.tex
 cd ../lean && lake exe cache get && lake build && lake env lean CheckClaims.lean
-python3 scripts/mutate.py scripts/mutants.toml    # 61 mutants, each rejected (rebuilds per mutant)
+python3 scripts/mutate.py scripts/mutants.toml    # 61 mutants, each rejected with a Lean error (compiles a mutated copy per mutant); log in mutation-validation.log
 ```
 
 ## Licence

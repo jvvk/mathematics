@@ -20,8 +20,8 @@ threshold `J n` is the least `j` with `n ≤ 2^j + j − 1`, as in the paper.
 | `k` isolated points: `k! ≤ #Aut` | `factorial_le_card_aut` | `Fences.lean` |
 | A fence union has `t` disjoint pairs and `k` isolated points with `n ≤ 3t + k` | `exists_matching` | `Fences.lean` |
 | Proposition 2, in the form `f · 2^t · k! ≤ n!` with `n ≤ 3t + k` | `orbitCount_mul_le` | `Fences.lean` |
-| Lemma 3 (Graham's construction: `f ≥ m!`) | `Gr.orbitCount_Gr`, `exists_poset_orbitCount_ge`, `exists_poset_orbitCount_ge'` | `Fences.lean` |
-| Inequality (2) and its consequence, for `n ≥ 181` | `factorial_lt` | `Fences.lean` |
+| Lemma 4 (Graham's construction: `f ≥ m!`) | `Gr.orbitCount_Gr`, `exists_poset_orbitCount_ge`, `exists_poset_orbitCount_ge'` | `Fences.lean` |
+| Inequality (3) and its consequence, for `n ≥ 181` | `factorial_lt` | `Fences.lean` |
 | **Theorem 2** for `n ≥ 181` | `fence_union_not_max`, `fence_union_not_max'` | `Fences.lean` |
 
 Route and differences from the paper.
@@ -30,14 +30,14 @@ Route and differences from the paper.
   bijections that respect it injectively onto a disjoint set of bijections, one pair at a time.
 - Proposition 2 is used through the matching: in each run of comparable neighbours of the listing, take the
   positions where the run length so far is odd. This gives `n ≤ 3t + k` directly.
-- Lemma 3 is proved without the paper's nonempty condition on the subsets (`exists_poset_orbitCount_ge'`,
+- Lemma 4 is proved without the paper's nonempty condition on the subsets (`exists_poset_orbitCount_ge'`,
   `1 ≤ m ≤ 2^j`): it needs only that the full set of tops is one of the subsets. The paper's form
   (`m ≤ 2^j − 1`) follows.
 - Inequality (2) goes through `2 (n)_J^3 ≤ 2 n^(3J) < 2^n ≤ 2 (2^t k!)^3`, with a finite check on
   `[181, 255]` and `3(r + 1)^2 + 1 ≤ 2^r` for `r ≥ 8` above it. The threshold 181 is the true threshold of this route.
 
-Not formalised: Theorem 1 (the exhaustive search over all posets with `n ≤ 11`) and the range `58 ≤ n ≤ 180`
-of Theorem 2, both exact computations checked by `../verify/`.
+Not formalised: Theorem 1 (the exhaustive search over all posets with `n ≤ 11`), Lemma 3 (disjoint sums, by hand), and
+the ranges `12 ≤ n ≤ 57` and `58 ≤ n ≤ 180` of Theorem 2, exact computations checked by `../verify/`.
 
 ## Build
 
@@ -45,5 +45,5 @@ of Theorem 2, both exact computations checked by `../verify/`.
 lake exe cache get                                  # Mathlib build cache
 lake build                                          # compiles every module and prints the axiom audit
 lake env lean CheckClaims.lean                      # restates each headline result and its axioms
-python3 scripts/mutate.py scripts/mutants.toml      # 61 mutants, each rejected (rebuilds per mutant)
+python3 scripts/mutate.py scripts/mutants.toml      # 61 mutants, each rejected with a Lean error (compiles a mutated copy per mutant); log in mutation-validation.log
 ```

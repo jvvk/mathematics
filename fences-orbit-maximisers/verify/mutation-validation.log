@@ -1,0 +1,9 @@
+control passes: fences.py
+control passes: recheck_fences.py
+rejected: fences.py: R without its extra element (R = Q plus an isolated point) (exit 1, marker 'FAILED': FAILED)
+rejected: fences.py: Q + U uses binom(n, 6) (exit 1, marker 'FAILED': FAILED)
+rejected: fences.py: odd fences counted without their reflection (#Aut 1 instead of 2) (exit 1, marker 'FAILED': FAILED)
+rejected: recheck: g below d dropped from Q (exit 1, marker 'FAILED': FAILED)
+rejected: recheck: automorphisms ignore the order (count all bijections) (exit 1, marker 'FAILED': FAILED)
+rejected: recheck: R + U uses F(n - 7) (exit 1, marker 'FAILED': FAILED)
+6/6 mutants rejected, all controls pass
