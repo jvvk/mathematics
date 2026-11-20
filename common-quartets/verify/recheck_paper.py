@@ -1,4 +1,5 @@
-"""Independent recheck of every finite certificate stated in paper/common-quartets.tex (gate J4).
+"""Independent recheck of the finite certificates listed in ../README.md (gate J4); it does not check the
+Proposition 5.2 enumeration (classes13.py, recount13.py) or the 135 unsatisfiable instances (certify.py).
 Self-contained: imports nothing from this folder. Parses the Newick strings from the .tex itself."""
 
 import re
@@ -63,7 +64,17 @@ def check_binary(t, n):
         return len(u) == need and all(deg_ok(c, False) for c in u)
 
     assert deg_ok(t, True), "not binary"
-    assert leafset(t) == set(range(n))
+    leaves = []
+
+    def collect(u):
+        if isinstance(u, int):
+            leaves.append(u)
+        else:
+            for c in u:
+                collect(c)
+
+    collect(t)
+    assert sorted(leaves) == list(range(n)), "each label must occur exactly once"
 
 
 def displayed(splits, Q):
@@ -204,3 +215,4 @@ for perm in permutations(labels):
 print(
     "Snir-Yuster k=3 example equal to F_3 up to relabelling:", found is not None, found
 )
+assert found is not None, "Snir-Yuster's example is not F_3 up to relabelling"

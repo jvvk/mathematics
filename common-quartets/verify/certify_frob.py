@@ -36,12 +36,12 @@ def main() -> None:
     r = subprocess.run([CADICAL, "-q", "--lrat=1", "--binary=0", cnf, proof])
     t1 = time.time()
     c = subprocess.run([LRATCHECK, cnf, proof], capture_output=True, text=True)
-    ok = r.returncode == 20 and "c VERIFIED" in c.stdout
+    ok = r.returncode == 20 and c.returncode == 0 and "c VERIFIED" in c.stdout
     rec = dict(
         n=a.n,
         k=a.k,
         perm=a.perm,
-        solver_exit=r.returncode,
+        solver_exit=r.returncode, checker_exit=c.returncode,
         check="VERIFIED" if ok else "FAIL",
         solve_s=round(t1 - t0, 1),
         check_s=round(time.time() - t1, 1),

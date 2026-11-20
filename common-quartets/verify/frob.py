@@ -249,7 +249,12 @@ def main() -> None:
     )
     a = ap.parse_args()
     for n in a.count:
-        print(f"n={n}: {count_trees(n)} trees", flush=True)
+        c, want = count_trees(n), 1
+        for j in range(3, 2 * n - 4, 2):
+            want *= j                                    # (2n-5)!! unrooted binary trees on n leaves
+        print(f"n={n}: {c} trees", flush=True)
+        if c != want:
+            sys.exit(f"FAIL: n={n} gives {c} trees, expected (2n-5)!! = {want}")
     if a.n:
         sig = parse_perm(a.n, a.perm)
         assert sorted(sig) == list(range(a.n)), "not a permutation"
@@ -258,7 +263,10 @@ def main() -> None:
             print(f"UNSAT in {dt:.1f}s")
             return
         print(f"SAT in {dt:.1f}s\nT = {fam[0]}")
-        print("independent check, common quartets:", len(common_quartets(fam)))
+        cq = len(common_quartets(fam))
+        print("independent check, common quartets:", cq)
+        if cq:
+            sys.exit("FAIL: the SAT family has a common quartet")
 
 
 if __name__ == "__main__":

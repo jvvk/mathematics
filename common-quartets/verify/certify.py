@@ -40,8 +40,8 @@ def main() -> None:
         r = subprocess.run([CADICAL, "-q", "--lrat=1", "--binary=0", cnf, proof])
         t1 = time.time()
         c = subprocess.run([LRATCHECK, cnf, proof], capture_output=True, text=True)
-        ok = r.returncode == 20 and "c VERIFIED" in c.stdout
-        rec = dict(n=n, shape=i, solver_exit=r.returncode, check="VERIFIED" if ok else "FAIL",
+        ok = r.returncode == 20 and c.returncode == 0 and "c VERIFIED" in c.stdout
+        rec = dict(n=n, shape=i, solver_exit=r.returncode, checker_exit=c.returncode, check="VERIFIED" if ok else "FAIL",
                    solve_s=round(t1 - t0, 1), check_s=round(time.time() - t1, 1),
                    proof_mb=round(os.path.getsize(proof) / 2**20, 1))
         os.remove(proof); os.remove(cnf)

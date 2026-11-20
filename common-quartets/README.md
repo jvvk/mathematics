@@ -26,8 +26,8 @@ Preprint v2, 20 November 2026 (v1: 20 October 2026), not peer reviewed. Zenodo: 
 ## Contents
 
 - `paper/`: `common-quartets.tex` and `common-quartets.pdf`.
-- `verify/` (Python 3 with [PySAT](https://pysathq.github.io/), `pip install python-sat`):
-  - `recheck_paper.py`: an independent recheck of every finite claim, sharing no code with the rest of `verify/`; it parses the Newick strings from the `.tex`. Checks Proposition 5.1 (715 quartets), the 21-leaf example for `k = 4` (5985 quartets), `F_k` for `k ≤ 6`, the `k = 3` table and Snir and Yuster's example, the tree `T′` and its involution, and Proposition 6.2 on `ℤ₄₀`. About 2 seconds.
+- `verify/` (Python 3 with [PySAT](https://pysathq.github.io/) and [NetworkX](https://networkx.org/), `pip install python-sat networkx`):
+  - `recheck_paper.py`: an independent recheck of the finite claims listed here, sharing no code with the rest of `verify/`; it parses the Newick strings from the `.tex`. Checks Proposition 5.1 (715 quartets), the 21-leaf example for `k = 4` (5985 quartets), `F_k` for `k ≤ 6`, the `k = 3` table and Snir and Yuster's example, the tree `T′` and its involution, and Proposition 6.2 on `ℤ₄₀`. It does not check the enumeration behind Proposition 5.2 (`classes13.py` asserts 19,440 examples in six orbits; `recount13.py` recounts the 19,440 independently) or the 135 unsatisfiable instances (`certify.py`). About 2 seconds.
   - `run_all.py`: the fast checks of the search code: Snir and Yuster's Figure 4, the 13-leaf witness, the SAT encoding (it counts 15, 105 and 945 trees on 5, 6, 7 leaves), `n = 13` satisfiable and shape 0 at `n = 14` unsatisfiable. About 35 seconds. `mutants.py` plants 8 errors in these scripts; each must make `run_all.py` fail.
   - `sat_h3.py`, `shapes.py`, `shapes_indep.py`, `by_shape.py`, `certify.py`: the `n = 14` proof. `certify.py` regenerates and checks the 135 LRAT proofs (about 5,500 s of solver time and 32.6 GB of proofs, each deleted after checking); it needs CaDiCaL 2.1.3 and `lrat-check` from drat-trim, located by the environment variables `CADICAL` and `LRATCHECK`. `n14_lrat.jsonl` and `n14_shapes.jsonl` are the logs of the run.
   - `frob.py`, `certify_frob.py`, `cyclic.py`, `cyclic1.py`, `classes13.py`, `recount13.py`, `explore13.py`, `witness13_cyclic.py`, `witness21_k4.py`: the one-tree symmetric encoding, the classification behind Proposition 5.2 and its independent recount, and the searches of Section 6; the `.log` and `.jsonl` files are their outputs.
@@ -37,7 +37,7 @@ Preprint v2, 20 November 2026 (v1: 20 October 2026), not peer reviewed. Zenodo: 
 ## Reproduce
 
 ```
-cd verify && python3 recheck_paper.py && python3 run_all.py && python3 mutants.py | tail -1
+cd verify && python3 recheck_paper.py && python3 run_all.py && python3 mutants.py
 cd ../paper && latexmk -pdf common-quartets.tex
 cd ../lean && lake exe cache get && lake build LeanProofs && lake env lean CheckClaims.lean
 ```

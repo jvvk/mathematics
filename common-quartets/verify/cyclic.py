@@ -54,7 +54,10 @@ def main() -> None:
             trees = [build(n, {Q: j for Q in combinations(range(n), 4) for j in range(3) if pool.id(("x", t, Q, j)) in m}) for t in range(a.k)]
             for t, tr in enumerate(trees):
                 print(f"T{t+1} =", tr)
-            print("independent check, common quartets:", verify(trees))
+            cq = verify(trees)
+            print("independent check, common quartets:", cq)
+            if cq:
+                sys.exit("FAIL: the SAT family has a common quartet")
 
 
 if __name__ == "__main__":

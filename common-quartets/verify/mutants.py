@@ -1,6 +1,12 @@
 """Mutation tests for the verify scripts: each mutant plants one error and run_all.py must then fail.
-Run from verify/: python3 mutants.py (a few minutes)."""
-import subprocess, sys
+Run from verify/: python3 mutants.py (a few minutes).
+
+The unmutated run_all.py must pass first. A mutant counts as killed only when run_all.py exits 1 because a
+check failed (an AssertionError or a FAIL line); a timeout, a signal, or a crash such as a SyntaxError or
+ImportError is reported as INCONCLUSIVE and fails the suite."""
+import re, subprocess, sys
+
+CRASH = re.compile(r"\b(SyntaxError|IndentationError|NameError|ImportError|ModuleNotFoundError|MemoryError|RecursionError)\b")
 
 MUTANTS = [
     ('check_fig4.py', 'Fig 4: T2 leaves 4 and 10 swapped (claim fails)', 'T2 = (((1, 5), (4, 9)), (10, (3, 8)), (7, (2, 6)))', 'T2 = (((1, 5), (10, 9)), (4, (3, 8)), (7, (2, 6)))'),
@@ -13,17 +19,37 @@ MUTANTS = [
     ('shapes.py', 'shapes: dedupe dropped one class', '    return [_label(g) for g in reps]', '    return [_label(g) for g in reps][1:]'),
 ]
 
+
+
+def run() -> tuple[int | None, str]:
+    try:
+        r = subprocess.run([sys.executable, "-W", "ignore", "run_all.py"], capture_output=True, text=True, timeout=600)
+    except subprocess.TimeoutExpired:
+        return None, "timeout"
+    return r.returncode, r.stdout + r.stderr
+
+
+code, out = run()
+if code != 0:
+    sys.exit(f"BASELINE FAILED (exit {code}): run_all.py must pass before mutants are run")
+print("baseline: run_all.py passes", flush=True)
+
 killed = 0
 for src, name, old, new in MUTANTS:
     text = open(src).read()
     assert text.count(old) == 1, f"{name}: anchor not unique in {src}"
     open(src, "w").write(text.replace(old, new))
     try:
-        r = subprocess.run([sys.executable, "-W", "ignore", "run_all.py"], capture_output=True, text=True, timeout=600)
-        dead = r.returncode != 0
+        code, out = run()
     finally:
         open(src, "w").write(text)
-    killed += dead
-    print(("killed   " if dead else "SURVIVED ") + name, flush=True)
+    if code == 1 and not CRASH.search(out) and ("AssertionError" in out or "FAIL" in out):
+        verdict = "killed      "
+        killed += 1
+    elif code == 0:
+        verdict = "SURVIVED    "
+    else:
+        verdict = f"INCONCLUSIVE (exit {code}) "
+    print(verdict + name, flush=True)
 print(f"{killed}/{len(MUTANTS)} mutants killed")
 sys.exit(0 if killed == len(MUTANTS) else 1)

@@ -16,4 +16,7 @@ def common(orders: list[list[int]]) -> list:
 
 if __name__ == "__main__":
     sy = [[1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 7, 6, 5, 4, 3, 8, 9], [1, 8, 3, 6, 5, 4, 7, 2, 9]]
-    print("Snir-Yuster k=3 example (first order read as 123456789): common quartets =", len(common(sy)))
+    c = len(common(sy))
+    print("Snir-Yuster k=3 example (first order read as 123456789): common quartets =", c)
+    if c:
+        raise SystemExit("FAIL: Snir-Yuster's example should have no common quartet")

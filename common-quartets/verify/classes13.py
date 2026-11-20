@@ -67,6 +67,9 @@ def main() -> None:
         seen |= orb
         classes.append((S, len(orb), stab))
     print(f"{len(wit)} witnesses, {len(classes)} classes")
+    sizes = sorted(size for _, size, _ in classes)
+    if len(wit) != 19440 or sizes != [1944, 1944, 3888, 3888, 3888, 3888]:
+        sys.exit(f"FAIL: expected 19440 witnesses in orbits 1944 x 2 and 3888 x 4 (Proposition 5.2), got {len(wit)}, {sizes}")
     for S, size, stab in sorted(classes, key=lambda c: -c[2]):
         print(f"\norbit {size}, stabiliser {stab}")
         for side in sorted(S, key=lambda x: (len(x), sorted(x))):

@@ -24,7 +24,7 @@ base = encode(13, 3, pool)
 with Solver(name="cadical153", bootstrap_with=base) as s:
     assert s.solve(), "n = 13 must be SAT"
 n = 14
-assert len(unrooted(n)) == 135, "A000672(14) = 135"
+assert len(unrooted(n)) == 135, "135 unrooted binary shapes on 14 leaves (A129860(14) = A000672(12) = 135)"
 pool = IDPool()
 base = encode(n, 3, pool)
 t = unrooted(n)[0]

@@ -1,6 +1,10 @@
 """Mutation tests for the Lean files: each mutant plants one wrong statement, constant or definition and
-must make its file fail to compile. Run from lean/ after `lake build LeanProofs`."""
-import os, subprocess, sys
+must make its file fail to compile. Run from lean/ after `lake build LeanProofs`.
+
+Every target file must first compile unchanged (a per-target control). A mutant counts as rejected only when
+Lean exits 1 with an error located in the mutated file; a timeout, a signal or any other failure is reported as
+INCONCLUSIVE and fails the suite."""
+import re, subprocess, sys
 
 MUTANTS = [
     ('LeanProofs/QuartetIter.lean', 'threshold 2*3^(k-1) instead of 2*3^(k-1)+1', '(hn : 2 * 3 ^ (k - 1) + 1 ≤ U.card)', '(hn : 2 * 3 ^ (k - 1) ≤ U.card)'),
@@ -22,17 +26,39 @@ MUTANTS = [
     ('LeanProofs/CommonQuartet.lean', 'cyclic T with leaves 1 and 8 swapped', 'def T : Tr := L 0 ⋆ (L 1 ⋆ ((((L 8 ⋆ L 11)', 'def T : Tr := L 0 ⋆ (L 8 ⋆ ((((L 1 ⋆ L 11)'),
 ]
 
+
+
+def run(src: str) -> str:
+    try:
+        r = subprocess.run(["lake", "env", "lean", src], capture_output=True, text=True, timeout=900)
+    except subprocess.TimeoutExpired:
+        return "INCONCLUSIVE (timeout)"
+    out = r.stdout + r.stderr
+    if r.returncode == 0 and not re.search(r": error", out):
+        return "COMPILES"
+    if r.returncode == 1 and re.search(re.escape(src) + r":\d+:\d+: error", out):
+        return "REJECTED"
+    return f"INCONCLUSIVE (exit {r.returncode}, no error located in {src})"
+
+
+ok = True
+for src in sorted({m[0] for m in MUTANTS}):
+    v = run(src)
+    print(f"control {src}: {v}", flush=True)
+    ok &= v == "COMPILES"
+if not ok:
+    sys.exit("CONTROL FAILED: an unchanged target does not compile; mutants not run")
+
 killed = 0
 for src, name, old, new in MUTANTS:
     text = open(src).read()
     assert text.count(old) == 1, f"{name}: anchor not unique in {src}"
     open(src, "w").write(text.replace(old, new))
     try:
-        r = subprocess.run(["lake", "env", "lean", src], capture_output=True, text=True, timeout=900)
-        dead = r.returncode != 0 or "error" in r.stdout + r.stderr
+        v = run(src)
     finally:
         open(src, "w").write(text)
-    killed += dead
-    print(("killed   " if dead else "SURVIVED ") + f"{src}: {name}", flush=True)
+    killed += v == "REJECTED"
+    print(("killed   " if v == "REJECTED" else ("SURVIVED " if v == "COMPILES" else v + " ")) + f"{src}: {name}", flush=True)
 print(f"{killed}/{len(MUTANTS)} mutants killed")
 sys.exit(0 if killed == len(MUTANTS) else 1)
