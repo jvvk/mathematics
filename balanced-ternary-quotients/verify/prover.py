@@ -221,3 +221,4 @@ if __name__ == "__main__":
               "| regime closure:", "PASS" if e2 is None else e2, "| zero-digit bound:", zero_digit_bound(a, b, hyp))
         allok &= (e is None and e2 is None)
     print((a, b), "OVERALL", "PASS" if allok else "FAIL")
+    sys.exit(0 if allok else 1)

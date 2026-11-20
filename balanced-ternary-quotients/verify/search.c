@@ -21,10 +21,11 @@ static int member(long n, long *reach){
         if(count*2>cap){ *reach=-1; return -1; } } } }
   *reach=count; return 0; }
 int main(int argc,char**argv){
+  if(argc<3){ fprintf(stderr,"usage: search lo hi [log2 cap]\n"); return 2; }
   long lo=atol(argv[1]), hi=atol(argv[2]); if(argc>3) cap=1L<<atoi(argv[3]); mask=cap-1;
   key=malloc(sizeof(long)*cap); gen=calloc(cap,sizeof(uint32_t)); qcap=1<<16; q=malloc(sizeof(long)*qcap);
   long cnt=0, over=0;
   for(long n=lo;n<=hi;n++){ if(n%3==0) continue; long R; int m=member(n,&R);
     if(m==0){ cnt++; printf("%ld %ld\n",n,R); fflush(stdout); }
     else if(m<0){ over++; printf("%ld OVERFLOW\n",n); fflush(stdout); } }
-  fprintf(stderr,"[%ld,%ld]: %ld non-members, %ld overflow\n",lo,hi,cnt,over); return 0; }
+  fprintf(stderr,"[%ld,%ld]: %ld non-members, %ld overflow\n",lo,hi,cnt,over); return over ? 1 : 0; }

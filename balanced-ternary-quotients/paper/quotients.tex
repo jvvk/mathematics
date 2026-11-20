@@ -329,7 +329,18 @@ only, so it does not cover the residue classes modulo $4$ of Theorem~\ref{thm:cl
 for $4\cdot 3^4-5$, $8\cdot 3^4+7$ and $8\cdot 3^4+17$, where $4=(11)_3$, $2=(1\bar 1)_3$ and
 $1276$, $1310$, $1330$ are zero-free; for $8\cdot 3^6-7=5825$ the smallest witness is
 $m=8620770364$, with $5825\,m=50215987370300$ zero-free. (The number $8\cdot 3^5-7=1937$ is also an
-exception; it is in the list of \cite{BMRS}, but it is not covered by the uniform argument.)
+exception; it is in the list of \cite{BMRS}, but it is not covered by the uniform argument.) For
+Theorem~\ref{thm:classes} the previous members of the classes and their witnesses are
+\[
+\begin{gathered}
+631\cdot 2=1262,\qquad 1313\cdot 2=2626\qquad(k=4),\\
+79\cdot 7=553,\qquad 71\cdot 4=284,\qquad 161\cdot 16=2576,\qquad 41\cdot 1=41\qquad(k=2),\\
+409\cdot 4=1636\qquad(k=4),\qquad 262481\cdot 40=10499240\qquad(k=8),
+\end{gathered}
+\]
+for $8\cdot 3^k-17$, $16\cdot 3^k+17$, $10\cdot 3^k-11$, $10\cdot 3^k-19$, $20\cdot 3^k-19$, $5\cdot 3^k-4$,
+$5\cdot 3^k+4$ and $40\cdot 3^k+41$ in that order; in each product both factors are zero-free, which the checking
+program verifies by multiplication.
 
 \section{Formal verification}\label{sec:lean}
 
@@ -366,7 +377,7 @@ compiles in about three minutes on a laptop. As a check that the verification ca
 eight corrupted versions: claiming the result for $8\cdot 3^k+19$ or for $40\cdot 3^k+43$, changing a
 chain coefficient throughout (in two families), extending $4\cdot 3^k-5$ to $k=4$ or $5\cdot 3^k+4$ to
 $k=4$, shifting a sporadic carry, and claiming $5\cdot 3^k+4\notin\B/\B$ for $k\equiv 1\pmod 4$. Each
-was rejected. A hand-written Lean proof of the case $4\cdot 3^k+5$, following
+was rejected with a Lean error located in the corrupted file, while an unchanged copy of every target file compiles. A hand-written Lean proof of the case $4\cdot 3^k+5$, following
 Section~\ref{sec:first}, was also checked separately.
 
 \section{Digits \texorpdfstring{$0$}{0} and \texorpdfstring{$1$}{1}}\label{sec:cantor}
@@ -498,7 +509,13 @@ unchanged.
 
 \emph{Changes in version 4.} The remark on subsequent work after the questions in Section~\ref{sec:data} is new,
 with references \cite{Patel} and \cite{Iuz}; the code is archived on Zenodo; the declaration below now names
-Codex, which reviewed versions 3 and 4. The theorems, their proofs and the Lean files are unchanged.
+Codex, which reviewed versions 3 and 4. After the review of version 4: the witnesses for the sharpness of
+Theorem~\ref{thm:classes} are listed in Section~\ref{sec:others} and checked by multiplication; the Python
+symbolic checker now rejects a move to the accepting carry $0$ that it had skipped (no family of
+Theorem~\ref{thm:main} reaches such a move, and all five certificates are unchanged), and it and the search
+exit nonzero on failure; the mutation tests count only a Lean error in the corrupted file as a rejection, with
+an unchanged control for each target, and were rerun. The theorems, their proofs and the Lean proof files
+are unchanged.
 
 \section*{Declaration of generative AI use}
 The author used Claude (Anthropic; Claude Opus models, between 19 September and 20 November 2026)
@@ -552,8 +569,9 @@ GitHub issue, opened 17 October 2026,
 \url{https://github.com/thatnealpatel/proofs/issues/103}, accessed 20 November 2026.
 
 \bibitem{Iuz}
-T.~Iuzhakov, Integer quotients of ternary Cantor numbers, research preprint, version~3,
-\url{https://github.com/ppadfoot/ternary-cantor-quotients}, first posted 6 November 2026, accessed 20 November 2026.
+T.~Iuzhakov, Integer quotients of ternary Cantor numbers: a power lower bound and an infinite exceptional
+family, research preprint, version~3.0.0, 12 November 2026, Theorem~1.2 (first posted in version~1.0.0, 6 November
+2026), \url{https://github.com/ppadfoot/ternary-cantor-quotients}, accessed 20 November 2026.
 
 \bibitem{Lean4}
 L.~de Moura and S.~Ullrich,

@@ -50,4 +50,4 @@ ax.text(-2.3, 2.9, r"$-(c-2\cdot3^{k-1})$", ha="center", fontsize=11, color=RED)
 
 ax.set_xlim(-3.4, 5.6); ax.set_ylim(-2.1, 5.7); ax.axis("off")
 fig.tight_layout()
-fig.savefig(Path(__file__).parent / "fig_carries.pdf"); fig.savefig(Path(__file__).parent / "fig_carries.png", dpi=170)
+fig.savefig(Path(__file__).parent.parent / "paper" / "fig_carries.pdf")  # the file the paper includes

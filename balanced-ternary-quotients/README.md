@@ -23,13 +23,13 @@ Preprint v4, 20 November 2026 (v1: 8 October 2026), not peer reviewed; released 
 ## Contents
 
 - `paper/`: `quotients.tex`, `quotients.pdf`, the appendix tables `tables.tex` and Figure 1.
-- `lean/`: a Lake project pinned to Lean 4.34.0, core library only, about 31,000 lines. `lean/README.md` maps each result to its Lean name; `BalancedTernary/Audit.lean` prints the axioms of every one; `generator/` rewrites the thirteen family proofs byte for byte from the carry sets; `mutants.py` plants eight wrong changes and checks that each fails. `SOURCE-SNAPSHOT.json` records the development commit and the hash of every file.
+- `lean/`: a Lake project pinned to Lean 4.34.0, core library only, about 31,000 lines. `lean/README.md` maps each result to its Lean name; `BalancedTernary/Audit.lean` prints the axioms of every one; `generator/` rewrites the thirteen family proofs byte for byte from the carry sets; `mutants.py` plants eight wrong changes and checks that each fails (`mutants.log`: the v4 run, 20 November 2026). `SOURCE-SNAPSHOT.json` records the development commit and the hash of every file.
 - `verify/`:
-  - `check_paper.py`: the numbers and finite claims of the paper from the definitions (the seventeen exceptions, Table 1, the digit expansions, the witnesses including the smallest one for `8·3^6 − 7`, each Appendix A set against conditions (i) to (iv) for `14 ≤ k ≤ 40` and against the reachable set, each listed exception outside `B/B`, the counts 50, 75, 136, 21 and 77, Table 2, the `621·3^(4k) − 20` carry counts), with six planted mutants. It does not re-prove that the list below `10^8` is complete (that is `search.c`), nor read `paper/tables.tex` or the carry-count column of `exceptions_1e8.txt`. Standard library only, seconds.
+  - `check_paper.py`: the numbers and finite claims of the paper from the definitions (the seventeen exceptions, Table 1, the digit expansions, an explicit witness pair, checked by multiplication, for each of the thirteen sharpness cases (including the smallest one for `8·3^6 − 7`), each Appendix A set against conditions (i) to (iv) for `14 ≤ k ≤ 40` (all thirteen families) and, for the five families of Theorem 1.1, against the reachable set for `10 ≤ k ≤ 24`, each listed exception outside `B/B`, the counts 50, 75, 136, 21 and 77, Table 2, the `621·3^(4k) − 20` carry counts), with six planted mutants. It does not re-prove that the list below `10^8` is complete (that is `search.c`), nor read `paper/tables.tex` or the carry-count column of `exceptions_1e8.txt`. Standard library only, seconds.
   - `carry_sets.json` (Appendix A) and `exceptions_1e8.txt` (the 200 exceptions below `10^8` with their reachable carry counts).
-  - `search.c`: the exhaustive search that produced `exceptions_1e8.txt`.
-  - `symproof.py` (with `prover.py`, `reach.py`): the independent symbolic checker in Python for the five families of Theorem 1.1.
-  - `make_fig_carries.py`: Figure 1.
+  - `search.c`: the exhaustive search that produced `exceptions_1e8.txt` (exits nonzero if any search overflows its table).
+  - `symproof.py` (with `prover.py`, `reach.py`): the independent symbolic checker in Python for the five families of Theorem 1.1; it exits nonzero when a check fails, and its `cert` mode first runs a regression case that must be rejected.
+  - `make_fig_carries.py`: Figure 1, written to `paper/fig_carries.pdf`.
 
 ## Reproduce
 

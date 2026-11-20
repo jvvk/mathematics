@@ -39,5 +39,7 @@ python3 gen_lean.py 5 4 8 14 4 0      # Theorem 1.3: a b first-k 14 modulus resi
 
 ## Mutation tests
 
-`python3 mutants.py` (after `lake build`, about 20 minutes) compiles an unchanged control, which must
-succeed, and the eight corrupted versions listed in Section 5 of the paper, each of which must fail.
+`python3 mutants.py` (after `lake build`, about 20 minutes) first compiles an unchanged copy of every target
+file, each of which must succeed, then the eight corrupted versions listed in Section 5 of the paper. A mutant
+counts as rejected only when Lean exits with an error located in the corrupted file; a timeout, a crash or a
+failure elsewhere is reported as inconclusive and fails the run.

@@ -149,6 +149,7 @@ if __name__ == "__main__" and not (len(sys.argv) > 3 and sys.argv[3] == "cert"):
         fm = closure_all_k(a, b, mutate(hyp), par)
         print("    mutation (drop a chain) detected:", bool(fm))
     print((a, b), "SYMBOLIC OVERALL", "PASS" if ok else "FAIL")
+    sys.exit(0 if ok else 1)
 
 
 # ---------------- non-acceptance for all k, and the final certificate ----------------
@@ -180,9 +181,9 @@ def nonaccept_all_k(a, b, hyp, par):
         rA, rB, rC = vA/3, vB/3, (vC - dig)/3
         if rC.denominator != 1: probs.append((el, 'nonint C')); continue
         P, m = split_power(rA); R = int(rC)
-        if P < 0 or (P == 0 and rB == 0 and R <= 0):
-            continue                                   # negative or zero-free impossible: not in B u {0}? (0 excluded below)
-        if P == 0 and rB == 0 and R == 0: probs.append((el, 'zero target')); continue
+        if P == 0 and rB == 0 and R == 0: probs.append((el, 'zero target')); continue   # carry 0 accepts
+        if P < 0 or (P == 0 and rB == 0 and R < 0):
+            continue                                   # target negative for large k: not in B
         if rB == 0:
             # P*3^(k-m) + R: zero digit if k - m > len(R) (digits of R below, of P above, a gap between)
             if P == 0: probs.append((el, 'constant target')); continue
@@ -218,8 +219,17 @@ def certificate(a, b):
     lines.append(f"exact search k=1..{Kall}: {''.join(ks)}  -> non-member for all k >= {first}")
     return ok, lines, first
 
+def selftest():
+    """Regression: n = 3^k + 1 with carries {0, -3^k}. The move d = +1 from -3^k reaches the accepting
+    carry 0, so nonaccept_all_k must fail (it passed before the zero-target fix of v4)."""
+    hyp = {-1: [(Fr(1), Fr(0), [Fr(0)], {})]}
+    ok, _, probs = nonaccept_all_k(1, 1, hyp, 0)
+    assert not ok and any(p[1] == 'zero target' for p in probs), "selftest: zero target not rejected"
+
 if __name__ == "__main__" and len(sys.argv) > 3 and sys.argv[3] == "cert":
+    selftest()
     a, b = int(sys.argv[1]), int(sys.argv[2])
     ok, lines, first = certificate(a, b)
     for l in lines: print(" ", l)
     print(f"THEOREM {'PROVED' if ok else 'NOT PROVED'}: {a}*3^k + {b} is not in B/B for all k >= {first}")
+    sys.exit(0 if ok else 1)

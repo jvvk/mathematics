@@ -1,0 +1,14 @@
+control (unchanged Fam_40_p41_4r0): COMPILES
+control (unchanged Fam_4_m5): COMPILES
+control (unchanged Fam_5_p4_4r0): COMPILES
+control (unchanged Fam_8_m7): COMPILES
+control (unchanged Fam_8_p17): COMPILES
+REJECTED: claim 8*3^k+19 instead of 8*3^k+17
+REJECTED: claim 40*3^k+43 instead of 40*3^k+41
+REJECTED: 8*3^k-7: chain coefficient 10 changed to 11 throughout
+REJECTED: 5*3^k+4: chain coefficient 2 changed to 5 throughout
+REJECTED: extend 4*3^k-5 to k = 4
+REJECTED: extend 5*3^k+4 to k = 4
+REJECTED: 8*3^k+17: sporadic carry 8*3^(k-1)+6 shifted to +3
+REJECTED: claim 5*3^k+4 for k = 1 mod 4
+ALL MUTANTS REJECTED

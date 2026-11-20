@@ -1,11 +1,13 @@
 """Mutation tests: each mutant copies one proof file, plants a single wrong change and must fail to
-compile. A control (an unchanged copy) must compile, so that a failure means the change was caught.
+compile with a Lean error located in the mutated file. A control (an unchanged copy of every target) must
+compile first, so that a failure means the change was caught; crashes and timeouts are inconclusive, not rejections.
 
 Run from lean/ after `lake build`:  python3 mutants.py     (one file at a time, about 20 minutes)
 """
 
 from __future__ import annotations
 
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -102,7 +104,10 @@ MUTANTS = [
 ]
 
 
-def compiles(name: str, text: str) -> bool:
+def run(text: str) -> str:
+    """Compile text as BalancedTernary/Mutant.lean. Returns "COMPILES", "REJECTED" (Lean exited 1 with an
+    error located in Mutant.lean) or "INCONCLUSIVE: ..." (a timeout, a crash, a signal, or a failure with no
+    error in the mutated file), so that only a genuine Lean diagnostic counts as a rejection."""
     path = SRC / "Mutant.lean"
     path.write_text(text)
     try:
@@ -113,28 +118,34 @@ def compiles(name: str, text: str) -> bool:
             text=True,
             timeout=1800,
         )
-        return r.returncode == 0
+    except subprocess.TimeoutExpired:
+        return "INCONCLUSIVE: timeout after 1800 s"
     finally:
         path.unlink(missing_ok=True)
+    if r.returncode == 0:
+        return "COMPILES"
+    out = r.stdout + r.stderr
+    if r.returncode == 1 and re.search(r"Mutant\.lean:\d+:\d+: error", out):
+        return "REJECTED"
+    return f"INCONCLUSIVE: exit {r.returncode}, no error located in Mutant.lean"
 
 
 def main() -> None:
     ok = True
-    control = (SRC / "Fam_4_p5.lean").read_text()
-    if compiles("control", control):
-        print("control (unchanged Fam_4_p5) compiles")
-    else:
-        print("CONTROL FAILED: the harness cannot compile an unchanged file")
-        ok = False
+    for target in sorted({target for _, target, _ in MUTANTS}):
+        verdict = run((SRC / f"{target}.lean").read_text())
+        print(f"control (unchanged {target}):", verdict)
+        ok &= verdict == "COMPILES"
+    if not ok:
+        print("CONTROL FAILED: the harness cannot compile an unchanged target; mutants not run")
+        sys.exit(1)
     for name, target, mutate in MUTANTS:
         original = (SRC / f"{target}.lean").read_text()
         mutated = mutate(original)
         assert mutated != original
-        if compiles(name, mutated):
-            print("MUTANT SURVIVED:", name)
-            ok = False
-        else:
-            print("rejected:", name)
+        verdict = run(mutated)
+        print(f"{verdict}: {name}")
+        ok &= verdict == "REJECTED"
     print("ALL MUTANTS REJECTED" if ok else "FAILURES ABOVE")
     sys.exit(0 if ok else 1)
 

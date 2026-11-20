@@ -79,6 +79,45 @@ def member(n: int) -> bool:
     return reachable(n)[0]
 
 
+def witness(n: int) -> tuple[int, int]:
+    """An explicit pair (m, N) with N = n*m and m, N positive and zero-free, read off a shortest accepting
+    path of the automaton (breadth-first search with parent pointers). The caller checks the pair by
+    multiplication, so a sharpness claim does not rest on the automaton."""
+    from collections import deque
+
+    parent: dict[int, tuple[int, int, int] | None] = {0: None}
+    queue = deque([0])
+    while queue:
+        r = queue.popleft()
+        for d in (1, -1):
+            mv = move(n, r, d)
+            if mv is None:
+                continue
+            e, r2 = mv
+            if d == 1 and (r2 == 0 or (r2 > 0 and zero_free(r2))):
+                ds, es, x = [d], [e], r
+                while parent[x] is not None:
+                    px, pd, pe = parent[x]
+                    ds.append(pd)
+                    es.append(pe)
+                    x = px
+                ds.reverse()
+                es.reverse()
+                m = sum(dj * 3**j for j, dj in enumerate(ds))
+                N = sum(ej * 3**j for j, ej in enumerate(es)) + r2 * 3 ** len(es)
+                return m, N
+            if r2 not in parent:
+                parent[r2] = (r, d, e)
+                queue.append(r2)
+    raise ValueError(f"{n} has no accepting path")
+
+
+def check_witness(label: str, n: int) -> None:
+    m, N = witness(n)
+    check(f"{label}: witness {n}*{m} = {N}, both zero-free",
+          m > 0 and n * m == N and zero_free(m) and zero_free(N))
+
+
 def criterion(n: int, S: set[int]) -> bool:
     """Conditions (i) to (iv) of Proposition 2.2 for a finite set S."""
     if 0 not in S or min(S) < 2 - n:
@@ -144,6 +183,7 @@ for a, b, k0 in THM1:
     check(
         f"{a}*3^k{b:+d}: sharp, k = {k0 - 1} is in B/B", member(a * 3 ** (k0 - 1) + b)
     )
+    check_witness(f"{a}*3^k{b:+d}, k = {k0 - 1}", a * 3 ** (k0 - 1) + b)
 check(
     "8*3^5 - 7 = 1937 is also an exception", 8 * 3**5 - 7 == 1937 and not member(1937)
 )
@@ -156,6 +196,7 @@ for a, b, M, res, k0 in THM2:
     check(
         f"{a}*3^k{b:+d}: sharp, k = {k0 - M} is in B/B", member(a * 3 ** (k0 - M) + b)
     )
+    check_witness(f"{a}*3^k{b:+d}, k = {k0 - M}", a * 3 ** (k0 - M) + b)
 check(
     "six of the seventeen lie in the families of Theorem 1",
     sorted(
