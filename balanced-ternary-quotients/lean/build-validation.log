@@ -1,0 +1,20 @@
+Isolated build 2026-11-20: fresh copy of lean/, lake build (core only, no Mathlib), then lake env lean CheckClaims.lean
+⚠ [2/19] Built BalancedTernary.TernCore (3.7s)
+warning: BalancedTernary/TernCore.lean:187:6: `if_neg` has been deprecated: Use `ite_eq_right` instead
+✔ [3/19] Built BalancedTernary.BT (43s)
+✔ [4/19] Built BalancedTernary.Fam_4_p5 (301s)
+✔ [5/19] Built BalancedTernary.Fam_10_m11_4r2 (391s)
+✔ [6/19] Built BalancedTernary.Fam_5_p4_4r0 (397s)
+✔ [7/19] Built BalancedTernary.Fam_4_m5 (398s)
+✔ [8/19] Built BalancedTernary.Fam_8_p7 (483s)
+✔ [9/19] Built BalancedTernary.Fam_16_p17_2r0 (507s)
+✔ [10/19] Built BalancedTernary.Fam_5_m4_4r2 (186s)
+✔ [11/19] Built BalancedTernary.Fam_8_m7 (561s)
+✔ [12/19] Built BalancedTernary.Fam_10_m19_4r2 (608s)
+✔ [13/19] Built BalancedTernary.Fam_40_p41_4r0 (626s)
+✔ [14/19] Built BalancedTernary.Fam_20_m19_4r2 (637s)
+✔ [15/19] Built BalancedTernary.Fam_8_m17_2r0 (240s)
+✔ [16/19] Built BalancedTernary.Fam_8_p17 (345s)
+ℹ [17/19] Built BalancedTernary.Audit (2.1s)
+✔ [18/19] Built BalancedTernary (761ms)
+Build completed successfully (19 jobs).

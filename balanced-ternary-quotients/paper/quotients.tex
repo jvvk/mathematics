@@ -19,7 +19,7 @@
 
 \title[Quotients of zero-free balanced ternary numbers]{Infinitely many integers that are not quotients of\\ zero-free balanced ternary numbers}
 \author{Vamshi Jandhyala}
-\date{Preprint, version 3, 24 October 2026 (version 1: 8 October; version 2: expository revision; results unchanged throughout). Not peer reviewed.}
+\date{Preprint, version 4, 20 November 2026 (version 1: 8 October; version 2: expository revision; version 3: 24 October; results unchanged throughout). Not peer reviewed.}
 \subjclass[2020]{11A63, 11B85, 68V15}
 \keywords{balanced ternary, digit restrictions, quotient sets, finite automata, formal verification}
 
@@ -472,11 +472,20 @@ Does $\B/\B$ contain almost all integers prime to $3$, that is, do the exception
 Is $F$ infinite? In particular, is $621\cdot 3^{4k}-20\in F$ for every $k\ge 1$?
 \end{question}
 
+\emph{Subsequent work.} After version~1 of this paper appeared (8 October 2026), two related claims were
+posted, neither of them refereed so far. N.~Patel \cite{Patel} gives a proof, formalised in Lean, that
+$3^k+4\notin\B/\B$ for every odd $k\ge 5$, which would answer the second part of Question~\ref{q:five} and
+gives a further infinite family of exceptions. T.~Iuzhakov \cite{Iuz} proves that $621\cdot 3^{4k}-20\in F$
+for every $k\ge 0$, which would answer the last question and contains Proposition~\ref{prop:cantor}. We
+have not checked either proof.
+
 \section*{Code and data}
 The Lean development, the program that generates it, the decision procedures, the search program that finds the $200$
 exceptions below $10^8$ (about 25 minutes), the list it produces, and a program that recomputes the numbers quoted
 in this paper are at
-\begin{center}\small\url{https://github.com/jvvk/mathematics/tree/main/balanced-ternary-quotients}.\end{center}
+\begin{center}\small\url{https://github.com/jvvk/mathematics/tree/main/balanced-ternary-quotients}\end{center}
+and archived on Zenodo at \href{https://doi.org/10.5281/zenodo.24403152}{doi:10.5281/zenodo.24403152},
+identical to the folder at the tag \texttt{balanced-ternary-\allowbreak quotients-v4}.
 The recomputation program checks that each listed number is outside $\B/\B$, the family counts, the witnesses
 and the carry sets of Appendix~\ref{app:tables} against the criterion; completeness of the list below $10^8$ rests
 on the search program, which is run separately.
@@ -487,17 +496,23 @@ stated; a sign in the upper-gap test of the independent symbolic checker is corr
 the five families of Theorem~\ref{thm:main} were rerun and pass. The theorems, their proofs and the Lean files are
 unchanged.
 
+\emph{Changes in version 4.} The remark on subsequent work after the questions in Section~\ref{sec:data} is new,
+with references \cite{Patel} and \cite{Iuz}; the code is archived on Zenodo; the declaration below now names
+Codex, which reviewed versions 3 and 4. The theorems, their proofs and the Lean files are unchanged.
+
 \section*{Declaration of generative AI use}
-The author used Claude (Anthropic; Claude Opus models, between 19 September and 8 October 2026)
+The author used Claude (Anthropic; Claude Opus models, between 19 September and 20 November 2026)
 throughout this work, under the author's direction: to run the searches for exceptions and fit the carry sets
 of Appendix~\ref{app:tables}, to write the decision programs, the symbolic checker, the program that
 generates the Lean proofs and the hand-written Lean proof, to search the literature, and to draft the
-text. The reason was to obtain a computer-assisted proof that can be checked in full: the thirteen
+text. The author also used Codex (OpenAI; codex-cli, model gpt-6.1-sol) to search the literature and to referee
+versions~3 and~4 of the paper and the accompanying code independently; each of its findings was checked before
+any change was made. The reason was to obtain a computer-assisted proof that can be checked in full: the thirteen
 family non-membership statements of Theorems~\ref{thm:main} and~\ref{thm:classes} are verified in Lean (Section~\ref{sec:lean}), and the witnesses and the other finite claims are
 recomputed by a separate program (see \emph{Code and data}). The author takes full responsibility for the content, including
 the references.
 
-\begin{thebibliography}{9}
+\begin{thebibliography}{99}
 
 \bibitem{BMRS}
 J.~H.~Bai, J.~Meleshko, S.~Riasat and J.~Shallit,
@@ -530,6 +545,15 @@ Automatic sets of rational numbers,
 \bibitem{OEIS}
 OEIS Foundation Inc., The On-Line Encyclopedia of Integer Sequences, \url{https://oeis.org},
 entries A339636 and A351243, accessed 8 October 2026.
+
+\bibitem{Patel}
+N.~Patel, Selfridge--Lacampagne: review proposed infinite counterexample family $3^m+4$ for odd $m\ge 5$,
+GitHub issue, opened 17 October 2026,
+\url{https://github.com/thatnealpatel/proofs/issues/103}, accessed 20 November 2026.
+
+\bibitem{Iuz}
+T.~Iuzhakov, Integer quotients of ternary Cantor numbers, research preprint, version~3,
+\url{https://github.com/ppadfoot/ternary-cantor-quotients}, first posted 6 November 2026, accessed 20 November 2026.
 
 \bibitem{Lean4}
 L.~de Moura and S.~Ullrich,

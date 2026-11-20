@@ -1,0 +1,38 @@
+four_pow_plus_five_not_in_BB : ∀ (k : Nat), 5 ≤ k → ¬∃ m N, 0 < m ∧ ZF m ∧ 0 < N ∧ ZF N ∧ N = (4 * 3 ^ k + 5) * m
+'four_pow_plus_five_not_in_BB' depends on axioms: [propext, Quot.sound]
+infinitely_many_exceptions : ∀ (K : Nat), ∃ n, n > ↑K ∧ n % 3 ≠ 0 ∧ ¬∃ m N, 0 < m ∧ ZF m ∧ 0 < N ∧ ZF N ∧ N = n * m
+'infinitely_many_exceptions' depends on axioms: [propext, Quot.sound]
+Tern.not_BB_4_p5 : ∀ (k : Nat), 5 ≤ k → ¬∃ m N, 0 < m ∧ Tern.ZF m ∧ 0 < N ∧ Tern.ZF N ∧ N = (4 * 3 ^ k + 5) * m
+'Tern.not_BB_4_p5' depends on axioms: [propext, Classical.choice, Quot.sound]
+Tern.not_BB_4_m5 : ∀ (k : Nat), 5 ≤ k → ¬∃ m N, 0 < m ∧ Tern.ZF m ∧ 0 < N ∧ Tern.ZF N ∧ N = (4 * 3 ^ k + -5) * m
+'Tern.not_BB_4_m5' depends on axioms: [propext, Classical.choice, Quot.sound]
+Tern.not_BB_8_p7 : ∀ (k : Nat), 5 ≤ k → ¬∃ m N, 0 < m ∧ Tern.ZF m ∧ 0 < N ∧ Tern.ZF N ∧ N = (8 * 3 ^ k + 7) * m
+'Tern.not_BB_8_p7' depends on axioms: [propext, Classical.choice, Quot.sound]
+Tern.not_BB_8_p17 : ∀ (k : Nat), 5 ≤ k → ¬∃ m N, 0 < m ∧ Tern.ZF m ∧ 0 < N ∧ Tern.ZF N ∧ N = (8 * 3 ^ k + 17) * m
+'Tern.not_BB_8_p17' depends on axioms: [propext, Classical.choice, Quot.sound]
+Tern.not_BB_8_m7 : ∀ (k : Nat), 7 ≤ k → ¬∃ m N, 0 < m ∧ Tern.ZF m ∧ 0 < N ∧ Tern.ZF N ∧ N = (8 * 3 ^ k + -7) * m
+'Tern.not_BB_8_m7' depends on axioms: [propext, Classical.choice, Quot.sound]
+Tern.not_BB_8_m17_2r0 : ∀ (k : Nat),
+  6 ≤ k → k % 2 = 0 → ¬∃ m N, 0 < m ∧ Tern.ZF m ∧ 0 < N ∧ Tern.ZF N ∧ N = (8 * 3 ^ k + -17) * m
+'Tern.not_BB_8_m17_2r0' depends on axioms: [propext, Classical.choice, Quot.sound]
+Tern.not_BB_16_p17_2r0 : ∀ (k : Nat),
+  6 ≤ k → k % 2 = 0 → ¬∃ m N, 0 < m ∧ Tern.ZF m ∧ 0 < N ∧ Tern.ZF N ∧ N = (16 * 3 ^ k + 17) * m
+'Tern.not_BB_16_p17_2r0' depends on axioms: [propext, Classical.choice, Quot.sound]
+Tern.not_BB_10_m11_4r2 : ∀ (k : Nat),
+  6 ≤ k → k % 4 = 2 → ¬∃ m N, 0 < m ∧ Tern.ZF m ∧ 0 < N ∧ Tern.ZF N ∧ N = (10 * 3 ^ k + -11) * m
+'Tern.not_BB_10_m11_4r2' depends on axioms: [propext, Classical.choice, Quot.sound]
+Tern.not_BB_10_m19_4r2 : ∀ (k : Nat),
+  6 ≤ k → k % 4 = 2 → ¬∃ m N, 0 < m ∧ Tern.ZF m ∧ 0 < N ∧ Tern.ZF N ∧ N = (10 * 3 ^ k + -19) * m
+'Tern.not_BB_10_m19_4r2' depends on axioms: [propext, Classical.choice, Quot.sound]
+Tern.not_BB_20_m19_4r2 : ∀ (k : Nat),
+  6 ≤ k → k % 4 = 2 → ¬∃ m N, 0 < m ∧ Tern.ZF m ∧ 0 < N ∧ Tern.ZF N ∧ N = (20 * 3 ^ k + -19) * m
+'Tern.not_BB_20_m19_4r2' depends on axioms: [propext, Classical.choice, Quot.sound]
+Tern.not_BB_5_m4_4r2 : ∀ (k : Nat),
+  6 ≤ k → k % 4 = 2 → ¬∃ m N, 0 < m ∧ Tern.ZF m ∧ 0 < N ∧ Tern.ZF N ∧ N = (5 * 3 ^ k + -4) * m
+'Tern.not_BB_5_m4_4r2' depends on axioms: [propext, Classical.choice, Quot.sound]
+Tern.not_BB_5_p4_4r0 : ∀ (k : Nat),
+  8 ≤ k → k % 4 = 0 → ¬∃ m N, 0 < m ∧ Tern.ZF m ∧ 0 < N ∧ Tern.ZF N ∧ N = (5 * 3 ^ k + 4) * m
+'Tern.not_BB_5_p4_4r0' depends on axioms: [propext, Classical.choice, Quot.sound]
+Tern.not_BB_40_p41_4r0 : ∀ (k : Nat),
+  12 ≤ k → k % 4 = 0 → ¬∃ m N, 0 < m ∧ Tern.ZF m ∧ 0 < N ∧ Tern.ZF N ∧ N = (40 * 3 ^ k + 41) * m
+'Tern.not_BB_40_p41_4r0' depends on axioms: [propext, Classical.choice, Quot.sound]
