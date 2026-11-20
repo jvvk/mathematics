@@ -121,6 +121,9 @@ PY_RUNNER = (
 )
 
 
+DIAG_LOC = re.compile(r"(\S+?):\d+:\d+")  # "<file>:<line>:<col>" inside a diagnostic
+
+
 LOG_COUNTER = [0]
 
 
@@ -177,13 +180,26 @@ def passes(check: Check, path: Path, label: str = "") -> tuple[bool, str]:
         return False, f"INCONCLUSIVE command not runnable (exit {r.returncode})"
     if check.fail_pattern is not None:
         # Structured rule: only a nonzero exit with a matching diagnostic line is a rejection.
-        names = {str(path)}
-        try:
-            names.add(str(path.relative_to(check.cwd)))
-        except ValueError:
-            pass
+        def in_target(ln: str) -> bool:
+            # The diagnostic's own file (a named group "file", else the first group, else the first
+            # "<file>:<line>:<col>" in the match) must resolve to the mutated file; a mention elsewhere in the
+            # line (e.g. "error: Other.lean:1:1: failed import of Target.lean") does not count.
+            m = check.fail_pattern.search(ln)
+            if m is None:
+                return False
+            f = m.groupdict().get("file") or (m.group(1) if m.re.groups else None)
+            if f is None:
+                loc = DIAG_LOC.search(m.group(0))
+                f = loc.group(1) if loc else None
+            if not f:
+                return False
+            try:
+                return (check.cwd / f).resolve() == path.resolve()
+            except OSError:
+                return False
+
         hit = next((ln.strip() for ln in out.splitlines() if check.fail_pattern.search(ln)
-                    and (not check.diagnostic_in_target or any(nm in ln for nm in names))), "")
+                    and (not check.diagnostic_in_target or in_target(ln))), "")
         if r.returncode == 0:
             return True, "exit 0" + (f" (diagnostic present: {hit[:120]})" if hit else "")
         if not hit:
