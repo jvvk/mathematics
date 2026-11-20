@@ -16,7 +16,7 @@ The paper proves three results:
 - **Order three (Theorem 2).** A `3 × 3` matrix is winning exactly when every first-row entry has two usable second-row positions. With distinct entries in every row, the winning matrices are five explicit families.
 - **Complexity (Theorem 3).** Recognising winning integer matrices is `Π₂ᵖ`-complete, even with two values per row. So no polynomial-time test exists unless the polynomial hierarchy collapses.
 
-Preprint v1, 9 October 2026, not peer reviewed.
+Preprint v2, 20 November 2026 (v1: 9 October 2026), not peer reviewed. Zenodo: [doi:10.5281/zenodo.24406692](https://doi.org/10.5281/zenodo.24406692), identical to this folder at tag `zero-sum-selection-game-v2`.
 
 - **Formally verified in Lean 4** (`lean/`, standard axioms only): the rank lemma and the dimension theorem for arbitrary row lengths and quotas; the order-three criterion; the collision lemma and the distinct-entry classification; the two-valued normal form behind the hardness proof.
 - **Not formalised:**
@@ -25,6 +25,8 @@ Preprint v1, 9 October 2026, not peer reviewed.
   - the two remarks on further families.
 
 The author used AI tools (Codex, OpenAI; Claude, Anthropic) in this work, as described in the paper's acknowledgement, and is responsible for its content.
+
+**Version 2** (20 November 2026, tag `zero-sum-selection-game-v2`): deposited on Zenodo, with the DOI recorded in the paper; the acknowledgement names Codex as referee of v2. The mathematics, programs and Lean files are unchanged from v1.
 
 ## Contents
 
