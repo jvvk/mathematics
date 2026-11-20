@@ -15,7 +15,9 @@ The Spectre of Smith, Myers, Kaplan and Goodman-Strauss ([Combinatorial Theory 4
 
 Whether some `1 < n < 12` is possible is open.
 
-Preprint v1, 20 October 2026, not peer reviewed. For the straight-edged Spectre the theorem is formally verified in Lean 4 (`lean/`, standard axioms only); for curved Spectres the edge-record certificate is kernel-checked but the step to constant coverage, which needs the Jordan curve theorem, is not formalised. The construction was found with OpenAI Codex and the Lean formalisation and checks were written with Claude (Anthropic), as described in the paper's acknowledgements; the author is responsible for the content.
+Preprint v2, 20 November 2026 (v1: 20 October 2026), not peer reviewed. Zenodo: [doi:10.5281/zenodo.24406775](https://doi.org/10.5281/zenodo.24406775), identical to this folder at tag `spectre-twelve-fold-v2`. For the straight-edged Spectre the theorem is formally verified in Lean 4 (`lean/`, standard axioms only); for curved Spectres the edge-record certificate is kernel-checked but the step to constant coverage, which needs the Jordan curve theorem, is not formalised. The construction was found with OpenAI Codex and the Lean formalisation and checks were written with Claude (Anthropic), as described in the paper's acknowledgements; the author is responsible for the content.
+
+**Version 2** (20 November 2026, tag `spectre-twelve-fold-v2`): deposited on Zenodo, with the DOI recorded in the paper; the acknowledgements name Codex as referee of v2. The mathematics, programs and Lean files are unchanged from v1.
 
 ## Contents
 

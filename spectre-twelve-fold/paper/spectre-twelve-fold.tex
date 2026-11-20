@@ -18,7 +18,7 @@
 \author{Vamshi Jandhyala}
 \address{London, United Kingdom}
 \email{vamshi.jandhyala@gmail.com}
-\date{Preprint v1, 20 October 2026}
+\date{Preprint, version 2, 20 November 2026 (version 1: 20 October 2026; results unchanged). Not peer reviewed.}
 \subjclass[2020]{52C20, 05B45}
 \keywords{Spectre, aperiodic monotile, multiple tiling, periodic tiling}
 
@@ -212,13 +212,18 @@ records of Lemma~\ref{lem:pairs} are checked the same way. The step from those r
 for a curved Spectre, which needs the Jordan curve theorem, is not formalised. Everything uses only Lean's
 standard axioms, and planted errors in the statements are rejected. A program checks the records and the
 areas in exact integer arithmetic, an independent one counts the tiles at random points, and the code and the
-Lean files are at~\cite{repo}.
+Lean files are at~\cite{repo}, archived on Zenodo at
+\href{https://doi.org/10.5281/zenodo.24406775}{doi:10.5281/zenodo.24406775}, identical to that folder at the tag
+\texttt{spectre-twelve-fold-v2}.
 
 \section*{Acknowledgements}
 The question is Andrew Bayly's. The construction and the record-cancellation certificate were found with
 OpenAI Codex, and the Lean formalisation, the independent checks and this text were written with Claude
-Opus~5.5 (Anthropic), under the author's direction. The author is responsible for the content of this
-preprint, which has not yet been independently reviewed.
+Opus~5.5 (Anthropic), under the author's direction; Codex also refereed version~2. The author is responsible
+for the content of this preprint, which has not yet been independently reviewed.
+
+\emph{Changes in version 2.} The archive is deposited on Zenodo and its DOI is recorded above. The
+mathematics, programs and Lean files are unchanged from version~1.
 
 \begin{thebibliography}{9}
 \bibitem{MO} A.~Bayly, \emph{Can the Spectre form a periodic $n$-fold multi-tiling of the plane for any
