@@ -17,7 +17,7 @@
 \newcommand{\one}{\mathbf 1}
 \title{A determinant dichotomy for quadratic zero-one systems:\\steady-state parity, boundedness, and finite-time escape}
 \author{Vamshi Jandhyala\\\small London, United Kingdom}
-\date{Preprint v2, 25 October 2026 (v1: 20 October 2026)}
+\date{Preprint v3, 20 November 2026 (v1: 20 October 2026)}
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -76,6 +76,25 @@ are a constructive dynamical criterion and an exact degree computation.
 Only the stability-count corollary uses the determinant criterion of \cite{TZ}.
 The sharp four-state example also supplies an upper witness for the least
 reaction count, which is seven using the six-reaction theorem of \cite{TZ}.
+For the six-reaction case itself, Takimoto \cite{Takimoto} gives an independent
+computer-assisted certificate that each of the 375 networks listed in \cite{TZ}
+as admitting three positive steady states has at most three, degenerate ones
+included, at every positive rate vector.
+
+Every reaction count in this paper refers to the zero-one class. Once larger
+stoichiometric coefficients are allowed, fewer reactions may suffice. For
+quadratic networks with three species, five reactions and five distinct
+reactant complexes (under mild nondegeneracy conditions), Banaji and Feliu bound the number of positive nondegenerate
+equilibria by four and leave open whether four is attained
+\cite[Theorem~5.5 and Remark~5.8]{BF}. An unrefereed deposit of 4 October 2026
+\cite{Anon} claims that it is, by realising an extremal polynomial system of
+Phillipson and Rojas \cite[Theorem~1.6]{PR} as a mass-action network; one of its three-species
+examples has a product of molecularity ten. Any such network lies outside the
+zero-one class, since by the padding argument of Section~\ref{sec:seven} a
+five-reaction zero-one network with four nondegenerate positive steady states
+would contradict \cite[Theorem~2]{TZ}. The statements in this paper that seven reactions are
+needed for four states, and that eight suffice for five, are statements about
+zero-one networks only.
 
 The bound five is attained. Section~\ref{sec:five} gives an eight-reaction network
 with exactly five positive steady states, three stable and two unstable, and
@@ -488,7 +507,7 @@ Thus two attracting equilibria coexist with an open region of finite-time
 escape. Local multistability alone does not imply global boundedness.
 
 Using \cite[Theorem 2]{TZ}, the least number of reactions for four nondegenerate
-positive steady states is seven. The theorem excludes six. It is proved by real
+positive steady states in a three-species quadratic zero-one network is seven. The theorem excludes six. It is proved by real
 root classification, which certifies counts for rate vectors off a discriminant
 hypersurface, but it bounds every rate vector: four nondegenerate states at one
 rate vector would persist on an open set of rate vectors, and an open set meets
@@ -665,8 +684,8 @@ Section~\ref{sec:five}) but are not formalised. The general dichotomy is not for
 use the standard properties of the Brouwer degree.
 
 \section{What remains open}\label{sec:open}
-The least number of reactions admitting five positive steady states is seven or
-eight. Eight is attained by Theorem~\ref{thm:five}. Seven is not excluded: the
+For zero-one networks, the least number of reactions admitting five positive
+steady states is seven or eight. Eight is attained by Theorem~\ref{thm:five}. Seven is not excluded: the
 mixed volume of the steady-state supports already reaches five for some
 seven-reaction networks. The construction of Section~\ref{sec:five} starts from a
 seven-reaction network with four states and so cannot produce a seven-reaction
@@ -721,6 +740,11 @@ claimed in version 1 as exact but checked there only in 60-digit arithmetic, is 
 are transcribed, not derived from a formal reaction list; the Lean mutation harness accepts only errors located
 in the mutated file. Theorem~\ref{thm:main} and the examples are unchanged.
 
+\emph{Changes in version 3.} After a further literature search on 20 November 2026,
+the introduction cites the related work \cite{BF,PR,Anon,Takimoto}, and every
+statement about the least number of reactions now says that it concerns
+zero-one networks. No theorem, proof or example has changed.
+
 \begin{thebibliography}{9}
 \bibitem{repo} V. Jandhyala, A determinant dichotomy for quadratic zero-one systems: code,
 certificates and Lean proofs,
@@ -767,5 +791,22 @@ Applied Dynamical Systems \textbf{13}(2) (2014), 758--797.
 \bibitem{Takeuchi} Y. Takeuchi, \emph{Global Dynamical Properties of
 Lotka--Volterra Systems}, World Scientific, Singapore, 1996.
 \url{https://doi.org/10.1142/9789812830548}.
+\bibitem{BF} M. Banaji and E. Feliu,
+\emph{Positive equilibria in mass action networks: geometry and bounds}, Journal of
+Mathematical Biology \textbf{93}(3) (2026), article 37.
+\url{https://doi.org/10.1007/s00285-026-02429-8}; theorem numbers as in
+arXiv:2409.06877v5 (accessed 20 November 2026).
+\bibitem{PR} K. Phillipson and J. M. Rojas,
+\emph{Fewnomial systems with many roots, and an adelic tau conjecture},
+arXiv:1011.4128v5 (2012). \url{https://arxiv.org/abs/1011.4128}.
+\bibitem{Anon} Anonymous (package maintained by Evidence Press),
+\emph{Sharp positive-equilibrium counts in quadratic mass-action networks with two
+more reactions than species}, unrefereed preprint, Zenodo, 4 October 2026.
+\url{https://doi.org/10.5281/zenodo.23146115} (accessed 20 November 2026).
+\bibitem{Takimoto} T. Takimoto,
+\emph{A certified three-equilibrium bound for 375 fixed quadratic zero-one reaction
+networks}, draft v1, 24 October 2026.
+\url{https://github.com/tkmt-lab/multistationarity-375-networks-bound}
+(accessed 20 November 2026).
 \end{thebibliography}
 \end{document}
