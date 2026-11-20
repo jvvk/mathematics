@@ -18,7 +18,7 @@ $h(3)=14$ and exponential bounds for $h(k)$}
 \author{Vamshi Jandhyala}
 \address{London, United Kingdom}
 \email{vamshi.jandhyala@gmail.com}
-\date{Preprint v1, 20 October 2026}
+\date{Preprint, version 2, 20 November 2026 (version 1: 20 October 2026; results unchanged). Not peer reviewed.}
 \subjclass[2020]{05C05, 05D10, 92D15}
 \keywords{phylogenetic tree, quartet, caterpillar, agreement subtree, SAT}
 
@@ -36,7 +36,8 @@ value $h(3)=14$ needs three trees on $13$ leaves with no common quartet; we give
 $\mathbb{Z}_{13}$, and confirm the matching upper bound by an exhaustive search with checked proofs. Up to the
 symmetries of this form there are exactly six such examples. We also find
 four trees on $21$ leaves with no common quartet, so $h(4)\ge 22$. The general bounds and the $13$-leaf example are
-checked in Lean.
+checked in Lean. Later independent work has since improved the general upper bound and the bounds for $h(4)$
+(Section~\ref{sec:open}).
 \end{abstract}
 
 \maketitle
@@ -376,7 +377,7 @@ commutes with $x\mapsto3x$, fixes $T'$, and exchanges its two branches of five l
 
 \section{Open questions}\label{sec:open}
 
-\begin{question}
+\begin{question}\label{q:limit}
 Does $\lim_{k\to\infty} h(k)^{1/k}$ exist, and is it larger than $2$?
 \end{question}
 
@@ -412,10 +413,20 @@ $\mathbb{Z}_{37}$ under multipliers of order four. Five trees on $\mathbb{Z}_{41
 beat the $33$ leaves of $F_5$, were also undecided after 20 minutes. These unfinished searches decide nothing, but
 $21$ remains the largest example known for four trees.
 
-\begin{question}
+\begin{question}\label{q:h4}
 What is $h(4)$? It lies between $22$ and $55$, and below $41$ given the error-free form of \cite[Theorem~1.3]{SY}.
 Is it $41$, as the pattern of $h(3)$ would suggest?
 \end{question}
+
+\emph{Subsequent work.} After version~1 of this note (20 October 2026), H.~Yorke and Valyu DeepResearch \cite{YV}
+independently determined $h(3)=14$, with a different $13$-leaf example (the orbit $T,\sigma T,\sigma^2T$ of one tree
+under a permutation $\sigma$ with four $3$-cycles and one fixed leaf) and an exhaustive elementary proof of the upper
+bound. They also state $h(k)\le\lfloor3\beta^{k-1}\rfloor+1$ with $\beta=(1+\sqrt{13})/2\approx2.303$, which is
+stronger than Theorem~\ref{thm:hk} for every $k\ge3$, and, by a dynamic programme over one pair of trees and four
+trees on $22$ leaves with no common quartet, $23\le h(4)\le28$. We have not checked these proofs. If they are
+correct, any limit in Question~\ref{q:limit} lies in $[2,\beta]$, so the pattern suggested above, which would give
+the limit $3$, does not continue; and both bounds in Question~\ref{q:h4} are improved and its last part is answered
+in the negative.
 
 \section{Verification}\label{sec:verify}
 
@@ -433,14 +444,21 @@ the symmetric instance on $14$ leaves with an LRAT proof accepted by \texttt{lra
 Proposition~\ref{prop:classes} was repeated with the five-point encoding of Section~\ref{sec:h3}, which shares no
 code with the one-tree encoding. The search programs, the verification scripts and the
 Lean formalisation were written with the AI assistant named in the declaration below, and were checked as described
-in this section. Code, logs and Lean sources are at~\cite{repo}.
+in this section. Code, logs and Lean sources are at~\cite{repo}, and archived on Zenodo at
+\href{https://doi.org/10.5281/zenodo.24406672}{doi:10.5281/zenodo.24406672}, identical to that folder at the tag
+\texttt{common-quartets-v2}.
 
 \section*{Declaration of generative AI and AI-assisted technologies in the research and writing process}
 During the preparation of this work the author used Claude (Anthropic; model Claude Opus~5.5) to search for
 examples by SAT, to find the caterpillar family and its proof and the application of the iteration of Asplund et
 al.\ to trees, to classify the examples on $\mathbb{Z}_{13}$, to write the verification programs and the Lean
-formalisation, and to draft the text. The author directed the work and takes full responsibility for the content
-of this preprint, which has not yet been independently reviewed.
+formalisation, and to draft the text. Codex (OpenAI) searched the literature and refereed version~2. The author
+directed the work and takes full responsibility for the content of this preprint, which has not yet been
+independently reviewed.
+
+\emph{Changes in version 2.} A paragraph on subsequent work by Yorke and Valyu DeepResearch \cite{YV} follows
+Question~\ref{q:h4}, the abstract points to it, and the archive's Zenodo DOI is recorded in
+Section~\ref{sec:verify}. The results and proofs of version~1 are unchanged.
 
 \begin{thebibliography}{99}
 
@@ -484,6 +502,11 @@ doi:10.1145/3372885.3373824.
 \bibitem{Spencer} J.~Spencer, The biplanar crossing number of the random graph, in \emph{Towards a Theory of
 Geometric Graphs}, Contemp. Math. 342, Amer. Math. Soc., Providence, RI, 2004, 269--271.
 doi:10.1090/conm/342/06147.
+
+\bibitem{YV} H.~Yorke and Valyu DeepResearch, Three phylogenetic trees on fourteen leaves always share a quartet,
+preprint dated 25 October 2026, posted 27 October 2026,
+\url{https://github.com/valyuAI/research/tree/main/maths/combinatorics/phylogenetics/common-quartet-number}
+(accessed 20 November 2026).
 
 \end{thebibliography}
 \end{document}

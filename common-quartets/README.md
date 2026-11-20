@@ -17,7 +17,11 @@ This note proves:
 - **Theorem 1.3.** `22 ≤ h(4) ≤ 55`, and `h(4) ≤ 41` given the error-free form of Snir and Yuster's Theorem 1.3.
 - **Proposition 5.2.** Up to the symmetries of the form `T, 3T, 9T`, there are exactly six 13-leaf examples (19,440 trees).
 
-Preprint v1, 20 October 2026, not peer reviewed. The bound `h(k) ≤ 2·3ᵏ⁻¹ + 1` (with trees abstracted to split systems, see `lean/README.md`), the caterpillar family for every `k`, and both 13-leaf examples are formally verified in Lean 4 (`lean/`, standard axioms only). The author used an AI tool (Claude, Anthropic) in this work, as described in the paper's declaration, and is responsible for its content.
+Preprint v2, 20 November 2026 (v1: 20 October 2026), not peer reviewed. Zenodo: [doi:10.5281/zenodo.24406672](https://doi.org/10.5281/zenodo.24406672), identical to this folder at tag `common-quartets-v2`. The bound `h(k) ≤ 2·3ᵏ⁻¹ + 1` (with trees abstracted to split systems, see `lean/README.md`), the caterpillar family for every `k`, and both 13-leaf examples are formally verified in Lean 4 (`lean/`, standard axioms only). The author used AI tools (Claude, Anthropic; Codex, OpenAI, as literature search and referee of v2) in this work, as described in the paper's declaration, and is responsible for its content.
+
+**Later work.** After v1, Yorke and Valyu DeepResearch independently determined h(3) = 14 and state the stronger bounds `h(k) ≤ ⌊3β^(k−1)⌋ + 1` with `β = (1+√13)/2` and `23 ≤ h(4) ≤ 28` ([folder](https://github.com/valyuAI/research/tree/main/maths/combinatorics/phylogenetics/common-quartet-number), 27 October 2026). The paper's Section 6 records this; we have not checked their proofs.
+
+**Version 2** (20 November 2026, tag `common-quartets-v2`): the subsequent-work paragraph, the Zenodo DOI and the Codex referee in the declaration. Results, programs and Lean files are unchanged from v1.
 
 ## Contents
 
