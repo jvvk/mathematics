@@ -19,9 +19,11 @@ This note proves:
 
 Preprint v2, 20 November 2026 (v1: 20 October 2026), not peer reviewed. Zenodo: [doi:10.5281/zenodo.24406672](https://doi.org/10.5281/zenodo.24406672), identical to this folder at tag `common-quartets-v2`. The bound `h(k) ≤ 2·3ᵏ⁻¹ + 1` (with trees abstracted to split systems, see `lean/README.md`), the caterpillar family for every `k`, and both 13-leaf examples are formally verified in Lean 4 (`lean/`, standard axioms only). The author used AI tools (Claude, Anthropic; Codex, OpenAI, as literature search and referee of v2) in this work, as described in the paper's declaration, and is responsible for its content.
 
+**Earlier work.** The numbers `h(k)` and `h*(k)` first appear as `τ_k(4)` and `κ_k(4)` in Chapter 7 of P. J. Humphries's PhD thesis (Canterbury, 2008, [doi:10.26021/1326](https://doi.org/10.26021/1326)), which proves them finite and conjectures `τ_k(m) = κ_k(m)`; Snir and Yuster's `h*(3) = 10` and `h(3) ≥ 11` already refute that at `(3, 4)`, and `h(3) = 14` makes the gap four.
+
 **Later work.** After v1, Yorke and Valyu DeepResearch independently determined h(3) = 14 and state the stronger bounds `h(k) ≤ ⌊3β^(k−1)⌋ + 1` with `β = (1+√13)/2` and `23 ≤ h(4) ≤ 28` ([folder](https://github.com/valyuAI/research/tree/main/maths/combinatorics/phylogenetics/common-quartet-number), 27 October 2026). The paper's Section 6 records this; we have not checked their proofs.
 
-**Version 2** (20 November 2026, tag `common-quartets-v2`): the subsequent-work paragraph, the Zenodo DOI and the Codex referee in the declaration. Results, programs and Lean files are unchanged from v1.
+**Version 2** (20 November 2026, tag `common-quartets-v2`): credit to Humphries's thesis, the subsequent-work paragraph, the Zenodo DOI and the Codex referee in the declaration. Results, programs and Lean files are unchanged from v1.
 
 ## Contents
 

@@ -86,6 +86,13 @@ $11\le h(3)\le 14$. Currie, Czabarka, Fischer, Simmons, Sz\'ekely and Wicke \cit
 $8^{1/4}3^{k/4}\le h(k)\le \mathrm{tw}_3\bigl(6(k-1)2^k+O(\log k)\bigr)$, a four-times iterated exponential, the
 upper bound through hypergraph Ramsey numbers and agreement subtrees.
 
+The same numbers appear earlier, in Chapter~7 of Humphries's thesis \cite{Hum}: in his notation $h(k)=\tau_k(4)$
+and $h^*(k)=\kappa_k(4)$, where $\tau_k(m)$ and $\kappa_k(m)$ are the least $n$ such that any $k$ binary trees,
+respectively caterpillars, on $n$ leaves have a common subtree on $m$ leaves. He proves that both are finite, with
+tower-type bounds, notes $\tau_2(4)=6$, and conjectures that $\tau_k(m)=\kappa_k(m)$ for all $k,m$
+\cite[Conjecture~7.2.11]{Hum}. Snir and Yuster's values $h^*(3)=10$ and $h(3)\ge11$ already refute this
+conjecture at $(k,m)=(3,4)$, and Theorem~\ref{thm:h3} below shows that the gap there is four.
+
 \begin{theorem}\label{thm:h3}
 $h(3)=14$.
 \end{theorem}
@@ -456,8 +463,9 @@ formalisation, and to draft the text. Codex (OpenAI) searched the literature and
 directed the work and takes full responsibility for the content of this preprint, which has not yet been
 independently reviewed.
 
-\emph{Changes in version 2.} A paragraph on subsequent work by Yorke and Valyu DeepResearch \cite{YV} follows
-Question~\ref{q:h4}, the abstract points to it, and the archive's Zenodo DOI is recorded in
+\emph{Changes in version 2.} The introduction credits the earlier definition of $h(k)$ and $h^*(k)$ in
+Humphries's thesis \cite{Hum} and notes that his Conjecture~7.2.11 fails at $(3,4)$; a paragraph on subsequent work
+by Yorke and Valyu DeepResearch \cite{YV} follows Question~\ref{q:h4}, the abstract points to it, and the archive's Zenodo DOI is recorded in
 Section~\ref{sec:verify}. The results and proofs of version~1 are unchanged.
 
 \begin{thebibliography}{99}
@@ -482,6 +490,9 @@ doi:10.1007/978-3-319-63046-5\_14.
 
 \bibitem{CCFSSW} B.~Currie, \'E.~Czabarka, M.~Fischer, H.~Simmons, L.~Sz\'ekely and K.~Wicke, On agreement subtrees
 in multiple phylogenetic trees, arXiv:2607.12778v2 (2026).
+
+\bibitem{Hum} P.~J.~Humphries, \emph{Combinatorial aspects of leaf-labelled trees}, PhD thesis, University of
+Canterbury, 2008, Chapter~7. doi:10.26021/1326.
 
 \bibitem{HMSW} K.~T. Huber, V.~Moulton, C.~Semple and T.~Wu, Quarnet inference rules for level-1 networks,
 \emph{Bull. Math. Biol.} 80 (2018) 2137--2153. doi:10.1007/s11538-018-0450-2.
