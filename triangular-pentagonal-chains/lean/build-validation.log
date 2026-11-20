@@ -1,0 +1,41 @@
+Isolated build 2026-11-20: fresh copy of lean/, lake exe cache get, lake build LeanProofs
+⚠ [8924/8937] Built LeanProofs.TriChains.Basic (126s)
+warning: LeanProofs/TriChains/Basic.lean:6:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/TriChains/Basic.lean:12:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/TriChains/Basic.lean:14:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/TriChains/Basic.lean:55:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/TriChains/Basic.lean:91:100: This line exceeds the 100 character limit, please shorten it!
+⚠ [8925/8937] Built LeanProofs.PentChains.Basic (126s)
+warning: LeanProofs/PentChains/Basic.lean:6:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/PentChains/Basic.lean:7:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/PentChains/Basic.lean:10:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/PentChains/Basic.lean:15:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/PentChains/Basic.lean:56:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/PentChains/Basic.lean:83:100: This line exceeds the 100 character limit, please shorten it!
+⚠ [8926/8937] Built LeanProofs.TriChains.Step (630s)
+warning: LeanProofs/TriChains/Step.lean:6:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/TriChains/Step.lean:7:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/TriChains/Step.lean:9:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/TriChains/Step.lean:10:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/TriChains/Step.lean:24:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/TriChains/Step.lean:60:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/TriChains/Step.lean:113:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/TriChains/Step.lean:125:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/TriChains/Step.lean:127:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/TriChains/Step.lean:147:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/TriChains/Step.lean:154:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/TriChains/Step.lean:169:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/TriChains/Step.lean:202:6: The `show` tactic should only be used to indicate intermediate goal states for readability.
+warning: LeanProofs/TriChains/Step.lean:214:45: `simp at hy` is a flexible tactic modifying `hy`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/TriChains/Step.lean:214:45: `simp at hy` is a flexible tactic modifying `hy`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/TriChains/Step.lean:219:43: `simp at hy` is a flexible tactic modifying `hy`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/TriChains/Step.lean:219:43: `simp at hy` is a flexible tactic modifying `hy`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/TriChains/Step.lean:171:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/TriChains/Step.lean:214:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/TriChains/Step.lean:219:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/TriChains/Step.lean:241:100: This line exceeds the 100 character limit, please shorten it!
+⚠ [8927/8937] Built LeanProofs.PentChains.Step (630s)
+warning: LeanProofs/PentChains/Step.lean:6:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/PentChains/Step.lean:7:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/PentChains/Step.lean:9:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/PentChains/Step.lean:10:100: This line exceeds the 100 character limit, please shorten it!

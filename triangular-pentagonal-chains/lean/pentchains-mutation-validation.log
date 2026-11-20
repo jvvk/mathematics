@@ -1,0 +1,16 @@
+control passes: Basic.lean
+control passes: Step.lean
+control passes: Layouts.lean
+control passes: SmallCases.lean
+control passes: Main.lean
+rejected: identity 49 P_k + 3 (exit 1, marker 'error')
+rejected: block map with 3 - c (exit 1, marker 'error')
+rejected: offset window widened to [-24, 25] (exit 1, marker 'error')
+rejected: step: S4 weakened to r - 48 (exit 1, marker 'error')
+rejected: step: glue up to 26 (exit 1, marker 'error')
+rejected: corrupted layout r=50 p=1 (starts at glue 4) (exit 1, marker 'error')
+rejected: corrupted small chain n = 20 (exit 1, marker 'error')
+rejected: chains claimed from 3 (exit 1, marker 'error')
+rejected: necklaces claimed from 8 (exit 1, marker 'error')
+rejected: base only from 61 (exit 1, marker 'error')
+10/10 mutants rejected, all controls pass

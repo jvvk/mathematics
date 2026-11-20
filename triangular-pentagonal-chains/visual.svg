@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 656 450" font-family="Helvetica,Arial,sans-serif">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="40" y="28" font-size="16" fill="#1d1c1a">Neighbours add up to triangular numbers</text>
+<text x="40" y="52" font-size="13" fill="#6b6860">A chain of 1..9 (sums in amber); chains exist for n = 2 and every n ≥ 9</text>
+<rect x="40" y="74" width="52" height="52" rx="7" fill="#2f5d8a"/>
+<text x="66.0" y="107.0" font-size="20" text-anchor="middle" fill="#ffffff">3</text>
+<text x="98.0" y="150" font-size="14" text-anchor="middle" fill="#b7791f">10</text>
+<rect x="104" y="74" width="52" height="52" rx="7" fill="#2f5d8a"/>
+<text x="130.0" y="107.0" font-size="20" text-anchor="middle" fill="#ffffff">7</text>
+<text x="162.0" y="150" font-size="14" text-anchor="middle" fill="#b7791f">15</text>
+<rect x="168" y="74" width="52" height="52" rx="7" fill="#2f5d8a"/>
+<text x="194.0" y="107.0" font-size="20" text-anchor="middle" fill="#ffffff">8</text>
+<text x="226.0" y="150" font-size="14" text-anchor="middle" fill="#b7791f">10</text>
+<rect x="232" y="74" width="52" height="52" rx="7" fill="#2f5d8a"/>
+<text x="258.0" y="107.0" font-size="20" text-anchor="middle" fill="#ffffff">2</text>
+<text x="290.0" y="150" font-size="14" text-anchor="middle" fill="#b7791f">6</text>
+<rect x="296" y="74" width="52" height="52" rx="7" fill="#2f5d8a"/>
+<text x="322.0" y="107.0" font-size="20" text-anchor="middle" fill="#ffffff">4</text>
+<text x="354.0" y="150" font-size="14" text-anchor="middle" fill="#b7791f">10</text>
+<rect x="360" y="74" width="52" height="52" rx="7" fill="#2f5d8a"/>
+<text x="386.0" y="107.0" font-size="20" text-anchor="middle" fill="#ffffff">6</text>
+<text x="418.0" y="150" font-size="14" text-anchor="middle" fill="#b7791f">15</text>
+<rect x="424" y="74" width="52" height="52" rx="7" fill="#2f5d8a"/>
+<text x="450.0" y="107.0" font-size="20" text-anchor="middle" fill="#ffffff">9</text>
+<text x="482.0" y="150" font-size="14" text-anchor="middle" fill="#b7791f">10</text>
+<rect x="488" y="74" width="52" height="52" rx="7" fill="#2f5d8a"/>
+<text x="514.0" y="107.0" font-size="20" text-anchor="middle" fill="#ffffff">1</text>
+<text x="546.0" y="150" font-size="14" text-anchor="middle" fill="#b7791f">6</text>
+<rect x="552" y="74" width="52" height="52" rx="7" fill="#2f5d8a"/>
+<text x="578.0" y="107.0" font-size="20" text-anchor="middle" fill="#ffffff">5</text>
+<text x="40" y="186" font-size="13" fill="#6b6860">A necklace of 1..12; necklaces exist for every n ≥ 12 except 14</text>
+<text x="200.0" y="213.0" font-size="13" text-anchor="middle" fill="#b7791f">6</text>
+<circle cx="170.0" cy="238.0" r="17" fill="#2f5d8a"/>
+<text x="170.0" y="244.0" font-size="16" text-anchor="middle" fill="#ffffff">1</text>
+<text x="252.0" y="243.0" font-size="13" text-anchor="middle" fill="#b7791f">15</text>
+<circle cx="211.0" cy="249.0" r="17" fill="#2f5d8a"/>
+<text x="211.0" y="255.0" font-size="16" text-anchor="middle" fill="#ffffff">5</text>
+<text x="282.0" y="295.0" font-size="13" text-anchor="middle" fill="#b7791f">21</text>
+<circle cx="241.0" cy="279.0" r="17" fill="#2f5d8a"/>
+<text x="241.0" y="285.0" font-size="16" text-anchor="middle" fill="#ffffff">10</text>
+<text x="282.0" y="355.0" font-size="13" text-anchor="middle" fill="#b7791f">15</text>
+<circle cx="252.0" cy="320.0" r="17" fill="#2f5d8a"/>
+<text x="252.0" y="326.0" font-size="16" text-anchor="middle" fill="#ffffff">11</text>
+<text x="252.0" y="407.0" font-size="13" text-anchor="middle" fill="#b7791f">10</text>
+<circle cx="241.0" cy="361.0" r="17" fill="#2f5d8a"/>
+<text x="241.0" y="367.0" font-size="16" text-anchor="middle" fill="#ffffff">4</text>
+<text x="200.0" y="437.0" font-size="13" text-anchor="middle" fill="#b7791f">15</text>
+<circle cx="211.0" cy="391.0" r="17" fill="#2f5d8a"/>
+<text x="211.0" y="397.0" font-size="16" text-anchor="middle" fill="#ffffff">6</text>
+<text x="140.0" y="437.0" font-size="13" text-anchor="middle" fill="#b7791f">21</text>
+<circle cx="170.0" cy="402.0" r="17" fill="#2f5d8a"/>
+<text x="170.0" y="408.0" font-size="16" text-anchor="middle" fill="#ffffff">9</text>
+<text x="88.0" y="407.0" font-size="13" text-anchor="middle" fill="#b7791f">15</text>
+<circle cx="129.0" cy="391.0" r="17" fill="#2f5d8a"/>
+<text x="129.0" y="397.0" font-size="16" text-anchor="middle" fill="#ffffff">12</text>
+<text x="58.0" y="355.0" font-size="13" text-anchor="middle" fill="#b7791f">10</text>
+<circle cx="99.0" cy="361.0" r="17" fill="#2f5d8a"/>
+<text x="99.0" y="367.0" font-size="16" text-anchor="middle" fill="#ffffff">3</text>
+<text x="58.0" y="295.0" font-size="13" text-anchor="middle" fill="#b7791f">15</text>
+<circle cx="88.0" cy="320.0" r="17" fill="#2f5d8a"/>
+<text x="88.0" y="326.0" font-size="16" text-anchor="middle" fill="#ffffff">7</text>
+<text x="88.0" y="243.0" font-size="13" text-anchor="middle" fill="#b7791f">10</text>
+<circle cx="99.0" cy="279.0" r="17" fill="#2f5d8a"/>
+<text x="99.0" y="285.0" font-size="16" text-anchor="middle" fill="#ffffff">8</text>
+<text x="140.0" y="213.0" font-size="13" text-anchor="middle" fill="#b7791f">3</text>
+<circle cx="129.0" cy="249.0" r="17" fill="#2f5d8a"/>
+<text x="129.0" y="255.0" font-size="16" text-anchor="middle" fill="#ffffff">2</text>
+<text x="360" y="258" font-size="15" fill="#1d1c1a">How every length is reached</text>
+<text x="360" y="284" font-size="17" fill="#b7791f">49·T(k) + 6 = T(7k + 3)</text>
+<text x="360" y="310" font-size="13" fill="#6b6860">inflate a chain on 1..n to about 49n numbers,</text>
+<text x="360" y="336" font-size="13" fill="#6b6860">stitch 49 inflated copies with 1..27,</text>
+<text x="360" y="362" font-size="13" fill="#6b6860">keep each number at a position of its own parity.</text>
+<text x="360" y="402" font-size="13" fill="#1d1c1a">Pentagonal sums: chains for n ≥ 4,</text>
+<text x="360" y="428" font-size="13" fill="#1d1c1a">necklaces for n ≥ 9.</text>
+</svg>

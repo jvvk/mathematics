@@ -1,0 +1,76 @@
+[check]
+cmd = ["python3", "-I", "{file}"]
+cwd = "."
+timeout = 120
+
+[[mutant]]
+name = "odd chains end at 21"
+file = "recheck.py"
+old = "return 2 if m % 2 == 0 else 19"
+new = "return 2 if m % 2 == 0 else 21"
+
+[[mutant]]
+name = "base from 59"
+file = "recheck.py"
+old = "START, M0, TOP = 3, 60, 49 * 60 + 25"
+new = "START, M0, TOP = 3, 59, 49 * 60 + 25"
+
+[[mutant]]
+name = "inflation shift 3 - c"
+file = "recheck.py"
+old = "b = [49 * v + (c if v % 2 else 2 - c) for v in x]"
+new = "b = [49 * v + (c if v % 2 else 3 - c) for v in x]"
+
+[[mutant]]
+name = "identity claimed with shift 4"
+file = "recheck.py"
+old = "assert all((49 * (k * (3 * k - 1) // 2) + 2) in PENT for k in range(-50, 51))"
+new = "assert all((49 * (k * (3 * k - 1) // 2) + 4) in PENT for k in range(-50, 51))"
+
+[[mutant]]
+name = "S3: t-block count r - 24"
+file = "recheck.py"
+old = "== r - 25, (r, p)"
+new = "== r - 24, (r, p)"
+
+[[mutant]]
+name = "S4 strict"
+file = "recheck.py"
+old = "assert (c if (p + 1) % 2 == 1 else 2 - c) <= K, (r, p, c)"
+new = "assert (c if (p + 1) % 2 == 1 else 2 - c) < K, (r, p, c)"
+
+[[mutant]]
+name = "S1 glue 1..24"
+file = "recheck.py"
+old = "assert sorted(glue) == list(range(1, 26)), (r, p)"
+new = "assert sorted(glue) == list(range(1, 25)), (r, p)"
+
+[[mutant]]
+name = "claim: sums even pentagonal"
+file = "recheck.py"
+old = "    return s % 2 == 1 and s in PENT"
+new = "    return s % 2 == 0 and s in PENT"
+
+[[mutant]]
+name = "chains claimed from 3"
+file = "recheck.py"
+old = "assert sorted(map(int, S[\"chains\"])) == list(range(4, 60))"
+new = "assert sorted(map(int, S[\"chains\"])) == list(range(3, 60))"
+
+[[mutant]]
+name = "necklaces claimed from 8"
+file = "recheck.py"
+old = "assert sorted(map(int, S[\"necklaces\"])) == list(range(9, 60))"
+new = "assert sorted(map(int, S[\"necklaces\"])) == list(range(8, 60))"
+
+[[mutant]]
+name = "exclusions: claim no chain for 4"
+file = "exclusions.py"
+old = "assert not any(has_chain(n) for n in (2, 3))"
+new = "assert not any(has_chain(n) for n in (2, 3, 4))"
+
+[[mutant]]
+name = "exclusions: claim no necklace for 9"
+file = "exclusions.py"
+old = "assert not any(has_necklace(n) for n in range(3, 9))"
+new = "assert not any(has_necklace(n) for n in range(3, 10))"

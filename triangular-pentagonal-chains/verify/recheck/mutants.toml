@@ -1,0 +1,101 @@
+# Mutation suite for recheck.py: each mutant states a stronger, false claim or corrupts one datum.
+[check]
+cmd = ["python3", "-I", "{file}"]
+cwd = "."
+timeout = 120
+
+[[mutant]]
+name = "odd chains end at 7 instead of 9"
+file = "recheck.py"
+old = "return 2 if m % 2 == 0 else 9"
+new = "return 2 if m % 2 == 0 else 7"
+
+[[mutant]]
+name = "base starts at 53"
+file = "recheck.py"
+old = "for m in range(54, 2674):"
+new = "for m in range(53, 2674):"
+
+[[mutant]]
+name = "corrupted base chain (swap entries 2 and 3)"
+file = "recheck.py"
+old = "    c = base[m]\n"
+new = "    c = base[m]; c = c[:1] + c[2:3] + c[1:2] + c[3:]\n"
+
+[[mutant]]
+name = "block recipe 5 - c instead of 6 - c"
+file = "recheck.py"
+old = "b = [49 * v + (c if i % 2 == 0 else 6 - c) for i, v in enumerate(x)]"
+new = "b = [49 * v + (c if i % 2 == 0 else 5 - c) for i, v in enumerate(x)]"
+
+[[mutant]]
+name = "inflation factor 36 instead of 49 in rebuild"
+file = "recheck.py"
+old = "b = [49 * v + (c if i % 2 == 0 else 6 - c) for i, v in enumerate(x)]"
+new = "b = [36 * v + (c if i % 2 == 0 else 6 - c) for i, v in enumerate(x)]"
+
+[[mutant]]
+name = "S3: t-block count r - 26"
+file = "recheck.py"
+old = "== r - 27, (r, p)"
+new = "== r - 26, (r, p)"
+
+[[mutant]]
+name = "S4: top offsets strictly below K"
+file = "recheck.py"
+old = "assert top_off <= K, (r, p, c)"
+new = "assert top_off < K, (r, p, c)"
+
+[[mutant]]
+name = "S1: glue numbers 1..26"
+file = "recheck.py"
+old = "assert sorted(glue) == list(range(1, 28)), (r, p)"
+new = "assert sorted(glue) == list(range(1, 27)), (r, p)"
+
+[[mutant]]
+name = "S2: offsets -22..26"
+file = "recheck.py"
+old = "assert sorted(c for c, _, _ in blks) == list(range(-21, 28)), (r, p)"
+new = "assert sorted(c for c, _, _ in blks) == list(range(-22, 27)), (r, p)"
+
+[[mutant]]
+name = "corrupted layout (swap two items in case r=50, p=0)"
+file = "recheck.py"
+old = "        items = L[f\"{r},{p}\"]\n"
+new = "        items = L[f\"{r},{p}\"]\n        if (r, p) == (50, 0): items = items[:1] + items[2:3] + items[1:2] + items[3:]\n"
+
+[[mutant]]
+name = "necklace claimed for n = 14"
+file = "recheck.py"
+old = "assert sorted(map(int, S[\"necklaces\"])) == [n for n in range(12, 54) if n != 14]"
+new = "assert sorted(map(int, S[\"necklaces\"])) == [n for n in range(12, 54)]"
+
+[[mutant]]
+name = "chain claimed for n = 8"
+file = "recheck.py"
+old = "assert sorted(map(int, S[\"chains\"])) == [2] + list(range(9, 54))"
+new = "assert sorted(map(int, S[\"chains\"])) == [2] + list(range(8, 54))"
+
+[[mutant]]
+name = "claim: adjacent sums are EVEN triangular numbers"
+file = "recheck.py"
+old = "    return s % 2 == 1 and s in TRI"
+new = "    return s % 2 == 0 and s in TRI"
+
+[[mutant]]
+name = "exclusions: claim no necklace for 15"
+file = "exclusions.py"
+old = "assert not any(has_necklace(n) for n in list(range(3, 12)) + [14])"
+new = "assert not any(has_necklace(n) for n in list(range(3, 12)) + [14, 15])"
+
+[[mutant]]
+name = "exclusions: claim no chain for 9"
+file = "exclusions.py"
+old = "assert not any(has_chain(n) for n in range(3, 9))"
+new = "assert not any(has_chain(n) for n in range(3, 10))"
+
+[[mutant]]
+name = "exclusions: claim a necklace exists for 14 (control set)"
+file = "exclusions.py"
+old = "assert has_chain(2) and has_chain(9) and all(has_necklace(n) for n in (12, 13, 15))"
+new = "assert has_chain(2) and has_chain(9) and all(has_necklace(n) for n in (12, 13, 14, 15))"

@@ -1,0 +1,14 @@
+def TriChains.BaseHyp : Prop :=
+∀ (N : ℕ), 54 ≤ N → N ≤ 2673 → ∃ l, TriChains.Good N l
+def PentChains.BaseHyp : Prop :=
+∀ (N : ℕ), 60 ≤ N → N ≤ 2965 → ∃ l, PentChains.Good N l
+TriChains.berlekamp_guy : TriChains.BaseHyp →
+  (∀ (N : ℕ), N = 2 ∨ 9 ≤ N → ∃ l, TriChains.TriChain N l) ∧ ∀ (N : ℕ), 12 ≤ N → N ≠ 14 → ∃ l, TriChains.TriNecklace N l
+'TriChains.berlekamp_guy' depends on axioms: [propext, Classical.choice, Quot.sound]
+TriChains.good_all : TriChains.BaseHyp → ∀ (N : ℕ), 54 ≤ N → ∃ l, TriChains.Good N l
+'TriChains.good_all' depends on axioms: [propext, Classical.choice, Quot.sound]
+PentChains.berlekamp_guy : PentChains.BaseHyp →
+  (∀ (N : ℕ), 4 ≤ N → ∃ l, PentChains.TriChain N l) ∧ ∀ (N : ℕ), 9 ≤ N → ∃ l, PentChains.TriNecklace N l
+'PentChains.berlekamp_guy' depends on axioms: [propext, Classical.choice, Quot.sound]
+PentChains.good_all : PentChains.BaseHyp → ∀ (N : ℕ), 60 ≤ N → ∃ l, PentChains.Good N l
+'PentChains.good_all' depends on axioms: [propext, Classical.choice, Quot.sound]

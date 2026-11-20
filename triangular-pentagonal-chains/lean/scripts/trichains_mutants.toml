@@ -1,0 +1,78 @@
+# TriChains (Berlekamp-Guy triangular chains). Each mutant: a stronger false claim or one corrupted datum.
+[check]
+cmd = ["lake", "env", "lean", "{file}"]
+cwd = ".."
+timeout = 900
+fail_markers = ["error"]
+
+[[mutant]]
+name = "identity 49 T_k + 5 = T_(7k+3)"
+file = "../LeanProofs/TriChains/Basic.lean"
+old = "theorem tri_inflate {s : ℤ} (h : IsTri s) : IsTri (49 * s + 6) := by"
+new = "theorem tri_inflate {s : ℤ} (h : IsTri s) : IsTri (49 * s + 5) := by"
+
+[[mutant]]
+name = "block map with 5 - c"
+file = "../LeanProofs/TriChains/Basic.lean"
+old = "def f (c v : ℤ) : ℤ := 49 * v + if v % 2 = 1 then c else 6 - c"
+new = "def f (c v : ℤ) : ℤ := 49 * v + if v % 2 = 1 then c else 5 - c"
+
+[[mutant]]
+name = "offset window widened to [-22, 27]"
+file = "../LeanProofs/TriChains/Basic.lean"
+old = "theorem f_window {c₁ c₂ v₁ v₂ : ℤ} (h1 : -21 ≤ c₁ ∧ c₁ ≤ 27)"
+new = "theorem f_window {c₁ c₂ v₁ v₂ : ℤ} (h1 : -22 ≤ c₁ ∧ c₁ ≤ 27)"
+
+[[mutant]]
+name = "step with S4 weakened (top offset <= r - 48)"
+file = "../LeanProofs/TriChains/Step.lean"
+old = "(!u || decide ((if (p + 1) % 2 = 1 then c else 6 - c) ≤ (r : ℤ) - 49))"
+new = "(!u || decide ((if (p + 1) % 2 = 1 then c else 6 - c) ≤ (r : ℤ) - 48))"
+
+[[mutant]]
+name = "step with 28 glue numbers"
+file = "../LeanProofs/TriChains/Step.lean"
+old = "(L.filter isG).length == 27 && (L.filter isB).length == 49"
+new = "(L.filter isG).length == 28 && (L.filter isB).length == 49"
+
+[[mutant]]
+name = "step with glue allowed up to 28"
+file = "../LeanProofs/TriChains/Step.lean"
+old = "  | .g v => decide (1 ≤ v) && decide (v ≤ 27)"
+new = "  | .g v => decide (1 ≤ v) && decide (v ≤ 28)"
+
+[[mutant]]
+name = "corrupted layout r=50 p=0 (first two glue items swapped)"
+file = "../LeanProofs/TriChains/Layouts.lean"
+old = "def lay_50_0 : List Item := [.g 1, "
+new = "def lay_50_0 : List Item := [.g 2, "
+
+[[mutant]]
+name = "corrupted small chain n = 20"
+file = "../LeanProofs/TriChains/SmallCases.lean"
+old = "theorem chain_20 : chainOK 20 ["
+new = "theorem chain_20 : chainOK 21 ["
+
+[[mutant]]
+name = "necklaces claimed from 11"
+file = "../LeanProofs/TriChains/Main.lean"
+old = "(∀ N, 12 ≤ N → N ≠ 14 → ∃ l, TriNecklace N l) := by"
+new = "(∀ N, 11 ≤ N → N ≠ 14 → ∃ l, TriNecklace N l) := by"
+
+[[mutant]]
+name = "chains claimed from 8"
+file = "../LeanProofs/TriChains/Main.lean"
+old = "(∀ N, (N = 2 ∨ 9 ≤ N) → ∃ l, TriChain N l) ∧"
+new = "(∀ N, (N = 2 ∨ 8 ≤ N) → ∃ l, TriChain N l) ∧"
+
+[[mutant]]
+name = "base only from 55"
+file = "../LeanProofs/TriChains/Main.lean"
+old = "def BaseHyp : Prop := ∀ N, 54 ≤ N → N ≤ 2673 → ∃ l, Good N l"
+new = "def BaseHyp : Prop := ∀ N, 55 ≤ N → N ≤ 2673 → ∃ l, Good N l"
+
+[[mutant]]
+name = "base only up to 2672"
+file = "../LeanProofs/TriChains/Main.lean"
+old = "def BaseHyp : Prop := ∀ N, 54 ≤ N → N ≤ 2673 → ∃ l, Good N l"
+new = "def BaseHyp : Prop := ∀ N, 54 ≤ N → N ≤ 2672 → ∃ l, Good N l"

@@ -1,0 +1,66 @@
+# PentChains (Berlekamp-Guy pentagonal chains). Stronger false claims or one corrupted datum.
+[check]
+cmd = ["lake", "env", "lean", "{file}"]
+cwd = ".."
+timeout = 900
+fail_markers = ["error"]
+
+[[mutant]]
+name = "identity 49 P_k + 3"
+file = "../LeanProofs/PentChains/Basic.lean"
+old = "theorem tri_inflate {s : ℤ} (h : IsTri s) : IsTri (49 * s + 2) := by"
+new = "theorem tri_inflate {s : ℤ} (h : IsTri s) : IsTri (49 * s + 3) := by"
+
+[[mutant]]
+name = "block map with 3 - c"
+file = "../LeanProofs/PentChains/Basic.lean"
+old = "def f (c v : ℤ) : ℤ := 49 * v + if v % 2 = 1 then c else 2 - c"
+new = "def f (c v : ℤ) : ℤ := 49 * v + if v % 2 = 1 then c else 3 - c"
+
+[[mutant]]
+name = "offset window widened to [-24, 25]"
+file = "../LeanProofs/PentChains/Basic.lean"
+old = "theorem f_window {c₁ c₂ v₁ v₂ : ℤ} (h1 : -23 ≤ c₁ ∧ c₁ ≤ 25)"
+new = "theorem f_window {c₁ c₂ v₁ v₂ : ℤ} (h1 : -24 ≤ c₁ ∧ c₁ ≤ 25)"
+
+[[mutant]]
+name = "step: S4 weakened to r - 48"
+file = "../LeanProofs/PentChains/Step.lean"
+old = "(!u || decide ((if (p + 1) % 2 = 1 then c else 2 - c) ≤ (r : ℤ) - 49))"
+new = "(!u || decide ((if (p + 1) % 2 = 1 then c else 2 - c) ≤ (r : ℤ) - 48))"
+
+[[mutant]]
+name = "step: glue up to 26"
+file = "../LeanProofs/PentChains/Step.lean"
+old = "  | .g v => decide (1 ≤ v) && decide (v ≤ 25)"
+new = "  | .g v => decide (1 ≤ v) && decide (v ≤ 26)"
+
+[[mutant]]
+name = "corrupted layout r=50 p=1 (starts at glue 4)"
+file = "../LeanProofs/PentChains/Layouts.lean"
+old = "def lay_50_1 : List Item := [.g 3, "
+new = "def lay_50_1 : List Item := [.g 4, "
+
+[[mutant]]
+name = "corrupted small chain n = 20"
+file = "../LeanProofs/PentChains/SmallCases.lean"
+old = "theorem chain_20 : chainOK 20 ["
+new = "theorem chain_20 : chainOK 21 ["
+
+[[mutant]]
+name = "chains claimed from 3"
+file = "../LeanProofs/PentChains/Main.lean"
+old = "(∀ N, 4 ≤ N → ∃ l, TriChain N l) ∧ (∀ N, 9 ≤ N → ∃ l, TriNecklace N l) := by"
+new = "(∀ N, 3 ≤ N → ∃ l, TriChain N l) ∧ (∀ N, 9 ≤ N → ∃ l, TriNecklace N l) := by"
+
+[[mutant]]
+name = "necklaces claimed from 8"
+file = "../LeanProofs/PentChains/Main.lean"
+old = "(∀ N, 4 ≤ N → ∃ l, TriChain N l) ∧ (∀ N, 9 ≤ N → ∃ l, TriNecklace N l) := by"
+new = "(∀ N, 4 ≤ N → ∃ l, TriChain N l) ∧ (∀ N, 8 ≤ N → ∃ l, TriNecklace N l) := by"
+
+[[mutant]]
+name = "base only from 61"
+file = "../LeanProofs/PentChains/Main.lean"
+old = "def BaseHyp : Prop := ∀ N, 60 ≤ N → N ≤ 2965 → ∃ l, Good N l"
+new = "def BaseHyp : Prop := ∀ N, 61 ≤ N → N ≤ 2965 → ∃ l, Good N l"

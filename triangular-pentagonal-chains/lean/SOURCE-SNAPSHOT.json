@@ -1,0 +1,31 @@
+{
+  "source_commit": "22831b9 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports TriChains and PentChains only)",
+    "CheckClaims.lean (generated)",
+    "scripts/*_mutants.toml (copies of lean-proofs scripts/), scripts/mutate.py (mutation-harness runner)"
+  ],
+  "files": {
+    "CheckClaims.lean": "7088d9f2de2d9a37ad9d9aace944c754223ae4f7be04a7f7007f1dffa340d2b3",
+    "LeanProofs/PentChains/Basic.lean": "e29286a946734f5db5008cc59aee6bf5c3f0238d978015ea0bcfab50d6e744bc",
+    "LeanProofs/PentChains/Layouts.lean": "ef589ac9dc1c8152816478cbbbab968460ab855cd2ff6a511beb9ddcb7ad33ec",
+    "LeanProofs/PentChains/Main.lean": "3aa10e9238f36c5df7cdab6b0f5c448088e8eb5b3dca829b42b2f0027727f2ef",
+    "LeanProofs/PentChains/SmallCases.lean": "318bc75cd91178f1f7d986df60059178ccc6a2266fc528e1a57ee743515afdef",
+    "LeanProofs/PentChains/Step.lean": "0f267544ffa5522f519da6473121c465723113bc415b7ed5ffbe2e0c9dc7f1fa",
+    "LeanProofs/PentChains.lean": "4c86d8081510657a3c951a6ca09cd1045eabe3b9068ff29a911abccdc550e4be",
+    "LeanProofs/TriChains/Basic.lean": "ef2fb3afe54179d397e970101e4a55733f34ab6e0905893a97934bb570d03833",
+    "LeanProofs/TriChains/Layouts.lean": "3b4dd0d0e3564cc4f80a882eb3b3b7a53b11d0bb54e0863deded5e49e399dd64",
+    "LeanProofs/TriChains/Main.lean": "e23dc5901492dce52498124d7fcc95789fb753d497a19c16d2ec4604d4d56664",
+    "LeanProofs/TriChains/SmallCases.lean": "172bf1dff8f3023a16b29591e201c6afda0e53a684e2a7f1a3db19c9a538d568",
+    "LeanProofs/TriChains/Step.lean": "958372c4e37b1eb3a6c0b41bdf030a7b2395a0bd55824d18de737894ad39e1fa",
+    "LeanProofs/TriChains.lean": "b30f79bbff1fb50dd950fc6b0532a4d70ff6f965675d9eb262008009a061f307",
+    "LeanProofs.lean": "c001a28ae339c7495ea756e0b456017295640bda51381753c8d8dd37a70d3690",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutate.py": "197561653de9ab9359e0849b3feb86598db451a1a867f154055cb1f972c38ed8",
+    "scripts/pentchains_mutants.toml": "6e9710ca6e75fdce3a815562b2305afbd06c84a338874a64e31c39102bb0cd7e",
+    "scripts/trichains_mutants.toml": "685113e1777d6eae3dbb9772c0d8f0f9294058d67fc015cc26fa65f043c2e25d"
+  }
+}

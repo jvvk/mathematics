@@ -1,0 +1,18 @@
+control passes: Basic.lean
+control passes: Step.lean
+control passes: Layouts.lean
+control passes: SmallCases.lean
+control passes: Main.lean
+rejected: identity 49 T_k + 5 = T_(7k+3) (exit 1, marker 'error')
+rejected: block map with 5 - c (exit 1, marker 'error')
+rejected: offset window widened to [-22, 27] (exit 1, marker 'error')
+rejected: step with S4 weakened (top offset <= r - 48) (exit 1, marker 'error')
+rejected: step with 28 glue numbers (exit 1, marker 'error')
+rejected: step with glue allowed up to 28 (exit 1, marker 'error')
+rejected: corrupted layout r=50 p=0 (first two glue items swapped) (exit 1, marker 'error')
+rejected: corrupted small chain n = 20 (exit 1, marker 'error')
+rejected: necklaces claimed from 11 (exit 1, marker 'error')
+rejected: chains claimed from 8 (exit 1, marker 'error')
+rejected: base only from 55 (exit 1, marker 'error')
+rejected: base only up to 2672 (exit 1, marker 'error')
+12/12 mutants rejected, all controls pass
