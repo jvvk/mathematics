@@ -17,7 +17,7 @@
 
 \title{Does the smallest enclosing copy fit?\\ Random points in a convex polygon}
 \author{Vamshi Jandhyala}
-\date{Preprint, version 3, 24 October 2026 (version 1: 8 October; version 2: expository revision; results unchanged throughout). Not peer reviewed.}
+\date{Preprint, version 4, 20 November 2026 (version 1: 8 October; version 2: expository revision; version 3: 24 October; results unchanged throughout). Not peer reviewed.}
 \subjclass[2020]{60D05; 52A22; 60G55}
 \keywords{random polygons, smallest enclosing copy, Poisson limit, linear programming, Mecke equation, formal verification}
 
@@ -667,7 +667,9 @@ variants (a changed constant, a dropped hypothesis, a reversed inequality); all 
 harness that counted any nonzero exit of the checker as a rejection; the shipped harness now accepts only an error
 located in the mutated file, and has not yet been rerun on every variant.
 The Lean source, the simulation programs and an independent recheck of the triangle values are in the folder
-\texttt{smallest-enclosing-copy} of \url{https://github.com/jvvk/mathematics}.
+\texttt{smallest-enclosing-copy} of \url{https://github.com/jvvk/mathematics}, and archived on Zenodo at
+\href{https://doi.org/10.5281/zenodo.24406642}{doi:10.5281/zenodo.24406642}, identical to that folder at the tag
+\texttt{smallest-enclosing-copy-v4}.
 
 \section{Numerical verification}\label{sec:num}
 
@@ -737,7 +739,8 @@ smooth convex bodies other than the disk, and to higher dimensions, where the ro
 
 \section*{Acknowledgement}
 The derivations, text, simulation programs and Lean formalisation were developed with the AI assistants Claude
-(Anthropic) and Codex (OpenAI), under the author's direction. The author is responsible for the contents.
+(Anthropic) and Codex (OpenAI), under the author's direction; Codex (OpenAI) also refereed versions 3 and 4. The
+author is responsible for the contents.
 
 \emph{Changes in version 3.} After a Codex referee report: the author's MathOverflow answer of 2 October 2026 is
 cited; Lemma~\ref{lem:nondeg}(a) is stated for $\Pi^T$ only on the event that every side carries points near its
@@ -746,6 +749,9 @@ sentence names the direction of the map; the statements about large $q$ are mark
 numerical programs are described as approximations (rotation search, depth cutoff); and the Lean coverage of the
 lemmas is stated exactly. The statements of the theorems and corollaries are unchanged; qualifications inside the proof
 of Theorem~\ref{thm:main} were corrected.
+
+\emph{Changes in version 4.} The archive is deposited on Zenodo and its DOI is recorded in Section~\ref{sec:lean}.
+The mathematics, programs and Lean files are unchanged from version 3.
 
 \begin{thebibliography}{9}
 

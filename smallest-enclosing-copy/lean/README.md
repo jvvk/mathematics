@@ -15,7 +15,10 @@ prints the axioms of each one when it is compiled.
 ```
 lake exe cache get     # Mathlib build cache
 lake build             # compiles every module and runs the axiom audit in Main.lean
+lake env lean CheckClaims.lean   # the statement and axioms of each of the 99 results
 ```
+
+`axiom-validation.txt` is the output of `CheckClaims.lean` from an isolated build of this folder (v4, 20 November 2026), and `build-validation.log` is that build's log.
 
 ## Where each result is
 
