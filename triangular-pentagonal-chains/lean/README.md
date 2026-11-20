@@ -36,7 +36,7 @@ necklace for `3..8`) are exhaustive searches, done twice by different methods in
 ## Mutation tests
 
 `scripts/trichains_mutants.toml` (12 mutants) and `scripts/pentchains_mutants.toml` (10 mutants), run with
-`python3 -I scripts/mutate.py scripts/<suite>.toml` from `lean/scripts/` after a build. Each mutant is a stronger
+`python3 -I scripts/mutate.py scripts/<suite>.toml` from `lean/` after a build. Each mutant is a stronger
 false claim or one corrupted datum (for example `49 T_k + 5` in the identity, a changed arrangement, a small chain
 with one entry altered), and each must stop the build. Logs: `trichains-mutation-validation.log` (12/12 rejected, lean-proofs commit 3dbcbe7) and
 `pentchains-mutation-validation.log` (10/10, commit 22831b9); the shipped `.lean` files are byte-identical to those commits.

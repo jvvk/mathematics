@@ -15,6 +15,10 @@ Suite format (paths relative to the suite file's directory unless absolute):
     mode = "copy"                             # copy: write <stem>Mut<suffix> beside the source (default)
                                               # inplace: mutate the source itself, restored afterwards
     fail_markers = ["error"]                  # stdout/stderr text that also counts as failure
+    fail_pattern = 'error: \\S+\\.lean:\\d+:\\d+: '        # optional regex: a rejection then needs a nonzero exit AND a
+                                              # line matching it (a Lean source error, not a warning or a Lake I/O error)
+    diagnostic_in_target = true               # optional: the matching line must also name the mutated file itself
+    log_dir = "mutation-logs"                 # optional: full stdout/stderr of every run, one file each (timeouts too)
 
     [[mutant]]
     name = "bound 1/3 instead of 1/2"
@@ -26,6 +30,7 @@ Suite format (paths relative to the suite file's directory unless absolute):
 from __future__ import annotations
 
 import argparse
+import os
 import re
 import signal
 import subprocess
@@ -42,6 +47,9 @@ class Check:
     timeout: int
     mode: str
     fail_markers: list[str]
+    fail_pattern: re.Pattern[str] | None = None
+    diagnostic_in_target: bool = False
+    log_dir: Path | None = None
 
 
 @dataclass
@@ -62,6 +70,9 @@ def load(suite: Path) -> tuple[Check, list[Mutant]]:
         timeout=int(c.get("timeout", 900)),
         mode=c.get("mode", "copy"),
         fail_markers=list(c.get("fail_markers", [])),
+        fail_pattern=re.compile(c["fail_pattern"]) if c.get("fail_pattern") else None,
+        diagnostic_in_target=bool(c.get("diagnostic_in_target", False)),
+        log_dir=(base / c["log_dir"]).resolve() if c.get("log_dir") else None,
     )
     if check.mode not in {"copy", "inplace"}:
         sys.exit(f"unknown mode {check.mode!r}")
@@ -82,7 +93,10 @@ def target(check: Check, src: Path) -> Path:
 
 INFRA = re.compile(
     r"object file .* does not exist|unknown module prefix|unknown package|could not resolve import|"
-    r"failed to (?:download|load)|toolchain .* not (?:found|installed)|shared librar",
+    r"failed to (?:download|load)|toolchain .* not (?:found|installed)|shared librar|"
+    r"exited with code (?:1[3-9]\d|2\d\d)|segmentation fault|No space left|Read-only file system|"
+    r"Permission denied|Disk quota|I/O error|cannot write|failed to (?:create|write|open|rename|remove)|"
+    r"INTERNAL PANIC|PANIC at|internal exception|uncaught exception|Stack overflow detected",
     re.IGNORECASE,
 )
 RESOURCE = re.compile(
@@ -92,20 +106,61 @@ RESOURCE = re.compile(
 )
 
 
-PYEXC = re.compile(r"^([A-Za-z_][\w.]*(?:Error|Exception|Exit|Interrupt))(?::|$)")
+# Python checks run through this runner, which records the type of the exception actually raised: only a failed
+# assertion or a deliberate sys.exit counts as a rejection; any other exception (NameError, SyntaxError, a custom
+# class, a bare Exception) exits PYEXC_RC and is reported as inconclusive. Assertion messages are never parsed.
+PYEXC_RC = 98
+PY_RUNNER = (
+    "import runpy, sys, os\n"
+    "p = sys.argv[1]; sys.argv = sys.argv[1:]; sys.path.insert(0, os.path.dirname(os.path.abspath(p)))\n"
+    "try:\n    runpy.run_path(p, run_name='__main__')\n"
+    "except AssertionError:\n    raise\n"
+    "except SystemExit:\n    raise\n"
+    "except BaseException as e:\n"
+    "    sys.stderr.write('MUTATE-RUNNER exception type: ' + type(e).__name__ + '\\n'); sys.exit(%d)\n" % PYEXC_RC
+)
 
 
-def passes(check: Check, path: Path) -> tuple[bool, str]:
-    cmd = ["nice", "-n", "15", *[a.replace("{file}", str(path)) for a in check.cmd]]
+LOG_COUNTER = [0]
+
+
+def save_log(check: Check, label: str, cmd: list[str], rc: object, so: str, se: str) -> None:
+    """Keep the complete output of one run when the suite names a log_dir."""
+    if check.log_dir is None:
+        return
+    check.log_dir.mkdir(parents=True, exist_ok=True)
+    LOG_COUNTER[0] += 1
+    slug = re.sub(r"[^A-Za-z0-9]+", "-", label).strip("-")[:60] or "run"
+    (check.log_dir / f"{LOG_COUNTER[0]:03d}-{slug}.log").write_text(
+        f"# {label}\n# command: {' '.join(cmd)}\n# exit: {rc}\n## stdout\n{so or ''}\n## stderr\n{se or ''}\n")
+
+
+def passes(check: Check, path: Path, label: str = "") -> tuple[bool, str]:
+    args = list(check.cmd)
+    if Path(args[0]).name.startswith("python") and "{file}" in args:  # wrap Python checks in the runner
+        i = args.index("{file}")
+        args = args[:i] + ["-c", PY_RUNNER] + args[i:]
+    cmd = ["nice", "-n", "15", *[a.replace("{file}", str(path)) for a in args]]
+    # Own process group, so a timeout can kill lake and every Lean child before the sources are restored.
+    p = subprocess.Popen(cmd, cwd=check.cwd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
+                         start_new_session=True)
     try:
-        r = subprocess.run(
-            cmd, cwd=check.cwd, capture_output=True, text=True, timeout=check.timeout
-        )
+        so, se = p.communicate(timeout=check.timeout)
     except subprocess.TimeoutExpired:
+        try:
+            os.killpg(p.pid, signal.SIGKILL)
+        except ProcessLookupError:
+            pass
+        so, se = p.communicate()
+        save_log(check, label, cmd, "timeout", so, se)
         return False, "INCONCLUSIVE timeout"
+    r = subprocess.CompletedProcess(cmd, p.returncode, so, se)
     out = r.stdout + r.stderr
+    save_log(check, label, cmd, r.returncode, r.stdout, r.stderr)
     if r.returncode < 0:
         return False, f"INCONCLUSIVE crash (signal {-r.returncode})"
+    if r.returncode >= 128:  # 128 + signal from a shell or wrapper (e.g. 134 = abort, 137 = kill): a crash, not a verdict
+        return False, f"INCONCLUSIVE crash (exit {r.returncode})"
     # Resource limits say nothing about the mutated claim: never count them as a rejection.
     res = RESOURCE.search(out)
     if res and r.returncode != 0:
@@ -114,18 +169,35 @@ def passes(check: Check, path: Path) -> tuple[bool, str]:
     infra = INFRA.search(out)
     if infra and r.returncode != 0:
         return False, f"INCONCLUSIVE infrastructure ({infra.group(0)})"
-    # A Python mutant that dies of an unrelated exception (NameError, SyntaxError, ...) proves nothing either:
-    # only a failed assertion or a deliberate nonzero exit counts as a rejection.
-    # Judge by the type of the final exception Python reports on stderr (compile-time SyntaxErrors print no
-    # traceback header), never by substrings anywhere in the output.
-    if r.returncode != 0:
-        heads = [m.group(1) for m in map(PYEXC.match, r.stderr.splitlines()) if m]
-        if heads and heads[-1].rsplit(".", 1)[-1] != "AssertionError":
-            return False, f"INCONCLUSIVE python exception ({heads[-1]})"
+    if r.returncode == PYEXC_RC and "MUTATE-RUNNER exception type: " in r.stderr:
+        kind = r.stderr.rsplit("MUTATE-RUNNER exception type: ", 1)[1].split()[0]
+        return False, f"INCONCLUSIVE python exception ({kind})"
+    # A missing or non-executable tool (shell status 126/127) says nothing about the mutant.
+    if r.returncode in (126, 127):
+        return False, f"INCONCLUSIVE command not runnable (exit {r.returncode})"
+    if check.fail_pattern is not None:
+        # Structured rule: only a nonzero exit with a matching diagnostic line is a rejection.
+        names = {str(path)}
+        try:
+            names.add(str(path.relative_to(check.cwd)))
+        except ValueError:
+            pass
+        hit = next((ln.strip() for ln in out.splitlines() if check.fail_pattern.search(ln)
+                    and (not check.diagnostic_in_target or any(nm in ln for nm in names))), "")
+        if r.returncode == 0:
+            return True, "exit 0" + (f" (diagnostic present: {hit[:120]})" if hit else "")
+        if not hit:
+            return False, f"INCONCLUSIVE exit {r.returncode} without a line matching {check.fail_pattern.pattern!r}"
+        return False, f"exit {r.returncode}, diagnostic: {hit[:160]}"
     marked = [m for m in check.fail_markers if m in out]
-    return r.returncode == 0 and not marked, f"exit {r.returncode}" + (
-        f", marker {marked[0]!r}" if marked else ""
-    )
+    if r.returncode == 0 and not marked:
+        return True, "exit 0"
+    # A rejection needs a relevant diagnostic when the suite names one (e.g. a Lean "error"); any other failure is
+    # inconclusive. The first diagnostic line is kept in the report so the log shows why the mutant failed.
+    if check.fail_markers and not marked:
+        return False, f"INCONCLUSIVE exit {r.returncode} without a {check.fail_markers[0]!r} diagnostic"
+    line = next((ln.strip() for ln in out.splitlines() if marked and marked[0] in ln), "")
+    return False, f"exit {r.returncode}" + (f", marker {marked[0]!r}: {line[:160]}" if marked else "")
 
 
 def main() -> int:
@@ -139,6 +211,9 @@ def main() -> int:
     check, muts = load(a.suite.resolve())
     if a.only:
         muts = [m for m in muts if a.only in m.name]
+    if not muts:
+        print(f"no mutants selected (--only {a.only!r}); nothing was tested", file=sys.stderr)
+        return 2
     if a.list:
         for m in muts:
             print(f"{m.name}  ({m.file.name})")
@@ -170,7 +245,7 @@ def main() -> int:
         for f, text in originals.items():
             t = target(check, f)
             t.write_text(text)
-            ok, why = passes(check, t)
+            ok, why = passes(check, t, f"control {f.name}")
             print(
                 f"{'control passes' if ok else 'CONTROL FAILS'}: {f.name}"
                 + ("" if ok else f" ({why})")
@@ -189,7 +264,7 @@ def main() -> int:
                 continue
             t = target(check, m.file)
             t.write_text(text.replace(m.old, m.new))
-            ok, why = passes(check, t)
+            ok, why = passes(check, t, m.name)
             unclear = why.startswith("INCONCLUSIVE")
             print(
                 f"{'SURVIVED' if ok else ('INCONCLUSIVE' if unclear else 'rejected')}: {m.name}"
