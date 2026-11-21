@@ -322,7 +322,7 @@ A triangle through random points on three touching circles contains the incentre
 <td width="50%" valign="top">
 <a href="zero-sum-selection-game"><img src="https://raw.githubusercontent.com/jvvk/jvvk/30d7e9ef55e5b5dca41721d09cca1746405ae990/assets/zero-sum.svg" width="100%" alt="A zero-sum selection game"></a>
 <p><b><a href="zero-sum-selection-game">A zero-sum selection game</a></b><br>
-Lev's question: the winning matrices form a union of subspaces of dimension n(n+1)/2 − 1, and recognising them is Π₂ᵖ-complete.<br>
+Lev's question: the winning matrices form a finite union of subspaces whose maximum dimension is n(n+1)/2 − 1, and recognising them is Π₂ᵖ-complete.<br>
 <sub><a href="zero-sum-selection-game/paper">paper</a> · <a href="zero-sum-selection-game/lean">Lean</a> · <a href="zero-sum-selection-game/verify">code</a> · Partly in Lean; reduction by hand</sub></p>
 </td>
 <td width="50%" valign="top">

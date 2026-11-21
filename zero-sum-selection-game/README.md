@@ -26,7 +26,7 @@ Preprint v2, 20 November 2026 (v1: 9 October 2026), not peer reviewed. Zenodo: [
 
 The author used AI tools (Codex, OpenAI; Claude, Anthropic) in this work, as described in the paper's acknowledgement, and is responsible for its content.
 
-**Version 2** (20 November 2026, tag `zero-sum-selection-game-v2`): deposited on Zenodo, with the DOI recorded in the paper; the acknowledgement names Codex as referee of v2. The mathematics, programs and Lean files are unchanged from v1.
+**Version 2** (20 November 2026, tag `zero-sum-selection-game-v2`): deposited on Zenodo, with the DOI recorded in the paper; the acknowledgement names Codex as referee of v2. After its report: the dimension statement names the largest subspace; the paper lists the twelve orbits of maximal subspaces (Table 3) with the exhaustiveness argument, and `recheck.py` checks a representative of each; the distinct-entry sweep plays the game literally on every matrix; the README and paper say that rationality is proved by hand; the Lean mutation harness accepts only an elaboration error at or after the mutated line. The theorems, proofs and Lean proof files are unchanged from v1.
 
 ## Contents
 

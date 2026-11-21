@@ -3,8 +3,9 @@
 
 Each mutant copies one file to ZeroSumGame/Mut.lean with a single textual change and compiles it
 with `lake env lean` (single process, nice 15). Unmutated copies must pass (baseline). A mutant counts
-as rejected only on exit 1 with an elaboration error located in Mut.lean; timeouts, signals, resource limits
-and parse errors are inconclusive and fail the suite.
+as rejected only on exit 1 with an elaboration error in Mut.lean at or after the mutated line; timeouts,
+signals, resource limits, import errors and any parse error are inconclusive and fail the suite. Full output
+of every run is kept in scripts/mutants-output/.
 """
 import os
 import pathlib
@@ -38,12 +39,35 @@ MUTANTS = [
 
 
 RESOURCE = re.compile(r"maximum number of heartbeats|maximum recursion depth|deep recursion|stack overflow|out of memory", re.I)
+INFRA = re.compile(r"unknown module|unknown package|unknown namespace|could not resolve|object file|no such file|failed to load|import", re.I)
 PARSE = re.compile(r"(unexpected|expected) ")
+LOGDIR = pathlib.Path(__file__).resolve().parent / "mutants-output"
 
 
-def check(text: str) -> str:
-    """COMPILES, REJECTED (exit 1 with an elaboration error located in Mut.lean) or INCONCLUSIVE (timeout,
-    signal, resource limit, parse error only, or no error located in Mut.lean); diagnostics are kept."""
+def classify(code, out: str, fname: str, mline: int, tag: str) -> str:
+    """COMPILES; REJECTED (exit 1, an elaboration error in `fname` at or after the mutated line `mline`, and no
+    parse, import or resource error); otherwise INCONCLUSIVE. The full output is kept in mutants-output/."""
+    LOGDIR.mkdir(exist_ok=True)
+    (LOGDIR / f"{tag}.txt").write_text(f"exit {code}\n{out}")
+    if code is None:
+        return "INCONCLUSIVE (timeout)"
+    errs = [(int(l), m) for l, m in re.findall(re.escape(fname) + r":(\d+):\d+: error: ?(.*)", out)]
+    if code == 0 and not errs and not re.search(r": error", out):
+        return "COMPILES"
+    if RESOURCE.search(out):
+        return f"INCONCLUSIVE (exit {code}, resource limit)"
+    if any(PARSE.match(m) or INFRA.search(m) for _, m in errs) or (not errs and INFRA.search(out)):
+        return f"INCONCLUSIVE (exit {code}, parse or import error)"
+    if code == 1 and any(l >= mline for l, _ in errs):
+        return "REJECTED"
+    return f"INCONCLUSIVE (exit {code}, no error at or after the mutated line in {fname})"
+
+
+def mutated_line(text: str, old: str) -> int:
+    return text[: text.index(old)].count("\n") + 1
+
+
+def check(text: str, mline: int, tag: str) -> str:
     MUT.write_text(text)
     p = subprocess.Popen(["nice", "-n", "15", "lake", "env", "lean", str(MUT)], cwd=ROOT,
                          stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True,
@@ -52,18 +76,9 @@ def check(text: str) -> str:
         out, _ = p.communicate(timeout=1200)
     except subprocess.TimeoutExpired:
         os.killpg(p.pid, signal.SIGKILL)  # lake's lean child too
-        p.communicate()
-        return "INCONCLUSIVE: timeout after 1200 s"
-    errs = re.findall(r"Mut\.lean:\d+:\d+: error: ?(.*)", out)
-    if p.returncode == 0 and not errs:
-        return "COMPILES"
-    if RESOURCE.search(out):
-        return f"INCONCLUSIVE: exit {p.returncode}, resource limit: " + out[-500:]
-    if errs and all(PARSE.match(e) for e in errs):
-        return f"INCONCLUSIVE: exit {p.returncode}, parse error only: " + errs[0]
-    if p.returncode == 1 and errs:
-        return "REJECTED: " + errs[0][:120]
-    return f"INCONCLUSIVE: exit {p.returncode}, no error located in Mut.lean: " + out[-500:]
+        out, _ = p.communicate()
+        return classify(None, out or "", "Mut.lean", mline, tag)
+    return classify(p.returncode, out, "Mut.lean", mline, tag)
 
 
 def main() -> int:
@@ -71,19 +86,19 @@ def main() -> int:
     sel = [m for m in MUTANTS if not sys.argv[1:] or any(a in m[1] for a in sys.argv[1:])]
     try:
         for f in sorted({m[1] for m in sel}):
-            v = check((D / f).read_text())
+            v = check((D / f).read_text(), 0, "control-" + f)
             print(f"baseline {f}: {v}", flush=True)
             bad += v != "COMPILES"
         if bad:
             print("BASELINE FAILED: an unchanged file does not compile; mutants not run")
             return 1
-        for name, f, old, new in sel:
+        for i, (name, f, old, new) in enumerate(sel):
             src = (D / f).read_text()
             if src.count(old) != 1:
                 print(f"MUTATION DID NOT APPLY: {name}", flush=True)
                 bad += 1
                 continue
-            v = check(src.replace(old, new))
+            v = check(src.replace(old, new), mutated_line(src, old), f"mutant-{i}")
             print(f"{'rejected' if v.startswith('REJECTED') else v.split(':')[0]}: {name}  [{v}]", flush=True)
             bad += not v.startswith("REJECTED")
     finally:

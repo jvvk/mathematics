@@ -19,6 +19,6 @@
     "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
     "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
     "lean-toolchain": "8733782dc070a99b312039cda424f601b80f3be6f6f512627da5ba25adc27632",
-    "scripts/mutants.py": "f65beb4698190561b5d0adfa7effce63215457fc79ee0a2237adced0ed2141a5"
+    "scripts/mutants.py": "cb789819832a4a5f58b1e750c86a6d4ebb2bec1fd2742120b7e4080252d9d059"
   }
 }
