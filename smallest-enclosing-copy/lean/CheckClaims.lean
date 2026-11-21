@@ -1,6 +1,6 @@
 import EnclosingCopy
 
--- Every name that EnclosingCopy/Enclosing/Main.lean checks: its statement and its axioms.
+-- Every name in EnclosingCopy/Enclosing/Main.lean's #check (136) and #print axioms (99) lists: statement and axioms.
 -- 152 names, in the order of Main.lean; output in axiom-validation.txt.
 
 namespace Enclosing

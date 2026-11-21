@@ -105,7 +105,7 @@
     "EnclosingCopy/Poisson/Superpose.lean": "bf1b01967327056fe6f3ed6384a3a3f0f7adfdea8d738627387e123965525e4a",
     "EnclosingCopy/Poisson/WindowLimit.lean": "bab7c150bc0038f41d045643c1840d7c2caff6192f7f30365be6b110c4e6fc71",
     "EnclosingCopy/Poisson/WindowMeasurability.lean": "308c48ec53ab171fd034408adb62a8822b0291bdc4c1b5f7453adfd6bc9c4d86",
-    "README.md": "ab3f0447b9e33df1807bc035cd83feb1cfa5e5fd616a630ccf0836cd40013613",
+    "README.md": "28a4ca3ad70f44c14ccef3b11e0c98c2323f799001b1a4b29087a72bcc17043a",
     "lake-manifest.json": "1e69206edbaa2a0f7cb8fb5a20ecd06f7d29342fd6dee3329a49133a4b302d3b",
     "lakefile.toml": "1ae8b4db25bb8d87b0474ef82b8a136631f24d729f5e21c1c55ca51aa0c1b188",
     "lean-toolchain": "8733782dc070a99b312039cda424f601b80f3be6f6f512627da5ba25adc27632",

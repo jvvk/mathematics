@@ -9,14 +9,15 @@ Lean 4 (v4.34.0) with Mathlib `v4.34.0`. About 20,500 lines in two libraries:
 
 Every theorem below depends only on `propext`, `Classical.choice` and `Quot.sound`. `Main.lean`
 checks the statement of each one and prints the axioms of 99 of them when it is compiled; `CheckClaims.lean`
-prints the axioms of all 152 names it checks (output in `axiom-validation.txt`).
+states and prints the axioms of all 152 names that `Main.lean` mentions, the union of its 136 `#check` and 99
+`#print axioms` names (output in `axiom-validation.txt`).
 
 ## Build
 
 ```
 lake exe cache get     # Mathlib build cache
 lake build             # compiles every module and runs the axiom audit in Main.lean
-lake env lean CheckClaims.lean   # the statement and axioms of all 152 names checked in Main.lean
+lake env lean CheckClaims.lean   # statement and axioms of the 152 names in Main.lean's #check and #print axioms lists
 ```
 
 `axiom-validation.txt` is the output of `CheckClaims.lean` from an isolated build of this folder (v4, 20 November 2026; CheckClaims rerun 21 November 2026 with all 152 names), and `build-validation.log` is that build's log.
