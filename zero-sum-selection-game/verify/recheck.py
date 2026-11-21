@@ -124,9 +124,7 @@ agree = total = nwin = 0
 for A in distinct_rows:
     for B in distinct_rows:
         for C in distinct_rows:
-            w = criterion3(
-                A, B, C
-            )  # = literal game by check 1, and checked again on the winners below
+            w = wins([list(A), list(B), list(C)])  # the literal game, on every matrix
             total += 1
             nwin += w
             agree += w == five_families(A, B, C)
@@ -278,6 +276,55 @@ for m in minimal:
         seen.add(permute(m, pr))
 check("  the 1107 components form 12 orbits under permutations within rows",
       orbits == 12 and seen == comp_set, f"{orbits} orbits")
+
+# Table tab:twelve of the paper: one generic member of each orbit, (dimension, orbit size, rows A; B; C)
+TABLE3 = [
+    (5, 54, lambda a, b, c, d, e: [[-a-c, -a-c, -a-d], [a, a, b], [c, d, e]]),
+    (5, 18, lambda a, b, c, d, e: [[-a-c, -a-d, -a-e], [a, a, b], [c, d, e]]),
+    (5, 18, lambda a, b, c, d, e: [[-a-c, -a-c, -a-c], [a+c-d, a, b], [c, d, e]]),
+    (5, 9, lambda a, b, c, d, e: [[-a-c, -a-c, -a-c], [a, a, b], [c, d, e]]),
+    (4, 108, lambda a, b, c, d: [[-a+c-2*d, -a+c-2*d, -a-d], [a-c+d, a, b], [2*d-c, c, d]]),
+    (4, 108, lambda a, b, c, d: [[-a+b-2*c, -a+b-2*c, -a-c], [a-2*b+2*c, a-b+c, a], [b, c, d]]),
+    (4, 108, lambda a, b, c, d: [[-a-b, -a-b, -a-c], [a+b-c, a+c-d, a], [b, c, d]]),
+    (4, 108, lambda a, b, c, d: [[-a-b, -a-b, -a-c], [a+b-d, a-b+c, a], [b, c, d]]),
+    (4, 108, lambda a, b, c, d: [[-a-b, -a-b, -a-c], [a+b-d, a+c-d, a], [b, c, d]]),
+    (4, 36, lambda a, b, c, d: [[-a+b-c-d, -a-c, -a-d], [a-b+c, a-b+d, a], [b, c, d]]),
+    (3, 216, lambda a, b, c: [[-a+b-3*c, -a+2*b-4*c, -a-2*c], [a-3*b+3*c, a-2*b+2*c, a], [b+c, 2*b, 2*c]]),
+    (3, 216, lambda a, b, c: [[-a+b-3*c, -a+2*b-4*c, -a-2*c], [a-b+c, a-2*b+2*c, a], [3*c-b, 2*b, 2*c]]),
+]
+
+
+def span_of_member(f, dim):
+    """The subspace swept by the parametrised member: the span of its images of the unit vectors."""
+    vecs = []
+    for k in range(dim):
+        M = f(*[Fr(int(i == k)) for i in range(dim)])
+        vecs.append([x for row in M for x in row])
+    return vecs
+
+
+def orbit_of(space):
+    return {permute(space, pr) for pr in itertools.product(perms, repeat=3)}
+
+
+ok = True
+hit = set()
+for dim, size, f in TABLE3:
+    vecs = span_of_member(f, dim)
+    ok &= len(rref(vecs)) == dim
+    # the equations of the member's subspace: its annihilator, computed as the rref of the orthogonal complement
+    comp = next((m for m in minimal if all(sum(r[k] * v[k] for k in range(9)) == 0 for r in m for v in vecs)
+                and 9 - len(m) == dim), None)
+    if comp is None:
+        ok = False
+        continue
+    orb = orbit_of(comp)
+    ok &= len(orb) == size and not (orb & hit)
+    hit |= orb
+    M = f(*[Fr(rng.randint(-9, 9)) for _ in range(dim)])
+    ok &= wins(M)
+check("  table of twelve orbits: representatives, their dimensions and orbit sizes, cover all 1107 components",
+      ok and hit == comp_set)
 
 
 # distinct entries: an equality x_ij = x_ik holds on the component iff e_ij - e_ik lies in its row space

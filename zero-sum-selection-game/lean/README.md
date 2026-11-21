@@ -15,7 +15,7 @@ constant, hypothesis or definition and checks that the file no longer compiles.
 
 | Paper | Lean (namespace `ZeroSumGame`) |
 |---|---|
-| Section 2: zero transversals, deletion form, finite union of rational subspaces | `Dimension.lean`: `Winning`, `winning_iff_hits`, `winning_iff_mem_template`, `winning_finite_union` |
+| Section 2: zero transversals, deletion form, finite union of subspaces (over ℝ; that they are defined over ℚ is not stated formally, see the paper) | `Dimension.lean`: `Winning`, `winning_iff_hits`, `winning_iff_mem_template`, `winning_finite_union` |
 | Lemma 4 (rank lemma) | `Dimension.lean`: `incidence_rank_bound` |
 | Theorem 1 (both bounds, arbitrary `N`, `k`; the square game; affine families) | `Dimension.lean`: `sharp_dimension_theorem`, `square_sharp_dimension`, `winning_affine_family_dimension_bound` |
 | Lemma 7 (order-three criterion) | `Order3.lean`: `order3_criterion` |

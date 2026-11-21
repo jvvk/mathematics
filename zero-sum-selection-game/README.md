@@ -3,7 +3,7 @@
 <!-- visual:start -->
 <p align="center"><img src="https://raw.githubusercontent.com/jvvk/jvvk/c7403d6bbbc7106e1780d8c34833854afcb0116f/assets/zero-sum.svg" width="760" alt="A zero-sum selection game"></p>
 
-<p align="center"><b>Lev's question: the winning matrices form a union of subspaces of dimension n(n+1)/2 − 1, and recognising them is Π₂ᵖ-complete.</b><br><sub>Open problem settled · verified by computation · partly in lean; reduction by hand</sub></p>
+<p align="center"><b>Lev's question: the winning matrices form a finite union of subspaces of maximum dimension n(n+1)/2 − 1, and recognising them is Π₂ᵖ-complete.</b><br><sub>Open problem settled · verified by computation · partly in lean; reduction by hand</sub></p>
 
 <p align="center"><sub><a href="paper">paper</a> · <a href="lean">Lean proof</a> · <a href="verify">code</a> · <a href="../">all results</a></sub></p>
 <!-- visual:end -->
@@ -12,7 +12,7 @@ Two players play on a real `n × n` matrix. The Enemy selects `i` entries of row
 
 The paper proves three results:
 
-- **Dimension (Theorem 1).** The winning matrices form a finite union of rational linear subspaces of dimension exactly `n(n+1)/2 − 1`. More generally, for rows of length `N_i` with quotas `k_i` the dimension is `Σ k_i − 1`. The proof is a short rank argument: delete positions one at a time and watch the span of the surviving zero-sum transversals shrink.
+- **Dimension (Theorem 1).** The winning matrices form a finite union of rational linear subspaces, the largest of dimension exactly `n(n+1)/2 − 1`. More generally, for rows of length `N_i` with quotas `k_i` the dimension is `Σ k_i − 1`. The proof is a short rank argument: delete positions one at a time and watch the span of the surviving zero-sum transversals shrink.
 - **Order three (Theorem 2).** A `3 × 3` matrix is winning exactly when every first-row entry has two usable second-row positions. With distinct entries in every row, the winning matrices are five explicit families.
 - **Complexity (Theorem 3).** Recognising winning integer matrices is `Π₂ᵖ`-complete, even with two values per row. So no polynomial-time test exists unless the polynomial hierarchy collapses.
 

@@ -31,7 +31,7 @@
 \maketitle
 
 \begin{abstract}
-Two players play on a real $n\times n$ matrix. The Enemy selects $i$ entries of row $i$ for each $i$; then You choose one selected entry in every row, and You win if the chosen entries sum to zero. V.~Lev asked on MathOverflow for a description of the matrices on which You win. We show that the winning matrices form a finite union of rational linear subspaces of dimension exactly $n(n+1)/2-1$, with the analogous statement for arbitrary row lengths and quotas; the proof is a short rank argument on zero-sum transversals. For $n=3$ we give a complete description, including five explicit families when every row has distinct entries. For general $n$, deciding whether a given integer matrix is winning is $\Pi_2^p$-complete, already when each row takes at most two values. So a description that can be checked in polynomial time does not exist unless the polynomial hierarchy collapses. The rank argument, the order-three classification and the two-valued normal form behind the hardness proof are formally verified in Lean.
+Two players play on a real $n\times n$ matrix. The Enemy selects $i$ entries of row $i$ for each $i$; then You choose one selected entry in every row, and You win if the chosen entries sum to zero. V.~Lev asked on MathOverflow for a description of the matrices on which You win. We show that the winning matrices form a finite union of rational linear subspaces whose largest dimension is exactly $n(n+1)/2-1$, with the analogous statement for arbitrary row lengths and quotas; the proof is a short rank argument on zero-sum transversals. For $n=3$ we give a complete description, including five explicit families when every row has distinct entries. For general $n$, deciding whether a given integer matrix is winning is $\Pi_2^p$-complete, already when each row takes at most two values. So a description that can be checked in polynomial time does not exist unless the polynomial hierarchy collapses. The rank argument, the order-three classification and the two-valued normal form behind the hardness proof are formally verified in Lean.
 \end{abstract}
 
 \section{Introduction}
@@ -251,7 +251,32 @@ V & $(-2h,-3h,-4h)$ & $(0,2h,3h)$ & $(0,h,2h)$\\
 The four possible doubled values are $p$, $p+r$, $p+q$, $p+q+r$, and a winning matrix with distinct first-row entries needs three distinct ones. Suppose, for instance, that $p$, $p+r$ and $p+q$ are all doubled. Then $p=s$ (the only way to double $p+r$), so $p=r+s$ is impossible and $p=r$; with $r=s=p$ the conditions for $p+q$ become $q=p$ or $q=2p$, which is family I with $q=p$ or family IV. The other three choices of three values are handled in the same way and give families I, II, III and V. Substituting each family's gaps into Table~\ref{tab:coll} shows that exactly three values are doubled, the negatives of the listed $A$, so the first row must be that triple. Conversely, Lemma~\ref{lem:coll} shows that each listed value is doubled, so each family wins.
 \end{proof}
 
-Without the distinctness assumption the same method gives a complete list. Up to the order within rows and the translation, every winning $3\times3$ matrix belongs to one of twelve linear families of dimensions $5,4,3$; as subspaces of $\R^9$ there are $1107$ maximal winning subspaces, $99$ of dimension $5$, $576$ of dimension $4$ and $432$ of dimension $3$. These numbers come from enumerating the minimal sets of zero transversals that meet every box, and two independent programs agree on them (Section~\ref{sec:verify}). The maximum $5=\binom42-1$ is Theorem~\ref{thm:dim}; with distinct entries in every row the maximum is $4$, attained by family I with the translation.
+Without the distinctness assumption the criterion of Theorem~\ref{thm:three} still gives a complete list, by a finite computation. A matrix wins exactly when, for each first-row position $i$, there are two second-row positions $j\ne j'$ and third-row positions $l,l'$ with $(i,j,l)$ and $(i,j',l')$ zero transversals. So the winning set is the union, over the $27^3=19{,}683$ choices of these six transversals, of the subspace of $\R^9$ on which the six sums vanish. Each such subspace is cut out by equations with coefficients $0$ and $1$, so it is defined over $\Q$. There are $2226$ distinct ones, and the maximal winning subspaces are those contained in no other, that is, those whose spans of equations are minimal under inclusion. There are $1107$ of them: $99$ of dimension $5$, $576$ of dimension $4$ and $432$ of dimension $3$, falling into twelve orbits under permutations within rows (Table~\ref{tab:twelve}). Two independent programs agree on these numbers, and the second also checks the twelve representatives of the table (Section~\ref{sec:verify}).
+
+\begin{table}[ht]
+\centering\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{ccl}
+\toprule
+dim. & orbit & generic member, rows $A;\,B;\,C$\\
+\midrule
+5 & 54 & $(-a-c,\,-a-c,\,-a-d);\ (a,\,a,\,b);\ (c,\,d,\,e)$\\
+5 & 18 & $(-a-c,\,-a-d,\,-a-e);\ (a,\,a,\,b);\ (c,\,d,\,e)$\\
+5 & 18 & $(-a-c,\,-a-c,\,-a-c);\ (a+c-d,\,a,\,b);\ (c,\,d,\,e)$\\
+5 & 9 & $(-a-c,\,-a-c,\,-a-c);\ (a,\,a,\,b);\ (c,\,d,\,e)$\\
+4 & 108 & $(-a+c-2d,\,-a+c-2d,\,-a-d);\ (a-c+d,\,a,\,b);\ (2d-c,\,c,\,d)$\\
+4 & 108 & $(-a+b-2c,\,-a+b-2c,\,-a-c);\ (a-2b+2c,\,a-b+c,\,a);\ (b,\,c,\,d)$\\
+4 & 108 & $(-a-b,\,-a-b,\,-a-c);\ (a+b-c,\,a+c-d,\,a);\ (b,\,c,\,d)$\\
+4 & 108 & $(-a-b,\,-a-b,\,-a-c);\ (a+b-d,\,a-b+c,\,a);\ (b,\,c,\,d)$\\
+4 & 108 & $(-a-b,\,-a-b,\,-a-c);\ (a+b-d,\,a+c-d,\,a);\ (b,\,c,\,d)$\\
+4 & 36 & $(-a+b-c-d,\,-a-c,\,-a-d);\ (a-b+c,\,a-b+d,\,a);\ (b,\,c,\,d)$\\
+3 & 216 & $(-a+b-3c,\,-a+2b-4c,\,-a-2c);\ (a-3b+3c,\,a-2b+2c,\,a);\ (b+c,\,2b,\,2c)$\\
+3 & 216 & $(-a+b-3c,\,-a+2b-4c,\,-a-2c);\ (a-b+c,\,a-2b+2c,\,a);\ (3c-b,\,2b,\,2c)$\\
+\bottomrule
+\end{tabular}
+\caption{The twelve orbits of maximal winning subspaces of $3\times3$ matrices under permutations within rows: the dimension, the orbit size and one member of each orbit, as a matrix with real parameters $a,b,c,\dots$ ($A$ the first row, with one selected entry). The orbit sizes sum to $1107$.}
+\label{tab:twelve}
+\end{table} The maximum $5=\binom42-1$ is Theorem~\ref{thm:dim}; with distinct entries in every row the maximum is $4$, attained by family I with the translation.
 
 \section{Complexity}
 
@@ -283,7 +308,7 @@ How many maximal winning subspaces are there for $n=4$? For $n=3$ there are $110
 
 \section{Verification}\label{sec:verify}
 
-Lemma~\ref{lem:rank} and Theorem~\ref{thm:dim} (both bounds, for arbitrary row lengths and quotas, and the finite-union statement), Lemma~\ref{lem:crit}, Lemma~\ref{lem:coll} and its converse, the distinct-entry classification in normalised form, and Proposition~\ref{prop:two} are formally verified in Lean~4 with Mathlib~\cite{mathlib}, using only the standard axioms. Not formalised are the bookkeeping of the hardness reduction (which rows are universal), the twelve families and the count $1107$, and the two remarks of Section~3. A program sharing no code with the formal proofs or with the programs that found these results checks, by playing the game literally: the criterion on all $592{,}704$ matrices with sorted rows from $\{-3,\dots,3\}$; the five families against all matrices with distinct rows from $\{-4,\dots,4\}$; the count $1107$ by its own enumeration; Proposition~\ref{prop:two} on random two-valued matrices; the reduction on random subset-sum instances, true and false; and the families of the remarks. The code and the Lean sources are in the folder \texttt{zero-sum-selection-game} of
+Lemma~\ref{lem:rank} and Theorem~\ref{thm:dim} (both bounds, for arbitrary row lengths and quotas, and the finite-union statement), Lemma~\ref{lem:crit}, Lemma~\ref{lem:coll} and its converse, the distinct-entry classification in normalised form, and Proposition~\ref{prop:two} are formally verified in Lean~4 with Mathlib~\cite{mathlib}, using only the standard axioms. The Lean statement of the finite union is over $\R$; that the subspaces are defined over $\Q$ is the observation above that their equations have integer coefficients, and is not stated formally. Not formalised are the bookkeeping of the hardness reduction (which rows are universal), the twelve orbits and the count $1107$, and the two remarks of Section~3. A program sharing no code with the formal proofs or with the programs that found these results checks, by playing the game literally: the criterion on all $592{,}704$ matrices with sorted rows from $\{-3,\dots,3\}$; the five families against all $592{,}704$ matrices with distinct rows from $\{-4,\dots,4\}$; the count $1107$, the twelve orbits, their sizes and the representatives of Table~\ref{tab:twelve}, by its own enumeration; Proposition~\ref{prop:two} on random two-valued matrices; the reduction on random subset-sum instances, true and false; and the families of the remarks. The code and the Lean sources are in the folder \texttt{zero-sum-selection-game} of
 \url{https://github.com/jvvk/mathematics}, and archived on Zenodo at
 \href{https://doi.org/10.5281/zenodo.24406692}{doi:10.5281/zenodo.24406692}, identical to that folder at the tag
 \texttt{zero-sum-selection-game-v2}.
@@ -292,7 +317,7 @@ Lemma~\ref{lem:rank} and Theorem~\ref{thm:dim} (both bounds, for arbitrary row l
 
 The author used two AI assistants, Codex (OpenAI) and Claude Opus~5.5 (Anthropic). Codex found the results of this paper, wrote the programs that found the order-three components and the first formal proof of the rank lemma. Claude formalised the order-three classification and the two-valued normal form, wrote the independent checking program and drafted the text. Codex also refereed version~2. The author directed the work, checked the results and is responsible for the contents.
 
-\emph{Changes in version 2.} The archive is deposited on Zenodo and its DOI is recorded in Section~\ref{sec:verify}. The mathematics, programs and Lean files are unchanged from version~1.
+\emph{Changes in version 2.} The archive is deposited on Zenodo and its DOI is recorded in Section~\ref{sec:verify}. After Codex's referee report: the abstract states that the largest of the subspaces has dimension $n(n+1)/2-1$; the end of Section~\ref{sec:three} lists the twelve orbits (Table~\ref{tab:twelve}) and explains why the enumeration is exhaustive; Section~\ref{sec:verify} says what the Lean statement covers and describes the checks exactly (the distinct-entry sweep now plays the game literally); the mutation harness accepts only located Lean errors. The theorems, proofs and Lean proof files are unchanged.
 
 \begin{thebibliography}{9}
 \bibitem{BKLPR} P. Berman, M. Karpinski, L. L. Larmore, W. Plandowski and W. Rytter, On the complexity of pattern matching for highly compressed two-dimensional texts, in \emph{Combinatorial Pattern Matching (CPM 1997)}, Lecture Notes in Comput. Sci. \textbf{1264}, Springer, 1997, 40--51.
