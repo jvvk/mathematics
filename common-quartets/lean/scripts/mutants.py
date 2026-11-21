@@ -4,7 +4,8 @@ must make its file fail to compile. Run from lean/ after `lake build LeanProofs`
 Every target file must first compile unchanged (a per-target control). A mutant counts as rejected only when
 Lean exits 1 with an error located in the mutated file; a timeout, a signal or any other failure is reported as
 INCONCLUSIVE and fails the suite."""
-import re, subprocess, sys
+import pathlib
+import re, signal, subprocess, sys
 
 MUTANTS = [
     ('LeanProofs/QuartetIter.lean', 'threshold 2*3^(k-1) instead of 2*3^(k-1)+1', '(hn : 2 * 3 ^ (k - 1) + 1 ≤ U.card)', '(hn : 2 * 3 ^ (k - 1) ≤ U.card)'),
@@ -28,34 +29,61 @@ MUTANTS = [
 
 
 
-def run(src: str) -> str:
+RESOURCE = re.compile(r"maximum number of heartbeats|maximum recursion depth|deep recursion|stack overflow|out of memory", re.I)
+INFRA = re.compile(r"unknown module|unknown package|unknown namespace|could not resolve|object file|no such file|failed to load|import", re.I)
+PARSE = re.compile(r"(unexpected|expected) ")
+LOGDIR = pathlib.Path(__file__).resolve().parent / "mutants-output"
+
+
+def classify(code, out: str, fname: str, mline: int, tag: str) -> str:
+    """COMPILES; REJECTED (exit 1, an elaboration error in `fname` at or after the mutated line `mline`, and no
+    parse, import or resource error); otherwise INCONCLUSIVE. The full output is kept in mutants-output/."""
+    LOGDIR.mkdir(exist_ok=True)
+    (LOGDIR / f"{tag}.txt").write_text(f"exit {code}\n{out}")
+    if code is None:
+        return "INCONCLUSIVE (timeout)"
+    errs = [(int(l), m) for l, m in re.findall(re.escape(fname) + r":(\d+):\d+: error: ?(.*)", out)]
+    if code == 0 and not errs and not re.search(r": error", out):
+        return "COMPILES"
+    if RESOURCE.search(out):
+        return f"INCONCLUSIVE (exit {code}, resource limit)"
+    if any(PARSE.match(m) or INFRA.search(m) for _, m in errs) or (not errs and INFRA.search(out)):
+        return f"INCONCLUSIVE (exit {code}, parse or import error)"
+    if code == 1 and any(l >= mline for l, _ in errs):
+        return "REJECTED"
+    return f"INCONCLUSIVE (exit {code}, no error at or after the mutated line in {fname})"
+
+
+def mutated_line(text: str, old: str) -> int:
+    return text[: text.index(old)].count("\n") + 1
+
+
+def run(src: str, mline: int, tag: str) -> str:
     try:
         r = subprocess.run(["lake", "env", "lean", src], capture_output=True, text=True, timeout=900)
-    except subprocess.TimeoutExpired:
-        return "INCONCLUSIVE (timeout)"
-    out = r.stdout + r.stderr
-    if r.returncode == 0 and not re.search(r": error", out):
-        return "COMPILES"
-    if r.returncode == 1 and re.search(re.escape(src) + r":\d+:\d+: error", out):
-        return "REJECTED"
-    return f"INCONCLUSIVE (exit {r.returncode}, no error located in {src})"
+    except subprocess.TimeoutExpired as e:
+        return classify(None, str(e.stdout or "") + str(e.stderr or ""), src, mline, tag)
+    return classify(r.returncode, r.stdout + r.stderr, src, mline, tag)
 
+
+# a SIGTERM raises SystemExit, so the finally clause below restores a file mutated in place
+signal.signal(signal.SIGTERM, lambda *_: sys.exit(143))
 
 ok = True
 for src in sorted({m[0] for m in MUTANTS}):
-    v = run(src)
+    v = run(src, 0, "control-" + src.replace("/", "_"))
     print(f"control {src}: {v}", flush=True)
     ok &= v == "COMPILES"
 if not ok:
     sys.exit("CONTROL FAILED: an unchanged target does not compile; mutants not run")
 
 killed = 0
-for src, name, old, new in MUTANTS:
+for killed_or_index, (src, name, old, new) in enumerate(MUTANTS):
     text = open(src).read()
     assert text.count(old) == 1, f"{name}: anchor not unique in {src}"
     open(src, "w").write(text.replace(old, new))
     try:
-        v = run(src)
+        v = run(src, mutated_line(text, old), f"mutant-{killed_or_index}")
     finally:
         open(src, "w").write(text)
     killed += v == "REJECTED"

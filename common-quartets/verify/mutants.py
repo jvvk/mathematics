@@ -2,7 +2,8 @@
 Run from verify/: python3 mutants.py (a few minutes).
 
 The unmutated run_all.py must pass first. A mutant counts as killed only when run_all.py exits 1 because a
-check failed (an AssertionError or a FAIL line); a timeout, a signal, or a crash such as a SyntaxError or
+check failed (an AssertionError or a sys.exit message, reported by run_all.py as a FAIL line); a timeout, a signal (run_all.py
+exit 2, CRASH), or a crash such as a SyntaxError or
 ImportError is reported as INCONCLUSIVE and fails the suite."""
 import re, subprocess, sys
 
@@ -43,7 +44,7 @@ for src, name, old, new in MUTANTS:
         code, out = run()
     finally:
         open(src, "w").write(text)
-    if code == 1 and not CRASH.search(out) and ("AssertionError" in out or "FAIL" in out):
+    if code == 1 and not CRASH.search(out) and "CRASH " not in out and re.search(r"^FAIL \S+\.py$", out, re.M):
         verdict = "killed      "
         killed += 1
     elif code == 0:

@@ -442,7 +442,10 @@ trees abstracted to split systems satisfying Lemma~\ref{lem:third} and closure u
 Lemma~\ref{lem:cell} and the iteration are proved; Theorem~\ref{thm:cat} for every $k$, following the proof above;
 and Proposition~\ref{prop:13} by \texttt{decide}, with no axioms. Each Lean file is accompanied by a mutation suite:
 deliberately false variants of the statements (a threshold one lower, an iteration losing only a factor of two, one
-caterpillar fewer, a $13$-leaf tree with two labels swapped), each of which Lean rejects. Python scripts recheck the
+caterpillar fewer, a $13$-leaf tree with two labels swapped), each of which Lean rejects with an elaboration error in
+the mutated file, while the unchanged files compile; parse errors, timeouts and resource limits are reported as
+inconclusive, never as rejections. A rejection shows that the formal proof no longer checks, not by itself that the
+variant statement is false. Python scripts recheck the
 examples with code that shares nothing with the search, validate the SAT encoding (it counts $15$, $105$ and $945$
 trees on $5$, $6$ and $7$ leaves, and gives $h(2)=6$), and check $F_k$ directly for $k\le7$, that is up to $129$
 leaves. The one-tree encoding behind Proposition~\ref{prop:classes} and the searches of Section~\ref{sec:open} is
