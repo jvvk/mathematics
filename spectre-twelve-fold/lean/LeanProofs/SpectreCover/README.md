@@ -24,7 +24,7 @@ separated by an edge line (`tiles_separated`); the triangulation's boundary is t
 (`curved_records_cancel`).
 
 **Scope.** The analytic theorem is for the straight-edged `Tile(1,1)`. For curved Spectres only
-the combinatorial certificate is checked; the step from it to constant coverage would need the
-Jordan curve theorem for the edge curve. Minimality of 12 is not claimed.
+the combinatorial certificate is checked in Lean; the step from it to constant coverage (Green's
+theorem for a piecewise smooth Jordan domain, Section 3 of the paper) is proved by hand only. Minimality of 12 is not claimed.
 
-Mutation harness: `scripts/spectrecover_mutants.py`.
+Mutation harness: `lean/scripts/mutants.py` (run from `lean/`).

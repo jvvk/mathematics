@@ -15,9 +15,9 @@ The Spectre of Smith, Myers, Kaplan and Goodman-Strauss ([Combinatorial Theory 4
 
 Whether some `1 < n < 12` is possible is open.
 
-Preprint v2, 20 November 2026 (v1: 20 October 2026), not peer reviewed. Zenodo: [doi:10.5281/zenodo.24406775](https://doi.org/10.5281/zenodo.24406775), identical to this folder at tag `spectre-twelve-fold-v2`. For the straight-edged Spectre the theorem is formally verified in Lean 4 (`lean/`, standard axioms only); for curved Spectres the edge-record certificate is kernel-checked but the step to constant coverage, which needs the Jordan curve theorem, is not formalised. The construction was found with OpenAI Codex and the Lean formalisation and checks were written with Claude (Anthropic), as described in the paper's acknowledgements; the author is responsible for the content.
+Preprint v2, 20 November 2026 (v1: 20 October 2026), not peer reviewed. Zenodo: [doi:10.5281/zenodo.24406775](https://doi.org/10.5281/zenodo.24406775), identical to this folder at tag `spectre-twelve-fold-v2`. For the straight-edged Spectre the theorem is formally verified in Lean 4 (`lean/`, standard axioms only); for curved Spectres the edge-record certificate is kernel-checked and the step to constant coverage (Green's theorem for a piecewise smooth Jordan domain, proved in Section 3 of the paper) is not formalised. The construction was found with OpenAI Codex and the Lean formalisation and checks were written with Claude (Anthropic), as described in the paper's acknowledgements; the author is responsible for the content.
 
-**Version 2** (20 November 2026, tag `spectre-twelve-fold-v2`): deposited on Zenodo, with the DOI recorded in the paper; the acknowledgements name Codex as referee of v2. The mathematics, programs and Lean files are unchanged from v1.
+**Version 2** (20 November 2026, tag `spectre-twelve-fold-v2`): deposited on Zenodo, with the DOI recorded in the paper; the acknowledgements name Codex as referee of v2. After its report: cites the MathOverflow answer of 16 October 2026 as the first announcement; the curved family assumes a piecewise smooth edge curve, and the area identity and constant coverage for curved Spectres are proved by Green's theorem; the paper proves that no two tiles coincide; the Lean mutation harness runs controls and accepts only located Lean errors, and the README checks the Python mutant's output. The straight-Spectre theorem and its Lean proof files are unchanged.
 
 ## Contents
 
@@ -32,7 +32,7 @@ Preprint v2, 20 November 2026 (v1: 20 October 2026), not peer reviewed. Zenodo: 
 ## Reproduce
 
 ```
-cd verify && python3 verify.py && python3 recheck_cover.py && MUTANT=1 POINTS=300 python3 recheck_cover.py | tail -1
+cd verify && python3 verify.py && python3 recheck_cover.py && MUTANT=1 POINTS=300 python3 recheck_cover.py | grep -x FAIL   # the mutant must print FAIL (a crash prints nothing)
 cd ../paper && latexmk -pdf spectre-twelve-fold.tex
 cd ../lean && lake exe cache get && lake build LeanProofs && lake env lean CheckClaims.lean
 ```

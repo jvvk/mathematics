@@ -1,6 +1,10 @@
 """Mutation harness for LeanProofs/SpectreCover: every mutant (a false statement or corrupted
-certificate) must be rejected."""
-import os, subprocess, sys, tempfile
+certificate) must be rejected. Run from lean/ after `lake build LeanProofs`.
+
+An unchanged copy of every target file must compile first (control). A mutant counts as rejected only when
+`lake env lean` exits 1 with an elaboration error located in the mutated copy; a timeout, a signal, a
+resource limit (heartbeats, recursion) or a parse error only is INCONCLUSIVE, and fails the suite."""
+import os, re, subprocess, sys, tempfile
 
 D = "LeanProofs/SpectreCover/"
 MUTANTS = [
@@ -25,17 +29,46 @@ MUTANTS = [
      "    cnt V v w (x, y₁) = cnt V v w (x, y₂) + 1 := by"),
 ]
 
+RESOURCE = re.compile(r"maximum number of heartbeats|maximum recursion depth|deep recursion|stack overflow|out of memory", re.I)
+PARSE = re.compile(r"(unexpected|expected) ")
 tmpdir = tempfile.mkdtemp(dir=os.environ.get("TMPDIR"))
+path = os.path.join(tmpdir, "Mutant.lean")
+
+
+def run(text: str) -> str:
+    open(path, "w").write(text)
+    try:
+        r = subprocess.run(["lake", "env", "lean", path], capture_output=True, text=True, timeout=1500)
+    except subprocess.TimeoutExpired:
+        return "INCONCLUSIVE (timeout)"
+    out = r.stdout + r.stderr
+    errs = re.findall(re.escape(path) + r":\d+:\d+: error: ?(.*)", out)
+    if r.returncode == 0 and not errs:
+        return "COMPILES"
+    if RESOURCE.search(out):
+        return f"INCONCLUSIVE (exit {r.returncode}, resource limit)"
+    if errs and all(PARSE.match(e) for e in errs):
+        return f"INCONCLUSIVE (exit {r.returncode}, parse error only)"
+    if r.returncode == 1 and errs:
+        return "REJECTED"
+    return f"INCONCLUSIVE (exit {r.returncode}, no error located in the mutant)"
+
+
+ok = True
+for SRC in sorted({m[0] for m in MUTANTS}):
+    v = run(open(SRC).read())
+    print(f"control (unchanged {SRC}): {v}", flush=True)
+    ok &= v == "COMPILES"
+if not ok:
+    os.remove(path); os.rmdir(tmpdir)
+    sys.exit("CONTROL FAILED: an unchanged target does not compile; mutants not run")
 killed = 0
 for SRC, name, old, new in MUTANTS:
     src = open(SRC).read()
     assert src.count(old) == 1, f"pattern not unique: {name}"
-    path = os.path.join(tmpdir, "Mutant.lean")
-    open(path, "w").write(src.replace(old, new))
-    r = subprocess.run(["lake", "env", "lean", path], capture_output=True, text=True, timeout=1500)
-    ok = r.returncode != 0 or "error" in r.stdout
-    killed += ok
-    print(("killed  " if ok else "SURVIVED"), name, flush=True)
-os.remove(os.path.join(tmpdir, "Mutant.lean")); os.rmdir(tmpdir)
+    v = run(src.replace(old, new))
+    killed += v == "REJECTED"
+    print(("killed  " if v == "REJECTED" else v + " "), name, flush=True)
+os.remove(path); os.rmdir(tmpdir)
 print(f"{killed}/{len(MUTANTS)} mutants killed")
 sys.exit(0 if killed == len(MUTANTS) else 1)

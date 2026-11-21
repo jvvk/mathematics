@@ -44,6 +44,9 @@ a suitable curve gives a strictly chiral tile with the same property~\cite{SMKG}
 every point once. In an \emph{$n$-fold tiling} almost every point lies in exactly $n$ tiles, overlaps being
 allowed. Andrew Bayly asked on MathOverflow~\cite{MO} whether the Spectre admits a \emph{periodic}
 $n$-fold tiling for some $n>1$, that is, a multiple tiling invariant under a lattice of translations.
+The construction below was first announced in the author's answer to that question on 16 October
+2026~\cite{MOans}, which gave the placements, the lattice, the matrix $K$, the edge records and the area count;
+this paper adds the proof for curved Spectres, the formal verification and the independent checks.
 
 \begin{theorem}\label{thm:main}
 There is a periodic $12$-fold tiling of the plane by copies of the Spectre under rotations and
@@ -51,15 +54,23 @@ translations, with $54$ copies in each period cell. This holds for the straight-
 curved Spectre of the common-curve family.
 \end{theorem}
 
-The tiling uses no reflections and no two of its tiles coincide. Adding generic translates of the whole
+The tiling uses no reflections, and the $54$ placements in a period cell are distinct. For the
+straight-edged Spectre no two tiles coincide: the polygon has $13$ corners (the edges $9$ and $10$ are
+collinear), and no cyclic shift of its sequence of corner directions and side lengths equals the sequence
+rotated by a nonzero multiple of $30^\circ$, so $\zeta^kS+t=S$ forces $k\equiv0$ and $t=0$. Two tiles
+$\zeta^rS+xa+yb+\lambda$ therefore coincide only if their $r$ agree and $xa+yb+\lambda$ agree, and since
+$a,b,v,w$ is a basis of $\Z[\zeta]$ (below) that forces equal $(x,y)$ and $\lambda$; the triples of
+Table~\ref{tab:placements} are distinct. (Lean proves the indexed count, over placements and lattice vectors, and
+the distinctness of the triples; the geometric step from distinct indices to distinct tiles is this argument.) Adding generic translates of the whole
 configuration gives periodic tilings of every multiplicity $12m$. Whether some $1<n<12$ is possible is
 open.
 
 Periodic multiple tilings have been studied mainly for one tile moved by translations alone:
 by convex or centrally symmetric polygons~\cite{Kol,GRS}, and, in the lattice $\Z^2$, by Greenfeld and
 Tao, who proved the periodic tiling conjecture for multi-tilings of $\Z^2$: a finite set that
-multi-tiles $\Z^2$ by translations also multi-tiles it periodically~\cite{GT}. The Spectre needs twelve rotations and its vertices lie in a
-module of rank four, so neither line of work applies.
+multi-tiles $\Z^2$ by translations also multi-tiles it periodically~\cite{GT}. The Spectre is moved by rotations as well as translations (its tilings use
+orientations among the twelve multiples of $30^\circ$, and the construction below uses nine of them), and its
+vertices lie in a module of rank four, so neither line of work applies.
 
 \section{The construction}
 
@@ -88,8 +99,14 @@ ones.}\label{fig:tile}
 
 A curved Spectre of the common-curve family~\cite[Lemma~2.1]{SMKG} replaces edge $i$ by
 $p_i+\zeta^{d_i}\gamma(t)$ when $i$ is even and by $p_{i+1}+\zeta^{d_i+6}\gamma(1-t)$ when $i$ is odd, for a
-fixed simple curve $\gamma$ from $0$ to $1$, chosen so that the boundary stays simple. Write $S$ for the
-resulting tile. The regions added and removed along the edges cancel in pairs, so
+fixed simple piecewise smooth curve $\gamma$ from $0$ to $1$ (smooth in~\cite{SMKG}), chosen so that the
+boundary stays simple. Write $S$ for the resulting tile; its boundary is a piecewise smooth Jordan curve, so it
+has area zero and Green's theorem applies to $S$. The area is unchanged: by Green's theorem
+$|S|=\tfrac12\operatorname{Im}\oint_{\partial S}\bar z\,dz$, and since $|\zeta|=1$ the even edge $i$ contributes
+$\tfrac12\operatorname{Im}\bigl(\bar p_i\zeta^{d_i}\bigr)+\tfrac12 c$ and the odd edge $i$ contributes
+$\tfrac12\operatorname{Im}\bigl(\bar p_{i+1}\zeta^{d_i}\bigr)-\tfrac12 c$, where
+$c=\operatorname{Im}\int_\gamma\bar z\,dz$. There are seven edges of each parity, so the terms in $c$
+cancel and what remains is the same sum for $\gamma(t)=t$:
 \[
 |S|=|\mathrm{Tile}(1,1)|=3+3\sqrt3 .
 \]
@@ -160,17 +177,27 @@ lemma says that the $378$ positive records and the $378$ negative records are th
 direct count confirms it.
 
 \begin{proof}[Proof that $N$ is constant]
-Off the tile boundaries, which form a null set, $N$ is locally constant. Crossing an edge of a tile from
-its outside to its inside raises that tile's contribution by one. By Lemma~\ref{lem:pairs} every edge of the
-period cell is matched, modulo $\Lambda$, by the same curve traversed the other way, which belongs to a tile
-entered from the opposite side, so the two changes cancel and $N$ takes the same value on the two sides of
-every edge. The torus is connected, so $N$ is constant almost everywhere.
+The tile boundaries are countably many piecewise smooth curves, a null set, and only finitely many tiles meet
+any bounded set, so $N$ is a bounded measurable $\Lambda$-periodic function. Let $\alpha$ be a smooth
+$\Lambda$-periodic $1$-form on the plane, and let $T_1,\dots,T_{54}$ be the tiles of one period cell. Every tile
+is $T_j+\lambda$ for one $j$ and one $\lambda\in\Lambda$, so integrating over a fundamental domain $F$ and
+using periodicity,
+\[
+\int_F N\,d\alpha=\sum_{j=1}^{54}\int_{T_j}d\alpha=\sum_{j=1}^{54}\oint_{\partial T_j}\alpha
+\]
+by Green's theorem for each tile. The right side is the sum of $\int_e\alpha$ over the $756$ oriented edges $e$.
+By Lemma~\ref{lem:pairs} they split into pairs whose two edges are translates by a vector of $\Lambda$ of one
+curve, traversed in opposite directions; as $\alpha$ is periodic the two integrals cancel, and the sum is $0$.
+Taking $\alpha=\varphi\,dx$ and $\alpha=\varphi\,dy$ for smooth periodic $\varphi$ shows that both
+distributional partial derivatives of $N$ on the torus $\C/\Lambda$ vanish. A distribution with zero gradient on
+a connected torus is constant (expand in Fourier series: every nonconstant coefficient is killed), so $N$ is
+constant almost everywhere.
 \end{proof}
 
 For the straight Spectre this argument is made precise in Lean through a triangulation: each tile is cut
 into twelve triangles, the indicator of a triangle is a sum of signed ``shadows'' of its three edges, and the
-$1944$ triangle edges cancel modulo $\Lambda$ (Section~\ref{sec:lean}). For a curved Spectre the step from
-the cancelling records to the jump of $N$ across each edge uses the Jordan curve theorem for the edge curve.
+$1944$ triangle edges cancel modulo $\Lambda$ (Section~\ref{sec:lean}). For a curved Spectre the proof above uses Green's theorem for a domain bounded by a piecewise smooth
+Jordan curve, which is not formalised.
 
 \section{Why the constant is twelve}
 
@@ -209,8 +236,10 @@ cancel modulo the lattice has an almost everywhere constant count, and computes 
 The finite facts (the cancellation of the $1944$ triangle edges, the orientation of every triangle, the
 triangulation's boundary, the distinctness of the placements) are checked by the kernel, and the curved-edge
 records of Lemma~\ref{lem:pairs} are checked the same way. The step from those records to constant coverage
-for a curved Spectre, which needs the Jordan curve theorem, is not formalised. Everything uses only Lean's
-standard axioms, and planted errors in the statements are rejected. A program checks the records and the
+for a curved Spectre, which needs Green's theorem for a piecewise smooth Jordan domain, is not formalised.
+Everything uses only Lean's standard axioms. Planted errors in the statements and certificates are rejected:
+each mutated file fails with a Lean error located in it, while an unchanged copy of every target file compiles,
+and timeouts, crashes and resource limits count as inconclusive, never as rejections. A program checks the records and the
 areas in exact integer arithmetic, an independent one counts the tiles at random points, and the code and the
 Lean files are at~\cite{repo}, archived on Zenodo at
 \href{https://doi.org/10.5281/zenodo.24406775}{doi:10.5281/zenodo.24406775}, identical to that folder at the tag
@@ -222,12 +251,19 @@ OpenAI Codex, and the Lean formalisation, the independent checks and this text w
 Opus~5.5 (Anthropic), under the author's direction; Codex also refereed version~2. The author is responsible
 for the content of this preprint, which has not yet been independently reviewed.
 
-\emph{Changes in version 2.} The archive is deposited on Zenodo and its DOI is recorded above. The
-mathematics, programs and Lean files are unchanged from version~1.
+\emph{Changes in version 2.} The archive is deposited on Zenodo and its DOI is recorded above. After
+Codex's referee report: the MathOverflow answer~\cite{MOans} is cited as the first announcement; the curved
+family now assumes a piecewise smooth edge curve (a simple curve alone can have positive area), and the area
+identity and the constancy of $N$ for curved Spectres are proved by Green's theorem instead of being sketched; the
+argument that no two tiles coincide is given; the mutation harness accepts only located Lean errors. The theorem
+for the straight Spectre and its Lean proof are unchanged.
 
 \begin{thebibliography}{9}
 \bibitem{MO} A.~Bayly, \emph{Can the Spectre form a periodic $n$-fold multi-tiling of the plane for any
 integer $n\ge1$?}, MathOverflow question 516016 (2026), \url{https://mathoverflow.net/q/516016}.
+
+\bibitem{MOans} V.~Jandhyala, answer to~\cite{MO}, MathOverflow answer 516104, 16 October 2026,
+\url{https://mathoverflow.net/a/516104}.
 
 \bibitem{GRS} N.~Gravin, S.~Robins and D.~Shiryaev, Translational tilings by a polytope, with multiplicity,
 \emph{Combinatorica} 32 (2012) 629--649. doi:10.1007/s00493-012-2860-3.

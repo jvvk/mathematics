@@ -31,6 +31,6 @@ image of the straight-edged Spectre `Tile(1,1)`.
 The finite certificates are checked by `decide +kernel` (no `native_decide`).
 
 Not formalised: for curved Spectres, the step from the cancelling curved-edge records to constant coverage,
-which needs the Jordan curve theorem for the edge curve. Minimality of 12 is not claimed. Every result above
+which uses Green's theorem for a piecewise smooth Jordan domain (proved by hand in Section 3 of the paper). Minimality of 12 is not claimed. Every result above
 uses only Lean's standard axioms or a subset of them (axiom-validation.txt). The folder was compiled in an
 isolated build without the development cache (build-validation.log).
