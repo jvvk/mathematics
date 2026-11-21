@@ -2,7 +2,7 @@
 chosen vertical edge of the prism (regular p-gon inscribed in the unit circle) x [-1,1], height uniform.
 Containment by barycentric sign test (no LP, no KKT). Mutant: centre the prism test at (0,0,0.5) instead of 0.
 Odd p only: for even p, a tetrahedron with two points on one edge and one on the opposite edge has the origin exactly
-on a face, and floating-point signs then decide at random; use even_p.py, which excludes these tuples by label.
+in the plane of a face, and floating-point signs then decide at random; use even_p.py, which excludes these tuples by label.
 Usage: prism.py p samples seed"""
 import os, sys, signal, math, numpy as np
 def _stop(*_): raise TimeoutError

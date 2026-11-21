@@ -1,6 +1,6 @@
 """General convex polygon K, parallel sides allowed (unit area, intensity 1):
 P(K) = V(K) T_nd(K) + sum over ordered parallel pairs (k pair side, kb opposite) of P_deg(k),
-T_nd: tetrahedron average EXCLUDING tuples with two points on k and one on its parallel opposite kb (0 on a face),
+T_nd: tetrahedron average EXCLUDING tuples with two points on k and one on its parallel opposite kb (0 in the plane of a face),
 P_deg(k) = sigma_k int dTheta int dt e^{-2t} w_k [ width_{u_k} R + S_k Area R ],  R = {C : C.u_j <= t h_j + m_j(Theta)},
 sigma_k = int over the overlap of side k with the projection of kb of (s-a)(b-s)(b-a)/2 ds,
 S_k = sum_{j : u_j.t_k > 0} L_j u_j.t_k,  w_k = h_k + h_kb.   Usage: formula_par.py name samples seed"""
@@ -26,7 +26,8 @@ def clip(sup):
         if len(P) < 3: return None
     return np.array(P)
 def area(P): return 0.0 if P is None else 0.5 * abs(P[:, 0] @ np.roll(P[:, 1], -1) - P[:, 1] @ np.roll(P[:, 0], -1))
-th = np.linspace(-8, 8, 321); ts = np.linspace(0, 14, 281)
+FINE = os.environ.get("GRID") == "fine"   # GRID=fine: four times finer in each direction (2x1 rectangle: 0.20315)
+th = np.linspace(-8, 8, 1281 if FINE else 321); ts = np.linspace(0, 14, 1121 if FINE else 281)
 polys = [[clip(t * H + np.minimum(T * Aa, T * Bb)) for t in ts] for T in th]
 V = np.trapezoid(np.trapezoid([[math.exp(-2 * t) * area(P) for t, P in zip(ts, row)] for row in polys], ts, axis=1), th)
 # nondegenerate tetrahedron average

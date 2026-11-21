@@ -112,6 +112,17 @@ setting of Sylvester's problem, the probability that the $n$ points are in conve
 obtained for regular \cite{morin25} and for general convex polygons \cite{morin26}; that event depends on the whole
 sample, whereas $E_n$ depends only on the points within distance $O(1/n)$ of the boundary.
 
+The feasible region of the limit LP is not new. Kabluchko, Marynych and Molchanov \cite{kmm} study, for a convex
+body $K$ and a family of affine maps, the set of maps $g$ for which $g(K)$ contains the sample; in tangent
+coordinates and scaled by $n$ this set converges to the zero cell of a Poisson hyperplane tessellation in the space
+of affine maps (their Theorem~4.1 and Corollary~4.3). When $K$ is a polygon and the linear part is restricted to
+$\varepsilon I+\Theta J$, with $J$ the rotation by $90^\circ$, each of their half-spaces becomes a constraint
+$D\ge\Theta s-H_i$ of Section~\ref{sec:model}, so our feasible region is their limit for the group of similarities.
+They do not optimise over it. Theorem~\ref{thm:main} needs more than convergence of feasible regions: it needs the
+event that an optimum fits to converge, which is the work of Lemmas~\ref{lem:stab} and~\ref{lem:nondeg}, and then
+the evaluation of its probability in Theorem~\ref{thm:formula}. Our convergence proof is self-contained and does not
+use their theorem.
+
 \section{The limit model}\label{sec:model}
 
 Fix the polygon $K$, scaled to area $1$, with sides $1,\dots,m$. Side $i$ has outward unit normal $u_i$, support
@@ -517,7 +528,7 @@ side, so the tight points have $D_r\ge0$ and (b) has probability $e^{2\varepsilo
 \Prob(E_{\mathrm v})=\frac1{24}\sum_{i_1,\dots,i_4}\int|\det A|\,\mathbf 1\{\text{KKT}\}\,ds\;\times\int
 e^{2\varepsilon}\,\mathbf 1\{C\in R(-\varepsilon,\Theta)\}\,d\varepsilon\,dC\,d\Theta=T_{\mathrm{nd}}(K)\,V(K).
 \]
-Tuples with two points on a side $k$ and one on a parallel side $\bar k$ have the origin on a face of the tetrahedron
+Tuples with two points on a side $k$ and one on a parallel side $\bar k$ have the origin in the plane of a face of the tetrahedron
 (the three rows are linear combinations of $(h_k,u_k,0)$, $(h_{\bar k},-u_k,0)$ and $(0,0,1)$), so they never give an
 interior cone point and are excluded at no cost.
 
@@ -662,10 +673,12 @@ $\operatorname{int}$ the topological interior; and $p_4=1/4$ in the limit model.
 \end{itemize}
 
 Not formalised: the reduction to area one by scaling, the numerical values of Section~\ref{sec:num} (including
-$p_q$ for $q\ge5$), and Conjecture~\ref{conj:eq}. Each formal statement was also tested against deliberately wrong
-variants (a changed constant, a dropped hypothesis, a reversed inequality); all of them fail to check. Those runs used a
-harness that counted any nonzero exit of the checker as a rejection; the shipped harness now accepts only an error
-located in the mutated file, and has not yet been rerun on every variant.
+$p_q$ for $q\ge5$), and Conjecture~\ref{conj:eq}. Selected formal statements (those in the eight suites of
+\texttt{lean/scripts}; Corollary~\ref{cor:tri}'s values $7/24$ and $1/3$ for needles are not among them) were also
+tested against deliberately wrong variants (a changed constant, a dropped hypothesis, a reversed inequality). Those runs
+used a harness that counted any nonzero exit of the checker as a rejection, so they show only that no variant built;
+the shipped harness accepts only an error located in the mutated file and classifies timeouts and crashes as
+inconclusive, and has not yet been rerun on every variant.
 The Lean source, the simulation programs and an independent recheck of the triangle values are in the folder
 \texttt{smallest-enclosing-copy} of \url{https://github.com/jvvk/mathematics}, and archived on Zenodo at
 \href{https://doi.org/10.5281/zenodo.24406642}{doi:10.5281/zenodo.24406642}, identical to that folder at the tag
@@ -691,12 +704,18 @@ equilateral triangle & $13/48=0.2708$ & $0.2722\pm0.0017$ & $0.29\pm0.03$ ($n=50
 square & $1/4$ & $0.2515\pm0.0016$ & $0.30\pm0.04$ ($n=500$)\\
 $30$-$60$-$90$ triangle & $29/96=0.3021$ & $0.299\pm0.009$ & $0.30\pm0.04$ ($n=400$)\\
 $20$-$40$-$120$ triangle & $0.3249$ & $0.335\pm0.009$ & \\
-$2\times1$ rectangle & $0.2039$ & $0.205\pm0.008$ & $0.16\pm0.03$ ($n=400$)\\
+$2\times1$ rectangle & $0.2031$ & $0.205\pm0.008$ & $0.16\pm0.03$ ($n=400$)\\
 regular hexagon & $0.1935$ & $0.189\pm0.006$ & $0.18\pm0.04$ ($n=500$)\\
 irregular centrally\\ \quad symmetric hexagon & $0.1832$ & $0.183\pm0.008$ & \\
 \bottomrule
 \end{tabular}
-\caption{Three independent checks. Errors are one standard error.}
+\caption{Three independent checks. Errors are one standard error. The formula entries for the $2\times1$
+rectangle and the two hexagons are numerical evaluations of Theorem~\ref{thm:formula} (trapezoidal rule in
+$(\Theta,t)$ and Monte Carlo for $T_{\mathrm{nd}}$); on the grid of \texttt{formula\_par.py} they are accurate to
+about $\pm0.001$, judged by the rectangle, where the default grid gives $0.2039$ and a grid four times finer gives
+$0.20315$, consistent with the exact value $13/64=0.203125$ from $V=11/64$, $T_{\mathrm{nd}}=5/12$ and segment term
+$101/768$. The same program on the fine grid gives $0.24992$ for the square, against $1/4$.}
+\label{tab:checks}
 \end{table}
 
 \paragraph{Direct simulation of the original problem.} Program (i) was also run at scale for the equilateral
@@ -751,7 +770,11 @@ lemmas is stated exactly. The statements of the theorems and corollaries are unc
 of Theorem~\ref{thm:main} were corrected.
 
 \emph{Changes in version 4.} The archive is deposited on Zenodo and its DOI is recorded in Section~\ref{sec:lean}.
-The mathematics, programs and Lean files are unchanged from version 3.
+The paper now credits Kabluchko, Marynych and Molchanov \cite{kmm} for the
+limit of the feasible region (Section~1), corrects the formula entry for the $2\times1$ rectangle in Table~\ref{tab:checks} from $0.2039$
+to $0.2031$ and states the accuracy of the numerically evaluated entries, says ``in the plane of a face'' in
+Section~\ref{sec:formula}, and describes the coverage of the mutation tests exactly. \texttt{CheckClaims.lean} now prints the axioms
+of every name that \texttt{Main.lean} checks. The theorems, their proofs and the Lean proof files are unchanged.
 
 \begin{thebibliography}{9}
 
@@ -759,6 +782,9 @@ The mathematics, programs and Lean files are unchanged from version 3.
 \textbf{79} (1988), no.~3, 327--368. \url{https://doi.org/10.1007/BF00342231}
 \bibitem{groeneboom12} P.~Groeneboom, Convex hulls of uniform samples from a convex polygon, \emph{Adv. Appl.
 Probab.} \textbf{44} (2012), no.~2, 330--342. \url{https://doi.org/10.1239/aap/1339878714}
+\bibitem{kmm} Z.~Kabluchko, A.~Marynych and I.~Molchanov, Generalised convexity with respect to families of affine
+maps, \emph{Israel J. Math.} \textbf{266} (2025), 131--175. \url{https://doi.org/10.1007/s11856-025-2751-0}
+(arXiv:2202.07887, first posted 16 February 2022.)
 \bibitem{lp} G.~Last and M.~Penrose, \emph{Lectures on the Poisson Process}, Institute of Mathematical Statistics
 Textbooks~7, Cambridge University Press, 2017. \url{https://doi.org/10.1017/9781316104477}
 \bibitem{mo} Dan, Question about $n$ random points in a regular polygon, and a limiting probability, MathOverflow

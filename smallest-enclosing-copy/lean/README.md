@@ -7,18 +7,19 @@ Lean 4 (v4.34.0) with Mathlib `v4.34.0`. About 20,500 lines in two libraries:
   processes on shrinking windows. Mathlib has no point processes, so all of this is built here.
 - `EnclosingCopy/Enclosing`: the paper itself.
 
-Every theorem below depends only on `propext`, `Classical.choice` and `Quot.sound`; `Main.lean`
-prints the axioms of each one when it is compiled.
+Every theorem below depends only on `propext`, `Classical.choice` and `Quot.sound`. `Main.lean`
+checks the statement of each one and prints the axioms of 99 of them when it is compiled; `CheckClaims.lean`
+prints the axioms of all 152 names it checks (output in `axiom-validation.txt`).
 
 ## Build
 
 ```
 lake exe cache get     # Mathlib build cache
 lake build             # compiles every module and runs the axiom audit in Main.lean
-lake env lean CheckClaims.lean   # the statement and axioms of each of the 99 results
+lake env lean CheckClaims.lean   # the statement and axioms of all 152 names checked in Main.lean
 ```
 
-`axiom-validation.txt` is the output of `CheckClaims.lean` from an isolated build of this folder (v4, 20 November 2026), and `build-validation.log` is that build's log.
+`axiom-validation.txt` is the output of `CheckClaims.lean` from an isolated build of this folder (v4, 20 November 2026; CheckClaims rerun 21 November 2026 with all 152 names), and `build-validation.log` is that build's log.
 
 ## Where each result is
 
@@ -45,7 +46,7 @@ Not formalised: the reduction to area one by scaling, the numerical values (simu
 ## Mutation tests
 
 Each script copies one source file, plants a single wrong change (a constant, a hypothesis, an
-inequality) and checks that the result no longer compiles. In the v1 runs every planted mutant was rejected, under a
+inequality) and checks that the result no longer compiles. In the v1 runs every planted mutant failed to build, under a
 harness that counted any nonzero exit as a rejection; the scripts now accept only a Lean error located in the mutated
 file and report crashes, timeouts and resource limits as failures, and have not been rerun on every mutant.
 

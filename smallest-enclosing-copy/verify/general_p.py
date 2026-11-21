@@ -2,7 +2,7 @@
 P_p = p tan(pi/p) * E_p / 6,  E_p = E[ |det A| 1{e_rho in cone(rows of A)} ],
 A = 4x4 matrix with rows (1, u_k, -sigma), k uniform in {0..p-1}, sigma uniform in [-1,1], 4 independent rows.
 Monte Carlo for E_p. For odd p this is Corollary 3. For even p the tolerance in the cone test also accepts the tuples
-whose tetrahedron has the origin on a face (two points on one edge, one on the opposite edge), which Corollary 3
+whose tetrahedron has the origin in the plane of a face (two points on one edge, one on the opposite edge), which Corollary 3
 excludes; empirically their contribution equals the segment term 8/(3 p^2), so the printed value is the full p_p
 (p = 4: 0.2486 +- 0.0010; p = 6: 0.1929 +- 0.0006). That identity is observed here, not proved.
 Usage: general_p.py p samples seed"""

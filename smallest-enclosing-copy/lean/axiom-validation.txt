@@ -1,137 +1,75 @@
-@Enclosing.void_area : ∀ {m : ℕ} [inst : NeZero m] (v : Fin m → ℝ × ℝ),
-  Enclosing.Nondeg v →
+vertex_limit : ∀ (ε h b C₁ Θ : ℝ),
+  Filter.Tendsto (fun n => ↑n * ((1 + ε / ↑n) * (h * Real.cos (Θ / ↑n) - b * Real.sin (Θ / ↑n)) + C₁ / ↑n - h))
+    Filter.atTop (nhds (ε * h + C₁ - Θ * b))
+'Enclosing.vertex_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+point_limit : ∀ (ε h s D C₁ C₂ Θ : ℝ),
+  Filter.Tendsto
+    (fun n =>
+      ↑n *
+        ((1 + ε / ↑n) * h + (C₁ / ↑n * Real.cos (Θ / ↑n) + C₂ / ↑n * Real.sin (Θ / ↑n)) -
+          ((h - D / ↑n) * Real.cos (Θ / ↑n) + s * Real.sin (Θ / ↑n))))
+    Filter.atTop (nhds (ε * h + C₁ - Θ * s + D))
+'Enclosing.point_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+vertex_event : ∀ (ε h a b C₁ Θ : ℝ),
+  (ε * h + C₁ < min (Θ * a) (Θ * b) →
+      ∀ᶠ (n : ℕ) in Filter.atTop,
+        ∀ e ∈ {a, b}, (1 + ε / ↑n) * (h * Real.cos (Θ / ↑n) - e * Real.sin (Θ / ↑n)) + C₁ / ↑n < h) ∧
+    (min (Θ * a) (Θ * b) < ε * h + C₁ →
+      ∀ᶠ (n : ℕ) in Filter.atTop,
+        ∃ e ∈ {a, b}, h < (1 + ε / ↑n) * (h * Real.cos (Θ / ↑n) - e * Real.sin (Θ / ↑n)) + C₁ / ↑n)
+'Enclosing.vertex_event' depends on axioms: [propext, Classical.choice, Quot.sound]
+@sum_len_nrm : ∀ {m : ℕ} [inst : NeZero m] (v : Fin m → ℝ × ℝ),
+  Nondeg v → ∑ i, len v i * (nrm v i).1 = 0 ∧ ∑ i, len v i * (nrm v i).2 = 0
+'Enclosing.sum_len_nrm' depends on axioms: [propext, Classical.choice, Quot.sound]
+@sum_len_hsup : ∀ {m : ℕ} [inst : NeZero m] (v : Fin m → ℝ × ℝ), Nondeg v → ∑ i, len v i * hsup v i = 2 * area v
+'Enclosing.sum_len_hsup' depends on axioms: [propext, Classical.choice, Quot.sound]
+@sum_len_b : ∀ {m : ℕ} [inst : NeZero m] (v : Fin m → ℝ × ℝ),
+  Nondeg v → ∑ i, len v i * bEnd v i = 1 / 2 * ∑ i, len v i ^ 2
+'Enclosing.sum_len_b' depends on axioms: [propext, Classical.choice, Quot.sound]
+@sum_len_a : ∀ {m : ℕ} [inst : NeZero m] (v : Fin m → ℝ × ℝ),
+  Nondeg v → ∑ i, len v i * aEnd v i = -(1 / 2 * ∑ i, len v i ^ 2)
+'Enclosing.sum_len_a' depends on axioms: [propext, Classical.choice, Quot.sound]
+@void_area : ∀ {m : ℕ} [inst : NeZero m] (v : Fin m → ℝ × ℝ),
+  Nondeg v →
     ∀ (ε Θ : ℝ) (C : ℝ × ℝ),
-      (∀ (i : Fin m), Enclosing.Hcopy v ε C i ≤ min (Θ * Enclosing.aEnd v i) (Θ * Enclosing.bEnd v i)) →
-        ∑ i,
-            (MeasureTheory.volume
-                (Enclosing.voidRegion (Enclosing.aEnd v i) (Enclosing.bEnd v i) Θ (Enclosing.Hcopy v ε C i))).toReal =
-          -(2 * ε * Enclosing.area v)
+      (∀ (i : Fin m), Hcopy v ε C i ≤ min (Θ * aEnd v i) (Θ * bEnd v i)) →
+        ∑ i, (MeasureTheory.volume (voidRegion (aEnd v i) (bEnd v i) Θ (Hcopy v ε C i))).toReal = -(2 * ε * area v)
 'Enclosing.void_area' depends on axioms: [propext, Classical.choice, Quot.sound]
-Enclosing.segment_term_square : (4 * ∫ (x : ℝ) in -1..1, ∫ (s₁ : ℝ) in -1..x, ∫ (s₂ : ℝ) in x..1, s₂ - s₁) *
-    ((2 *
-        ∫ (Θ : ℝ),
-          ∫ (t : ℝ) in Set.Ioi |Θ|,
-            Real.exp (-(2 * 4 * t)) * (MeasureTheory.volume ((fun C => C.1) '' Enclosing.Rreg 4 t Θ)).toReal) +
-      (2 * ∑ j ∈ Finset.Ico 1 2, 2 * Real.sin (2 * Real.pi * ↑j / 4)) *
-        ∫ (Θ : ℝ),
-          ∫ (t : ℝ) in Set.Ioi |Θ|, Real.exp (-(2 * 4 * t)) * (MeasureTheory.volume (Enclosing.Rreg 4 t Θ)).toReal) =
-  1 / 6
-'Enclosing.segment_term_square' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.segment_term_measure : ∀ {r : ℕ},
-  2 ≤ r →
-    (MeasureTheory.volume (Enclosing.Preg (2 * r))).toReal = 2 * ↑r * Real.tan (Real.pi / (2 * ↑r)) →
-      have q := 2 * ↑r;
-      have S := ∑ j ∈ Finset.Ico 1 r, 2 * Real.sin (2 * Real.pi * ↑j / q);
-      (q * ∫ (x : ℝ) in -1..1, ∫ (s₁ : ℝ) in -1..x, ∫ (s₂ : ℝ) in x..1, s₂ - s₁) *
-          ((2 *
-              ∫ (Θ : ℝ),
-                ∫ (t : ℝ) in Set.Ioi |Θ|,
-                  Real.exp (-(2 * q * t)) *
-                    (MeasureTheory.volume ((fun C => C.1) '' Enclosing.Rreg (2 * r) t Θ)).toReal) +
-            2 * S *
-              ∫ (Θ : ℝ),
-                ∫ (t : ℝ) in Set.Ioi |Θ|,
-                  Real.exp (-(2 * q * t)) * (MeasureTheory.volume (Enclosing.Rreg (2 * r) t Θ)).toReal) =
-        8 / (3 * q ^ 2)
-'Enclosing.segment_term_measure' depends on axioms: [propext, Classical.choice, Quot.sound]
-Enclosing.V_regular : ∀ (q : ℕ),
-  0 < q →
-    ∫ (Θ : ℝ),
-        ∫ (t : ℝ) in Set.Ioi |Θ|, Real.exp (-(2 * ↑q * t)) * (MeasureTheory.volume (Enclosing.Rreg q t Θ)).toReal =
-      (MeasureTheory.volume (Enclosing.Preg q)).toReal / (4 * ↑q ^ 4)
-'Enclosing.V_regular' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.p_from_Ik : ∀ {L₁ L₂ L₃ : ℝ},
-  0 < L₁ →
-    0 < L₂ →
-      0 < L₃ →
-        have I₁ := L₂ * L₃ * L₁ * L₁ ^ 2 * Enclosing.gfun (L₂ ^ 2 / L₁ ^ 2) (L₃ ^ 2 / L₁ ^ 2) / 8;
-        have I₂ := L₁ * L₃ * L₂ * L₂ ^ 2 * Enclosing.gfun (L₁ ^ 2 / L₂ ^ 2) (L₃ ^ 2 / L₂ ^ 2) / 8;
-        have I₃ := L₁ * L₂ * L₃ * L₃ ^ 2 * Enclosing.gfun (L₁ ^ 2 / L₃ ^ 2) (L₂ ^ 2 / L₃ ^ 2) / 8;
-        have Q := (L₁ ^ 2 + L₂ ^ 2 + L₃ ^ 2) / 2;
-        2 * (I₁ + I₂ + I₃) / (Q * L₁ * L₂ * L₃) = Enclosing.ptri (L₁ ^ 2) (L₂ ^ 2) (L₃ ^ 2)
-'Enclosing.p_from_Ik' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.Ik_eq : ∀ {Li Lj Lk mi mj mk : ℝ},
-  0 < Li →
-    0 < Lj →
-      0 < Lk →
-        Li * mi + Lj * mj + Lk * mk = 0 →
-          Lk / 2 *
-              ∫ (si : ℝ) in mi - Li / 2..mi + Li / 2,
-                ∫ (sj : ℝ) in mj - Lj / 2..mj + Lj / 2,
-                  max 0 ((-(Li * si + Lj * sj) / Lk - (mk - Lk / 2)) * (mk + Lk / 2 - -(Li * si + Lj * sj) / Lk)) =
-            Li * Lj * Lk * Lk ^ 2 * Enclosing.gfun (Li ^ 2 / Lk ^ 2) (Lj ^ 2 / Lk ^ 2) / 8
-'Enclosing.Ik_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.theta_height : ∀ {L₁ L₂ L₃ a₁ a₂ a₃ Q : ℝ},
-  0 < L₁ →
-    0 < L₂ →
-      0 < L₃ →
-        0 < Q →
-          L₁ * a₁ + L₂ * a₂ + L₃ * a₃ = -Q →
-            ∫ (Θ : ℝ) in Set.Ioi 0,
-                ((∫ (H : ℝ) in Set.Iic (Θ * a₁), Real.exp (L₁ * H)) *
-                    ∫ (H : ℝ) in Set.Iic (Θ * a₂), Real.exp (L₂ * H)) *
-                  ∫ (H : ℝ) in Set.Iic (Θ * a₃), Real.exp (L₃ * H) =
-              1 / (Q * L₁ * L₂ * L₃)
-'Enclosing.theta_height' depends on axioms: [propext, Classical.choice, Quot.sound]
-Enclosing.p_equilateral : Enclosing.ptri 1 1 1 = 13 / 48
-'Enclosing.p_equilateral' depends on axioms: [propext, Classical.choice, Quot.sound]
-Enclosing.p_30_60_90 : Enclosing.ptri 1 3 4 = 29 / 96
-'Enclosing.p_30_60_90' depends on axioms: [propext, Classical.choice, Quot.sound]
-Enclosing.p_flat_isosceles : Filter.Tendsto (fun c => Enclosing.ptri 1 1 c) (nhds 4) (nhds (25 / 72))
-'Enclosing.p_flat_isosceles' depends on axioms: [propext, Classical.choice, Quot.sound]
-Enclosing.p_thin_right : Filter.Tendsto (fun c => Enclosing.ptri 1 c (1 + c)) (nhdsWithin 0 (Set.Ioi 0)) (nhds (1 / 3))
-'Enclosing.p_thin_right' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.kkt_segment_iff : ∀ {s₁ s₂ s₃ w : ℝ},
+@kkt_segment_iff : ∀ {s₁ s₂ s₃ w : ℝ},
   s₁ < s₂ →
     0 < w →
       ((∃ μ₁ μ₂ μ₃, 0 < μ₁ ∧ 0 < μ₂ ∧ 0 < μ₃ ∧ μ₁ + μ₂ = μ₃ ∧ (μ₁ + μ₂) * w = 1 ∧ μ₁ * s₁ + μ₂ * s₂ + μ₃ * s₃ = 0) ↔
         s₁ < -s₃ ∧ -s₃ < s₂)
 'Enclosing.kkt_segment_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.segment_prob : ∀ {F G : ℝ → ℝ} {α β S K₀ : ℝ},
+@kkt_iff_origin_inside : ∀ {k : ℕ} (h x y z : Fin k → ℝ),
+  (∀ (r : Fin k), 0 < h r) →
+    ((∃ l,
+        (∀ (r : Fin k), 0 < l r) ∧ ∑ r, l r * h r = 1 ∧ ∑ r, l r * x r = 0 ∧ ∑ r, l r * y r = 0 ∧ ∑ r, l r * z r = 0) ↔
+      ∃ w,
+        (∀ (r : Fin k), 0 < w r) ∧
+          ∑ r, w r = 1 ∧ ∑ r, w r * (x r / h r) = 0 ∧ ∑ r, w r * (y r / h r) = 0 ∧ ∑ r, w r * (z r / h r) = 0)
+'Enclosing.kkt_iff_origin_inside' depends on axioms: [propext, Classical.choice, Quot.sound]
+sigma_inner : ∀ (a b x : ℝ), ∫ (s₁ : ℝ) in a..x, ∫ (s₂ : ℝ) in x..b, s₂ - s₁ = 1 / 2 * (x - a) * (b - x) * (b - a)
+'Enclosing.sigma_inner' depends on axioms: [propext, Classical.choice, Quot.sound]
+@segment_prob : ∀ {F G : ℝ → ℝ} {α β S K₀ : ℝ},
   (∀ y ∈ Set.uIcc α β, HasDerivAt F (S * F y) y) →
     (∀ y ∈ Set.uIcc α β, F y * G y = K₀) → F α * G α + ∫ (y : ℝ) in α..β, G y * deriv F y = K₀ * (1 + S * (β - α))
 'Enclosing.segment_prob' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.volume_Preg : ∀ {q : ℕ} [NeZero q],
-  3 ≤ q → MeasureTheory.volume (Enclosing.Preg q) = ENNReal.ofReal (↑q * Real.tan (Real.pi / ↑q))
-'Enclosing.volume_Preg' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.segment_term_full : ∀ {r : ℕ},
-  2 ≤ r →
-    have q := 2 * ↑r;
-    have S := ∑ j ∈ Finset.Ico 1 r, 2 * Real.sin (2 * Real.pi * ↑j / q);
-    (q * ∫ (x : ℝ) in -1..1, ∫ (s₁ : ℝ) in -1..x, ∫ (s₂ : ℝ) in x..1, s₂ - s₁) *
-        ((2 *
-            ∫ (Θ : ℝ),
-              ∫ (t : ℝ) in Set.Ioi |Θ|,
-                Real.exp (-(2 * q * t)) *
-                  (MeasureTheory.volume ((fun C => C.1) '' Enclosing.Rreg (2 * r) t Θ)).toReal) +
-          2 * S *
-            ∫ (Θ : ℝ),
-              ∫ (t : ℝ) in Set.Ioi |Θ|,
-                Real.exp (-(2 * q * t)) * (MeasureTheory.volume (Enclosing.Rreg (2 * r) t Θ)).toReal) =
-      8 / (3 * q ^ 2)
-'Enclosing.segment_term_full' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.V_regular_full : ∀ {q : ℕ} [NeZero q],
-  3 ≤ q →
-    ∫ (Θ : ℝ),
-        ∫ (t : ℝ) in Set.Ioi |Θ|, Real.exp (-(2 * ↑q * t)) * (MeasureTheory.volume (Enclosing.Rreg q t Θ)).toReal =
-      ↑q * Real.tan (Real.pi / ↑q) / (4 * ↑q ^ 4)
-'Enclosing.V_regular_full' depends on axioms: [propext, Classical.choice, Quot.sound]
-Enclosing.Tnd_square : 1 / 24 * ∑ k, ∫ (σ : Fin 4 → ℝ), Enclosing.integrand k σ ∂Enclosing.mu4 = 64 / 3
-'Enclosing.Tnd_square' depends on axioms: [propext, Classical.choice, Quot.sound]
-Enclosing.p_square : (∫ (Θ : ℝ),
-        ∫ (t : ℝ) in Set.Ioi |Θ|, Real.exp (-(2 * ↑4 * t)) * (MeasureTheory.volume (Enclosing.Rreg 4 t Θ)).toReal) *
-      (1 / 24 * ∑ k, ∫ (σ : Fin 4 → ℝ), Enclosing.integrand k σ ∂Enclosing.mu4) +
-    (4 * ∫ (x : ℝ) in -1..1, ∫ (s₁ : ℝ) in -1..x, ∫ (s₂ : ℝ) in x..1, s₂ - s₁) *
-      ((2 *
-          ∫ (Θ : ℝ),
-            ∫ (t : ℝ) in Set.Ioi |Θ|,
-              Real.exp (-(2 * 4 * t)) * (MeasureTheory.volume ((fun C => C.1) '' Enclosing.Rreg 4 t Θ)).toReal) +
-        (2 * ∑ j ∈ Finset.Ico 1 2, 2 * Real.sin (2 * Real.pi * ↑j / 4)) *
-          ∫ (Θ : ℝ),
-            ∫ (t : ℝ) in Set.Ioi |Θ|, Real.exp (-(2 * 4 * t)) * (MeasureTheory.volume (Enclosing.Rreg 4 t Θ)).toReal) =
-  1 / 4
-'Enclosing.p_square' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.segment_event_prob : ∀ {Ω : Type u_1} [inst : MeasurableSpace Ω] {P : MeasureTheory.Measure Ω}
+@law_restrict_eq : ∀ {Ω : Type u_1} [inst : MeasurableSpace Ω] {P : MeasureTheory.Measure Ω}
+  [MeasureTheory.IsProbabilityMeasure P] {ℓ : Ω → ℝ},
+  Measurable ℓ →
+    ∀ {α β : ℝ},
+      α ≤ β →
+        ∀ {F F' : ℝ → ℝ},
+          (∀ y ∈ Set.Icc α β, P.real {ω | ℓ ω ≤ y} = F y) →
+            ContinuousOn F (Set.Icc α β) →
+              (∀ y ∈ Set.Ioo α β, HasDerivAt F (F' y) y) →
+                Continuous F' →
+                  (∀ y ∈ Set.Icc α β, 0 ≤ F' y) →
+                    (MeasureTheory.Measure.map ℓ P).restrict (Set.Ioc α β) =
+                      (MeasureTheory.volume.restrict (Set.Ioc α β)).withDensity fun y => ENNReal.ofReal (F' y)
+'Enclosing.law_restrict_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+@segment_event_prob : ∀ {Ω : Type u_1} [inst : MeasurableSpace Ω] {P : MeasureTheory.Measure Ω}
   [MeasureTheory.IsProbabilityMeasure P] {ℓ r : Ω → ℝ},
   Measurable ℓ →
     Measurable r →
@@ -147,7 +85,7 @@ Enclosing.p_square : (∫ (Θ : ℝ),
                         (∀ y ∈ Set.Icc α β, 0 ≤ F' y) →
                           P.real {ω | ℓ ω ≤ β ∧ α ≤ r ω ∧ ℓ ω ≤ r ω} = F α * G α + ∫ (y : ℝ) in α..β, G y * F' y
 'Enclosing.segment_event_prob' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.segment_event_closed : ∀ {Ω : Type u_1} [inst : MeasurableSpace Ω] {P : MeasureTheory.Measure Ω}
+@segment_event_closed : ∀ {Ω : Type u_1} [inst : MeasurableSpace Ω] {P : MeasureTheory.Measure Ω}
   [MeasureTheory.IsProbabilityMeasure P] {ℓ r : Ω → ℝ},
   Measurable ℓ →
     Measurable r →
@@ -165,334 +103,484 @@ Enclosing.p_square : (∫ (Θ : ℝ),
                             (∀ y ∈ Set.Icc α β, F' y = S * F y) →
                               P.real {ω | ℓ ω ≤ β ∧ α ≤ r ω ∧ ℓ ω ≤ r ω} = K₀ * (1 + S * (β - α))
 'Enclosing.segment_event_closed' depends on axioms: [propext, Classical.choice, Quot.sound]
-Enclosing.vertex_event : ∀ (ε h a b C₁ Θ : ℝ),
-  (ε * h + C₁ < min (Θ * a) (Θ * b) →
-      ∀ᶠ (n : ℕ) in Filter.atTop,
-        ∀ e ∈ {a, b}, (1 + ε / ↑n) * (h * Real.cos (Θ / ↑n) - e * Real.sin (Θ / ↑n)) + C₁ / ↑n < h) ∧
-    (min (Θ * a) (Θ * b) < ε * h + C₁ →
-      ∀ᶠ (n : ℕ) in Filter.atTop,
-        ∃ e ∈ {a, b}, h < (1 + ε / ↑n) * (h * Real.cos (Θ / ↑n) - e * Real.sin (Θ / ↑n)) + C₁ / ↑n)
-'Enclosing.vertex_event' depends on axioms: [propext, Classical.choice, Quot.sound]
-Enclosing.point_limit : ∀ (ε h s D C₁ C₂ Θ : ℝ),
-  Filter.Tendsto
-    (fun n =>
-      ↑n *
-        ((1 + ε / ↑n) * h + (C₁ / ↑n * Real.cos (Θ / ↑n) + C₂ / ↑n * Real.sin (Θ / ↑n)) -
-          ((h - D / ↑n) * Real.cos (Θ / ↑n) + s * Real.sin (Θ / ↑n))))
-    Filter.atTop (nhds (ε * h + C₁ - Θ * s + D))
-'Enclosing.point_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.model_void : ∀ {m : ℕ} (K : Enclosing.Sides m) (T : ℝ) (z : Enclosing.Copy),
-  (∀ (i : Fin m), Enclosing.Hs K z i ≤ min (z.2.2 * K.a i) (z.2.2 * K.b i)) →
-    (∀ (i : Fin m), ∀ s ∈ Set.Icc (K.a i) (K.b i), z.2.2 * s - Enclosing.Hs K z i ≤ T) →
-      (PoissonPP.prob (Enclosing.Λ K T) fun μ => Enclosing.Feasible K μ z) = ENNReal.ofReal (Real.exp (2 * z.1))
-'Enclosing.model_void' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.vertex_unique : ∀ {m : ℕ} (K : Enclosing.Sides m) (x : Fin 4 → Enclosing.Pt m) (l : Fin 4 → ℝ),
-  (∀ (r : Fin 4), 0 < l r) →
-    (∀ (c : Fin 4), ∑ r, l r * Enclosing.row K (x r) c = if c = 0 then 1 else 0) →
-      (Matrix.of fun r => Enclosing.row K (x r)).det ≠ 0 →
-        ∀ (zs : Enclosing.Copy),
-          (∀ (r : Fin 4), Enclosing.gx K zs (x r) = 0) →
-            ∀ (z : Enclosing.Copy),
-              (∀ (r : Fin 4), 0 ≤ Enclosing.gx K z (x r)) → z.1 = zs.1 → Enclosing.zvec z = Enclosing.zvec zs
-'Enclosing.vertex_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
-@PoissonPP.law_prob : ∀ {α : Type u_1} [inst : MeasurableSpace α] (Λ : MeasureTheory.Measure α) (E : Multiset α → Prop),
-  (∀ (n : ℕ), MeasurableSet {x | E (PoissonPP.config x)}) →
-    (PoissonPP.law Λ) {ω | E (PoissonPP.config ω.snd)} = PoissonPP.prob Λ E
-'PoissonPP.law_prob' depends on axioms: [propext, Classical.choice, Quot.sound]
-@PoissonPP.void_sigma_independent : ∀ {α : Type u_1} [inst : MeasurableSpace α] (Λ : MeasureTheory.Measure α)
-  [MeasureTheory.IsFiniteMeasure Λ] {B C : Set α},
-  Disjoint B C →
-    ProbabilityTheory.Indep (MeasurableSpace.generateFrom (PoissonPP.voidFamily B))
-      (MeasurableSpace.generateFrom (PoissonPP.voidFamily C)) (PoissonPP.law Λ)
-'PoissonPP.void_sigma_independent' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.vertex_count_factor : ∀ {m : ℕ} (K : Enclosing.Sides m) (T : ℝ),
-  1 / 24 * Enclosing.vertexOrderedCount K T =
-    Enclosing.vertexDensity K * ∫⁻ (z : Fin 4 → ℝ), Enclosing.fitWeightBelow K T z
+scale_tilt : ∀ (k : ℕ) {q : ℝ},
+  0 < q →
+    ∫ (Θ : ℝ), ∫ (t : ℝ) in Set.Ioi |Θ|, Real.exp (-(2 * q * t)) * (t - |Θ|) ^ k =
+      ↑k.factorial / (q * (2 * q) ^ (k + 1))
+'Enclosing.scale_tilt' depends on axioms: [propext, Classical.choice, Quot.sound]
+@S_regular : ∀ {r : ℕ},
+  1 ≤ r →
+    ∑ j ∈ Finset.Ico 1 r, 2 * Real.sin (2 * Real.pi * ↑j / (2 * ↑r)) =
+      2 * (Real.cos (Real.pi / (2 * ↑r)) / Real.sin (Real.pi / (2 * ↑r)))
+'Enclosing.S_regular' depends on axioms: [propext, Classical.choice, Quot.sound]
+R_eq_smul : ∀ (q : ℕ) {t Θ : ℝ}, |Θ| < t → Rreg q t Θ = (t - |Θ|) • Preg q
+'Enclosing.R_eq_smul' depends on axioms: [propext, Classical.choice, Quot.sound]
+volume_R : ∀ (q : ℕ) {t Θ : ℝ},
+  |Θ| < t → MeasureTheory.volume (Rreg q t Θ) = ENNReal.ofReal ((t - |Θ|) ^ 2) * MeasureTheory.volume (Preg q)
+'Enclosing.volume_R' depends on axioms: [propext, Classical.choice, Quot.sound]
+@width_R : ∀ {r : ℕ}, 0 < r → ∀ (t Θ : ℝ), (fun C => C.1) '' Rreg (2 * r) t Θ = Set.Icc (-(t - |Θ|)) (t - |Θ|)
+'Enclosing.width_R' depends on axioms: [propext, Classical.choice, Quot.sound]
+V_regular : ∀ (q : ℕ),
+  0 < q →
+    ∫ (Θ : ℝ), ∫ (t : ℝ) in Set.Ioi |Θ|, Real.exp (-(2 * ↑q * t)) * (MeasureTheory.volume (Rreg q t Θ)).toReal =
+      (MeasureTheory.volume (Preg q)).toReal / (4 * ↑q ^ 4)
+'Enclosing.V_regular' depends on axioms: [propext, Classical.choice, Quot.sound]
+@segment_term_regular : ∀ {r : ℕ},
+  2 ≤ r →
+    have q := 2 * ↑r;
+    have S := ∑ j ∈ Finset.Ico 1 r, 2 * Real.sin (2 * Real.pi * ↑j / q);
+    have areaP := q * Real.tan (Real.pi / q);
+    (q * ∫ (x : ℝ) in -1..1, ∫ (s₁ : ℝ) in -1..x, ∫ (s₂ : ℝ) in x..1, s₂ - s₁) *
+        (2 * (2 * ∫ (Θ : ℝ), ∫ (t : ℝ) in Set.Ioi |Θ|, Real.exp (-(2 * q * t)) * (t - |Θ|) ^ 1) +
+          2 * S * areaP * ∫ (Θ : ℝ), ∫ (t : ℝ) in Set.Ioi |Θ|, Real.exp (-(2 * q * t)) * (t - |Θ|) ^ 2) =
+      8 / (3 * q ^ 2)
+'Enclosing.segment_term_regular' depends on axioms: [propext, Classical.choice, Quot.sound]
+@segment_term_measure : ∀ {r : ℕ},
+  2 ≤ r →
+    (MeasureTheory.volume (Preg (2 * r))).toReal = 2 * ↑r * Real.tan (Real.pi / (2 * ↑r)) →
+      have q := 2 * ↑r;
+      have S := ∑ j ∈ Finset.Ico 1 r, 2 * Real.sin (2 * Real.pi * ↑j / q);
+      (q * ∫ (x : ℝ) in -1..1, ∫ (s₁ : ℝ) in -1..x, ∫ (s₂ : ℝ) in x..1, s₂ - s₁) *
+          ((2 *
+              ∫ (Θ : ℝ),
+                ∫ (t : ℝ) in Set.Ioi |Θ|,
+                  Real.exp (-(2 * q * t)) * (MeasureTheory.volume ((fun C => C.1) '' Rreg (2 * r) t Θ)).toReal) +
+            2 * S *
+              ∫ (Θ : ℝ),
+                ∫ (t : ℝ) in Set.Ioi |Θ|, Real.exp (-(2 * q * t)) * (MeasureTheory.volume (Rreg (2 * r) t Θ)).toReal) =
+        8 / (3 * q ^ 2)
+'Enclosing.segment_term_measure' depends on axioms: [propext, Classical.choice, Quot.sound]
+segment_term_square : (4 * ∫ (x : ℝ) in -1..1, ∫ (s₁ : ℝ) in -1..x, ∫ (s₂ : ℝ) in x..1, s₂ - s₁) *
+    ((2 *
+        ∫ (Θ : ℝ),
+          ∫ (t : ℝ) in Set.Ioi |Θ|,
+            Real.exp (-(2 * 4 * t)) * (MeasureTheory.volume ((fun C => C.1) '' Rreg 4 t Θ)).toReal) +
+      (2 * ∑ j ∈ Finset.Ico 1 2, 2 * Real.sin (2 * Real.pi * ↑j / 4)) *
+        ∫ (Θ : ℝ), ∫ (t : ℝ) in Set.Ioi |Θ|, Real.exp (-(2 * 4 * t)) * (MeasureTheory.volume (Rreg 4 t Θ)).toReal) =
+  1 / 6
+'Enclosing.segment_term_square' depends on axioms: [propext, Classical.choice, Quot.sound]
+@volume_Preg : ∀ {q : ℕ} [NeZero q],
+  3 ≤ q → MeasureTheory.volume (Preg q) = ENNReal.ofReal (↑q * Real.tan (Real.pi / ↑q))
+'Enclosing.volume_Preg' depends on axioms: [propext, Classical.choice, Quot.sound]
+@segment_term_full : ∀ {r : ℕ},
+  2 ≤ r →
+    have q := 2 * ↑r;
+    have S := ∑ j ∈ Finset.Ico 1 r, 2 * Real.sin (2 * Real.pi * ↑j / q);
+    (q * ∫ (x : ℝ) in -1..1, ∫ (s₁ : ℝ) in -1..x, ∫ (s₂ : ℝ) in x..1, s₂ - s₁) *
+        ((2 *
+            ∫ (Θ : ℝ),
+              ∫ (t : ℝ) in Set.Ioi |Θ|,
+                Real.exp (-(2 * q * t)) * (MeasureTheory.volume ((fun C => C.1) '' Rreg (2 * r) t Θ)).toReal) +
+          2 * S *
+            ∫ (Θ : ℝ),
+              ∫ (t : ℝ) in Set.Ioi |Θ|, Real.exp (-(2 * q * t)) * (MeasureTheory.volume (Rreg (2 * r) t Θ)).toReal) =
+      8 / (3 * q ^ 2)
+'Enclosing.segment_term_full' depends on axioms: [propext, Classical.choice, Quot.sound]
+@V_regular_full : ∀ {q : ℕ} [NeZero q],
+  3 ≤ q →
+    ∫ (Θ : ℝ), ∫ (t : ℝ) in Set.Ioi |Θ|, Real.exp (-(2 * ↑q * t)) * (MeasureTheory.volume (Rreg q t Θ)).toReal =
+      ↑q * Real.tan (Real.pi / ↑q) / (4 * ↑q ^ 4)
+'Enclosing.V_regular_full' depends on axioms: [propext, Classical.choice, Quot.sound]
+@integrand_zero_of_not_bij : ∀ {k : Fin 4 → Fin 4}, ¬Function.Bijective k → ∀ (σ : Fin 4 → ℝ), integrand k σ = 0
+'Enclosing.integrand_zero_of_not_bij' depends on axioms: [propext, Classical.choice, Quot.sound]
+integrand_perm : ∀ (e : Equiv.Perm (Fin 4)) (σ : Fin 4 → ℝ), integrand (⇑e) σ = integrand id (σ ∘ ⇑(Equiv.symm e))
+'Enclosing.integrand_perm' depends on axioms: [propext, Classical.choice, Quot.sound]
+det_id : ∀ (σ : Fin 4 → ℝ), (Amat id σ).det = 2 * (σ 0 + σ 2 - (σ 1 + σ 3))
+'Enclosing.det_id' depends on axioms: [propext, Classical.choice, Quot.sound]
+KKT_id_iff : ∀ (σ : Fin 4 → ℝ), KKT id σ ↔ (σ 0 + σ 2) * (σ 1 + σ 3) < 0 ∨ σ 0 + σ 2 = 0 ∧ σ 1 + σ 3 = 0
+'Enclosing.KKT_id_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+integral_id : ∫ (σ : Fin 4 → ℝ), integrand id σ ∂mu4 = 64 / 3
+'Enclosing.integral_id' depends on axioms: [propext, Classical.choice, Quot.sound]
+Tnd_square : 1 / 24 * ∑ k, ∫ (σ : Fin 4 → ℝ), integrand k σ ∂mu4 = 64 / 3
+'Enclosing.Tnd_square' depends on axioms: [propext, Classical.choice, Quot.sound]
+p_square : (∫ (Θ : ℝ),
+        ∫ (t : ℝ) in Set.Ioi |Θ|, Real.exp (-(2 * ↑4 * t)) * (MeasureTheory.volume (Rreg 4 t Θ)).toReal) *
+      (1 / 24 * ∑ k, ∫ (σ : Fin 4 → ℝ), integrand k σ ∂mu4) +
+    (4 * ∫ (x : ℝ) in -1..1, ∫ (s₁ : ℝ) in -1..x, ∫ (s₂ : ℝ) in x..1, s₂ - s₁) *
+      ((2 *
+          ∫ (Θ : ℝ),
+            ∫ (t : ℝ) in Set.Ioi |Θ|,
+              Real.exp (-(2 * 4 * t)) * (MeasureTheory.volume ((fun C => C.1) '' Rreg 4 t Θ)).toReal) +
+        (2 * ∑ j ∈ Finset.Ico 1 2, 2 * Real.sin (2 * Real.pi * ↑j / 4)) *
+          ∫ (Θ : ℝ), ∫ (t : ℝ) in Set.Ioi |Θ|, Real.exp (-(2 * 4 * t)) * (MeasureTheory.volume (Rreg 4 t Θ)).toReal) =
+  1 / 4
+'Enclosing.p_square' depends on axioms: [propext, Classical.choice, Quot.sound]
+@theta_height : ∀ {L₁ L₂ L₃ a₁ a₂ a₃ Q : ℝ},
+  0 < L₁ →
+    0 < L₂ →
+      0 < L₃ →
+        0 < Q →
+          L₁ * a₁ + L₂ * a₂ + L₃ * a₃ = -Q →
+            ∫ (Θ : ℝ) in Set.Ioi 0,
+                ((∫ (H : ℝ) in Set.Iic (Θ * a₁), Real.exp (L₁ * H)) *
+                    ∫ (H : ℝ) in Set.Iic (Θ * a₂), Real.exp (L₂ * H)) *
+                  ∫ (H : ℝ) in Set.Iic (Θ * a₃), Real.exp (L₃ * H) =
+              1 / (Q * L₁ * L₂ * L₃)
+'Enclosing.theta_height' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Ik_eq : ∀ {Li Lj Lk mi mj mk : ℝ},
+  0 < Li →
+    0 < Lj →
+      0 < Lk →
+        Li * mi + Lj * mj + Lk * mk = 0 →
+          Lk / 2 *
+              ∫ (si : ℝ) in mi - Li / 2..mi + Li / 2,
+                ∫ (sj : ℝ) in mj - Lj / 2..mj + Lj / 2,
+                  max 0 ((-(Li * si + Lj * sj) / Lk - (mk - Lk / 2)) * (mk + Lk / 2 - -(Li * si + Lj * sj) / Lk)) =
+            Li * Lj * Lk * Lk ^ 2 * gfun (Li ^ 2 / Lk ^ 2) (Lj ^ 2 / Lk ^ 2) / 8
+'Enclosing.Ik_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+@p_from_Ik : ∀ {L₁ L₂ L₃ : ℝ},
+  0 < L₁ →
+    0 < L₂ →
+      0 < L₃ →
+        have I₁ := L₂ * L₃ * L₁ * L₁ ^ 2 * gfun (L₂ ^ 2 / L₁ ^ 2) (L₃ ^ 2 / L₁ ^ 2) / 8;
+        have I₂ := L₁ * L₃ * L₂ * L₂ ^ 2 * gfun (L₁ ^ 2 / L₂ ^ 2) (L₃ ^ 2 / L₂ ^ 2) / 8;
+        have I₃ := L₁ * L₂ * L₃ * L₃ ^ 2 * gfun (L₁ ^ 2 / L₃ ^ 2) (L₂ ^ 2 / L₃ ^ 2) / 8;
+        have Q := (L₁ ^ 2 + L₂ ^ 2 + L₃ ^ 2) / 2;
+        2 * (I₁ + I₂ + I₃) / (Q * L₁ * L₂ * L₃) = ptri (L₁ ^ 2) (L₂ ^ 2) (L₃ ^ 2)
+'Enclosing.p_from_Ik' depends on axioms: [propext, Classical.choice, Quot.sound]
+@g_closed : ∀ {α β : ℝ}, 0 < α → 0 < β → gfun α β = (Phi (α + β) - Phi (α - β)) / (2 * α * β)
+'Enclosing.g_closed' depends on axioms: [propext, Classical.choice, Quot.sound]
+@g_small : ∀ {α β : ℝ}, 0 < α → 0 < β → α + β ≤ 1 → gfun α β = 1 - (α ^ 2 + β ^ 2) / 3
+'Enclosing.g_small' depends on axioms: [propext, Classical.choice, Quot.sound]
+p_equilateral : ptri 1 1 1 = 13 / 48
+'Enclosing.p_equilateral' depends on axioms: [propext, Classical.choice, Quot.sound]
+p_right_isosceles : ptri 1 1 2 = 7 / 24
+'Enclosing.p_right_isosceles' depends on axioms: [propext, Classical.choice, Quot.sound]
+p_30_60_90 : ptri 1 3 4 = 29 / 96
+'Enclosing.p_30_60_90' depends on axioms: [propext, Classical.choice, Quot.sound]
+p_flat_isosceles : Filter.Tendsto (fun c => ptri 1 1 c) (nhds 4) (nhds (25 / 72))
+'Enclosing.p_flat_isosceles' depends on axioms: [propext, Classical.choice, Quot.sound]
+p_needle : Filter.Tendsto (fun c => ptri 1 1 c) (nhdsWithin 0 (Set.Ioi 0)) (nhds (1 / 3))
+'Enclosing.p_needle' depends on axioms: [propext, Classical.choice, Quot.sound]
+p_thin_right : Filter.Tendsto (fun c => ptri 1 c (1 + c)) (nhdsWithin 0 (Set.Ioi 0)) (nhds (1 / 3))
+'Enclosing.p_thin_right' depends on axioms: [propext, Classical.choice, Quot.sound]
+@vertex_mecke : ∀ {m : ℕ} (K : Sides m) (T : ℝ),
+  vertexOrderedCount K T =
+    ∫⁻ (x : Fin 4 → Pt m),
+      {x | VertexGood K T x}.indicator (fun x => ENNReal.ofReal (Real.exp (2 * (vertexCopy K x).1)))
+        x ∂MeasureTheory.Measure.pi fun x => Λ K T
+'Enclosing.vertex_mecke' depends on axioms: [propext, Classical.choice, Quot.sound]
+lintegral_depths : ∀ (A : Matrix (Fin 4) (Fin 4) ℝ),
+  A.det ≠ 0 →
+    ∀ (f : (Fin 4 → ℝ) → ENNReal),
+      Measurable f → ∫⁻ (D : Fin 4 → ℝ), f (A⁻¹.mulVec (-D)) = ENNReal.ofReal |A.det| * ∫⁻ (z : Fin 4 → ℝ), f z
+'Enclosing.lintegral_depths' depends on axioms: [propext, Classical.choice, Quot.sound]
+@vertex_count_factor : ∀ {m : ℕ} (K : Sides m) (T : ℝ),
+  1 / 24 * vertexOrderedCount K T = vertexDensity K * ∫⁻ (z : Fin 4 → ℝ), fitWeightBelow K T z
 'Enclosing.vertex_count_factor' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.vertex_count_limit : ∀ {m : ℕ} (K : Enclosing.Sides m),
-  Filter.Tendsto (fun n => 1 / 24 * Enclosing.vertexOrderedCount K ↑n) Filter.atTop
-    (nhds (Enclosing.vertexDensity K * ∫⁻ (z : Fin 4 → ℝ), Enclosing.fitWeight K z))
+@vertex_count_limit : ∀ {m : ℕ} (K : Sides m),
+  Filter.Tendsto (fun n => 1 / 24 * vertexOrderedCount K ↑n) Filter.atTop
+    (nhds (vertexDensity K * ∫⁻ (z : Fin 4 → ℝ), fitWeight K z))
 'Enclosing.vertex_count_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.model_void_mask : ∀ {m : ℕ} (K : Enclosing.Sides m) (J : Finset (Fin m)) (T : ℝ) (z : Enclosing.Copy),
-  Enclosing.Fits K z →
-    Enclosing.Below K T z →
-      (PoissonPP.law (Enclosing.Λ K T)) (PoissonPP.voidEvent (Enclosing.maskedVz K J z)) =
-        ENNReal.ofReal (Real.exp (-Enclosing.maskedVoidArea K J z))
+@model_void_mask : ∀ {m : ℕ} (K : Sides m) (J : Finset (Fin m)) (T : ℝ) (z : Copy),
+  Fits K z →
+    Below K T z →
+      (PoissonPP.law (Λ K T)) (PoissonPP.voidEvent (maskedVz K J z)) = ENNReal.ofReal (Real.exp (-maskedVoidArea K J z))
 'Enclosing.model_void_mask' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.segment_groups_independent : ∀ {m : ℕ} (K : Enclosing.Sides m) (T : ℝ) (t : ℝ × ℝ),
-  ProbabilityTheory.Indep
-    (MeasurableSpace.generateFrom (PoissonPP.voidFamily (Enclosing.sideRegion (Enclosing.positiveSides K t))))
-    (MeasurableSpace.generateFrom (PoissonPP.voidFamily (Enclosing.sideRegion (Enclosing.negativeSides K t))))
-    (PoissonPP.law (Enclosing.Λ K T))
+@segment_groups_independent : ∀ {m : ℕ} (K : Sides m) (T : ℝ) (t : ℝ × ℝ),
+  ProbabilityTheory.Indep (MeasurableSpace.generateFrom (PoissonPP.voidFamily (sideRegion (positiveSides K t))))
+    (MeasurableSpace.generateFrom (PoissonPP.voidFamily (sideRegion (negativeSides K t)))) (PoissonPP.law (Λ K T))
 'Enclosing.segment_groups_independent' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.maskVoidFn_deriv : ∀ {m : ℕ} (K : Enclosing.Sides m) (J : Finset (Fin m)) (z : Enclosing.Copy) (t : ℝ × ℝ)
-  (y : ℝ),
-  HasDerivAt (Enclosing.maskVoidFn K J z t)
-    ((∑ i ∈ J, (K.b i - K.a i) * Enclosing.dot (K.u i) t) * Enclosing.maskVoidFn K J z t y) y
+@maskVoidFn_deriv : ∀ {m : ℕ} (K : Sides m) (J : Finset (Fin m)) (z : Copy) (t : ℝ × ℝ) (y : ℝ),
+  HasDerivAt (maskVoidFn K J z t) ((∑ i ∈ J, (K.b i - K.a i) * dot (K.u i) t) * maskVoidFn K J z t y) y
 'Enclosing.maskVoidFn_deriv' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.badExtra_prob_zero : ∀ {m : ℕ} (K : Enclosing.Sides m) {k : ℕ}
-  (c : (Fin k → Enclosing.Pt m) → Enclosing.Copy),
-  Measurable c → ∀ (T : ℝ), (PoissonPP.law (Enclosing.Λ K T)) {ω | Enclosing.BadExtra K c ω} = 0
+@badExtra_prob_zero : ∀ {m : ℕ} (K : Sides m) {k : ℕ} (c : (Fin k → Pt m) → Copy),
+  Measurable c → ∀ (T : ℝ), (PoissonPP.law (Λ K T)) {ω | BadExtra K c ω} = 0
 'Enclosing.badExtra_prob_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.no_extra_tight_vertex : ∀ {m : ℕ} (K : Enclosing.Sides m) (T : ℝ),
-  (PoissonPP.law (Enclosing.Λ K T)) {ω | Enclosing.BadExtra K (Enclosing.vertexCopy K) ω} = 0
+@no_extra_tight_vertex : ∀ {m : ℕ} (K : Sides m) (T : ℝ), (PoissonPP.law (Λ K T)) {ω | BadExtra K (vertexCopy K) ω} = 0
 'Enclosing.no_extra_tight_vertex' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.vertex_candidate_prob : ∀ {m : ℕ} (K : Enclosing.Sides m) (T : ℝ),
-  (PoissonPP.law (Enclosing.Λ K T)) {ω | Enclosing.HasVertexCandidate K T ω} = 1 / 24 * Enclosing.vertexOrderedCount K T
+@vertex_candidate_prob : ∀ {m : ℕ} (K : Sides m) (T : ℝ),
+  (PoissonPP.law (Λ K T)) {ω | HasVertexCandidate K T ω} = 1 / 24 * vertexOrderedCount K T
 'Enclosing.vertex_candidate_prob' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.vertex_candidate_prob_factor : ∀ {m : ℕ} (K : Enclosing.Sides m) (T : ℝ),
-  (PoissonPP.law (Enclosing.Λ K T)) {ω | Enclosing.HasVertexCandidate K T ω} =
-    Enclosing.vertexDensity K * ∫⁻ (z : Fin 4 → ℝ), Enclosing.fitWeightBelow K T z
+@vertex_candidate_prob_factor : ∀ {m : ℕ} (K : Sides m) (T : ℝ),
+  (PoissonPP.law (Λ K T)) {ω | HasVertexCandidate K T ω} = vertexDensity K * ∫⁻ (z : Fin 4 → ℝ), fitWeightBelow K T z
 'Enclosing.vertex_candidate_prob_factor' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.vertex_candidate_prob_limit : ∀ {m : ℕ} (K : Enclosing.Sides m),
-  Filter.Tendsto (fun n => (PoissonPP.law (Enclosing.Λ K ↑n)) {ω | Enclosing.HasVertexCandidate K (↑n) ω}) Filter.atTop
-    (nhds (Enclosing.vertexDensity K * ∫⁻ (z : Fin 4 → ℝ), Enclosing.fitWeight K z))
+@vertex_candidate_prob_limit : ∀ {m : ℕ} (K : Sides m),
+  Filter.Tendsto (fun n => (PoissonPP.law (Λ K ↑n)) {ω | HasVertexCandidate K (↑n) ω}) Filter.atTop
+    (nhds (vertexDensity K * ∫⁻ (z : Fin 4 → ℝ), fitWeight K z))
 'Enclosing.vertex_candidate_prob_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.vertex_candidate_unique_optimum : ∀ {m : ℕ} (K : Enclosing.Sides m) (T : ℝ)
-  (ω : PoissonPP.Sample (Enclosing.Pt m)),
-  Enclosing.HasVertexCandidate K T ω →
+@vertex_candidate_unique_optimum : ∀ {m : ℕ} (K : Sides m) (T : ℝ) (ω : PoissonPP.Sample (Pt m)),
+  HasVertexCandidate K T ω →
     ∃ z,
-      Enclosing.Fits K z ∧
-        Enclosing.Below K T z ∧
-          Enclosing.Feasible K (PoissonPP.config ω.snd) z ∧
-            ∀ (z' : Enclosing.Copy),
-              Enclosing.Feasible K (PoissonPP.config ω.snd) z' → z.1 ≤ z'.1 ∧ (z'.1 = z.1 → z' = z)
+      Fits K z ∧
+        Below K T z ∧
+          Feasible K (PoissonPP.config ω.snd) z ∧
+            ∀ (z' : Copy), Feasible K (PoissonPP.config ω.snd) z' → z.1 ≤ z'.1 ∧ (z'.1 = z.1 → z' = z)
 'Enclosing.vertex_candidate_unique_optimum' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.segment_bounds_independent : ∀ {m : ℕ} (K : Enclosing.Sides m) (T : ℝ) (z : Enclosing.Copy) (t : ℝ × ℝ)
-  (floor ceiling : ℝ),
-  ProbabilityTheory.IndepFun (Enclosing.segmentLower K z t floor) (Enclosing.segmentUpper K z t ceiling)
-    (PoissonPP.law (Enclosing.Λ K T))
+@segment_bounds_independent : ∀ {m : ℕ} (K : Sides m) (T : ℝ) (z : Copy) (t : ℝ × ℝ) (floor ceiling : ℝ),
+  ProbabilityTheory.IndepFun (segmentLower K z t floor) (segmentUpper K z t ceiling) (PoissonPP.law (Λ K T))
 'Enclosing.segment_bounds_independent' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.segmentLower_cdf : ∀ {m : ℕ} (K : Enclosing.Sides m) (T : ℝ) (z : Enclosing.Copy) (t : ℝ × ℝ) (floor y : ℝ),
+@segmentLower_cdf : ∀ {m : ℕ} (K : Sides m) (T : ℝ) (z : Copy) (t : ℝ × ℝ) (floor y : ℝ),
   floor ≤ y →
-    Enclosing.Fits K (Enclosing.chordCopy z t y) →
-      Enclosing.Below K T (Enclosing.chordCopy z t y) →
-        (PoissonPP.law (Enclosing.Λ K T)).real {ω | Enclosing.segmentLower K z t floor ω ≤ y} =
-          Enclosing.maskVoidFn K (Enclosing.positiveSides K t) z t y
+    Fits K (chordCopy z t y) →
+      Below K T (chordCopy z t y) →
+        (PoissonPP.law (Λ K T)).real {ω | segmentLower K z t floor ω ≤ y} = maskVoidFn K (positiveSides K t) z t y
 'Enclosing.segmentLower_cdf' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.segmentUpper_survival : ∀ {m : ℕ} (K : Enclosing.Sides m) (T : ℝ) (z : Enclosing.Copy) (t : ℝ × ℝ)
-  (ceiling y : ℝ),
+@segmentUpper_survival : ∀ {m : ℕ} (K : Sides m) (T : ℝ) (z : Copy) (t : ℝ × ℝ) (ceiling y : ℝ),
   y ≤ ceiling →
-    Enclosing.Fits K (Enclosing.chordCopy z t y) →
-      Enclosing.Below K T (Enclosing.chordCopy z t y) →
-        (PoissonPP.law (Enclosing.Λ K T)).real {ω | y ≤ Enclosing.segmentUpper K z t ceiling ω} =
-          Enclosing.maskVoidFn K (Enclosing.negativeSides K t) z t y
+    Fits K (chordCopy z t y) →
+      Below K T (chordCopy z t y) →
+        (PoissonPP.law (Λ K T)).real {ω | y ≤ segmentUpper K z t ceiling ω} = maskVoidFn K (negativeSides K t) z t y
 'Enclosing.segmentUpper_survival' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.segment_bounds_event_prob : ∀ {m : ℕ} (K : Enclosing.Sides m) (T : ℝ) (z : Enclosing.Copy) (t : ℝ × ℝ)
-  (α β : ℝ),
+@segment_bounds_event_prob : ∀ {m : ℕ} (K : Sides m) (T : ℝ) (z : Copy) (t : ℝ × ℝ) (α β : ℝ),
   α ≤ β →
-    (∀ y ∈ Set.Icc α β, Enclosing.Fits K (Enclosing.chordCopy z t y)) →
-      (∀ y ∈ Set.Icc α β, Enclosing.Below K T (Enclosing.chordCopy z t y)) →
-        (PoissonPP.law (Enclosing.Λ K T)).real
+    (∀ y ∈ Set.Icc α β, Fits K (chordCopy z t y)) →
+      (∀ y ∈ Set.Icc α β, Below K T (chordCopy z t y)) →
+        (PoissonPP.law (Λ K T)).real
             {ω |
-              Enclosing.segmentLower K z t (α - 1) ω ≤ β ∧
-                α ≤ Enclosing.segmentUpper K z t (β + 1) ω ∧
-                  Enclosing.segmentLower K z t (α - 1) ω ≤ Enclosing.segmentUpper K z t (β + 1) ω} =
-          Real.exp
-              (-Enclosing.maskedVoidArea K (Enclosing.positiveSides K t) z -
-                Enclosing.maskedVoidArea K (Enclosing.negativeSides K t) z) *
-            (1 + (∑ i ∈ Enclosing.positiveSides K t, (K.b i - K.a i) * Enclosing.dot (K.u i) t) * (β - α))
+              segmentLower K z t (α - 1) ω ≤ β ∧
+                α ≤ segmentUpper K z t (β + 1) ω ∧ segmentLower K z t (α - 1) ω ≤ segmentUpper K z t (β + 1) ω} =
+          Real.exp (-maskedVoidArea K (positiveSides K t) z - maskedVoidArea K (negativeSides K t) z) *
+            (1 + (∑ i ∈ positiveSides K t, (K.b i - K.a i) * dot (K.u i) t) * (β - α))
 'Enclosing.segment_bounds_event_prob' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.chord_feasible_prob : ∀ {m : ℕ} (K : Enclosing.Sides m) (T : ℝ) (z : Enclosing.Copy) (t : ℝ × ℝ) (α β : ℝ),
+@chord_feasible_prob : ∀ {m : ℕ} (K : Sides m) (T : ℝ) (z : Copy) (t : ℝ × ℝ) (α β : ℝ),
   α ≤ β →
-    (∀ y ∈ Set.Icc α β, Enclosing.Fits K (Enclosing.chordCopy z t y)) →
-      (∀ y ∈ Set.Icc α β, Enclosing.Below K T (Enclosing.chordCopy z t y)) →
-        (PoissonPP.law (Enclosing.Λ K T)).real
-            {ω | ∃ y ∈ Set.Icc α β, Enclosing.Feasible K (PoissonPP.config ω.snd) (Enclosing.chordCopy z t y)} =
-          Real.exp (2 * z.1) *
-            (1 + (∑ i ∈ Enclosing.positiveSides K t, (K.b i - K.a i) * Enclosing.dot (K.u i) t) * (β - α))
+    (∀ y ∈ Set.Icc α β, Fits K (chordCopy z t y)) →
+      (∀ y ∈ Set.Icc α β, Below K T (chordCopy z t y)) →
+        (PoissonPP.law (Λ K T)).real {ω | ∃ y ∈ Set.Icc α β, Feasible K (PoissonPP.config ω.snd) (chordCopy z t y)} =
+          Real.exp (2 * z.1) * (1 + (∑ i ∈ positiveSides K t, (K.b i - K.a i) * dot (K.u i) t) * (β - α))
 'Enclosing.chord_feasible_prob' depends on axioms: [propext, Classical.choice, Quot.sound]
-Enclosing.segment_lintegral_depths : ∀ (h₁ h₂ s₁ s₂ s₃ : ℝ),
+segment_lintegral_depths : ∀ (h₁ h₂ s₁ s₂ s₃ : ℝ),
   s₁ < s₂ →
     0 < h₁ + h₂ →
       ∀ (f : (Fin 3 → ℝ) → ENNReal),
         Measurable f →
-          ∫⁻ (D : Fin 3 → ℝ), f ((Enclosing.segmentMatrix h₁ h₂ s₁ s₂ s₃)⁻¹.mulVec (-D)) =
+          ∫⁻ (D : Fin 3 → ℝ), f ((segmentMatrix h₁ h₂ s₁ s₂ s₃)⁻¹.mulVec (-D)) =
             ENNReal.ofReal ((s₂ - s₁) * (h₁ + h₂)) * ∫⁻ (z : Fin 3 → ℝ), f z
 'Enclosing.segment_lintegral_depths' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.fit_integral_eq_spatial : ∀ {m : ℕ} (K : Enclosing.Sides m),
-  ∫⁻ (v : Fin 4 → ℝ), Enclosing.fitWeight K v = Enclosing.spatialVertexIntegral K
+@fit_integral_eq_spatial : ∀ {m : ℕ} (K : Sides m), ∫⁻ (v : Fin 4 → ℝ), fitWeight K v = spatialVertexIntegral K
 'Enclosing.fit_integral_eq_spatial' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.vertexDensity_eq_cone : ∀ {m : ℕ} (K : Enclosing.Sides m),
-  Enclosing.vertexDensity K = Enclosing.coneVertexDensity K
+@vertexDensity_eq_cone : ∀ {m : ℕ} (K : Sides m), vertexDensity K = coneVertexDensity K
 'Enclosing.vertexDensity_eq_cone' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.vertex_candidate_formula_limit : ∀ {m : ℕ} (K : Enclosing.Sides m),
-  Filter.Tendsto (fun n => (PoissonPP.law (Enclosing.Λ K ↑n)) {ω | Enclosing.HasVertexCandidate K (↑n) ω}) Filter.atTop
-    (nhds (Enclosing.spatialVertexIntegral K * Enclosing.coneVertexDensity K))
+@vertex_candidate_formula_limit : ∀ {m : ℕ} (K : Sides m),
+  Filter.Tendsto (fun n => (PoissonPP.law (Λ K ↑n)) {ω | HasVertexCandidate K (↑n) ω}) Filter.atTop
+    (nhds (spatialVertexIntegral K * coneVertexDensity K))
 'Enclosing.vertex_candidate_formula_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
-Enclosing.square_vertex_candidate_limit : Filter.Tendsto
-  (fun n =>
-    (PoissonPP.law (Enclosing.Λ Enclosing.squareSides ↑n))
-      {ω | Enclosing.HasVertexCandidate Enclosing.squareSides (↑n) ω})
-  Filter.atTop (nhds (ENNReal.ofReal (1 / 12)))
+spatial_square : spatialVertexIntegral squareSides = ENNReal.ofReal (1 / 4)
+'Enclosing.spatial_square' depends on axioms: [propext, Classical.choice, Quot.sound]
+cone_square : coneVertexDensity squareSides = ENNReal.ofReal (1 / 3)
+'Enclosing.cone_square' depends on axioms: [propext, Classical.choice, Quot.sound]
+square_vertex_candidate_limit : Filter.Tendsto
+  (fun n => (PoissonPP.law (Λ squareSides ↑n)) {ω | HasVertexCandidate squareSides (↑n) ω}) Filter.atTop
+  (nhds (ENNReal.ofReal (1 / 12)))
 'Enclosing.square_vertex_candidate_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.exists_affine_iff : ∀ {ι : Type u_1} [Fintype ι] (a b : ι → ℝ),
-  (∃ c, ∀ (j : ι), a j * c ≤ b j) ↔
-    (∀ (j : ι), a j = 0 → 0 ≤ b j) ∧ ∀ (j j' : ι), 0 < a j → a j' < 0 → b j' / a j' ≤ b j / a j
-'Enclosing.exists_affine_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.seg_certificate : ∀ {m : ℕ} {K : Enclosing.Sides m} {k kb : Fin m},
-  Enclosing.ParPair K k kb →
-    ∀ {x : Fin 3 → Enclosing.Pt m},
-      Enclosing.SegGood k kb x →
-        ∃ μ,
-          (∀ (r : Fin 3), 0 < μ r) ∧
-            ∀ (z : Enclosing.Copy), ∑ r, μ r * Enclosing.gx K z (x r) = z.1 + ∑ r, μ r * (x r).2.2
+@seg_certificate : ∀ {m : ℕ} {K : Sides m} {k kb : Fin m},
+  ParPair K k kb →
+    ∀ {x : Fin 3 → Pt m},
+      SegGood k kb x →
+        ∃ μ, (∀ (r : Fin 3), 0 < μ r) ∧ ∀ (z : Copy), ∑ r, μ r * gx K z (x r) = z.1 + ∑ r, μ r * (x r).2.2
 'Enclosing.seg_certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.segCand_unique : ∀ {m : ℕ} {K : Enclosing.Sides m} {k kb : Fin m},
-  Enclosing.ParPair K k kb →
-    ∀ {n : ℕ} (T : ℝ) (y : Fin n → Enclosing.Pt m),
-      ¬Enclosing.BadExtra K (Enclosing.segBase K k kb) ⟨n, y⟩ →
-        ∀ (i j : Fin 3 ↪ Fin n), Enclosing.SegCand K k kb T y i → Enclosing.SegCand K k kb T y j → i = j
+@segCand_unique : ∀ {m : ℕ} {K : Sides m} {k kb : Fin m},
+  ParPair K k kb →
+    ∀ {n : ℕ} (T : ℝ) (y : Fin n → Pt m),
+      ¬BadExtra K (segBase K k kb) ⟨n, y⟩ → ∀ (i j : Fin 3 ↪ Fin n), SegCand K k kb T y i → SegCand K k kb T y j → i = j
 'Enclosing.segCand_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.segOrderedCount_eq_law : ∀ {m : ℕ} {K : Enclosing.Sides m} {k kb : Fin m},
-  Enclosing.ParPair K k kb →
-    ∀ (T : ℝ),
-      Enclosing.segOrderedCount K k kb T = (PoissonPP.law (Enclosing.Λ K T)) {ω | Enclosing.HasSegCand K k kb T ω}
+@segOrderedCount_eq_law : ∀ {m : ℕ} {K : Sides m} {k kb : Fin m},
+  ParPair K k kb → ∀ (T : ℝ), segOrderedCount K k kb T = (PoissonPP.law (Λ K T)) {ω | HasSegCand K k kb T ω}
 'Enclosing.segOrderedCount_eq_law' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.chord_prob : ∀ {m : ℕ} {K : Enclosing.Sides m} {k kb : Fin m},
-  Enclosing.ParPair K k kb →
+@chord_prob : ∀ {m : ℕ} {K : Sides m} {k kb : Fin m},
+  ParPair K k kb →
     ∀ (T : ℝ) (v : Fin 3 → ℝ),
-      (PoissonPP.law (Enclosing.Λ K T))
-          {ω |
-            ∃ c ∈ Enclosing.chordSet K k T v,
-              Enclosing.Feasible K (PoissonPP.config ω.snd) (Enclosing.segCopy K k v c)} =
-        Enclosing.chordWeight K k T v
+      (PoissonPP.law (Λ K T)) {ω | ∃ c ∈ chordSet K k T v, Feasible K (PoissonPP.config ω.snd) (segCopy K k v c)} =
+        chordWeight K k T v
 'Enclosing.chord_prob' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.seg_count_factor : ∀ {m : ℕ} {K : Enclosing.Sides m} {k kb : Fin m},
-  Enclosing.ParPair K k kb →
+@seg_count_factor : ∀ {m : ℕ} {K : Sides m} {k kb : Fin m},
+  ParPair K k kb →
     ∀ (T : ℝ),
-      (PoissonPP.law (Enclosing.Λ K T)) {ω | Enclosing.HasSegCand K k kb T ω} =
-        Enclosing.segDensity K k kb * ∫⁻ (v : Fin 3 → ℝ), Enclosing.chordWeight K k T v
+      (PoissonPP.law (Λ K T)) {ω | HasSegCand K k kb T ω} = segDensity K k kb * ∫⁻ (v : Fin 3 → ℝ), chordWeight K k T v
 'Enclosing.seg_count_factor' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.seg_candidate_limit : ∀ {m : ℕ} {K : Enclosing.Sides m} {k kb : Fin m},
-  Enclosing.ParPair K k kb →
-    Filter.Tendsto (fun n => (PoissonPP.law (Enclosing.Λ K ↑n)) {ω | Enclosing.HasSegCand K k kb (↑n) ω}) Filter.atTop
-      (nhds (Enclosing.segDensity K k kb * ∫⁻ (v : Fin 3 → ℝ), Enclosing.chordWeightInf K k v))
+@seg_candidate_limit : ∀ {m : ℕ} {K : Sides m} {k kb : Fin m},
+  ParPair K k kb →
+    Filter.Tendsto (fun n => (PoissonPP.law (Λ K ↑n)) {ω | HasSegCand K k kb (↑n) ω}) Filter.atTop
+      (nhds (segDensity K k kb * ∫⁻ (v : Fin 3 → ℝ), chordWeightInf K k v))
 'Enclosing.seg_candidate_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
-Enclosing.segDensity_square : ∀ (k kb : Fin 4),
-  Enclosing.segDensity Enclosing.squareSides k kb = ENNReal.ofReal (1 / 12)
+segDensity_square : ∀ (k kb : Fin 4), segDensity squareSides k kb = ENNReal.ofReal (1 / 12)
 'Enclosing.segDensity_square' depends on axioms: [propext, Classical.choice, Quot.sound]
-Enclosing.chordInf_square : ∀ (k : Fin 4),
-  ∫⁻ (v : Fin 3 → ℝ), Enclosing.chordWeightInf Enclosing.squareSides k v = ENNReal.ofReal (1 / 2)
+chordInf_square : ∀ (k : Fin 4), ∫⁻ (v : Fin 3 → ℝ), chordWeightInf squareSides k v = ENNReal.ofReal (1 / 2)
 'Enclosing.chordInf_square' depends on axioms: [propext, Classical.choice, Quot.sound]
-Enclosing.square_seg_candidate_limit : ∀ (k : Fin 4),
-  Filter.Tendsto
-    (fun n =>
-      (PoissonPP.law (Enclosing.Λ Enclosing.squareSides ↑n))
-        {ω | Enclosing.HasSegCand Enclosing.squareSides k (k + 2) (↑n) ω})
+square_seg_candidate_limit : ∀ (k : Fin 4),
+  Filter.Tendsto (fun n => (PoissonPP.law (Λ squareSides ↑n)) {ω | HasSegCand squareSides k (k + 2) (↑n) ω})
     Filter.atTop (nhds (ENNReal.ofReal (1 / 24)))
 'Enclosing.square_seg_candidate_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
-Enclosing.square_candidates_limit : Filter.Tendsto
+square_candidates_limit : Filter.Tendsto
   (fun n =>
-    (PoissonPP.law (Enclosing.Λ Enclosing.squareSides ↑n))
-        {ω | Enclosing.HasVertexCandidate Enclosing.squareSides (↑n) ω} +
-      ∑ k,
-        (PoissonPP.law (Enclosing.Λ Enclosing.squareSides ↑n))
-          {ω | Enclosing.HasSegCand Enclosing.squareSides k (k + 2) (↑n) ω})
+    (PoissonPP.law (Λ squareSides ↑n)) {ω | HasVertexCandidate squareSides (↑n) ω} +
+      ∑ k, (PoissonPP.law (Λ squareSides ↑n)) {ω | HasSegCand squareSides k (k + 2) (↑n) ω})
   Filter.atTop (nhds (ENNReal.ofReal (1 / 4)))
 'Enclosing.square_candidates_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
-@LPDual.farkas : ∀ {d : ℕ} {ι : Type u_1} [inst : Fintype ι] (v : ι → Fin d → ℝ),
-  ∀ e ∉ LPDual.cone v, ∃ y, (∀ (i : ι), 0 ≤ v i ⬝ᵥ y) ∧ e ⬝ᵥ y < 0
-'LPDual.farkas' depends on axioms: [propext, Classical.choice, Quot.sound]
 @LPDual.lp_kkt : ∀ {d : ℕ} {ι : Type u_1} [Fintype ι] (r : ι → Fin d → ℝ) (b : ι → ℝ) (e z : Fin d → ℝ),
   (∀ (i : ι), b i ≤ r i ⬝ᵥ z) →
     (∀ (z' : Fin d → ℝ), (∀ (i : ι), b i ≤ r i ⬝ᵥ z') → e ⬝ᵥ z ≤ e ⬝ᵥ z') →
       ∃ t μ,
         (∀ i ∈ t, r i ⬝ᵥ z = b i) ∧ (∀ i ∈ t, 0 < μ i) ∧ (LinearIndependent ℝ fun i => r ↑i) ∧ e = ∑ i ∈ t, μ i • r i
 'LPDual.lp_kkt' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.badP_prob_zero : ∀ {m : ℕ} (K : Enclosing.Sides m) {k : ℕ}
-  {P : (Fin k → Enclosing.Pt m) → Enclosing.Pt m → Prop},
-  MeasurableSet {q | P q.1 q.2} →
-    ∀ (T : ℝ),
-      (∀ (x : Fin k → Enclosing.Pt m), (Enclosing.Λ K T) {p | P x p} = 0) →
-        (PoissonPP.law (Enclosing.Λ K T)) {ω | Enclosing.BadP P ω} = 0
-'Enclosing.badP_prob_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
-Enclosing.square_classify : ∀ (T : ℝ) (ω : PoissonPP.Sample (Enclosing.Pt 4)),
-  Enclosing.OptFit Enclosing.squareSides T ω →
-    Enclosing.HasVertexCandidate Enclosing.squareSides T ω ∨
-      (∃ k, Enclosing.HasSegCand Enclosing.squareSides k (k + 2) T ω) ∨ Enclosing.BadP Enclosing.OppP ω
+@optimum_kkt : ∀ {m : ℕ} (K : Sides m) {n : ℕ} (y : Fin n → Pt m) (z : Copy),
+  Feasible K (PoissonPP.config y) z →
+    (∀ (z' : Copy), Feasible K (PoissonPP.config y) z' → z.1 ≤ z'.1) →
+      ∃ t μ,
+        (∀ i ∈ t, gx K z (y i) = 0) ∧
+          (∀ i ∈ t, 0 < μ i) ∧ (LinearIndependent ℝ fun i => row K (y ↑i)) ∧ Pi.single 0 1 = ∑ i ∈ t, μ i • row K (y i)
+'Enclosing.optimum_kkt' depends on axioms: [propext, Classical.choice, Quot.sound]
+@square_support : ∀ {ι : Type u_1} [inst : DecidableEq ι] {p : ι → Pt 4} {t : Finset ι} {μ : ι → ℝ},
+  (∀ i ∈ t, 0 < μ i) →
+    (LinearIndependent ℝ fun i => row squareSides (p ↑i)) →
+      Pi.single 0 1 = ∑ i ∈ t, μ i • row squareSides (p i) →
+        (∀ (j : Fin 4), (onSide p t j).card = 1) ∨
+          (∃ j a b c,
+              t = {a, b, c} ∧
+                a ≠ b ∧
+                  (p a).1 = j ∧
+                    (p b).1 = j ∧
+                      (p c).1 = j + 2 ∧
+                        (p a).2.1 < (p b).2.1 ∧
+                          0 < μ a ∧
+                            0 < μ b ∧
+                              0 < μ c ∧
+                                μ a + μ b = μ c ∧
+                                  (μ a + μ b) * (squareSides.h j + squareSides.h (j + 2)) = 1 ∧
+                                    μ a * (p a).2.1 + μ b * (p b).2.1 + μ c * (p c).2.1 = 0) ∨
+            ∃ a ∈ t, ∃ b ∈ t, (p b).1 = (p a).1 + 2 ∧ (p a).2.1 + (p b).2.1 = 0
+'Enclosing.square_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+square_classify : ∀ (T : ℝ) (ω : PoissonPP.Sample (Pt 4)),
+  OptFit squareSides T ω →
+    HasVertexCandidate squareSides T ω ∨ (∃ k, HasSegCand squareSides k (k + 2) T ω) ∨ BadP OppP ω
 'Enclosing.square_classify' depends on axioms: [propext, Classical.choice, Quot.sound]
-Enclosing.square_optFit_prob : ∀ (T : ℝ),
-  (PoissonPP.law (Enclosing.Λ Enclosing.squareSides T)) {ω | Enclosing.OptFit Enclosing.squareSides T ω} =
-    (PoissonPP.law (Enclosing.Λ Enclosing.squareSides T)) {ω | Enclosing.HasVertexCandidate Enclosing.squareSides T ω} +
-      ∑ k,
-        (PoissonPP.law (Enclosing.Λ Enclosing.squareSides T))
-          {ω | Enclosing.HasSegCand Enclosing.squareSides k (k + 2) T ω}
+square_optFit_prob : ∀ (T : ℝ),
+  (PoissonPP.law (Λ squareSides T)) {ω | OptFit squareSides T ω} =
+    (PoissonPP.law (Λ squareSides T)) {ω | HasVertexCandidate squareSides T ω} +
+      ∑ k, (PoissonPP.law (Λ squareSides T)) {ω | HasSegCand squareSides k (k + 2) T ω}
 'Enclosing.square_optFit_prob' depends on axioms: [propext, Classical.choice, Quot.sound]
-Enclosing.square_optFit_limit : Filter.Tendsto
-  (fun n => (PoissonPP.law (Enclosing.Λ Enclosing.squareSides ↑n)) {ω | Enclosing.OptFit Enclosing.squareSides (↑n) ω})
+square_optFit_limit : Filter.Tendsto (fun n => (PoissonPP.law (Λ squareSides ↑n)) {ω | OptFit squareSides (↑n) ω})
   Filter.atTop (nhds (ENNReal.ofReal (1 / 4)))
 'Enclosing.square_optFit_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.general_classify : ∀ {m : ℕ} {K : Enclosing.Sides m},
-  Enclosing.GoodSides K →
-    ∀ (T : ℝ) (ω : PoissonPP.Sample (Enclosing.Pt m)),
-      Enclosing.OptFit K T ω →
-        Enclosing.HasVertexCandidate K T ω ∨
-          (∃ k kb, K.u kb = -K.u k ∧ Enclosing.HasSegCand K k kb T ω) ∨
-            Enclosing.BadP (Enclosing.Opp2 K) ω ∨ Enclosing.BadP (Enclosing.Tri3 K) ω
+@general_support : ∀ {m : ℕ} {K : Sides m},
+  GoodSides K →
+    ∀ {n : ℕ} (y : Fin n → Pt m) (t : Finset (Fin n)) (μ : Fin n → ℝ),
+      (∀ i ∈ t, 0 < μ i) →
+        (LinearIndependent ℝ fun i => row K (y ↑i)) →
+          Pi.single 0 1 = ∑ i ∈ t, μ i • row K (y i) →
+            t.card ≤ 3 →
+              (∃ k kb a b c,
+                  K.u kb = -K.u k ∧
+                    t = {a, b, c} ∧
+                      a ≠ b ∧
+                        (y a).1 = k ∧ (y b).1 = k ∧ (y c).1 = kb ∧ (y a).2.1 < -(y c).2.1 ∧ -(y c).2.1 < (y b).2.1) ∨
+                (∃ a ∈ t, ∃ b ∈ t, a ≠ b ∧ Opp2 K (fun x => y a) (y b)) ∨
+                  ∃ a ∈ t, ∃ b ∈ t, ∃ c ∈ t, a ≠ b ∧ a ≠ c ∧ b ≠ c ∧ Tri3 K ![y a, y b] (y c)
+'Enclosing.general_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+@general_classify : ∀ {m : ℕ} {K : Sides m},
+  GoodSides K →
+    ∀ (T : ℝ) (ω : PoissonPP.Sample (Pt m)),
+      OptFit K T ω →
+        HasVertexCandidate K T ω ∨ (∃ k kb, K.u kb = -K.u k ∧ HasSegCand K k kb T ω) ∨ BadP (Opp2 K) ω ∨ BadP (Tri3 K) ω
 'Enclosing.general_classify' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.general_optFit_prob : ∀ {m : ℕ} {K : Enclosing.Sides m},
-  Enclosing.GoodSides K →
+@general_optFit_prob : ∀ {m : ℕ} {K : Sides m},
+  GoodSides K →
     ∀ (T : ℝ),
-      (PoissonPP.law (Enclosing.Λ K T)) {ω | Enclosing.OptFit K T ω} =
-        (PoissonPP.law (Enclosing.Λ K T)) {ω | Enclosing.HasVertexCandidate K T ω} +
-          ∑ p ∈ Enclosing.parPairs K, (PoissonPP.law (Enclosing.Λ K T)) {ω | Enclosing.HasSegCand K p.1 p.2 T ω}
+      (PoissonPP.law (Λ K T)) {ω | OptFit K T ω} =
+        (PoissonPP.law (Λ K T)) {ω | HasVertexCandidate K T ω} +
+          ∑ p ∈ parPairs K, (PoissonPP.law (Λ K T)) {ω | HasSegCand K p.1 p.2 T ω}
 'Enclosing.general_optFit_prob' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.general_optFit_limit : ∀ {m : ℕ} {K : Enclosing.Sides m},
-  Enclosing.GoodSides K →
-    Filter.Tendsto (fun n => (PoissonPP.law (Enclosing.Λ K ↑n)) {ω | Enclosing.OptFit K (↑n) ω}) Filter.atTop
+@general_optFit_limit : ∀ {m : ℕ} {K : Sides m},
+  GoodSides K →
+    Filter.Tendsto (fun n => (PoissonPP.law (Λ K ↑n)) {ω | OptFit K (↑n) ω}) Filter.atTop
       (nhds
-        (Enclosing.spatialVertexIntegral K * Enclosing.coneVertexDensity K +
-          ∑ p ∈ Enclosing.parPairs K,
-            Enclosing.segDensity K p.1 p.2 * ∫⁻ (v : Fin 3 → ℝ), Enclosing.chordWeightInf K p.1 v))
+        (spatialVertexIntegral K * coneVertexDensity K +
+          ∑ p ∈ parPairs K, segDensity K p.1 p.2 * ∫⁻ (v : Fin 3 → ℝ), chordWeightInf K p.1 v))
 'Enclosing.general_optFit_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
-Enclosing.squareGood : Enclosing.GoodSides Enclosing.squareSides
+squareGood : GoodSides squareSides
 'Enclosing.squareGood' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.fit_integral_triangle : ∀ {K : Enclosing.Sides 3},
-  Enclosing.GoodSides K →
-    ∫⁻ (v : Fin 4 → ℝ), Enclosing.fitWeight K v =
-      ENNReal.ofReal |Enclosing.D3 K|⁻¹ *
-        ENNReal.ofReal (2 / (Enclosing.Qtri K * (Enclosing.sideL K 0 * Enclosing.sideL K 1 * Enclosing.sideL K 2)))
+@parPairs_tri : ∀ {K : Sides 3}, GoodSides K → parPairs K = ∅
+'Enclosing.parPairs_tri' depends on axioms: [propext, Classical.choice, Quot.sound]
+@fit_integral_triangle : ∀ {K : Sides 3},
+  GoodSides K →
+    ∫⁻ (v : Fin 4 → ℝ), fitWeight K v =
+      ENNReal.ofReal |D3 K|⁻¹ * ENNReal.ofReal (2 / (Qtri K * (sideL K 0 * sideL K 1 * sideL K 2)))
 'Enclosing.fit_integral_triangle' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.cone_triangle : ∀ {K : Enclosing.Sides 3},
-  Enclosing.GoodSides K →
-    have L₁ := Enclosing.sideL K 0;
-    have L₂ := Enclosing.sideL K 1;
-    have L₃ := Enclosing.sideL K 2;
-    Enclosing.coneVertexDensity K =
+@coneTerm_perm : ∀ {K : Sides 3} (κ : Fin 4 → Fin 3) (e : Equiv.Perm (Fin 4)), coneTerm K (κ ∘ ⇑e) = coneTerm K κ
+'Enclosing.coneTerm_perm' depends on axioms: [propext, Classical.choice, Quot.sound]
+@coneTerm_missing : ∀ {K : Sides 3},
+  GoodSides K → ∀ {κ : Fin 4 → Fin 3} {j : Fin 3}, (∀ (r : Fin 4), κ r ≠ j) → coneTerm K κ = 0
+'Enclosing.coneTerm_missing' depends on axioms: [propext, Classical.choice, Quot.sound]
+card_class : ∀ (k : Fin 3), {κ | sideCount κ = sideCount (canon k)}.card = 12
+'Enclosing.card_class' depends on axioms: [propext, Classical.choice, Quot.sound]
+@cone_canon_iff : ∀ {K : Sides 3},
+  GoodSides K →
+    ∀ {k i j : Fin 3},
+      Triple k i j →
+        ∀ (s : Fin 4 → ℝ),
+          s 0 ≠ s 1 →
+            (vertexConeCondition K ![k, k, i, j] s ↔
+              min (s 0) (s 1) < xpos K k i j (s 2) (s 3) ∧ xpos K k i j (s 2) (s 3) < max (s 0) (s 1))
+'Enclosing.cone_canon_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+@inner_pair : ∀ {a b : ℝ},
+  a < b →
+    ∀ (x : ℝ),
+      ∫⁻ (q₁ : ℝ) (q₂ : ℝ) in Set.Icc a b, ENNReal.ofReal ((betweenSet x).indicator (fun q => |q.2 - q.1|) (q₁, q₂)) =
+        ENNReal.ofReal ((b - a) * max 0 ((x - a) * (b - x)))
+'Enclosing.inner_pair' depends on axioms: [propext, Classical.choice, Quot.sound]
+@coneTerm_canon : ∀ {K : Sides 3},
+  GoodSides K →
+    ∀ {k i j : Fin 3},
+      Triple k i j →
+        (∀ (s : Fin 4 → ℝ), |(vertexMatrix K (pointsOf ![k, k, i, j] s 0)).det| = |s 1 - s 0| * |D3 K|) →
+          coneTerm K ![k, k, i, j] =
+            ENNReal.ofReal |D3 K| *
+              ENNReal.ofReal
+                (sideL K k *
+                  ∫ (si : ℝ) in K.a i..K.b i,
+                    ∫ (sj : ℝ) in K.a j..K.b j, max 0 ((xpos K k i j si sj - K.a k) * (K.b k - xpos K k i j si sj)))
+'Enclosing.coneTerm_canon' depends on axioms: [propext, Classical.choice, Quot.sound]
+@cone_triangle : ∀ {K : Sides 3},
+  GoodSides K →
+    have L₁ := sideL K 0;
+    have L₂ := sideL K 1;
+    have L₃ := sideL K 2;
+    coneVertexDensity K =
       ENNReal.ofReal
-        (|Enclosing.D3 K| *
-          (L₂ * L₃ * L₁ * L₁ ^ 2 * Enclosing.gfun (L₂ ^ 2 / L₁ ^ 2) (L₃ ^ 2 / L₁ ^ 2) / 8 +
-              L₁ * L₃ * L₂ * L₂ ^ 2 * Enclosing.gfun (L₁ ^ 2 / L₂ ^ 2) (L₃ ^ 2 / L₂ ^ 2) / 8 +
-            L₁ * L₂ * L₃ * L₃ ^ 2 * Enclosing.gfun (L₁ ^ 2 / L₃ ^ 2) (L₂ ^ 2 / L₃ ^ 2) / 8))
+        (|D3 K| *
+          (L₂ * L₃ * L₁ * L₁ ^ 2 * gfun (L₂ ^ 2 / L₁ ^ 2) (L₃ ^ 2 / L₁ ^ 2) / 8 +
+              L₁ * L₃ * L₂ * L₂ ^ 2 * gfun (L₁ ^ 2 / L₂ ^ 2) (L₃ ^ 2 / L₂ ^ 2) / 8 +
+            L₁ * L₂ * L₃ * L₃ ^ 2 * gfun (L₁ ^ 2 / L₃ ^ 2) (L₂ ^ 2 / L₃ ^ 2) / 8))
 'Enclosing.cone_triangle' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.triangle_optFit_limit : ∀ {K : Enclosing.Sides 3},
-  Enclosing.GoodSides K →
-    Filter.Tendsto (fun n => (PoissonPP.law (Enclosing.Λ K ↑n)) {ω | Enclosing.OptFit K (↑n) ω}) Filter.atTop
-      (nhds
-        (ENNReal.ofReal (Enclosing.ptri (Enclosing.sideL K 0 ^ 2) (Enclosing.sideL K 1 ^ 2) (Enclosing.sideL K 2 ^ 2))))
+@triangle_optFit_limit : ∀ {K : Sides 3},
+  GoodSides K →
+    Filter.Tendsto (fun n => (PoissonPP.law (Λ K ↑n)) {ω | OptFit K (↑n) ω}) Filter.atTop
+      (nhds (ENNReal.ofReal (ptri (sideL K 0 ^ 2) (sideL K 1 ^ 2) (sideL K 2 ^ 2))))
 'Enclosing.triangle_optFit_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
-Enclosing.equilateral_optFit_limit : Filter.Tendsto
-  (fun n => (PoissonPP.law (Enclosing.Λ Enclosing.eqTri ↑n)) {ω | Enclosing.OptFit Enclosing.eqTri (↑n) ω}) Filter.atTop
+equilateral_optFit_limit : Filter.Tendsto (fun n => (PoissonPP.law (Λ eqTri ↑n)) {ω | OptFit eqTri (↑n) ω}) Filter.atTop
   (nhds (ENNReal.ofReal (13 / 48)))
 'Enclosing.equilateral_optFit_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.goodSides_of_convex : ∀ {m : ℕ} [inst : NeZero m] {v : Fin m → ℝ × ℝ} (hm : 3 ≤ m)
-  (hv : Enclosing.ConvexPos v) (harea : Enclosing.area v = 1), Enclosing.GoodSides (Enclosing.sidesOf v hm hv harea)
+@ConvexPos : {m : ℕ} → [NeZero m] → (Fin m → ℝ × ℝ) → Prop
+'Enclosing.ConvexPos' depends on axioms: [propext, Classical.choice, Quot.sound]
+@sidesOf : {m : ℕ} → [inst : NeZero m] → (v : Fin m → ℝ × ℝ) → 3 ≤ m → ConvexPos v → area v = 1 → Sides m
+'Enclosing.sidesOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+@goodSides_of_convex : ∀ {m : ℕ} [inst : NeZero m] {v : Fin m → ℝ × ℝ} (hm : 3 ≤ m) (hv : ConvexPos v)
+  (harea : area v = 1), GoodSides (sidesOf v hm hv harea)
 'Enclosing.goodSides_of_convex' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.convex_optFit_limit : ∀ {m : ℕ} [inst : NeZero m] {v : Fin m → ℝ × ℝ} (hm : 3 ≤ m)
-  (hv : Enclosing.ConvexPos v) (harea : Enclosing.area v = 1),
-  have K := Enclosing.sidesOf v hm hv harea;
-  Filter.Tendsto (fun n => (PoissonPP.law (Enclosing.Λ K ↑n)) {ω | Enclosing.OptFit K (↑n) ω}) Filter.atTop
+@convex_optFit_limit : ∀ {m : ℕ} [inst : NeZero m] {v : Fin m → ℝ × ℝ} (hm : 3 ≤ m) (hv : ConvexPos v)
+  (harea : area v = 1),
+  have K := sidesOf v hm hv harea;
+  Filter.Tendsto (fun n => (PoissonPP.law (Λ K ↑n)) {ω | OptFit K (↑n) ω}) Filter.atTop
     (nhds
-      (Enclosing.spatialVertexIntegral K * Enclosing.coneVertexDensity K +
-        ∑ p ∈ Enclosing.parPairs K,
-          Enclosing.segDensity K p.1 p.2 * ∫⁻ (v : Fin 3 → ℝ), Enclosing.chordWeightInf K p.1 v))
+      (spatialVertexIntegral K * coneVertexDensity K +
+        ∑ p ∈ parPairs K, segDensity K p.1 p.2 * ∫⁻ (v : Fin 3 → ℝ), chordWeightInf K p.1 v))
 'Enclosing.convex_optFit_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.triangle_vertices_optFit_limit : ∀ {w : Fin 3 → ℝ × ℝ} (harea : Enclosing.area w = 1),
-  have K := Enclosing.sidesOf w ⋯ ⋯ harea;
-  Filter.Tendsto (fun n => (PoissonPP.law (Enclosing.Λ K ↑n)) {ω | Enclosing.OptFit K (↑n) ω}) Filter.atTop
-    (nhds (ENNReal.ofReal (Enclosing.ptri (Enclosing.len w 0 ^ 2) (Enclosing.len w 1 ^ 2) (Enclosing.len w 2 ^ 2))))
+@convexPos_triangle : ∀ {w : Fin 3 → ℝ × ℝ}, 0 < area w → ConvexPos w
+'Enclosing.convexPos_triangle' depends on axioms: [propext, Classical.choice, Quot.sound]
+@triangle_vertices_optFit_limit : ∀ {w : Fin 3 → ℝ × ℝ} (harea : area w = 1),
+  have K := sidesOf w ⋯ ⋯ harea;
+  Filter.Tendsto (fun n => (PoissonPP.law (Λ K ↑n)) {ω | OptFit K (↑n) ω}) Filter.atTop
+    (nhds (ENNReal.ofReal (ptri (len w 0 ^ 2) (len w 1 ^ 2) (len w 2 ^ 2))))
 'Enclosing.triangle_vertices_optFit_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+@PoissonPP.superpose : ∀ {α : Type u_1} [inst : MeasurableSpace α] (Λ₁ Λ₂ : MeasureTheory.Measure α)
+  [MeasureTheory.IsFiniteMeasure Λ₁] [MeasureTheory.IsFiniteMeasure Λ₂] {G : Multiset α → ENNReal},
+  PoissonPP.ConfMeas G →
+    ∫⁻ (ω₁ : PoissonPP.Sample α),
+        ∫⁻ (ω₂ : PoissonPP.Sample α),
+          G (PoissonPP.config ω₁.snd + PoissonPP.config ω₂.snd) ∂PoissonPP.law Λ₂ ∂PoissonPP.law Λ₁ =
+      PoissonPP.expect (Λ₁ + Λ₂) G
+'PoissonPP.superpose' depends on axioms: [propext, Classical.choice, Quot.sound]
 @PoissonPP.superpose_fun : ∀ {α : Type u_1} [inst : MeasurableSpace α] (Λ₁ Λ₂ : MeasureTheory.Measure α)
   [MeasureTheory.IsFiniteMeasure Λ₁] [MeasureTheory.IsFiniteMeasure Λ₂] {f : PoissonPP.Sample α → ENNReal},
   PoissonPP.PermInv f →
@@ -508,193 +596,292 @@ Enclosing.equilateral_optFit_limit : Filter.Tendsto
       ∫⁻ (ω : ℕ → PoissonPP.Sample α), f (PoissonPP.concatFin n (PoissonPP.firstSlabs n ω)) ∂PoissonPP.slabLaw Λs =
         ∫⁻ (ω : PoissonPP.Sample α), f ω ∂PoissonPP.law (∑ k, Λs ↑k)
 'PoissonPP.lintegral_firstSlabs' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.untruncated_prob : ∀ {m : ℕ} {K : Enclosing.Sides m} [NeZero m],
-  Enclosing.GoodSides K →
-    (Enclosing.model K) {ω | Enclosing.UFit K ω} =
-      Enclosing.spatialVertexIntegral K * Enclosing.coneVertexDensity K +
-        ∑ p ∈ Enclosing.parPairs K,
-          Enclosing.segDensity K p.1 p.2 * ∫⁻ (v : Fin 3 → ℝ), Enclosing.chordWeightInf K p.1 v
+@model_trunc : ∀ {m : ℕ} (K : Sides m) (n : ℕ) {A : Set (PoissonPP.Sample (Pt m))},
+  MeasurableSet A → LabelFree A → (model K) {ω | trunc n ω ∈ A} = (PoissonPP.law (Λ K ↑n)) A
+'Enclosing.model_trunc' depends on axioms: [propext, Classical.choice, Quot.sound]
+@tilt_bound : ∀ {m : ℕ} (K : Sides m) [NeZero m] (wp wm : Fin m → Pt m),
+  (∀ (i : Fin m), (wp i).1 = i) →
+    (∀ (i : Fin m), (wm i).1 = i) →
+      (∀ (i : Fin m), K.b i - δK K ≤ (wp i).2.1) →
+        (∀ (i : Fin m), (wm i).2.1 ≤ K.a i + δK K) →
+          (∀ (i : Fin m), 0 ≤ (wp i).2.2) →
+            (∀ (i : Fin m), 0 ≤ (wm i).2.2) →
+              ∀ (z : Copy),
+                z.1 ≤ 0 →
+                  (∀ (i : Fin m), ¬violates K z (wp i)) →
+                    (∀ (i : Fin m), ¬violates K z (wm i)) →
+                      |z.2.2| ≤ (2 * ∑ i, Ls K i * ((wp i).2.2 + (wm i).2.2)) / Qs K
+'Enclosing.tilt_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+@stable : ∀ {m : ℕ} {K : Sides m} [NeZero m] {ω : ℕ → PoissonPP.Sample (Pt m)},
+  Good K ω → ∀ᶠ (n : ℕ) in Filter.atTop, OptFit K (↑n) (trunc n ω) ↔ UFit K ω
+'Enclosing.stable' depends on axioms: [propext, Classical.choice, Quot.sound]
+@ae_good : ∀ {m : ℕ} (K : Sides m) [NeZero m], ∀ᵐ (ω : ℕ → PoissonPP.Sample (Pt m)) ∂model K, Good K ω
+'Enclosing.ae_good' depends on axioms: [propext, Classical.choice, Quot.sound]
+@untruncated_prob : ∀ {m : ℕ} {K : Sides m} [NeZero m],
+  GoodSides K →
+    (model K) {ω | UFit K ω} =
+      spatialVertexIntegral K * coneVertexDensity K +
+        ∑ p ∈ parPairs K, segDensity K p.1 p.2 * ∫⁻ (v : Fin 3 → ℝ), chordWeightInf K p.1 v
 'Enclosing.untruncated_prob' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.untruncated_triangle : ∀ {w : Fin 3 → ℝ × ℝ} (harea : Enclosing.area w = 1),
-  have K := Enclosing.sidesOf w ⋯ ⋯ harea;
-  (Enclosing.model K) {ω | Enclosing.UFit K ω} =
-    ENNReal.ofReal (Enclosing.ptri (Enclosing.len w 0 ^ 2) (Enclosing.len w 1 ^ 2) (Enclosing.len w 2 ^ 2))
+@untruncated_triangle : ∀ {w : Fin 3 → ℝ × ℝ} (harea : area w = 1),
+  have K := sidesOf w ⋯ ⋯ harea;
+  (model K) {ω | UFit K ω} = ENNReal.ofReal (ptri (len w 0 ^ 2) (len w 1 ^ 2) (len w 2 ^ 2))
 'Enclosing.untruncated_triangle' depends on axioms: [propext, Classical.choice, Quot.sound]
-Enclosing.untruncated_equilateral : (Enclosing.model Enclosing.eqTri) {ω | Enclosing.UFit Enclosing.eqTri ω} =
-  ENNReal.ofReal (13 / 48)
+untruncated_equilateral : (model eqTri) {ω | UFit eqTri ω} = ENNReal.ofReal (13 / 48)
 'Enclosing.untruncated_equilateral' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.strict_rep : ∀ {m : ℕ} {K : Enclosing.Sides m},
-  Enclosing.GoodSides K →
-    ∀ {n : ℕ} (y : Fin n → Enclosing.Pt m),
-      Enclosing.NonDeg K ⟨n, y⟩ →
-        ∀ (zs : Enclosing.Copy),
-          (∀ (z' : Enclosing.Copy), Enclosing.Feasible K (PoissonPP.config y) z' → zs.1 ≤ z'.1) →
-            (∃ z, Enclosing.Feasible K (PoissonPP.config y) z ∧ z.1 = zs.1 ∧ Enclosing.Fits K z) →
+@optimum_structure : ∀ {m : ℕ} (K : Sides m),
+  GoodSides K →
+    ∀ {n : ℕ} (y : Fin n → Pt m) (z : Copy),
+      Feasible K (PoissonPP.config y) z →
+        (∀ (z' : Copy), Feasible K (PoissonPP.config y) z' → z.1 ≤ z'.1) →
+          (∃ f,
+              (vertexMatrix K (y ∘ ⇑f)).det ≠ 0 ∧
+                (∀ (r : Fin 4), 0 < vertexCert K (y ∘ ⇑f) r) ∧ z = vertexCopy K (y ∘ ⇑f)) ∨
+            (∃ k kb,
+                K.u kb = -K.u k ∧
+                  ∃ g, SegGood k kb (y ∘ ⇑g) ∧ z = segCopy K k (segVec K k kb (y ∘ ⇑g)) (dot z.2.1 (tang K k))) ∨
+              BadP (Opp2 K) ⟨n, y⟩ ∨ BadP (Tri3 K) ⟨n, y⟩
+'Enclosing.optimum_structure' depends on axioms: [propext, Classical.choice, Quot.sound]
+@optimum_tilt_gap : ∀ {m : ℕ} (K : Sides m),
+  GoodSides K →
+    ∀ {n : ℕ} (y : Fin n → Pt m) (z : Copy),
+      Feasible K (PoissonPP.config y) z →
+        (∀ (z' : Copy), Feasible K (PoissonPP.config y) z' → z.1 ≤ z'.1) →
+          ¬BadP (Opp2 K) ⟨n, y⟩ →
+            ¬BadP (Tri3 K) ⟨n, y⟩ →
+              ∃ D ≥ 0, ∀ (z' : Copy), Feasible K (PoissonPP.config y) z' → |z'.2.2 - z.2.2| ≤ D * (z'.1 - z.1)
+'Enclosing.optimum_tilt_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+@nonDeg_ae : ∀ {m : ℕ} {K : Sides m},
+  GoodSides K → ∀ (T : ℝ), ∀ᵐ (ω : PoissonPP.Sample (Pt m)) ∂PoissonPP.law (Λ K T), NonDeg K ω
+'Enclosing.nonDeg_ae' depends on axioms: [propext, Classical.choice, Quot.sound]
+@strict_rep : ∀ {m : ℕ} {K : Sides m},
+  GoodSides K →
+    ∀ {n : ℕ} (y : Fin n → Pt m),
+      NonDeg K ⟨n, y⟩ →
+        ∀ (zs : Copy),
+          (∀ (z' : Copy), Feasible K (PoissonPP.config y) z' → zs.1 ≤ z'.1) →
+            (∃ z, Feasible K (PoissonPP.config y) z ∧ z.1 = zs.1 ∧ Fits K z) →
               ∃ z,
-                Enclosing.Feasible K (PoissonPP.config y) z ∧
-                  z.1 = zs.1 ∧ ∀ (i : Fin m), Enclosing.Hs K z i < min (z.2.2 * K.a i) (z.2.2 * K.b i)
+                Feasible K (PoissonPP.config y) z ∧
+                  z.1 = zs.1 ∧ ∀ (i : Fin m), Hs K z i < min (z.2.2 * K.a i) (z.2.2 * K.b i)
 'Enclosing.strict_rep' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.poisson_stable : ∀ {m : ℕ} (K : Enclosing.Sides m),
-  Enclosing.GoodSides K →
+@measurableSet_optFit : ∀ {X : Type u_1} {Y : Type u_2} [inst : TopologicalSpace X] [inst_1 : MeasurableSpace X]
+  [OpensMeasurableSpace X] [inst_3 : TopologicalSpace Y] {C : Set Y},
+  IsCompact C →
+    ∀ {P : X → Y → Prop},
+      IsClosed {p | P p.1 p.2} →
+        ∀ {Fit : Set Y},
+          IsClosed Fit →
+            ∀ {f : Y → ℝ}, Continuous f → MeasurableSet {x | ∃ z ∈ C, P x z ∧ z ∈ Fit ∧ ∀ y ∈ C, P x y → f z ≤ f y}
+'Enclosing.measurableSet_optFit' depends on axioms: [propext, Classical.choice, Quot.sound]
+@poisson_stable : ∀ {m : ℕ} (K : Sides m),
+  GoodSides K →
     ∀ {M R : ℝ},
       0 ≤ R →
-        (∀ (wp wm : Fin m → Enclosing.Pt m),
-            Enclosing.Wit K wp wm →
+        (∀ (wp wm : Fin m → Pt m),
+            Wit K wp wm →
               (∀ (i : Fin m), (wp i).2.2 ≤ M) →
                 (∀ (i : Fin m), (wm i).2.2 ≤ M) →
-                  ∀ (z : Enclosing.Copy),
+                  ∀ (z : Copy),
                     z.1 ≤ 0 →
-                      (∀ (i : Fin m), ¬Enclosing.violates K z (wp i)) →
-                        (∀ (i : Fin m), ¬Enclosing.violates K z (wm i)) → z ∈ Enclosing.copyBox R) →
+                      (∀ (i : Fin m), ¬violates K z (wp i)) → (∀ (i : Fin m), ¬violates K z (wm i)) → z ∈ copyBox R) →
           ∀ (T : ℝ),
-            ∀ᵐ (ω : PoissonPP.Sample (Enclosing.Pt m)) ∂PoissonPP.law (Enclosing.Λ K T),
-              ∀ᶠ (n : ℕ) in Filter.atTop,
-                Enclosing.EvN K R M n (PoissonPP.config ω.snd) ↔ Enclosing.EvF K R M (PoissonPP.config ω.snd)
+            ∀ᵐ (ω : PoissonPP.Sample (Pt m)) ∂PoissonPP.law (Λ K T),
+              ∀ᶠ (n : ℕ) in Filter.atTop, EvN K R M n (PoissonPP.config ω.snd) ↔ EvF K R M (PoissonPP.config ω.snd)
 'Enclosing.poisson_stable' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.step0 : ∀ {m : ℕ} (K : Enclosing.Sides m) [NeZero m],
-  Enclosing.GoodSides K →
-    MeasureTheory.volume (Enclosing.polygonRegion K) = 1 →
+@evF_iff_optFit : ∀ {m : ℕ} (K : Sides m) [NeZero m] {M R T : ℝ},
+  0 ≤ R →
+    (∀ (wp wm : Fin m → Pt m),
+        Wit K wp wm →
+          (∀ (i : Fin m), (wp i).2.2 ≤ M) →
+            (∀ (i : Fin m), (wm i).2.2 ≤ M) →
+              ∀ (z : Copy),
+                z.1 ≤ 0 →
+                  (∀ (i : Fin m), ¬violates K z (wp i)) → (∀ (i : Fin m), ¬violates K z (wm i)) → z ∈ copyBox R) →
+      T0 K M ≤ T →
+        ∀ (ω : PoissonPP.Sample (Pt m)),
+          (∀ p ∈ PoissonPP.config ω.snd, 0 ≤ p.2.2) →
+            WitEv K M (PoissonPP.config ω.snd) → (EvF K R M (PoissonPP.config ω.snd) ↔ OptFit K T ω)
+'Enclosing.evF_iff_optFit' depends on axioms: [propext, Classical.choice, Quot.sound]
+@witness_fail_le : ∀ {m : ℕ} (K : Sides m) [NeZero m] {M T : ℝ},
+  0 ≤ M →
+    M ≤ T →
+      (PoissonPP.law (Λ K T)) {ω | ¬WitEv K M (PoissonPP.config ω.snd)} ≤
+        ∑ i, 2 * ENNReal.ofReal (Real.exp (-(min (δK K) (Ls K i) * M)))
+'Enclosing.witness_fail_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+@step0 : ∀ {m : ℕ} (K : Sides m) [NeZero m],
+  GoodSides K →
+    MeasureTheory.volume (polygonRegion K) = 1 →
       ∀ {η : ℝ},
         0 < η →
           ∃ β > 0,
             ∀ (l θ : ℝ) (c : ℝ × ℝ),
-              0 < l →
-                l < 1 + β →
-                  Enclosing.polygonRegion K ⊆ Enclosing.simCopy K l θ c → ∃ θ₀, Enclosing.SymAngle K θ₀ ∧ |θ - θ₀| < η
+              0 < l → l < 1 + β → polygonRegion K ⊆ simCopy K l θ c → ∃ θ₀, SymAngle K θ₀ ∧ |θ - θ₀| < η
 'Enclosing.step0' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.trueEv_iff_evN : ∀ {m : ℕ} [inst : NeZero m] (K : Enclosing.Sides m) {M R T η δ r : ℝ} {n : ℕ},
+@step0_sample : ∀ {m : ℕ} (K : Sides m) [NeZero m],
+  GoodSides K →
+    MeasureTheory.volume (polygonRegion K) = 1 →
+      ∀ {η : ℝ},
+        0 < η →
+          ∃ δ > 0,
+            ∀ (S : Set (ℝ × ℝ)),
+              polygonRegion K ⊆ ⋃ s ∈ S, Metric.closedBall s δ →
+                ∀ (l θ : ℝ) (c : ℝ × ℝ), 0 < l → l ≤ 1 → S ⊆ simCopy K l θ c → ∃ θ₀, SymAngle K θ₀ ∧ |θ - θ₀| < η
+'Enclosing.step0_sample' depends on axioms: [propext, Classical.choice, Quot.sound]
+@tangent_param : ∀ {m : ℕ} [NeZero m] (K : Sides m) {q : ℝ},
+  0 < q →
+    ∀ {l : ℝ},
+      0 < l →
+        ∀ {θ : ℝ},
+          |θ| < Real.pi / 2 →
+            ∀ (c : ℝ × ℝ),
+              ∃ z,
+                0 < 1 + q * z.1 ∧
+                  tangentScale q z = l ∧ q * z.2.2 = Real.tan θ ∧ tangentCopyRegion K q z = simCopy K l θ c
+'Enclosing.tangent_param' depends on axioms: [propext, Classical.choice, Quot.sound]
+@trueEv_iff_evN : ∀ {m : ℕ} [inst : NeZero m] (K : Sides m) {M R T η δ r : ℝ} {n : ℕ},
   0 < n →
     1 / ↑n * R < 1 →
       1 / ↑n * R ≤ r →
         η < Real.pi / 2 →
           Real.tan η ≤ r →
-            Real.tan η ≤ Enclosing.Qs K / 4 →
+            Real.tan η ≤ Qs K / 4 →
               (∀ q > 0,
-                  ∀ (z : Enclosing.Copy),
+                  ∀ (z : Copy),
                     0 < 1 + q * z.1 →
-                      |q * z.2.2| ≤ r →
-                        (Enclosing.tangentCopyRegion K q z ⊆ Enclosing.polygonRegion K ↔ Enclosing.TangentFits K q z)) →
-                (∀ (wp wm : Fin m → Enclosing.Pt m),
-                    Enclosing.Wit K wp wm →
+                      |q * z.2.2| ≤ r → (tangentCopyRegion K q z ⊆ polygonRegion K ↔ TangentFits K q z)) →
+                (∀ (wp wm : Fin m → Pt m),
+                    Wit K wp wm →
                       (∀ (i : Fin m), (wp i).2.2 ≤ M) →
                         (∀ (i : Fin m), (wm i).2.2 ≤ M) →
                           ∀ (q : ℝ),
                             0 < q →
                               q ≤ 1 →
-                                ∀ (z : Enclosing.Copy),
-                                  Enclosing.tangentScale q z ≤ 1 →
-                                    |q * z.2.2| ≤ Enclosing.Qs K / 4 →
-                                      (∀ (i : Fin m), ¬Enclosing.violates K z (wp i)) →
-                                        (∀ (i : Fin m), ¬Enclosing.violates K z (wm i)) → z ∈ Enclosing.copyBox R) →
-                  (∀ y ∈ Enclosing.polygonRegion K,
-                      ∀ z ∈ Enclosing.copyBox R,
-                        ∀ (i : Fin m),
-                          z.2.2 * Enclosing.dot y (Enclosing.sideTangent (K.u i)) - Enclosing.Hs K z i ≤ T) →
+                                ∀ (z : Copy),
+                                  tangentScale q z ≤ 1 →
+                                    |q * z.2.2| ≤ Qs K / 4 →
+                                      (∀ (i : Fin m), ¬violates K z (wp i)) →
+                                        (∀ (i : Fin m), ¬violates K z (wm i)) → z ∈ copyBox R) →
+                  (∀ y ∈ polygonRegion K,
+                      ∀ z ∈ copyBox R, ∀ (i : Fin m), z.2.2 * dot y (sideTangent (K.u i)) - Hs K z i ≤ T) →
                     (∀ (S : Set (ℝ × ℝ)),
-                        Enclosing.polygonRegion K ⊆ ⋃ s ∈ S, Metric.closedBall s δ →
+                        polygonRegion K ⊆ ⋃ s ∈ S, Metric.closedBall s δ →
                           ∀ (l θ : ℝ) (c : ℝ × ℝ),
-                            0 < l →
-                              l ≤ 1 → S ⊆ Enclosing.simCopy K l θ c → ∃ θ₀, Enclosing.SymAngle K θ₀ ∧ |θ - θ₀| < η) →
+                            0 < l → l ≤ 1 → S ⊆ simCopy K l θ c → ∃ θ₀, SymAngle K θ₀ ∧ |θ - θ₀| < η) →
                       ∀ {x : Fin n → ℝ × ℝ},
-                        (∀ (j : Fin n), x j ∈ Enclosing.polygonRegion K) →
-                          (∀ (j : Fin n), x j ∉ Enclosing.cornerOverlap K (T / ↑n)) →
-                            Enclosing.WitEv K M (Enclosing.winMarks K T n x) →
-                              Enclosing.polygonRegion K ⊆ ⋃ s ∈ Set.range x, Metric.closedBall s δ →
-                                (Enclosing.TrueEv K x ↔ Enclosing.EvN K R M n (Enclosing.winMarks K T n x))
+                        (∀ (j : Fin n), x j ∈ polygonRegion K) →
+                          (∀ (j : Fin n), x j ∉ cornerOverlap K (T / ↑n)) →
+                            WitEv K M (winMarks K T n x) →
+                              polygonRegion K ⊆ ⋃ s ∈ Set.range x, Metric.closedBall s δ →
+                                (TrueEv K x ↔ EvN K R M n (winMarks K T n x))
 'Enclosing.trueEv_iff_evN' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.theorem1 : ∀ {m : ℕ} [inst : NeZero m] {v : Fin m → ℝ × ℝ} (hm : 3 ≤ m) (hv : Enclosing.ConvexPos v)
-  (harea : Enclosing.area v = 1),
-  have K := Enclosing.sidesOf v hm hv harea;
-  Filter.Tendsto
-    (fun n => (MeasureTheory.Measure.pi fun x => Enclosing.polygonSample v hm hv harea) {x | Enclosing.TrueEv K x})
+@theorem1 : ∀ {m : ℕ} [inst : NeZero m] {v : Fin m → ℝ × ℝ} (hm : 3 ≤ m) (hv : ConvexPos v) (harea : area v = 1),
+  have K := sidesOf v hm hv harea;
+  Filter.Tendsto (fun n => (MeasureTheory.Measure.pi fun x => polygonSample v hm hv harea) {x | TrueEv K x})
     Filter.atTop
     (nhds
-      (Enclosing.spatialVertexIntegral K * Enclosing.coneVertexDensity K +
-        ∑ p ∈ Enclosing.parPairs K,
-          Enclosing.segDensity K p.1 p.2 * ∫⁻ (w : Fin 3 → ℝ), Enclosing.chordWeightInf K p.1 w))
+      (spatialVertexIntegral K * coneVertexDensity K +
+        ∑ p ∈ parPairs K, segDensity K p.1 p.2 * ∫⁻ (w : Fin 3 → ℝ), chordWeightInf K p.1 w))
 'Enclosing.theorem1' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.theorem1_model : ∀ {m : ℕ} [inst : NeZero m] {v : Fin m → ℝ × ℝ} (hm : 3 ≤ m) (hv : Enclosing.ConvexPos v)
-  (harea : Enclosing.area v = 1),
-  have K := Enclosing.sidesOf v hm hv harea;
-  Filter.Tendsto
-    (fun n => (MeasureTheory.Measure.pi fun x => Enclosing.polygonSample v hm hv harea) {x | Enclosing.TrueEv K x})
-    Filter.atTop (nhds ((Enclosing.model K) {ω | Enclosing.UFit K ω}))
+@theorem1_model : ∀ {m : ℕ} [inst : NeZero m] {v : Fin m → ℝ × ℝ} (hm : 3 ≤ m) (hv : ConvexPos v) (harea : area v = 1),
+  have K := sidesOf v hm hv harea;
+  Filter.Tendsto (fun n => (MeasureTheory.Measure.pi fun x => polygonSample v hm hv harea) {x | TrueEv K x})
+    Filter.atTop (nhds ((model K) {ω | UFit K ω}))
 'Enclosing.theorem1_model' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.theorem1_triangle : ∀ {w : Fin 3 → ℝ × ℝ} (harea : Enclosing.area w = 1),
+@theorem1_triangle : ∀ {w : Fin 3 → ℝ × ℝ} (harea : area w = 1),
   have hv := ⋯;
-  have K := Enclosing.sidesOf w ⋯ hv harea;
-  Filter.Tendsto
-    (fun n => (MeasureTheory.Measure.pi fun x => Enclosing.polygonSample w ⋯ hv harea) {x | Enclosing.TrueEv K x})
-    Filter.atTop
-    (nhds (ENNReal.ofReal (Enclosing.ptri (Enclosing.len w 0 ^ 2) (Enclosing.len w 1 ^ 2) (Enclosing.len w 2 ^ 2))))
+  have K := sidesOf w ⋯ hv harea;
+  Filter.Tendsto (fun n => (MeasureTheory.Measure.pi fun x => polygonSample w ⋯ hv harea) {x | TrueEv K x}) Filter.atTop
+    (nhds (ENNReal.ofReal (ptri (len w 0 ^ 2) (len w 1 ^ 2) (len w 2 ^ 2))))
 'Enclosing.theorem1_triangle' depends on axioms: [propext, Classical.choice, Quot.sound]
-Enclosing.theorem1_equilateral : have hv := ⋯;
-have K := Enclosing.sidesOf Enclosing.eqVerts ⋯ hv Enclosing.eqVerts_area;
-Filter.Tendsto
-  (fun n =>
-    (MeasureTheory.Measure.pi fun x => Enclosing.polygonSample Enclosing.eqVerts ⋯ hv Enclosing.eqVerts_area)
-      {x | Enclosing.TrueEv K x})
+theorem1_equilateral : have hv := ⋯;
+have K := sidesOf eqVerts ⋯ hv eqVerts_area;
+Filter.Tendsto (fun n => (MeasureTheory.Measure.pi fun x => polygonSample eqVerts ⋯ hv eqVerts_area) {x | TrueEv K x})
   Filter.atTop (nhds (ENNReal.ofReal (13 / 48)))
 'Enclosing.theorem1_equilateral' depends on axioms: [propext, Classical.choice, Quot.sound]
-Enclosing.tetW_eq : ∀ (P : Fin 4 → Enclosing.R3),
-  Enclosing.tetW P = ENNReal.ofReal ({P | Enclosing.PosBary P}.indicator (fun P => |(Enclosing.homMat P).det| / 6) P)
+tetW_eq : ∀ (P : Fin 4 → R3), tetW P = ENNReal.ofReal ({P | PosBary P}.indicator (fun P => |(homMat P).det| / 6) P)
 'Enclosing.tetW_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.regVerts_convex : ∀ {q : ℕ} [inst : NeZero q], 3 ≤ q → Enclosing.ConvexPos (Enclosing.regVerts q)
+@theorem1_regular : ∀ {q : ℕ} [inst : NeZero q] (hq : 3 ≤ q),
+  Filter.Tendsto
+    (fun n => (MeasureTheory.Measure.pi fun x => polygonSample (regVerts q) hq ⋯ ⋯) {x | TrueEv (regSides hq) x})
+    Filter.atTop
+    (nhds
+      (ENNReal.ofReal (↑q * Real.tan (Real.pi / ↑q)) * prismE q +
+        if Even q then ENNReal.ofReal (8 / (3 * ↑q ^ 2)) else 0))
+'Enclosing.theorem1_regular' depends on axioms: [propext, Classical.choice, Quot.sound]
+@model_void : ∀ {m : ℕ} (K : Sides m) (T : ℝ) (z : Copy),
+  (∀ (i : Fin m), Hs K z i ≤ min (z.2.2 * K.a i) (z.2.2 * K.b i)) →
+    (∀ (i : Fin m), ∀ s ∈ Set.Icc (K.a i) (K.b i), z.2.2 * s - Hs K z i ≤ T) →
+      (PoissonPP.prob (Λ K T) fun μ => Feasible K μ z) = ENNReal.ofReal (Real.exp (2 * z.1))
+'Enclosing.model_void' depends on axioms: [propext, Classical.choice, Quot.sound]
+@vertex_unique : ∀ {m : ℕ} (K : Sides m) (x : Fin 4 → Pt m) (l : Fin 4 → ℝ),
+  (∀ (r : Fin 4), 0 < l r) →
+    (∀ (c : Fin 4), ∑ r, l r * row K (x r) c = if c = 0 then 1 else 0) →
+      (Matrix.of fun r => row K (x r)).det ≠ 0 →
+        ∀ (zs : Copy),
+          (∀ (r : Fin 4), gx K zs (x r) = 0) →
+            ∀ (z : Copy), (∀ (r : Fin 4), 0 ≤ gx K z (x r)) → z.1 = zs.1 → zvec z = zvec zs
+'Enclosing.vertex_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+@PoissonPP.law_prob : ∀ {α : Type u_1} [inst : MeasurableSpace α] (Λ : MeasureTheory.Measure α) (E : Multiset α → Prop),
+  (∀ (n : ℕ), MeasurableSet {x | E (PoissonPP.config x)}) →
+    (PoissonPP.law Λ) {ω | E (PoissonPP.config ω.snd)} = PoissonPP.prob Λ E
+'PoissonPP.law_prob' depends on axioms: [propext, Classical.choice, Quot.sound]
+@PoissonPP.void_sigma_independent : ∀ {α : Type u_1} [inst : MeasurableSpace α] (Λ : MeasureTheory.Measure α)
+  [MeasureTheory.IsFiniteMeasure Λ] {B C : Set α},
+  Disjoint B C →
+    ProbabilityTheory.Indep (MeasurableSpace.generateFrom (PoissonPP.voidFamily B))
+      (MeasurableSpace.generateFrom (PoissonPP.voidFamily C)) (PoissonPP.law Λ)
+'PoissonPP.void_sigma_independent' depends on axioms: [propext, Classical.choice, Quot.sound]
+@exists_affine_iff : ∀ {ι : Type u_1} [Fintype ι] (a b : ι → ℝ),
+  (∃ c, ∀ (j : ι), a j * c ≤ b j) ↔
+    (∀ (j : ι), a j = 0 → 0 ≤ b j) ∧ ∀ (j j' : ι), 0 < a j → a j' < 0 → b j' / a j' ≤ b j / a j
+'Enclosing.exists_affine_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+@LPDual.farkas : ∀ {d : ℕ} {ι : Type u_1} [inst : Fintype ι] (v : ι → Fin d → ℝ),
+  ∀ e ∉ LPDual.cone v, ∃ y, (∀ (i : ι), 0 ≤ v i ⬝ᵥ y) ∧ e ⬝ᵥ y < 0
+'LPDual.farkas' depends on axioms: [propext, Classical.choice, Quot.sound]
+@badP_prob_zero : ∀ {m : ℕ} (K : Sides m) {k : ℕ} {P : (Fin k → Pt m) → Pt m → Prop},
+  MeasurableSet {q | P q.1 q.2} →
+    ∀ (T : ℝ), (∀ (x : Fin k → Pt m), (Λ K T) {p | P x p} = 0) → (PoissonPP.law (Λ K T)) {ω | BadP P ω} = 0
+'Enclosing.badP_prob_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+@regVerts_convex : ∀ {q : ℕ} [inst : NeZero q], 3 ≤ q → ConvexPos (regVerts q)
 'Enclosing.regVerts_convex' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.regVerts_area : ∀ {q : ℕ} [inst : NeZero q], 3 ≤ q → Enclosing.area (Enclosing.regVerts q) = 1
+@regVerts_area : ∀ {q : ℕ} [inst : NeZero q], 3 ≤ q → area (regVerts q) = 1
 'Enclosing.regVerts_area' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.spatial_reg : ∀ {q : ℕ} {K : Enclosing.Sides q} {r c : ℝ},
-  Enclosing.IsReg K r c →
+@spatial_reg : ∀ {q : ℕ} {K : Sides q} {r c : ℝ},
+  IsReg K r c →
     ∀ [NeZero q],
-      3 ≤ q →
-        0 < r →
-          0 < c → Enclosing.spatialVertexIntegral K = ENNReal.ofReal (↑q * Real.tan (Real.pi / ↑q) * r ^ 3 / (4 * c))
+      3 ≤ q → 0 < r → 0 < c → spatialVertexIntegral K = ENNReal.ofReal (↑q * Real.tan (Real.pi / ↑q) * r ^ 3 / (4 * c))
 'Enclosing.spatial_reg' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.cone_reg : ∀ {q : ℕ} [NeZero q] {K : Enclosing.Sides q} {r c : ℝ},
-  Enclosing.IsReg K r c →
-    0 < r → 0 < c → Enclosing.coneVertexDensity K = ENNReal.ofReal (4 * r * c ^ 5 * ↑q ^ 4) * Enclosing.prismE q
+@cone_reg : ∀ {q : ℕ} [NeZero q] {K : Sides q} {r c : ℝ},
+  IsReg K r c → 0 < r → 0 < c → coneVertexDensity K = ENNReal.ofReal (4 * r * c ^ 5 * ↑q ^ 4) * prismE q
 'Enclosing.cone_reg' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.segDensity_reg : ∀ {q : ℕ} {K : Enclosing.Sides q} {r c : ℝ},
-  Enclosing.IsReg K r c →
-    0 < r → 0 < c → ∀ (k kb : Fin q), Enclosing.segDensity K k kb = ENNReal.ofReal (8 * r * c ^ 4 / 3)
+@segDensity_reg : ∀ {q : ℕ} {K : Sides q} {r c : ℝ},
+  IsReg K r c → 0 < r → 0 < c → ∀ (k kb : Fin q), segDensity K k kb = ENNReal.ofReal (8 * r * c ^ 4 / 3)
 'Enclosing.segDensity_reg' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.slopeSum_reg : ∀ {m : ℕ},
+@slopeSum_reg : ∀ {m : ℕ},
   2 ≤ m →
-    ∀ {K : Enclosing.Sides (2 * m)} {r c : ℝ},
-      Enclosing.IsReg K r c →
-        ∀ (k : Fin (2 * m)),
-          Enclosing.slopeSum K k = 2 * c * (Real.cos (Real.pi / (2 * ↑m)) / Real.sin (Real.pi / (2 * ↑m)))
+    ∀ {K : Sides (2 * m)} {r c : ℝ},
+      IsReg K r c →
+        ∀ (k : Fin (2 * m)), slopeSum K k = 2 * c * (Real.cos (Real.pi / (2 * ↑m)) / Real.sin (Real.pi / (2 * ↑m)))
 'Enclosing.slopeSum_reg' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.chordInf_reg : ∀ {q : ℕ} {K : Enclosing.Sides q} {r c : ℝ},
-  Enclosing.IsReg K r c →
+@chordInf_reg : ∀ {q : ℕ} {K : Sides q} {r c : ℝ},
+  IsReg K r c →
     ∀ [NeZero q],
       3 ≤ q →
         0 < r →
           0 < c →
             ∀ {k kb : Fin q},
-              Enclosing.ParPair K k kb →
-                0 ≤ Enclosing.slopeSum K k →
-                  ∫⁻ (v : Fin 3 → ℝ), Enclosing.chordWeightInf K k v =
-                    ENNReal.ofReal
-                      (r / c * (r / 2 + Enclosing.slopeSum K k * (↑q * Real.tan (Real.pi / ↑q)) * r ^ 2 / 4))
+              ParPair K k kb →
+                0 ≤ slopeSum K k →
+                  ∫⁻ (v : Fin 3 → ℝ), chordWeightInf K k v =
+                    ENNReal.ofReal (r / c * (r / 2 + slopeSum K k * (↑q * Real.tan (Real.pi / ↑q)) * r ^ 2 / 4))
 'Enclosing.chordInf_reg' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.vertex_term_reg : ∀ {q : ℕ} [inst : NeZero q] (hq : 3 ≤ q),
-  Enclosing.spatialVertexIntegral (Enclosing.regSides hq) * Enclosing.coneVertexDensity (Enclosing.regSides hq) =
-    ENNReal.ofReal (↑q * Real.tan (Real.pi / ↑q)) * Enclosing.prismE q
+@vertex_term_reg : ∀ {q : ℕ} [inst : NeZero q] (hq : 3 ≤ q),
+  spatialVertexIntegral (regSides hq) * coneVertexDensity (regSides hq) =
+    ENNReal.ofReal (↑q * Real.tan (Real.pi / ↑q)) * prismE q
 'Enclosing.vertex_term_reg' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.segment_term_reg : ∀ {q : ℕ} [inst : NeZero q] (hq : 3 ≤ q),
-  ∑ p ∈ Enclosing.parPairs (Enclosing.regSides hq),
-      Enclosing.segDensity (Enclosing.regSides hq) p.1 p.2 *
-        ∫⁻ (w : Fin 3 → ℝ), Enclosing.chordWeightInf (Enclosing.regSides hq) p.1 w =
+@segment_term_reg : ∀ {q : ℕ} [inst : NeZero q] (hq : 3 ≤ q),
+  ∑ p ∈ parPairs (regSides hq),
+      segDensity (regSides hq) p.1 p.2 * ∫⁻ (w : Fin 3 → ℝ), chordWeightInf (regSides hq) p.1 w =
     if Even q then ENNReal.ofReal (8 / (3 * ↑q ^ 2)) else 0
 'Enclosing.segment_term_reg' depends on axioms: [propext, Classical.choice, Quot.sound]
-@Enclosing.theorem1_regular : ∀ {q : ℕ} [inst : NeZero q] (hq : 3 ≤ q),
-  Filter.Tendsto
-    (fun n =>
-      (MeasureTheory.Measure.pi fun x => Enclosing.polygonSample (Enclosing.regVerts q) hq ⋯ ⋯)
-        {x | Enclosing.TrueEv (Enclosing.regSides hq) x})
-    Filter.atTop
-    (nhds
-      (ENNReal.ofReal (↑q * Real.tan (Real.pi / ↑q)) * Enclosing.prismE q +
-        if Even q then ENNReal.ofReal (8 / (3 * ↑q ^ 2)) else 0))
-'Enclosing.theorem1_regular' depends on axioms: [propext, Classical.choice, Quot.sound]
