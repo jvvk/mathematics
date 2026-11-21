@@ -148,6 +148,7 @@ if __name__ == "__main__" and not (len(sys.argv) > 3 and sys.argv[3] == "cert"):
         ok &= not f
         fm = closure_all_k(a, b, mutate(hyp), par)
         print("    mutation (drop a chain) detected:", bool(fm))
+        ok &= bool(fm)
     print((a, b), "SYMBOLIC OVERALL", "PASS" if ok else "FAIL")
     sys.exit(0 if ok else 1)
 

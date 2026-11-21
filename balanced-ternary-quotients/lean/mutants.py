@@ -125,9 +125,14 @@ def run(text: str) -> str:
     if r.returncode == 0:
         return "COMPILES"
     out = r.stdout + r.stderr
+    if RESOURCE.search(out):
+        return f"INCONCLUSIVE: exit {r.returncode}, resource limit (heartbeats or recursion), not a proof failure"
     if r.returncode == 1 and re.search(r"Mutant\.lean:\d+:\d+: error", out):
         return "REJECTED"
     return f"INCONCLUSIVE: exit {r.returncode}, no error located in Mutant.lean"
+
+
+RESOURCE = re.compile(r"maximum number of heartbeats|maximum recursion depth|deep recursion|stack overflow|out of memory", re.I)
 
 
 def main() -> None:

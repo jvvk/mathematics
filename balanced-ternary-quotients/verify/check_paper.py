@@ -114,7 +114,7 @@ def witness(n: int) -> tuple[int, int]:
 
 def check_witness(label: str, n: int) -> None:
     m, N = witness(n)
-    check(f"{label}: witness {n}*{m} = {N}, both zero-free",
+    check(f"{label}: witness {n}*{m} = {N}, multiplier and product zero-free",
           m > 0 and n * m == N and zero_free(m) and zero_free(N))
 
 
@@ -338,13 +338,13 @@ check(
 
 for n, m, N in ((4 * 81 - 5, 4, 1276), (8 * 81 + 7, 2, 1310), (8 * 81 + 17, 2, 1330)):
     check(
-        f"witness {n}*{m} = {N}, both zero-free",
+        f"witness {n}*{m} = {N}, multiplier and product zero-free",
         n * m == N and zero_free(m) and zero_free(N),
     )
 check("digits: 4 = (11), 2 = (1 -1)", digits(4) == [1, 1] and digits(2) == [-1, 1])
 W = 8620770364
 check(
-    "8*3^6-7 = 5825: 5825*8620770364 = 50215987370300, both zero-free",
+    "8*3^6-7 = 5825: 5825*8620770364 = 50215987370300, multiplier and product zero-free",
     8 * 729 - 7 == 5825
     and 5825 * W == 50215987370300
     and zero_free(W)
