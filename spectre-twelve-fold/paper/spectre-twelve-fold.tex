@@ -238,7 +238,7 @@ triangulation's boundary, the distinctness of the placements) are checked by the
 records of Lemma~\ref{lem:pairs} are checked the same way. The step from those records to constant coverage
 for a curved Spectre, which needs Green's theorem for a piecewise smooth Jordan domain, is not formalised.
 Everything uses only Lean's standard axioms. Planted errors in the statements and certificates are rejected:
-each mutated file fails with a Lean error located in it, while an unchanged copy of every target file compiles,
+each mutated file fails with a Lean elaboration error at or after the mutated line, while an unchanged copy of every target file compiles,
 and timeouts, crashes and resource limits count as inconclusive, never as rejections. A program checks the records and the
 areas in exact integer arithmetic, an independent one counts the tiles at random points, and the code and the
 Lean files are at~\cite{repo}, archived on Zenodo at
@@ -255,7 +255,8 @@ for the content of this preprint, which has not yet been independently reviewed.
 Codex's referee report: the MathOverflow answer~\cite{MOans} is cited as the first announcement; the curved
 family now assumes a piecewise smooth edge curve (a simple curve alone can have positive area), and the area
 identity and the constancy of $N$ for curved Spectres are proved by Green's theorem instead of being sketched; the
-argument that no two tiles coincide is given; the mutation harness accepts only located Lean errors. The theorem
+argument that no two tiles of the straight-edged Spectre coincide is given; the mutation harness accepts only an
+elaboration error at or after the mutated line. The theorem
 for the straight Spectre and its Lean proof are unchanged.
 
 \begin{thebibliography}{9}

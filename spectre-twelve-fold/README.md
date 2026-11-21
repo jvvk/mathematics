@@ -10,14 +10,14 @@
 
 The Spectre of Smith, Myers, Kaplan and Goodman-Strauss ([Combinatorial Theory 4(2), 2024](https://doi.org/10.5070/C64264241)) tiles the plane by rotations and translations, and every such tiling is non-periodic. Andrew Bayly asked on MathOverflow ([question 516016](https://mathoverflow.net/q/516016)) whether it admits a periodic `n`-fold tiling for some `n > 1`, in which almost every point lies in exactly `n` tiles.
 
-- **Theorem 1.** Yes, with `n = 12`: the tiles `ζ^r S + x a + y b + λ`, `λ ∈ Λ = ℤv + ℤw`, for 54 triples `(r, x, y)` listed in the paper (`ζ = e^{πi/6}`). It holds for the straight-edged `Tile(1,1)` and for every curved Spectre of the common-curve family. No reflections are used and no two tiles coincide; generic translates give every multiplicity `12m`.
+- **Theorem 1.** Yes, with `n = 12`: the tiles `ζ^r S + x a + y b + λ`, `λ ∈ Λ = ℤv + ℤw`, for 54 triples `(r, x, y)` listed in the paper (`ζ = e^{πi/6}`). It holds for the straight-edged `Tile(1,1)` and for every curved Spectre of the common-curve family. No reflections are used, the 54 placements per period cell are distinct, and for the straight-edged Spectre no two tiles coincide (the paper proves this from the polygon's lack of rotational symmetry; for a curved Spectre it holds whenever the tile has no rotational symmetry); generic translates give every multiplicity `12m`.
 - **Lemma 2**, the certificate: the 756 edges of one period cell cancel in 378 oppositely oriented pairs modulo `Λ`, a finite check in `ℤ[ζ]`. That makes the covering number constant; comparing areas, `54 (3 + 3√3) / (27/2)(1 + √3) = 12`.
 
 Whether some `1 < n < 12` is possible is open.
 
 Preprint v2, 20 November 2026 (v1: 20 October 2026), not peer reviewed. Zenodo: [doi:10.5281/zenodo.24406775](https://doi.org/10.5281/zenodo.24406775), identical to this folder at tag `spectre-twelve-fold-v2`. For the straight-edged Spectre the theorem is formally verified in Lean 4 (`lean/`, standard axioms only); for curved Spectres the edge-record certificate is kernel-checked and the step to constant coverage (Green's theorem for a piecewise smooth Jordan domain, proved in Section 3 of the paper) is not formalised. The construction was found with OpenAI Codex and the Lean formalisation and checks were written with Claude (Anthropic), as described in the paper's acknowledgements; the author is responsible for the content.
 
-**Version 2** (20 November 2026, tag `spectre-twelve-fold-v2`): deposited on Zenodo, with the DOI recorded in the paper; the acknowledgements name Codex as referee of v2. After its report: cites the MathOverflow answer of 16 October 2026 as the first announcement; the curved family assumes a piecewise smooth edge curve, and the area identity and constant coverage for curved Spectres are proved by Green's theorem; the paper proves that no two tiles coincide; the Lean mutation harness runs controls and accepts only located Lean errors, and the README checks the Python mutant's output. The straight-Spectre theorem and its Lean proof files are unchanged.
+**Version 2** (20 November 2026, tag `spectre-twelve-fold-v2`): deposited on Zenodo, with the DOI recorded in the paper; the acknowledgements name Codex as referee of v2. After its report: cites the MathOverflow answer of 16 October 2026 as the first announcement; the curved family assumes a piecewise smooth edge curve, and the area identity and constant coverage for curved Spectres are proved by Green's theorem; the paper proves that no two tiles of the straight-edged Spectre coincide; the Lean mutation harness runs controls and accepts only an elaboration error at or after the mutated line (parse, import and resource errors and timeouts are inconclusive), and the README checks the Python mutant's output. The straight-Spectre theorem and its Lean proof files are unchanged.
 
 ## Contents
 
@@ -32,7 +32,7 @@ Preprint v2, 20 November 2026 (v1: 20 October 2026), not peer reviewed. Zenodo: 
 ## Reproduce
 
 ```
-cd verify && python3 verify.py && python3 recheck_cover.py && MUTANT=1 POINTS=300 python3 recheck_cover.py | grep -x FAIL   # the mutant must print FAIL (a crash prints nothing)
+cd verify && python3 verify.py && python3 recheck_cover.py && { MUTANT=1 POINTS=300 python3 recheck_cover.py > mutant.out; test $? -eq 1 && test "$(tail -1 mutant.out)" = FAIL; }   # the mutant must exit 1 with final line FAIL
 cd ../paper && latexmk -pdf spectre-twelve-fold.tex
 cd ../lean && lake exe cache get && lake build LeanProofs && lake env lean CheckClaims.lean
 ```
