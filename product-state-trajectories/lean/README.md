@@ -7,7 +7,7 @@ SOURCE-SNAPSHOT.json records the development commit and the hash of every file. 
     lake exe cache get
     lake build LeanProofs
     lake env lean CheckClaims.lean
-    python3 -I scripts/mutate.py scripts/mutants.toml
+    python3 -I scripts/mutate.py scripts/mutants.toml   # Python 3.11 or later
 
 The first command fetches the pinned Mathlib cache, the second compiles the proofs, the third prints the
 statements and axioms of the results below, and the last runs the 26 mutation tests: each drops or weakens one

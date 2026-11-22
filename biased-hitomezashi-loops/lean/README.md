@@ -28,7 +28,7 @@ with weighted Dyck paths are paper proofs.
 
 ```
 lake exe cache get && lake build LeanProofs && lake env lean CheckClaims.lean
-python3 -I scripts/mutate.py scripts/mutants.toml
+python3 -I scripts/mutate.py scripts/mutants.toml   # Python 3.11 or later
 ```
 
 `scripts/mutants.toml` holds 15 planted wrong changes (wrong constants in the density, shifted continuants, wrong

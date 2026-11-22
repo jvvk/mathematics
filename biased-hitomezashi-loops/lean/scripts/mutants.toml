@@ -4,7 +4,8 @@
 cmd = ["lake", "env", "lean", "{file}"]
 cwd = ".."
 timeout = 900
-fail_markers = ["error"]
+fail_pattern = '^(?P<file>\S+\.lean):\d+:\d+: error\b'
+diagnostic_in_target = true
 
 [[mutant]]
 name = "density: constant -5/4 to -1"

@@ -7,7 +7,8 @@
 cmd = ["lake", "env", "lean", "{file}"]
 cwd = ".."
 timeout = 1500
-fail_markers = ["error"]
+fail_pattern = '^(?P<file>\S+\.lean):\d+:\d+: error\b'
+diagnostic_in_target = true
 
 [[mutant]]
 name = "Graded: drop q ≠ 0 (q = 0 makes every product homogeneous)"

@@ -15,8 +15,9 @@ Suite format (paths relative to the suite file's directory unless absolute):
     mode = "copy"                             # copy: write <stem>Mut<suffix> beside the source (default)
                                               # inplace: mutate the source itself, restored afterwards
     fail_markers = ["error"]                  # stdout/stderr text that also counts as failure
-    fail_pattern = 'error: \\S+\\.lean:\\d+:\\d+: '        # optional regex: a rejection then needs a nonzero exit AND a
-                                              # line matching it (a Lean source error, not a warning or a Lake I/O error)
+    fail_pattern = '^(?P<file>\\S+\\.lean):\\d+:\\d+: error\\b'   # optional regex: a rejection then needs a nonzero exit AND
+                                              # a line matching it (Lean prints <file>:<line>:<col>: error...; a warning
+                                              # or a Lake I/O error does not match). Needs Python 3.11+ (tomllib).
     diagnostic_in_target = true               # optional: the matching line must also name the mutated file itself
     log_dir = "mutation-logs"                 # optional: full stdout/stderr of every run, one file each (timeouts too)
 
