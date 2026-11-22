@@ -54,7 +54,7 @@ c(p)=2pq-\frac54+\frac{\pi^2p^2q^2}{6}\Bigl(2+\frac{3}{\sin^2\pi p}\Bigr)+\frac{
 with the value $(\pi^2-9)/12$ at $p=\tfrac12$. The proof reads off the labels a loop forces from Pete's
 pair of Dyck paths, which turns the density into a sum over weighted Dyck paths of fixed height. For
 every $p$ the two-step transfer matrix of these weights has a double eigenvalue, the continuants
-collapse to linear functions of the index, and the sum reduces to Euler's partial fraction expansions
+become linear functions of the index times powers of $pq$, and the sum reduces to Euler's partial fraction expansions
 of $\cot$ and $\csc^2$. We prove that the fair coin uniquely minimises the density and give a
 closed form for different biases on the two families of lines, with an explicit series truncation
 bound. The label-counting lemmas, continuant identities and one-bias series evaluation are formalised
@@ -396,7 +396,7 @@ identically when $s=q^2$, $t=p^2$ and $p+q=1$. In general it vanishes exactly wh
 $\sqrt s+\sqrt t=1$ or $\lvert\sqrt s-\sqrt t\rvert=1$, so our weights lie on the boundary of the
 subcritical region $\sqrt s+\sqrt t<1$. Inside that region the two roots are distinct and the
 height-$k$ weights behave geometrically in $k$; on the boundary the double root makes the
-continuants linear in the index instead.
+continuants linear in the index times powers of $pq$ instead.
 
 \begin{proposition}\label{prop:X}
 For $0<p<1$ and $j\ge0$,
@@ -606,12 +606,12 @@ differs from the biased-orientation model of~\cite{MMS25}, which has infinite pa
 
 \begin{question}
 Pete~\cite[Section~7]{Pet08} asks whether his exponent for the expected length of a typical cycle
-survives the bias: the leading terms of his estimates are unchanged, and the open point is a
-cancellation at the next order. Does the explicit form of Proposition~\ref{prop:X} settle it?
+survives the bias: the main coefficients of his estimates are unchanged, and the open point is
+whether the cancellation of the leading term in his equation~(5.20) still happens for biased labels. Does the explicit form of Proposition~\ref{prop:X} settle it?
 Simulations suggest that the exponent does not depend on $p$. We traced every loop in $200$ random
 $12000\times12000$ patterns at each of $p=0.5,0.4,0.3,0.2,0.15$. The local slope of
 $\log\E[\text{length}\mid\text{diameter}]$ against $\log(\text{diameter})$, over diameters from
-$250$ to $1000$, lies between $1.26$ and $1.29$ for every $p$. Pete's value is
+$250$ to $1000$, lies between $1.26$ and $1.30$ for every $p$. Pete's value is
 $(\sqrt{17}+1)/4=1.2808$. The simulation, its fixed seeds and the histograms are in the
 accompanying data (\texttt{verify/exponent\_sim}).
 \end{question}
