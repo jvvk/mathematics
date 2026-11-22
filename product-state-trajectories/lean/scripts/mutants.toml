@@ -1,0 +1,166 @@
+# Mutation suite for LeanProofs/ProductTrajectory (Physics SE 816017). Run from lean/:
+#   python3 -I scripts/mutate.py scripts/mutants.toml
+# Each mutant is a proof-sensitivity check: one textual change (a hypothesis weakened or dropped, a
+# conclusion strengthened, a constant changed) must make Lean report an error. The runner counts a
+# mutant as rejected only when Lean reports an error; a crash, timeout or resource failure is inconclusive.
+[check]
+cmd = ["lake", "env", "lean", "{file}"]
+cwd = ".."
+timeout = 1500
+fail_markers = ["error"]
+
+[[mutant]]
+name = "Graded: drop q ≠ 0 (q = 0 makes every product homogeneous)"
+file = "../LeanProofs/ProductTrajectory/Graded.lean"
+old = "    (hp : p ≠ 0) (hq : q ≠ 0)\n    {m : ℤ}"
+new = "    (hp : p ≠ 0)\n    {m : ℤ}"
+
+[[mutant]]
+name = "Graded: top weights add to m + 1"
+file = "../LeanProofs/ProductTrajectory/Graded.lean"
+old = "    a + b = m := by"
+new = "    a + b = m + 1 := by"
+
+[[mutant]]
+name = "RankOne: vacuous minor hypothesis"
+file = "../LeanProofs/ProductTrajectory/RankOne.lean"
+old = "(h : ∀ i i' l l', F i l * F i' l' = F i l' * F i' l)"
+new = "(h : ∀ i i' l l', F i l * F i' l' = F i l * F i' l')"
+
+[[mutant]]
+name = "Core: v-weight 2 instead of 1"
+file = "../LeanProofs/ProductTrajectory/Core.lean"
+old = "(fun i => if i = j then 1 else 0)"
+new = "(fun i => if i = j then 2 else 0)"
+
+[[mutant]]
+name = "Core: core without orthogonality of coefficient matrices (hypothesis dropped)"
+file = "../LeanProofs/ProductTrajectory/Core.lean"
+old = "(horth : ∀ s s', s ≠ s' → ∑ i, ∑ l, star ((F i l).coeff s) * (F i l).coeff s' = 0)"
+new = "(horth : True)"
+
+[[mutant]]
+name = "Core: coefficient of U p * V q without conjugation"
+file = "../LeanProofs/ProductTrajectory/Core.lean"
+old = "(U p * V q).coeff (sumElim μ ν) = star (p.coeff μ) * q.coeff ν"
+new = "(U p * V q).coeff (sumElim μ ν) = p.coeff μ * q.coeff ν"
+
+[[mutant]]
+name = "Characters: torus evaluation with the wrong sign of the phase"
+file = "../LeanProofs/ProductTrajectory/Characters.lean"
+old = "eval (zt ω t) (monomial r a) = a * exp (-(I * (dot ω r * t)))"
+new = "eval (zt ω t) (monomial r a) = a * exp (I * (dot ω r * t))"
+
+[[mutant]]
+name = "Characters: frequency lattice without the shift c"
+file = "../LeanProofs/ProductTrajectory/Characters.lean"
+old = "LinearIndependent ℤ ω ∧ ∀ j, lam j = dot ω (e j) + c"
+new = "LinearIndependent ℤ ω ∧ ∀ j, lam j = dot ω (e j)"
+
+[[mutant]]
+name = "Characters: dot injective without independence"
+file = "../LeanProofs/ProductTrajectory/Characters.lean"
+old = "theorem dot_injective (ω : Fin k → ℝ) (hω : LinearIndependent ℤ ω) :"
+new = "theorem dot_injective (ω : Fin k → ℝ) (hω : True) :"
+
+[[mutant]]
+name = "Main: main without the product hypothesis (only at t = 0)"
+file = "../LeanProofs/ProductTrajectory/Main.lean"
+old = "(hprod : ∀ t : ℝ, ∃ (a : ι → ℂ) (b : κ → ℂ),\n      ∑ j, exp (-(I * (lam j * t))) • v j = vecMulVec a b)"
+new = "(hprod : ∀ t : ℝ, t = 0 → ∃ (a : ι → ℂ) (b : κ → ℂ),\n      ∑ j, exp (-(I * (lam j * t))) • v j = vecMulVec a b)"
+
+[[mutant]]
+name = "Main: main without orthogonality of the components (hypothesis dropped)"
+file = "../LeanProofs/ProductTrajectory/Main.lean"
+old = "(horth : ∀ j j', j ≠ j' → ∑ i, ∑ l, star (v j i l) * v j' i l = 0)"
+new = "(horth : True)"
+
+[[mutant]]
+name = "Main: claim the A-factor coefficients are zero (diagonal instead of off-diagonal)"
+file = "../LeanProofs/ProductTrajectory/Main.lean"
+old = "      (∀ μ ν, μ ≠ ν → ∑ i, star (x μ i) * x ν i = 0) ∧"
+new = "      (∀ μ ν, μ = ν → ∑ i, star (x μ i) * x ν i = 0) ∧"
+
+[[mutant]]
+name = "Heisenberg: determinant claimed to be 2"
+file = "../LeanProofs/ProductTrajectory/Heisenberg.lean"
+old = "theorem det_M (t : ℝ) : (Mt t).det = 1 := by"
+new = "theorem det_M (t : ℝ) : (Mt t).det = 2 := by"
+
+[[mutant]]
+name = "Heisenberg: norm claimed to be 5"
+file = "../LeanProofs/ProductTrajectory/Heisenberg.lean"
+old = "theorem normSq_M (t : ℝ) : ∑ i, ∑ j, normSq (Mt t i j) = 6 := by"
+new = "theorem normSq_M (t : ℝ) : ∑ i, ∑ j, normSq (Mt t i j) = 5 := by"
+
+[[mutant]]
+name = "Heisenberg: trajectory entry sign flipped (1 - i z^2)"
+file = "../LeanProofs/ProductTrajectory/Heisenberg.lean"
+old = "!![-zz t, 1 + I * zz t ^ 2; I * zz t ^ 2 - 1, zz t ^ 3]"
+new = "!![-zz t, 1 - I * zz t ^ 2; I * zz t ^ 2 - 1, zz t ^ 3]"
+
+[[mutant]]
+name = "Heisenberg: singlet component replaced by the triplet"
+file = "../LeanProofs/ProductTrajectory/Heisenberg.lean"
+old = "  | 0 => !![0, 1; -1, 0]"
+new = "  | 0 => !![0, 1; 1, 0]"
+
+[[mutant]]
+name = "Heisenberg: frequency lemma without nonzero coefficients"
+file = "../LeanProofs/ProductTrajectory/Heisenberg.lean"
+old = "    (hd : ∀ ν ∈ Nν, d ν ≠ 0)\n    (h : ∀ t : ℝ, ∑ ν ∈ Nν,"
+new = "    (h : ∀ t : ℝ, ∑ ν ∈ Nν,"
+
+[[mutant]]
+name = "Heisenberg: non-locality without Hermitian C"
+file = "../LeanProofs/ProductTrajectory/Heisenberg.lean"
+old = "theorem not_local : ¬ ∃ A C : Matrix (Fin 2) (Fin 2) ℂ, A.IsHermitian ∧ C.IsHermitian ∧"
+new = "theorem not_local : ¬ ∃ A C : Matrix (Fin 2) (Fin 2) ℂ, A.IsHermitian ∧"
+
+[[mutant]]
+name = "SO4: so(4) split with a wrong coefficient"
+file = "../LeanProofs/ProductTrajectory/SO4.lean"
+old = "(((ω 0 3 + ω 1 2) / 2 : ℝ) : ℂ) • σx"
+new = "(((ω 0 3 + ω 1 2) / 3 : ℝ) : ℂ) • σx"
+
+[[mutant]]
+name = "SO4: tau_fixed without the determinant hypothesis"
+file = "../LeanProofs/ProductTrajectory/SO4.lean"
+old = "(hXX : X * Xᴴ = r • 1) (hdet : X.det = r) :"
+new = "(hXX : X * Xᴴ = r • 1) :"
+
+[[mutant]]
+name = "SO4: quaternion structure with a wrong sign"
+file = "../LeanProofs/ProductTrajectory/SO4.lean"
+old = "def tau (X : M2) : M2 := !![star (X 1 1), -star (X 1 0); -star (X 0 1), star (X 0 0)]"
+new = "def tau (X : M2) : M2 := !![star (X 1 1), star (X 1 0); -star (X 0 1), star (X 0 0)]"
+
+[[mutant]]
+name = "ExpSums: constant modulus without nonzero coefficients"
+file = "../LeanProofs/ProductTrajectory/ExpSums.lean"
+old = "theorem const_modulus_single (S : Finset ℝ) (c : ℝ → ℂ) (hc : ∀ s ∈ S, c s ≠ 0) (hS : S.Nonempty)"
+new = "theorem const_modulus_single (S : Finset ℝ) (c : ℝ → ℂ) (hS : S.Nonempty)"
+
+[[mutant]]
+name = "ExpSums: coefficient uniqueness claims c = -d"
+file = "../LeanProofs/ProductTrajectory/ExpSums.lean"
+old = "(h : ∀ t : ℝ, ∑ s ∈ S, c s * ch s t = ∑ s ∈ S, d s * ch s t) : ∀ s ∈ S, c s = d s := by"
+new = "(h : ∀ t : ℝ, ∑ s ∈ S, c s * ch s t = ∑ s ∈ S, d s * ch s t) : ∀ s ∈ S, c s = -d s := by"
+
+[[mutant]]
+name = "MaxEnt: maxent without orthogonality"
+file = "../LeanProofs/ProductTrajectory/MaxEnt.lean"
+old = "theorem maxent (S : Finset ℝ) (W : ℝ → M2) (hW : ∀ s ∈ S, W s ≠ 0)\n    (horth : ∀ s ∈ S, ∀ s' ∈ S, s ≠ s' → ip (W s) (W s') = 0)\n    (hmax"
+new = "theorem maxent (S : Finset ℝ) (W : ℝ → M2) (hW : ∀ s ∈ S, W s ≠ 0)\n    (hmax"
+
+[[mutant]]
+name = "MaxEnt: maxent without maximal entanglement"
+file = "../LeanProofs/ProductTrajectory/MaxEnt.lean"
+old = "    (hmax : ∀ t : ℝ, ∃ r : ℂ, Nt S W t * (Nt S W t)ᴴ = r • 1) :"
+new = "    :"
+
+[[mutant]]
+name = "MaxEnt: generator with pairing s -> kappa + s"
+file = "../LeanProofs/ProductTrajectory/MaxEnt.lean"
+old = "    (hpair : ∀ s ∈ S, κ - s ∈ S ∧ tau (W (κ - s)) = W s) :"
+new = "    (hpair : ∀ s ∈ S, κ + s ∈ S ∧ tau (W (κ + s)) = W s) :"

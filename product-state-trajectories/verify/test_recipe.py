@@ -1,10 +1,14 @@
-"""Exact test of the PROOF.md recipe (Steps 2-6) for q/816017.
+"""Exact test of the construction in the proofs of Theorems 4 and 1 (Physics SE 816017).
 
 For each case, build the Laurent matrix F(z) = sum_j z^{n_j} N_j of a product trajectory with orthogonal
-frequency components (degenerate and resonant spectra, one and two frequency generators). Then, from F alone:
-factor F = alpha beta^T with alpha primitive, check A(z,w) has no z-dependence, read off the orthogonal
-components x_mu, and confirm the local generators reproduce F. A mutation (non-orthogonal components, i.e.
-non-unitary dynamics) must break Step 4/5, showing orthogonality is load-bearing.
+frequency components (degenerate and resonant spectra, one and two independent frequencies). Then, from F
+alone: factor F = alpha beta^T with alpha primitive (Section 3), check that A(z,w) does not depend on z, read
+off the components x_mu of alpha and y_nu of beta and check that each family is orthogonal (Section 4). Finally
+build the local generators of Theorem 1, h_A = sum_mu (mu.omega) x_mu x_mu^H / |x_mu|^2 and h_B likewise, check
+in exact arithmetic that they are Hermitian with h_A x_mu = (mu.omega) x_mu, and check numerically with the
+matrix exponential that exp(-i t h_A) a (exp(-i t h_B) b)^T equals F(exp(-i omega t)) at sample times.
+A mutation (non-orthogonal components, i.e. non-unitary dynamics) must break the orthogonality step.
+Exits 1 if any check fails.
 """
 
 from __future__ import annotations
@@ -12,7 +16,9 @@ from __future__ import annotations
 import random
 from functools import reduce
 
+import numpy as np
 import sympy as sp
+from scipy.linalg import expm
 
 random.seed(816017)
 Z = sp.symbols("z1 z2")
@@ -112,6 +118,34 @@ def check_recipe(F: sp.Matrix, k: int) -> str:
     return "PASS"
 
 
+def generator_check(F: sp.Matrix, k: int, omega: list[sp.Expr]) -> str:
+    """Theorem 1's generators from the components; exact eigen-equations, numeric trajectory match."""
+    alpha, beta = primitive_factor(F, k)
+    gens = []
+    for vec in (alpha, beta):
+        xs = components(vec, k)
+        h = sp.zeros(len(vec), len(vec))
+        for mu, x in xs.items():
+            h += sum(m * w for m, w in zip(mu, omega)) * (x * x.H) / (x.H * x)[0]
+        h = sp.simplify(h)
+        if sp.simplify(h - h.H) != sp.zeros(*h.shape):
+            return "FAIL: generator not Hermitian"
+        for mu, x in xs.items():
+            lam = sum(m * w for m, w in zip(mu, omega))
+            if sp.simplify(h * x - lam * x) != sp.zeros(len(vec), 1):
+                return "FAIL: generator eigen-equation"
+        start = reduce(lambda a, b: a + b, xs.values())
+        gens.append((np.array(h.evalf(30), dtype=complex), np.array(start.evalf(30), dtype=complex).ravel()))
+    (hA, a), (hB, b) = gens
+    for tt in (0.37, 1.9, -2.6):
+        zs = {Z[i]: sp.exp(-I * omega[i] * tt) for i in range(k)}
+        Fnum = np.array(F.subs(zs).evalf(30), dtype=complex)
+        G = np.outer(expm(-1j * tt * hA) @ a, expm(-1j * tt * hB) @ b)
+        if not np.allclose(G, Fnum, atol=1e-10):
+            return f"FAIL: generators do not reproduce F at t = {tt}"
+    return "PASS"
+
+
 def build_case(m: int, n: int, exps_a: list, exps_b: list, k: int) -> sp.Matrix:
     xa = orthogonal_set(m, len(exps_a))
     xb = orthogonal_set(n, len(exps_b))
@@ -180,21 +214,32 @@ CASES = [
 ]
 
 
-def main() -> None:
+def main() -> int:
+    failures = 0
     for label, m, n, ea, eb, k in CASES:
         F = build_case(m, n, ea, eb, k)
         assert frobenius_orthogonal(F, k), (
             "construction should satisfy unitarity hypothesis"
         )
-        print(f"{check_recipe(F, k):4}  {label}")
+        omega = [sp.Integer(1), sp.sqrt(2)][:k]
+        r1, r2 = check_recipe(F, k), generator_check(F, k, omega)
+        for r in (r1, r2):
+            if r != "PASS":
+                print(f"{r} ({label})")
+                failures += 1
+        print(f"{r1:4}  {r2:4}  {label}")
     # Mutation: non-orthogonal components (dynamics not unitary). Hypothesis fails, and the recipe must detect it.
     u, v = sp.Matrix([1, 1]), sp.Matrix([1, 0])  # <u,v> != 0
     p, q = sp.Matrix([1, I]), sp.Matrix([2, 1])
     Fm = sp.expand((u + Z[0] * v) * (p + Z[0] * q).T)
-    print(
-        f"mutation non-orthogonal: hypothesis holds = {frobenius_orthogonal(Fm, 1)}, recipe = {check_recipe(Fm, 1)}"
-    )
+    hyp, rec = frobenius_orthogonal(Fm, 1), check_recipe(Fm, 1)
+    print(f"mutation non-orthogonal: hypothesis holds = {hyp}, recipe = {rec}")
+    if hyp or rec == "PASS":
+        print("FAIL: the non-orthogonal mutation was not detected")
+        failures += 1
+    print("all checks pass" if failures == 0 else f"{failures} checks failed")
+    return 1 if failures else 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

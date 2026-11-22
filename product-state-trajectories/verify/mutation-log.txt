@@ -1,0 +1,10 @@
+control passes: test_recipe.py
+control passes: heisenberg_counterexample_exact.py
+rejected: generator without normalising the projectors (exit 1, diagnostic: FAIL: generator eigen-equation (2x2 resonant 0,1 x 0,1 (lambda=1 degenerate)))
+rejected: generator with frequencies of the wrong sign (exit 1, diagnostic: FAIL: generator eigen-equation (2x2 resonant 0,1 x 0,1 (lambda=1 degenerate)))
+rejected: trajectory compared at the wrong time (exit 1, diagnostic: FAIL: generators do not reproduce F at t = 0.37 (2x2 resonant 0,1 x 0,1 (lambda=1 degenerate)))
+rejected: recipe accepts every input (the non-unitary mutation must be caught) (exit 1, diagnostic: FAIL: the non-orthogonal mutation was not detected)
+rejected: Example: determinant claimed to be 2 (exit 1, diagnostic: FAIL: ['det M(t) == 1:'])
+rejected: Example: initial state with one sign flipped (exit 1, diagnostic: FAIL: ['M(t) == [[-z, 1+iz^2],[iz^2-1, z^3]]:', 'det M(t) == 1:', 'psi(t) == sum_mu e^{-i mu t} V_mu:'])
+rejected: Example: Schmidt coefficients from an unnormalised norm (exit 1, diagnostic: FAIL: ['squared Schmidt coefficients of psi(t)/sqrt(6) == 1/2 +- sqrt(2)/3:'])
+7/7 mutants rejected, all controls pass

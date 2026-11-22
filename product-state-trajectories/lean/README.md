@@ -7,11 +7,14 @@ SOURCE-SNAPSHOT.json records the development commit and the hash of every file. 
     lake exe cache get
     lake build LeanProofs
     lake env lean CheckClaims.lean
-    python3 scripts/mutants.py
+    python3 -I scripts/mutate.py scripts/mutants.toml
 
 The first command fetches the pinned Mathlib cache, the second compiles the proofs, the third prints the
-statements and axioms of the results below, and the last runs the 26 mutation tests: each weakens one
-hypothesis, strengthens one conclusion or changes one constant, and checks that the module no longer compiles.
+statements and axioms of the results below, and the last runs the 26 mutation tests: each drops or weakens one
+hypothesis, strengthens one conclusion or changes one constant, and checks that Lean reports an error. These are
+proof-sensitivity checks: a failure shows that the unchanged proof no longer goes through, not by itself that the
+changed statement is false. The runner counts a crash, timeout or resource failure as inconclusive, never as a
+rejection; the log of the last run is `scripts/mutation-log.txt`.
 
 | Paper | Lean (namespace `ProductTrajectory`) |
 |---|---|

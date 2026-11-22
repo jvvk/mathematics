@@ -1,0 +1,51 @@
+# Mutation suite for verify/ (Physics SE 816017). Run from verify/:
+#   python3 -I mutate.py mutants.toml
+# A mutant counts as rejected only on a failed assertion or a deliberate nonzero exit; any other
+# Python exception, a crash or a timeout is reported as inconclusive.
+[check]
+cmd = ["python3", "{file}"]
+cwd = "."
+timeout = 600
+fail_pattern = '^(FAIL|AssertionError)'
+
+[[mutant]]
+name = "generator without normalising the projectors"
+file = "test_recipe.py"
+old = "* (x * x.H) / (x.H * x)[0]"
+new = "* (x * x.H)"
+
+[[mutant]]
+name = "generator with frequencies of the wrong sign"
+file = "test_recipe.py"
+old = "            h += sum(m * w for m, w in zip(mu, omega))"
+new = "            h -= sum(m * w for m, w in zip(mu, omega))"
+
+[[mutant]]
+name = "trajectory compared at the wrong time"
+file = "test_recipe.py"
+old = "        G = np.outer(expm(-1j * tt * hA) @ a, expm(-1j * tt * hB) @ b)"
+new = "        G = np.outer(expm(-1j * 2 * tt * hA) @ a, expm(-1j * tt * hB) @ b)"
+
+[[mutant]]
+name = "recipe accepts every input (the non-unitary mutation must be caught)"
+file = "test_recipe.py"
+old = "    alpha, beta = primitive_factor(F, k)\n    for name, vec in"
+new = "    return \"PASS\"\n    alpha, beta = primitive_factor(F, k)\n    for name, vec in"
+
+[[mutant]]
+name = "Example: determinant claimed to be 2"
+file = "heisenberg_counterexample_exact.py"
+old = "sp.simplify(M.det()) == 1)"
+new = "sp.simplify(M.det()) == 2)"
+
+[[mutant]]
+name = "Example: initial state with one sign flipped"
+file = "heisenberg_counterexample_exact.py"
+old = "psi0 = sp.Matrix([-1, 1 + I, I - 1, 1])"
+new = "psi0 = sp.Matrix([-1, 1 + I, I + 1, 1])"
+
+[[mutant]]
+name = "Example: Schmidt coefficients from an unnormalised norm"
+file = "heisenberg_counterexample_exact.py"
+old = "sp.Eq(s * (1 - s), sp.Rational(1, 36))"
+new = "sp.Eq(s * (1 - s), sp.Rational(1, 6))"

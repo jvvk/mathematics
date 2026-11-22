@@ -40,7 +40,10 @@ check("H V_mu == mu V_mu:", all(sp.simplify(H * v - m * v) == sp.zeros(4, 1) for
 check("V_mu pairwise orthogonal:", all(sp.simplify((comps[a].H * comps[b])[0]) == 0 for a in comps for b in comps if a < b))
 # Schmidt coefficients from det and norm: s1^2 s2^2 = |det|^2 / norm^4 = 1/36, s1^2 + s2^2 = 1
 s = sp.symbols("s", positive=True)
-print("normalised Schmidt coefficients^2:", sp.solve(sp.Eq(s * (1 - s), sp.Rational(1, 36)), s), " concurrence = 2|det|/norm^2 =", sp.Rational(2, 6))
+sch = sp.solve(sp.Eq(s * (1 - s), sp.Rational(1, 36)), s)
+print("squared Schmidt coefficients of psi(t)/sqrt(6):", sch, " concurrence = 2|det|/norm^2 =", sp.Rational(2, 6))
+check("squared Schmidt coefficients of psi(t)/sqrt(6) == 1/2 +- sqrt(2)/3:",
+      {sp.nsimplify(x) for x in sch} == {sp.Rational(1, 2) + sp.sqrt(2) / 3, sp.Rational(1, 2) - sp.sqrt(2) / 3})
 
 print("ALL PASS" if not failures else f"FAIL: {failures}")
 sys.exit(1 if failures else 0)

@@ -8,7 +8,7 @@
 <p align="center"><sub><a href="paper">paper</a> · <a href="lean">Lean proof</a> · <a href="verify">code</a> · <a href="../">all results</a></sub></p>
 <!-- visual:end -->
 
-A user asked on Physics Stack Exchange ([question 816017](https://physics.stackexchange.com/q/816017)): if `e^{-itH}(a ⊗ b)` is a product state for every `t`, is there a time-independent factorised evolution that produces it? Local generators that depend on time were known to exist (Durt 2001, 2004; Sperling and Walmsley 2017); Norbert Schuch's comment reduced the multipartite case to two parties.
+A user asked on Physics Stack Exchange ([question 816017](https://physics.stackexchange.com/q/816017)): if `e^{-itH}(a ⊗ b)` is a product state for every `t`, is there a time-independent factorised evolution that produces it? Local generators that depend on time were known to exist (Durt 2001, 2004; Sperling and Walmsley 2017), and Militello et al. (Phys. Rev. A 93, 2016) showed that constant entanglement is equivalent to evolution under local effective Hamiltonians that may depend on time; Norbert Schuch's comment reduced the multipartite case to two parties.
 
 This paper proves:
 
@@ -16,22 +16,26 @@ This paper proves:
 - **Theorem 4**, the core: a rank-one matrix-valued exponential sum with orthogonal components factors as a product of two exponential sums with orthogonal components. The proof turns the trajectory into a polynomial matrix on a torus, factors it in a unique factorisation domain, and reads off orthogonality from a grading argument.
 - **Section 6.** The hypothesis cannot be weakened to constant entanglement: an isotropic exchange coupling in a field keeps the Schmidt coefficients of a suitable two-qubit state fixed, yet no constant local Hamiltonian generates its trajectory. For two qubits that stay maximally entangled (Theorem 10), a constant local generator does exist.
 
-Preprint v1, 20 October 2026, not peer reviewed. Theorem 4 and its lemmas, Theorem 10 and the Example of Section 6 are formally verified in Lean 4 (`lean/`, standard axioms only); the spectral decomposition and the final assembly of Theorem 1 are standard linear algebra done by hand (see `lean/README.md`). The author used an AI tool (Claude, Anthropic) in this work, as described in the paper's acknowledgements, and is responsible for its content.
+Preprint v2, 22 November 2026 (v1: 20 October 2026), not peer reviewed; released before the author's own line-by-line reading. Zenodo: [doi:10.5281/zenodo.24448298](https://doi.org/10.5281/zenodo.24448298), identical to this folder at tag `product-state-trajectories-v2`. Version 2 follows a Codex referee review: it cites the work on interaction-free evolutions (Napoli et al. 2014, Chruściński et al. 2015, Militello et al. 2016), notes that Corollary 3 uses the same differentiation argument as Chruściński et al.'s Theorem 1, states that the Example's Schmidt coefficients are those of the normalised state, makes the Python checks build the local generators and exit nonzero on failure, adds a mutation suite for them, and moves the Lean mutation tests to a runner that counts crashes as inconclusive, with the two orthogonality mutants now dropping the hypothesis. The mathematics of version 1 is unchanged.
+
+What is verified how: Theorem 4 and its lemmas, Theorem 10 and the Example of Section 6 are formally verified in Lean 4 (`lean/`, standard axioms only); the spectral decomposition and the final assembly of Theorem 1 are standard linear algebra done by hand (see `lean/README.md`) and are exercised by `verify/test_recipe.py`. The author used AI tools (Claude, Anthropic, to find the proof and write the code, Lean and text; Codex, OpenAI, to referee version 1 and search the literature) and is responsible for the content.
 
 ## Contents
 
 - `paper/`: `product-state-trajectories.tex` and `product-state-trajectories.pdf`.
-- `verify/` (Python 3 with SymPy):
-  - `test_recipe.py`: runs the construction of the proof in exact arithmetic on five degenerate and resonant cases with one and two independent frequencies, and a non-unitary mutation that must break it. About 15 seconds.
-  - `heisenberg_counterexample_exact.py`: the Example of Section 6 in exact arithmetic: the closed form of `M(t)`, `det M(t) = 1`, `‖M(t)‖² = 6`, the orthogonal frequency components and the constant concurrence `1/3`. About 1 second.
-- `lean/`: a Lake project pinned to Lean 4.34.0 and Mathlib v4.34.0; `lean/README.md` maps results to Lean names, `CheckClaims.lean` prints their axioms, `scripts/mutants.py` runs the mutation tests.
+- `verify/` (Python 3 with SymPy, NumPy and SciPy):
+  - `test_recipe.py`: runs the construction of the proof on five degenerate and resonant cases with one and two independent frequencies. In exact arithmetic it factors the trajectory, checks the orthogonality of the components and builds the local generators `h_A`, `h_B` (Hermitian, with the right eigenvectors); with the matrix exponential it checks that they reproduce the trajectory at three sample times. A non-unitary input must be rejected. Exits 1 on any failure. About 15 seconds.
+  - `heisenberg_counterexample_exact.py`: the Example of Section 6 in exact arithmetic: the closed form of `M(t)`, `det M(t) = 1`, `‖M(t)‖² = 6`, the orthogonal frequency components, and the squared Schmidt coefficients `1/2 ± √2/3` of the normalised state (concurrence `1/3`). Exits 1 on any failure. About 1 second.
+  - `mutants.toml` with `mutate.py`: 7 planted errors in the two scripts, each of which must make them fail; log in `mutation-log.txt`. A mutant counts as rejected only on a reported failure; a crash or any other exception is inconclusive.
+- `lean/`: a Lake project pinned to Lean 4.34.0 and Mathlib v4.34.0; `lean/README.md` maps results to Lean names, `CheckClaims.lean` prints their axioms, `scripts/mutants.toml` (run by `scripts/mutate.py`) holds 26 proof-sensitivity mutants, each of which must make Lean report an error (a crash or timeout counts as inconclusive); log in `scripts/mutation-log.txt`. `axiom-validation.txt` and `build-validation.log` record the isolated build.
 
 ## Reproduce
 
 ```
-cd verify && python3 test_recipe.py && python3 heisenberg_counterexample_exact.py
+cd verify && python3 test_recipe.py && python3 heisenberg_counterexample_exact.py && python3 -I mutate.py mutants.toml
 cd ../paper && latexmk -pdf product-state-trajectories.tex
 cd ../lean && lake exe cache get && lake build LeanProofs && lake env lean CheckClaims.lean
+python3 -I scripts/mutate.py scripts/mutants.toml   # 26 mutants, slow
 ```
 
 ## Licence

@@ -5,7 +5,7 @@
   "uncommitted_overrides": [
     "LeanProofs.lean (root imports ProductTrajectory only)",
     "CheckClaims.lean (generated)",
-    "scripts/mutants.py (copy of lean-proofs scripts/producttrajectory_mutants.py)"
+    "scripts/mutants.toml (v2: converted from lean-proofs scripts/producttrajectory_mutants.py; the two orthogonality mutants now drop the hypothesis) and scripts/mutate.py (shared runner)"
   ],
   "files": {
     "CheckClaims.lean": "569eeeede1e2d8f021defc0713dd2705d600210c98f9e0df0f4fbcc901daa01d",
@@ -23,6 +23,7 @@
     "LeanProofs.lean": "bd961b46c0add6d0a01902f852ccd5a9f9701216eba7ea52c9ca6ec40f9b6334",
     "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
     "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
-    "scripts/mutants.py": "605a6d8b865f63eb279ea9646f5e565641711e384e027766029378d476c2e12e"
+    "scripts/mutants.toml": "2768a324e706d10930e0f2a02b709a94a86c504e10228284810b5740062a84a3",
+    "scripts/mutate.py": "4ad8809a31875a8a325f0ba045d5e752e59141e8f9d9d38be681c457cde17ac9"
   }
 }
