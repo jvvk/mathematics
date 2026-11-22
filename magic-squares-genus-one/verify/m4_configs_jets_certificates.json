@@ -1,0 +1,9 @@
+{
+  "source": "m4_configs.json",
+  "sha256": "4ce70fb1a422dd974abb0de499098566b23b0d641ae4b250dae672b73cafd4bf",
+  "counts": {
+    "outside simple scope": 10,
+    "survives": 34
+  },
+  "exclusions": []
+}

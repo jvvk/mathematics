@@ -1,0 +1,746 @@
+{
+  "source": "m4_configs.json",
+  "source_sha256": "4ce70fb1a422dd974abb0de499098566b23b0d641ae4b250dae672b73cafd4bf",
+  "counts": {
+    "survives": 34,
+    "tame reciprocity": 10
+  },
+  "exclusions": [
+    {
+      "index": 2,
+      "reason": "tame reciprocity",
+      "certificate": {
+        "pair_order": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "skew_coefficients": [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        "local": [
+          {
+            "exponents": [
+              0,
+              -2,
+              2,
+              0
+            ],
+            "factor": "4"
+          },
+          {
+            "exponents": [
+              0,
+              2,
+              -2,
+              0
+            ],
+            "factor": "4"
+          }
+        ],
+        "product": "16"
+      }
+    },
+    {
+      "index": 4,
+      "reason": "tame reciprocity",
+      "certificate": {
+        "pair_order": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "skew_coefficients": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        "local": [
+          {
+            "exponents": [
+              -2,
+              0,
+              0,
+              2
+            ],
+            "factor": "4"
+          },
+          {
+            "exponents": [
+              2,
+              0,
+              0,
+              -2
+            ],
+            "factor": "4"
+          }
+        ],
+        "product": "16"
+      }
+    },
+    {
+      "index": 6,
+      "reason": "tame reciprocity",
+      "certificate": {
+        "pair_order": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "skew_coefficients": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        "local": [
+          {
+            "exponents": [
+              0,
+              -2,
+              0,
+              2
+            ],
+            "factor": "4"
+          },
+          {
+            "exponents": [
+              0,
+              1,
+              0,
+              -1
+            ],
+            "factor": "-2"
+          },
+          {
+            "exponents": [
+              0,
+              1,
+              0,
+              -1
+            ],
+            "factor": "-2"
+          }
+        ],
+        "product": "16"
+      }
+    },
+    {
+      "index": 7,
+      "reason": "tame reciprocity",
+      "certificate": {
+        "pair_order": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "skew_coefficients": [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        "local": [
+          {
+            "exponents": [
+              0,
+              -2,
+              2,
+              0
+            ],
+            "factor": "4"
+          },
+          {
+            "exponents": [
+              0,
+              1,
+              -1,
+              0
+            ],
+            "factor": "2"
+          },
+          {
+            "exponents": [
+              0,
+              1,
+              -1,
+              0
+            ],
+            "factor": "2"
+          }
+        ],
+        "product": "16"
+      }
+    },
+    {
+      "index": 11,
+      "reason": "tame reciprocity",
+      "certificate": {
+        "pair_order": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "skew_coefficients": [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        "local": [
+          {
+            "exponents": [
+              0,
+              -1,
+              1,
+              0
+            ],
+            "factor": "2"
+          },
+          {
+            "exponents": [
+              0,
+              1,
+              -1,
+              0
+            ],
+            "factor": "2"
+          },
+          {
+            "exponents": [
+              0,
+              -1,
+              1,
+              0
+            ],
+            "factor": "2"
+          },
+          {
+            "exponents": [
+              0,
+              1,
+              -1,
+              0
+            ],
+            "factor": "2"
+          }
+        ],
+        "product": "16"
+      }
+    },
+    {
+      "index": 17,
+      "reason": "tame reciprocity",
+      "certificate": {
+        "pair_order": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "skew_coefficients": [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        "local": [
+          {
+            "exponents": [
+              0,
+              -1,
+              1,
+              0
+            ],
+            "factor": "2"
+          },
+          {
+            "exponents": [
+              0,
+              -1,
+              1,
+              0
+            ],
+            "factor": "2"
+          },
+          {
+            "exponents": [
+              0,
+              1,
+              -1,
+              0
+            ],
+            "factor": "2"
+          },
+          {
+            "exponents": [
+              0,
+              1,
+              -1,
+              0
+            ],
+            "factor": "2"
+          }
+        ],
+        "product": "16"
+      }
+    },
+    {
+      "index": 25,
+      "reason": "tame reciprocity",
+      "certificate": {
+        "pair_order": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "skew_coefficients": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        "local": [
+          {
+            "exponents": [
+              -1,
+              0,
+              0,
+              1
+            ],
+            "factor": "2"
+          },
+          {
+            "exponents": [
+              -1,
+              0,
+              0,
+              1
+            ],
+            "factor": "2"
+          },
+          {
+            "exponents": [
+              1,
+              0,
+              0,
+              -1
+            ],
+            "factor": "2"
+          },
+          {
+            "exponents": [
+              1,
+              0,
+              0,
+              -1
+            ],
+            "factor": "2"
+          }
+        ],
+        "product": "16"
+      }
+    },
+    {
+      "index": 30,
+      "reason": "tame reciprocity",
+      "certificate": {
+        "pair_order": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "skew_coefficients": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        "local": [
+          {
+            "exponents": [
+              0,
+              -1,
+              0,
+              1
+            ],
+            "factor": "-2"
+          },
+          {
+            "exponents": [
+              0,
+              -1,
+              0,
+              1
+            ],
+            "factor": "-2"
+          },
+          {
+            "exponents": [
+              0,
+              1,
+              0,
+              -1
+            ],
+            "factor": "-2"
+          },
+          {
+            "exponents": [
+              0,
+              1,
+              0,
+              -1
+            ],
+            "factor": "-2"
+          }
+        ],
+        "product": "16"
+      }
+    },
+    {
+      "index": 40,
+      "reason": "tame reciprocity",
+      "certificate": {
+        "pair_order": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "skew_coefficients": [
+          0,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "local": [
+          {
+            "exponents": [
+              -1,
+              0,
+              1,
+              0
+            ],
+            "factor": "2"
+          },
+          {
+            "exponents": [
+              -1,
+              0,
+              1,
+              0
+            ],
+            "factor": "2"
+          },
+          {
+            "exponents": [
+              1,
+              0,
+              -1,
+              0
+            ],
+            "factor": "2"
+          },
+          {
+            "exponents": [
+              1,
+              0,
+              -1,
+              0
+            ],
+            "factor": "2"
+          }
+        ],
+        "product": "16"
+      }
+    },
+    {
+      "index": 41,
+      "reason": "tame reciprocity",
+      "certificate": {
+        "pair_order": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "skew_coefficients": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        "local": [
+          {
+            "exponents": [
+              0,
+              -1,
+              0,
+              1
+            ],
+            "factor": "-2"
+          },
+          {
+            "exponents": [
+              0,
+              1,
+              0,
+              -1
+            ],
+            "factor": "-2"
+          },
+          {
+            "exponents": [
+              0,
+              -1,
+              0,
+              1
+            ],
+            "factor": "-2"
+          },
+          {
+            "exponents": [
+              0,
+              1,
+              0,
+              -1
+            ],
+            "factor": "-2"
+          }
+        ],
+        "product": "16"
+      }
+    }
+  ]
+}

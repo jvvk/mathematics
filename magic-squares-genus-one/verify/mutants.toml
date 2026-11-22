@@ -1,0 +1,78 @@
+# Mutation suite for check_claims.py. Each mutant plants one wrong claim; check_claims.py must fail on every one,
+# and must pass on the untouched files. Run on a copy of this folder (the checks rewrite some data files):
+#   cp -R verify /tmp/v && rm -rf /tmp/v/__pycache__ && python3 -I /tmp/v/mutate.py /tmp/v/mutants.toml
+# Bytecode caching is off in the check command: a mutant of equal length restored within the same second would
+# otherwise leave a stale .pyc behind and contaminate every later mutant.
+[check]
+cmd = ["env", "PYTHONDONTWRITEBYTECODE=1", "python3", "check_claims.py"]
+cwd = "."
+timeout = 600
+mode = "inplace"
+fail_markers = []
+fail_pattern = '^FAIL: '
+
+[[mutant]]
+name = "drop the genus-five obstruction (Prop. 3.3): repeated divisors allowed"
+file = "centre_distinct.py"
+old = "if len(set(unoriented)) != 4:"
+new = "if False:"
+
+[[mutant]]
+name = "Riemann-Hurwitz bound (R1) claimed one stronger: ramification < 2 deg f"
+file = "audit_sextic.py"
+old = "            if ram > 2 * dl:"
+new = "            if ram > 2 * dl - 1:"
+
+[[mutant]]
+name = "Lemma 2.1 strengthened to: all four pairs full at every point"
+file = "enum_indep.py"
+old = "if sum(abs(t) == mu for t in c) >= 3"
+new = "if sum(abs(t) == mu for t in c) >= 4"
+
+[[mutant]]
+name = "group law ignores 2-torsion"
+file = "grouplaw_exact.py"
+old = "tors = [k for k in range(r) if dvals[k] > 1]"
+new = "tors = [k for k in range(r) if dvals[k] > 2]"
+
+[[mutant]]
+name = "Lemma 5.3: discriminant coefficient 6a^2 replaced by 5a^2"
+file = "verify_sec5.py"
+old = "assert S.expand(D - ((4*a**2+1)*F**4 + 6*a**2*F**2 + a**4 + 4*a**2)) == 0"
+new = "assert S.expand(D - ((4*a**2+1)*F**4 + 5*a**2*F**2 + a**4 + 4*a**2)) == 0"
+
+[[mutant]]
+name = "Lemma 5.3: Delta claimed a square at b = -4"
+file = "verify_sec5.py"
+old = "(-4, False)"
+new = "(-4, True)"
+
+[[mutant]]
+name = "Prop. 3.3 table: z = 2 claimed allowed for the pair {1,2}"
+file = "check_centre_distinct_algebra.py"
+old = '("12", 2+z, 2-z, set()),'
+new = '("12", 2+z, 2-z, {2}),'
+
+[[mutant]]
+name = "Section 7: 529 degree-seven tables left instead of 530"
+file = "check_claims.py"
+old = "M7_TABLES, M7_LEFT = 8280, 530"
+new = "M7_TABLES, M7_LEFT = 8280, 529"
+
+[[mutant]]
+name = "degree-seven split keyed to degree-three pair monomials instead of degree two"
+file = "m7_targets.py"
+old = "if deg(mono_div(u, rows)) == 2:"
+new = "if deg(mono_div(u, rows)) == 3:"
+
+[[mutant]]
+name = "drop the pencil square-class obstruction (Lemma 5.1)"
+file = "audit_sextic.py"
+old = "        or pencil(cfg)\n"
+new = "\n"
+
+[[mutant]]
+name = "group-law certificates: claim P_j + P_k principal instead of P_j - P_k"
+file = "check_grouplaw_certificates.py"
+old = "int(p == j) - int(p == kk)"
+new = "int(p == j) + int(p == kk)"
