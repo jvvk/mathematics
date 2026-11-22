@@ -1,0 +1,78 @@
+# python3 -I verify/mutate.py verify/mutants.toml   (from the bundle root)
+[check]
+cmd = ["python3", "-I", "{file}", "5"]
+cwd = "."
+timeout = 300
+fail_markers = ["Traceback"]
+
+[[mutant]]
+name = "per_loop: A without the elevating up-step"
+file = "per_loop.py"
+old = "                A, B = 1 + od, ev"
+new = "                A, B = od, ev"
+
+[[mutant]]
+name = "per_loop: clockwise reading"
+file = "per_loop.py"
+old = "            if a2 < 0:"
+new = "            if a2 > 0:"
+
+[[mutant]]
+name = "closed_form: constant 5/4 to 1"
+file = "closed_form.py"
+old = "    return 2 * r - mpf(5) / 4 + pi**2"
+new = "    return 2 * r - mpf(4) / 4 + pi**2"
+
+[[mutant]]
+name = "closed_form: cot coefficient 1-3r to 1-2r"
+file = "closed_form.py"
+old = "* (1 - 3 * r) * cot(pi * p)"
+new = "* (1 - 2 * r) * cot(pi * p)"
+
+[[mutant]]
+name = "closed_form: X_odd shifted"
+file = "closed_form.py"
+old = "    return r / (j + 1) * (q / (j + 1 + q) + p / (j + 1 + p))"
+new = "    return r / (j + 1) * (q / (j + q) + p / (j + 1 + p))"
+
+[[mutant]]
+name = "two_parameter: zeta(2) term"
+file = "two_parameter.py"
+old = "    tot = 4 * pi**2 / 3 - 2"
+new = "    tot = 4 * pi**2 / 3.1 - 2"
+
+[[mutant]]
+name = "monte_carlo: expectation without the 1/4"
+file = "monte_carlo.py"
+old = "for d in byk.values()) / 4"
+new = "for d in byk.values()) / 3"
+
+[[mutant]]
+name = "extensions: quadratic stability coefficient doubled"
+file = "extensions.py"
+old = "stability = (12 - mp.pi**2) * t / 24 + (mp.pi**2 - 6) * t**2 / 48"
+new = "stability = (12 - mp.pi**2) * t / 12 + (mp.pi**2 - 6) * t**2 / 48"
+
+[[mutant]]
+name = "extensions: derivative lower bound too strong"
+file = "extensions.py"
+old = "lower = (12 - mp.pi**2) * (1 - t) / 24 + t / 4"
+new = "lower = (12 - mp.pi**2) * (1 - t) / 24 + t / 2"
+
+[[mutant]]
+name = "extensions: truncation bound ten times too small"
+file = "extensions.py"
+old = "bound = a * (1 - a) * b * (1 - b) / (6 * N**3)"
+new = "bound = a * (1 - a) * b * (1 - b) / (60 * N**3)"
+
+[[mutant]]
+name = "extensions: derivative certificate coefficient"
+file = "extensions.py"
+old = "scale(mul(one_minus_s, H), -2))"
+new = "scale(mul(one_minus_s, H), -3))"
+
+[[mutant]]
+name = "extensions: two-bias U coefficient"
+file = "extensions.py"
+old = "* (4 * mp.pi**2 / 3 - 2 * sum(U(x) for x in a + b)"
+new = "* (4 * mp.pi**2 / 3 - 3 * sum(U(x) for x in a + b)"

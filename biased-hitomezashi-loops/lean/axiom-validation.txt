@@ -1,0 +1,75 @@
+HitomezashiBiased.parity_along : ∀ (ε η : ℤ → ZMod 2) (z : ℕ → ℤ × ℤ) (L : ℕ),
+  HitomezashiBiased.AltWalk ε η z L → ∀ t ≤ L, ↑((z t).1 + (z t).2) = ↑((z 0).1 + (z 0).2) + ↑t
+'HitomezashiBiased.parity_along' depends on axioms: [propext, Classical.choice, Quot.sound]
+HitomezashiBiased.vertical_label : ∀ (ε η : ℤ → ZMod 2) (z : ℕ → ℤ × ℤ) (L : ℕ),
+  HitomezashiBiased.AltWalk ε η z L →
+    ∀ t < L,
+      Even t →
+        have σ := ↑((z 0).1 + (z 0).2);
+        (z (t + 1)).2 = (z t).2 + 1 ∧ ε (z t).1 = σ + ↑(z t).1 ∨
+          (z (t + 1)).2 = (z t).2 - 1 ∧ ε (z t).1 = σ + ↑(z t).1 + 1
+'HitomezashiBiased.vertical_label' depends on axioms: [propext, Classical.choice, Quot.sound]
+HitomezashiBiased.horizontal_label : ∀ (ε η : ℤ → ZMod 2) (z : ℕ → ℤ × ℤ) (L : ℕ),
+  HitomezashiBiased.AltWalk ε η z L →
+    ∀ t < L,
+      Odd t →
+        have σ := ↑((z 0).1 + (z 0).2);
+        (z (t + 1)).1 = (z t).1 + 1 ∧ η (z t).2 = σ + 1 + ↑(z t).2 ∨
+          (z (t + 1)).1 = (z t).1 - 1 ∧ η (z t).2 = σ + 1 + ↑(z t).2 + 1
+'HitomezashiBiased.horizontal_label' depends on axioms: [propext, Classical.choice, Quot.sound]
+HitomezashiBiased.zeros_closed : ∀ (h : ℤ) (l : List Bool),
+  HitomezashiBiased.disp l = 0 →
+    HitomezashiBiased.zerosIdx (HitomezashiBiased.ev h) l = 2 * HitomezashiBiased.cnt HitomezashiBiased.eu h l ∧
+      HitomezashiBiased.zerosIdx (!HitomezashiBiased.ev h) l = 2 * HitomezashiBiased.cnt HitomezashiBiased.ou h l
+'HitomezashiBiased.zeros_closed' depends on axioms: [propext, Classical.choice, Quot.sound]
+HitomezashiBiased.label_word : ∀ (P : List Bool),
+  HitomezashiBiased.disp P = 0 →
+    ∀ (par : Bool),
+      have w := true :: (P ++ [false]);
+      have A := 1 + HitomezashiBiased.cnt HitomezashiBiased.ou 0 P;
+      have B := HitomezashiBiased.cnt HitomezashiBiased.eu 0 P;
+      HitomezashiBiased.zerosIdx par w = 2 * A ∧ HitomezashiBiased.zerosIdx (!par) w = 2 * B ∨
+        HitomezashiBiased.zerosIdx par w = 2 * B ∧ HitomezashiBiased.zerosIdx (!par) w = 2 * A
+'HitomezashiBiased.label_word' depends on axioms: [propext, Classical.choice, Quot.sound]
+HitomezashiBiased.casoratian : ∀ (a : ℕ → ℝ) (h : ℕ),
+  HitomezashiBiased.P a (h + 1) * HitomezashiBiased.Q a h - HitomezashiBiased.P a h * HitomezashiBiased.Q a (h + 1) =
+    ∏ i ∈ Finset.range h, a i
+'HitomezashiBiased.casoratian' depends on axioms: [propext, Classical.choice, Quot.sound]
+HitomezashiBiased.excHeight_eq : ∀ (a : ℕ → ℝ) (k : ℕ),
+  HitomezashiBiased.Q a k ≠ 0 →
+    HitomezashiBiased.Q a (k + 1) ≠ 0 →
+      HitomezashiBiased.excHeight a k =
+        (∏ i ∈ Finset.range k, a i) / (HitomezashiBiased.Q a k * HitomezashiBiased.Q a (k + 1))
+'HitomezashiBiased.excHeight_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+HitomezashiBiased.Q_alt : ∀ (p q : ℝ),
+  p + q = 1 →
+    p * q ≠ 0 →
+      ∀ (j : ℕ),
+        HitomezashiBiased.Q (HitomezashiBiased.alt (q ^ 2) (p ^ 2)) (2 * j + 1) = (↑j + 1) * (p * q) ^ j ∧
+          p * q * HitomezashiBiased.Q (HitomezashiBiased.alt (q ^ 2) (p ^ 2)) (2 * j) = (p * q) ^ j * p * (↑j + q)
+'HitomezashiBiased.Q_alt' depends on axioms: [propext, Classical.choice, Quot.sound]
+@HitomezashiBiased.X_even : ∀ {p : ℝ},
+  0 < p →
+    p < 1 →
+      ∀ (j : ℕ), HitomezashiBiased.X p (2 * j) = p * (1 - p) / (↑j + 1) * (p / (↑j + (1 - p)) + (1 - p) / (↑j + p))
+'HitomezashiBiased.X_even' depends on axioms: [propext, Classical.choice, Quot.sound]
+@HitomezashiBiased.X_odd : ∀ {p : ℝ},
+  0 < p →
+    p < 1 →
+      ∀ (j : ℕ),
+        HitomezashiBiased.X p (2 * j + 1) = p * (1 - p) / (↑j + 1) * ((1 - p) / (↑j + 1 + (1 - p)) + p / (↑j + 1 + p))
+'HitomezashiBiased.X_odd' depends on axioms: [propext, Classical.choice, Quot.sound]
+@HitomezashiBiased.hasSum_K : ∀ {x : ℝ},
+  0 < x → x < 1 → HasSum (fun n => 2 / ((↑n + 1) ^ 2 - x ^ 2)) ((1 / x - Real.pi * (Real.pi * x).cot) / x)
+'HitomezashiBiased.hasSum_K' depends on axioms: [propext, Classical.choice, Quot.sound]
+@HitomezashiBiased.hasSum_T : ∀ {x : ℝ},
+  0 < x →
+    x < 1 →
+      HasSum (fun n => 1 / (↑n + 1 + x) ^ 2 + 1 / (↑n + 1 - x) ^ 2)
+        (Real.pi ^ 2 / Real.sin (Real.pi * x) ^ 2 - 1 / x ^ 2)
+'HitomezashiBiased.hasSum_T' depends on axioms: [propext, Classical.choice, Quot.sound]
+@HitomezashiBiased.hasSum_density : ∀ {p : ℝ},
+  0 < p → p < 1 → p ≠ 1 / 2 → HasSum (fun k => HitomezashiBiased.X p k ^ 2 / 4) (HitomezashiBiased.density p)
+'HitomezashiBiased.hasSum_density' depends on axioms: [propext, Classical.choice, Quot.sound]
+HitomezashiBiased.hasSum_density_half : HasSum (fun k => HitomezashiBiased.X (1 / 2) k ^ 2 / 4) ((Real.pi ^ 2 - 9) / 12)
+'HitomezashiBiased.hasSum_density_half' depends on axioms: [propext, Classical.choice, Quot.sound]

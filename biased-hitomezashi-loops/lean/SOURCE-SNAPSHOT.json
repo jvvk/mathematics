@@ -1,0 +1,24 @@
+{
+  "source_commit": "22831b9 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports HitomezashiBiased only)",
+    "CheckClaims.lean (generated)",
+    "LeanProofs/HitomezashiBiased.lean (docstring points to lean/README.md)",
+    "scripts/mutants.toml (copy of lean-proofs scripts/hitomezashi_biased_mutants.toml) and scripts/mutate.py (shared runner)"
+  ],
+  "files": {
+    "CheckClaims.lean": "2aa012a4ee9ca65ad25462eb3b23b8d7da9d715b26d04f41687c4b8d902bb8dc",
+    "LeanProofs/HitomezashiBiased/Continuant.lean": "b0030272c06683e3ad1e64b57255495b877f5dadc3eb8f2ce1e45945413feb57",
+    "LeanProofs/HitomezashiBiased/LabelWord.lean": "54a979c28dc693e6188e7bdaba177db2db8f48b2b08c94216183c48d70c7df4c",
+    "LeanProofs/HitomezashiBiased/Parity.lean": "f0f782bffa6f503b988eb25c2621fb9f4aa4985a68563ed95ebfa5aba01e47ab",
+    "LeanProofs/HitomezashiBiased/Series.lean": "d67cd5960be177acae184640fb8d113588742047be78ee7abad66d7af276812e",
+    "LeanProofs/HitomezashiBiased.lean": "d33a03682d748ca7b4b0ae0bbb3b248a9fa9a31685235112f4a5ce3e436c536e",
+    "LeanProofs.lean": "14a1cd3b5eeda153fb5231e0c9cf0425df361bafa1aeadf86e0138875b3b549f",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutants.toml": "25a6fa64ffeb1705dae19549533edac45d5f7c623a0261d1e4d8063389c4bfa6",
+    "scripts/mutate.py": "4ad8809a31875a8a325f0ba045d5e752e59141e8f9d9d38be681c457cde17ac9"
+  }
+}

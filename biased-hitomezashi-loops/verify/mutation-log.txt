@@ -1,0 +1,18 @@
+control passes: per_loop.py
+control passes: closed_form.py
+control passes: two_parameter.py
+control passes: monte_carlo.py
+control passes: extensions.py
+rejected: per_loop: A without the elevating up-step (exit 1, marker 'Traceback': Traceback (most recent call last):)
+rejected: per_loop: clockwise reading (exit 1, marker 'Traceback': Traceback (most recent call last):)
+rejected: closed_form: constant 5/4 to 1 (exit 1, marker 'Traceback': Traceback (most recent call last):)
+rejected: closed_form: cot coefficient 1-3r to 1-2r (exit 1, marker 'Traceback': Traceback (most recent call last):)
+rejected: closed_form: X_odd shifted (exit 1, marker 'Traceback': Traceback (most recent call last):)
+rejected: two_parameter: zeta(2) term (exit 1, marker 'Traceback': Traceback (most recent call last):)
+rejected: monte_carlo: expectation without the 1/4 (exit 1, marker 'Traceback': Traceback (most recent call last):)
+rejected: extensions: quadratic stability coefficient doubled (exit 1, marker 'Traceback': Traceback (most recent call last):)
+rejected: extensions: derivative lower bound too strong (exit 1, marker 'Traceback': Traceback (most recent call last):)
+rejected: extensions: truncation bound ten times too small (exit 1, marker 'Traceback': Traceback (most recent call last):)
+rejected: extensions: derivative certificate coefficient (exit 1, marker 'Traceback': Traceback (most recent call last):)
+rejected: extensions: two-bias U coefficient (exit 1, marker 'Traceback': Traceback (most recent call last):)
+12/12 mutants rejected, all controls pass
