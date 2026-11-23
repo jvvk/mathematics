@@ -1,0 +1,16 @@
+control passes: Obstruction.lean
+control passes: Family.lean
+control passes: Headline.lean
+control passes: Degree.lean
+control passes: Prune.lean
+rejected: Lemma 3.2 bound 3893 (exit 1, diagnostic: /private/tmp/claude-501/release-lean/remoteness-three-branch-trees/LeanProofs/Remoteness/ObstructionMut.lean:150:13: error: Type mismatch)
+rejected: D' with a seventh unit segment (data perturbation) (exit 1, diagnostic: /private/tmp/claude-501/release-lean/remoteness-three-branch-trees/LeanProofs/Remoteness/ObstructionMut.lean:47:36: error: Tactic `decide` proved that the propo)
+rejected: Lemma 4.3 allowing h = 0 (exit 1, diagnostic: /private/tmp/claude-501/release-lean/remoteness-three-branch-trees/LeanProofs/Remoteness/FamilyMut.lean:49:29: error: linarith failed to find a contradiction)
+rejected: headline: two-branch bound 5972 (exit 1, diagnostic: /private/tmp/claude-501/release-lean/remoteness-three-branch-trees/LeanProofs/Remoteness/HeadlineMut.lean:218:6: error: Type mismatch)
+rejected: headline: T at most 5961 (exit 1, diagnostic: /private/tmp/claude-501/release-lean/remoteness-three-branch-trees/LeanProofs/Remoteness/HeadlineMut.lean:208:10: error: Application type mismatch: The argument)
+rejected: T's middle branch vertex at 54 (exit 1, diagnostic: /private/tmp/claude-501/release-lean/remoteness-three-branch-trees/LeanProofs/Remoteness/DegreeMut.lean:117:14: error: Tactic `decide` proved that the propositi)
+rejected: two-hub tree with one branch vertex (exit 1, diagnostic: /private/tmp/claude-501/release-lean/remoteness-three-branch-trees/LeanProofs/Remoteness/DegreeMut.lean:161:33: error: `simp` made no progress)
+rejected: arm vertex degree off by one (exit 1, diagnostic: /private/tmp/claude-501/release-lean/remoteness-three-branch-trees/LeanProofs/Remoteness/DegreeMut.lean:92:2: error: unsolved goals)
+rejected: Lemma 4.2 with four long segments (exit 1, diagnostic: /private/tmp/claude-501/release-lean/remoteness-three-branch-trees/LeanProofs/Remoteness/PruneMut.lean:89:2: error: omega could not prove the goal:)
+rejected: Lemma 4.2 allowing degree-2 vertices (hypothesis replaced; false statement) (exit 1, diagnostic: /private/tmp/claude-501/release-lean/remoteness-three-branch-trees/LeanProofs/Remoteness/PruneMut.lean:50:6: error: omega could not prove the goal:)
+10/10 mutants rejected, all controls pass

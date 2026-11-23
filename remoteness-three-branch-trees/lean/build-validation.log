@@ -1,0 +1,41 @@
+Isolated build 2026-11-23: fresh copy of lean/, lake exe cache get, lake build LeanProofs
+⚠ [8924/8934] Built LeanProofs.Remoteness.Dist (105s)
+warning: LeanProofs/Remoteness/Dist.lean:6:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Remoteness/Dist.lean:7:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Remoteness/Dist.lean:17:100: This line exceeds the 100 character limit, please shorten it!
+⚠ [8925/8934] Built LeanProofs.Remoteness.Obstruction (105s)
+warning: LeanProofs/Remoteness/Obstruction.lean:6:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Remoteness/Obstruction.lean:8:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Remoteness/Obstruction.lean:11:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Remoteness/Obstruction.lean:12:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Remoteness/Obstruction.lean:23:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Remoteness/Obstruction.lean:32:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Remoteness/Obstruction.lean:90:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Remoteness/Obstruction.lean:106:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Remoteness/Obstruction.lean:156:100: This line exceeds the 100 character limit, please shorten it!
+⚠ [8926/8934] Built LeanProofs.Remoteness.Prune (106s)
+warning: LeanProofs/Remoteness/Prune.lean:6:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Remoteness/Prune.lean:7:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Remoteness/Prune.lean:10:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Remoteness/Prune.lean:11:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Remoteness/Prune.lean:12:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Remoteness/Prune.lean:13:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Remoteness/Prune.lean:14:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Remoteness/Prune.lean:37:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Remoteness/Prune.lean:42:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Remoteness/Prune.lean:54:100: This line exceeds the 100 character limit, please shorten it!
+⚠ [8927/8934] Built LeanProofs.Remoteness.Family (110s)
+warning: LeanProofs/Remoteness/Family.lean:4:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Remoteness/Family.lean:6:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Remoteness/Family.lean:7:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Remoteness/Family.lean:8:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Remoteness/Family.lean:9:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Remoteness/Family.lean:10:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Remoteness/Family.lean:13:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Remoteness/Family.lean:30:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Remoteness/Family.lean:31:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Remoteness/Family.lean:79:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+warning: LeanProofs/Remoteness/Family.lean:88:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+warning: LeanProofs/Remoteness/Family.lean:45:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Remoteness/Family.lean:70:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Remoteness/Family.lean:103:100: This line exceeds the 100 character limit, please shorten it!

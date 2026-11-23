@@ -1,0 +1,28 @@
+{
+  "source_commit": "30aac50 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports Remoteness only)",
+    "CheckClaims.lean (generated)",
+    "scripts/mutants.py (copy of lean-proofs scripts/remoteness_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "e403b834697baa137b40c4f3b321473881b46f303bca3dba7cf6bdddcd0202c2",
+    "LeanProofs/Remoteness/Caterpillar.lean": "6ab53366f86d7e664b5890bb1e9c56c10ae3e24389bca98db60494e3e6bd7230",
+    "LeanProofs/Remoteness/Degree.lean": "cdf6754f61b9a633ac1877e870d8592b21ab5c7616b70ef73324874c570ea10e",
+    "LeanProofs/Remoteness/Dist.lean": "865f10fe4b68233a2df6c448f8e6c90f1a007f03052cdf2e4a63091af53e92a4",
+    "LeanProofs/Remoteness/Family.lean": "e272e4dce796e6d7f9ee773a1c80858b257472861486569979344a6f44071574",
+    "LeanProofs/Remoteness/Headline.lean": "6325a11100f80a9cb3e809ff9acade0fb8a0613b4fc784732e6e39e959b8a91b",
+    "LeanProofs/Remoteness/Obstruction.lean": "59ddbc7607f80f0948c28b7b2952f94bade99d91842ead1f6281b18de38b712e",
+    "LeanProofs/Remoteness/Prune.lean": "510da43724b38e29dea5e5f0876a339bc3a2c5118f3613cc23af199f05188a23",
+    "LeanProofs/Remoteness/Report.lean": "06cba3c16cfc1972eba64e3b8d11509a9ee6adfbf179d0f1d8f13c0ba48e489b",
+    "LeanProofs/Remoteness/Transmission.lean": "09bcc7b9601ea9de38cb502a6f49aa6ff4f5f9e63a579222465498a1838dbe04",
+    "LeanProofs/Remoteness.lean": "f56d9f4c89554975167f3817b414ff6db6c706e2fdd10776a040e3d93c860c4e",
+    "LeanProofs.lean": "71f2a33e4d81f0c9fb91e6dfd80d36bf65f39945f22957bfe6fefaaac30cfe02",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutants.toml": "16ac309abe0ed748ac894cc49cdedf42cefc5dd58483c2a66350c1618a105969",
+    "scripts/mutate.py": "742a3c8834e82d19f9f161d1428936b454136e00a410cf5b5491e6061a37be51"
+  }
+}

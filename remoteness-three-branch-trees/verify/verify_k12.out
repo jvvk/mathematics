@@ -1,0 +1,5 @@
+D [53, 23, 21, 9, 9, 9, 1, 1, 1, 1, 1, 1] k 12 n 131 T max transmission 5962
+starlike 6160
+(Delta,2)-D-trees checked 321 best (5971, 53, (9, 9, 9), (1, 1, 1, 1, 1, 1, 21, 23))
+COUNTEREXAMPLE margin 9
+CHECK PASSED

@@ -1,0 +1,68 @@
+# Mutation suite for the remoteness note's Lean files. Each mutant is a stronger, false claim.
+[check]
+cmd = ["lake", "env", "lean", "{file}"]
+cwd = ".."
+timeout = 900
+fail_markers = ["error"]
+fail_pattern = '^(?P<file>\S+\.lean):\d+:\d+: error\b'
+log_dir = "mutation-logs"
+
+[[mutant]]
+name = "Lemma 3.2 bound 3893"
+file = "../LeanProofs/Remoteness/Obstruction.lean"
+old = "theorem obstruction (A B : Multiset ℕ) (h : A + B = Dp) : 3892 ≤ broom A B := by"
+new = "theorem obstruction (A B : Multiset ℕ) (h : A + B = Dp) : 3893 ≤ broom A B := by"
+
+[[mutant]]
+name = "D' with a seventh unit segment (data perturbation)"
+file = "../LeanProofs/Remoteness/Obstruction.lean"
+old = "def Dp : Multiset ℕ := {23, 21, 9, 9, 9, 1, 1, 1, 1, 1, 1}"
+new = "def Dp : Multiset ℕ := {23, 21, 9, 9, 9, 1, 1, 1, 1, 1, 1, 1}"
+
+[[mutant]]
+name = "Lemma 4.3 allowing h = 0"
+file = "../LeanProofs/Remoteness/Family.lean"
+old = "theorem three_branch_loses (hh : 1 ≤ h) (hp : h ≤ p) (hL : p ≤ L)"
+new = "theorem three_branch_loses (hh : 0 ≤ h) (hp : h ≤ p) (hL : p ≤ L)"
+
+[[mutant]]
+name = "headline: two-branch bound 5972"
+file = "../LeanProofs/Remoteness/Headline.lean"
+old = "      ∀ C : Cat, Starlike C ∨ TwoHub C → ∃ v, 5971 ≤ C.trans v := by"
+new = "      ∀ C : Cat, Starlike C ∨ TwoHub C → ∃ v, 5972 ≤ C.trans v := by"
+
+[[mutant]]
+name = "headline: T at most 5961"
+file = "../LeanProofs/Remoteness/Headline.lean"
+old = "    (∀ v, T.trans v ≤ 5962) ∧ (∃ v, T.trans v = 5962) ∧"
+new = "    (∀ v, T.trans v ≤ 5961) ∧ (∃ v, T.trans v = 5962) ∧"
+
+[[mutant]]
+name = "T's middle branch vertex at 54"
+file = "../LeanProofs/Remoteness/Degree.lean"
+old = "theorem T_branch : T.branch = {.inl 0, .inl 53, .inl 76} := by"
+new = "theorem T_branch : T.branch = {.inl 0, .inl 54, .inl 76} := by"
+
+[[mutant]]
+name = "two-hub tree with one branch vertex"
+file = "../LeanProofs/Remoteness/Degree.lean"
+old = "    C.branch = {.inl ⟨0, by omega⟩, .inl ⟨C.S, by omega⟩} := by"
+new = "    C.branch = {.inl ⟨0, by omega⟩} := by"
+
+[[mutant]]
+name = "arm vertex degree off by one"
+file = "../LeanProofs/Remoteness/Degree.lean"
+old = "    C.graph.degree (.inr ⟨i, j⟩) = 1 + (if j.val + 1 < C.ℓ i then 1 else 0) := by"
+new = "    C.graph.degree (.inr ⟨i, j⟩) = 2 + (if j.val + 1 < C.ℓ i then 1 else 0) := by"
+
+[[mutant]]
+name = "Lemma 4.2 with four long segments"
+file = "../LeanProofs/Remoteness/Prune.lean"
+old = "    (hspec : #(K.edgeFinset.filter (fun e => len e ≠ h)) ≤ 2)"
+new = "    (hspec : #(K.edgeFinset.filter (fun e => len e ≠ h)) ≤ 4)"
+
+[[mutant]]
+name = "Lemma 4.2 allowing degree-2 vertices (hypothesis replaced; false statement)"
+file = "../LeanProofs/Remoteness/Prune.lean"
+old = "(hdeg : ∀ v, K.degree v ≠ 2)"
+new = "(hdeg : ∀ v, K.degree v ≠ 4)"

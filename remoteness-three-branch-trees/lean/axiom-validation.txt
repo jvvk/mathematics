@@ -1,0 +1,43 @@
+Remoteness.obstruction : ∀ (A B : Multiset ℕ), A + B = Remoteness.Dp → 3892 ≤ Remoteness.broom A B
+'Remoteness.obstruction' depends on axioms: [propext, Classical.choice, Quot.sound]
+Remoteness.attained : Remoteness.broom {23, 21, 1, 1, 1, 1, 1, 1} {9, 9, 9} = 3892
+'Remoteness.attained' depends on axioms: [propext, Classical.choice, Quot.sound]
+Remoteness.Family.three_branch_loses : ∀ (L p h a b c : ℤ),
+  1 ≤ h →
+    h ≤ p →
+      p ≤ L →
+        2 ≤ a →
+          1 ≤ b →
+            2 ≤ c →
+              (∃ r,
+                  2 ≤ r ∧
+                    r ≤ Remoteness.Family.m a b c - 1 ∧
+                      2 * Remoteness.Family.H L p h a b c r <
+                        Remoteness.Family.X L p h a b c + Remoteness.Family.Z L p h a b c) ∨
+                2 * Remoteness.Family.f L p h a b c L <
+                  Remoteness.Family.X L p h a b c + Remoteness.Family.Z L p h a b c
+'Remoteness.Family.three_branch_loses' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Remoteness.Prune.prune : ∀ {V : Type u_1} [inst : Fintype V] (K : SimpleGraph V) [inst_1 : DecidableRel K.Adj],
+  K.IsAcyclic →
+    ∀ (len : Sym2 V → ℕ) (h : ℕ),
+      (∀ (v : V), K.degree v ≠ 2) →
+        {e ∈ K.edgeFinset | len e ≠ h}.card ≤ 2 →
+          ∀ (u₀ v₀ : V),
+            K.Adj u₀ v₀ →
+              K.degree u₀ ≠ 1 →
+                K.degree v₀ ≠ 1 →
+                  len s(u₀, v₀) = h →
+                    ∃ a b c, K.Adj a b ∧ K.degree a ≠ 1 ∧ K.degree b ≠ 1 ∧ len s(a, b) = h ∧ K.Adj b c ∧ K.degree c = 1
+'Remoteness.Prune.prune' depends on axioms: [propext, Classical.choice, Quot.sound]
+Remoteness.Cat.dist_eq : ∀ (C : Remoteness.Cat) (u v : C.V), C.graph.dist u v = C.d u v
+'Remoteness.Cat.dist_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+Remoteness.headline : (∀ (v : Remoteness.T.V), Remoteness.T.trans v ≤ 5962) ∧
+  (∃ v, Remoteness.T.trans v = 5962) ∧
+    ∀ (C : Remoteness.Cat), Remoteness.Starlike C ∨ Remoteness.TwoHub C → ∃ v, 5971 ≤ C.trans v
+'Remoteness.headline' depends on axioms: [propext, Classical.choice, Quot.sound]
+Remoteness.T_branch : Remoteness.T.branch = {Sum.inl 0, Sum.inl 53, Sum.inl 76}
+'Remoteness.T_branch' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Remoteness.Starlike.branch : ∀ {C : Remoteness.Cat}, Remoteness.Starlike C → C.branch = {Sum.inl ⟨0, ⋯⟩}
+'Remoteness.Starlike.branch' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Remoteness.TwoHub.branch : ∀ {C : Remoteness.Cat}, Remoteness.TwoHub C → C.branch = {Sum.inl ⟨0, ⋯⟩, Sum.inl ⟨C.S, ⋯⟩}
+'Remoteness.TwoHub.branch' depends on axioms: [propext, Classical.choice, Quot.sound]

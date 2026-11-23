@@ -1,0 +1,9 @@
+k 12 skeletons 42 assignments 110880
+max transmission 5962 branch vertices 3 skeleton 18 lengths (23, 1, 1, 1, 1, 1, 1, 53, 21, 9, 9, 9) edges ((1, 0), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6), (1, 7), (0, 8), (0, 12), (8, 9), (8, 10), (8, 11))
+max transmission 5971 branch vertices 2 skeleton 24 lengths (53, 9, 9, 9, 21, 23, 1, 1, 1, 1, 1, 1) edges ((1, 0), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6), (0, 7), (0, 8), (0, 9), (0, 10), (0, 11), (0, 12))
+max transmission 5971 branch vertices 2 skeleton 36 lengths (53, 9, 9, 9, 1, 1, 1, 1, 1, 1, 21, 23) edges ((1, 0), (1, 2), (1, 3), (1, 4), (0, 5), (0, 6), (0, 7), (0, 8), (0, 9), (0, 10), (0, 11), (0, 12))
+max transmission 5973 branch vertices 3 skeleton 35 lengths (53, 9, 9, 9, 1, 1, 1, 1, 21, 23, 1, 1) edges ((1, 0), (1, 2), (1, 3), (1, 4), (0, 5), (0, 8), (0, 9), (0, 10), (0, 11), (0, 12), (5, 6), (5, 7))
+max transmission 5974 branch vertices 3 skeleton 33 lengths (1, 1, 1, 1, 53, 1, 1, 21, 23, 9, 9, 9) edges ((1, 0), (1, 2), (1, 3), (1, 4), (0, 5), (0, 9), (0, 10), (0, 11), (0, 12), (5, 6), (5, 7), (5, 8))
+max transmission 5975 branch vertices 3 skeleton 27 lengths (1, 1, 1, 1, 1, 53, 1, 21, 23, 9, 9, 9) edges ((1, 0), (1, 2), (1, 3), (1, 4), (1, 5), (0, 6), (0, 10), (0, 11), (0, 12), (6, 7), (6, 8), (6, 9))
+best by number of branch vertices: {1: 6160, 2: 5971, 3: 5962, 4: 5975, 5: 6003}
+CHECK PASSED
