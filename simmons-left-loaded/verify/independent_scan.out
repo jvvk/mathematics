@@ -1,0 +1,2 @@
+PASS: 5550 pairs (n, m) with 3 <= n <= 150, n > 2m
+PASS: Bin(7,3/7) values and Figure 1 data match the paper

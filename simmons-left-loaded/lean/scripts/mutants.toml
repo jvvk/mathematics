@@ -1,0 +1,111 @@
+# Mutation suite for the Simmons partial-sum formalisation (Fokkink-Papavassiliou-Pelekis Conjecture 4.1,
+# MO 384456). Each mutant is one textual change to a stated result towards a stronger, false claim; every one
+# must be rejected. Notation: w j = C(n, j) m^j q^(n-j), q = n - m, A i = n^n alpha_i. Run from anywhere:
+#   cd scripts && python3 mutate.py mutants.toml
+[check]
+cmd = ["lake", "env", "lean", "{file}"]
+cwd = ".."
+timeout = 900
+fail_markers = ["error"]
+fail_pattern = '^(?P<file>\S+\.lean):\d+:\d+: error\b'
+log_dir = "mutation-logs"
+
+# False at n = 2, m = 1, j = 0: LHS 1 * 1 * w 1 = 2, RHS 3 * 1 * w 0 = 3.
+[[mutant]]
+name = "adjacent masses with n - j + 1"
+file = "../LeanProofs/SimmonsPartial/Basic.lean"
+old = "    (j + 1) * (n - m) * w n m (j + 1) = (n - j) * m * w n m j := by"
+new = "    (j + 1) * (n - m) * w n m (j + 1) = (n - j + 1) * m * w n m j := by"
+
+# False: A q = -w n exactly (e.g. n = 3, m = 1: A 2 = -1).
+[[mutant]]
+name = "last term -w n + 1"
+file = "../LeanProofs/SimmonsPartial/Basic.lean"
+old = "theorem A_last {n m : ℕ} (h : m < n - m) : A n m (n - m) = -(w n m n : ℤ) := by"
+new = "theorem A_last {n m : ℕ} (h : m < n - m) : A n m (n - m) = -(w n m n : ℤ) + 1 := by"
+
+# False: sum_j j w j = m sum_j w j and sum_j w j = n^n > 0.
+[[mutant]]
+name = "mean m + 1"
+file = "../LeanProofs/SimmonsPartial/Total.lean"
+old = "    ∑ j ∈ range (n + 1), (j : ℤ) * w n m j = m * ∑ j ∈ range (n + 1), (w n m j : ℤ) := by"
+new = "    ∑ j ∈ range (n + 1), (j : ℤ) * w n m j = (m + 1) * ∑ j ∈ range (n + 1), (w n m j : ℤ) := by"
+
+# False at n = 3, m = 1: A 1 = 1, A 2 = -1, so the sum to q - 1 = 1 is 1.
+[[mutant]]
+name = "total over 1..q-1"
+file = "../LeanProofs/SimmonsPartial/Total.lean"
+old = "theorem total {n m : ℕ} (hn2 : 2 * m ≤ n) (hn : 0 < n) : ∑ i ∈ Icc 1 (n - m), A n m i = 0 := by"
+new = "theorem total {n m : ℕ} (hn2 : 2 * m ≤ n) (hn : 0 < n) : ∑ i ∈ Icc 1 (n - m - 1), A n m i = 0 := by"
+
+# False at n = 9, m = 4, i = 0: LHS 4064256 * 10^12, RHS 4877107.2 * 10^12.
+[[mutant]]
+name = "ratio identity with q - i + 1"
+file = "../LeanProofs/SimmonsPartial/Ratio.lean"
+old = "      m ^ 2 * (n - m - i) * (n - m + i + 1) * w n m (m + i) * w n m (m - i - 1) := by"
+new = "      m ^ 2 * (n - m - i + 1) * (n - m + i + 1) * w n m (m + i) * w n m (m - i - 1) := by"
+
+# False at m = 1, q = 2, i = 0: LHS 6 - 8 = -2, mutant RHS (1)(0 - 2 * 2) = -4.
+[[mutant]]
+name = "factor with (m + 1) q"
+file = "../LeanProofs/SimmonsPartial/Ratio.lean"
+old = "(q - m) * ((q + m) * i * (i + 1) - m * q) := by"
+new = "(q - m) * ((q + m) * i * (i + 1) - (m + 1) * q) := by"
+
+# The added slack n m^2 makes the hypothesis hold for every i <= m, so the mutant claims w(m+i) < w(m-i) on
+# all of [1, m]. False at n = 9, m = 4, i = 4: w 8 = 2949120 > w 0 = 1953125.
+[[mutant]]
+name = "beta < 1 on all of [1, m]"
+file = "../LeanProofs/SimmonsPartial/Ratio.lean"
+old = "    (hF : n * (i - 1) * i ≤ m * (n - m)) : w n m (m + i) < w n m (m - i) := by"
+new = "    (hF : n * (i - 1) * i ≤ m * (n - m) + n * m * m) : w n m (m + i) < w n m (m - i) := by"
+
+# The mutated hypothesis is a tautology, so the mutant claims d (i+1) > 0 for every i >= 1 with i + 1 < q.
+# False at n = 9, m = 4, i = 1: d 2 = w 6 - w 2 = -1992000.
+[[mutant]]
+name = "d (i+1) > 0 without d i >= 0"
+file = "../LeanProofs/SimmonsPartial/Ratio.lean"
+old = "    (hd : 0 ≤ d n m i) : 0 < d n m (i + 1) := by"
+new = "    (hd : d n m i ≤ 0 ∨ 0 ≤ d n m i) : 0 < d n m (i + 1) := by"
+
+# False: q = 2, a 1 = -1, a 2 = 0 (step condition vacuous); a 1 < 0 but a 2 is not.
+[[mutant]]
+name = "abstract sign change with a q <= 0"
+file = "../LeanProofs/SimmonsPartial/Shape.lean"
+old = "    (hlast : a q < 0) {i j : ℕ} (hi : 1 ≤ i) (hij : i ≤ j) (hj : j ≤ q) (h : a i < 0) : a j < 0 := by"
+new = "    (hlast : a q ≤ 0) {i j : ℕ} (hi : 1 ≤ i) (hij : i ≤ j) (hj : j ≤ q) (h : a i < 0) : a j < 0 := by"
+
+# False at k = q: the sum over 1..q is exactly 0 (total).
+[[mutant]]
+name = "partial sums positive up to k = q"
+file = "../LeanProofs/SimmonsPartial/Main.lean"
+old = "theorem partial_sum_pos (n m k : ℕ) (hm : 1 ≤ m) (hn : 2 * m < n) (hk1 : 1 ≤ k) (hk : k < n - m) :"
+new = "theorem partial_sum_pos (n m k : ℕ) (hm : 1 ≤ m) (hn : 2 * m < n) (hk1 : 1 ≤ k) (hk : k ≤ n - m) :"
+
+# False at n = 3, m = 1, i = j - 1 = 2 = q: A 2 = -1 < 0 but A 3 = 0.
+[[mutant]]
+name = "one sign change beyond q (j <= n)"
+file = "../LeanProofs/SimmonsPartial/Main.lean"
+old = "    (hj : j ≤ m) (h : A n m i < 0) : A n m j < 0 :="
+new = "    (hj : j ≤ n) (h : A n m i < 0) : A n m j < 0 :="
+
+# False at i = m + 1, m = 1: w 2 1 3 = 0 but w 2 1 0 = 1.
+[[mutant]]
+name = "symmetry w(m+i) = w(m-i) at i = m + 1"
+file = "../LeanProofs/SimmonsPartial/Main.lean"
+old = "lemma w_symm (m i : ℕ) (hi : i ≤ m) : w (2 * m) m (m + i) = w (2 * m) m (m - i) := by"
+new = "lemma w_symm (m i : ℕ) (hi : i ≤ m + 1) : w (2 * m) m (m + i) = w (2 * m) m (m - i) := by"
+
+# False at n = 2m: every A i with i <= m + 1 is 0, so the sum is 0.
+[[mutant]]
+name = "conjecture strict including n = 2m"
+file = "../LeanProofs/SimmonsPartial/Main.lean"
+old = "    0 ≤ ∑ i ∈ Finset.Icc 1 k, A n m i := by"
+new = "    0 < ∑ i ∈ Finset.Icc 1 k, A n m i := by"
+
+# False at n = 3, m = 1, i = 1: alpha_1 = 1/27 (A 1 = 1) but the mutant gives 1/81.
+[[mutant]]
+name = "bridge with n^(n+1)"
+file = "../LeanProofs/SimmonsPartial/Bridge.lean"
+old = "      (A n m i : ℝ) / (n : ℝ) ^ n := by"
+new = "      (A n m i : ℝ) / (n : ℝ) ^ (n + 1) := by"

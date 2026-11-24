@@ -1,0 +1,41 @@
+Isolated build 2026-11-24: fresh copy of lean/, lake exe cache get, lake build LeanProofs
+✔ [8924/8932] Built LeanProofs.SimmonsPartial.Basic (80s)
+⚠ [8925/8932] Built LeanProofs.SimmonsPartial.Shape (80s)
+warning: LeanProofs/SimmonsPartial/Shape.lean:12:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/SimmonsPartial/Shape.lean:13:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/SimmonsPartial/Shape.lean:14:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/SimmonsPartial/Shape.lean:15:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/SimmonsPartial/Shape.lean:38:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/SimmonsPartial/Shape.lean:42:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/SimmonsPartial/Shape.lean:50:100: This line exceeds the 100 character limit, please shorten it!
+⚠ [8926/8932] Built LeanProofs.SimmonsPartial.Total (90s)
+warning: LeanProofs/SimmonsPartial/Total.lean:6:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/SimmonsPartial/Total.lean:8:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/SimmonsPartial/Total.lean:21:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/SimmonsPartial/Total.lean:29:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/SimmonsPartial/Total.lean:56:100: This line exceeds the 100 character limit, please shorten it!
+⚠ [8927/8932] Built LeanProofs.SimmonsPartial.Bridge (90s)
+warning: LeanProofs/SimmonsPartial/Bridge.lean:15:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/SimmonsPartial/Bridge.lean:34:100: This line exceeds the 100 character limit, please shorten it!
+⚠ [8928/8932] Built LeanProofs.SimmonsPartial.Ratio (90s)
+warning: LeanProofs/SimmonsPartial/Ratio.lean:6:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/SimmonsPartial/Ratio.lean:11:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/SimmonsPartial/Ratio.lean:15:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/SimmonsPartial/Ratio.lean:16:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/SimmonsPartial/Ratio.lean:17:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/SimmonsPartial/Ratio.lean:31:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/SimmonsPartial/Ratio.lean:32:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/SimmonsPartial/Ratio.lean:37:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/SimmonsPartial/Ratio.lean:74:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/SimmonsPartial/Ratio.lean:83:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/SimmonsPartial/Ratio.lean:98:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/SimmonsPartial/Ratio.lean:100:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/SimmonsPartial/Ratio.lean:103:100: This line exceeds the 100 character limit, please shorten it!
+⚠ [8929/8932] Built LeanProofs.SimmonsPartial.Main (43s)
+warning: LeanProofs/SimmonsPartial/Main.lean:49:100: This line exceeds the 100 character limit, please shorten it!
+⚠ [8930/8932] Built LeanProofs.SimmonsPartial (38s)
+warning: LeanProofs/SimmonsPartial.lean:1:1: * `-/`:
+warning: LeanProofs/SimmonsPartial.lean:11:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/SimmonsPartial.lean:16:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/SimmonsPartial.lean:25:100: This line exceeds the 100 character limit, please shorten it!
+✔ [8931/8932] Built LeanProofs (38s)

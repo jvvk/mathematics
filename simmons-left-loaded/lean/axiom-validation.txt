@@ -1,0 +1,73 @@
+SimmonsPartial.adjacent : ∀ (n m j : ℕ),
+  (j + 1) * (n - m) * SimmonsPartial.w n m (j + 1) = (n - j) * m * SimmonsPartial.w n m j
+'SimmonsPartial.adjacent' depends on axioms: [propext, Quot.sound]
+SimmonsPartial.A_succ : ∀ (n m i : ℕ), SimmonsPartial.A n m (i + 1) = SimmonsPartial.A n m i + SimmonsPartial.d n m i
+'SimmonsPartial.A_succ' depends on axioms: [propext, Classical.choice, Quot.sound]
+@SimmonsPartial.A_last : ∀ {n m : ℕ}, m < n - m → SimmonsPartial.A n m (n - m) = -↑(SimmonsPartial.w n m n)
+'SimmonsPartial.A_last' depends on axioms: [propext, Classical.choice, Quot.sound]
+@SimmonsPartial.A_eq_zero : ∀ {n m i : ℕ}, m < i → n < m + i → SimmonsPartial.A n m i = 0
+'SimmonsPartial.A_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+@SimmonsPartial.mean : ∀ {n m : ℕ},
+  m ≤ n →
+    0 < n →
+      ∑ j ∈ Finset.range (n + 1), ↑j * ↑(SimmonsPartial.w n m j) =
+        ↑m * ∑ j ∈ Finset.range (n + 1), ↑(SimmonsPartial.w n m j)
+'SimmonsPartial.mean' depends on axioms: [propext, Classical.choice, Quot.sound]
+@SimmonsPartial.total : ∀ {n m : ℕ}, 2 * m ≤ n → 0 < n → ∑ i ∈ Finset.Icc 1 (n - m), SimmonsPartial.A n m i = 0
+'SimmonsPartial.total' depends on axioms: [propext, Classical.choice, Quot.sound]
+SimmonsPartial.ratio : ∀ (n m i : ℕ),
+  i < m →
+    m ≤ n →
+      (n - m) ^ 2 * (m - i) * (m + i + 1) * SimmonsPartial.w n m (m + i + 1) * SimmonsPartial.w n m (m - i) =
+        m ^ 2 * (n - m - i) * (n - m + i + 1) * SimmonsPartial.w n m (m + i) * SimmonsPartial.w n m (m - i - 1)
+'SimmonsPartial.ratio' depends on axioms: [propext, Quot.sound]
+SimmonsPartial.factor : ∀ (m q i : ℤ),
+  m ^ 2 * (q - i) * (q + i + 1) - q ^ 2 * (m - i) * (m + i + 1) = (q - m) * ((q + m) * i * (i + 1) - m * q)
+'SimmonsPartial.factor' depends on axioms: [propext, Quot.sound]
+@SimmonsPartial.neg_start : ∀ {n m : ℕ},
+  1 ≤ m →
+    2 * m < n →
+      ∀ (i : ℕ),
+        1 ≤ i → i ≤ m → n * (i - 1) * i ≤ m * (n - m) → SimmonsPartial.w n m (m + i) < SimmonsPartial.w n m (m - i)
+'SimmonsPartial.neg_start' depends on axioms: [propext, Classical.choice, Quot.sound]
+@SimmonsPartial.d_step : ∀ {n m : ℕ},
+  1 ≤ m → 2 * m < n → ∀ {i : ℕ}, 1 ≤ i → i + 1 < n - m → 0 ≤ SimmonsPartial.d n m i → 0 < SimmonsPartial.d n m (i + 1)
+'SimmonsPartial.d_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+SimmonsPartial.up : ∀ (a : ℕ → ℤ) (q : ℕ),
+  (∀ (i : ℕ), 1 ≤ i → i + 1 < q → a i ≤ a (i + 1) → a (i + 1) < a (i + 1 + 1)) →
+    ∀ {l : ℕ}, 1 ≤ l → a l ≤ a (l + 1) → ∀ (j : ℕ), l ≤ j → j ≤ q → a j ≤ a q
+'SimmonsPartial.up' depends on axioms: [propext, Quot.sound]
+SimmonsPartial.down : ∀ (a : ℕ → ℤ) {s t : ℕ},
+  (∀ (i : ℕ), s ≤ i → i < t → a (i + 1) < a i) → ∀ (j : ℕ), s ≤ j → j ≤ t → a j ≤ a s
+'SimmonsPartial.down' depends on axioms: [propext, Quot.sound]
+SimmonsPartial.neg_persists : ∀ (a : ℕ → ℤ) (q : ℕ),
+  (∀ (i : ℕ), 1 ≤ i → i + 1 < q → a i ≤ a (i + 1) → a (i + 1) < a (i + 1 + 1)) →
+    a q < 0 → ∀ {i j : ℕ}, 1 ≤ i → i ≤ j → j ≤ q → a i < 0 → a j < 0
+'SimmonsPartial.neg_persists' depends on axioms: [propext, Classical.choice, Quot.sound]
+SimmonsPartial.partial_pos : ∀ (a : ℕ → ℤ) (q : ℕ),
+  (∀ (i : ℕ), 1 ≤ i → i + 1 < q → a i ≤ a (i + 1) → a (i + 1) < a (i + 1 + 1)) →
+    a q < 0 → ∑ i ∈ Finset.Icc 1 q, a i = 0 → ∀ {k : ℕ}, 1 ≤ k → k < q → 0 < ∑ i ∈ Finset.Icc 1 k, a i
+'SimmonsPartial.partial_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+SimmonsPartial.partial_sum_pos : ∀ (n m k : ℕ),
+  1 ≤ m → 2 * m < n → 1 ≤ k → k < n - m → 0 < ∑ i ∈ Finset.Icc 1 k, SimmonsPartial.A n m i
+'SimmonsPartial.partial_sum_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+SimmonsPartial.neg_persists_A : ∀ (n m i j : ℕ),
+  1 ≤ m → 2 * m < n → 1 ≤ i → i ≤ j → j ≤ n - m → SimmonsPartial.A n m i < 0 → SimmonsPartial.A n m j < 0
+'SimmonsPartial.neg_persists_A' depends on axioms: [propext, Classical.choice, Quot.sound]
+SimmonsPartial.one_sign_change : ∀ (n m i j : ℕ),
+  1 ≤ m → 2 * m < n → 1 ≤ i → i ≤ j → j ≤ m → SimmonsPartial.A n m i < 0 → SimmonsPartial.A n m j < 0
+'SimmonsPartial.one_sign_change' depends on axioms: [propext, Classical.choice, Quot.sound]
+SimmonsPartial.w_symm : ∀ (m i : ℕ), i ≤ m → SimmonsPartial.w (2 * m) m (m + i) = SimmonsPartial.w (2 * m) m (m - i)
+'SimmonsPartial.w_symm' depends on axioms: [propext, Classical.choice, Quot.sound]
+SimmonsPartial.A_symm_zero : ∀ (m i : ℕ), i ≤ m + 1 → SimmonsPartial.A (2 * m) m i = 0
+'SimmonsPartial.A_symm_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+SimmonsPartial.conjecture : ∀ (n m k : ℕ),
+  1 ≤ m → 2 * m ≤ n → 1 ≤ k → k ≤ m → 0 ≤ ∑ i ∈ Finset.Icc 1 k, SimmonsPartial.A n m i
+'SimmonsPartial.conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+SimmonsPartial.alpha_eq : ∀ (n m i : ℕ),
+  m ≤ n →
+    0 < n →
+      ∑ j ∈ Finset.range (n + 1) with j + i ≤ m, ↑(n.choose j) * (↑m / ↑n) ^ j * (1 - ↑m / ↑n) ^ (n - j) -
+          ∑ j ∈ Finset.range (n + 1) with m + i ≤ j, ↑(n.choose j) * (↑m / ↑n) ^ j * (1 - ↑m / ↑n) ^ (n - j) =
+        ↑(SimmonsPartial.A n m i) / ↑n ^ n
+'SimmonsPartial.alpha_eq' depends on axioms: [propext, Classical.choice, Quot.sound]

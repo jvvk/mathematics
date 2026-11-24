@@ -1,0 +1,21 @@
+control passes: Basic.lean
+control passes: Total.lean
+control passes: Ratio.lean
+control passes: Shape.lean
+control passes: Main.lean
+control passes: Bridge.lean
+rejected: adjacent masses with n - j + 1 (exit 1, diagnostic: /private/tmp/claude-501/release-lean/simmons-left-loaded/LeanProofs/SimmonsPartial/BasicMut.lean:43:2: error: unsolved goals)
+rejected: last term -w n + 1 (exit 1, diagnostic: /private/tmp/claude-501/release-lean/simmons-left-loaded/LeanProofs/SimmonsPartial/BasicMut.lean:89:2: error: unsolved goals)
+rejected: mean m + 1 (exit 1, diagnostic: /private/tmp/claude-501/release-lean/simmons-left-loaded/LeanProofs/SimmonsPartial/TotalMut.lean:52:2: error: ring failed, ring expressions not equal)
+rejected: total over 1..q-1 (exit 1, diagnostic: /private/tmp/claude-501/release-lean/simmons-left-loaded/LeanProofs/SimmonsPartial/TotalMut.lean:71:6: error: Tactic `rewrite` failed: Did not find an occurrenc)
+rejected: ratio identity with q - i + 1 (exit 1, diagnostic: /private/tmp/claude-501/release-lean/simmons-left-loaded/LeanProofs/SimmonsPartial/RatioMut.lean:33:13: error: unsolved goals)
+rejected: factor with (m + 1) q (exit 1, diagnostic: /private/tmp/claude-501/release-lean/simmons-left-loaded/LeanProofs/SimmonsPartial/RatioMut.lean:37:119: error: unsolved goals)
+rejected: beta < 1 on all of [1, m] (exit 1, diagnostic: /private/tmp/claude-501/release-lean/simmons-left-loaded/LeanProofs/SimmonsPartial/RatioMut.lean:105:67: error: Type mismatch: After simplification, term)
+rejected: d (i+1) > 0 without d i >= 0 (exit 1, diagnostic: /private/tmp/claude-501/release-lean/simmons-left-loaded/LeanProofs/SimmonsPartial/RatioMut.lean:119:67: error: omega could not prove the goal:)
+rejected: abstract sign change with a q <= 0 (exit 1, diagnostic: /private/tmp/claude-501/release-lean/simmons-left-loaded/LeanProofs/SimmonsPartial/ShapeMut.lean:53:64: error: Application type mismatch: The argument)
+rejected: partial sums positive up to k = q (exit 1, diagnostic: /private/tmp/claude-501/release-lean/simmons-left-loaded/LeanProofs/SimmonsPartial/MainMut.lean:33:93: error: Application type mismatch: The argument)
+rejected: one sign change beyond q (j <= n) (exit 1, diagnostic: /private/tmp/claude-501/release-lean/simmons-left-loaded/LeanProofs/SimmonsPartial/MainMut.lean:43:42: error: omega could not prove the goal:)
+rejected: symmetry w(m+i) = w(m-i) at i = m + 1 (exit 1, diagnostic: /private/tmp/claude-501/release-lean/simmons-left-loaded/LeanProofs/SimmonsPartial/MainMut.lean:49:36: error: omega could not prove the goal:)
+rejected: conjecture strict including n = 2m (exit 1, diagnostic: /private/tmp/claude-501/release-lean/simmons-left-loaded/LeanProofs/SimmonsPartial/MainMut.lean:72:4: error: Type mismatch)
+rejected: bridge with n^(n+1) (exit 1, diagnostic: /private/tmp/claude-501/release-lean/simmons-left-loaded/LeanProofs/SimmonsPartial/BridgeMut.lean:37:2: error: Tactic `rfl` failed: The left-hand side)
+14/14 mutants rejected, all controls pass

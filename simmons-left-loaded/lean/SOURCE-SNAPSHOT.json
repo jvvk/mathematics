@@ -1,0 +1,26 @@
+{
+  "source_commit": "91d9dd5 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports SimmonsPartial only)",
+    "CheckClaims.lean (generated)",
+    "scripts/mutants.toml (copy of lean-proofs scripts/simmonspartial.toml) and scripts/mutate.py (runner)"
+  ],
+  "files": {
+    "CheckClaims.lean": "5950d77a7f2e7bd01d20f274c824069900f427b8d6aaf29c23d43a6be79d9c87",
+    "LeanProofs/SimmonsPartial/Basic.lean": "6e06942f56945964d3c89596baad39107ef74a213092d6a3b03131331508a3f9",
+    "LeanProofs/SimmonsPartial/Bridge.lean": "417e3d1e190c3d2854fee4d6dc5a1f5d436ddcf48494ea5830100a93e9feb790",
+    "LeanProofs/SimmonsPartial/Main.lean": "ea4a7dfd92a7bb2fc2c255a32085952ca93cfee8e24cd6bd6886fca7ce8b1c25",
+    "LeanProofs/SimmonsPartial/Ratio.lean": "52ab1a7ecd8c06e905813500d22fa6780566024e29c691c7b9222145c63a8f5a",
+    "LeanProofs/SimmonsPartial/Report.lean": "6a74474d232d68bf211788ba5fc012cc13555d5723d2201073a5e8ca2ad289db",
+    "LeanProofs/SimmonsPartial/Shape.lean": "1fdf201532c2238ea6a42b645b85821ac30bca0b805ef60b2b020ac1290e5e13",
+    "LeanProofs/SimmonsPartial/Total.lean": "06d8e03be45e8fe521fe4c0ebea03e7ecc7c5e65b168db6489cf8eb40cc2c7ed",
+    "LeanProofs/SimmonsPartial.lean": "6cf636a0dac238e42780ed5900aefb0426d7719f0ff66d5573df5490612e339f",
+    "LeanProofs.lean": "58ba5b19b096af147ab4e0cb2408c978c4139aa7c3679a77878f343a9b4cb13d",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutants.toml": "a3dae9811ece2a548e98f152d516f35193e842983678d2273f49019e7d0d1cd8",
+    "scripts/mutate.py": "742a3c8834e82d19f9f161d1428936b454136e00a410cf5b5491e6061a37be51"
+  }
+}
