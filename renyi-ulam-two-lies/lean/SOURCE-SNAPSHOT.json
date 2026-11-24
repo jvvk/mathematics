@@ -1,0 +1,27 @@
+{
+  "source_commit": "ad38141 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports UlamHalving only)",
+    "CheckClaims.lean (generated)",
+    "scripts/mutants.py (copy of lean-proofs scripts/ulamhalving_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "185c4182f6e0a221411d214814632cab95037ba3e3cfe0aa18fd596fa7f6925b",
+    "LeanProofs/UlamHalving/Basic.lean": "ae12e9a27ed96d7a820c71d138f23cdf9ace51cb29b1bb7a5bac3a30e6b60318",
+    "LeanProofs/UlamHalving/Key.lean": "8c8ee10efc1bf2844d50717212928c239bb7c536a22dc67ad321e33b4771dad4",
+    "LeanProofs/UlamHalving/Lemma2.lean": "af277162f573ac2385d6ca4c2f32d6e81efac5616e7192d605dd5ba8b61208e1",
+    "LeanProofs/UlamHalving/Lemma3.lean": "529f167e14fa79fd77251a6cccb793e09619b17a2944585d051a46c55f467302",
+    "LeanProofs/UlamHalving/Main.lean": "f248ba8e57f12804e7b4c4b2e24c96b743bf8faab27a9490010210c4e63ddfc7",
+    "LeanProofs/UlamHalving/Mono.lean": "eb90c45b803dc2de107f26aedba62abaf96664af971851e9b412736b6e52e75d",
+    "LeanProofs/UlamHalving/Padding.lean": "d03f9cc1d328a5209d3b58f9f2dedb46f05fa9b4097de6ddf8a74118316051b6",
+    "LeanProofs/UlamHalving/Report.lean": "1014f06039e0b662c63f3bdfbc08a85b8f961608670af06bc05756d2283d80ec",
+    "LeanProofs/UlamHalving.lean": "7d82d5f373d68fbd438e71cd757a601c0e903c68dbf3265ea7f6fcf245b8c464",
+    "LeanProofs.lean": "71a7504d715e0b72ae8fc417fcc8f2034179c5ab202de7daec86b14220ddb389",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutants.toml": "dd18914ce69851ce2c19c966b61e41a860c803f112366a9fd9b49e25416303c6",
+    "scripts/mutate.py": "742a3c8834e82d19f9f161d1428936b454136e00a410cf5b5491e6061a37be51"
+  }
+}

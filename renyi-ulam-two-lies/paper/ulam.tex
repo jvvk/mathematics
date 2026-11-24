@@ -1,0 +1,311 @@
+\documentclass[11pt]{amsart}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\doi}[1]{doi:\href{https://doi.org/#1}{#1}}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{conj}[thm]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[thm]{Definition}
+\newtheorem{remark}[thm]{Remark}
+
+\newcommand{\Y}{\mathrm{Y}}
+\newcommand{\N}{\mathrm{N}}
+
+\title[Even splitting with two lies]{Even splitting is optimal in the R\'enyi--Ulam game with two lies}
+\author{Vamshi Jandhyala}
+\address{London, United Kingdom}
+\date{Preprint, version 1, 24 November 2026. Not peer reviewed.}
+\subjclass[2020]{91A46, 94B60, 68P10, 05A99}
+\keywords{R\'enyi--Ulam game, searching with lies, liar game, Berlekamp volume, adaptive search}
+
+\begin{document}
+
+\begin{abstract}
+In the R\'enyi--Ulam game one finds an unknown element by yes-or-no questions, and up to $e$ of the answers may be
+lies. A position records how many candidates are contradicted by $0,1,\dots,e$ answers. P\'alv\"olgyi conjectured,
+while expecting the conjecture to be false, that from a position in which every class has even size it is always
+optimal to ask about exactly half of each class. The case $e=1$ is known. We prove the case $e=2$: if the even
+position $(2a,2b,2c)$ can be won in $n$ questions, then its halving child $(a,a+b,b+c)$ can be won in $n-1$. The
+proof is analytic above depth $15$, where a congruence modulo $\gcd\bigl(n,\binom n2\bigr)$ decides whether the halving
+child is winnable and no other first question can avoid that congruence; depths up to $15$ are settled by a finite
+certificate checked by two independent programs. The argument above depth $15$ is formalised in Lean.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+Four people stand in a room and one of them is the culprit. You may ask any yes-or-no question about the culprit,
+and the answers may contain up to two lies. How many questions do you need? Each candidate can be ``seen'' along
+$1+n+\binom n2$ answer sequences of length $n$ (no lie, one lie in any of $n$ places, two lies in any two places),
+and different candidates must be told apart, so $4\bigl(1+n+\binom n2\bigr)\le 2^n$ is necessary. That gives
+$n\ge7$. Yet seven questions are not enough; eight are needed. The reason becomes visible after the most natural
+first question, ``is the culprit one of these two?'': whatever the answer, two candidates are still allowed two lies
+and two have used one, and that position needs seven more questions although its own count promises six.
+
+This is the R\'enyi--Ulam game~\cite{Pelc}. The counting argument is Berlekamp's volume bound~\cite{Berlekamp}, and
+the example shows that the bound can fail by one. Halving each class looked like the best opening, and the question
+is whether that is always so. P\'alv\"olgyi asked it on MathOverflow in 2014~\cite{MO} and stated it as the first of
+three conjectures in a note of the same year~\cite{Palvolgyi}, adding that he expected all three to be false.
+
+To state it, fix the number $e$ of lies. After some questions, a candidate is contradicted by some number $i$ of the
+answers; if $i>e$ it is eliminated. A \emph{position} is the vector $(x_0,\dots,x_e)$ of the class sizes, and the
+questioner has won when at most one candidate remains. A question is described by how many candidates of each class
+it contains, $(q_0,\dots,q_e)$ with $0\le q_i\le x_i$.
+
+\begin{conj}[P\'alv\"olgyi~\cite{MO,Palvolgyi}]\label{conj}
+\sloppy If every $x_i$ is even, the even-splitting question $(x_0/2,\dots,x_e/2)$ is optimal: no question leads to a
+win in fewer questions in the worst case.
+\end{conj}
+
+For $e=0$ this is ordinary binary search. For $e=1$ it follows from the splitting strategy of Ellis, Ponomarenko and
+Yan~\cite{EPY}, as P\'alv\"olgyi notes~\cite{MO}. In comments on the question, Zare reported a computer check finding
+the conjecture true for at most $52$ candidates and at most three lies. We settle the next case.
+
+\begin{thm}\label{thm:main}
+Let $e=2$. If the position $(2a,2b,2c)$ can be won in $n\ge1$ questions, then its halving child $(a,a+b,b+c)$ can be
+won in $n-1$ questions. In particular, even splitting is optimal at every even position with at least two
+candidates.
+\end{thm}
+
+The halving child is the position left by either answer to the even-splitting question: a candidate in class $i$
+stays in class $i$ if the answer agrees with it and moves to class $i+1$ otherwise, and half of each class goes each
+way. The proof is analytic for $n\ge16$ and rests on a finite certificate for $n\le15$ (Section~\ref{sec:base}).
+
+\subsection*{The idea}
+Any question splits the position $x$ into a yes-child $\Y$ and a no-child $\N$, and coordinate by coordinate
+$\Y+\N=2h$, where $h$ is the halving child (Figure~\ref{fig:mid}). So the halving child is the midpoint of every pair
+of children, and Theorem~\ref{thm:main} says that when both ends of such a pair are winnable, so is the midpoint.
+Volume is linear, and the midpoint always satisfies the volume bound when the ends do. What can go wrong is finer: we
+show that for the positions that matter the obstruction to winning is a single congruence, and that moving from the
+midpoint to an end of the pair cannot repair it, because the shift in volume and the shift in the last class agree
+modulo $g=\gcd\bigl(n,\binom n2\bigr)$ and are too small to differ by a multiple of $g$.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[node distance=1.1cm and 2.2cm, every node/.style={font=\small},
+  st/.style={draw,rounded corners,inner sep=4pt}]
+\node[st] (x) {$x=(2a,2b,0)$};
+\node[st] (Y) at (-3.5,-1.5) {$\Y=(a+d,\;a+b+f-d,\;b-f)$};
+\node[st] (N) at (3.5,-1.5) {$\N=(a-d,\;a+b-f+d,\;b+f)$};
+\node[st,fill=black!6] (h) at (0,-3) {$h=(a,\;a+b,\;b)=\tfrac12(\Y+\N)$};
+\draw[-{Latex}] (x) -- node[above left]{yes} (Y);
+\draw[-{Latex}] (x) -- node[above right]{no} (N);
+\draw[dashed] (Y) -- (h); \draw[dashed] (N) -- (h);
+\node[below=0.15cm of h, align=center] {volumes: $V(\Y)=V(h)+\delta$,\quad $V(\N)=V(h)-\delta$,\\
+$\delta=\binom m2 d+mf$};
+\end{tikzpicture}
+\caption{A first question $(a+d,b+f,0)$ from an even position, and the halving child as the midpoint of its two
+children. The proof shows that if $h$ is not winnable then $\delta\equiv f\pmod g$ with $|\delta-f|<g$, so
+$\delta=f$, and a winning strategy for $\Y$ or $\N$ would hand $h$ exactly what it lacks.}\label{fig:mid}
+\end{figure}
+
+\section{Positions, questions and volume}\label{sec:setup}
+
+From now on $e=2$, and a position is a triple $(a,b,c)$: $a$ candidates contradicted by no answer, $b$ by one and $c$
+by two. A question $(u,v,w)$ with $u\le a$, $v\le b$, $w\le c$ has children
+\[
+\Y=\bigl(u,\;v+(a-u),\;w+(b-v)\bigr),\qquad \N=\bigl(a-u,\;(b-v)+u,\;(c-w)+v\bigr).
+\]
+We call a position \emph{$n$-winnable} if the questioner can win from it within $n$ questions. Put
+\[
+W_n=1+n+\binom n2,\qquad V_n(a,b,c)=W_na+(n+1)b+c .
+\]
+Read in words, $V_n$ counts the answer sequences of length $n$ along which some candidate remains possible: $W_n$ for
+a candidate that may still be lied about twice, $n+1$ for one that may be lied about once, $1$ for one that may not.
+Pascal's rule gives $V_{n+1}(x)=V_n(\Y)+V_n(\N)$ for every question, and induction gives Berlekamp's bound: an
+$n$-winnable position has $V_n\le2^n$.
+
+\begin{lemma}[Padding]\label{lem:pad}
+If $(a,b,0)$ is $n$-winnable and $V_n(a,b,c)\le2^n$, then $(a,b,c)$ is $n$-winnable.
+\end{lemma}
+
+\begin{proof}
+Extend a winning strategy for $(a,b,0)$ to depth exactly $n$. A candidate that can still be lied about $r$ times is
+consistent with exactly $\sum_{j\le r}\binom nj$ leaves, one for each set of at most $r$ lie positions, and distinct
+candidates use disjoint leaves because the strategy wins. So $2^n-V_n(a,b,0)\ge c$ leaves are unused. Send each of
+the $c$ added candidates, which can no longer be lied about, down its own unused leaf by putting it in each question
+exactly when its leaf's next answer is yes. The original candidates' paths do not change.
+\end{proof}
+
+Deleting candidates never hurts, so for each $a$ the $b$ with $(a,b,0)$ $n$-winnable form an initial segment. Write
+$B_n(a)$ for its largest element ($-1$ if there is none). By Lemma~\ref{lem:pad},
+\begin{equation}\label{eq:frontier}
+(a,b,c)\ \text{is $n$-winnable}\iff b\le B_n(a)\ \text{and}\ V_n(a,b,c)\le2^n .
+\end{equation}
+It is therefore enough to prove Theorem~\ref{thm:main} for $c=0$: if $(2a,2b,2c)$ is $n$-winnable, so is $(2a,2b,0)$;
+once $(a,a+b,b)$ is $(n-1)$-winnable, conservation of volume gives $V_{n-1}(a,a+b,b+c)=\tfrac12V_n(2a,2b,2c)\le2^{n-1}$,
+and Lemma~\ref{lem:pad} adds the $c$.
+
+\section{Many candidates that can no longer be lied about}\label{sec:lem2}
+
+\begin{lemma}\label{lem:many}
+Let $n\ge12$. If $b\ge a$, $c\ge\binom n2$ and $V_n(a,b,c)\le2^n$, then $(a,b,c)$ is $n$-winnable.
+\end{lemma}
+
+\begin{proof}
+For $n=12$ this is a finite statement, checked in Section~\ref{sec:base}. Let $n\ge13$ and assume the lemma at depth
+$n-1$. Adding candidates to the last class, we may assume $V_n(a,b,c)=2^n$; deleting them again at the end is
+harmless. Write $D=\binom{n-1}2$, $C=\binom n2$, $H=2^{n-1}$, and note $W_n-D=2n$. For a question $(u,v,w)$ the
+yes-child has volume
+\begin{equation}\label{eq:yesvol}
+V_{n-1}(\Y)=na+b+Du+(n-1)v+w .
+\end{equation}
+We choose a question with both children of volume exactly $H$, each with middle coordinate at least its first and last
+coordinate at least $D$; induction then wins both. Put $u=\lfloor a/2\rfloor$ and $\epsilon=a-2u$.
+
+If $b\ge n$, let $v$ be a nearest integer to $v_*=b/2+\epsilon D/(2n)$ and define $w$ by $V_{n-1}(\Y)=H$ in
+\eqref{eq:yesvol}. With $r=v-v_*$, the full-volume equation shows that the two last coordinates are
+$\tfrac{b+c}2\mp nr$ and that $w=\tfrac c2+\tfrac{\epsilon D}{2n}-(n-1)r$, so $0\le w\le c$ and $0\le v\le b-1$. The
+middle-minus-first differences of the children are $\epsilon+v$ and $b-v-\epsilon$, both nonnegative. Finally
+$b+c\ge C+(2^n-C)/(W_n+n+1)\ge2D+n$, the last step being $2^n\ge(W_n+n+1)(D+1)+C$, which holds at $n=13$
+($8192\ge7180$) and doubles faster than its right-hand side afterwards. So both last coordinates are at least $D$.
+
+If $b<n$, take $v=\lfloor b/2\rfloor$, $\eta=b-2v$, and $w=\tfrac12(c+\epsilon D+\eta(n-1))$, an integer because the
+total volume is even. Both child volumes equal $H$, the children's last coordinates are
+$\tfrac12(b+c\pm(\epsilon D+\eta n))$, and $c\ge2^n-(W_n+n+1)(n-1)\ge n^3$ makes both at least $D$. The middle
+coordinates dominate the first as before.
+\end{proof}
+
+\section{When is the halving child winnable?}\label{sec:crit}
+
+Fix $m\ge15$ and consider $z=(a,a+b,b)$, the halving child of $(2a,2b,0)$, with $s=2^m-V_m(z)\ge0$. Put
+\[
+D=\binom{m-1}2,\qquad g=\gcd(m-1,D),\qquad K=(m+1)a+b,\qquad H=2^{m-1}.
+\]
+Explicitly $g=m-1$ for even $m$ and $g=(m-1)/2$ for odd $m$.
+
+\begin{lemma}\label{lem:crit}
+$z$ is $m$-winnable if and only if there are integers $t\in[H-s,H]$ and $w\in[0,b]$ with $t\equiv K+w\pmod g$;
+equivalently, $(H-K)\bmod g\le s+b$.
+\end{lemma}
+
+The integer $t$ is the volume of the yes-child of the first question and $w$ is how many candidates of the last class
+that question contains. Both children must have volume at most $H$, which places $t$ in $[H-s,H]$.
+
+\begin{proof}
+\emph{Necessity.} By \eqref{eq:yesvol} at depth $m$, a first question $(u,v,w)$ from $z$ has yes-volume
+$t=K+Du+(m-1)v+w\equiv K+w\pmod g$, with $0\le w\le b$, and $t\in[H-s,H]$ if both children satisfy the volume bound.
+As $w$ ranges over $[0,b]$ and $t$ over $[H-s,H]$, the differences $t-w$ fill $[H-s-b,H]$, which contains a number
+congruent to $K$ exactly when $(H-K)\bmod g\le s+b$.
+
+\emph{Sufficiency.} If $b+s\ge\binom m2$, raise the last coordinate of $z$ to $\binom m2$ and apply
+Lemma~\ref{lem:many}. Otherwise $V_m(z)=(W_m+m+1)a+(m+2)b$ and $2^m\ge(W_m+m+1)m^2+(m+2)\binom m2$ for $m\ge15$ force
+$a\ge m^2$. Take $u$ within $1$ of $a/2$ with the parity (needed only for odd $m$) that makes $t-K-Du-w$ divisible by
+$m-1$, and set $v=(t-K-Du-w)/(m-1)$. A short estimate gives $|v-(a+b)/2|<3m/4$, so the question is legal and both
+children have middle coordinate at least their first and last coordinate at least $\tfrac{m^2}2-\tfrac{3m}4\ge D$.
+Their volumes are $t$ and $V_m(z)-t$, both at most $H$. Lemma~\ref{lem:many} at depth $m-1$ wins both.
+\end{proof}
+
+\section{No first question avoids the congruence}\label{sec:key}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main} for $n\ge16$]
+By Section~\ref{sec:setup} we may take the parent to be $x=(2a,2b,0)$, $n$-winnable with $n=m+1\ge16$. Suppose its
+halving child $z=(a,a+b,b)$ were not $m$-winnable. Then the criterion of Lemma~\ref{lem:crit} fails, and since a
+residue is at most $g-1$,
+\begin{equation}\label{eq:small}
+s+b<g .
+\end{equation}
+Take the first question of a winning strategy for $x$ and write it as $(a+d,b+f,0)$ with $|f|\le b$. Its children
+$\Y$ and $\N$ are shown in Figure~\ref{fig:mid}, and a direct calculation gives
+\[
+V_m(\Y)=2^m-s+\delta,\qquad V_m(\N)=2^m-s-\delta,\qquad \delta=\tbinom m2d+mf .
+\]
+Both children are $m$-winnable, so $|\delta|\le s$. Since $g$ divides $\binom m2$ and $m\equiv1\pmod g$, we have
+$\delta\equiv f\pmod g$, and by \eqref{eq:small} $|\delta-f|\le s+b<g$. Hence $\delta=f$.
+
+Suppose $f\ge0$ and look at the first question of a winning strategy for $\Y$. By \eqref{eq:yesvol} its yes-volume
+$t_\Y$ lies in $[H-s+f,H]$, is congruent to $K+f+w_\Y$ modulo $g$, and $0\le w_\Y\le b-f$. Then $t=t_\Y-f$ and
+$w=w_\Y$ satisfy the criterion of Lemma~\ref{lem:crit} for $z$, a contradiction. If $f<0$, the same argument with
+$\N$ and $t=t_\N+f$ applies.
+\end{proof}
+
+The example from the introduction shows the mechanism at small depth: for four candidates the halving child
+$(2,2,0)$ has volume $58\le2^6$ at depth $6$ but needs seven questions, and every other first question from $(4,0,0)$ leaves
+a child that is at least as hard.
+
+\section{Small depths}\label{sec:base}
+
+For $n\le15$ we use the frontiers $B_n$ of \eqref{eq:frontier}. With $p=W_{n-1}$ and $H=2^{n-1}$, a question $(u,v,0)$
+from $(a,b,0)$ leaves two winnable children exactly when $u$ and $a-u$ are feasible and some integer $v$ satisfies
+\begin{multline*}
+\max\Bigl(0,\,u+b-B_{n-1}(a-u),\,\Bigl\lceil\tfrac{pa+(n-p)u+nb-H}{n-1}\Bigr\rceil\Bigr)\\
+\le v\le\min\Bigl(b,\,B_{n-1}(u)-a+u,\,\Bigl\lfloor\tfrac{H-(p-n)u-na-b}{n-1}\Bigr\rfloor\Bigr),
+\end{multline*}
+by \eqref{eq:frontier} applied to both children. Starting from $B_0=B_1=(1,0)$ this determines $B_2,\dots,B_{15}$.
+The certificate lists these $645$ integers. For each recorded pair it checks winnability at $b=B_n(a)$, failure at
+$b=B_n(a)+1$, and failure for the first omitted $a$, so an over- or underestimate cannot pass. It then checks
+\[
+\bigl\lfloor B_n(2a)/2\bigr\rfloor\le B_{n-1}(a)-a\qquad(1\le n\le15),
+\]
+which is Theorem~\ref{thm:main} at these depths by \eqref{eq:frontier}, and the $44$ boundary cases of
+Lemma~\ref{lem:many} at $n=12$. Table~\ref{tab:frontier} shows the shape of the frontiers.
+
+The certificate was produced and checked with one program and recomputed with a second, written separately, that
+searches the game tree directly from the definition of a position and a question, without using the recurrence above.
+The two agree on all $645$ values.
+
+\begin{table}[h]
+\centering\small
+\begin{tabular}{@{}l*{8}{c}@{}}
+\toprule
+$n$ & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15\\
+\midrule
+largest $a$ with $B_n(a)\ge0$ & 4 & 8 & 16 & 28 & 50 & 88 & 154 & 270\\
+$B_n(0)$ & 28 & 50 & 92 & 170 & 314 & 584 & 1092 & 2048\\
+\bottomrule
+\end{tabular}
+\caption{Frontiers of the two-lie game. $B_n(0)$ is the largest number of once-contradicted candidates, with no
+uncontradicted ones, that can be resolved in $n$ questions.}\label{tab:frontier}
+\end{table}
+
+\section{Three lies}
+
+The same search, run for $e=3$ over every even position whose halving child has at most $100$ candidates, finds no
+counterexample to Conjecture~\ref{conj}; along the way it meets $977{,}006$ positions that satisfy the volume bound
+but are not winnable within it. The congruence argument of Section~\ref{sec:key} uses the specific weights of two
+lies and does not transfer directly, so the case $e\ge3$ remains open.
+
+\section{Data, code and the use of AI tools}\label{sec:data}
+\sloppy
+
+The certificate, both checking programs, the search programs and the Lean files are archived on Zenodo, and are in
+the folder \texttt{renyi-ulam-two-lies} of the repository
+\href{https://github.com/jvvk/mathematics}{github.com/jvvk/mathematics}.
+
+Every step of Sections~\ref{sec:setup} to~\ref{sec:key} that the proof of Theorem~\ref{thm:main} uses for parent depth
+at least $16$ is formalised in Lean~4 with Mathlib: the game,
+conservation of volume and Berlekamp's bound, deletion monotonicity, the padding lemma (the direction used), the
+lemma on many last-class candidates, sufficiency of the criterion, the key step, and Theorem~\ref{thm:main} with its
+consequence that the halving question is optimal. The proofs use only Lean's standard axioms. One input stays outside
+Lean: the solvability at depth $12$ of the positions $(a,b,c)$ with $a\le b$, $c\ge 66$ and volume at most $2^{12}$,
+which enters the formal statements as an explicit hypothesis and is checked, together with the depths up to $15$, by
+the certificate of Section~\ref{sec:base}. Fourteen deliberately wrong variants of the formal statements are each
+rejected.
+
+The author used AI tools. Codex (OpenAI) found the proof of Theorem~\ref{thm:main} and produced the certificate.
+Claude (Anthropic) checked the argument, wrote the independent search programs that reproduce the certificate, the
+Lean formalisation and the text. The author is responsible for the content.
+
+\begin{thebibliography}{9}
+\bibitem{Berlekamp} E.~R.~Berlekamp, Block coding for the binary symmetric channel with noiseless, delayless
+feedback, in \emph{Error-correcting Codes} (H.~B.~Mann, ed.), Wiley, New York, 1968, 61--85.
+\bibitem{EPY} R.~B.~Ellis, V.~Ponomarenko and C.~H.~Yan, How to play the one-lie R\'enyi--Ulam game,
+\emph{Discrete Math.} \textbf{308} (2008), 5805--5808, \doi{10.1016/j.disc.2007.09.052}.
+\bibitem{MO} D.~P\'alv\"olgyi, Is it always optimal to evenly split search space in R\'enyi--Ulam game?,
+MathOverflow question 165093 (2014), \url{https://mathoverflow.net/q/165093}, accessed 24 November 2026.
+\bibitem{Palvolgyi} D.~P\'alv\"olgyi, Three halving conjectures in combinatorial search, note dated 10 November
+2014, \url{https://domotorp.web.elte.hu/cikkek/searchconjectures.pdf}, accessed 24 November 2026.
+\bibitem{Pelc} A.~Pelc, Searching games with errors: fifty years of coping with liars, \emph{Theoret.\ Comput.\
+Sci.} \textbf{270} (2002), 71--109, \doi{10.1016/S0304-3975(01)00303-6}.
+\end{thebibliography}
+
+\end{document}

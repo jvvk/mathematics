@@ -1,0 +1,75 @@
+UlamHalving.V_conserve : ∀ (n : ℕ) (x : UlamHalving.St) (u v w : ℕ),
+  u ≤ x.a →
+    v ≤ x.b →
+      w ≤ x.c →
+        UlamHalving.V (n + 1) x = UlamHalving.V n (UlamHalving.yes x u v w) + UlamHalving.V n (UlamHalving.no x u v w)
+'UlamHalving.V_conserve' depends on axioms: [propext]
+UlamHalving.V_le : ∀ (n : ℕ) (x : UlamHalving.St), UlamHalving.Solv n x → UlamHalving.V n x ≤ 2 ^ n
+'UlamHalving.V_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+UlamHalving.key : ∀ (n a b g : ℕ),
+  0 < g →
+    g ∣ n → g ∣ n.choose 2 → UlamHalving.Solv (n + 2) { a := 2 * a, b := 2 * b, c := 0 } → UlamHalving.Crit g n a b
+'UlamHalving.key' depends on axioms: [propext, Classical.choice, Quot.sound]
+@UlamHalving.Solv.mono : ∀ {n : ℕ} {x : UlamHalving.St},
+  UlamHalving.Solv n x → ∀ (x' : UlamHalving.St), x'.a ≤ x.a → x'.b ≤ x.b → x'.c ≤ x.c → UlamHalving.Solv n x'
+'UlamHalving.Solv.mono' depends on axioms: [propext, Quot.sound]
+UlamHalving.small : ∀ (n : ℕ) (x : UlamHalving.St), x.a + x.b ≤ 1 → UlamHalving.V n x ≤ 2 ^ n → UlamHalving.Solv n x
+'UlamHalving.small' depends on axioms: [propext, Classical.choice, Quot.sound]
+@UlamHalving.pad : ∀ {n : ℕ} {x : UlamHalving.St},
+  UlamHalving.Solv n x →
+    ∀ (k : ℕ),
+      UlamHalving.V n { a := x.a, b := x.b, c := x.c + k } ≤ 2 ^ n →
+        UlamHalving.Solv n { a := x.a, b := x.b, c := x.c + k }
+'UlamHalving.pad' depends on axioms: [propext, Classical.choice, Quot.sound]
+@UlamHalving.padding : ∀ {n a b c : ℕ},
+  UlamHalving.Solv n { a := a, b := b, c := 0 } →
+    UlamHalving.V n { a := a, b := b, c := c } ≤ 2 ^ n → UlamHalving.Solv n { a := a, b := b, c := c }
+'UlamHalving.padding' depends on axioms: [propext, Classical.choice, Quot.sound]
+UlamHalving.growth9 : ∀ (N : ℕ), 13 ≤ N → ↑N ^ 4 + ↑N ^ 2 - 2 * ↑N + 16 ≤ 4 * 2 ^ N
+'UlamHalving.growth9' depends on axioms: [propext, Classical.choice, Quot.sound]
+UlamHalving.growth_cube : ∀ (N : ℕ), 13 ≤ N → 2 * ↑N ^ 3 ≤ 2 ^ N
+'UlamHalving.growth_cube' depends on axioms: [propext, Classical.choice, Quot.sound]
+UlamHalving.lemma2 : (∀ (a b c : ℕ),
+    a ≤ b →
+      66 ≤ c → UlamHalving.V 12 { a := a, b := b, c := c } ≤ 2 ^ 12 → UlamHalving.Solv 12 { a := a, b := b, c := c }) →
+  ∀ (n : ℕ),
+    12 ≤ n →
+      ∀ (a b c : ℕ),
+        a ≤ b →
+          n.choose 2 ≤ c →
+            UlamHalving.V n { a := a, b := b, c := c } ≤ 2 ^ n → UlamHalving.Solv n { a := a, b := b, c := c }
+'UlamHalving.lemma2' depends on axioms: [propext, Classical.choice, Quot.sound]
+UlamHalving.growth13 : ∀ (m : ℕ), 15 ≤ m → ↑m ^ 4 + 4 * ↑m ^ 3 + 5 * ↑m ^ 2 - 2 * ↑m ≤ 2 * 2 ^ m
+'UlamHalving.growth13' depends on axioms: [propext, Classical.choice, Quot.sound]
+UlamHalving.choose_u : ∀ (n a : ℕ),
+  1 ≤ n → ∀ (X : ℤ), ↑(n.gcd (n.choose 2)) ∣ X → ∃ u, a / 2 ≤ u ∧ u ≤ a / 2 + 1 ∧ ↑n ∣ X - ↑(n.choose 2) * ↑u
+'UlamHalving.choose_u' depends on axioms: [propext, Classical.choice, Quot.sound]
+UlamHalving.lemma3 : (∀ (a b c : ℕ),
+    a ≤ b →
+      66 ≤ c → UlamHalving.V 12 { a := a, b := b, c := c } ≤ 2 ^ 12 → UlamHalving.Solv 12 { a := a, b := b, c := c }) →
+  ∀ (n : ℕ),
+    14 ≤ n →
+      ∀ (a b : ℕ),
+        UlamHalving.Crit (n.gcd (n.choose 2)) n a b →
+          UlamHalving.V (n + 1) { a := a, b := a + b, c := b } ≤ 2 ^ (n + 1) →
+            UlamHalving.Solv (n + 1) { a := a, b := a + b, c := b }
+'UlamHalving.lemma3' depends on axioms: [propext, Classical.choice, Quot.sound]
+UlamHalving.halving_child : (∀ (a b c : ℕ),
+    a ≤ b →
+      66 ≤ c → UlamHalving.V 12 { a := a, b := b, c := c } ≤ 2 ^ 12 → UlamHalving.Solv 12 { a := a, b := b, c := c }) →
+  ∀ (n : ℕ),
+    14 ≤ n →
+      ∀ (a b c : ℕ),
+        UlamHalving.Solv (n + 2) { a := 2 * a, b := 2 * b, c := 2 * c } →
+          UlamHalving.Solv (n + 1) { a := a, b := a + b, c := b + c }
+'UlamHalving.halving_child' depends on axioms: [propext, Classical.choice, Quot.sound]
+UlamHalving.halving_optimal : (∀ (a b c : ℕ),
+    a ≤ b →
+      66 ≤ c → UlamHalving.V 12 { a := a, b := b, c := c } ≤ 2 ^ 12 → UlamHalving.Solv 12 { a := a, b := b, c := c }) →
+  ∀ (n : ℕ),
+    14 ≤ n →
+      ∀ (a b c : ℕ),
+        UlamHalving.Solv (n + 2) { a := 2 * a, b := 2 * b, c := 2 * c } ↔
+          UlamHalving.Solv (n + 1) (UlamHalving.yes { a := 2 * a, b := 2 * b, c := 2 * c } a b c) ∧
+            UlamHalving.Solv (n + 1) (UlamHalving.no { a := 2 * a, b := 2 * b, c := 2 * c } a b c)
+'UlamHalving.halving_optimal' depends on axioms: [propext, Classical.choice, Quot.sound]

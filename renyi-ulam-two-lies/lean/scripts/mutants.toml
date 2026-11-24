@@ -1,0 +1,110 @@
+# Mutation suite for the two-lie Renyi-Ulam halving proof (MO 165093). Each mutant is one textual change to a
+# stated result towards a stronger claim; every one must be rejected. Run from anywhere:
+#   cd scripts && python3 mutate.py mutants.toml
+[check]
+cmd = ["lake", "env", "lean", "{file}"]
+cwd = ".."
+timeout = 900
+fail_markers = ["error"]
+fail_pattern = '^(?P<file>\S+\.lean):\d+:\d+: error\b'
+log_dir = "mutation-logs"
+
+# False: the bound is attained, e.g. (0, 0, 1) at depth 0.
+[[mutant]]
+name = "volume bound strict"
+file = "../LeanProofs/UlamHalving/Basic.lean"
+old = "theorem V_le (n : ℕ) (x : St) (h : Solv n x) : V n x ≤ 2 ^ n := by"
+new = "theorem V_le (n : ℕ) (x : St) (h : Solv n x) : V n x < 2 ^ n := by"
+
+# False: (0, 0, 1) is solvable at depth 0, (0, 0, 2) is not.
+[[mutant]]
+name = "mono without the last-class restriction"
+file = "../LeanProofs/UlamHalving/Mono.lean"
+old = "∀ x' : St, x'.a ≤ x.a → x'.b ≤ x.b → x'.c ≤ x.c → Solv n x'"
+new = "∀ x' : St, x'.a ≤ x.a → x'.b ≤ x.b → Solv n x'"
+
+# False: (0, 0, 2^n + 1) has volume 2^n + 1.
+[[mutant]]
+name = "small with volume 2^n + 1"
+file = "../LeanProofs/UlamHalving/Padding.lean"
+old = "theorem small : ∀ (n : ℕ) (x : St), x.a + x.b ≤ 1 → V n x ≤ 2 ^ n → Solv n x"
+new = "theorem small : ∀ (n : ℕ) (x : St), x.a + x.b ≤ 1 → V n x ≤ 2 ^ n + 1 → Solv n x"
+
+# False: padding (0, 0, 0) beyond the volume bound.
+[[mutant]]
+name = "pad without the volume bound"
+file = "../LeanProofs/UlamHalving/Padding.lean"
+old = "∀ k : ℕ, V n ⟨x.a, x.b, x.c + k⟩ ≤ 2 ^ n → Solv n ⟨x.a, x.b, x.c + k⟩"
+new = "∀ k : ℕ, Solv n ⟨x.a, x.b, x.c + k⟩"
+
+# False: (a, b) = (0, 0), c = 2^n + 1.
+[[mutant]]
+name = "Lemma 1 with volume 2^n + 1"
+file = "../LeanProofs/UlamHalving/Padding.lean"
+old = "theorem padding {n a b c : ℕ} (h : Solv n ⟨a, b, 0⟩) (hV : V n ⟨a, b, c⟩ ≤ 2 ^ n)"
+new = "theorem padding {n a b c : ℕ} (h : Solv n ⟨a, b, 0⟩) (hV : V n ⟨a, b, c⟩ ≤ 2 ^ n + 1)"
+
+# False at N = 12: 20872 > 16384.
+[[mutant]]
+name = "growth (9) from N = 12"
+file = "../LeanProofs/UlamHalving/Lemma2.lean"
+old = "lemma growth9 (N : ℕ) (hN : 13 ≤ N)"
+new = "lemma growth9 (N : ℕ) (hN : 12 ≤ N)"
+
+# False at N = 11: 2662 > 2048.
+[[mutant]]
+name = "2^N >= 2N^3 from N = 11"
+file = "../LeanProofs/UlamHalving/Lemma2.lean"
+old = "lemma growth_cube (N : ℕ) (hN : 13 ≤ N)"
+new = "lemma growth_cube (N : ℕ) (hN : 11 ≤ N)"
+
+# False: (0, 0, 2^n + 1) satisfies the other hypotheses.
+[[mutant]]
+name = "Lemma 2 with volume 2^n + 1"
+file = "../LeanProofs/UlamHalving/Lemma2.lean"
+old = "(n : ℕ) (hn : 12 ≤ n) (a b c : ℕ) (hab : a ≤ b) (hc : n.choose 2 ≤ c) (hV : V n ⟨a, b, c⟩ ≤ 2 ^ n) :"
+new = "(n : ℕ) (hn : 12 ≤ n) (a b c : ℕ) (hab : a ≤ b) (hc : n.choose 2 ≤ c) (hV : V n ⟨a, b, c⟩ ≤ 2 ^ n + 1) :"
+
+# Stronger claim (base assumed only for c >= 67). Not known false: the certificate says the c = 66 case holds.
+# Its rejection shows the base hypothesis is used at the exact threshold C(12, 2) = 66.
+[[mutant]]
+name = "base threshold 66 -> 67 (load-bearing check)"
+file = "../LeanProofs/UlamHalving/Lemma2.lean"
+old = "theorem lemma2 (base12 : ∀ a b c : ℕ, a ≤ b → 66 ≤ c"
+new = "theorem lemma2 (base12 : ∀ a b c : ℕ, a ≤ b → 67 ≤ c"
+
+# False at m = 14: 50344 > 32768.
+[[mutant]]
+name = "growth (13) from m = 14"
+file = "../LeanProofs/UlamHalving/Lemma3.lean"
+old = "lemma growth13 (m : ℕ) (hm : 15 ≤ m)"
+new = "lemma growth13 (m : ℕ) (hm : 14 ≤ m)"
+
+# False for even n = 2k, a = 0, X = k: n does not divide k.
+[[mutant]]
+name = "u = floor(a/2) always works"
+file = "../LeanProofs/UlamHalving/Lemma3.lean"
+old = "∃ u : ℕ, a / 2 ≤ u ∧ u ≤ a / 2 + 1 ∧"
+new = "∃ u : ℕ, a / 2 ≤ u ∧ u ≤ a / 2 ∧"
+
+# False: PROOF.md's exceptional child z = (15141, 15151, 10) at m = 22 (n = 21) meets the volume bound and Crit 1,
+# but is not 22-solvable.
+[[mutant]]
+name = "Lemma 3 without the modular criterion (g = 1)"
+file = "../LeanProofs/UlamHalving/Lemma3.lean"
+old = "(n : ℕ) (hn : 14 ≤ n) (a b : ℕ) (hcrit : Crit (Nat.gcd n (n.choose 2)) n a b)"
+new = "(n : ℕ) (hn : 14 ≤ n) (a b : ℕ) (hcrit : Crit 1 n a b)"
+
+# False: parent (0, 0, 2^(n+2)) gives child (0, 0, 2^(n+1)), not solvable in n questions.
+[[mutant]]
+name = "halving child one question faster"
+file = "../LeanProofs/UlamHalving/Main.lean"
+old = "    Solv (n + 1) ⟨a, a + b, b + c⟩ := by"
+new = "    Solv n ⟨a, a + b, b + c⟩ := by"
+
+# False: from (0, 0, 2^(n+2)) the question (0, 0, 0) leaves (0, 0, 2^(n+2)) on the NO side.
+[[mutant]]
+name = "optimal question ignores the last class"
+file = "../LeanProofs/UlamHalving/Main.lean"
+old = "Solv (n + 1) (no ⟨2 * a, 2 * b, 2 * c⟩ a b c)"
+new = "Solv (n + 1) (no ⟨2 * a, 2 * b, 2 * c⟩ a b 0)"

@@ -1,0 +1,21 @@
+control passes: Basic.lean
+control passes: Mono.lean
+control passes: Padding.lean
+control passes: Lemma2.lean
+control passes: Lemma3.lean
+control passes: Main.lean
+rejected: volume bound strict (exit 1, diagnostic: /private/tmp/claude-501/release-lean/renyi-ulam-two-lies/LeanProofs/UlamHalving/BasicMut.lean:73:61: error: linarith failed to find a contradiction)
+rejected: mono without the last-class restriction (exit 1, diagnostic: /private/tmp/claude-501/release-lean/renyi-ulam-two-lies/LeanProofs/UlamHalving/MonoMut.lean:18:19: error: Tactic `introN` failed: There are no additional binde)
+rejected: small with volume 2^n + 1 (exit 1, diagnostic: /private/tmp/claude-501/release-lean/renyi-ulam-two-lies/LeanProofs/UlamHalving/PaddingMut.lean:31:4: error: omega could not prove the goal:)
+rejected: pad without the volume bound (exit 1, diagnostic: /private/tmp/claude-501/release-lean/renyi-ulam-two-lies/LeanProofs/UlamHalving/PaddingMut.lean:62:12: error: Tactic `introN` failed: There are no additional bi)
+rejected: Lemma 1 with volume 2^n + 1 (exit 1, diagnostic: /private/tmp/claude-501/release-lean/renyi-ulam-two-lies/LeanProofs/UlamHalving/PaddingMut.lean:96:22: error: Type mismatch: After simplification, term)
+rejected: growth (9) from N = 12 (exit 1, diagnostic: /private/tmp/claude-501/release-lean/renyi-ulam-two-lies/LeanProofs/UlamHalving/Lemma2Mut.lean:24:9: error: unsolved goals)
+rejected: 2^N >= 2N^3 from N = 11 (exit 1, diagnostic: /private/tmp/claude-501/release-lean/renyi-ulam-two-lies/LeanProofs/UlamHalving/Lemma2Mut.lean:36:9: error: unsolved goals)
+rejected: Lemma 2 with volume 2^n + 1 (exit 1, diagnostic: /private/tmp/claude-501/release-lean/renyi-ulam-two-lies/LeanProofs/UlamHalving/Lemma2Mut.lean:236:101: error: Application type mismatch: The argument)
+rejected: base threshold 66 -> 67 (load-bearing check) (exit 1, diagnostic: /private/tmp/claude-501/release-lean/renyi-ulam-two-lies/LeanProofs/UlamHalving/Lemma2Mut.lean:236:31: error: Tactic `assumption` failed)
+rejected: growth (13) from m = 14 (exit 1, diagnostic: /private/tmp/claude-501/release-lean/renyi-ulam-two-lies/LeanProofs/UlamHalving/Lemma3Mut.lean:19:9: error: unsolved goals)
+rejected: u = floor(a/2) always works (exit 1, diagnostic: /private/tmp/claude-501/release-lean/renyi-ulam-two-lies/LeanProofs/UlamHalving/Lemma3Mut.lean:57:35: error: Application type mismatch: The argument)
+rejected: Lemma 3 without the modular criterion (g = 1) (exit 1, diagnostic: /private/tmp/claude-501/release-lean/renyi-ulam-two-lies/LeanProofs/UlamHalving/Lemma3Mut.lean:147:84: error: Application type mismatch: The argument)
+rejected: halving child one question faster (exit 1, diagnostic: /private/tmp/claude-501/release-lean/renyi-ulam-two-lies/LeanProofs/UlamHalving/MainMut.lean:35:17: error: Application type mismatch: The argument)
+rejected: optimal question ignores the last class (exit 1, diagnostic: /private/tmp/claude-501/release-lean/renyi-ulam-two-lies/LeanProofs/UlamHalving/MainMut.lean:51:12: error: Tactic `rewrite` failed: Did not find an occurrence o)
+14/14 mutants rejected, all controls pass
