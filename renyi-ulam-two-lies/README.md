@@ -8,7 +8,7 @@
 <p align="center"><sub><a href="paper">paper</a> · <a href="lean">Lean proof</a> · <a href="verify">code</a> · <a href="../">all results</a></sub></p>
 <!-- visual:end -->
 
-In the Rényi–Ulam game one finds an unknown element by yes-or-no questions, and up to `e` of the answers may be lies. A position records how many candidates are contradicted by `0, 1, ..., e` answers. Pálvölgyi asked on [MathOverflow 165093](https://mathoverflow.net/q/165093) (2014), and stated as the first conjecture of a note the same year, that from a position in which every class has even size it is always optimal to ask about exactly half of each class. He expected it to be false. The case `e = 1` follows from the work of Ellis, Ponomarenko and Yan.
+In the Rényi–Ulam game one finds an unknown element by yes-or-no questions, and up to `e` of the answers may be lies. A position records how many candidates are contradicted by `0, 1, ..., e` answers. Pálvölgyi asked on [MathOverflow 165093](https://mathoverflow.net/q/165093) (2014), and stated as the first conjecture of a note the same year, that from a position in which every class has even size it is always optimal to ask about exactly half of each class. He expected it to be false. The case `e = 1` follows from the work of Ellis, Ponomarenko and Yan. For two lies, Guzicki ([J. Combin. Theory Ser. A 54 (1990)](https://doi.org/10.1016/0097-3165(90)90002-E)) determined the number of questions needed from every starting position; two lemmas used here are his (padding, his Lemma 3.11, and a consequence of his Theorem 3.9), as the paper says where they are stated.
 
 This note proves:
 

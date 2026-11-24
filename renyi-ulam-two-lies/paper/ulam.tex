@@ -68,7 +68,13 @@ win in fewer questions in the worst case.
 
 For $e=0$ this is ordinary binary search. For $e=1$ it follows from the splitting strategy of Ellis, Ponomarenko and
 Yan~\cite{EPY}, as P\'alv\"olgyi notes~\cite{MO}. In comments on the question, Zare reported a computer check finding
-the conjecture true for at most $52$ candidates and at most three lies. We settle the next case.
+the conjecture true for at most $52$ candidates and at most three lies. For two lies, Guzicki~\cite{Guzicki}
+determined how many questions are needed from every starting position $(N,0,0)$. Along the way he showed that the
+best pair of opening questions from $(N,0,0)$ begins by asking about half of the candidates \cite[Theorem~4.1]{Guzicki},
+and that suitable positions with many lied-about candidates can be balanced by a question that halves the first class
+\cite[Theorems~3.3--3.5]{Guzicki}. Those results concern the start of the game and halve only the first class;
+Conjecture~\ref{conj} asks about every even position and the question that halves every class. We settle the case
+$e=2$.
 
 \begin{thm}\label{thm:main}
 Let $e=2$. If the position $(2a,2b,2c)$ can be won in $n\ge1$ questions, then its halving child $(a,a+b,b+c)$ can be
@@ -136,6 +142,9 @@ the $c$ added candidates, which can no longer be lied about, down its own unused
 exactly when its leaf's next answer is yes. The original candidates' paths do not change.
 \end{proof}
 
+\noindent Lemma~\ref{lem:pad} is Guzicki's Lemma~3.11~\cite{Guzicki}, which adds one candidate to the last class,
+applied $c$ times; the leaf-counting proof above is included to keep the note self-contained.
+
 Deleting candidates never hurts, so for each $a$ the $b$ with $(a,b,0)$ $n$-winnable form an initial segment. Write
 $B_n(a)$ for its largest element ($-1$ if there is none). By Lemma~\ref{lem:pad},
 \begin{equation}\label{eq:frontier}
@@ -150,6 +159,11 @@ and Lemma~\ref{lem:pad} adds the $c$.
 \begin{lemma}\label{lem:many}
 Let $n\ge12$. If $b\ge a$, $c\ge\binom n2$ and $V_n(a,b,c)\le2^n$, then $(a,b,c)$ is $n$-winnable.
 \end{lemma}
+
+\noindent This also follows from Guzicki's Theorem~3.9~\cite{Guzicki}: after padding to volume $2^n$, the position
+has character exactly $n$ in his sense, since $W_na+(n+1)b<2^n$ forces $na+b<2^{n-1}$, and it is typical
+($b\ge a-1$, $c\ge n$), so it is won in $n$ questions. The direct proof below, which reduces to depth $12$, is the
+one formalised in Lean.
 
 \begin{proof}
 For $n=12$ this is a finite statement, checked in Section~\ref{sec:base}. Let $n\ge13$ and assume the lemma at depth
@@ -300,6 +314,8 @@ Lean formalisation and the text. The author is responsible for the content.
 feedback, in \emph{Error-correcting Codes} (H.~B.~Mann, ed.), Wiley, New York, 1968, 61--85.
 \bibitem{EPY} R.~B.~Ellis, V.~Ponomarenko and C.~H.~Yan, How to play the one-lie R\'enyi--Ulam game,
 \emph{Discrete Math.} \textbf{308} (2008), 5805--5808, \doi{10.1016/j.disc.2007.09.052}.
+\bibitem{Guzicki} W.~Guzicki, Ulam's searching game with two lies, \emph{J. Combin. Theory Ser. A} \textbf{54}
+(1990), 1--19, \doi{10.1016/0097-3165(90)90002-E}.
 \bibitem{MO} D.~P\'alv\"olgyi, Is it always optimal to evenly split search space in R\'enyi--Ulam game?,
 MathOverflow question 165093 (2014), \url{https://mathoverflow.net/q/165093}, accessed 24 November 2026.
 \bibitem{Palvolgyi} D.~P\'alv\"olgyi, Three halving conjectures in combinatorial search, note dated 10 November
