@@ -22,9 +22,9 @@ Preprint v1, 24 November 2026, not peer reviewed. Zenodo: [doi:10.5281/zenodo.24
 ## Contents
 
 - `paper/`: `frank.tex`, `frank.pdf` and the figure data.
-- `verify/` (Python 3). The three programs below assert the paper's stated values (the parameter, the cut-points, the exact variance and the published enclosures of Proposition 5.1, and the identity of Lemma 3.2) and exit nonzero if any differs. The `numerics/` scripts only print.
-  - `certify_arb.py`: Proposition 5.1 in Arb ball arithmetic (python-flint), including Spearman's rho through the Debye functions. Output `certify_arb.out`.
-  - `independent_check.py`: the same certificate by a separately written program sharing no code (mpmath 70-digit intervals, Spearman's rho through zeta(2) and zeta(3) with tail bounds), plus exact checks of Lemma 2.1 and of the variational lemma on test densities. Output `independent_check.out`.
+- `verify/` (Python 3). The three programs below exit nonzero if a checked value differs from the paper; what each checks is listed with it. The `numerics/` scripts only print.
+  - `certify_arb.py`: Proposition 5.1 in Arb ball arithmetic (python-flint), including Spearman's rho through the Debye functions. Checks θ = 10, the cut-points against the paper's list, the exact variance 11727/500, and that its balls lie inside the paper's 25-digit enclosures. Output `certify_arb.out`.
+  - `independent_check.py`: the same certificate by a separately written program sharing no code (mpmath 70-digit intervals, Spearman's rho through zeta(2) and zeta(3) with tail bounds), plus exact checks of Lemma 2.1 and of the variational lemma on test densities. Checks the cut-points and variance, and that corr, ρ_S and the gap lie in coarser bounds matching the paper's printed decimals (not the 25-digit enclosures). Output `independent_check.out`.
   - `defect_identity.py`: the identity of Lemma 3.2 exactly (sympy), and Proposition 3.1 against quadrature. Output `defect_identity.out`.
   - `numerics/`: the uncertified exploration behind Table 2 and the figures (`numerics/README.md`).
 - `lean/`: a Lean 4 project pinned to the Mathlib version it was checked with; `lean/README.md` lists what is formalised and what is not.

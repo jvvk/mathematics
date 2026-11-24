@@ -24,7 +24,9 @@ print("corr  =", r.str(25, radius=True)); print("rho_S =", rho.str(25, radius=Tr
 gap = r - rho; print("gap   =", gap.str(15, radius=True))
 assert gap > 0, "not certified"
 # The published claims of Proposition 5.1: any change of theta, cut-points or method must fail here.
-assert t == 10 and len(cuts) == 14 and all(x < y for x, y in zip(cuts, cuts[1:]))
+# Cut-points exactly as printed in the paper (introduction and Proposition 5.1).
+PAPER_CUTS = "27/250, 193/1000, 13/50, 8/25, 187/500, 17/40, 19/40, 21/40, 23/40, 313/500, 17/25, 37/50, 807/1000, 223/250"
+assert t == 10 and cuts == [Fr(c) for c in PAPER_CUTS.split(", ")], "cut-points differ from the paper"
 assert sum((min(x, y) - x*y for x in cuts for y in cuts), Fr(0)) == Fr(11727, 500), "variance"
 paper_corr = arb("0.8603867893143344074910842", "9e-27")
 paper_rho = arb("0.8602336388082110151918579", "1.1e-26")

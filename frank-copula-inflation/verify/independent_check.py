@@ -59,6 +59,10 @@ show('strict gap', rho_xy-rho_s)
 assert (rho_xy-rho_s).a > 0
 print('rho certification: iv.dps=70; zeta3 N=10000; exponential tails K=10')
 # The published claims of Proposition 5.1 (independent recheck at lower precision).
+PAPER_CUTS = "27/250, 193/1000, 13/50, 8/25, 187/500, 17/40, 19/40, 21/40, 23/40, 313/500, 17/25, 37/50, 807/1000, 223/250"
+assert a == [F(c) for c in PAPER_CUTS.split(', ')], 'cut-points differ from the paper'
+# The bounds below are coarser than the paper's enclosures (this program works at lower precision); they confirm
+# the printed decimals of corr, rho_S and the gap, not the 25-digit enclosures, which certify_arb.py checks.
 assert var == F(11727, 500), 'variance'
 def inside(x, lo, hi): return vi(F(lo)).a <= x.a and x.b <= vi(F(hi)).b
 assert inside(rho_xy, '0.86038678931433', '0.86038678931434'), 'corr(X,Y) differs from the paper'
