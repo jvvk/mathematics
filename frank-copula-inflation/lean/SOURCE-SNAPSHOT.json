@@ -1,0 +1,24 @@
+{
+  "source_commit": "98a7238 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports FrankCopula only)",
+    "CheckClaims.lean (generated)",
+    "scripts/mutants.py (copy of lean-proofs scripts/frankcopula_mutants.py)"
+  ],
+  "files": {
+    "CheckClaims.lean": "dafbf5792a45c93101f67a7f6617ae33278ba67723b611636cf105c864c7a43f",
+    "LeanProofs/FrankCopula/NotAffine.lean": "f8794e908e905ab46621a7738ba441128c40b6b6e4e789039789085034e89eca",
+    "LeanProofs/FrankCopula/Ordinal.lean": "fb14e72179dd6c95ec589cb770db084c4d12780ecfd53ba3d69afd43fb037bc4",
+    "LeanProofs/FrankCopula/Regression.lean": "b0d0705b5fa22bd5847e5df3eb7eb56682e01986d88eb0e275ec8dbab60170d8",
+    "LeanProofs/FrankCopula/Report.lean": "305bfce572e79e2a292ac01aa135d02e9a990dfcd1ae965deadadc31a55bac5c",
+    "LeanProofs/FrankCopula/Variation.lean": "ae4659f7d6a68d478f50b80de8626d046218c4c02ef9b62d0e1aa7424e6a193d",
+    "LeanProofs/FrankCopula.lean": "5bdb34a5e1e01376ad280dc5718d42e162c7bb79a601514e7633fa2f0e2b6c25",
+    "LeanProofs.lean": "1aa48f3e40510ee97e0f4502e6ba640b0a7e8e92744f5dd50497e1bd5423842a",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutants.toml": "631073fc824134a4214375d7ddf231120b603180ca8eac0239872ffdc6b06cd0",
+    "scripts/mutate.py": "742a3c8834e82d19f9f161d1428936b454136e00a410cf5b5491e6061a37be51"
+  }
+}

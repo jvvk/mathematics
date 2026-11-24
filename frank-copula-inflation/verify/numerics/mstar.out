@@ -1,0 +1,7 @@
+rho_S=0.5 theta=3.4460 mstar=48 gap_at_mstar=+5.44e-06
+rho_S=0.6 theta=4.4659 mstar=32 gap_at_mstar=+3.82e-06
+rho_S=0.7 theta=5.8212 mstar=23 gap_at_mstar=+3.61e-05
+rho_S=0.8 theta=7.9019 mstar=17 gap_at_mstar=+3.35e-05
+rho_S=0.86 theta=9.9895 mstar=15 gap_at_mstar=+1.51e-04
+rho_S=0.9 theta=12.2615 mstar=14 gap_at_mstar=+1.50e-04
+rho_S=0.95 theta=18.2042 mstar=14 gap_at_mstar=+6.91e-05

@@ -1,0 +1,22 @@
+CLAIM 1: 14 cutpoints; variance = 11727/500
+covariance [20.179511756578399193, 20.179511756578399194]
+ordinal correlation [0.860386789314334407, 0.860386789314334408]
+Spearman rho [0.860233638808187021, 0.860233638808235014]
+strict gap [0.000153150506099393, 0.000153150506147387]
+rho certification: iv.dps=70; zeta3 N=10000; exponential tails K=10
+GRID: multisets of 0..3 cutpoints from {0,1/4,1/2,3/4,1}; 56 total; 46 nonconstant
+t=0.0: cases=2116; formula errors <1e-65; violations=0; max corr=0.0; rho=0.0
+t=0.001: cases=2116; formula errors <1e-65; violations=0; max corr=0.000156249997993978; rho=0.000166666664444444
+t=1.0: cases=2116; formula errors <1e-65; violations=0; max corr=0.154280082395032; rho=0.164486098186972
+t=10.0: cases=2116; formula errors <1e-65; violations=0; max corr=0.816924526668197; rho=0.860233638808211
+t=100.0: cases=2116; formula errors <1e-65; violations=0; max corr=0.983364467666228; rho=0.998083777851134
+t=+inf: cases=2116; formula errors <1e-65; violations=0; max corr=1.0; rho=1.0
+Exact rational checkerboard moment tests: 10580 passed
+LEMMA exact family: rho(0)=eta/3; derivative=theta**2/15
+eta=-0.5, theta=-0.5: step gains at M=4,16,64 = 0.0205428335775, 0.00917849411867, 0.00869561303186
+eta=-0.5, theta=0.5: step gains at M=4,16,64 = 0.0205428335775, 0.00917849411867, 0.00869561303186
+eta=0.0, theta=-1.0: step gains at M=4,16,64 = 0.0323524425224, 0.032706655099, 0.033031511509
+eta=0.0, theta=1.0: step gains at M=4,16,64 = 0.0323524425224, 0.032706655099, 0.033031511509
+eta=0.5, theta=-0.5: step gains at M=4,16,64 = -0.000633502482366, 0.00720621035992, 0.00792303585935
+eta=0.5, theta=0.5: step gains at M=4,16,64 = -0.000633502482366, 0.00720621035992, 0.00792303585935
+Affine boundary theta=0: derivative=0; eta=0 is independence, all nonconstant transformed correlations=0.

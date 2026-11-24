@@ -1,0 +1,372 @@
+\documentclass[11pt]{amsart}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\doi}[1]{doi:\href{https://doi.org/#1}{#1}}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{conj}[thm]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[thm]{Definition}
+\newtheorem{remark}[thm]{Remark}
+
+\DeclareMathOperator{\corr}{corr}
+\DeclareMathOperator{\cov}{cov}
+\DeclareMathOperator{\var}{var}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\rs}{\rho_S}
+
+\title[Discretising a Frank copula can inflate correlation]{Discretising a Frank copula can inflate linear correlation}
+\author{Vamshi Jandhyala}
+\address{London, United Kingdom}
+\date{Preprint, version 1, 24 November 2026. Not peer reviewed.}
+\subjclass[2020]{62H20, 60E15, 62H05}
+\keywords{Frank copula, ordinal data, correlation attenuation, discretisation, monotone correlation}
+
+\begin{document}
+
+\begin{abstract}
+Cut a pair of uniform random variables joined by a Frank copula into ordinal categories, score the categories
+$1,2,\dots,m$, and compare the Pearson correlation of the scores with Spearman's rho of the latent pair. Barbiero
+conjectured, from extensive numerical evidence with at most eleven categories, that the scores are never more
+correlated than the latent pair. We show that the conjecture fails for every nonzero value of the Frank parameter.
+The reason is that the regression of one latent variable on the other is never affine, so a slight monotone
+distortion of the scale correlates better than the scale itself, and fine enough cut-points reproduce the gain. An
+explicit example with fifteen categories and latent Spearman's rho $0.8602$ gives implied correlation $0.8604$,
+certified by interval arithmetic. The key steps are formalised in Lean.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+A common model for two ordinal survey answers takes a latent pair of continuous variables and cuts each one at fixed
+thresholds. The Pearson correlation of the resulting integer scores, the \emph{implied} correlation, is then compared
+with the dependence of the latent pair. For a bivariate normal latent pair this comparison has a classical answer:
+cutting never raises the absolute correlation, because the normal distribution's maximal correlation equals its
+correlation coefficient~\cite{Lancaster}. Barbiero~\cite{Barbiero} proposed the Frank copula as an alternative latent
+model and asked whether it shares this property, measuring latent dependence by Spearman's rho $\rs$, the
+correlation of the uniform latent variables themselves.
+
+Here is the setting in full. Let $(U,V)$ have the Frank copula $C_\theta$ with parameter $\theta\ne0$,
+\begin{equation}\label{eq:frank}
+C_\theta(u,v)=-\frac1\theta\log\Bigl(1+\frac{(e^{-\theta u}-1)(e^{-\theta v}-1)}{e^{-\theta}-1}\Bigr),
+\qquad 0\le u,v\le1,
+\end{equation}
+so that $U$ and $V$ are uniform on $[0,1]$ and $\corr(U,V)=\rs(\theta)$. Choose cut-points $0<a_1<\dots<a_{m-1}<1$
+and $0<b_1<\dots<b_{n-1}<1$ and put
+\[
+X=1+\#\{k : U>a_k\},\qquad Y=1+\#\{l : V>b_l\}.
+\]
+Then $X$ is an ordinal variable on $\{1,\dots,m\}$ with $P(X\le j)=a_j$, and every law on $\{1,\dots,m\}$
+that gives each category positive probability arises this way. Barbiero showed that $\corr(X,Y)$ has the sign of $\rs(\theta)$~\cite[Theorem~2]{Barbiero},
+and on the basis of a numerical study over $m\le11$ categories and $\rs\le0.9$ conjectured more.
+
+\begin{conj}[Barbiero~{\cite[Sections~2.2 and~5]{Barbiero}}]\label{conj}
+Discretisation of a Frank copula latent variable cannot inflate linear correlation: $|\corr(X,Y)|\le|\rs(\theta)|$
+for all cut-points, with equality only in limiting cases.
+\end{conj}
+
+Barbiero also reports, from joint work with Hitaj, that a Student~$t$ latent pair can inflate correlation after
+discretisation when the degrees of freedom and the latent correlation are small and the margins are strongly
+skewed~\cite[Section~2.2]{Barbiero}. Loginov~\cite{Loginov} studies the same cutting scheme with the copula fixed and
+the thresholds free, bounding the error of treating the grades as independent; that is a statement about means of
+functions of the grades, and it does not address the conjecture. We show that the conjecture is false for every
+$\theta\ne0$.
+
+\begin{thm}\label{thm:main}
+For every $\theta\ne0$ there are cut-points for which $|\corr(X,Y)|>|\rs(\theta)|$.
+\end{thm}
+
+A concrete instance comes first. Take $\theta=10$, so $\rs=0.86023$, and fifteen categories on both sides, with the
+same cut-points
+\[
+a=b=\Bigl(\tfrac{27}{250},\tfrac{193}{1000},\tfrac{13}{50},\tfrac{8}{25},\tfrac{187}{500},\tfrac{17}{40},
+\tfrac{19}{40},\tfrac{21}{40},\tfrac{23}{40},\tfrac{313}{500},\tfrac{17}{25},\tfrac{37}{50},\tfrac{807}{1000},
+\tfrac{223}{250}\Bigr).
+\]
+The category probabilities are symmetric and U-shaped (Table~\ref{tab:example}), the shape Barbiero's optimiser
+found for small $m$. The implied correlation is $0.86039$, which exceeds $\rs$ by $1.53\times10^{-4}$
+(Proposition~\ref{prop:cert}).
+
+\begin{table}[h]
+\centering\footnotesize\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}l*{15}{c}@{}}
+\toprule
+$j$ & 1&2&3&4&5&6&7&8&9&10&11&12&13&14&15\\
+\midrule
+$P(X=j)$ & .108&.085&.067&.060&.054&.051&.050&.050&.050&.051&.054&.060&.067&.085&.108\\
+\bottomrule
+\end{tabular}
+\caption{The ordinal law of $X$ (and of $Y$) in the fifteen-category counterexample, $\theta=10$.}\label{tab:example}
+\end{table}
+
+The gain is small and needs many categories, which explains why a study up to eleven categories saw only
+attenuation. Cutting a continuous variable into $m$ pieces costs correlation roughly in proportion to $m^{-2}$ (an
+empirical rate in our computations, not used in any proof), while the gain available from a better scale is fixed. Section~\ref{sec:numerics} records where the balance tips: at
+$\rs=0.86$ the first inflating discretisation we found has fifteen categories, and at $\rs=0.5$ it has
+forty-eight.
+
+The mechanism is a property of the latent copula rather than of the cut-points. Write $r(u)=\E[V\mid U=u]$. If the
+identity scale gave the largest correlation among increasing transforms of $U$, then $r$ would have to be affine
+(Lemma~\ref{lem:var}). For the Frank copula $r$ has a closed form (Proposition~\ref{prop:reg}), and three of its
+values are never collinear (Lemma~\ref{lem:notaffine}). Figure~\ref{fig:reg} shows how far $r$ is from its best affine
+fit. Integer scores of a fine discretisation of the slightly distorted scale then carry the gain over to the
+ordinal variables.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=0.7\textwidth,height=5.2cm,xlabel={$u$},ylabel={$r(u)-\bigl(\tfrac12+\rs(u-\tfrac12)\bigr)$},
+  xmin=0,xmax=1,ymin=-0.016,ymax=0.016,grid=major,legend pos=north east,legend style={font=\small},
+  yticklabel style={/pgf/number format/fixed,/pgf/number format/precision=3},scaled y ticks=false]
+\addplot[thick,blue] table[x=u,y=gap] {fig_reg_t10.dat};
+\addplot[thick,red,dashed] table[x=u,y=gap] {fig_reg_t3.dat};
+\addplot[black,thin,forget plot] coordinates {(0,0) (1,0)};
+\legend{$\theta=10$,$\theta=3$}
+\end{axis}
+\end{tikzpicture}
+\caption{The regression $r(u)=\E[V\mid U=u]$ of the Frank copula minus its best affine approximation. The curve
+is odd about $u=\tfrac12$ because the Frank copula is radially symmetric. A nonzero curve means some increasing
+rescaling of $U$ correlates with $V$ better than $U$ does.}\label{fig:reg}
+\end{figure}
+
+\section{Moments of ordinal scores}
+
+\begin{lemma}\label{lem:moments}
+Let $(U,V)$ have uniform margins and copula $C$, and let $X,Y$ be the scores defined above. Then
+\[
+\cov(X,Y)=\sum_{k=1}^{m-1}\sum_{l=1}^{n-1}\bigl(C(a_k,b_l)-a_kb_l\bigr),\qquad
+\var X=\sum_{k=1}^{m-1}\sum_{k'=1}^{m-1}\bigl(\min(a_k,a_{k'})-a_ka_{k'}\bigr).
+\]
+\end{lemma}
+
+\begin{proof}
+$X-1$ is a sum of the indicators $\mathbf 1\{U>a_k\}$, so the covariance is a double sum of indicator covariances.
+By inclusion and exclusion $P(U>a,V>b)=1-a-b+C(a,b)$, and subtracting $P(U>a)P(V>b)=(1-a)(1-b)$ leaves $C(a,b)-ab$.
+The variance is the case $V=U$, where $C(a,a')=P(U\le\min(a,a'))=\min(a,a')$.
+\end{proof}
+
+Read in words, each pair of cut-points contributes the amount by which the copula exceeds independence at that
+point, and the variance is the same sum for the comonotone copula $\min(u,v)$.
+
+\section{The regression of the Frank copula}
+
+Fix $\theta\ne0$ and write
+\[
+w=e^{-\theta u},\qquad x=w-1,\qquad a=e^{-\theta}-1.
+\]
+Differentiating~\eqref{eq:frank} in $u$ gives the conditional distribution function of $V$ given $U=u$,
+\begin{equation}\label{eq:K}
+K(u,v)=\frac{\partial C_\theta}{\partial u}(u,v)=\frac{w\,(e^{-\theta v}-1)}{a+x\,(e^{-\theta v}-1)}.
+\end{equation}
+The denominator does not vanish for $0\le u,v\le1$: it equals $-\bigl((e^{-\theta v}-e^{-\theta})+w(1-e^{-\theta v})\bigr)$,
+and the two terms in the bracket have the sign of $\theta$ and do not both vanish. So $K$ is smooth on a
+neighbourhood of the unit square, and $r(u)=\E[V\mid U=u]=1-\int_0^1K(u,v)\,dv$ is smooth on $[0,1]$.
+
+\begin{prop}\label{prop:reg}
+For $0<u<1$,
+\[
+r(u)=1-\frac{w\,(x-au)}{x\,(x-a)}.
+\]
+\end{prop}
+
+\begin{proof}
+For fixed $u$ the function
+\[
+G(v)=\frac{w}{x}\Bigl(v-\frac{a}{a-x}\Bigl(v+\frac1\theta\log\bigl|a+x(e^{-\theta v}-1)\bigr|\Bigr)\Bigr)
+\]
+has $G'(v)=K(u,v)$: the bracket has derivative $(a-x)/(a+x(e^{-\theta v}-1))$, so
+$G'=\frac wx\bigl(1-\frac{a}{a+x(e^{-\theta v}-1)}\bigr)$, which is~\eqref{eq:K}. Here $x\ne0$ because $u>0$, and
+$a\ne x$ because $u<1$. The argument of the logarithm is $a$ at $v=0$ and $wa$ at $v=1$, so the logarithm increases by
+$\log w=-\theta u$, and
+\[
+\int_0^1K(u,v)\,dv=G(1)-G(0)=\frac wx\Bigl(1-\frac{a(1-u)}{a-x}\Bigr)=\frac{w\,(x-au)}{x\,(x-a)}.\qedhere
+\]
+\end{proof}
+
+The numerator $x-au$ compares the value $e^{-\theta u}-1$ with its chord from $u=0$ to $u=1$, and the factor
+$x(x-a)$ vanishes exactly at those two endpoints; both singularities are removable, with $r(0)$ and $r(1)$ given by
+the limits. Nothing in the formula is linear in $u$ except the chord, which is the first hint that $r$ is not affine.
+
+\begin{lemma}\label{lem:notaffine}
+For every $\theta\ne0$ the function $r$ is not affine on $(0,1)$.
+\end{lemma}
+
+\begin{proof}
+An affine function $\ell$ satisfies $\ell(\tfrac12)-\ell(\tfrac14)=2\bigl(\ell(\tfrac14)-\ell(\tfrac18)\bigr)$.
+Put $s=e^{-\theta/8}$, so that $w=s^k$ at $u=k/8$ and $e^{-\theta}=s^8$. Substituting into
+Proposition~\ref{prop:reg} and clearing denominators gives
+\[
+\bigl(r(\tfrac12)-r(\tfrac14)\bigr)-2\bigl(r(\tfrac14)-r(\tfrac18)\bigr)
+=\frac{-s\,(s-1)^3(s+1)(s^4+s^3+3s^2+s+1)}{4\,(s^2-s+1)(s^2+s+1)(s^6+s^5+s^4+s^3+s^2+s+1)}.
+\]
+For $s>0$ every factor except $(s-1)^3$ is positive, and $s\ne1$ because $\theta\ne0$.
+\end{proof}
+
+Two other proofs are worth knowing. The closed form is meromorphic in $u$ with a simple pole at $u=2\pi i/\theta$,
+which an affine function cannot have. Alternatively, differentiating under the integral twice gives
+\[
+r''(0)=\frac{\theta}{2(1-e^{-\theta})^3}\int_{e^{-\theta}}^1\frac{(1-y)^2(y-e^{-\theta})^2}{y^2}\,dy,
+\]
+which has the sign of $\theta$. The three-point argument is the one formalised, because it is pure algebra.
+
+\section{From a better scale to better categories}
+
+\begin{lemma}\label{lem:var}
+Let $\xi,\eta,\zeta$ be vectors in a real inner product space with $\langle\xi,\eta\rangle>0$,
+$\langle\zeta,\xi\rangle=0$ and $\langle\zeta,\eta\rangle>0$. Then there is $\varepsilon_0>0$ such that
+$\corr(\xi+\varepsilon\zeta,\eta)>\corr(\xi,\eta)$ for every $0<\varepsilon\le\varepsilon_0$, where
+$\corr(\xi,\eta)=\langle\xi,\eta\rangle/(\|\xi\|\,\|\eta\|)$.
+\end{lemma}
+
+\begin{proof}
+Write $c=\langle\xi,\eta\rangle$, $d=\langle\zeta,\eta\rangle$, $n=\|\xi\|$ and $q=\|\zeta\|$. Orthogonality gives
+$\|\xi+\varepsilon\zeta\|^2=n^2+\varepsilon^2q^2$, so the claim is $(c+\varepsilon d)^2n^2>c^2(n^2+\varepsilon^2q^2)$,
+that is $\varepsilon\bigl(2cdn^2+\varepsilon(d^2n^2-c^2q^2)\bigr)>0$. This holds for
+$0<\varepsilon\le\varepsilon_0=cdn^2/(c^2q^2+1)$, since then $\varepsilon c^2q^2<cdn^2$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+First let $\theta>0$, so $\rho=\rs(\theta)>0$. Since $U$ and $V$ are uniform, the best affine approximation to $r$ in
+$L^2(U)$ is $p(u)=\tfrac12+\rho(u-\tfrac12)$: indeed $\E\,r(U)=\E V=\tfrac12$ and
+$\cov(U,r(U))=\cov(U,V)=\rho/12$. Let $h=r-p$. Then $\E\,h(U)=0$ and $\E\bigl[(U-\tfrac12)h(U)\bigr]=0$, and by the
+tower property
+\[
+\E\bigl[h(U)(V-\tfrac12)\bigr]=\E\bigl[h(U)\bigl(h(U)+\rho(U-\tfrac12)\bigr)\bigr]=\E\,h(U)^2>0,
+\]
+the last because $h$ is continuous and, by Lemma~\ref{lem:notaffine}, not identically zero on $(0,1)$. Apply
+Lemma~\ref{lem:var} in $L^2$ with $\xi=U-\tfrac12$, $\eta=V-\tfrac12$ and $\zeta=h(U)$. Since $h'$ is bounded on
+$[0,1]$, we may also take $\varepsilon\sup|h'|<1$, so that $f(u)=u+\varepsilon h(u)$ is continuous and strictly
+increasing and $\corr(f(U),V)>\rho$.
+
+Now discretise. For a positive integer $M$ put $X_M=\lfloor Mf(U)\rfloor$ and $Y_M=\lfloor MV\rfloor$. Then
+$|X_M/M-f(U)|\le1/M$ and $|Y_M/M-V|\le1/M$, so $\corr(X_M,Y_M)\to\corr(f(U),V)$ as $M\to\infty$, the correlation being
+continuous in $L^2$ away from constant variables. Fix $M$ with $\corr(X_M,Y_M)>\rho$. Because $f$ is continuous and
+increasing, $X_M$ takes a run of consecutive integers, each with positive probability, and is a nondecreasing function
+of $U$. After subtracting a constant it is therefore an ordinal variable of the form $X$ above, with
+$a_j=P(X_M\le\min X_M+j-1)$; the same holds for $Y_M$. Shifts do not change correlation, which proves the theorem
+for $\theta>0$.
+
+For $\theta<0$ use the reflection $C_\theta(u,v)=u-C_{-\theta}(u,1-v)$: if $(U,V)$ has copula $C_\theta$ then
+$(U,1-V)$ has copula $C_{-\theta}$, and $\rs(\theta)=-\rs(-\theta)$. Take the inflating scores $X,Y'$ for $(U,1-V)$
+with $n$ categories and set $Y=n+1-Y'$, a nondecreasing integer score of $V$. Then
+$|\corr(X,Y)|=\corr(X,Y')>\rs(-\theta)=|\rs(\theta)|$.
+\end{proof}
+
+\begin{cor}
+For every $\theta\ne0$ the maximal monotone correlation of the Frank copula~\cite{KS}, the supremum of
+$|\corr(f(U),g(V))|$ over monotone $f,g$, strictly exceeds $|\rs(\theta)|$.
+\end{cor}
+
+\begin{remark}
+The argument uses nothing about the Frank copula beyond the smoothness of $r$ and Lemma~\ref{lem:notaffine}. Any
+copula whose regression function is smooth and not affine admits an inflating discretisation, measured against its
+Spearman's rho. An attenuation property of the kind conjectured therefore needs affine regressions in both
+directions. The Farlie--Gumbel--Morgenstern copula, with density $1+\alpha(1-2u)(1-2v)$, has them, and there the property holds:
+for square-integrable $f,g$, $\cov(f(U),g(V))=\alpha\,\langle f,\phi\rangle\langle g,\phi\rangle$ with
+$\phi(u)=1-2u$ and $\|\phi\|^2=\tfrac13$, so the Cauchy--Schwarz inequality gives
+$|\corr(f(U),g(V))|\le|\alpha|/3=|\rs|$. The normal copula's regression of $V$ on $U$ is not affine either, and indeed the normal scores
+$\Phi^{-1}(U),\Phi^{-1}(V)$ have correlation $\rho>\rs=\tfrac6\pi\arcsin\tfrac\rho2$ for $0<\rho<1$; the classical
+attenuation result is measured against $\rho$, not against $\rs$. For the Frank copula the sharp bound over all
+discretisations is the maximal monotone correlation; whether it has a closed form is open.
+\end{remark}
+
+\section{The certified example and the number of categories}\label{sec:numerics}
+
+\begin{prop}\label{prop:cert}
+For $\theta=10$ and the cut-points of the introduction,
+\begin{align*}
+\corr(X,Y)&\in0.8603867893143344074910842\pm9\times10^{-27},\\
+\rs(10)&\in0.8602336388082110151918579\pm1.1\times10^{-26}.
+\end{align*}
+In particular $\corr(X,Y)-\rs(10)=1.531505061\ldots\times10^{-4}>0$.
+\end{prop}
+
+\begin{proof}
+Lemma~\ref{lem:moments} reduces $\corr(X,Y)$ to $196$ values of~\eqref{eq:frank} at rational points and an exact
+rational variance, $11727/500$. For $\rs$ we use Genest's formula~\cite{Genest}
+$\rs(\theta)=1-\tfrac{12}{\theta}\bigl(D_1(\theta)-D_2(\theta)\bigr)$ with the Debye functions
+$D_k(\theta)=\tfrac{k}{\theta^k}\int_0^\theta\tfrac{t^k}{e^t-1}\,dt$. Both quantities were evaluated in Arb ball
+arithmetic~\cite{Arb} at 200 bits; the integral over $[2^{-100},\theta]$ is computed by rigorous quadrature and the
+piece over $[0,2^{-100}]$ is bounded by $2^{-100k}/k$, since $0<t/(e^t-1)\le1$. An independent check with separate
+code, using 70-digit interval arithmetic and the series $\int_0^\theta t^k/(e^t-1)\,dt$ in terms of $\zeta(2)$ and
+$\zeta(3)$ with explicit tail bounds, gives the gap in $[1.53150506099\times10^{-4},1.53150506148\times10^{-4}]$.
+\end{proof}
+
+Table~\ref{tab:mstar} lists, for several values of $\rs$, the smallest number of categories at which a numerical
+optimisation over cut-points (both variables with $m$ categories) found inflation. These values come from a local
+optimiser with restarts and are upper bounds for the true minimum; only the example above is certified.
+Figure~\ref{fig:gap} shows the best implied correlation against $m$ at $\theta=10$: attenuation up to $m=14$, then a
+gain that grows towards the limit set by the maximal monotone correlation. That limit is at least $0.8633$ at
+$\theta=10$, the largest correlation of increasing scores on an equiprobable $400\times400$ discretisation.
+
+\begin{table}[h]
+\centering\small
+\begin{tabular}{@{}lccccccc@{}}
+\toprule
+$\rs$ & 0.5 & 0.6 & 0.7 & 0.8 & 0.86 & 0.9 & 0.95\\
+$\theta$ & 3.446 & 4.466 & 5.821 & 7.902 & 9.990 & 12.26 & 18.20\\
+\midrule
+least $m$ found & 48 & 32 & 23 & 17 & 15 & 14 & 14\\
+\bottomrule
+\end{tabular}
+\caption{Fewest categories at which inflation was found numerically.}\label{tab:mstar}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=0.7\textwidth,height=5cm,xlabel={number of categories $m$},
+  ylabel={best $\corr(X,Y)-\rs$},xmin=2,xmax=40,ymin=-0.02,ymax=0.004,grid=major,
+  yticklabel style={/pgf/number format/fixed,/pgf/number format/precision=3},scaled y ticks=false]
+\addplot[thick,blue,mark=*,mark size=1pt] table[x=m,y=gap] {fig_gap_t10.dat};
+\addplot[black,thin] coordinates {(2,0) (40,0)};
+\end{axis}
+\end{tikzpicture}
+\caption{Best implied correlation minus $\rs$ at $\theta=10$ ($\rs=0.8602$), over cut-points with $m$ categories
+on each variable. Values for $m\le5$ lie below the plotted range. The curve crosses zero between $m=14$ and
+$m=15$.}\label{fig:gap}
+\end{figure}
+
+\section{Data, code and the use of AI tools}\label{sec:data}
+\sloppy
+
+The scripts, the certificates and the Lean files are archived on Zenodo, \doi{10.5281/zenodo.24497009}. The same
+files are in the folder \texttt{frank-copula-inflation} of the repository
+\href{https://github.com/jvvk/mathematics}{github.com/jvvk/mathematics}, at tag \texttt{frank-copula-inflation-v1}.
+
+Parts of the argument are formalised in Lean~4 with Mathlib: the derivative~\eqref{eq:K}, the integral of
+Proposition~\ref{prop:reg}, Lemma~\ref{lem:notaffine}, Lemma~\ref{lem:var} and Lemma~\ref{lem:moments} for an
+arbitrary copula. Not formalised are the identity $r(u)=1-\int_0^1K\,dv$, the tower-property step and the
+approximation argument in the proof of Theorem~\ref{thm:main}, which are standard, and the numerical certificate,
+which is checked by two independent programs.
+
+The author used AI tools. Claude (Anthropic) found the counterexample, the closed form, the pole argument and the
+three-point proof, and wrote the code, the Lean formalisation and the text. Codex (OpenAI) independently rechecked the
+counterexample and the variational lemma, and found the proof through $r''(0)$. The author is responsible for the
+content.
+
+\begin{thebibliography}{9}
+\bibitem{Barbiero} A.~Barbiero, The Frank copula as a latent model for ordinal variables: dependence structure,
+correlation attenuation, and statistical inference, \emph{Adv.\ Data Anal.\ Classif.} (2026),
+\doi{10.1007/s11634-026-00709-1}.
+\bibitem{Genest} C.~Genest, Frank's family of bivariate distributions, \emph{Biometrika} \textbf{74} (1987),
+549--555, \doi{10.1093/biomet/74.3.549}.
+\bibitem{Arb} F.~Johansson, Arb: efficient arbitrary-precision midpoint-radius interval arithmetic, \emph{IEEE
+Trans.\ Comput.} \textbf{66} (2017), 1281--1292, \doi{10.1109/TC.2017.2690633}.
+\bibitem{KS} G.~Kimeldorf and A.~R.~Sampson, Monotone dependence, \emph{Ann.\ Statist.} \textbf{6} (1978),
+895--903, \doi{10.1214/aos/1176344262}.
+\bibitem{Lancaster} H.~O.~Lancaster, Some properties of the bivariate normal distribution considered in the form of
+a contingency table, \emph{Biometrika} \textbf{44} (1957), 289--292, \doi{10.2307/2333274}.
+\bibitem{Loginov} K.~V.~Loginov, Worst-case bias of the independence assumption for functions of two ordinal
+variables, arXiv:2611.24439 (2026), \doi{10.48550/arXiv.2611.24439}.
+\end{thebibliography}
+
+\end{document}

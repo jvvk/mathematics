@@ -1,0 +1,40 @@
+@FrankCopula.hasDerivAt_C : ∀ {t : ℝ},
+  t ≠ 0 → ∀ v ∈ Set.Icc 0 1, ∀ (u' : ℝ), HasDerivAt (fun u => FrankCopula.C t u v) (FrankCopula.K t u' v) u'
+'FrankCopula.hasDerivAt_C' depends on axioms: [propext, Classical.choice, Quot.sound]
+@FrankCopula.integral_K : ∀ {t u : ℝ},
+  t ≠ 0 → u ∈ Set.Ioo 0 1 → ∫ (v : ℝ) in 0..1, FrankCopula.K t u v = 1 - FrankCopula.R t u
+'FrankCopula.integral_K' depends on axioms: [propext, Classical.choice, Quot.sound]
+FrankCopula.defect : ∀ (t : ℝ),
+  t ≠ 0 →
+    FrankCopula.R t (1 / 2) - FrankCopula.R t (1 / 4) - 2 * (FrankCopula.R t (1 / 4) - FrankCopula.R t (1 / 8)) ≠ 0
+'FrankCopula.defect' depends on axioms: [propext, Classical.choice, Quot.sound]
+FrankCopula.not_affine : ∀ (t : ℝ), t ≠ 0 → ¬∃ α β, ∀ u ∈ Set.Ioo 0 1, FrankCopula.R t u = α + β * u
+'FrankCopula.not_affine' depends on axioms: [propext, Classical.choice, Quot.sound]
+@FrankCopula.corr_increase : ∀ {E : Type u_1} [inst : NormedAddCommGroup E] [inst_1 : InnerProductSpace ℝ E]
+  (x y h : E),
+  x ≠ 0 →
+    y ≠ 0 →
+      0 < inner ℝ x y →
+        inner ℝ h x = 0 →
+          0 < inner ℝ h y →
+            ∃ ε₀, 0 < ε₀ ∧ ∀ (ε : ℝ), 0 < ε → ε ≤ ε₀ → FrankCopula.corr x y < FrankCopula.corr (x + ε • h) y
+'FrankCopula.corr_increase' depends on axioms: [propext, Classical.choice, Quot.sound]
+@FrankCopula.cov_score : ∀ {Ω : Type u_1} [inst : MeasurableSpace Ω] (μ : MeasureTheory.Measure Ω)
+  [MeasureTheory.IsProbabilityMeasure μ] {n m : ℕ} (a : Fin n → ℝ) (b : Fin m → ℝ) (U V : Ω → ℝ),
+  Measurable U →
+    Measurable V →
+      ∀ (C : ℝ → ℝ → ℝ),
+        (∀ (k : Fin n), μ.real {ω | U ω ≤ a k} = a k) →
+          (∀ (l : Fin m), μ.real {ω | V ω ≤ b l} = b l) →
+            (∀ (k : Fin n) (l : Fin m), μ.real ({ω | U ω ≤ a k} ∩ {ω | V ω ≤ b l}) = C (a k) (b l)) →
+              ∫ (ω : Ω), FrankCopula.score a U ω * FrankCopula.score b V ω ∂μ -
+                  (∫ (ω : Ω), FrankCopula.score a U ω ∂μ) * ∫ (ω : Ω), FrankCopula.score b V ω ∂μ =
+                ∑ k, ∑ l, (C (a k) (b l) - a k * b l)
+'FrankCopula.cov_score' depends on axioms: [propext, Classical.choice, Quot.sound]
+@FrankCopula.var_score : ∀ {Ω : Type u_1} [inst : MeasurableSpace Ω] (μ : MeasureTheory.Measure Ω)
+  [MeasureTheory.IsProbabilityMeasure μ] {n : ℕ} (a : Fin n → ℝ) (U : Ω → ℝ),
+  Measurable U →
+    (∀ (k : Fin n), μ.real {ω | U ω ≤ a k} = a k) →
+      ∫ (ω : Ω), FrankCopula.score a U ω * FrankCopula.score a U ω ∂μ - (∫ (ω : Ω), FrankCopula.score a U ω ∂μ) ^ 2 =
+        ∑ k, ∑ l, (min (a k) (a l) - a k * a l)
+'FrankCopula.var_score' depends on axioms: [propext, Classical.choice, Quot.sound]

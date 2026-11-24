@@ -1,0 +1,17 @@
+Mutation suite lean/scripts/mutants.toml, run 2026-11-24 in the release layout (isolated build).
+
+001-control-NotAffine-lean: (no error: control passes)
+002-control-Regression-lean: (no error: control passes)
+003-control-Variation-lean: (no error: control passes)
+004-control-Ordinal-lean: (no error: control passes)
+005-defect-at-t-0-allowed: LeanProofs/FrankCopula/NotAffineMut.lean:36:82: error: linarith failed to find a contradiction
+006-not-affine-at-t-0-allowed: LeanProofs/FrankCopula/NotAffineMut.lean:78:17: error: Application type mismatch: The argument
+007-integral-of-K-equals-R-drop-1: LeanProofs/FrankCopula/RegressionMut.lean:103:2: error: unsolved goals
+008-dC-du-2K: LeanProofs/FrankCopula/RegressionMut.lean:130:55: error: unsolved goals
+009-first-variation-with-h-y-0: LeanProofs/FrankCopula/VariationMut.lean:29:17: error: failed to prove strict positivity, but it would be possible to prove nonnegativity if desired
+010-first-variation-without-orthogonality-h-x-0: LeanProofs/FrankCopula/VariationMut.lean:31:62: error: Invalid rewrite argument: Expected an equality or iff proof or definition name, but `hhx` is a proof of
+011-covariance-term-a-k: LeanProofs/FrankCopula/OrdinalMut.lean:63:53: error: unsolved goals
+012-variance-with-max: LeanProofs/FrankCopula/OrdinalMut.lean:83:2: error: Type mismatch
+013-inclusion-exclusion-sign: LeanProofs/FrankCopula/OrdinalMut.lean:33:2: error: linarith failed to find a contradiction
+
+9/9 mutants rejected, all controls pass

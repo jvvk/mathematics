@@ -1,0 +1,62 @@
+# Mutation suite for the Frank-copula disproof. Each mutant is a stronger, false claim; every one must be rejected.
+[check]
+cmd = ["lake", "env", "lean", "{file}"]
+cwd = ".."
+timeout = 900
+fail_markers = ["error"]
+fail_pattern = '^(?P<file>\S+\.lean):\d+:\d+: error\b'
+log_dir = "mutation-logs"
+
+[[mutant]]
+name = "defect at t = 0 allowed"
+file = "../LeanProofs/FrankCopula/NotAffine.lean"
+old = "theorem defect (t : ℝ) (ht : t ≠ 0) :"
+new = "theorem defect (t : ℝ) (ht : t ≠ 1) :"
+
+[[mutant]]
+name = "not_affine at t = 0 allowed"
+file = "../LeanProofs/FrankCopula/NotAffine.lean"
+old = "theorem not_affine (t : ℝ) (ht : t ≠ 0) :"
+new = "theorem not_affine (t : ℝ) (ht : t ≠ 1) :"
+
+[[mutant]]
+name = "integral of K equals R (drop 1 -)"
+file = "../LeanProofs/FrankCopula/Regression.lean"
+old = "theorem integral_K : ∫ v in (0 : ℝ)..1, K t u v = 1 - R t u := by"
+new = "theorem integral_K : ∫ v in (0 : ℝ)..1, K t u v = R t u := by"
+
+[[mutant]]
+name = "dC/du = 2K"
+file = "../LeanProofs/FrankCopula/Regression.lean"
+old = "    HasDerivAt (fun u => C t u v) (K t u' v) u' := by"
+new = "    HasDerivAt (fun u => C t u v) (2 * K t u' v) u' := by"
+
+[[mutant]]
+name = "first variation with <h,y> >= 0"
+file = "../LeanProofs/FrankCopula/Variation.lean"
+old = "    (hhy : 0 < ⟪h, y⟫) :"
+new = "    (hhy : 0 ≤ ⟪h, y⟫) :"
+
+[[mutant]]
+name = "first variation without orthogonality (<h,x> >= 0)"
+file = "../LeanProofs/FrankCopula/Variation.lean"
+old = "(hhx : ⟪h, x⟫ = 0)"
+new = "(hhx : 0 ≤ ⟪h, x⟫)"
+
+[[mutant]]
+name = "covariance term + a_k"
+file = "../LeanProofs/FrankCopula/Ordinal.lean"
+old = "      ∑ k, ∑ l, (C (a k) (b l) - a k * b l) := by"
+new = "      ∑ k, ∑ l, (C (a k) (b l) - a k * b l + a k) := by"
+
+[[mutant]]
+name = "variance with max"
+file = "../LeanProofs/FrankCopula/Ordinal.lean"
+old = "      ∑ k, ∑ l, (min (a k) (a l) - a k * a l) := by"
+new = "      ∑ k, ∑ l, (max (a k) (a l) - a k * a l) := by"
+
+[[mutant]]
+name = "inclusion-exclusion sign"
+file = "../LeanProofs/FrankCopula/Ordinal.lean"
+old = "      1 - μ.real {ω | U ω ≤ a} - μ.real {ω | V ω ≤ b} + μ.real ({ω | U ω ≤ a} ∩ {ω | V ω ≤ b}) := by"
+new = "      1 - μ.real {ω | U ω ≤ a} - μ.real {ω | V ω ≤ b} - μ.real ({ω | U ω ≤ a} ∩ {ω | V ω ≤ b}) := by"
