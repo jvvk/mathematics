@@ -14,9 +14,9 @@ This note proves:
 
 - **Theorem 1.2.** For `n > 2m ≥ 2`, the sequence `α_1, ..., α_m` starts positive and changes sign at most once, from positive to negative, and every partial sum is strictly positive. For `n = 2m` every `α_i` is zero.
 - **Lemma 2.2.** Any nonnegative integer-valued variable with integer mean `m` is left-loaded when the reflected differences `P(X = m + i) − P(X = m − i)` are negative and then nonnegative.
-- **Propositions 4.1 and 4.2.** Poisson variables with integer mean (a short new proof of the authors' Lemma 3.7) and the negative binomial distributions `NB(r, 1 − 1/n)` (for which the authors remarked that left-loadedness "appears to be true") are left-loaded.
+- **Propositions 4.1 and 4.2.** Poisson variables with integer mean (a shorter proof of the authors' Lemma 3.7, reusing their ratio computation) and the negative binomial distributions `NB(r, 1 − 1/n)` (for which the authors remarked that left-loadedness "appears to be true") are left-loaded.
 
-The idea: continue `α_i` past `i = m` up to `i = n − m`. The full sum is then exactly zero, because it equals `E(m − X)⁺ − E(X − m)⁺ = m − E X`, and the sequence is valley-shaped, because one quadratic decides the sign of the reflected differences. A valley-shaped sequence that ends below zero is positive and then negative, so its partial sums rise and then fall back to exactly zero, and are positive on the way.
+The idea: continue `α_i` past `i = m` up to `i = n − m`; comparing reflected probabilities through their ratio and the sum identity are already in the source paper, and continuing the index is the step added here. The full sum is then exactly zero, because it equals `E(m − X)⁺ − E(X − m)⁺ = m − E X`, and the sequence is valley-shaped, because one quadratic decides the sign of the reflected differences. A valley-shaped sequence that ends below zero is positive and then negative, so its partial sums rise and then fall back to exactly zero, and are positive on the way.
 
 Preprint v1, 24 November 2026, not peer reviewed. The author used AI tools in this work (Codex, OpenAI, found the proof of Theorem 1.2; Claude, Anthropic, checked it, found the general lemma and the Poisson and negative binomial cases, wrote the Lean formalisation and the text), as the paper's Section 5 describes, and is responsible for its content.
 

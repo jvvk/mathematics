@@ -27,9 +27,10 @@ Everything is in integer arithmetic. With `q = n − m`, the weights are `w n m 
 ## Not formalised
 - Lemma 2.2 in its general form (any nonnegative integer variable with finite integer mean, possibly unbounded): the
   Lean shape lemmas cover the finite case used for the binomial.
-- Propositions 4.1 (Poisson) and 4.2 (negative binomial) and Corollary 4.3: checked in exact arithmetic by
-  `../verify/identities.py` and `../verify/nb_check.py`; Corollary 4.3 rests on Theorem 1.1 and Lemma 3.2 of
-  Fokkink, Papavassiliou and Pelekis.
+- Propositions 4.1 (Poisson) and 4.2 (negative binomial) and Corollary 4.3. `../verify/identities.py` checks their
+  ratio identities symbolically and `../verify/nb_check.py` checks the negative binomial partial sums exactly for
+  `r ≤ 6`, `n ≤ 7`; the Poisson partial sums and Corollary 4.3 (which rests on Theorem 1.1 and Lemma 3.2 of
+  Fokkink, Papavassiliou and Pelekis) are not checked by program.
 
 ## Mutation tests
 `scripts/mutants.toml`, run with `cd scripts && python3 mutate.py mutants.toml` (runner included): 14 mutants, all

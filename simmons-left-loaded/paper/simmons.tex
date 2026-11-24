@@ -74,7 +74,7 @@ sums, as multiples of $7^{-7}$, are $10249$, $8402$, $2187$: they stay positive 
 are negative. We prove the conjecture.
 
 \begin{thm}\label{thm:main}
-Let $n>2m\ge2$ and $X\sim\Bin(n,m/n)$. Then $(\alpha_1,\dots,\alpha_m)$ starts positive and changes sign at most once,
+Let $n$ and $m$ be integers with $n>2m\ge2$, and $X\sim\Bin(n,m/n)$. Then $(\alpha_1,\dots,\alpha_m)$ starts positive and changes sign at most once,
 from positive to negative, and $S_k>0$ for $1\le k\le m$. For $n=2m$ every $\alpha_i$ is zero.
 \end{thm}
 
@@ -111,8 +111,11 @@ fall, and reach zero only at the end. The conjecture concerns $k\le3$.}
 \end{figure}
 
 The argument is a general lemma about integer-valued variables (Section~\ref{sec:lemma}) plus one identity for the
-binomial (Section~\ref{sec:binomial}). The lemma also gives two-line proofs for the Poisson distribution, recovering
-\cite[Lemma 3.7]{FPP}, and for the negative binomial distributions $\NB(r,1-1/n)$, for which the authors observed
+binomial (Section~\ref{sec:binomial}). Two ingredients are already in \cite{FPP}: the sum identity behind
+Lemma~\ref{lem:sum} is a form of their Lemma~2.1, and comparing $\Prob(X=m+i)$ with $\Prob(X=m-i)$ through their ratio
+is how they treat the Poisson case \cite[Lemma~3.6]{FPP}. What is added here is continuing the index past $m$, which
+turns the sign pattern of these ratios into positivity of every partial sum. The lemma then gives short proofs for the
+Poisson distribution, recovering \cite[Lemma 3.7]{FPP}, and for the negative binomial distributions $\NB(r,1-1/n)$, for which the authors observed
 that left-loadedness ``appears to be true'' \cite[p.~140]{FPP} (Section~\ref{sec:other}).
 
 \section{A lemma on reflected differences}\label{sec:lemma}
@@ -134,7 +137,9 @@ $\sum_{i\ge1}\alpha_i=0$, the series converging absolutely, and $\alpha_i\to0$.
 
 \begin{proof}
 Counting each value $j$ once for every $i$ it is counted in, $\sum_{i\ge1}\Prob(X\le m-i)=\sum_j (m-j)^+p_j=\E(m-X)^+$
-and $\sum_{i\ge1}\Prob(X\ge m+i)=\E(X-m)^+$, both finite. Their difference is $\E(m-X)=0$.
+and $\sum_{i\ge1}\Prob(X\ge m+i)=\E(X-m)^+$, both finite. Their difference is $\E(m-X)=0$. (Fokkink,
+Papavassiliou and Pelekis use the same counting to show $\alpha_1+\dots+\alpha_m=\sum_{i>m}\Prob(X\ge m+i)$
+\cite[Lemma~2.1]{FPP}.)
 \end{proof}
 
 \begin{lem}\label{lem:main}
@@ -146,9 +151,9 @@ is nonnegative. In particular $X$ is left-loaded.
 \begin{proof}
 By \eqref{eq:step}, $\alpha_1\ge\alpha_2\ge\dots\ge\alpha_r$ and $\alpha_r\le\alpha_{r+1}\le\cdots$. The second run is
 nondecreasing with limit $0$ (Lemma~\ref{lem:sum}), so all its terms are at most $0$. The first run is nonincreasing,
-so its nonnegative terms come first. Let $\ell$ be the number of nonnegative terms at the start. Then $S_k$ is
-nondecreasing for $k\le\ell$ and nonincreasing for $k\ge\ell$, and $S_k\to0$. A sequence that rises and then falls to
-the limit $0$ is never negative.
+so its nonnegative terms come first. Let $\ell=\max\bigl(\{0\}\cup\{i\le r:\alpha_i\ge0\}\bigr)$, a finite
+number. Then $\alpha_i\ge0$ for $i\le\ell$ and $\alpha_i\le0$ for $i>\ell$, so $S_k\ge0$ for $k\le\ell$, and for
+$k>\ell$ we have $S_k=-\sum_{i>k}\alpha_i\ge0$ by Lemma~\ref{lem:sum}.
 \end{proof}
 
 Read in words: if the probability mass above the mean overtakes its mirror image below the mean only once, the lower
@@ -202,7 +207,7 @@ $\Prob(X=n)=(m/n)^n$.
 \section{Other distributions}\label{sec:other}
 
 \begin{prop}\label{prop:poisson}
-A Poisson variable with integer mean $m$ is left-loaded.
+A Poisson variable with integer mean $m\ge1$ is left-loaded.
 \end{prop}
 
 \begin{proof}
@@ -212,8 +217,9 @@ Section~\ref{sec:binomial}, $\beta$ decreases from $\beta_0=1$ and then increase
 nonnegative for $i\le m$, and $d_i=p_{m+i}>0$ for $i>m$. Lemma~\ref{lem:main} applies.
 \end{proof}
 
-This is \cite[Lemma 3.7]{FPP}, whose proof treats $m\in\{1,2\}$ separately and uses the inequality
-$\Prob(X\ge2m)>\Prob(X=0)$ for $m\ge3$; Lemma~\ref{lem:main} needs neither.
+This is \cite[Lemma 3.7]{FPP}. The ratio computation is theirs \cite[Lemma~3.6]{FPP}; their proof then needs the
+inequality $\Prob(X\ge2m)>\Prob(X=0)$ for $m\ge3$ \cite[Lemma~3.5]{FPP} and treats $m\in\{1,2\}$ separately,
+and continuing past $m$ makes both unnecessary.
 
 \begin{prop}\label{prop:nb}
 Let $n\ge2$ and $r\ge1$ be integers and $X\sim\NB(r,1-1/n)$, the number of successes before the $r$-th failure when
@@ -235,7 +241,7 @@ Fokkink, Papavassiliou and Pelekis show that these negative binomial distributio
 \cite[Lemma 3.3]{FPP} and remark that left-loadedness appears to hold too; Proposition~\ref{prop:nb} confirms it.
 
 \begin{cor}\label{cor:tails}
-Let $S\sim\Bin(N,s/N)$ with $N\ge2s$, and let $X$, independent of $S$, be $\Bin(n,m/n)$ with $n\ge2m$, or
+Let $N,s$ be positive integers, $S\sim\Bin(N,s/N)$ with $N\ge2s$, and let $X$, independent of $S$, be $\Bin(n,m/n)$ with $n\ge2m$, or
 $\Poi(m)$, or $\NB(r,1-1/n)$ with mean $m=r(n-1)$. If $s\ge m\ge1$, then $\Prob(S\ge s)\ge\Prob(S+X\ge s+m)$.
 \end{cor}
 
@@ -260,7 +266,10 @@ $n^n$, with a separate proof that these integers divided by $n^n$ are the binomi
 \eqref{eq:step}, the zero sum, the value $\alpha_q=-p_n$, Lemma~\ref{lem:ratio}, the sign pattern, the positivity
 of $S_k$ for $1\le k<n-m$ and the case $n=2m$. The proofs use only Lean's standard axioms, and fourteen false
 strengthenings of the formal statements are each rejected. Lemma~\ref{lem:main} in its general form and
-Section~\ref{sec:other} are not formalised; they are checked in exact arithmetic.
+Section~\ref{sec:other} are not formalised. The programs check the ratio identities of Lemma~\ref{lem:ratio} and
+Propositions~\ref{prop:poisson} and~\ref{prop:nb} symbolically, the binomial statement exactly for every $n\le400$,
+and the negative binomial partial sums exactly for $r\le6$, $n\le7$; they do not check Lemma~\ref{lem:main} in
+general, the Poisson partial sums or Corollary~\ref{cor:tails}, which rest on the proofs above.
 
 The author used AI tools. Codex (OpenAI) found the proof of Theorem~\ref{thm:main}, extending $\alpha$ past $m$.
 Claude (Anthropic) checked it, found the general form of Lemma~\ref{lem:main} and Propositions~\ref{prop:poisson}

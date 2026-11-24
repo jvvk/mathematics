@@ -4,7 +4,7 @@ from fractions import Fraction as F
 from math import comb
 i, m, q, n, r = sp.symbols('i m q n r', positive=True)
 t = i * (i + 1)
-# binomial ratio (Lemma 3.3)
+# binomial ratio (Lemma 3.1)
 R = m**2 * (q - i) * (q + i + 1) / (q**2 * (m - i) * (m + i + 1))
 assert sp.simplify(R - 1 - (q - m) * ((q + m) * t - m * q) / (q**2 * (m - i) * (m + i + 1))) == 0
 # Poisson ratio
