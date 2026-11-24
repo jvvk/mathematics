@@ -1,0 +1,5 @@
+control passes: counter_certificate.json
+rejected: parent's first question (a, 24, 112, 0) instead of (a, 25, 112, 0) (exit 1, marker 'AssertionError': AssertionError: ((106, 408524202458340122944474122, 52, 120), (204262101229170061472237061, 204262101229170061472237085, 140, 8)))
+rejected: a row at depth 37 deleted (exit 1, marker 'AssertionError': AssertionError: ((38, 692066, 47752617, 1623588991), (346033, 24222341, 835670804, 85698651214)))
+rejected: a row at depth 17 deleted (exit 1, marker 'AssertionError': AssertionError: ((18, 0, 59, 2584), (0, 59, 2584, 0)))
+3/3 mutants rejected, all controls pass

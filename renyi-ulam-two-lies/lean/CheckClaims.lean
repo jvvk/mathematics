@@ -30,3 +30,13 @@ import LeanProofs
 #print axioms UlamHalving.halving_child
 #check @UlamHalving.halving_optimal
 #print axioms UlamHalving.halving_optimal
+#check @UlamHalving.Three.V_conserve
+#print axioms UlamHalving.Three.V_conserve
+#check @UlamHalving.Three.V_le
+#print axioms UlamHalving.Three.V_le
+#check @UlamHalving.Three.V_h
+#print axioms UlamHalving.Three.V_h
+#check @UlamHalving.Three.h_eq_halving
+#print axioms UlamHalving.Three.h_eq_halving
+#check @UlamHalving.Three.not_solv_105
+#print axioms UlamHalving.Three.not_solv_105

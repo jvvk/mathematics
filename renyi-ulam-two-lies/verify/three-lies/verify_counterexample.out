@@ -1,0 +1,8 @@
+Winning certificate: 2126 states, 4252 child checks, all passed.
+Certified parent solvable in 106; volume rules out 105.
+Certified halving child solvable in 106.
+Halving obstruction: only (w,t+lambda)=(17,70),(69,18).
+Each forces residue 69 with available last-class-plus-slack 35.
+All 38 possible (w,t,lambda) triples rejected by exact congruences.
+q(parent)=106; q(halving child)=106; even split costs 107.
+COUNTEREXAMPLE VERIFIED

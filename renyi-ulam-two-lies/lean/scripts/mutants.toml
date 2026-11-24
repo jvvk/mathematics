@@ -108,3 +108,47 @@ name = "optimal question ignores the last class"
 file = "../LeanProofs/UlamHalving/Main.lean"
 old = "Solv (n + 1) (no ⟨2 * a, 2 * b, 2 * c⟩ a b c)"
 new = "Solv (n + 1) (no ⟨2 * a, 2 * b, 2 * c⟩ a b 0)"
+
+# ---- three lies (Three.lean): the halving child of (2A, 52, 120, 0) is not 105-solvable ----
+
+# False: h is 106-solvable (the certificate also certifies its core at depth 106, volume permits d = 60).
+[[mutant]]
+name = "three: not solvable in 106"
+file = "../LeanProofs/UlamHalving/Three.lean"
+old = "theorem not_solv_105 : ¬ Solv 105 h := by"
+new = "theorem not_solv_105 : ¬ Solv 106 h := by"
+
+# False: the bound is attained, e.g. (0, 0, 0, 1) at depth 0.
+[[mutant]]
+name = "three: volume bound strict"
+file = "../LeanProofs/UlamHalving/Three.lean"
+old = "theorem V_le (n : ℕ) (x : St) (h : Solv n x) : V n x ≤ 2 ^ n := by"
+new = "theorem V_le (n : ℕ) (x : St) (h : Solv n x) : V n x < 2 ^ n := by"
+
+# False: the slack is exactly 28.
+[[mutant]]
+name = "three: slack 27"
+file = "../LeanProofs/UlamHalving/Three.lean"
+old = "theorem V_h : V 105 h = 2 ^ 105 - 28 := by"
+new = "theorem V_h : V 105 h = 2 ^ 105 - 27 := by"
+
+# False: w = 17, t + l = 70 is a solution of the first-level equation for suitable u, v.
+[[mutant]]
+name = "three: first level only w = 69"
+file = "../LeanProofs/UlamHalving/Three.lean"
+old = "    (w = 17 ∧ t + l = 70) ∨ (w = 69 ∧ t + l = 18) := by"
+new = "    (w = 69 ∧ t + l = 18) := by"
+
+# False: the YES residue is 69, so an allowance of 69 admits s = 69.
+[[mutant]]
+name = "three: yes child allowance 69"
+file = "../LeanProofs/UlamHalving/Three.lean"
+old = "lemma yes_fails (K s : ℕ) (hs : s ≤ 35)"
+new = "lemma yes_fails (K s : ℕ) (hs : s ≤ 69)"
+
+# False: same residue 69 on the NO side.
+[[mutant]]
+name = "three: no child allowance 69"
+file = "../LeanProofs/UlamHalving/Three.lean"
+old = "lemma no_fails (K s : ℕ) (hs : s ≤ 35)"
+new = "lemma no_fails (K s : ℕ) (hs : s ≤ 69)"

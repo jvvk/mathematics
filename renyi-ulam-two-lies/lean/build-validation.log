@@ -1,14 +1,36 @@
 Isolated build 2026-11-24: fresh copy of lean/, lake exe cache get, lake build LeanProofs
-⚠ [8924/8933] Built LeanProofs.UlamHalving.Basic (60s)
+⚠ [8924/8934] Built LeanProofs.UlamHalving.Basic (75s)
 warning: LeanProofs/UlamHalving/Basic.lean:6:100: This line exceeds the 100 character limit, please shorten it!
 warning: LeanProofs/UlamHalving/Basic.lean:8:100: This line exceeds the 100 character limit, please shorten it!
 warning: LeanProofs/UlamHalving/Basic.lean:11:100: This line exceeds the 100 character limit, please shorten it!
 warning: LeanProofs/UlamHalving/Basic.lean:72:100: This line exceeds the 100 character limit, please shorten it!
-⚠ [8925/8933] Built LeanProofs.UlamHalving.Mono (74s)
+⚠ [8925/8934] Built LeanProofs.UlamHalving.Three (81s)
+warning: LeanProofs/UlamHalving/Three.lean:6:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/UlamHalving/Three.lean:7:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/UlamHalving/Three.lean:8:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/UlamHalving/Three.lean:10:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/UlamHalving/Three.lean:13:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/UlamHalving/Three.lean:14:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/UlamHalving/Three.lean:15:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/UlamHalving/Three.lean:18:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/UlamHalving/Three.lean:43:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/UlamHalving/Three.lean:96:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/UlamHalving/Three.lean:116:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/UlamHalving/Three.lean:130:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/UlamHalving/Three.lean:134:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/UlamHalving/Three.lean:135:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/UlamHalving/Three.lean:136:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/UlamHalving/Three.lean:142:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/UlamHalving/Three.lean:151:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/UlamHalving/Three.lean:162:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/UlamHalving/Three.lean:167:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/UlamHalving/Three.lean:177:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/UlamHalving/Three.lean:194:100: This line exceeds the 100 character limit, please shorten it!
+⚠ [8926/8934] Built LeanProofs.UlamHalving.Mono (87s)
 warning: LeanProofs/UlamHalving/Mono.lean:6:100: This line exceeds the 100 character limit, please shorten it!
 warning: LeanProofs/UlamHalving/Mono.lean:7:100: This line exceeds the 100 character limit, please shorten it!
 warning: LeanProofs/UlamHalving/Mono.lean:8:100: This line exceeds the 100 character limit, please shorten it!
-⚠ [8926/8933] Built LeanProofs.UlamHalving.Key (76s)
+⚠ [8927/8934] Built LeanProofs.UlamHalving.Key (93s)
 warning: LeanProofs/UlamHalving/Key.lean:7:100: This line exceeds the 100 character limit, please shorten it!
 warning: LeanProofs/UlamHalving/Key.lean:8:100: This line exceeds the 100 character limit, please shorten it!
 warning: LeanProofs/UlamHalving/Key.lean:11:100: This line exceeds the 100 character limit, please shorten it!
@@ -17,25 +39,3 @@ warning: LeanProofs/UlamHalving/Key.lean:13:100: This line exceeds the 100 chara
 warning: LeanProofs/UlamHalving/Key.lean:19:100: This line exceeds the 100 character limit, please shorten it!
 warning: LeanProofs/UlamHalving/Key.lean:22:100: This line exceeds the 100 character limit, please shorten it!
 warning: LeanProofs/UlamHalving/Key.lean:39:100: This line exceeds the 100 character limit, please shorten it!
-warning: LeanProofs/UlamHalving/Key.lean:82:2: `push_neg` has been deprecated. Prefer using `push Not` instead.
-warning: LeanProofs/UlamHalving/Key.lean:112:43: Unused tactic linter: `push_cast` does nothing
-warning: LeanProofs/UlamHalving/Key.lean:140:42: Unused tactic linter: `push_cast [Nat.cast_sub h1] at hw ⊢` does nothing
-warning: LeanProofs/UlamHalving/Key.lean:141:31: Unused tactic linter: `push_cast at this` does nothing
-warning: LeanProofs/UlamHalving/Key.lean:70:100: This line exceeds the 100 character limit, please shorten it!
-warning: LeanProofs/UlamHalving/Key.lean:110:100: This line exceeds the 100 character limit, please shorten it!
-warning: LeanProofs/UlamHalving/Key.lean:111:100: This line exceeds the 100 character limit, please shorten it!
-warning: LeanProofs/UlamHalving/Key.lean:132:100: This line exceeds the 100 character limit, please shorten it!
-warning: LeanProofs/UlamHalving/Key.lean:133:100: This line exceeds the 100 character limit, please shorten it!
-warning: LeanProofs/UlamHalving/Key.lean:135:100: This line exceeds the 100 character limit, please shorten it!
-warning: LeanProofs/UlamHalving/Key.lean:143:100: This line exceeds the 100 character limit, please shorten it!
-warning: LeanProofs/UlamHalving/Key.lean:155:100: This line exceeds the 100 character limit, please shorten it!
-warning: LeanProofs/UlamHalving/Key.lean:156:100: This line exceeds the 100 character limit, please shorten it!
-warning: LeanProofs/UlamHalving/Key.lean:158:100: This line exceeds the 100 character limit, please shorten it!
-warning: LeanProofs/UlamHalving/Key.lean:166:100: This line exceeds the 100 character limit, please shorten it!
-⚠ [8927/8933] Built LeanProofs.UlamHalving.Padding (60s)
-warning: LeanProofs/UlamHalving/Padding.lean:6:100: This line exceeds the 100 character limit, please shorten it!
-warning: LeanProofs/UlamHalving/Padding.lean:7:100: This line exceeds the 100 character limit, please shorten it!
-warning: LeanProofs/UlamHalving/Padding.lean:8:100: This line exceeds the 100 character limit, please shorten it!
-warning: LeanProofs/UlamHalving/Padding.lean:9:100: This line exceeds the 100 character limit, please shorten it!
-warning: LeanProofs/UlamHalving/Padding.lean:10:100: This line exceeds the 100 character limit, please shorten it!
-warning: LeanProofs/UlamHalving/Padding.lean:23:100: This line exceeds the 100 character limit, please shorten it!

@@ -1,0 +1,22 @@
+# ./front3 30 (nice, capped at 7000 s), 2026-11-24. Per depth n: frontier grid size, even parents (2a,2b,2c,0) checked
+# (c = floor(F[n][2a][2b]/2), the largest even last class), and halving-child violations.
+n= 1 grid 3 x 3  parents checked 1  violations 0
+n= 2 grid 3 x 3  parents checked 1  violations 0
+n= 3 grid 3 x 3  parents checked 1  violations 0
+n= 4 grid 3 x 3  parents checked 1  violations 0
+n= 5 grid 3 x 4  parents checked 2  violations 0
+n= 6 grid 3 x 4  parents checked 2  violations 0
+n= 7 grid 4 x 6  parents checked 3  violations 0
+n= 8 grid 4 x 8  parents checked 4  violations 0
+n= 9 grid 5 x 13  parents checked 6  violations 0
+n=10 grid 7 x 20  parents checked 13  violations 0
+n=11 grid 10 x 32  parents checked 31  violations 0
+n=12 grid 15 x 53  parents checked 82  violations 0
+n=13 grid 23 x 91  parents checked 231  violations 0
+n=14 grid 36 x 156  parents checked 663  violations 0
+n=15 grid 58 x 272  parents checked 1936  violations 0
+n=16 grid 96 x 480  parents checked 5695  violations 0
+n=17 grid 159 x 853  parents checked 16955  violations 0
+n=18 grid 267 x 1526  parents checked 50995  violations 0
+n=19 grid 453 x 2746  parents checked 155873  violations 0
+n=20 grid 778 x 4971  parents checked 483573  violations 0

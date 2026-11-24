@@ -1,4 +1,5 @@
 import LeanProofs.UlamHalving.Main
+import LeanProofs.UlamHalving.Three
 
 /-! Axiom report for the UlamHalving formalisation. -/
 
@@ -18,3 +19,8 @@ import LeanProofs.UlamHalving.Main
 #print axioms UlamHalving.lemma3
 #print axioms UlamHalving.halving_child
 #print axioms UlamHalving.halving_optimal
+#print axioms UlamHalving.Three.V_conserve
+#print axioms UlamHalving.Three.V_le
+#print axioms UlamHalving.Three.V_h
+#print axioms UlamHalving.Three.h_eq_halving
+#print axioms UlamHalving.Three.not_solv_105

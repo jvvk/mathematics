@@ -4,6 +4,7 @@ control passes: Padding.lean
 control passes: Lemma2.lean
 control passes: Lemma3.lean
 control passes: Main.lean
+control passes: Three.lean
 rejected: volume bound strict (exit 1, diagnostic: /private/tmp/claude-501/release-lean/renyi-ulam-two-lies/LeanProofs/UlamHalving/BasicMut.lean:73:61: error: linarith failed to find a contradiction)
 rejected: mono without the last-class restriction (exit 1, diagnostic: /private/tmp/claude-501/release-lean/renyi-ulam-two-lies/LeanProofs/UlamHalving/MonoMut.lean:18:19: error: Tactic `introN` failed: There are no additional binde)
 rejected: small with volume 2^n + 1 (exit 1, diagnostic: /private/tmp/claude-501/release-lean/renyi-ulam-two-lies/LeanProofs/UlamHalving/PaddingMut.lean:31:4: error: omega could not prove the goal:)
@@ -18,4 +19,10 @@ rejected: u = floor(a/2) always works (exit 1, diagnostic: /private/tmp/claude-5
 rejected: Lemma 3 without the modular criterion (g = 1) (exit 1, diagnostic: /private/tmp/claude-501/release-lean/renyi-ulam-two-lies/LeanProofs/UlamHalving/Lemma3Mut.lean:147:84: error: Application type mismatch: The argument)
 rejected: halving child one question faster (exit 1, diagnostic: /private/tmp/claude-501/release-lean/renyi-ulam-two-lies/LeanProofs/UlamHalving/MainMut.lean:35:17: error: Application type mismatch: The argument)
 rejected: optimal question ignores the last class (exit 1, diagnostic: /private/tmp/claude-501/release-lean/renyi-ulam-two-lies/LeanProofs/UlamHalving/MainMut.lean:51:12: error: Tactic `rewrite` failed: Did not find an occurrence o)
-14/14 mutants rejected, all controls pass
+rejected: three: not solvable in 106 (exit 1, diagnostic: /private/tmp/claude-501/release-lean/renyi-ulam-two-lies/LeanProofs/UlamHalving/ThreeMut.lean:182:52: error: Application type mismatch: The argument)
+rejected: three: volume bound strict (exit 1, diagnostic: /private/tmp/claude-501/release-lean/renyi-ulam-two-lies/LeanProofs/UlamHalving/ThreeMut.lean:92:6: error: linarith failed to find a contradiction)
+rejected: three: slack 27 (exit 1, diagnostic: /private/tmp/claude-501/release-lean/renyi-ulam-two-lies/LeanProofs/UlamHalving/ThreeMut.lean:131:40: error: unsolved goals)
+rejected: three: first level only w = 69 (exit 1, diagnostic: /private/tmp/claude-501/release-lean/renyi-ulam-two-lies/LeanProofs/UlamHalving/ThreeMut.lean:160:23: error: omega could not prove the goal:)
+rejected: three: yes child allowance 69 (exit 1, diagnostic: /private/tmp/claude-501/release-lean/renyi-ulam-two-lies/LeanProofs/UlamHalving/ThreeMut.lean:165:22: error: omega could not prove the goal:)
+rejected: three: no child allowance 69 (exit 1, diagnostic: /private/tmp/claude-501/release-lean/renyi-ulam-two-lies/LeanProofs/UlamHalving/ThreeMut.lean:170:22: error: omega could not prove the goal:)
+20/20 mutants rejected, all controls pass

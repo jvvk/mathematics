@@ -1,0 +1,38 @@
+# Mutation suite for claude_check_counterexample.py: each mutant plants one false claim; the checker must reject every one.
+#   python3 -I ../../lean/scripts/mutate.py mutants_claude.toml
+[check]
+cmd = ["python3", "-I", "run_check.py", "claude_check_counterexample.py"]
+cwd = "."
+timeout = 600
+mode = "inplace"
+fail_markers = ["AssertionError"]
+
+[[mutant]]
+name = "parent's first question (a, 24, 112, 0) instead of (a, 25, 112, 0)"
+file = "counter_certificate.json"
+old = "[106,408524202458340122944474122,52,120,0,204262101229170061472237061,25,112,0]"
+new = "[106,408524202458340122944474122,52,120,0,204262101229170061472237061,24,112,0]"
+
+[[mutant]]
+name = "a row at depth 37 deleted"
+file = "counter_certificate.json"
+old = "[37,346033,24222341,835670804,85698651214,173016,12111170,417835402,42849329492],"
+new = ""
+
+[[mutant]]
+name = "a row at depth 17 deleted"
+file = "counter_certificate.json"
+old = "[17,0,59,2584,0,0,0,0,0],"
+new = ""
+
+[[mutant]]
+name = "paper literal: first-level residue 1839"
+file = "claude_check_counterexample.py"
+old = "assert (2**104 - K) % 5356 == 1838 and"
+new = "assert (2**104 - K) % 5356 == 1839 and"
+
+[[mutant]]
+name = "paper literal: yes residue 36"
+file = "claude_check_counterexample.py"
+old = "assert (2**103 - 2 * a - 26) % 103 == 35 and"
+new = "assert (2**103 - 2 * a - 26) % 103 == 36 and"

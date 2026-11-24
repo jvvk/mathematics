@@ -73,3 +73,25 @@ UlamHalving.halving_optimal : (∀ (a b c : ℕ),
           UlamHalving.Solv (n + 1) (UlamHalving.yes { a := 2 * a, b := 2 * b, c := 2 * c } a b c) ∧
             UlamHalving.Solv (n + 1) (UlamHalving.no { a := 2 * a, b := 2 * b, c := 2 * c } a b c)
 'UlamHalving.halving_optimal' depends on axioms: [propext, Classical.choice, Quot.sound]
+UlamHalving.Three.V_conserve : ∀ (n : ℕ) (x : UlamHalving.Three.St) (u v w t : ℕ),
+  u ≤ x.a →
+    v ≤ x.b →
+      w ≤ x.c →
+        t ≤ x.d →
+          UlamHalving.Three.V (n + 1) x =
+            UlamHalving.Three.V n (UlamHalving.Three.yes x u v w t) +
+              UlamHalving.Three.V n (UlamHalving.Three.no x u v w t)
+'UlamHalving.Three.V_conserve' depends on axioms: [propext]
+UlamHalving.Three.V_le : ∀ (n : ℕ) (x : UlamHalving.Three.St),
+  UlamHalving.Three.Solv n x → UlamHalving.Three.V n x ≤ 2 ^ n
+'UlamHalving.Three.V_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+UlamHalving.Three.V_h : UlamHalving.Three.V 105 UlamHalving.Three.h = 2 ^ 105 - 28
+'UlamHalving.Three.V_h' depends on axioms: [propext, Classical.choice, Quot.sound]
+UlamHalving.Three.h_eq_halving : UlamHalving.Three.yes { a := 2 * UlamHalving.Three.A, b := 52, c := 120, d := 0 }
+      UlamHalving.Three.A 26 60 0 =
+    UlamHalving.Three.h ∧
+  UlamHalving.Three.no { a := 2 * UlamHalving.Three.A, b := 52, c := 120, d := 0 } UlamHalving.Three.A 26 60 0 =
+    UlamHalving.Three.h
+'UlamHalving.Three.h_eq_halving' does not depend on any axioms
+UlamHalving.Three.not_solv_105 : ¬UlamHalving.Three.Solv 105 UlamHalving.Three.h
+'UlamHalving.Three.not_solv_105' depends on axioms: [propext, Classical.choice, Quot.sound]

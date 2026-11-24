@@ -19,10 +19,11 @@
 \newcommand{\Y}{\mathrm{Y}}
 \newcommand{\N}{\mathrm{N}}
 
-\title[Even splitting with two lies]{Even splitting is optimal in the R\'enyi--Ulam game with two lies}
+\title[Even splitting with two and more lies]{Even splitting in the R\'enyi--Ulam game: optimal with two lies,
+not with three or more}
 \author{Vamshi Jandhyala}
 \address{London, United Kingdom}
-\date{Preprint, version 1, 24 November 2026. Not peer reviewed.}
+\date{Preprint, version 2, 24 November 2026 (version 1: 24 November 2026). Not peer reviewed.}
 \subjclass[2020]{91A46, 94B60, 68P10, 05A99}
 \keywords{R\'enyi--Ulam game, searching with lies, liar game, Berlekamp volume, adaptive search}
 
@@ -36,7 +37,13 @@ optimal to ask about exactly half of each class. The case $e=1$ is known. We pro
 position $(2a,2b,2c)$ can be won in $n$ questions, then its halving child $(a,a+b,b+c)$ can be won in $n-1$. The
 proof is analytic above depth $15$, where a congruence modulo $\gcd\bigl(n-2,\binom{n-2}2\bigr)$ decides whether the halving
 child is winnable and no other first question can avoid that congruence; depths up to $15$ are settled by a finite
-certificate checked by two independent programs. The argument above depth $15$ is formalised in Lean.
+certificate checked by two independent programs. For every $e\ge3$ the conjecture is false. For $e=3$, with
+$a=(2^{105}-153920)/198592$, the even position $(2a,52,120,0)$ can be won in $106$ questions, but its halving child
+$(a,a+26,86,60)$ cannot be won in $105$, although its volume is $2^{105}-28$. The obstruction is a congruence two
+questions deep, first modulo $\binom{104}2$ and then modulo $103$; putting $e-3$ empty classes in front gives
+a counterexample for every larger $e$. The argument above depth $15$ for $e=2$ and the
+obstruction for $e=3$ are formalised in Lean; the winning strategy for $e=3$ is an explicit certificate of $2{,}126$
+questions checked by two independent programs.
 \end{abstract}
 
 \maketitle
@@ -75,7 +82,7 @@ of the candidates \cite[Theorem~4.1]{Guzicki}, and that his typical intermediate
 are balanced by some question that halves the first class \cite[Theorems~3.3--3.5]{Guzicki}. Those results concern
 weight balance and halve only the first class; Conjecture~\ref{conj} asks about winnability from every even position
 under the question that halves every class. We settle the case
-$e=2$.
+$e=2$, and show that the conjecture fails for every $e\ge3$.
 
 \begin{thm}\label{thm:main}
 Let $e=2$. If the position $(2a,2b,2c)$ can be won in $n\ge1$ questions, then its halving child $(a,a+b,b+c)$ can be
@@ -83,9 +90,19 @@ won in $n-1$ questions. In particular, even splitting is optimal at every even p
 candidates.
 \end{thm}
 
+\begin{thm}\label{thm:three}
+Let $e=3$ and $a=(2^{105}-153920)/198592=204262101229170061472237061$. The even position $(2a,52,120,0)$ can be won in
+$106$ questions, and its halving child $(a,a+26,86,60)$ cannot be won in $105$. So the even-splitting question costs
+$107$ questions, while the first question $(a,25,112,0)$ wins in $106$.
+\end{thm}
+
+\noindent Putting $e-3$ empty classes in front of these positions gives a counterexample for every $e\ge3$
+(Corollary~\ref{cor:all}).
+
 The halving child is the position left by either answer to the even-splitting question: a candidate in class $i$
 stays in class $i$ if the answer agrees with it and moves to class $i+1$ otherwise, and half of each class goes each
-way. The proof is analytic for $n\ge16$ and rests on a finite certificate for $n\le15$ (Section~\ref{sec:base}).
+way. The proof of Theorem~\ref{thm:main} is analytic for $n\ge16$ and rests on a finite certificate for $n\le15$
+(Section~\ref{sec:base}). Theorem~\ref{thm:three} is proved in Section~\ref{sec:three}.
 
 \subsection*{The idea}
 Any question splits the position $x$ into a yes-child $\Y$ and a no-child $\N$, and coordinate by coordinate
@@ -95,6 +112,11 @@ Volume is linear, and the midpoint always satisfies the volume bound when the en
 show that for the positions that matter the obstruction to winning is a single congruence, and that moving from the
 midpoint to an end of the pair cannot repair it, because the shift in volume and the shift in the last class agree
 modulo $g=\gcd\bigl(n-2,\binom{n-2}2\bigr)$, for a parent at depth $n$, and are too small to differ by a multiple of $g$.
+
+With three lies the same kind of congruence still blocks the halving child, but it can sit one question deeper,
+where the volume test alone does not see it. A first question that keeps the two children's volumes equal yet moves
+candidates of the last class from one child to the other changes what the children face at that deeper question,
+and in the example of Theorem~\ref{thm:three} this is enough to escape.
 
 \begin{figure}[t]
 \centering
@@ -282,19 +304,134 @@ $B_n(0)$ & 28 & 50 & 92 & 170 & 314 & 584 & 1092 & 2048\\
 uncontradicted ones, that can be resolved in $n$ questions.}\label{tab:frontier}
 \end{table}
 
-\section{Three lies}
+\section{Three lies: a counterexample}\label{sec:three}
 
-The same search, run for $e=3$ over every even position whose halving child has at most $100$ candidates, finds no
-counterexample to Conjecture~\ref{conj}; along the way it meets $977{,}006$ positions that satisfy the volume bound
-but are not winnable within it. The congruence argument of Section~\ref{sec:key} uses the specific weights of two
-lies and does not transfer directly, so the case $e\ge3$ remains open.
+From now on $e=3$. A position is $x=(x_0,x_1,x_2,x_3)$, a question $(q_0,\dots,q_3)$ with $0\le q_i\le x_i$, and a
+candidate moves up one class when the answer disagrees with it, so the yes-child is
+$\Y_i=q_i+(x_{i-1}-q_{i-1})$ (with $x_{-1}=q_{-1}=0$) and the no-child is the same with $x-q$ in place of $q$. Put
+\[
+W_i(n)=\sum_{j\le3-i}\binom nj,\qquad V_n(x)=\sum_{i=0}^3x_iW_i(n).
+\]
+Pascal's rule gives $V_{n+1}(x)=V_n(\Y)+V_n(\N)$, hence Berlekamp's bound $V_n\le2^n$ for an $n$-winnable
+position, and the proof of Lemma~\ref{lem:pad} applies word for word: if $(x_0,x_1,x_2,0)$ is $n$-winnable and
+$V_n(x)\le2^n$, then $x$ is $n$-winnable. Since $W_i(n-1)-W_{i+1}(n-1)=\binom{n-1}{3-i}$, the yes-child of a question
+$q$ from $x$ at depth $n$ has volume
+\begin{equation}\label{eq:yes3}
+V_{n-1}(\Y)=K+\tbinom{n-1}3q_0+\tbinom{n-1}2q_1+(n-1)q_2+q_3,\qquad K=\sum_{i=0}^2x_iW_{i+1}(n-1).
+\end{equation}
+
+\begin{lemma}\label{lem:next}
+Let $z$ be $m$-winnable with at least two candidates, let $\sigma=2^m-V_m(z)$, and let $g$ divide $\binom{m-1}3$,
+$\binom{m-1}2$ and $m-1$. Then, with $K$ as in \eqref{eq:yes3} for $z$ at depth $m$,
+\[
+\bigl(2^{m-1}-K\bigr)\bmod g\ \le\ \sigma+z_3 .
+\]
+\end{lemma}
+
+\begin{proof}
+Take the first question of a winning strategy. Both children satisfy the volume bound at depth $m-1$ and their
+volumes add up to $2^m-\sigma$, so the yes-volume is $2^{m-1}-\ell$ with $0\le\ell\le\sigma$. By \eqref{eq:yes3} it
+is congruent to $K+q_3$ modulo $g$. So $2^{m-1}-K\equiv\ell+q_3$, and $0\le\ell+q_3\le\sigma+z_3$.
+\end{proof}
+
+\begin{proof}[Proof that the halving child loses]
+Let $h=(a,a+26,86,60)$. Since $198592a=2^{105}-153920$,
+\[
+V_{105}(h)=198592a+153892=2^{105}-28 ,
+\]
+so the volume bound leaves a slack of $28$. Suppose a question $(u,v,w,t)$ begins a winning $105$-question
+strategy, with $w\le86$ and $t\le60$. At depth $104$ the increments in \eqref{eq:yes3} are
+$\binom{104}3=182104=34\cdot5356$, $\binom{104}2=5356$, $104$ and $1$, and $K=5566a+2816$. The yes-volume is
+$2^{104}-\lambda$ with $0\le\lambda\le28$, and $(2^{104}-K)\bmod5356=1838$, so
+\[
+104w+(t+\lambda)\equiv1838\pmod{5356},\qquad 0\le104w+t+\lambda\le104\cdot86+88=9032 .
+\]
+The left side is therefore $1838$ or $7194$, and as $0\le t+\lambda\le88$ the only possibilities are
+\begin{equation}\label{eq:twocases}
+(w,\,t+\lambda)=(17,70)\quad\text{or}\quad(69,18).
+\end{equation}
+The children are
+\[
+\Y=(u,\;a-u+v,\;a+26-v+w,\;86-w+t),\qquad\N=(a-u,\;a+26-v+u,\;86-w+v,\;60-t+w).
+\]
+Both are $104$-winnable, and their slacks at depth $104$ are $\lambda$ and $28-\lambda$. Apply Lemma~\ref{lem:next} to each with $m=104$ and $g=103$,
+which is prime and so divides $\binom{103}3$, $\binom{103}2$ and $103$. Modulo $103$ the constants are
+$K_\Y\equiv2a+26+w$ and $K_\N\equiv2a+9-w$, independent of $u$ and $v$, and $2^{103}-2a-26\equiv35$,
+$2^{103}-2a-9\equiv52$. The lemma requires
+\[
+(35-w)\bmod103\le\lambda+86-w+t,\qquad(52+w)\bmod103\le(28-\lambda)+60-t+w .
+\]
+In the first case of \eqref{eq:twocases} the no-child needs $69\le35$; in the second the yes-child needs $69\le35$.
+Both are impossible, so $h$ is not $105$-winnable.
+\end{proof}
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[every node/.style={font=\small}, st/.style={draw,rounded corners,inner sep=3pt}]
+\node[st] (x) at (0,0) {$x=(2a,52,120,0)$};
+\node[st,fill=black!6] (h) at (-4.4,-1.7) {$h=(a,a+26,86,60)$};
+\node[st] (Y) at (0.6,-1.7) {$\Y=(a,a+25,139,8)$};
+\node[st] (N) at (4.6,-1.7) {$\N=(a,a+27,33,112)$};
+\draw[-{Latex}] (x) -- node[above left,align=right]{$(a,26,60,0)$\\ either answer} (h.north);
+\draw[-{Latex}] (x) -- node[left]{yes} (Y.north);
+\draw[-{Latex}] (x) -- node[above right]{no} (N.north);
+\node[anchor=west] at (1.95,0) {question $(a,25,112,0)$};
+\node[align=center] at (-4.4,-2.55) {volume $2^{105}-28$, not $105$-winnable};
+\node[align=center] at (2.6,-2.55) {both volume $2^{105}-28$, both $105$-winnable};
+\end{tikzpicture}
+\caption{The counterexample of Theorem~\ref{thm:three}. The even split sends both answers to $h$. The question
+$(a,25,112,0)$ shifts volume by $-\binom{105}2+105\cdot52=0$, so its children have the same volume as $h$, but it
+moves $52$ candidates of the last class from one side to the other, and both children can be won.}\label{fig:three}
+\end{figure}
+
+\subsection*{The winning side} Theorem~\ref{thm:three} also needs $x=(2a,52,120,0)$ to be $106$-winnable. This is
+certified by a list of $2{,}126$ rows $(n,y,q)$, each naming a position $y$ at depth $n$ and a question $q$, including
+the row $(106,x,(a,25,112,0))$; its children are shown in Figure~\ref{fig:three}. A checker verifies, row by row
+in increasing depth, that $q$ is legal, that $V_n(y)\le2^n$, and that each child satisfies the volume bound at depth
+$n-1$ and either has at most one candidate in its first three classes or has those three classes equal to a row
+already certified at depth $n-1$. By the padding lemma above, every row's position is then winnable. The $631$ rows at
+depth at most $18$ come from an exact search. Of the rows at larger depths, all but six halve each of the first three
+classes, rounding down, and choose the last-class count to make the two volumes equal; the six exceptions are the
+root, the two children $\Y$ and $\N$ at depth $105$ and three positions at depth $104$, whose questions were found by
+a search near the root. The checker verifies every row as it stands and assumes no rule. Two checkers, written separately and sharing no code, accept the list, and each rejects it
+when the root question is changed or a row is deleted. As $V_{105}(x)>2^{105}$, the parent needs exactly $106$
+questions. The list also certifies $h$ at depth $106$, so $h$ needs exactly $106$.
+
+\begin{cor}\label{cor:all}
+Conjecture~\ref{conj} is false for every $e\ge3$.
+\end{cor}
+
+\begin{proof}
+For $e\ge3$, put $e-3$ zeros in front of the positions of Theorem~\ref{thm:three}, so that their candidates are the
+last four classes, with $3,2,1,0$ lies left as before. A question cannot contain candidates of an empty class, and no
+candidate can enter class $i\le e-3$, since that would need one from class $i-1$, so the leading classes stay empty
+in every position reached. The game from these positions is therefore the three-lie game, move for move, and the
+even position $(0,\dots,0,2a,52,120,0)$ can be won in $106$ questions while its halving child needs $106$.
+\end{proof}
+
+\subsection*{Why the two-lie argument does not carry over} Section~\ref{sec:key} used that a non-halving first
+question shifts the children's volumes by $\delta\equiv f$ modulo $g$, and that the halving child's failure forces
+$s+b<g$, so that $\delta=f$. The same step works for three lies with $g=\gcd\bigl(\binom{m-1}3,\binom{m-1}2,m-1\bigr)$,
+but only when the slack plus the last class is below $g$. Here $g=\gcd(182104,5356,104)=52$, while $28+60=88$, so the
+halving child passes this coarse test, and the obstruction appears only at the second question.
+
+\subsection*{Small cases} The counterexample is large ($a\approx2.04\cdot10^{26}$), as P\'alv\"olgyi anticipated
+in a comment on his question, where he warned that counterexamples to such statements can be
+``galactic''~\cite{MO}. The searches below find no smaller one. A
+search over every even position whose halving child has at most $100$ candidates finds none, in line with Zare's
+check up to $52$ candidates. A separate computation of the exact frontiers (the largest $x_2$ for which
+$(x_0,x_1,x_2,0)$ is $n$-winnable), which by padding decide winnability at every depth, finds no counterexample among
+the even positions winnable in at most $20$ questions; at $n=20$ that is $483{,}573$ parents. This computation was
+done by one program, checked against an independent game-tree search in $674$ comparisons (random positions, at the
+least winning depth and one below), and is reported as evidence only. The smallest counterexample remains open, for
+$e=3$ and for every larger $e$.
 
 \section{Data, code and the use of AI tools}\label{sec:data}
 \sloppy
 
-The certificate, both checking programs, the search programs and the Lean files are archived on Zenodo,
-\doi{10.5281/zenodo.24505094}. The same files are in the folder \texttt{renyi-ulam-two-lies} of the repository
-\href{https://github.com/jvvk/mathematics}{github.com/jvvk/mathematics}, at tag \texttt{renyi-ulam-two-lies-v1}.
+The certificate, both checking programs, the search programs and the Lean files are archived on Zenodo, and are in
+the folder \texttt{renyi-ulam-two-lies} of the repository
+\href{https://github.com/jvvk/mathematics}{github.com/jvvk/mathematics}.
 
 Every step of Sections~\ref{sec:setup} to~\ref{sec:key} that the proof of Theorem~\ref{thm:main} uses for parent depth
 at least $16$ is formalised in Lean~4 with Mathlib: the game,
@@ -306,8 +443,15 @@ which enters the formal statements as an explicit hypothesis and is checked, tog
 the certificate of Section~\ref{sec:base}. Thirteen false strengthenings of the formal statements are each rejected,
 and a fourteenth variant confirms that the depth-$12$ hypothesis is used at its threshold.
 
-The author used AI tools. Codex (OpenAI) found the proof of Theorem~\ref{thm:main} and produced the certificate.
-Claude (Anthropic) checked the argument, wrote the independent search programs that reproduce the certificate, the
+For three lies, the game, conservation of volume, Berlekamp's bound, the value $V_{105}(h)=2^{105}-28$ and the
+statement that $h$ is not $105$-winnable (the losing half of Theorem~\ref{thm:three}, by the two-level argument of
+Section~\ref{sec:three}) are formalised in the same way, with only the standard axioms; six false variants of these
+statements are each rejected. The winning half is the certificate of Section~\ref{sec:three}, checked outside Lean.
+
+The author used AI tools. Codex (OpenAI) found the proof of Theorem~\ref{thm:main} and produced its certificate,
+and found the counterexample of Theorem~\ref{thm:three}, its two-level obstruction and the winning certificate with a
+checker. Claude (Anthropic) checked both arguments, wrote the independent search programs that reproduce the
+two-lie certificate, the second checker for the three-lie certificate, the frontier computation for three lies, the
 Lean formalisation and the text. The author is responsible for the content.
 
 \begin{thebibliography}{9}

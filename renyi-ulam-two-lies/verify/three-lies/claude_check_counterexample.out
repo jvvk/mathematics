@@ -1,0 +1,4 @@
+paper literals: all match
+A: h=(204262101229170061472237061, 204262101229170061472237087, 86, 60) slack 28; first-level survivors 38 (w in [17, 69]); all 38 killed at the second level
+B: 2126 rows, 4252 child checks; parent (408524202458340122944474122, 52, 120, 0) 106-winnable via first question (204262101229170061472237061, 25, 112, 0); 105 ruled out by volume
+COUNTEREXAMPLE CONFIRMED (Claude independent check)

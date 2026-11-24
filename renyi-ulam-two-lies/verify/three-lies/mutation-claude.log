@@ -1,0 +1,8 @@
+control passes: counter_certificate.json
+control passes: claude_check_counterexample.py
+rejected: parent's first question (a, 24, 112, 0) instead of (a, 25, 112, 0) (exit 1, marker 'AssertionError': AssertionError: ((106, 408524202458340122944474122, 52, 120, 0, 204262101229170061472237061, 24, 112, 0), (204262101229170061472237061, 204262101229170061472237)
+rejected: a row at depth 37 deleted (exit 1, marker 'AssertionError': AssertionError: ((38, 692066, 47752617, 1623588991, 169773712733, 346033, 23876308, 811794495, 84886856718), (346033, 24222341, 835670804, 85698651214)))
+rejected: a row at depth 17 deleted (exit 1, marker 'AssertionError': AssertionError: ((18, 0, 59, 2584, 0, 0, 0, 0, 0), (0, 59, 2584, 0)))
+rejected: paper literal: first-level residue 1839 (exit 1, marker 'AssertionError': AssertionError)
+rejected: paper literal: yes residue 36 (exit 1, marker 'AssertionError': AssertionError)
+5/5 mutants rejected, all controls pass
