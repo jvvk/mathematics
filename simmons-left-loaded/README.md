@@ -18,7 +18,7 @@ This note proves:
 
 The idea: continue `α_i` past `i = m` up to `i = n − m`; comparing reflected probabilities through their ratio and the sum identity are already in the source paper, and continuing the index is the step added here. The full sum is then exactly zero, because it equals `E(m − X)⁺ − E(X − m)⁺ = m − E X`, and the sequence is valley-shaped, because one quadratic decides the sign of the reflected differences. A valley-shaped sequence that ends below zero is positive and then negative, so its partial sums rise and then fall back to exactly zero, and are positive on the way.
 
-Preprint v1, 24 November 2026, not peer reviewed. The author used AI tools in this work (Codex, OpenAI, found the proof of Theorem 1.2; Claude, Anthropic, checked it, found the general lemma and the Poisson and negative binomial cases, wrote the Lean formalisation and the text), as the paper's Section 5 describes, and is responsible for its content.
+Preprint v1, 24 November 2026, not peer reviewed, and released before the author's line-by-line reading. Zenodo: [doi:10.5281/zenodo.24505096](https://doi.org/10.5281/zenodo.24505096), identical to this folder at tag `simmons-left-loaded-v1`. The author used AI tools in this work (Codex, OpenAI, found the proof of Theorem 1.2; Claude, Anthropic, checked it, found the general lemma and the Poisson and negative binomial cases, wrote the Lean formalisation and the text), as the paper's Section 5 describes, and is responsible for its content.
 
 ## Contents
 
