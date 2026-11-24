@@ -58,6 +58,13 @@ show('Spearman rho', rho_s)
 show('strict gap', rho_xy-rho_s)
 assert (rho_xy-rho_s).a > 0
 print('rho certification: iv.dps=70; zeta3 N=10000; exponential tails K=10')
+# The published claims of Proposition 5.1 (independent recheck at lower precision).
+assert var == F(11727, 500), 'variance'
+def inside(x, lo, hi): return vi(F(lo)).a <= x.a and x.b <= vi(F(hi)).b
+assert inside(rho_xy, '0.86038678931433', '0.86038678931434'), 'corr(X,Y) differs from the paper'
+assert inside(rho_s, '0.8602336388081', '0.8602336388083'), 'rho_S differs from the paper'
+assert inside(rho_xy - rho_s, '0.0001531505060', '0.0001531505062'), 'gap differs from the paper'
+print('published values of Proposition 5.1 confirmed')
 
 # Independent score-cell reconstruction, including boundary cutpoints and ties.
 def c_mp(u,v,t):

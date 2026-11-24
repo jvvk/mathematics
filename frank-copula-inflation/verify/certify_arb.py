@@ -23,4 +23,12 @@ rho = 1 - 12/T*(D(1)-D(2))
 print("corr  =", r.str(25, radius=True)); print("rho_S =", rho.str(25, radius=True))
 gap = r - rho; print("gap   =", gap.str(15, radius=True))
 assert gap > 0, "not certified"
-print("CERTIFIED (Arb): corr(X,Y) > rho_S(10)")
+# The published claims of Proposition 5.1: any change of theta, cut-points or method must fail here.
+assert t == 10 and len(cuts) == 14 and all(x < y for x, y in zip(cuts, cuts[1:]))
+assert sum((min(x, y) - x*y for x in cuts for y in cuts), Fr(0)) == Fr(11727, 500), "variance"
+paper_corr = arb("0.8603867893143344074910842", "9e-27")
+paper_rho = arb("0.8602336388082110151918579", "1.1e-26")
+assert paper_corr.contains(r), "corr(X,Y) outside the paper's enclosure"
+assert paper_rho.contains(rho), "rho_S outside the paper's enclosure"
+assert arb("1.5315050612339e-4", "1e-16").contains(gap), "gap differs from the paper"
+print("CERTIFIED (Arb): corr(X,Y) > rho_S(10); paper's enclosures confirmed")

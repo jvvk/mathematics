@@ -177,6 +177,9 @@ r(u)=1-\frac{w\,(x-au)}{x\,(x-a)}.
 \]
 \end{prop}
 
+We make no claim that this formula is new: it follows from~\eqref{eq:K} by direct integration, and we include the
+derivation because the rest of the argument rests on it.
+
 \begin{proof}
 For fixed $u$ the function
 \[
@@ -249,9 +252,11 @@ increasing and $\corr(f(U),V)>\rho$.
 Now discretise. For a positive integer $M$ put $X_M=\lfloor Mf(U)\rfloor$ and $Y_M=\lfloor MV\rfloor$. Then
 $|X_M/M-f(U)|\le1/M$ and $|Y_M/M-V|\le1/M$, so $\corr(X_M,Y_M)\to\corr(f(U),V)$ as $M\to\infty$, the correlation being
 continuous in $L^2$ away from constant variables. Fix $M$ with $\corr(X_M,Y_M)>\rho$. Because $f$ is continuous and
-increasing, $X_M$ takes a run of consecutive integers, each with positive probability, and is a nondecreasing function
-of $U$. After subtracting a constant it is therefore an ordinal variable of the form $X$ above, with
-$a_j=P(X_M\le\min X_M+j-1)$; the same holds for $Y_M$. Shifts do not change correlation, which proves the theorem
+increasing, $X_M$ is a nondecreasing function of $U$ whose values of positive probability form a run of
+consecutive integers; the only other possible value is $\lfloor Mf(1)\rfloor$ at the null event $U=1$, which we
+discard. After subtracting the least value of positive probability, $X_M$ is therefore almost surely an ordinal
+variable of the form $X$ above, with $a_j=P(X_M\le x_0+j-1)$ for that least value $x_0$; the same holds for $Y_M$,
+whose value $M$ at $V=1$ is likewise null. Shifts do not change correlation, which proves the theorem
 for $\theta>0$.
 
 For $\theta<0$ use the reflection $C_\theta(u,v)=u-C_{-\theta}(u,1-v)$: if $(U,V)$ has copula $C_\theta$ then
@@ -303,9 +308,10 @@ $\zeta(3)$ with explicit tail bounds, gives the gap in $[1.53150506099\times10^{
 Table~\ref{tab:mstar} lists, for several values of $\rs$, the smallest number of categories at which a numerical
 optimisation over cut-points (both variables with $m$ categories) found inflation. These values come from a local
 optimiser with restarts and are upper bounds for the true minimum; only the example above is certified.
-Figure~\ref{fig:gap} shows the best implied correlation against $m$ at $\theta=10$: attenuation up to $m=14$, then a
-gain that grows towards the limit set by the maximal monotone correlation. That limit is at least $0.8633$ at
-$\theta=10$, the largest correlation of increasing scores on an equiprobable $400\times400$ discretisation.
+Figure~\ref{fig:gap} shows the largest implied correlation found against $m$ at $\theta=10$: no inflation was found
+for $m\le14$, and from $m=15$ the gain grows towards the limit set by the maximal monotone correlation. A
+floating-point computation of the largest correlation of increasing scores on an equiprobable $400\times400$
+discretisation gives $0.8633$, numerical evidence that the limit is near that value; it is not certified.
 
 \begin{table}[h]
 \centering\small
@@ -324,15 +330,15 @@ least $m$ found & 48 & 32 & 23 & 17 & 15 & 14 & 14\\
 \centering
 \begin{tikzpicture}
 \begin{axis}[width=0.7\textwidth,height=5cm,xlabel={number of categories $m$},
-  ylabel={best $\corr(X,Y)-\rs$},xmin=2,xmax=40,ymin=-0.02,ymax=0.004,grid=major,
+  ylabel={largest $\corr(X,Y)-\rs$ found},xmin=2,xmax=40,ymin=-0.02,ymax=0.004,grid=major,
   yticklabel style={/pgf/number format/fixed,/pgf/number format/precision=3},scaled y ticks=false]
 \addplot[thick,blue,mark=*,mark size=1pt] table[x=m,y=gap] {fig_gap_t10.dat};
 \addplot[black,thin] coordinates {(2,0) (40,0)};
 \end{axis}
 \end{tikzpicture}
-\caption{Best implied correlation minus $\rs$ at $\theta=10$ ($\rs=0.8602$), over cut-points with $m$ categories
-on each variable. Values for $m\le5$ lie below the plotted range. The curve crosses zero between $m=14$ and
-$m=15$.}\label{fig:gap}
+\caption{Largest implied correlation found by local optimisation, minus $\rs$, at $\theta=10$ ($\rs=0.8602$), over
+cut-points with $m$ categories on each variable. Values for $m\le5$ lie below the plotted range. Inflation is first
+found at $m=15$; for $m\le14$ none was found, which does not prove that none exists.}\label{fig:gap}
 \end{figure}
 
 \section{Data, code and the use of AI tools}\label{sec:data}
@@ -348,8 +354,8 @@ arbitrary copula. Not formalised are the identity $r(u)=1-\int_0^1K\,dv$, the to
 approximation argument in the proof of Theorem~\ref{thm:main}, which are standard, and the numerical certificate,
 which is checked by two independent programs.
 
-The author used AI tools. Claude (Anthropic) found the counterexample, the closed form, the pole argument and the
-three-point proof, and wrote the code, the Lean formalisation and the text. Codex (OpenAI) independently rechecked the
+The author used AI tools. Claude (Anthropic) found the counterexample, the pole argument and the three-point proof,
+derived the closed form of Proposition~\ref{prop:reg}, and wrote the code, the Lean formalisation and the text. Codex (OpenAI) independently rechecked the
 counterexample and the variational lemma, and found the proof through $r''(0)$. The author is responsible for the
 content.
 

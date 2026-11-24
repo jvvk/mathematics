@@ -1,7 +1,7 @@
 # Discretising a Frank copula can inflate linear correlation: a disproof of Barbiero's attenuation conjecture
 
 <!-- visual:start -->
-<p align="center"><img src="visual.svg" width="760" alt="Best implied correlation minus Spearman's rho against the number of ordinal categories, Frank copula with theta 10: negative up to 14 categories, positive from 15"></p>
+<p align="center"><img src="visual.svg" width="760" alt="Largest implied correlation found minus Spearman's rho against the number of ordinal categories, Frank copula with theta 10: no inflation found up to 14 categories, inflation from 15"></p>
 
 <p align="center"><b>Cutting a Frank pair into fifteen ordinal categories can give scores more correlated than the latent pair, so the conjectured attenuation fails, and it fails for every nonzero parameter.</b><br><sub>Conjecture disproved · closed-form regression, non-affinity and first variation verified in Lean 4 · example certified by two independent interval-arithmetic programs</sub></p>
 
@@ -22,7 +22,7 @@ Preprint v1, 24 November 2026, not peer reviewed. Zenodo: [doi:10.5281/zenodo.24
 ## Contents
 
 - `paper/`: `frank.tex`, `frank.pdf` and the figure data.
-- `verify/` (Python 3). Each program exits nonzero if its results differ from the paper's.
+- `verify/` (Python 3). The three programs below assert the paper's stated values (the parameter, the cut-points, the exact variance and the published enclosures of Proposition 5.1, and the identity of Lemma 3.2) and exit nonzero if any differs. The `numerics/` scripts only print.
   - `certify_arb.py`: Proposition 5.1 in Arb ball arithmetic (python-flint), including Spearman's rho through the Debye functions. Output `certify_arb.out`.
   - `independent_check.py`: the same certificate by a separately written program sharing no code (mpmath 70-digit intervals, Spearman's rho through zeta(2) and zeta(3) with tail bounds), plus exact checks of Lemma 2.1 and of the variational lemma on test densities. Output `independent_check.out`.
   - `defect_identity.py`: the identity of Lemma 3.2 exactly (sympy), and Proposition 3.1 against quadrature. Output `defect_identity.out`.

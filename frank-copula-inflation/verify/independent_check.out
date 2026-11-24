@@ -4,6 +4,7 @@ ordinal correlation [0.860386789314334407, 0.860386789314334408]
 Spearman rho [0.860233638808187021, 0.860233638808235014]
 strict gap [0.000153150506099393, 0.000153150506147387]
 rho certification: iv.dps=70; zeta3 N=10000; exponential tails K=10
+published values of Proposition 5.1 confirmed
 GRID: multisets of 0..3 cutpoints from {0,1/4,1/2,3/4,1}; 56 total; 46 nonconstant
 t=0.0: cases=2116; formula errors <1e-65; violations=0; max corr=0.0; rho=0.0
 t=0.001: cases=2116; formula errors <1e-65; violations=0; max corr=0.000156249997993978; rho=0.000166666664444444
