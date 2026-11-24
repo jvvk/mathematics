@@ -5,7 +5,7 @@
   "uncommitted_overrides": [
     "LeanProofs.lean (root imports UlamHalving only)",
     "CheckClaims.lean (generated)",
-    "scripts/mutants.py (copy of lean-proofs scripts/ulamhalving_mutants.py)"
+    "scripts/mutants.toml (copy of lean-proofs scripts/ulamhalving.toml) and scripts/mutate.py (runner)"
   ],
   "files": {
     "CheckClaims.lean": "185c4182f6e0a221411d214814632cab95037ba3e3cfe0aa18fd596fa7f6925b",

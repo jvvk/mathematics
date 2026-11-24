@@ -1,0 +1,17 @@
+n= 2: max a=  1; frontier and halving verified
+n= 3: max a=  1; frontier and halving verified
+n= 4: max a=  1; frontier and halving verified
+n= 5: max a=  2; frontier and halving verified
+n= 6: max a=  2; frontier and halving verified
+n= 7: max a=  2; frontier and halving verified
+n= 8: max a=  4; frontier and halving verified
+n= 9: max a=  8; frontier and halving verified
+n=10: max a= 16; frontier and halving verified
+n=11: max a= 28; frontier and halving verified
+n=12: max a= 50; frontier and halving verified
+n=13: max a= 88; frontier and halving verified
+n=14: max a=154; frontier and halving verified
+n=15: max a=270; frontier and halving verified
+Large-penny base: 44 boundary cases verified at n=12
+Certificate: 645 integers; 1296 recurrence checks
+ALL FINITE PROOF CHECKS PASSED

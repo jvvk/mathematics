@@ -34,7 +34,7 @@ lies. A position records how many candidates are contradicted by $0,1,\dots,e$ a
 while expecting the conjecture to be false, that from a position in which every class has even size it is always
 optimal to ask about exactly half of each class. The case $e=1$ is known. We prove the case $e=2$: if the even
 position $(2a,2b,2c)$ can be won in $n$ questions, then its halving child $(a,a+b,b+c)$ can be won in $n-1$. The
-proof is analytic above depth $15$, where a congruence modulo $\gcd\bigl(n,\binom n2\bigr)$ decides whether the halving
+proof is analytic above depth $15$, where a congruence modulo $\gcd\bigl(n-2,\binom{n-2}2\bigr)$ decides whether the halving
 child is winnable and no other first question can avoid that congruence; depths up to $15$ are settled by a finite
 certificate checked by two independent programs. The argument above depth $15$ is formalised in Lean.
 \end{abstract}
@@ -87,7 +87,7 @@ of children, and Theorem~\ref{thm:main} says that when both ends of such a pair 
 Volume is linear, and the midpoint always satisfies the volume bound when the ends do. What can go wrong is finer: we
 show that for the positions that matter the obstruction to winning is a single congruence, and that moving from the
 midpoint to an end of the pair cannot repair it, because the shift in volume and the shift in the last class agree
-modulo $g=\gcd\bigl(n,\binom n2\bigr)$ and are too small to differ by a multiple of $g$.
+modulo $g=\gcd\bigl(n-2,\binom{n-2}2\bigr)$, for a parent at depth $n$, and are too small to differ by a multiple of $g$.
 
 \begin{figure}[t]
 \centering
@@ -288,8 +288,8 @@ lemma on many last-class candidates, sufficiency of the criterion, the key step,
 consequence that the halving question is optimal. The proofs use only Lean's standard axioms. One input stays outside
 Lean: the solvability at depth $12$ of the positions $(a,b,c)$ with $a\le b$, $c\ge 66$ and volume at most $2^{12}$,
 which enters the formal statements as an explicit hypothesis and is checked, together with the depths up to $15$, by
-the certificate of Section~\ref{sec:base}. Fourteen deliberately wrong variants of the formal statements are each
-rejected.
+the certificate of Section~\ref{sec:base}. Thirteen false strengthenings of the formal statements are each rejected,
+and a fourteenth variant confirms that the depth-$12$ hypothesis is used at its threshold.
 
 The author used AI tools. Codex (OpenAI) found the proof of Theorem~\ref{thm:main} and produced the certificate.
 Claude (Anthropic) checked the argument, wrote the independent search programs that reproduce the certificate, the

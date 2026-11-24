@@ -1,0 +1,20 @@
+solver matches Zare's 7 values
+n= 0: 2 values agree
+n= 1: 2 values agree
+n= 2: 2 values agree
+n= 3: 2 values agree
+n= 4: 2 values agree
+n= 5: 3 values agree
+n= 6: 3 values agree
+n= 7: 3 values agree
+n= 8: 5 values agree
+n= 9: 9 values agree
+n=10: 17 values agree
+n=11: 29 values agree
+n=12: 51 values agree
+n=13: 89 values agree
+n=14: 155 values agree
+n=15: 271 values agree
+all 645 certificate values reproduced independently
+Table 1 matches the certificate
+introduction example: (4,0,0) needs 8, its halving child (2,2,0) has V_6 = 58 and needs 7

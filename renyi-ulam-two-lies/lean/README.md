@@ -32,8 +32,8 @@ both children in `Solv (n - 1)`) says that `x` can be won in `n` questions.
 - The necessity halves of Lemma 2.1 and Lemma 4.1, which the proof of Theorem 1.2 does not use.
 
 ## Mutation tests
-`scripts/mutants.toml`, run with `cd scripts && python3 mutate.py mutants.toml` (runner included): 14 mutants, all
-rejected, all controls pass (`mutation-validation.log`). Thirteen are false strengthenings of a stated result: the
+`scripts/mutants.toml`, run with `cd scripts && python3 mutate.py mutants.toml` (runner included): 14 mutants (13 false strengthenings and one
+hypothesis-dependence check), all rejected, all controls pass (`mutation-validation.log`). Thirteen are false strengthenings of a stated result: the
 volume bound made strict, `Solv.mono` without its last-class restriction, `small`, `padding` and `lemma2` with volume
 bound `2^n + 1`, `pad` without its volume hypothesis, the three growth inequalities one step earlier, `choose_u` with
 `u = ⌊a/2⌋` only, `lemma3` with the criterion modulus 1 (false at the exceptional child `(15141, 15151, 10)`, depth 22),

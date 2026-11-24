@@ -83,5 +83,5 @@ int main(int argc, char **argv) {
     if (tot % 20 == 0) { printf("size %d: exceptional %ld, counterexamples %ld, memo %llu\n", tot, exc, cex, (unsigned long long)used); fflush(stdout); }
   }
   printf("DONE E=%d N=%d exceptional %ld counterexamples %ld\n", E, N, exc, cex);
-  return 0;
+  return cex != 0;
 }

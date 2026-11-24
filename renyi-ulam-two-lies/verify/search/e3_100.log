@@ -1,0 +1,7 @@
+size 20: exceptional 7224, counterexamples 0, memo 34241
+size 40: exceptional 65240, counterexamples 0, memo 362880
+size 60: exceptional 224114, counterexamples 0, memo 1482339
+size 80: exceptional 520770, counterexamples 0, memo 4066585
+size 100: exceptional 977006, counterexamples 0, memo 8953741
+DONE E=3 N=100 exceptional 977006 counterexamples 0
+e3 exit 0

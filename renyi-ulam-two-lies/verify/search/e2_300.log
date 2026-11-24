@@ -1,0 +1,17 @@
+size 20: exceptional 503, counterexamples 0, memo 3529
+size 40: exceptional 1812, counterexamples 0, memo 21215
+size 60: exceptional 3223, counterexamples 0, memo 59995
+size 80: exceptional 4230, counterexamples 0, memo 128700
+size 100: exceptional 4791, counterexamples 0, memo 237099
+size 120: exceptional 5064, counterexamples 0, memo 396670
+size 140: exceptional 5147, counterexamples 0, memo 618158
+size 160: exceptional 5175, counterexamples 0, memo 910203
+size 180: exceptional 5206, counterexamples 0, memo 1282378
+size 200: exceptional 5219, counterexamples 0, memo 1744792
+size 220: exceptional 5249, counterexamples 0, memo 2312647
+size 240: exceptional 5276, counterexamples 0, memo 2997242
+size 260: exceptional 5287, counterexamples 0, memo 3805052
+size 280: exceptional 5303, counterexamples 0, memo 4741956
+size 300: exceptional 5343, counterexamples 0, memo 5816988
+DONE E=2 N=300 exceptional 5343 counterexamples 0
+e2 exit 0

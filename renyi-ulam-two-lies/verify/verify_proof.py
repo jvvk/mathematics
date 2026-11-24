@@ -17,7 +17,7 @@ def ceildiv(a, b):
 
 
 def feasible(n, a, b, previous):
-    """Exact recurrence, justified by the padding lemma in PROOF.md."""
+    """Exact recurrence of Section 6 of the paper, justified by the padding lemma (Lemma 2.1)."""
     half = 1 << (n - 1)
     p = W(n - 1)
     for u in range(a + 1):
@@ -61,7 +61,7 @@ def verify():
         assert a <= bmax <= tables[n][a]
         base_cases += 1
     print(f'Large-penny base: {base_cases} boundary cases verified at n=12')
-    # The infinite extensions are polynomial inequalities proved in PROOF.md.
+    # The infinite extensions are the polynomial inequalities of Lemmas 3.1 and 4.1 (formalised in lean/).
     assert (1 << 13) >= (13**4 + 13**2 - 2 * 13 + 16) // 4
     assert (1 << 13) >= 2 * 13**3
     m = 15
