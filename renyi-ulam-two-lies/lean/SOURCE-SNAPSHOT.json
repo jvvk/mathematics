@@ -1,5 +1,5 @@
 {
-  "source_commit": "ec245a9 (lean-proofs)",
+  "source_commit": "589b1a7 (lean-proofs)",
   "lean_toolchain": "leanprover/lean4:v4.34.0",
   "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
   "uncommitted_overrides": [
@@ -18,7 +18,7 @@
     "LeanProofs/UlamHalving/Padding.lean": "d03f9cc1d328a5209d3b58f9f2dedb46f05fa9b4097de6ddf8a74118316051b6",
     "LeanProofs/UlamHalving/Report.lean": "f687d29b9edbca47475c87ad98796748588b84f03c582ec2c317bb3da041a85a",
     "LeanProofs/UlamHalving/Three.lean": "cff8dc70dbe79241d09dc718b009c51d4348646f4ffc8746bede53288a54d77c",
-    "LeanProofs/UlamHalving.lean": "59d9505d723e78adb0890a8c245c47ea048c16f145571ecde176729c48b1a414",
+    "LeanProofs/UlamHalving.lean": "f96ee541897a9ddb71cf04b8a92e70015174f7abe0ecf634b092e06b99bff60d",
     "LeanProofs.lean": "71a7504d715e0b72ae8fc417fcc8f2034179c5ab202de7daec86b14220ddb389",
     "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
     "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",

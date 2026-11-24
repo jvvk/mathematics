@@ -5,12 +5,12 @@ Claim: x = (2a, 52, 120, 0), a = (2^105 - 153920) / 198592, is 106-winnable, whi
 h = (a, a+26, 86, 60) is not 105-winnable. So the even first question is not optimal.
 
 Part A (h loses in 105): necessary conditions only, enumerated over every (w, t, lam) with no simplification
-  taken from PROOF.md: the first question's last-two coordinates (w, t) and the YES-slack lam; the residue
+  taken from the paper's Section 7: the first question's last-two coordinates (w, t) and the YES-slack lam; the residue
   conditions are recomputed from the transition rule, and the coefficients of u, v are checked to vanish.
 Part B (x wins in 106): replay every certificate row with my own transition and volume code; a row
   (n, A, B, C, D, q) asserts (A, B, C, D) is n-winnable via first question q. A child is accepted if it has
   <= 1 candidate, or its core (first three coordinates) was accepted at depth n-1 and its volume fits
-  (padding lemma: core winnable + volume <= 2^n  =>  winnable; Guzicki 1990 Lemma 3.11, proof in PROOF.md s.1).
+  (padding lemma: core winnable + volume <= 2^n  =>  winnable; Guzicki 1990 Lemma 3.11; the paper's Lemma 2.1, whose proof applies to three lies as Section 7 notes).
   Monotonicity in depth is NOT assumed: the child core must be certified at exactly n-1, or have <= 1 candidate.
 """
 

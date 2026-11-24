@@ -22,7 +22,7 @@ Formalised (namespace `UlamHalving`):
 Three lies (namespace `UlamHalving.Three`):
 * `V_conserve`, `V_le`: the three-lie game, conservation of volume and Berlekamp's bound.
 * `V_h`, `not_solv_105`: the halving child (A, A+26, 86, 60) of (2A, 52, 120, 0) has volume 2^105 - 28 but is not
-  105-solvable (Theorem 7.1, losing half). The winning half (the parent is 106-solvable) is a certificate checked
+  105-solvable (Theorem 1.3, losing half). The winning half (the parent is 106-solvable) is a certificate checked
   outside Lean.
 
 Hypothesis, not formalised: `base12`, solvability at depth 12 of the positions (a, b, c) with a <= b,

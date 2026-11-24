@@ -42,7 +42,7 @@ A position is `(a, b, c, d)`; `yes`, `no` and `Solv` are defined as for two lies
   independently by `../verify/recheck_frontiers.py`.
 - The necessity halves of Lemma 2.1 and Lemma 4.1, which the proof of Theorem 1.2 does not use.
 - Theorem 1.3, winning half (`(2A, 52, 120, 0)` is winnable in 106 questions): the certificate of 2,126 questions in
-  `../verify/three-lies/`, checked by two independent programs. Replaying it in Lean would be a computation, not a proof.
+  `../verify/three-lies/`, checked by two independent programs. The certificate has not been replayed in Lean.
 
 ## Mutation tests
 `scripts/mutants.toml`, run with `cd scripts && python3 mutate.py mutants.toml` (runner included): 20 mutants (19 false statements and one

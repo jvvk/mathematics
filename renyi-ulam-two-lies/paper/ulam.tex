@@ -404,7 +404,7 @@ Conjecture~\ref{conj} is false for every $e\ge3$.
 \begin{proof}
 For $e\ge3$, put $e-3$ zeros in front of the positions of Theorem~\ref{thm:three}, so that their candidates are the
 last four classes, with $3,2,1,0$ lies left as before. A question cannot contain candidates of an empty class, and no
-candidate can enter class $i\le e-3$, since that would need one from class $i-1$, so the leading classes stay empty
+candidate can enter a class $i<e-3$, since that would need one from class $i-1$, so the leading classes stay empty
 in every position reached. The game from these positions is therefore the three-lie game, move for move, and the
 even position $(0,\dots,0,2a,52,120,0)$ can be won in $106$ questions while its halving child needs $106$.
 \end{proof}
@@ -421,7 +421,7 @@ in a comment on his question, where he warned that counterexamples to such state
 search over every even position whose halving child has at most $100$ candidates finds none, in line with Zare's
 check up to $52$ candidates. A separate computation of the exact frontiers (the largest $x_2$ for which
 $(x_0,x_1,x_2,0)$ is $n$-winnable), which by padding decide winnability at every depth, finds no counterexample among
-the even positions winnable in at most $20$ questions; at $n=20$ that is $483{,}573$ parents. This computation was
+the even positions winnable in at most $20$ questions; at $n=20$ it checks $483{,}573$ maximal representatives, one for each feasible pair $(x_0,x_1)$, which by deletion cover all even parents. This computation was
 done by one program, checked against an independent game-tree search in $674$ comparisons (random positions, at the
 least winning depth and one below), and is reported as evidence only. The smallest counterexample remains open, for
 $e=3$ and for every larger $e$.
