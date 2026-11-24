@@ -16,7 +16,7 @@ This note proves:
 
 Above depth 15 the proof is a congruence argument: the halving child is the midpoint of the two children of any first question, whether it can be won is decided by a single congruence modulo `gcd(n − 2, C(n − 2, 2))` for a parent at depth `n`, and moving from the midpoint to either child shifts the volume and the last class by amounts that agree modulo that number and are too small to differ by a multiple of it. Depths up to 15 are settled by a certificate of 645 integers. For three lies an exhaustive search finds no counterexample among halving children with at most 100 candidates; the case `e ≥ 3` stays open.
 
-Preprint v1, 24 November 2026, not peer reviewed. The author used AI tools in this work (Codex, OpenAI, found the proof and the certificate; Claude, Anthropic, checked it, reproduced the certificate independently, wrote the Lean formalisation and the text), as the paper's Section 8 describes, and is responsible for its content.
+Preprint v1, 24 November 2026, not peer reviewed, and released before the author's line-by-line reading. Zenodo: [doi:10.5281/zenodo.24505094](https://doi.org/10.5281/zenodo.24505094), identical to this folder at tag `renyi-ulam-two-lies-v1`. The author used AI tools in this work (Codex, OpenAI, found the proof and the certificate; Claude, Anthropic, checked it, reproduced the certificate independently, wrote the Lean formalisation and the text), as the paper's Section 8 describes, and is responsible for its content.
 
 ## Contents
 
