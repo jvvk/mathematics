@@ -1,0 +1,55 @@
+# Python mutation suite for verify/ (run from this folder): python3 -I mutate.py mutants.toml
+# Each mutant asserts a FALSE stronger/different value; every one must be rejected. QUICK=1 limits to n <= 11.
+[check]
+cmd = ["env", "QUICK=1", "python3", "{file}"]
+cwd = "."
+timeout = 900
+fail_markers = ["AssertionError", "Error"]
+
+[[mutant]]
+name = "values: f*_4(9) = 29"
+file = "values.py"
+old = "(4, True, 9, 28)"
+new = "(4, True, 9, 29)"
+
+[[mutant]]
+name = "values: f_3(n) = 2n+1"
+file = "values.py"
+old = "[(3, s, n, 2 * n) for s"
+new = "[(3, s, n, 2 * n + 1) for s"
+
+[[mutant]]
+name = "values: f_4(n) = 3n+1"
+file = "values.py"
+old = "[(4, False, n, 3 * n) for n"
+new = "[(4, False, n, 3 * n + 1) for n"
+
+[[mutant]]
+name = "values: control f_5(11) = 44"
+file = "values.py"
+old = "(5, False, 11, 45)"
+new = "(5, False, 11, 44)"
+
+[[mutant]]
+name = "recheck: f*_4(10) = 30"
+file = "recheck_values.py"
+old = "(4, True, 10, 31)"
+new = "(4, True, 10, 30)"
+
+[[mutant]]
+name = "recheck: f_3(n) = 2n-1"
+file = "recheck_values.py"
+old = "[(3, s, n, 2 * n) for s"
+new = "[(3, s, n, 2 * n - 1) for s"
+
+[[mutant]]
+name = "g9: 29 edges"
+file = "recheck_g9.py"
+old = "assert len(G) == 28"
+new = "assert len(G) == 29"
+
+[[mutant]]
+name = "g9: no NON-nested 4-matching (false: 9 exist)"
+file = "recheck_g9.py"
+old = "    return all(not (R(i, j) == \"crossing\""
+new = "    return True or all(not (R(i, j) == \"crossing\""

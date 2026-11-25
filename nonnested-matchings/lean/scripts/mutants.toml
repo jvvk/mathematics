@@ -1,0 +1,91 @@
+# Mutation suite for the non-nested matchings formalisation (Theorems 1 and 2 of nonnested.tex). Each mutant
+# changes one stated result to a stronger, false one; every one must be rejected. Run from anywhere:
+#   cd scripts && python3 mutate.py mutants.toml
+[check]
+cmd = ["lake", "env", "lean", "{file}"]
+cwd = ".."
+timeout = 900
+fail_markers = ["error"]
+fail_pattern = '^(?P<file>\S+\.lean):\d+:\d+: error\b'
+log_dir = "mutation-logs"
+
+# False: the short stars at 3 and 6 on [8] are 8 short edges with no 3-matching at all.
+[[mutant]]
+name = "Lemma 3: at most 7 short edges"
+file = "../LeanProofs/NonNested/Short.lean"
+old = "    shortCount G ≤ 8 := by"
+new = "    shortCount G ≤ 7 := by"
+
+# False: the same graph forces a = 3, b = 6.
+[[mutant]]
+name = "Lemma 3: b - a >= 4"
+file = "../LeanProofs/NonNested/Short.lean"
+old = "    ∃ a b : ℕ, 3 ≤ a ∧ a + 3 ≤ b ∧ b + 2 ≤ n ∧ ShortStars G a b := by"
+new = "    ∃ a b : ℕ, 3 ≤ a ∧ a + 4 ≤ b ∧ b + 2 ≤ n ∧ ShortStars G a b := by"
+
+# False: the short stars at 3, 6 on [8] plus (1,5) have no non-nested 3-matching, and (1,5) has i = a - 2.
+[[mutant]]
+name = "Lemma 4 (L): i <= a - 3"
+file = "../LeanProofs/NonNested/Fence.lean"
+old = "    (hj : j < b) (hia : i ≠ a) (hja : j ≠ a) : i ≤ a - 2 ∧ a + 2 ≤ j := by"
+new = "    (hj : j < b) (hia : i ≠ a) (hja : j ≠ a) : i ≤ a - 3 ∧ a + 2 ≤ j := by"
+
+# False: lowerGraph n has 2n edges and no non-nested 3-matching.
+[[mutant]]
+name = "Theorem 1 upper bound 2n - 1"
+file = "../LeanProofs/NonNested/K3.lean"
+old = "    (hG : IsGraph n G) (h : NoSNN 3 G) : G.card ≤ 2 * n := by"
+new = "    (hG : IsGraph n G) (h : NoSNN 3 G) : G.card ≤ 2 * n - 1 := by"
+
+[[mutant]]
+name = "Theorem 1: f*_3(n) = 2n + 1"
+file = "../LeanProofs/NonNested/K3.lean"
+old = "    IsExtremal (NoNN 3) n (2 * n) ∧ IsExtremal (NoSNN 3) n (2 * n) := by"
+new = "    IsExtremal (NoNN 3) n (2 * n) ∧ IsExtremal (NoSNN 3) n (2 * n + 1) := by"
+
+[[mutant]]
+name = "lower graph has 2n + 1 edges"
+file = "../LeanProofs/NonNested/K3.lean"
+old = "theorem card_lowerGraph {n : ℕ} (hn : 5 ≤ n) : (lowerGraph n).card = 2 * n := by"
+new = "theorem card_lowerGraph {n : ℕ} (hn : 5 ≤ n) : (lowerGraph n).card = 2 * n + 1 := by"
+
+# False: (1,3) and (2,4) cross, a non-nested 2-matching.
+[[mutant]]
+name = "lower graph has no non-nested 2-matching"
+file = "../LeanProofs/NonNested/K3.lean"
+old = "theorem noNN_lowerGraph (n : ℕ) : NoNN 3 (lowerGraph n) := by"
+new = "theorem noNN_lowerGraph (n : ℕ) : NoNN 2 (lowerGraph n) := by"
+
+[[mutant]]
+name = "G9 has 29 edges"
+file = "../LeanProofs/NonNested/K4.lean"
+old = "theorem card_G9 : G9.card = 28 := by decide"
+new = "theorem card_G9 : G9.card = 29 := by decide"
+
+# False: (4,5), (6,7), (8,9) are pairwise separated, a strongly non-nested 3-matching.
+[[mutant]]
+name = "G9 has no strongly non-nested 3-matching"
+file = "../LeanProofs/NonNested/K4.lean"
+old = "theorem noSNN4_G9 : NoSNN 4 G9 := by"
+new = "theorem noSNN4_G9 : NoSNN 3 G9 := by"
+
+# False: from G9, addVertex 9 G9 still contains (4,5), (6,7), (8,9).
+[[mutant]]
+name = "extension gives no strongly non-nested 3-matching"
+file = "../LeanProofs/NonNested/K4.lean"
+old = "    (h : NoSNN 4 G) : NoSNN 4 (addVertex n G) := by"
+new = "    (h : NoSNN 4 G) : NoSNN 3 (addVertex n G) := by"
+
+# False: SAT gives f*_4(9) = 28 = 3*9 + 1 (note, remark after Theorem 2).
+[[mutant]]
+name = "Theorem 2 with 3n + 2 edges"
+file = "../LeanProofs/NonNested/K4.lean"
+old = "    ∃ G : Finset Edge, IsGraph n G ∧ NoSNN 4 G ∧ G.card = 3 * n + 1 := by"
+new = "    ∃ G : Finset Edge, IsGraph n G ∧ NoSNN 4 G ∧ G.card = 3 * n + 2 := by"
+
+# False for the same reason: f*_4(9) = 28 <= 3*9 + 1.
+[[mutant]]
+name = "strong conjecture fails at 3n + 1"
+file = "../LeanProofs/NonNested/K4.lean"
+old = "    ¬ ∀ G : Finset Edge, IsGraph n G → NoSNN 4 G → G.card ≤ 3 * n := by"
+new = "    ¬ ∀ G : Finset Edge, IsGraph n G → NoSNN 4 G → G.card ≤ 3 * n + 1 := by"

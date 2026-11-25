@@ -1,0 +1,284 @@
+\documentclass[11pt]{amsart}
+\usepackage[margin=1.15in]{geometry}
+\usepackage{amssymb,hyperref,tikz,booktabs}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{ps}{Theorem PS}
+\theoremstyle{definition}\newtheorem{problem}{Problem}
+\theoremstyle{remark}\newtheorem*{remark}{Remark}
+\title{Non-nested matchings in ordered graphs: the cases $k=3$ and $k=4$}
+\author{Vamshi Jandhyala}
+\date{25 November 2026}
+\begin{document}
+\begin{abstract}
+Two disjoint edges of a graph on $[n]$ are nested when one lies strictly inside the other. Bar\'at, Freschi and
+T\'oth conjectured that an ordered graph on $n\ge 2k$ vertices with no $k$ pairwise disjoint, pairwise non-nested
+edges has at most $(k-1)n$ edges, and that the same bound holds when only the more restricted \emph{strongly}
+non-nested matchings are forbidden. De Castro disproved the conjecture for every $k\ge5$. We prove both forms for
+$k=3$, and we show that the strong form fails for $k=4$: there is an ordered graph on $9$ vertices with $28$ edges and
+no strongly non-nested $4$-matching, and the excess persists for every $n\ge9$. The proof for $k=3$ studies the
+equality case of the Bar\'at--Freschi--T\'oth count and closes it with the star polygons of $2$-triangulations. The
+plain form for $k=4$ remains open; we verify it for $n\le 13$.
+\end{abstract}
+\maketitle
+
+\section{The question}
+Put the points $1,2,\dots,n$ on a line and draw arcs between some pairs of them, all above the line. How many arcs can
+you draw before you are forced to find three arcs with no common endpoints, none of which sits inside another? Try it
+for $n=7$ before reading on. One good answer joins every pair among $1,\dots,5$ and then joins $6$ and $7$ to $1$ and
+$2$, which gives $10+4=14=2n$ arcs (Figure~\ref{fig:patterns}, bottom). Any three disjoint arcs must use $6$ or $7$,
+and an arc ending at $6$ or $7$ starts at $1$ or $2$, so it contains every arc that starts later.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[x=0.5cm,y=0.5cm,v/.style={circle,fill,inner sep=1.1pt}]
+\foreach \x in {0,1,2,3} \node[v] at (\x,0) {};
+\draw (0,0) to[out=70,in=110] (3,0); \draw (1,0) to[out=70,in=110] (2,0);
+\node at (1.5,-0.8) {\small nested};
+\begin{scope}[xshift=2.6cm]
+\foreach \x in {0,1,2,3} \node[v] at (\x,0) {};
+\draw (0,0) to[out=70,in=110] (2,0); \draw (1,0) to[out=70,in=110] (3,0);
+\node at (1.5,-0.8) {\small crossing};
+\end{scope}
+\begin{scope}[xshift=5.2cm]
+\foreach \x in {0,1,2,3} \node[v] at (\x,0) {};
+\draw (0,0) to[out=70,in=110] (1,0); \draw (2,0) to[out=70,in=110] (3,0);
+\node at (1.5,-0.8) {\small separated};
+\end{scope}
+\end{tikzpicture}\\[4pt]
+\begin{tikzpicture}[x=0.9cm,y=0.9cm,v/.style={circle,fill,inner sep=1.3pt}]
+\begin{scope}
+\foreach \x in {1,...,7} \node[v,label=below:{\scriptsize\x}] at (\x-1,0) {};
+\foreach \a in {1,...,5} \foreach \b in {1,...,5} {\ifnum\a<\b \draw[gray] (\a-1,0) to[out=60,in=120] (\b-1,0);\fi}
+\foreach \a in {1,2} \foreach \b in {6,7} \draw[thick,dashed] (\a-1,0) to[out=60,in=120] (\b-1,0);
+\end{scope}
+\end{tikzpicture}
+\caption{The three ways two disjoint edges can sit, and the graph on $7$ vertices with $2n=14$ edges and no three
+disjoint pairwise non-nested edges: $K_5$ on $\{1,\dots,5\}$ (grey) and the edges from $6,7$ to $1,2$ (dashed).}
+\label{fig:patterns}
+\end{figure}
+
+Formally, an \emph{ordered graph} is a graph on $[n]=\{1,\dots,n\}$; we write an edge as $ij$ with $i<j$ and call
+$j-i$ its length. Two disjoint edges $ij$ and $st$ with $i<s$ are \emph{nested} if $t<j$, \emph{crossing} if
+$s<j<t$, and \emph{separated} if $j<s$. A $k$-matching is \emph{non-nested} if no two of its edges are nested. It is
+\emph{strongly non-nested} if, in addition, crossing is an equivalence relation on it: the matching splits into blocks
+of pairwise crossing edges, and edges in different blocks are separated. For three edges, strongly non-nested means
+pairwise crossing, pairwise separated, or a crossing pair together with an edge separated from both. Let $f_k(n)$ and
+$f^*_k(n)$ be the largest number of edges of an ordered graph on $[n]$ with no non-nested $k$-matching, respectively
+no strongly non-nested $k$-matching. Every strongly non-nested matching is non-nested, so $f_k(n)\le f_k^*(n)$.
+
+Bar\'at, Freschi and T\'oth \cite{BFT} proved that for $n\ge2k$
+\[
+(k-1)n\le f_k(n)\le f^*_k(n)\le (k-1)n+\tbinom{k-1}{2}, \tag{1}
+\]
+and conjectured \cite[Conjecture~2.6]{BFT} that $f_k(n)=f^*_k(n)=(k-1)n$. The lower bound comes from the graph in
+Figure~\ref{fig:patterns}, generalised: $K_{2k-1}$ on the first $2k-1$ vertices, and every later vertex joined to the
+first $k-1$. The question sits behind a Ramsey problem of Bar\'at \cite{CC33,BGT}: an exact Tur\'an bound would improve
+the known upper bound for the smallest $m$ such that every $2$-colouring of the ordered $K_m$ has a monochromatic
+non-nested $k$-matching \cite[Lemma~3.3]{BFT}. De Castro \cite{dC} showed that $f_k(n)>(k-1)n$ for every $k\ge5$ and
+$n\ge2k+1$, so the conjecture is false from $k=5$ on, while the cases $k=3,4$ were left open. For $k=2$ the bounds in
+(1) already agree.
+
+\begin{theorem}\label{thm:k3}
+For every $n\ge6$, $f_3(n)=f^*_3(n)=2n$.
+\end{theorem}
+
+\begin{theorem}\label{thm:k4}
+For every $n\ge9$, $f^*_4(n)\ge 3n+1$. In particular the strong form of \cite[Conjecture~2.6]{BFT} fails for $k=4$.
+\end{theorem}
+
+Theorem~\ref{thm:k3} is the case of the conjecture that survives, and Theorem~\ref{thm:k4} separates the two forms:
+together with \cite{dC}, the strong form holds exactly for $k\le3$. For the plain form with $k=4$ we have only
+computational evidence (Section~\ref{sec:k4plain}).
+
+\section{Proof of Theorem~\ref{thm:k3}}
+By (1) it suffices to show that an ordered graph $G$ on $[n]$, $n\ge6$, with no strongly non-nested $3$-matching has
+at most $2n$ edges. Call an edge \emph{short} if its length is $1$ or $2$, and \emph{long} otherwise. The proof of the
+upper bound in (1) splits the edges in exactly this way, and we first recall it for $k=3$.
+
+The route is as follows. The count (2) below gives $e(G)\le2n+1$, with equality only if $G$ has eight short edges and
+its long edges are as many as Capoyleas and Pach allow. Lemma~\ref{lem:short} shows that eight short edges form two
+small stars, and Lemma~\ref{lem:fence} shows that these stars confine every other edge. In the equality case the long
+edges complete a $2$-triangulation, whose star polygons (Theorem PS) then force three pairwise crossing edges.
+
+A short edge has at most one vertex strictly between its ends, so it is never nested with a disjoint edge, and it is
+never one of three pairwise crossing edges (two of them would need that same inner vertex). Let $H$ be $G$ together
+with all $2n-3$ short edges. Three pairwise crossing edges form a strongly non-nested $3$-matching, so $H$ has none.
+Capoyleas and Pach \cite{CP} proved that a graph on $n$ points in convex position with no three pairwise crossing
+edges has at most $4n-10$ edges; drawing $[n]$ on a circle in its natural order turns crossing in our sense into
+crossing chords. Writing $s$ for the number of short edges of $G$,
+\[
+e(G)=e(H)-(2n-3-s)\le 2n-7+s. \tag{2}
+\]
+In words: the long edges number at most $2n-7$, and every short edge of $G$ adds at most one to the count.
+
+\begin{lemma}\label{lem:short}
+$G$ has at most $8$ short edges. If it has exactly $8$, they are the eight edges of length at most $2$ at two vertices
+$a<b$ with $b-a\ge3$, namely $a$ joined to $a-2,a-1,a+1,a+2$ and $b$ joined to $b-2,b-1,b+1,b+2$.
+\end{lemma}
+
+\begin{proof}
+Three disjoint short edges are never nested, and each crosses at most one of the others (a crossing edge must use its
+inner vertex), so crossing is an equivalence relation on them: they form a strongly non-nested matching. Hence the
+short edges of $G$ contain no $3$-matching. The edges of a fixed length form disjoint paths (for length $2$, one on
+the odd and one on the even vertices), and a union of paths with $m$ edges contains a matching of size $\lceil
+m/2\rceil$. So there are at most $4$ short edges of each length, and at most $8$ in all. (Directly: among five such edges with
+left ends $p_1<\dots<p_5$, those at $p_1,p_3,p_5$ are disjoint for length $1$, and one of the triples
+$(p_1,p_3,p_5)$, $(p_1,p_2,p_5)$, $(p_1,p_4,p_5)$ is for length $2$.)
+
+Suppose there are $8$, so $4$ of each length. Four length-$1$ edges with no $3$-matching form either one path
+$t,t+1,\dots,t+4$ or two paths of two edges. In the first case every length-$2$ edge must meet the path, and an edge
+meeting it in one vertex must use $t+1$ or $t+3$ (removing any other vertex of the path leaves two disjoint edges). This
+leaves the five candidates $(t,t+2)$, $(t+1,t+3)$, $(t+2,t+4)$, $(t-1,t+1)$, $(t+3,t+5)$. Now $(t-1,t+1)$ and $(t,t+2)$
+together with $(t+3,t+4)$ form a $3$-matching, and so do $(t+3,t+5)$, $(t+2,t+4)$ and $(t,t+1)$. So at most three of
+the candidates occur, a contradiction.
+
+Hence the length-$1$ edges are $(a-1,a),(a,a+1),(b-1,b),(b,b+1)$ with $a+1<b-1$. A length-$2$ edge that avoids $a$ and
+$b$ can be completed to a $3$-matching by one length-$1$ edge at $a$ and one at $b$, unless it contains both
+$a-1$ and $a+1$, or both $b-1$ and $b+1$. So the length-$2$ edges are among the four at $a$ and $b$ and the two chords
+$(a-1,a+1)$, $(b-1,b+1)$. The chord $(a-1,a+1)$ is disjoint from $(a-2,a)$ and from $(a,a+2)$, and either pair together
+with $(b,b+1)$ is a $3$-matching; so if this chord occurs, neither length-$2$ edge at $a$ does, and symmetrically at
+$b$. Either chord therefore costs at least one edge, and four length-$2$ edges are possible only when both chords are
+absent and all four edges at $a$ and $b$ are present.
+\end{proof}
+
+Call the eight edges of Lemma~\ref{lem:short} the \emph{short stars} at $a$ and $b$. They fence in every other edge.
+
+\begin{lemma}\label{lem:fence}
+Suppose $G$ contains the short stars at $a<b$, and let $ij\in E(G)$.
+\begin{enumerate}
+\item[(L)] If $j<b$ and $a\notin\{i,j\}$, then $i\le a-2$ and $j\ge a+2$.
+\item[(R)] If $i>a$ and $b\notin\{i,j\}$, then $i\le b-2$ and $j\ge b+2$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+For (L), the edge $(b,b+1)$ is disjoint from $ij$ and separated both from $ij$ and from every edge of the star at
+$a$. So every star edge at $a$ that is disjoint from $ij$ must be nested with $ij$; otherwise it forms, with $ij$ and
+$(b,b+1)$, a strongly non-nested $3$-matching. If $ij$ lay entirely on one side of $a$, a star edge on the other side
+would be disjoint from it and separated from it. Hence $i<a<j$. If $i=a-1$ then $(a-2,a)$ crosses $ij$, and if $j=a+1$
+then $(a,a+2)$ crosses $ij$; both are excluded. Part (R) is (L) for the reversed order.
+\end{proof}
+
+The last ingredient is a structural fact about maximal graphs without three pairwise crossing chords, which are
+called \emph{$2$-triangulations}. A \emph{$2$-star} is the pentagram formed by five vertices $s_0,\dots,s_4$ in
+cyclic order with the five chords $s_js_{j+2}$.
+
+\begin{ps}[Pilaud and Santos {\cite[Corollary~4.2(ii)]{PS}}]
+In a $2$-triangulation of the $n$-gon, $n\ge5$, every chord joining two vertices at cyclic distance $2$ belongs to
+exactly one $2$-star, which lies on the side of the chord containing the single vertex between its ends.
+\end{ps}
+
+Concretely, for three cyclically consecutive vertices $p,q,r$ there are vertices $u,v$ with $p,q,r,u,v$ in cyclic order
+and the five chords $pr,\,qu,\,rv,\,up,\,vq$ all present.
+
+\begin{proof}[Proof of Theorem~\ref{thm:k3}]
+By (2) and Lemma~\ref{lem:short}, $e(G)\le 2n+1$, and equality forces $s=8$ and $e(H)=4n-10$. Suppose equality
+holds. Then $G$ contains the short stars at some $a<b$, with $3\le a$, $b\le n-2$ and $b-a\ge3$. Moreover $H$ is a
+$2$-triangulation: adding any chord would break the Capoyleas--Pach bound. Every long edge of $H$ is an edge of $G$.
+
+Apply Theorem PS to $a-1,a,a+1$: there are $u,v$ with $a-1,a,a+1,u,v$ in cyclic order and $(a-1,u)$, $(a+1,v)$ in
+$H$. If $v<a-1$, then $(v,a+1)$ is long, lies in $G$, and violates (L). So $v>a+1$, and the cyclic order gives
+$a+2\le u<v$. The long edge $(a-1,u)$ violates (L) unless $u\ge b$. Hence $b\le u<v$, and $(a+1,v)$ is a long edge of
+$G$ with $v>b$.
+
+Apply Theorem PS to $b-1,b,b+1$: there are $x,y$ with $b-1,b,b+1,x,y$ in cyclic order and $(x,b-1)$, $(y,b)$,
+$(y,b+1)$ in $H$. If $x>b+1$, the long edge $(b-1,x)$ violates (R). So $x<y\le b-2$, and the long edge $(y,b+1)$
+violates (R) unless $y\le a$. Hence $x<y\le a$.
+
+Now $(x,b-1)$, $(y,b)$ and $(a+1,v)$ are long edges of $G$, and
+\[
+x<y<a+1<b-1<b<v,
+\]
+using $b-a\ge3$. These three edges are pairwise crossing (Figure~\ref{fig:end}), a strongly non-nested
+$3$-matching. This contradiction shows $e(G)\le2n$.
+\end{proof}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[x=0.62cm,y=0.62cm,v/.style={circle,fill,inner sep=1.1pt}]
+\foreach \x/\l in {0/x,1.2/y,3/{a\!-\!1},4/a,5/{a\!+\!1},7/{b\!-\!1},8/b,9/{b\!+\!1},11/v}
+  \node[v,label=below:{\scriptsize$\l$}] at (\x,0) {};
+\foreach \x in {2,6,10} \node[v] at (\x,0) {};
+\foreach \c in {4,8} \foreach \d in {-2,-1,1,2} \draw[gray] (\c,0) to[out=70,in=110] (\c+\d,0);
+\draw[thick] (0,0) to[out=55,in=125] (7,0);
+\draw[thick] (1.2,0) to[out=55,in=125] (8,0);
+\draw[thick] (5,0) to[out=55,in=125] (11,0);
+\end{tikzpicture}
+\caption{The end of the proof of Theorem~\ref{thm:k3}: the short stars at $a$ and $b$ (grey) and the three long edges
+forced by the $2$-stars at the chords $(a-1,a+1)$ and $(b-1,b+1)$. The three thick edges pairwise cross.}
+\label{fig:end}
+\end{figure}
+
+\begin{remark}
+The same argument never uses a non-nested matching that is not strongly non-nested, which is why it gives both
+equalities at once. For $k=4$ this is no longer possible, by Theorem~\ref{thm:k4}.
+\end{remark}
+
+\section{Proof of Theorem~\ref{thm:k4}}
+Let $G_9$ be the ordered graph on $[9]$ in which $A=\{1,2,3\}$ is independent, $B=\{4,\dots,9\}$ is complete, and
+\[
+N(1)=N(2)=\{4,7,8,9\},\qquad N(3)=\{4,6,7,8,9\}.
+\]
+It has $15+4+4+5=28=3\cdot9+1$ edges. We show that every non-nested $4$-matching $M$ of $G_9$ contains edges
+$e,f,g$ such that $e$ crosses $f$, $f$ crosses $g$, and $e,g$ are separated; so crossing is not transitive on $M$, and
+$G_9$ has no strongly non-nested $4$-matching.
+
+In a non-nested matching the left ends and the right ends of the edges appear in the same order. Every vertex of $A$
+precedes every vertex of $B$ and $A$ is independent, so each edge of $M$ joins $A$ to $B$ or lies inside $B$. If $t$
+edges lie inside $B$, then $M$ uses $4-t\le3$ vertices of $A$ and $t+4\le6$ of $B$, so $t\in\{1,2\}$.
+
+If $t=1$, the edges are $(1,x)$, $(2,y)$, $(3,z)$, $(c,d)$ with $x<y<z<d$. The neighbourhoods force $x=4$, $y=7$, $z=8$,
+$d=9$ and $c\in\{5,6\}$. Then $(1,4)$ crosses $(2,7)$, $(2,7)$ crosses $(c,9)$, and $(1,4)$ and $(c,9)$ are separated.
+
+If $t=2$, the edges are $(a_1,b_1)$, $(a_2,b_2)$ with $a_1<a_2$ in $A$ and $(c_1,d_1)$, $(c_2,d_2)$ inside $B$ with
+$c_1<c_2$. Then $b_1<b_2<d_1<d_2$ and these six vertices are all of $B$, so $b_2\le7$; also $b_2\ge6$, since $5$ has
+no neighbour in $A$. If $b_2=7$, then $d_1=8$, $d_2=9$, $b_1=4$ (as $a_1\le2$) and $c_1=5$; the edges $(a_1,4)$,
+$(a_2,7)$, $(5,8)$ give the pattern. If $b_2=6$, then $a_2=3$, $b_1=4$ and $c_1=5$; the edges $(a_1,4)$, $(3,6)$,
+$(5,d_1)$ give the pattern.
+
+Finally, add to an ordered graph on $[n]$ a vertex $n+1$ joined to $1,2,3$. A non-nested matching using an edge
+$(i,n+1)$ has all its left ends at most $i\le3$, because $n+1$ is the last right end, so it has at most three edges.
+Repeating this step from $G_9$ gives, for every $n\ge9$, a graph with $3n+1$ edges and no strongly non-nested
+$4$-matching. \qed
+
+\begin{remark}
+A SAT computation gives $f^*_4(n)=3n+1,\,3n+1,\,3n+2,\,3n+2,\,3n+2$ for $n=9,\dots,13$, against the upper bound $3n+3$
+from (1).
+\end{remark}
+
+\section{The plain form for $k=4$}\label{sec:k4plain}
+A SAT computation, with each forbidden non-nested $4$-matching as a clause, gives $f_4(n)=3n$ for $8\le n\le13$. As a
+control, the same program finds de Castro's excess at $k=5$: $f_5(11)=45=4\cdot11+1$. The argument of Section~2 does not
+carry over directly. With short edges now of length at most $3$, the count (2) becomes $e(G)\le 3n-15+s$ with $s\le18$,
+so only $s\ge16$ needs an argument. In every computed case ($n\le13$) the long edges then number at most $3n-s$, and
+$s=18$ does not occur. The difficulty is that the short edges alone are far less rigid than in Lemma~\ref{lem:short}:
+on $16$ vertices they already admit more than two hundred configurations with $s\ge16$, against the single family
+found there.
+
+\begin{problem}
+Is $f_4(n)=3n$ for every $n\ge8$?
+\end{problem}
+
+\section*{Reproducibility and acknowledgement}
+The computations, a verification of Theorem~\ref{thm:k4} independent of the search code, and the checks of each step
+are available with this note. The proof of Theorem~\ref{thm:k3} was found with Codex (OpenAI): its route, the
+classification of Lemma~\ref{lem:short} and the use of Theorem PS. Claude (Anthropic, Claude Opus 5.5) did the
+computations, found the reduction to the case $s=8$ and the two-star structure numerically, found the graph $G_9$ and
+the proof of Theorem~\ref{thm:k4}, checked every step of the proof of Theorem~\ref{thm:k3} against the sources, and
+drafted the text. The author is responsible for the content.
+
+\begin{thebibliography}{9}
+\bibitem{BFT} J.~Bar\'at, A.~Freschi and G.~T\'oth, Matchings avoiding ordered patterns, arXiv:2512.15461v2 (2025).
+\bibitem{BGT} J.~Bar\'at, A.~Gy\'arf\'as and G.~T\'oth, Monochromatic spanning trees and matchings in ordered
+complete graphs, \emph{J. Graph Theory} 105(4) (2024), 523--541, doi:10.1002/jgt.23058.
+\bibitem{CC33} Open problems of the 33rd Workshop on Cycles and Colourings, arXiv:2511.02892 (2025), Problem 1.1
+(J.~Bar\'at).
+\bibitem{CP} V.~Capoyleas and J.~Pach, A Tur\'an-type theorem on chords of a convex polygon, \emph{J. Combin. Theory
+Ser. B} 56 (1992), 9--15, doi:10.1016/0095-8956(92)90003-G.
+\bibitem{dC} P.~M.~M.~de Castro, Minimum blockers and extremal graphs for nonnested matchings, arXiv:2609.14484v2
+(2026).
+\bibitem{PS} V.~Pilaud and F.~Santos, Multitriangulations as complexes of star polygons, \emph{Discrete Comput.
+Geom.} 41 (2009), 284--317, doi:10.1007/s00454-008-9078-6; arXiv:0706.3121 (numbering as in the arXiv version).
+\end{thebibliography}
+\end{document}

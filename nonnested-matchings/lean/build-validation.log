@@ -1,0 +1,10 @@
+Isolated build 2026-11-25: fresh copy of lean/, lake exe cache get, lake build LeanProofs
+✔ [8924/8932] Built LeanProofs.NonNested.Defs (50s)
+✔ [8925/8932] Built LeanProofs.NonNested.Short (74s)
+✔ [8926/8932] Built LeanProofs.NonNested.K4 (94s)
+✔ [8927/8932] Built LeanProofs.NonNested.Fence (52s)
+✔ [8928/8932] Built LeanProofs.NonNested.K3 (52s)
+ℹ [8929/8932] Built LeanProofs.NonNested.Report (47s)
+✔ [8930/8932] Built LeanProofs.NonNested (39s)
+✔ [8931/8932] Built LeanProofs (47s)
+Build completed successfully (8932 jobs).

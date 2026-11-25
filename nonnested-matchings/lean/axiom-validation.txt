@@ -1,0 +1,44 @@
+@NonNested.short_le_eight : ∀ {n : ℕ} {G : Finset NonNested.Edge},
+  NonNested.IsGraph n G → NonNested.NoSNN 3 G → NonNested.shortCount G ≤ 8
+'NonNested.short_le_eight' depends on axioms: [propext, Classical.choice, Quot.sound]
+@NonNested.short_eq_eight : ∀ {n : ℕ} {G : Finset NonNested.Edge},
+  NonNested.IsGraph n G →
+    NonNested.NoSNN 3 G → NonNested.shortCount G = 8 → ∃ a b, 3 ≤ a ∧ a + 3 ≤ b ∧ b + 2 ≤ n ∧ NonNested.ShortStars G a b
+'NonNested.short_eq_eight' depends on axioms: [propext, Classical.choice, Quot.sound]
+@NonNested.fence_L : ∀ {n : ℕ} {G : Finset NonNested.Edge},
+  NonNested.IsGraph n G →
+    NonNested.NoSNN 3 G →
+      ∀ {a b : ℕ},
+        a + 3 ≤ b → NonNested.ShortStars G a b → ∀ {i j : ℕ}, (i, j) ∈ G → j < b → i ≠ a → j ≠ a → i ≤ a - 2 ∧ a + 2 ≤ j
+'NonNested.fence_L' depends on axioms: [propext, Classical.choice, Quot.sound]
+@NonNested.fence_R : ∀ {n : ℕ} {G : Finset NonNested.Edge},
+  NonNested.IsGraph n G →
+    NonNested.NoSNN 3 G →
+      ∀ {a b : ℕ},
+        a + 3 ≤ b → NonNested.ShortStars G a b → ∀ {i j : ℕ}, (i, j) ∈ G → a < i → i ≠ b → j ≠ b → i ≤ b - 2 ∧ b + 2 ≤ j
+'NonNested.fence_R' depends on axioms: [propext, Classical.choice, Quot.sound]
+NonNested.f3_upper : NonNested.CPHyp →
+  NonNested.PSHyp →
+    ∀ {n : ℕ}, 6 ≤ n → ∀ {G : Finset NonNested.Edge}, NonNested.IsGraph n G → NonNested.NoSNN 3 G → G.card ≤ 2 * n
+'NonNested.f3_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+@NonNested.card_lowerGraph : ∀ {n : ℕ}, 5 ≤ n → (NonNested.lowerGraph n).card = 2 * n
+'NonNested.card_lowerGraph' depends on axioms: [propext, Classical.choice, Quot.sound]
+NonNested.noNN_lowerGraph : ∀ (n : ℕ), NonNested.NoNN 3 (NonNested.lowerGraph n)
+'NonNested.noNN_lowerGraph' depends on axioms: [propext, Classical.choice, Quot.sound]
+NonNested.theorem1 : NonNested.CPHyp →
+  NonNested.PSHyp →
+    ∀ {n : ℕ},
+      6 ≤ n → NonNested.IsExtremal (NonNested.NoNN 3) n (2 * n) ∧ NonNested.IsExtremal (NonNested.NoSNN 3) n (2 * n)
+'NonNested.theorem1' depends on axioms: [propext, Classical.choice, Quot.sound]
+NonNested.card_G9 : NonNested.G9.card = 28
+'NonNested.card_G9' depends on axioms: [propext, Classical.choice, Quot.sound]
+NonNested.noSNN4_G9 : NonNested.NoSNN 4 NonNested.G9
+'NonNested.noSNN4_G9' depends on axioms: [propext, Classical.choice, Quot.sound]
+@NonNested.noSNN4_addVertex : ∀ {n : ℕ} {G : Finset NonNested.Edge},
+  3 ≤ n → NonNested.IsGraph n G → NonNested.NoSNN 4 G → NonNested.NoSNN 4 (NonNested.addVertex n G)
+'NonNested.noSNN4_addVertex' depends on axioms: [propext, Classical.choice, Quot.sound]
+@NonNested.theorem2 : ∀ {n : ℕ}, 9 ≤ n → ∃ G, NonNested.IsGraph n G ∧ NonNested.NoSNN 4 G ∧ G.card = 3 * n + 1
+'NonNested.theorem2' depends on axioms: [propext, Classical.choice, Quot.sound]
+@NonNested.strong_conjecture_fails : ∀ {n : ℕ},
+  9 ≤ n → ¬∀ (G : Finset NonNested.Edge), NonNested.IsGraph n G → NonNested.NoSNN 4 G → G.card ≤ 3 * n
+'NonNested.strong_conjecture_fails' depends on axioms: [propext, Classical.choice, Quot.sound]
