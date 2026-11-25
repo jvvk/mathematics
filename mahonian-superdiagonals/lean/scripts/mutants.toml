@@ -1,0 +1,61 @@
+# Mutation suite for the Mahonian superdiagonals formalisation (CFS Conjecture 15). Each mutant changes one stated
+# result to a false one; every one must be rejected. Run from anywhere:
+#   cd scripts && python3 mutate.py mutants.toml
+[check]
+cmd = ["lake", "env", "lean", "{file}"]
+cwd = ".."
+timeout = 900
+fail_markers = ["error"]
+fail_pattern = '^(?P<file>\S+\.lean):\d+:\d+: error\b'
+log_dir = "mutation-logs"
+
+# False: at degree 2n+5 the two pairs (n+1)+(n+4), (n+2)+(n+3) outweigh the single part (net +1); e.g. n = 0,
+# k = 5: A(0,5) = f_5 = 1 but the right side is 0. (k <= 2n+3 and 2n+4 are TRUE: singles and pairs cancel there.)
+[[mutant]]
+name = "truncation range k <= 2n+5"
+file = "../LeanProofs/Mahonian/Truncation.lean"
+old = "theorem A_eq_trunc {n k : ℕ} (hk : k ≤ 2 * n + 2) :"
+new = "theorem A_eq_trunc {n k : ℕ} (hk : k ≤ 2 * n + 5) :"
+
+# False: c_{i-2} = 1.
+[[mutant]]
+name = "c vanishes from n = i-2"
+file = "../LeanProofs/Mahonian/Truncation.lean"
+old = "theorem c_eq_zero {i n : ℕ} (hn : i - 1 ≤ n) : c i n = 0 := by"
+new = "theorem c_eq_zero {i n : ℕ} (hn : i - 2 ≤ n) : c i n = 0 := by"
+
+[[mutant]]
+name = "c_{i-2} = 2"
+file = "../LeanProofs/Mahonian/Truncation.lean"
+old = "theorem c_sub_two {i : ℕ} (hi : 2 ≤ i) : c i (i - 2) = 1 := by"
+new = "theorem c_sub_two {i : ℕ} (hi : 2 ≤ i) : c i (i - 2) = 2 := by"
+
+[[mutant]]
+name = "Lemma 4 exponent s+1"
+file = "../LeanProofs/Mahonian/Columns.lean"
+old = "      = C (f t) * (1 - X) ^ t + ∑ s ∈ Finset.range t, C (f s) * X * (1 - X) ^ s := by"
+new = "      = C (f t) * (1 - X) ^ t + ∑ s ∈ Finset.range t, C (f s) * X * (1 - X) ^ (s + 1) := by"
+
+[[mutant]]
+name = "main term C^{-(i+1)}"
+file = "../LeanProofs/Mahonian/Main.lean"
+old = "    (1 - X) ^ i * (X ^ i * Sneg i - Cinv ^ i * S0) = ((P i : Polynomial ℤ) : PowerSeries ℤ) := by"
+new = "    (1 - X) ^ i * (X ^ i * Sneg i - Cinv ^ (i + 1) * S0) = ((P i : Polynomial ℤ) : PowerSeries ℤ) := by"
+
+[[mutant]]
+name = "degree 3i-1"
+file = "../LeanProofs/Mahonian/Degree.lean"
+old = "theorem natDegree_P {i : ℕ} (hi : 2 ≤ i) : (P i).natDegree = 3 * i - 2 := by"
+new = "theorem natDegree_P {i : ℕ} (hi : 2 ≤ i) : (P i).natDegree = 3 * i - 1 := by"
+
+[[mutant]]
+name = "leading coefficient (-1)^(i+1)"
+file = "../LeanProofs/Mahonian/Degree.lean"
+old = "theorem leadingCoeff_P {i : ℕ} (hi : 2 ≤ i) : (P i).leadingCoeff = (-1) ^ i := by"
+new = "theorem leadingCoeff_P {i : ℕ} (hi : 2 ≤ i) : (P i).leadingCoeff = (-1) ^ (i + 1) := by"
+
+[[mutant]]
+name = "P_1 = -1 + 3x"
+file = "../LeanProofs/Mahonian/Examples.lean"
+old = "theorem P_one : P 1 = -1 + 2 * X := by"
+new = "theorem P_one : P 1 = -1 + 3 * X := by"

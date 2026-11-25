@@ -1,0 +1,11 @@
+Isolated build 2026-11-25: fresh copy of lean/, lake exe cache get, lake build LeanProofs
+✔ [8924/8933] Built LeanProofs.Mahonian.Defs (88s)
+✔ [8925/8933] Built LeanProofs.Mahonian.Columns (111s)
+✔ [8926/8933] Built LeanProofs.Mahonian.Truncation (112s)
+✔ [8927/8933] Built LeanProofs.Mahonian.Main (115s)
+✔ [8928/8933] Built LeanProofs.Mahonian.Degree (115s)
+✔ [8929/8933] Built LeanProofs.Mahonian.Examples (115s)
+ℹ [8930/8933] Built LeanProofs.Mahonian.Report (47s)
+✔ [8931/8933] Built LeanProofs.Mahonian (46s)
+✔ [8932/8933] Built LeanProofs (50s)
+Build completed successfully (8933 jobs).

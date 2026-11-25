@@ -1,0 +1,69 @@
+# Mutation suite for the Mahonian superdiagonal checks. Each mutant plants one false version of a claim the note makes;
+# every one must make its script FAIL. Run: python3 -I mutate.py mutants.toml
+[check]
+cmd = ["python3", "-I", "{file}"]
+cwd = "."
+timeout = 900
+mode = "copy"
+
+# --- explicit_check.py (Claude): explicit P_i formula vs direct Mahonian series ---
+[[mutant]]
+name = "degree 3i-1 instead of 3i-2"
+file = "explicit_check.py"
+old = "deg == 3 * i - 2 and"
+new = "deg == 3 * i - 1 and"
+
+[[mutant]]
+name = "leading coefficient (-1)^(i+1)"
+file = "explicit_check.py"
+old = "formula[deg] == (-1) ** i"
+new = "formula[deg] == (-1) ** (i + 1)"
+
+[[mutant]]
+name = "c_{i-2} = 2 (two extra partitions)"
+file = "explicit_check.py"
+old = "c[i - 2] == 1 and"
+new = "c[i - 2] == 2 and"
+
+[[mutant]]
+name = "Lemma 4 exponent i-t+s instead of i-t+s-1"
+file = "explicit_check.py"
+old = "pw(one_minus_x, i - t + s - 1)"
+new = "pw(one_minus_x, i - t + s)"
+
+[[mutant]]
+name = "Laurent correction added instead of subtracted"
+file = "explicit_check.py"
+old = "inner[i - r] -= v"
+new = "inner[i - r] += v"
+
+[[mutant]]
+name = "f_t term with (1-x)^i instead of (1-x)^(i-1)"
+file = "explicit_check.py"
+old = "part = [F[t] * v for v in pw(one_minus_x, i - 1)]"
+new = "part = [F[t] * v for v in pw(one_minus_x, i)]"
+
+# --- recheck_codex.py (Codex, independent): partition counts and c_{i-2} ---
+[[mutant]]
+name = "single parts only up to 2n (recheck)"
+file = "recheck_codex.py"
+old = "assert all(dp[m] == 1 for m in range(n+1, 2*n+2))"
+new = "assert all(dp[m] == 1 for m in range(n+1, 2*n+3))"
+
+[[mutant]]
+name = "c_{i-2} = 0 (recheck)"
+file = "recheck_codex.py"
+old = "assert all(c(i-2, i) == 1 for i in range(2, IMAX+1))"
+new = "assert all(c(i-2, i) == 0 for i in range(2, IMAX+1))"
+
+[[mutant]]
+name = "leading coefficient sign flipped (recheck)"
+file = "recheck_codex.py"
+old = "assert direct[degree] == (2 if i == 1 else (-1)**i)"
+new = "assert direct[degree] == (2 if i == 1 else (-1)**(i+1))"
+
+[[mutant]]
+name = "printed P_3 with x^5 coefficient +1"
+file = "explicit_check.py"
+old = "3: [-1, 6, -12, 10, -2, -1, 2, -1],"
+new = "3: [-1, 6, -12, 10, -2, 1, 2, -1],"

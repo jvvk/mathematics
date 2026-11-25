@@ -1,0 +1,26 @@
+{
+  "source_commit": "330c087 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports Mahonian only)",
+    "CheckClaims.lean (generated)",
+    "scripts/mutants.toml (copy of lean-proofs scripts/mahonian.toml) and scripts/mutate.py (runner)"
+  ],
+  "files": {
+    "CheckClaims.lean": "abbd68fe723ee6760216afb61fcd2e2fe543d36da7e8040f0481f0cf7ba3a861",
+    "LeanProofs/Mahonian/Columns.lean": "04af9d28f5288ad0c80c818ea350d5b4c31807fc9f208d1173b99a24547f6bea",
+    "LeanProofs/Mahonian/Defs.lean": "c8dfcd3dc3aac418b0e936c2f63daa53c0c99931f6e53cd7d06c93fa84a9e8d5",
+    "LeanProofs/Mahonian/Degree.lean": "a19b31b6685bc364b05a77afd53eeeaad9c6c1782d1417ca8e42e0a187ad0a05",
+    "LeanProofs/Mahonian/Examples.lean": "2aa871cdb2184fb91a47af4317166d23c12cd85f422fb93c8751a2280c36857c",
+    "LeanProofs/Mahonian/Main.lean": "417bf9dc8b1a5f44b66f3e8aed0ea82c4d7f8ad3c7020f61c7cbb70f47b18429",
+    "LeanProofs/Mahonian/Report.lean": "2d5296d89afee1dbfa2460db72e1a02e490c3cf31f9e9fc432149920dedd98c8",
+    "LeanProofs/Mahonian/Truncation.lean": "30f7f1f78b709ec15cd5f776a5f1fb498005c388389ff98bd5b32c7117ae0e4b",
+    "LeanProofs/Mahonian.lean": "45f1f0c3948d07cfe6d051af6a00c301d9f4f2182552942b5932eede10b70239",
+    "LeanProofs.lean": "90daad1af6498bf3b7b8ec115f27e956eeae898ac6a8afe143f38f562bda0f25",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutants.toml": "001eae9b2861b21b0557da020646f048181008fe95924cba80400db984360fc5",
+    "scripts/mutate.py": "742a3c8834e82d19f9f161d1428936b454136e00a410cf5b5491e6061a37be51"
+  }
+}

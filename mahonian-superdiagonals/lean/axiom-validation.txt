@@ -1,0 +1,52 @@
+Mahonian.Cinv_mul_Cat : Mahonian.Cinv * Mahonian.Cat = 1
+'Mahonian.Cinv_mul_Cat' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Mahonian.coeff_E_stable : ∀ {s N : ℕ}, s ≤ N → (PowerSeries.coeff s) (Mahonian.E N) = Mahonian.f s
+'Mahonian.coeff_E_stable' depends on axioms: [propext, Classical.choice, Quot.sound]
+Mahonian.mahonian_coe : ∀ (n : ℕ), ↑(Mahonian.mahonian n) = Mahonian.E n * Mahonian.geom ^ n
+'Mahonian.mahonian_coe' depends on axioms: [propext, Classical.choice, Quot.sound]
+Mahonian.Q_trunc : ∀ (n d : ℕ),
+  PowerSeries.X ^ (2 * n + 3) ∣ Mahonian.Q n d - (1 - ∑ j ∈ Finset.range d, PowerSeries.X ^ (n + 1 + j))
+'Mahonian.Q_trunc' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Mahonian.A_eq_trunc : ∀ {n k : ℕ},
+  k ≤ 2 * n + 2 →
+    Mahonian.A n k =
+      Mahonian.I n k - ∑ j ∈ Finset.range (n + 2), if n + 1 + j ≤ k then Mahonian.I n (k - (n + 1 + j)) else 0
+'Mahonian.A_eq_trunc' depends on axioms: [propext, Classical.choice, Quot.sound]
+Mahonian.I_diag : ∀ (n : ℕ), Mahonian.I n n = Mahonian.A n n
+'Mahonian.I_diag' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Mahonian.I_split : ∀ {n i : ℕ},
+  i ≤ n + 2 → Mahonian.I n (n + i) = Mahonian.A n (n + i) + ∑ t ∈ Finset.range i, Mahonian.I n t
+'Mahonian.I_split' depends on axioms: [propext, Classical.choice, Quot.sound]
+Mahonian.lemma2 : ∀ (i n : ℕ),
+  Mahonian.I n (n + i) = Mahonian.A n (n + i) + ∑ t ∈ Finset.range i, Mahonian.A n t + Mahonian.c i n
+'Mahonian.lemma2' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Mahonian.c_eq_zero : ∀ {i n : ℕ}, i - 1 ≤ n → Mahonian.c i n = 0
+'Mahonian.c_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Mahonian.c_sub_two : ∀ {i : ℕ}, 2 ≤ i → Mahonian.c i (i - 2) = 1
+'Mahonian.c_sub_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+Mahonian.colGeom_pos : ∀ (u : ℕ), (1 - PowerSeries.X) ^ (u + 2) * Mahonian.colGeom (u + 1) = PowerSeries.X
+'Mahonian.colGeom_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+Mahonian.lemma4 : ∀ (t : ℕ),
+  ((1 - PowerSeries.X) ^ (t + 1) * PowerSeries.mk fun n => Mahonian.A n t) =
+    PowerSeries.C (Mahonian.f t) * (1 - PowerSeries.X) ^ t +
+      ∑ s ∈ Finset.range t, PowerSeries.C (Mahonian.f s) * PowerSeries.X * (1 - PowerSeries.X) ^ s
+'Mahonian.lemma4' depends on axioms: [propext, Classical.choice, Quot.sound]
+Mahonian.S0_eq_diag : Mahonian.S0 = PowerSeries.mk fun n => Mahonian.A n n
+'Mahonian.S0_eq_diag' depends on axioms: [propext, Classical.choice, Quot.sound]
+Mahonian.Sneg_split : ∀ (i : ℕ),
+  Mahonian.Sneg i =
+    ((PowerSeries.mk fun n => Mahonian.A n (n + i)) + ∑ t ∈ Finset.range i, PowerSeries.mk fun n => Mahonian.A n t) +
+      ∑ n ∈ Finset.range (i - 1), PowerSeries.C (Mahonian.c i n) * PowerSeries.X ^ n
+'Mahonian.Sneg_split' depends on axioms: [propext, Classical.choice, Quot.sound]
+Mahonian.main : ∀ (i : ℕ),
+  Mahonian.H3 i →
+    (1 - PowerSeries.X) ^ i * (PowerSeries.X ^ i * Mahonian.Sneg i - Mahonian.Cinv ^ i * Mahonian.S0) = ↑(Mahonian.P i)
+'Mahonian.main' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Mahonian.natDegree_P : ∀ {i : ℕ}, 2 ≤ i → (Mahonian.P i).natDegree = 3 * i - 2
+'Mahonian.natDegree_P' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Mahonian.leadingCoeff_P : ∀ {i : ℕ}, 2 ≤ i → (Mahonian.P i).leadingCoeff = (-1) ^ i
+'Mahonian.leadingCoeff_P' depends on axioms: [propext, Classical.choice, Quot.sound]
+Mahonian.P_one : Mahonian.P 1 = -1 + 2 * Polynomial.X
+'Mahonian.P_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+Mahonian.P_two : Mahonian.P 2 = -1 + 4 * Polynomial.X - 4 * Polynomial.X ^ 2 + Polynomial.X ^ 3 + Polynomial.X ^ 4
+'Mahonian.P_two' depends on axioms: [propext, Classical.choice, Quot.sound]

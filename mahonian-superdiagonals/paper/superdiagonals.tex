@@ -1,0 +1,173 @@
+\documentclass[11pt]{amsart}
+\usepackage[margin=1.15in]{geometry}
+\usepackage{amssymb,hyperref,tikz}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}\newtheorem*{remark}{Remark}
+\newcommand{\st}{\,:\,}
+\title{The superdiagonals of the Mahonian triangle}
+\author{Vamshi Jandhyala}
+\date{25 November 2026}
+\begin{document}
+\begin{abstract}
+Claesson, Frankl\'in and Steingr\'imsson showed that the generating functions of the subdiagonals of the Mahonian
+triangle are $S_i(x)=(xC(x))^iS_0(x)$, and conjectured that the superdiagonals satisfy
+$x^iS_{-i}(x)=S_0(x)C(x)^{-i}+P_i(x)/(1-x)^i$ with $P_i\in\mathbb Z[x]$ of degree $3i-2$. We prove this, with an
+explicit formula for $P_i$. The argument is Lagrange inversion for Laurent series together with the observation that
+the product defining the Mahonian numbers differs from Euler's product by a factor
+$\prod_{j>n}(1-q^j)^{-1}=1+q^{n+1}/(1-q)+O(q^{2n+2})$.
+\end{abstract}
+\maketitle
+
+\section{The statement}
+How many permutations of $[n]$ have exactly $n$ inversions, or $n+1$, or $n-1$? Along any fixed diagonal $k=n-i$ of
+the Mahonian triangle (Figure~\ref{fig:mech}) these numbers form a single sequence, and Claesson, Frankl\'in and
+Steingr\'imsson \cite{CFS} found that all the diagonals below the main one are governed by one series: each is the
+main diagonal times a power of $xC(x)$. They conjectured that the diagonals above it are almost as simple. This note
+proves that conjecture.
+
+Let $I_n(k)$ be the number of permutations of $[n]$ with $k$ inversions, so that
+$\sum_k I_n(k)q^k=\prod_{j=1}^{n}(1-q^j)/(1-q)$, and for every integer $i$ put
+\[
+S_i(x)=\sum_{n\ge0}I_n(n-i)\,x^n ,
+\]
+with $I_0(0)=1$ and $I_n(k)=0$ when no permutation has $k$ inversions. All identities below are identities of formal
+series, and empty sums are zero.
+Let $C(x)=(1-\sqrt{1-4x})/(2x)$ be the Catalan generating function. In \cite[Theorem~3]{CFS} it is shown that
+$S_i=(xC)^iS_0$ for $i\ge0$, and \cite[Conjecture~15]{CFS} (repeated in Frankl\'in's thesis \cite{F}) asserts that for
+every $i\ge1$
+\[
+S_{-i}(x)\,x^i=S_0(x)\,C(x)^{-i}+\frac{P_i(x)}{(1-x)^i}
+\qquad\text{for a polynomial }P_i\in\mathbb Z[x]\text{ of degree }3i-2 .
+\tag{1}
+\]
+In words: above the main diagonal, the series $x^iS_{-i}$ is the subdiagonal formula continued to negative $i$, up to
+a rational correction whose only pole is at $x=1$. For example $P_1=-1+2x$ and $P_2=-1+4x-4x^2+x^3+x^4$.
+
+\input{fig_mech}
+
+\emph{Related work.} For $k\le n$ the numbers $I_n(k)$ are given by the Knuth--Netto formula (see \cite[Sec.~1]{CFS}
+and the references there). Mennen \cite{M} extended a coefficient formula of the same kind to $k<2n+2$ by truncating
+Euler's product; in the range $n\ge i-1$ this is the coefficient statement of Lemma~\ref{split} below. What is new
+here is the generating-function identity (1) for every $i$, the formula for $P_i$, and its exact degree, which comes
+from the one place where that truncation is not single-part.
+
+\begin{theorem}\label{thm}
+Conjecture~15 of \cite{CFS} is true. Write $F(q)=\prod_{j\ge1}(1-q^j)=\sum_s f_sq^s$, and for integers $n$ and $k$ let
+$A(n,k)=[q^k]\,F(q)(1-q)^{-n}$. Then \textup{(1)} holds with
+\[
+P_i(x)=(1-x)^i\Bigl(\sum_{n=0}^{i-2}c_n x^{n+i}-\sum_{r=1}^{i}A(-r,i-r)\,x^{i-r}\Bigr)
++x^i\sum_{t=0}^{i-1}\Bigl(f_t(1-x)^{i-1}+\sum_{s=0}^{t-1}f_s\,x(1-x)^{i-t+s-1}\Bigr),
+\]
+where $c_n=I_n(n+i)-A(n,n+i)-\sum_{t=0}^{i-1}A(n,t)$. For $i\ge2$ the leading term of $P_i$ is $(-1)^ix^{3i-2}$.
+\end{theorem}
+In the formula for $P_i$, the first bracket holds the finitely many corrections from small $n$ and the polar part left
+by Lagrange inversion; the last sum holds the contributions of single parts of $\prod_{j>n}(1-q^j)^{-1}$.
+
+\section{Proof}
+\emph{Strategy.} The Mahonian product $\prod_{j\le n}(1-q^j)/(1-q)$ is Euler's product $F(q)$ times $(1-q)^{-n}$,
+corrected by the factor $\prod_{j>n}(1-q^j)^{-1}$. Without that factor, the diagonal generating functions would follow
+from Lagrange inversion alone: for the subdiagonals this is the formula $S_i=(xC)^iS_0$, and for the superdiagonals
+the same inversion, applied to a Laurent series, gives the main term $S_0C^{-i}$ plus a polynomial (Lemma~\ref{lagrange}).
+The correcting factor contributes only through partitions into parts larger than $n$. Below degree $2n+2$ these are
+single parts, whose contributions are polynomials in $n$ and so sum to rational functions with denominator
+$(1-x)^{i}$ (Lemmas~\ref{split} and \ref{columns}). The first two-part partition, $(n+1)+(n+1)$, gives the top
+coefficient of $P_i$.
+
+Write $\phi(q)=1/(1-q)$ and $G_n(q)=\prod_{j>n}(1-q^j)^{-1}$, so that
+\[
+\sum_k I_n(k)q^k=\phi(q)^n F(q)\,G_n(q). \tag{2}
+\]
+Read (2) as: the Mahonian row is Euler's product spread out by $(1-q)^{-n}$, then corrected by $G_n$.
+The coefficient of $q^m$ in $G_n$ is the number $p_{>n}(m)$ of partitions of $m$ into parts larger than $n$. Thus
+$p_{>n}(0)=1$, $p_{>n}(m)=0$ for $1\le m\le n$, $p_{>n}(m)=1$ for $n<m\le 2n+1$ (the single part $m$), and
+$p_{>n}(2n+2)=2$ (the partitions $2n+2$ and $(n+1)+(n+1)$).
+
+\begin{lemma}\label{split}
+Let $i\ge1$. For every $n\ge0$,
+$I_n(n+i)=A(n,n+i)+\sum_{t=0}^{i-1}A(n,t)+c_n$, where $c_n=0$ for $n\ge i-1$ and $c_{i-2}=1$ when $i\ge2$.
+\end{lemma}
+\begin{proof}
+By (2), $I_n(n+i)=\sum_{m=0}^{n+i}p_{>n}(m)\,A(n,n+i-m)$. The term $m=0$ is $A(n,n+i)$. Writing $t=n+i-m$, the terms
+with $n<m\le n+i$ are $\sum_{t=0}^{i-1}p_{>n}(n+i-t)A(n,t)$, and the terms with $1\le m\le n$ vanish. If $n\ge i-1$ then
+$n+i\le 2n+1$, so every $p_{>n}(n+i-t)$ equals $1$ and $c_n=0$. If $n=i-2$ then $n+i=2n+2$, the only coefficient
+different from $1$ is $p_{>n}(2n+2)=2$ at $t=0$, and $c_{i-2}=A(i-2,0)=f_0=1$.
+\end{proof}
+
+The case $i=0$ of the same computation gives $I_n(n)=A(n,n)$ for all $n$, since $p_{>n}(m)=0$ for $1\le m\le n$.
+
+\begin{lemma}\label{lagrange}
+Let $w=xC(x)$, the power series with $w=x\phi(w)$. For every integer $i\ge0$,
+\[
+\sum_{n\ge0}A(n,n+i)\,x^n=x^{-i}C(x)^{-i}S_0(x)-\sum_{r=1}^{i}A(-r,i-r)\,x^{-r},
+\]
+where for $r\ge1$, $A(-r,k)=[q^k]F(q)(1-q)^r$.
+\end{lemma}
+So the main term of each superdiagonal is $S_0$ divided by a power of $xC(x)$, and what is lost in that division is a
+polynomial in $1/x$ of degree at most $i$.
+\begin{proof}
+Lagrange inversion for Laurent series \cite[Theorem~2.1.1, (2.1.4)]{G}, with $R=\phi$ and $\psi(t)=t^{-i}F(t)$, gives for
+every integer $n$
+\[
+[x^n]\,\frac{w^{-i}F(w)}{1-x\phi'(w)}=[t^n]\,t^{-i}F(t)\phi(t)^n=A(n,n+i).
+\]
+For $n<0$ the right side is $[q^{n+i}]F(q)(1-q)^{-n}$, which is zero unless $n\ge-i$. Hence
+$w^{-i}F(w)/(1-x\phi'(w))=\sum_{n\ge0}A(n,n+i)x^n+\sum_{r=1}^{i}A(-r,i-r)x^{-r}$. With $i=0$ and $I_n(n)=A(n,n)$ this
+reads $S_0=F(w)/(1-x\phi'(w))$, and since $w^{-i}=x^{-i}C^{-i}$ the general case follows.
+\end{proof}
+
+\begin{lemma}\label{columns}
+For every $t\ge0$,
+$\displaystyle\sum_{n\ge0}A(n,t)x^n=\frac{f_t}{1-x}+\sum_{s=0}^{t-1}\frac{f_s\,x}{(1-x)^{t-s+1}}$.
+\end{lemma}
+\begin{proof}
+$\sum_{n\ge0}x^n\phi(q)^n=(1-q)/(1-x-q)$, whose coefficient of $q^u$ is $1/(1-x)$ for $u=0$ and
+$(1-x)^{-u-1}-(1-x)^{-u}=x(1-x)^{-u-1}$ for $u\ge1$. Multiply by $F(q)$ and take the coefficient of $q^t$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm}]
+Multiply Lemma~\ref{split} by $x^{n+i}$ and sum over $n\ge0$. Lemma~\ref{lagrange} turns the first term into
+$C^{-i}S_0-\sum_{r=1}^{i}A(-r,i-r)x^{i-r}$, and Lemma~\ref{columns} turns the second into $x^i$ times a rational function
+whose denominators divide $(1-x)^i$, because $t\le i-1$. Collecting terms gives (1) with the stated $P_i$, which has
+integer coefficients because every $f_s$, $A(-r,k)$ and $c_n$ is an integer.
+
+For the degree, the first sum in $P_i$ contributes degree at most $(i-1)+i=2i-1$ through the $A(-r,i-r)$ terms; each
+summand of the last sum has degree at most $i-1$, so that part has degree at most $2i-1$; and
+$(1-x)^i\sum_{n\le i-2}c_nx^{n+i}$ has degree at most $3i-2$, with coefficient $(-1)^ic_{i-2}=(-1)^i$ at $x^{3i-2}$. For
+$i\ge2$ we have $3i-2>2i-1$, so $P_i$ has degree exactly $3i-2$. For $i=1$ the formula gives $P_1=-1+2x$.
+\end{proof}
+
+\begin{remark}
+Only $c_{i-2}$ matters for the degree. In general
+$c_n=\sum_{t=0}^{i-1}\bigl(p_{>n}(n+i-t)-1\bigr)A(n,t)$, a signed weighted sum (for instance $c_0=-1$ when $i=7$); the
+terms with $n<i-2$ affect $P_i$ only below degree $3i-2$.
+\end{remark}
+
+\section*{Verification}
+Independent exact checks (integer power series, no shared code with the proof's formula), over the stated finite ranges: the decomposition of
+Lemmas~\ref{split} and \ref{lagrange} for $1\le i\le6$, and the explicit formula for $P_i$ against
+$(1-x)^i\bigl(x^iS_{-i}-C^{-i}S_0\bigr)$ computed from Mahonian rows, for $1\le i\le 8$ to order $x^{40}$ or more. The
+printed $P_1,\dots,P_4$ of \cite{CFS} are reproduced coefficient by coefficient (asserted in the check). A mutation suite plants ten false variants of the claims
+(degree, sign, the value of $c_{i-2}$, exponents, a printed coefficient) and every one is rejected.
+
+Lemmas~\ref{split} and \ref{columns}, the assembly of (1), the formula for $P_i$, its degree $3i-2$ and its leading
+coefficient are formalised in Lean~4 with Mathlib. Lemma~\ref{lagrange} enters the formalisation as a stated
+hypothesis citing \cite{G}; everything else is proved, using only the standard axioms. Code, scripts and the Lean
+project: \url{https://github.com/jvvk/mathematics/tree/main/mahonian-superdiagonals}, archived at
+doi:\href{https://doi.org/10.5281/zenodo.24536366}{10.5281/zenodo.24536366}.
+
+\section*{Acknowledgement}
+The proof was found with Claude (Anthropic, Claude Opus 5.5), which also wrote the verification scripts and, with a
+subagent, the Lean formalisation. Codex (OpenAI) ran an independent literature search, an independent line-by-line
+check of the proof and the second verification script. The author is responsible for the content.
+
+\begin{thebibliography}{9}
+\bibitem{CFS} A.~Claesson, A.~F.~Frankl\'in and E.~Steingr\'imsson, Permutations with few inversions,
+\emph{Electron. J. Combin.} 30(4) (2023), \#P4.7, doi:10.37236/12075.
+\bibitem{F} A.~F.~Frankl\'in, \emph{Enumerating score sequences and permutations by inversions and forbidden patterns},
+PhD thesis, University of Iceland, 2026.
+\bibitem{M} A.~Mennen, Mahonian triangle, unpublished note, 31 December 2010,
+\url{https://www.alex.mennen.org/mahoniantri.pdf} (accessed 25 November 2026).
+\bibitem{G} I.~M.~Gessel, Lagrange inversion, \emph{J. Combin. Theory Ser. A} 144 (2016), 212--249, arXiv:1609.05988.
+\end{thebibliography}
+\end{document}
