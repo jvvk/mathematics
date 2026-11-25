@@ -1,0 +1,5 @@
+n=9: 28 = 3n+1 edges, no strongly non-nested 4-matching
+n=10: 31 = 3n+1 edges, no strongly non-nested 4-matching
+n=11: 34 = 3n+1 edges, no strongly non-nested 4-matching
+n=12: 37 = 3n+1 edges, no strongly non-nested 4-matching
+THEOREM 2 CHECKED (n = 9..12)
