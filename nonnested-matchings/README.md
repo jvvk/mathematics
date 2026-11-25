@@ -19,7 +19,7 @@ AI use: the proof route of Theorem 1 was found with Codex (OpenAI); Claude (Anth
 ## Contents
 
 - `paper/`: `nonnested.tex` and `nonnested.pdf`.
-- `verify/` (Python 3 with `python-sat`). Each program exits nonzero if a claim fails (and refuses to run under `python3 -O`, which would strip the checks).
+- `verify/` (Python 3 with `python-sat`). Each program exits nonzero if a claim fails; the three certificate scripts refuse to run under `python3 -O`, which would strip their checks.
   - `values.py` with `fk.py`: every computed value stated in the note (f_3 and f*_3 for n = 6..11, f_4 for n = 8..13, f*_4 for n = 9..13, and the control f_5(11) = 45 from de Castro), each by a SAT instance at the value and an UNSAT instance one above. Output `values.out`.
   - `recheck_values.py`: the same values from a separate enumeration and solver, sharing no code. Output `recheck_values.out`.
   - `recheck_g9.py`: Theorem 2 without SAT: G9 and its extensions to n = 12 contain no strongly non-nested 4-matching. Output `recheck_g9.out`.
