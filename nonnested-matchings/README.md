@@ -12,7 +12,7 @@ Two disjoint edges of a graph on `[n]` are nested when one lies strictly inside 
 
 This note proves `f_3(n) = f*_3(n) = 2n` for every `n ≥ 6`, and shows that the strong form fails for `k = 4`: a graph on 9 vertices with 28 edges and no strongly non-nested 4-matching, extended to `3n + 1` edges for every `n ≥ 9`. For `k = 3`, eight short edges must form two small stars that fence in every other edge; in the equality case of the Barát–Freschi–Tóth count the long edges complete a 2-triangulation, and the star polygons of Pilaud and Santos force three pairwise crossing edges. The plain form for `k = 4` stays open; it holds for `n ≤ 13`.
 
-Preprint v1, 25 November 2026, not peer reviewed; released before the author's line-by-line reading.
+Preprint v1, 25 November 2026, not peer reviewed; released before the author's line-by-line reading. Zenodo: [doi:10.5281/zenodo.24543565](https://doi.org/10.5281/zenodo.24543565), identical to this folder at the tag.
 
 AI use: the proof route of Theorem 1 was found with Codex (OpenAI); Claude (Anthropic) did the computations, found the reduction to the equality case and the two-star structure numerically, found the graph of Theorem 2 and its proof, checked every step against the sources, wrote the verification programs, drafted the text and (with a subagent) the Lean formalisation.
 
