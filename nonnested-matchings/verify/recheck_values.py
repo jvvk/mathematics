@@ -1,6 +1,9 @@
 """Independent recheck (shares no code with fk.py / values.py): recomputes the same values by a different enumeration
 of forbidden matchings (k-subsets of edges filtered by pairwise relations computed from sorted endpoints).
 Run: python3 recheck_values.py   (about 15 minutes)"""
+import sys
+if not __debug__: sys.exit("run without -O: the checks are assert statements")
+
 import itertools, time
 from pysat.solvers import Minisat22
 from pysat.card import CardEnc, EncType
@@ -34,7 +37,7 @@ CASES = [*[(3, s, n, 2 * n) for s in (False, True) for n in range(6, 12)],
          *[(4, False, n, 3 * n) for n in range(8, 14)],
          (4, True, 9, 28), (4, True, 10, 31), (4, True, 11, 35), (4, True, 12, 38), (4, True, 13, 41), (5, False, 11, 45)]
 import os
-if os.environ.get('QUICK'): CASES = [c for c in CASES if c[2] <= 11]   # mutation runs
+if '--quick' in sys.argv: CASES = [c for c in CASES if c[2] <= 11]   # mutation runs
 for k, strong, n, val in CASES:
     t0 = time.time(); F = list(forbidden(n, k, strong))
     assert feasible(n, k, strong, val, F) and not feasible(n, k, strong, val + 1, F), (k, strong, n, val)

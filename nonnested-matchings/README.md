@@ -8,7 +8,7 @@
 <p align="center"><sub><a href="paper">paper</a> · <a href="lean">Lean proof</a> · <a href="verify">code</a> · <a href="../">all results</a></sub></p>
 <!-- visual:end -->
 
-Two disjoint edges of a graph on `[n]` are nested when one lies strictly inside the other. Let `f_k(n)` be the largest number of edges of an ordered graph on `[n]` with no `k` pairwise disjoint, pairwise non-nested edges, and `f*_k(n)` the same with only *strongly* non-nested matchings forbidden (crossing an equivalence relation on the matching). Barát, Freschi and Tóth proved `(k−1)n ≤ f_k(n) ≤ f*_k(n) ≤ (k−1)n + C(k−1, 2)` and conjectured `f_k(n) = f*_k(n) = (k−1)n`; de Castro (arXiv:2609.14484) disproved this for every `k ≥ 5`.
+Two disjoint edges of a graph on `[n]` are nested when one lies strictly inside the other. Let `f_k(n)` be the largest number of edges of an ordered graph on `[n]` with no `k` pairwise disjoint, pairwise non-nested edges, and `f*_k(n)` the same with only *strongly* non-nested matchings forbidden ("equal or crossing" an equivalence relation on the matching). Barát, Freschi and Tóth proved `(k−1)n ≤ f_k(n) ≤ f*_k(n) ≤ (k−1)n + C(k−1, 2)` and conjectured `f_k(n) = f*_k(n) = (k−1)n`; de Castro (arXiv:2609.14484) disproved this for every `k ≥ 5`.
 
 This note proves `f_3(n) = f*_3(n) = 2n` for every `n ≥ 6`, and shows that the strong form fails for `k = 4`: a graph on 9 vertices with 28 edges and no strongly non-nested 4-matching, extended to `3n + 1` edges for every `n ≥ 9`. For `k = 3`, eight short edges must form two small stars that fence in every other edge; in the equality case of the Barát–Freschi–Tóth count the long edges complete a 2-triangulation, and the star polygons of Pilaud and Santos force three pairwise crossing edges. The plain form for `k = 4` stays open; it holds for `n ≤ 13`.
 
@@ -19,8 +19,8 @@ AI use: the proof route of Theorem 1 was found with Codex (OpenAI); Claude (Anth
 ## Contents
 
 - `paper/`: `nonnested.tex` and `nonnested.pdf`.
-- `verify/` (Python 3 with `python-sat`). Each program exits nonzero if a claim fails.
-  - `values.py` with `fk.py`: every value stated in the note (f_3 and f*_3 for n = 6..11, f_4 for n = 8..13, f*_4 for n = 9..13, and the control f_5(11) = 45 from de Castro), each by a SAT instance at the value and an UNSAT instance one above. Output `values.out`.
+- `verify/` (Python 3 with `python-sat`). Each program exits nonzero if a claim fails (and refuses to run under `python3 -O`, which would strip the checks).
+  - `values.py` with `fk.py`: every computed value stated in the note (f_3 and f*_3 for n = 6..11, f_4 for n = 8..13, f*_4 for n = 9..13, and the control f_5(11) = 45 from de Castro), each by a SAT instance at the value and an UNSAT instance one above. Output `values.out`.
   - `recheck_values.py`: the same values from a separate enumeration and solver, sharing no code. Output `recheck_values.out`.
   - `recheck_g9.py`: Theorem 2 without SAT: G9 and its extensions to n = 12 contain no strongly non-nested 4-matching. Output `recheck_g9.out`.
   - `mutants.toml` with `mutate.py`: eight false variants of the stated values; every one is rejected.

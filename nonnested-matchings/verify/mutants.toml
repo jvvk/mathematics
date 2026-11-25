@@ -1,10 +1,10 @@
 # Python mutation suite for verify/ (run from this folder): python3 -I mutate.py mutants.toml
-# Each mutant asserts a FALSE stronger/different value; every one must be rejected. QUICK=1 limits to n <= 11.
+# Each mutant asserts a FALSE stronger/different value; every one must be rejected. --quick limits values/recheck_values to n <= 11.
 [check]
-cmd = ["env", "QUICK=1", "python3", "{file}"]
+cmd = ["python3", "{file}", "--quick"]
 cwd = "."
 timeout = 900
-fail_markers = ["AssertionError", "Error"]
+fail_markers = ["AssertionError"]
 
 [[mutant]]
 name = "values: f*_4(9) = 29"

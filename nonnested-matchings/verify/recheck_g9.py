@@ -1,5 +1,8 @@
 """Independent check of Theorem 2 (no SAT, no code shared with the search): G9 as defined in the note has 28 edges and
 no strongly non-nested 4-matching; the graphs obtained by adding vertices joined to 1, 2, 3 keep this, for n <= 12."""
+import sys
+if not __debug__: sys.exit("run without -O: the checks are assert statements")
+
 import itertools
 def G9():
     A, B = [1, 2, 3], range(4, 10)

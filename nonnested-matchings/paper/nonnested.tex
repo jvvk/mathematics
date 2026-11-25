@@ -26,8 +26,10 @@ plain form for $k=4$ remains open; we verify it for $n\le 13$.
 Put the points $1,2,\dots,n$ on a line and draw arcs between some pairs of them, all above the line. How many arcs can
 you draw before you are forced to find three arcs with no common endpoints, none of which sits inside another? Try it
 for $n=7$ before reading on. One good answer joins every pair among $1,\dots,5$ and then joins $6$ and $7$ to $1$ and
-$2$, which gives $10+4=14=2n$ arcs (Figure~\ref{fig:patterns}, bottom). Any three disjoint arcs must use $6$ or $7$,
-and an arc ending at $6$ or $7$ starts at $1$ or $2$, so it contains every arc that starts later.
+$2$, which gives $10+4=14=2n$ arcs (Figure~\ref{fig:patterns}, bottom). Any three disjoint arcs must use $6$ or $7$.
+In three pairwise non-nested disjoint arcs, the order of the left ends is the order of the right ends; the arc with the
+last right end ends at $6$ or $7$, so its left end is $1$ or $2$, and the three distinct left ends would all lie in
+$\{1,2\}$.
 
 \begin{figure}[ht]
 \centering
@@ -61,7 +63,8 @@ disjoint pairwise non-nested edges: $K_5$ on $\{1,\dots,5\}$ (grey) and the edge
 Formally, an \emph{ordered graph} is a graph on $[n]=\{1,\dots,n\}$; we write an edge as $ij$ with $i<j$ and call
 $j-i$ its length. Two disjoint edges $ij$ and $st$ with $i<s$ are \emph{nested} if $t<j$, \emph{crossing} if
 $s<j<t$, and \emph{separated} if $j<s$. A $k$-matching is \emph{non-nested} if no two of its edges are nested. It is
-\emph{strongly non-nested} if, in addition, crossing is an equivalence relation on it: the matching splits into blocks
+\emph{strongly non-nested} if, in addition, ``equal or crossing'' is an equivalence relation on it (equivalently,
+crossing is transitive on distinct edges): the matching splits into blocks
 of pairwise crossing edges, and edges in different blocks are separated. For three edges, strongly non-nested means
 pairwise crossing, pairwise separated, or a crossing pair together with an edge separated from both. Let $f_k(n)$ and
 $f^*_k(n)$ be the largest number of edges of an ordered graph on $[n]$ with no non-nested $k$-matching, respectively
@@ -101,8 +104,8 @@ its long edges are as many as Capoyleas and Pach allow. Lemma~\ref{lem:short} sh
 small stars, and Lemma~\ref{lem:fence} shows that these stars confine every other edge. In the equality case the long
 edges complete a $2$-triangulation, whose star polygons (Theorem PS) then force three pairwise crossing edges.
 
-A short edge has at most one vertex strictly between its ends, so it is never nested with a disjoint edge, and it is
-never one of three pairwise crossing edges (two of them would need that same inner vertex). Let $H$ be $G$ together
+A short edge has at most one vertex strictly between its ends, so it contains no disjoint edge, and it is never one of
+three pairwise crossing edges (two of them would need that same inner vertex). Let $H$ be $G$ together
 with all $2n-3$ short edges. Three pairwise crossing edges form a strongly non-nested $3$-matching, so $H$ has none.
 Capoyleas and Pach \cite{CP} proved that a graph on $n$ points in convex position with no three pairwise crossing
 edges has at most $4n-10$ edges; drawing $[n]$ on a circle in its natural order turns crossing in our sense into
@@ -119,7 +122,8 @@ $a<b$ with $b-a\ge3$, namely $a$ joined to $a-2,a-1,a+1,a+2$ and $b$ joined to $
 
 \begin{proof}
 Three disjoint short edges are never nested, and each crosses at most one of the others (a crossing edge must use its
-inner vertex), so crossing is an equivalence relation on them: they form a strongly non-nested matching. Hence the
+inner vertex), so ``equal or crossing'' is an equivalence relation on them: they form a strongly non-nested
+matching. Hence the
 short edges of $G$ contain no $3$-matching. The edges of a fixed length form disjoint paths (for length $2$, one on
 the odd and one on the even vertices), and a union of paths with $m$ edges contains a matching of size $\lceil
 m/2\rceil$. So there are at most $4$ short edges of each length, and at most $8$ in all. (Directly: among five such edges with
@@ -165,12 +169,15 @@ called \emph{$2$-triangulations}. A \emph{$2$-star} is the pentagram formed by f
 cyclic order with the five chords $s_js_{j+2}$.
 
 \begin{ps}[Pilaud and Santos {\cite[Corollary~4.2(ii)]{PS}}]
-In a $2$-triangulation of the $n$-gon, $n\ge5$, every chord joining two vertices at cyclic distance $2$ belongs to
-exactly one $2$-star, which lies on the side of the chord containing the single vertex between its ends.
+In a $2$-triangulation of the $n$-gon, $n\ge5$, every chord joining two vertices at cyclic distance $2$ belongs to a
+$2$-star \textup{(}indeed to exactly one\textup{)}.
 \end{ps}
 
-Concretely, for three cyclically consecutive vertices $p,q,r$ there are vertices $u,v$ with $p,q,r,u,v$ in cyclic order
-and the five chords $pr,\,qu,\,rv,\,up,\,vq$ all present.
+We use it in the following form. Let $p,q,r$ be cyclically consecutive and let $S$ be a $2$-star containing the chord
+$pr$. A chord $s_js_{j+2}$ of a $2$-star has exactly one vertex of the star strictly on one side and two on the other.
+Only $q$ lies strictly between $p$ and $r$ on the short side, so the side with one star vertex is that one and the
+vertex is $q$. Hence $S$ has vertices $p,q,r,u,v$ in cyclic order, and the five chords $pr,\,qu,\,rv,\,up,\,vq$
+are present.
 
 \begin{proof}[Proof of Theorem~\ref{thm:k3}]
 By (2) and Lemma~\ref{lem:short}, $e(G)\le 2n+1$, and equality forces $s=8$ and $e(H)=4n-10$. Suppose equality
@@ -251,10 +258,9 @@ from (1).
 A SAT computation, with each forbidden non-nested $4$-matching as a clause, gives $f_4(n)=3n$ for $8\le n\le13$. As a
 control, the same program finds de Castro's excess at $k=5$: $f_5(11)=45=4\cdot11+1$. The argument of Section~2 does not
 carry over directly. With short edges now of length at most $3$, the count (2) becomes $e(G)\le 3n-15+s$ with $s\le18$,
-so only $s\ge16$ needs an argument. In every computed case ($n\le13$) the long edges then number at most $3n-s$, and
-$s=18$ does not occur. The difficulty is that the short edges alone are far less rigid than in Lemma~\ref{lem:short}:
-on $16$ vertices they already admit more than two hundred configurations with $s\ge16$, against the single family
-found there.
+by \cite[Lemma~2.8]{BFT}, so only $s\ge16$ needs an argument. The difficulty is that, unlike the short edges in
+Lemma~\ref{lem:short}, short edges of length up to $3$ can be nested inside one another and can form chains of
+crossings, so dense short configurations no longer reduce to a single family.
 
 \begin{problem}
 Is $f_4(n)=3n$ for every $n\ge8$?
