@@ -9,7 +9,8 @@ import LeanProofs.Mahonian.Report
 /-
 # The superdiagonals of the Mahonian triangle (CFS Conjecture 15)
 
-Formalises `mahonian-superdiagonals/note/superdiagonals.tex` (namespace `Mahonian`).
+Formalises the note `superdiagonals.tex`
+(`paper/` in the jvvk/mathematics release folder `mahonian-superdiagonals`) (namespace `Mahonian`).
 Claesson, Franklín and Steingrímsson (EJC 30(4) 2023, Conjecture 15): for `i ≥ 1`,
 `x^i S_{-i} = S_0 C^{-i} + P_i/(1-x)^i` with `P_i ∈ ℤ[x]` of degree `3i-2`.
 

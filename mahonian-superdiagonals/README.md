@@ -3,7 +3,7 @@
 <!-- visual:start -->
 <p align="center"><img src="visual.svg" width="760" alt="The Mahonian triangle I_n(k) for n up to 8, with the main diagonal k = n and the superdiagonals k = n+1 and k = n+2 shaded"></p>
 
-<p align="center"><b>Every superdiagonal of the Mahonian triangle is the main diagonal divided by a power of xC(x), plus a rational correction P<sub>i</sub>/(1−x)<sup>i</sup> of exact degree 3i−2.</b><br><sub>Conjecture 15 of Claesson, Franklín and Steingrímsson (Electron. J. Combin. 30(4) (2023), P4.7), proved.</sub></p>
+<p align="center"><b>x<sup>i</sup>S<sub>−i</sub> = S<sub>0</sub>C<sup>−i</sup> + P<sub>i</sub>/(1−x)<sup>i</sup>: each superdiagonal of the Mahonian triangle is the main diagonal divided by (xC(x))<sup>i</sup>, up to P<sub>i</sub>/(x<sup>i</sup>(1−x)<sup>i</sup>), with P<sub>i</sub> of exact degree 3i−2.</b><br><sub>Conjecture 15 of Claesson, Franklín and Steingrímsson (Electron. J. Combin. 30(4) (2023), P4.7), proved.</sub></p>
 
 <p align="center"><sub><a href="paper">paper</a> · <a href="lean">Lean proof</a> · <a href="verify">code</a> · <a href="../">all results</a></sub></p>
 <!-- visual:end -->
@@ -22,7 +22,7 @@ AI use: the proof was found with Claude (Anthropic), which also wrote the verifi
 
 - `paper/`: `superdiagonals.tex` (with `fig_mech.tex`) and `superdiagonals.pdf`.
 - `verify/` (Python 3, standard library only). Each program exits nonzero if a claim fails.
-  - `explicit_check.py`: the explicit formula for `P_i` against `(1−x)ⁱ(xⁱS_{−i} − C^{−i}S_0)` computed from Mahonian rows, `i ≤ 8`; degree `3i−2`, leading coefficient `(−1)ⁱ`, `c_{i−2} = 1`; `P_1`–`P_4` equal the polynomials printed by Claesson, Franklín and Steingrímsson. Output `explicit_check.out`.
+  - `explicit_check.py`: the explicit formula for `P_i` against `(1−x)ⁱ(xⁱS_{−i} − C^{−i}S_0)` computed from Mahonian rows, `i ≤ 8`; degree `3i−2`; for `i ≥ 2` leading coefficient `(−1)ⁱ` and `c_{i−2} = 1`; `P_1`–`P_4` equal the polynomials printed by Claesson, Franklín and Steingrímsson. Output `explicit_check.out`.
   - `recheck_codex.py`: an independent recheck sharing no code (all permutations to `n = 8`, all partitions to 35, Lemmas 2–4, `P_i` for `i ≤ 40`). Output `recheck_codex.out`.
   - `mutants.toml` with `mutate.py`: ten false variants of the claims (including a changed coefficient of the printed P_3); every one is rejected.
 - `lean/`: a Lean 4 project pinned to the Mathlib version it was checked with; `lean/README.md` lists what is formalised and what is not (Lemma 3, Lagrange inversion for Laurent series, is a stated hypothesis citing Gessel 2016).

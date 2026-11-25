@@ -1,6 +1,6 @@
 """Independent exact audit; does not import either supplied check script.
 
-Run: python3 audit_check.py
+Run: python3 recheck_codex.py
 All arrays store coefficients in increasing order, truncated to LEN terms.
 """
 from itertools import permutations

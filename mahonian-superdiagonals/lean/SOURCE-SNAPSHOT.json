@@ -1,5 +1,5 @@
 {
-  "source_commit": "330c087 (lean-proofs)",
+  "source_commit": "8d18a75 (lean-proofs)",
   "lean_toolchain": "leanprover/lean4:v4.34.0",
   "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
   "uncommitted_overrides": [
@@ -16,7 +16,7 @@
     "LeanProofs/Mahonian/Main.lean": "417bf9dc8b1a5f44b66f3e8aed0ea82c4d7f8ad3c7020f61c7cbb70f47b18429",
     "LeanProofs/Mahonian/Report.lean": "2d5296d89afee1dbfa2460db72e1a02e490c3cf31f9e9fc432149920dedd98c8",
     "LeanProofs/Mahonian/Truncation.lean": "30f7f1f78b709ec15cd5f776a5f1fb498005c388389ff98bd5b32c7117ae0e4b",
-    "LeanProofs/Mahonian.lean": "45f1f0c3948d07cfe6d051af6a00c301d9f4f2182552942b5932eede10b70239",
+    "LeanProofs/Mahonian.lean": "3c951fca410d88d7d3ebb73732b3774b51d27b4cecb78dfe99a2d29250640fb1",
     "LeanProofs.lean": "90daad1af6498bf3b7b8ec115f27e956eeae898ac6a8afe143f38f562bda0f25",
     "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
     "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
