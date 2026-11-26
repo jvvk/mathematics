@@ -1,0 +1,70 @@
+# Mutation suite for the A336110 description-tree key lemmas (LeanProofs/DescriptionTrees/Basic.lean). Each
+# mutant changes one stated result to a stronger, false one; every one must be rejected. Run from anywhere:
+#   cd scripts && python3 mutate.py mutants.toml
+[check]
+cmd = ["lake", "env", "lean", "{file}"]
+cwd = ".."
+timeout = 900
+fail_markers = ["error"]
+fail_pattern = '^(?P<file>\S+\.lean):\d+:\d+: error\b'
+log_dir = "mutation-logs"
+
+[[mutant]]
+name = "Om prefactor 13^k"
+file = "../LeanProofs/DescriptionTrees/Basic.lean"
+old = "(12 : ℚ) ^ k / (((k + 1).factorial"
+new = "(13 : ℚ) ^ k / (((k + 1).factorial"
+
+[[mutant]]
+name = "recurrence with 3(m+2k+2)..."
+file = "../LeanProofs/DescriptionTrees/Basic.lean"
+old = "      2 * ((m : ℚ) + 2 * k + 2) * (m + 2 * k + 1) * (m + 2 * k) * Om k m := by"
+new = "      3 * ((m : ℚ) + 2 * k + 2) * (m + 2 * k + 1) * (m + 2 * k) * Om k m := by"
+
+[[mutant]]
+name = "C(a+2,3) = (a+2)(a+1)a/3"
+file = "../LeanProofs/DescriptionTrees/Basic.lean"
+old = "(((a + 2).choose 3 : ℕ) : ℚ) = ((a : ℚ) + 2) * ((a : ℚ) + 1) * (a : ℚ) / 6 := by"
+new = "(((a + 2).choose 3 : ℕ) : ℚ) = ((a : ℚ) + 2) * ((a : ℚ) + 1) * (a : ℚ) / 3 := by"
+
+[[mutant]]
+name = "uniqueness without the m = 0 entry of row 0"
+file = "../LeanProofs/DescriptionTrees/Basic.lean"
+old = "(h0 : ∀ m, c 0 m = d 0 m) : c = d := by"
+new = "(h0 : ∀ m, c 0 (m + 1) = d 0 (m + 1)) : c = d := by"
+
+[[mutant]]
+name = "Lemma 2 odd with C_{s+1}"
+file = "../LeanProofs/DescriptionTrees/Basic.lean"
+old = "theorem lemma2_odd (s r : ℕ) : Om s (2 * r + 1) = catalan s * a s r := by"
+new = "theorem lemma2_odd (s r : ℕ) : Om s (2 * r + 1) = catalan (s + 1) * a s r := by"
+
+[[mutant]]
+name = "Lemma 2 even with 2^s"
+file = "../LeanProofs/DescriptionTrees/Basic.lean"
+old = "theorem lemma2_even (s r : ℕ) : Om s (2 * r + 2) = 4 ^ s * b s r := by"
+new = "theorem lemma2_even (s r : ℕ) : Om s (2 * r + 2) = 2 ^ s * b s r := by"
+
+[[mutant]]
+name = "first 3F2 with lower parameter 5/2"
+file = "../LeanProofs/DescriptionTrees/Basic.lean"
+old = "    (rf (1 / 2) r * rf (3 / 2) r * r.factorial)"
+new = "    (rf (1 / 2) r * rf (5 / 2) r * r.factorial)"
+
+[[mutant]]
+name = "R(q,0) = +zq"
+file = "../LeanProofs/DescriptionTrees/Basic.lean"
+old = "theorem R_at_zero (z q : ℚ) : R z 0 q = -z * q := by"
+new = "theorem R_at_zero (z q : ℚ) : R z 0 q = z * q := by"
+
+[[mutant]]
+name = "q* with 3zp^2"
+file = "../LeanProofs/DescriptionTrees/Basic.lean"
+old = "def qNum (p z : ℚ) : ℚ := z * p * ((1 - p) ^ 2 - 4 * z * p ^ 2)"
+new = "def qNum (p z : ℚ) : ℚ := z * p * ((1 - p) ^ 2 - 3 * z * p ^ 2)"
+
+[[mutant]]
+name = "t* with (1+2pz) in the numerator"
+file = "../LeanProofs/DescriptionTrees/Basic.lean"
+old = "def tNum (p z : ℚ) : ℚ := p * (1 - p) ^ 2 * (1 + p * z)"
+new = "def tNum (p z : ℚ) : ℚ := p * (1 - p) ^ 2 * (1 + 2 * p * z)"

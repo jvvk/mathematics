@@ -1,0 +1,16 @@
+[check]
+cmd = ["python3", "{file}"]
+cwd = ".."
+timeout = 300
+
+[[mutant]]
+name = "maximal label not weighted by z"
+file = "../catalytic_check.py"
+old = "+ z * Q[i] + (z if i == 0 else 0)"
+new = "+ Q[i] + (z if i == 0 else 0)"
+
+[[mutant]]
+name = "child adds label + 1"
+file = "../catalytic_check.py"
+old = "sp.expand(u**2 * P[i])"
+new = "sp.expand(u**3 * P[i])"

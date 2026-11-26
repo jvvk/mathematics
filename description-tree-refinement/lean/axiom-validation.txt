@@ -1,0 +1,27 @@
+DescriptionTrees.Om_succ : ∀ (k m : ℕ),
+  (↑k + 2) * (2 * ↑k + 2) * (2 * ↑k + 3) * DescriptionTrees.Om (k + 1) m =
+    2 * (↑m + 2 * ↑k + 2) * (↑m + 2 * ↑k + 1) * (↑m + 2 * ↑k) * DescriptionTrees.Om k m
+'DescriptionTrees.Om_succ' depends on axioms: [propext, Classical.choice, Quot.sound]
+DescriptionTrees.coeff_unique : ∀ (c d : ℕ → ℕ → ℚ),
+  (∀ (k m : ℕ),
+      (↑k + 2) * (2 * ↑k + 2) * (2 * ↑k + 3) * c (k + 1) m =
+        2 * (↑m + 2 * ↑k + 2) * (↑m + 2 * ↑k + 1) * (↑m + 2 * ↑k) * c k m) →
+    (∀ (k m : ℕ),
+        (↑k + 2) * (2 * ↑k + 2) * (2 * ↑k + 3) * d (k + 1) m =
+          2 * (↑m + 2 * ↑k + 2) * (↑m + 2 * ↑k + 1) * (↑m + 2 * ↑k) * d k m) →
+      (∀ (m : ℕ), c 0 m = d 0 m) → c = d
+'DescriptionTrees.coeff_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+DescriptionTrees.Om_zero : ∀ (m : ℕ), DescriptionTrees.Om 0 m = 1
+'DescriptionTrees.Om_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+DescriptionTrees.lemma2_odd : ∀ (s r : ℕ), DescriptionTrees.Om s (2 * r + 1) = ↑(catalan s) * DescriptionTrees.a s r
+'DescriptionTrees.lemma2_odd' depends on axioms: [propext, Classical.choice, Quot.sound]
+DescriptionTrees.lemma2_even : ∀ (s r : ℕ), DescriptionTrees.Om s (2 * r + 2) = 4 ^ s * DescriptionTrees.b s r
+'DescriptionTrees.lemma2_even' depends on axioms: [propext, Classical.choice, Quot.sound]
+DescriptionTrees.R_at_zero : ∀ (z q : ℚ), DescriptionTrees.R z 0 q = -z * q
+'DescriptionTrees.R_at_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+DescriptionTrees.quartic_param : ∀ (p z : ℚ),
+  1 + p ≠ 0 →
+    1 - p ≠ 0 →
+      1 + p * z ≠ 0 →
+        1 - p + 2 * p * z ≠ 0 → DescriptionTrees.R z (DescriptionTrees.tStar p z) (DescriptionTrees.qStar p z) = 0
+'DescriptionTrees.quartic_param' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="60 0 760 250" font-family="Helvetica, Arial, sans-serif">
+<rect width="760" height="250" fill="#ffffff"/>
+<line x1="155" y1="30" x2="155" y2="90" stroke="#333" stroke-width="2"/>
+<line x1="155" y1="90" x2="155" y2="150" stroke="#333" stroke-width="2"/>
+<circle cx="155" cy="30" r="15" fill="#f6c48f" stroke="#333" stroke-width="1.6"/>
+<text x="155" y="35" text-anchor="middle" font-size="15" fill="#111">4</text>
+<circle cx="155" cy="90" r="15" fill="#ffffff" stroke="#333" stroke-width="1.6"/>
+<text x="155" y="95" text-anchor="middle" font-size="15" fill="#111">2</text>
+<circle cx="155" cy="150" r="15" fill="#b9c8f2" stroke="#333" stroke-width="1.6"/>
+<text x="155" y="155" text-anchor="middle" font-size="15" fill="#111">2</text>
+<text x="155" y="198" text-anchor="middle" font-size="16" fill="#111" font-style="italic">ν = 2</text>
+<line x1="305" y1="30" x2="305" y2="90" stroke="#333" stroke-width="2"/>
+<line x1="305" y1="90" x2="305" y2="150" stroke="#333" stroke-width="2"/>
+<circle cx="305" cy="30" r="15" fill="#f6c48f" stroke="#333" stroke-width="1.6"/>
+<text x="305" y="35" text-anchor="middle" font-size="15" fill="#111">5</text>
+<circle cx="305" cy="90" r="15" fill="#ffffff" stroke="#333" stroke-width="1.6"/>
+<text x="305" y="95" text-anchor="middle" font-size="15" fill="#111">3</text>
+<circle cx="305" cy="150" r="15" fill="#b9c8f2" stroke="#333" stroke-width="1.6"/>
+<text x="305" y="155" text-anchor="middle" font-size="15" fill="#111">2</text>
+<text x="305" y="198" text-anchor="middle" font-size="16" fill="#111" font-style="italic">ν = 2</text>
+<line x1="455" y1="30" x2="455" y2="90" stroke="#333" stroke-width="2"/>
+<line x1="455" y1="90" x2="455" y2="150" stroke="#333" stroke-width="2"/>
+<circle cx="455" cy="30" r="15" fill="#f6c48f" stroke="#333" stroke-width="1.6"/>
+<text x="455" y="35" text-anchor="middle" font-size="15" fill="#111">6</text>
+<circle cx="455" cy="90" r="15" fill="#f6c48f" stroke="#333" stroke-width="1.6"/>
+<text x="455" y="95" text-anchor="middle" font-size="15" fill="#111">4</text>
+<circle cx="455" cy="150" r="15" fill="#b9c8f2" stroke="#333" stroke-width="1.6"/>
+<text x="455" y="155" text-anchor="middle" font-size="15" fill="#111">2</text>
+<text x="455" y="198" text-anchor="middle" font-size="16" fill="#111" font-style="italic">ν = 3</text>
+<line x1="605" y1="30" x2="577" y2="90" stroke="#333" stroke-width="2"/>
+<line x1="605" y1="30" x2="633" y2="90" stroke="#333" stroke-width="2"/>
+<circle cx="605" cy="30" r="15" fill="#f6c48f" stroke="#333" stroke-width="1.6"/>
+<text x="605" y="35" text-anchor="middle" font-size="15" fill="#111">6</text>
+<circle cx="577" cy="90" r="15" fill="#b9c8f2" stroke="#333" stroke-width="1.6"/>
+<text x="577" y="95" text-anchor="middle" font-size="15" fill="#111">2</text>
+<circle cx="633" cy="90" r="15" fill="#b9c8f2" stroke="#333" stroke-width="1.6"/>
+<text x="633" y="95" text-anchor="middle" font-size="15" fill="#111">2</text>
+<text x="605" y="198" text-anchor="middle" font-size="16" fill="#111" font-style="italic">ν = 3</text>
+<text x="380" y="238" text-anchor="middle" font-size="15" fill="#333">B₂(z) = 2 + 2z: the row 2, −2 of A336110, unsigned. Blue: leaves. Orange: maximal labels.</text>
+</svg>

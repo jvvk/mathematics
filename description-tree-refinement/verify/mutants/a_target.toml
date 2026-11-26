@@ -1,0 +1,23 @@
+# Om target against the brute force: python3 -I mutate.py a_target.toml
+[check]
+cmd = ["python3", "{file}", "12"]
+cwd = ".."
+timeout = 300
+
+[[mutant]]
+name = "Om prefactor 13^k"
+file = "../target.py"
+old = "Fraction(12**k,"
+new = "Fraction(13**k,"
+
+[[mutant]]
+name = "denominator (1-z)^(3k)"
+file = "../target.py"
+old = "comb(3 * k + 1, j)"
+new = "comb(3 * k, j)"
+
+[[mutant]]
+name = "Om factor binomial(m+2L+1,3)"
+file = "../target.py"
+old = "p *= comb(m + 2 * L, 3)"
+new = "p *= comb(m + 2 * L + 1, 3)"

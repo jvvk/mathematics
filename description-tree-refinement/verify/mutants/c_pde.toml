@@ -1,0 +1,16 @@
+[check]
+cmd = ["python3", "{file}"]
+cwd = ".."
+timeout = 900
+
+[[mutant]]
+name = "PDE coefficient 3y"
+file = "../pde_proof.py"
+old = "rhs = sp.together(2*y*rhs)"
+new = "rhs = sp.together(3*y*rhs)"
+
+[[mutant]]
+name = "parametrisation (1-p+3pz)^2"
+file = "../pde_proof.py"
+old = "t = p*(1-p)**2*(1+p*z)/((1+p)**2*(1-p+2*p*z)**2)"
+new = "t = p*(1-p)**2*(1+p*z)/((1+p)**2*(1-p+3*p*z)**2)"

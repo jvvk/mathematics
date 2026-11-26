@@ -1,0 +1,10 @@
+Isolated build 2026-11-26: fresh copy of lean/, lake exe cache get, lake build LeanProofs
+⚠ [8924/8928] Built LeanProofs.DescriptionTrees.Basic (160s)
+warning: LeanProofs/DescriptionTrees/Basic.lean:14:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/DescriptionTrees/Basic.lean:42:2: `simp [Nat.descFactorial_succ, Nat.factorial] at h` is a flexible tactic modifying `h`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+warning: LeanProofs/DescriptionTrees/Basic.lean:109:2: `simp [Polynomial.eval_comp] at h1` is a flexible tactic modifying `h1`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+ℹ [8925/8928] Built LeanProofs.DescriptionTrees.Report (56s)
+⚠ [8926/8928] Built LeanProofs.DescriptionTrees (54s)
+warning: LeanProofs/DescriptionTrees.lean:7:100: This line exceeds the 100 character limit, please shorten it!
+✔ [8927/8928] Built LeanProofs (55s)
+Build completed successfully (8928 jobs).

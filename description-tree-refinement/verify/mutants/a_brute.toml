@@ -1,0 +1,24 @@
+# Brute force against the A336110 data: python3 -I mutate.py a_brute.toml
+[check]
+cmd = ["python3", "{file}", "--check"]
+cwd = ".."
+timeout = 300
+
+[[mutant]]
+name = "labels allowed one above the maximum"
+file = "../brute.py"
+old = "for lab in range(2, 2 + S + 1):"
+new = "for lab in range(2, 2 + S + 2):"
+
+[[mutant]]
+name = "maximal means one below the maximum"
+file = "../brute.py"
+old = "out[(lab, nu + (lab == 2 + S))] += c"
+new = "out[(lab, nu + (lab == 1 + S))] += c"
+
+[[mutant]]
+name = "root not counted in nu"
+file = "../brute.py"
+old = "d[nu + 1] += c  # root is maximal"
+new = "d[nu] += c  # root is maximal"
+

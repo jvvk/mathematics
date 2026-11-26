@@ -1,0 +1,21 @@
+{
+  "source_commit": "dc697a7 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports DescriptionTrees only)",
+    "CheckClaims.lean (generated)",
+    "scripts/mutants.toml (copy of lean-proofs scripts/descriptiontrees.toml) and scripts/mutate.py (runner)"
+  ],
+  "files": {
+    "CheckClaims.lean": "24309b98cef6210ceaa3831384e4104d0b6b1a1e583e67462d2f69d8dec2f0ef",
+    "LeanProofs/DescriptionTrees/Basic.lean": "64a403c4157ef8e4e971918ff8b72d1a8662a643cb14c5dd3fae554c0fa9a5f0",
+    "LeanProofs/DescriptionTrees/Report.lean": "27d460093150e7b5d868c2108dc8bcbd42c14f58c43187cb21c56699e3ce8111",
+    "LeanProofs/DescriptionTrees.lean": "c642afa0d829fa3efdc7d9bebbd9efdc437abc4409436b5e51b1f733e1254fad",
+    "LeanProofs.lean": "aaa8b5fe85e33d4d3436574d75624b4155a25794cc83a65c0f0c501da02e677c",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutants.toml": "5925271e345c45e938c6f0db42566ccaecfd9544dfdc25760cfa7b1b1d8fe5b7",
+    "scripts/mutate.py": "742a3c8834e82d19f9f161d1428936b454136e00a410cf5b5491e6061a37be51"
+  }
+}

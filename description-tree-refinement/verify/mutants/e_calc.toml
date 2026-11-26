@@ -1,0 +1,17 @@
+# The resultant factorisation and the parametrisation of Step 2: python3 -I mutate.py e_calc.toml
+[check]
+cmd = ["python3", "{file}"]
+cwd = ".."
+timeout = 600
+
+[[mutant]]
+name = "middle factor t(1+q)^2 - 2z"
+file = "../quadratic.py"
+old = "256*t**4*(t*(1+q)**2 - 4*z)*Rq"
+new = "256*t**4*(t*(1+q)**2 - 2*z)*Rq"
+
+[[mutant]]
+name = "parametrisation (1-p+3pz)^2"
+file = "../param.py"
+old = "tP = p*(1-p)**2*(1+p*z)/((1+p)**2*(1-p+2*p*z)**2)"
+new = "tP = p*(1-p)**2*(1+p*z)/((1+p)**2*(1-p+3*p*z)**2)"

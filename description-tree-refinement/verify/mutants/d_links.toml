@@ -1,0 +1,16 @@
+[check]
+cmd = ["python3", "{file}"]
+cwd = ".."
+timeout = 600
+
+[[mutant]]
+name = "q with 3zp^2"
+file = "../links_check.py"
+old = "qP = z*p*((1-p)**2 - 4*z*p**2)/((1-p)**2*(1+p*z))"
+new = "qP = z*p*((1-p)**2 - 3*z*p**2)/((1-p)**2*(1+p*z))"
+
+[[mutant]]
+name = "odd coefficients C_{s+1}"
+file = "../links_check.py"
+old = "Om(2*rr+1) == sp.catalan(s_)*a"
+new = "Om(2*rr+1) == sp.catalan(s_+1)*a"
