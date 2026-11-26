@@ -39,7 +39,7 @@ def star_positions(n, i):
 
 
 def short_edges(lo, hi):
-    return [(u, v) for u in range(lo, hi + 1) for v in range(u + 1, min(hi, u + 3) + 1)]
+    return [(u, v) for u in range(max(lo, 1), hi + 1) for v in range(u + 1, min(hi, u + 3) + 1)]
 
 
 def pairs(edges):
@@ -48,19 +48,27 @@ def pairs(edges):
             yield A, B
 
 
+def chords(i, p, q, r):
+    """The six chords (4) of the star on the window [i, i+3], normalised (min, max)."""
+    return {tuple(sorted(e)) for e in [(i + 1, p), (i + 2, q), (i + 3, r), (p, i), (q, i + 1), (r, i + 2)]}
+
+
 def run_part(name, i_off, need, ab, row):
-    """need(c): short edges assumed in S; ab(n, c): list of (A, B) (B may be None); row(c, p, q, r, A, B): matching."""
+    """need(c): short edges assumed in S; ab(n, c): list of (A, B) (B may be None); row(c, p, q, r, A, B): matching.
+    An edge of a row counts as present only if it is in S, or it is one of the six star chords (4) and has length
+    at least 4."""
     count = 0
-    for n in range(10, NMAX + 1):
-        for c in range(4, n - 3):
+    for n in range(7, NMAX + 1):
+        for c in range(1, n + 1):
             S0 = need(c)
-            if any(not (1 <= x < y <= n) for x, y in S0):
-                continue
             i = c + i_off
+            if i < 1 or i + 3 > n or any(not (1 <= x < y <= n) for x, y in S0):
+                continue
             for A, B in ab(n, c):
                 S = set(S0) | {e for e in (A, B) if e is not None}
-                present = lambda e, S=S: e in S or e[1] - e[0] >= 4
                 for p, q, r in star_positions(n, i):
+                    ch = chords(i, p, q, r)
+                    present = lambda e, S=S, ch=ch: e in S or (e in ch and e[1] - e[0] >= 4)
                     M = row(c, p, q, r, A, B)
                     assert is_nn4(M, present), (name, n, c, A, B, p, q, r, M)
                     count += 1
@@ -187,10 +195,11 @@ for n in range(16, NMAX + 9):
     for a in range(4, n - 10):
         i = a + 2
         for q, r in itertools.combinations([a - 1, a, a + 1], 2):
-            chords = [(a - 2, a + 3), (q, a + 4), (r, a + 5)]
-            assert all(e[1] - e[0] >= 4 and e != (a - 2, a + 2) for e in chords)
-            S = set(chords) | {(a + 8, a + 9)}
-            assert is_nn4(chords + [(a + 8, a + 9)], lambda e: e in S)
+            chords3 = [(a - 2, a + 3), (q, a + 4), (r, a + 5)]
+            assert set(chords3) <= chords(i, a - 2, q, r)  # they are chords (4) of the star with p = a-2
+            assert all(e[1] - e[0] >= 4 and e != (a - 2, a + 2) for e in chords3)
+            S = set(chords3) | {(a + 8, a + 9)}
+            assert is_nn4(chords3 + [(a + 8, a + 9)], lambda e: e in S)
             cnt += 1
 print(f"exceptional arrangement: {cnt} placements, NN4 found in each")
 print("ALL CHECKS PASSED")

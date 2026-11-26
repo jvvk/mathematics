@@ -1,0 +1,2 @@
+k4_covered.py: 15984 families; recheck_covered.c: 15984 families; common: 15984
+ALL CHECKS PASSED: the two lists of 15,984 families are identical

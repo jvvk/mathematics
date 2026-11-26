@@ -1,0 +1,18 @@
+unit g1=1: 2664 families, each with a good near-centre window [1/16 units, 2664 so far]
+unit g1=2: 2728 families, each with a good near-centre window [2/16 units, 5392 so far]
+unit g1=3: 2792 families, each with a good near-centre window [3/16 units, 8184 so far]
+unit g1=4: 600 families, each with a good near-centre window [4/16 units, 8784 so far]
+unit g1=5: 600 families, each with a good near-centre window [5/16 units, 9384 so far]
+unit g1=6: 600 families, each with a good near-centre window [6/16 units, 9984 so far]
+unit g1=7: 600 families, each with a good near-centre window [7/16 units, 10584 so far]
+unit g1=8: 600 families, each with a good near-centre window [8/16 units, 11184 so far]
+unit g1=9: 600 families, each with a good near-centre window [9/16 units, 11784 so far]
+unit g1=10: 600 families, each with a good near-centre window [10/16 units, 12384 so far]
+unit g1=11: 600 families, each with a good near-centre window [11/16 units, 12984 so far]
+unit g1=12: 600 families, each with a good near-centre window [12/16 units, 13584 so far]
+unit g1=13: 600 families, each with a good near-centre window [13/16 units, 14184 so far]
+unit g1=14: 600 families, each with a good near-centre window [14/16 units, 14784 so far]
+unit g1=15: 600 families, each with a good near-centre window [15/16 units, 15384 so far]
+unit g1=16: 600 families, each with a good near-centre window [16/16 units, 15984 so far]
+families not handled by the lemmas: 15984; every one has a good window within distance 3 of a centre
+ALL CHECKS PASSED

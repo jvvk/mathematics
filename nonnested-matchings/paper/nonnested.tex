@@ -251,7 +251,8 @@ no neighbour in $A$. If $b_2=7$, then $d_1=8$, $d_2=9$, $b_1=4$ (as $a_1\le2$) a
 $(a_2,7)$, $(5,8)$ give the pattern. If $b_2=6$, then $a_2=3$, $b_1=4$ and $c_1=5$; the edges $(a_1,4)$, $(3,6)$,
 $(5,d_1)$ give the pattern.
 
-Finally, add to an ordered graph on $[n]$ a vertex $n+1$ joined to $1,2,3$. A non-nested matching using an edge
+Finally, add to an ordered graph on $[n]$ a vertex $n+1$ joined to $1,2,3$ (operation~1 of
+\cite[Section~2.2]{BFT}). A non-nested matching using an edge
 $(i,n+1)$ has all its left ends at most $i\le3$, because $n+1$ is the last right end, so it has at most three edges.
 Repeating this step from $G_9$ gives, for every $n\ge9$, a graph with $3n+1$ edges and no strongly non-nested
 $4$-matching. \qed
@@ -320,8 +321,8 @@ and $|F|=4$ only for $F=\{ad,bc,x,y\}$ on consecutive vertices $a<b<c<d$ with $x
 \end{lemma}
 
 \begin{proof}
-Four pairwise intersecting edges form a star (an edge meeting $ab$ and $ac$ but not $a$ is $bc$, and no fourth edge
-meets all of $ab,ac,bc$). So $F$ has a disjoint pair, which must be nested: $ad,bc$ on consecutive vertices. Every
+If $|F|\le3$ there is nothing to prove, so let $|F|\ge4$. Four pairwise intersecting edges form a star (an edge
+meeting $ab$ and $ac$ but not $a$ is $bc$, and no fourth edge meets all of $ab,ac,bc$). So $F$ has a disjoint pair, which must be nested: $ad,bc$ on consecutive vertices. Every
 other edge meets both (otherwise it would be the unique short edge nested with one of them), so lies in
 $\{ab,ac,bd,cd\}$, and $ab,cd$ and $ac,bd$ are disjoint non-nested pairs.
 \end{proof}
@@ -514,8 +515,11 @@ at each end) and finds a good window within distance $3$ of a centre in each.
 \end{proof}
 
 \begin{description}
-\item[Computation 1] All sets of $16$ short edges with no non-nested $4$-matching and no three vertices meeting all of
-them were enumerated (spans up to $26$); exactly $16$ families up to translation have both centre gaps at most $3$.
+\item[Computation 1] By Lemma~\ref{lem:uncov} a family with both centre gaps at most $3$ lies in $[c_1-3,c_3+3]$,
+so it spans at most $13$ vertices. All sets of $16$ short edges on $8$ to $13$ consecutive vertices, using both end
+vertices, with no non-nested $4$-matching and no three vertices meeting all of them, were enumerated by depth-first
+search; exactly $16$ have both centre gaps at most $3$ (the independent recheck enumerates the families with the
+shape of Lemma~\ref{lem:uncov} and centre gaps $2$ and $3$, and finds the same $16$).
 Each was placed with $0$ to $7$ free vertices on each side; for every placement and every position of $p,q,r$ the
 window $[c-1,c+2]$ at an end centre $c$ carrying all six short edges at $c$ (after reversing the order if needed) is
 good. No failures.
@@ -602,15 +606,16 @@ and~\ref{lem:eighteen}, contradicting $d\le s-16$. Hence $e(G)\le3n$, and with (
 \end{proof}
 
 \begin{remark}
-Lemma~\ref{lem:eighteen} is sharp. For centres with $c_1\ge4$, $c_3\le n-3$ and gaps at least $4$, all $3n-6$ edges
+Lemma~\ref{lem:eighteen} is sharp, by the construction of \cite[Section~2.2]{BFT} with $k=4$. For centres with $c_1\ge4$, $c_3\le n-3$ and gaps at least $4$, all $3n-6$ edges
 at the three centres together with the six wrap edges form an ordered graph with $3n$ edges, eighteen short edges and
 $L=3n-18$. It has no non-nested $4$-matching: a matching contains at most three edges at the centres, and a wrap edge
 $(u,v)$ lies in none, since a disjoint edge not nested in it must use one of the at most two vertices outside $[u,v]$.
 \end{remark}
 
 \section*{Reproducibility, formal verification and acknowledgement}
-All computations, with the scripts and their recorded outputs, are archived with this note (repository folder and
-Zenodo record below). For Theorem~\ref{thm:k4plain}: every row of Table~\ref{tab:windows} was checked mechanically
+All computations, with the scripts and their recorded outputs, are archived with this note in the folder
+\texttt{nonnested-matchings} of \url{https://github.com/jvvk/mathematics} (tag \texttt{nonnested-matchings-v2}) and on
+Zenodo, doi:\href{https://doi.org/10.5281/zenodo.24547648}{10.5281/zenodo.24547648}. For Theorem~\ref{thm:k4plain}: every row of Table~\ref{tab:windows} was checked mechanically
 for all positions of $p,q,r$ and all admissible $A,B$ with $n\le 19$, and checks with weakened hypotheses fail, as they
 should. Computation~1 was run by two programs, and Computation~2 by a Python program and by an independent program in
 C; the two lists of $15{,}984$ families agree. A SAT computation confirms $f_4(n)=3n$ for $8\le n\le13$ (two independent

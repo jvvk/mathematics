@@ -40,3 +40,5 @@ for idx,F0 in enumerate(fams):
     # reflected version: star (c-2,c+1) at end centre
     if not res_end: allok=False
 print("ALL FAMILIES RULED OUT BY (c-1,c+2) AT A FULL-STAR END CENTRE:",allok)
+if not allok:
+    sys.exit(1)

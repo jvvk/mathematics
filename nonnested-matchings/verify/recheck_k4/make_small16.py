@@ -1,6 +1,10 @@
 """From enum.py's output (myfams.json), keep the uncovered families with both centre gaps <= 3, translated to start at
 1, and write them to small16.json for check3.py. (Fable's check2.py also compared with the lead's files; that
 comparison is left out here so that this recheck shares no input with k4_uncovered.py.)"""
+import sys
+if not __debug__:
+    sys.exit("refusing to run under python -O: the checks are assertions")
+
 import json
 res = json.load(open("myfams.json"))
 def tr(F):

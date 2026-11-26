@@ -2,7 +2,7 @@
 
 1. Enumerate, by depth-first search over all short edges (no structural assumption), every set of 16 short edges on
    [m] that uses vertices 1 and m, has no non-nested 4-matching and no 3 vertices meeting all of its edges, for
-   m = 11, 12, 13 (by Lemma 8 a family with both gaps <= 3 lies in [c1-3, c3+3], so m <= 13).
+   m = 8..13 (by Lemma 8 a family with both gaps <= 3 lies in [c1-3, c3+3], so m <= 13).
 2. Keep those whose centres (the 2nd, 4th, ... vertices of each path of length-1 edges) have both gaps <= 3: there
    must be exactly 16.
 3. Place each with A, B = 0..7 free vertices on the left and right; reverse if needed so that the first centre c
@@ -116,7 +116,7 @@ def window_good(S, n, i):
 
 
 fams = []
-for m in (11, 12, 13):
+for m in range(8, 14):
     found = enumerate_span(m)
     close = [
         S

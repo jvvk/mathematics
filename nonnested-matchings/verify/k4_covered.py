@@ -11,6 +11,7 @@ such families and no failure; Lemma 10 reduces every n to this range.
 The work is split into 16 units (first gap g1 = 1..16). Each finished unit is saved in k4_covered_progress.tsv and
 skipped on a rerun; the status line shows progress. Usage:
   python3 k4_covered.py            full run, about an hour; resumable
+  python3 k4_covered.py --list-only   write the leftover identifiers (no window check) for recheck_k4/compare_lists.py
   python3 k4_covered.py --quick    units g1 = 1, 2 only (5,392 families), a few minutes; no progress file
 """
 
@@ -106,6 +107,11 @@ def unit(g1):
                     S = [e for e in full if e not in om]
                     if has_nnk(S, 4) or handled(S, n):
                         continue
+                    if LIST is not None:
+                        idx = [full.index(e) for e in om] + [-1, -1]
+                        LIST.append((g1, g2, lm, rm, idx[0], idx[1]))
+                        left += 1
+                        continue
                     Ss = set(S)
                     windows = sorted(
                         {
@@ -126,6 +132,19 @@ def unit(g1):
                     left += 1
     return left
 
+
+if "--list-only" in sys.argv:
+    # Write the leftover families as (g1, g2, lm, rm, index of each omitted edge in the sorted list of the centres'
+    # short edges, -1 if none): the identifiers printed by recheck_k4/recheck_covered.c. No good-window check.
+    LIST = []
+    for g1 in range(1, 17):
+        unit(g1)
+    with open("k4_covered_list.tsv", "w") as f:
+        for row in sorted(LIST):
+            f.write("\t".join(map(str, row)) + "\n")
+    print(f"wrote {len(LIST)} leftover identifiers to k4_covered_list.tsv")
+    sys.exit(0)
+LIST = None
 
 done = {}
 QUICK = "--quick" in sys.argv  # quick runs (also used by the mutation suite) never read or write the progress file
