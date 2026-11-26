@@ -1,0 +1,21 @@
+{
+  "source_commit": "87ecb3a (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports Slit236 only)",
+    "CheckClaims.lean (generated)",
+    "scripts/mutants.toml (copy of lean-proofs scripts/slit236.toml) and scripts/mutate.py (runner)"
+  ],
+  "files": {
+    "CheckClaims.lean": "b8b4d1bf467a410a3f18a0e7d67c29f9ccc26e40e4c7c46d2d393c9d3d9b04ec",
+    "LeanProofs/Slit236/Basic.lean": "12c411d56859a27df49fe1e35c7ee7dad07474f2e28671d3a6950af591f19bf5",
+    "LeanProofs/Slit236/Report.lean": "df88183e71e54855907f7d35aabb911530b91f962547bbcc2bc9f3099927718f",
+    "LeanProofs/Slit236.lean": "8942584b9972ae83446af735d766e0030c1a5e625a2ba52742779404c82747d2",
+    "LeanProofs.lean": "65eb3c2dde72c3e28de6c3b43b7637c3b24332d087f1c9162fa884159b5f04dc",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutants.toml": "3e582fb78416e076e237d6d158afc1efdb795d693b97f35889ffb9ec107f07d4",
+    "scripts/mutate.py": "742a3c8834e82d19f9f161d1428936b454136e00a410cf5b5491e6061a37be51"
+  }
+}

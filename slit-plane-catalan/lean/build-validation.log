@@ -1,0 +1,26 @@
+Isolated build 2026-11-26: fresh copy of lean/, lake exe cache get, lake build LeanProofs
+⚠ [8924/8928] Built LeanProofs.Slit236.Basic (92s)
+warning: LeanProofs/Slit236/Basic.lean:4:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Slit236/Basic.lean:6:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Slit236/Basic.lean:7:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Slit236/Basic.lean:9:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Slit236/Basic.lean:11:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Slit236/Basic.lean:13:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Slit236/Basic.lean:17:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Slit236/Basic.lean:21:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Slit236/Basic.lean:22:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Slit236/Basic.lean:33:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Slit236/Basic.lean:45:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Slit236/Basic.lean:52:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Slit236/Basic.lean:65:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Slit236/Basic.lean:66:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Slit236/Basic.lean:75:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Slit236/Basic.lean:82:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Slit236/Basic.lean:117:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Slit236/Basic.lean:134:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Slit236/Basic.lean:149:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Slit236/Basic.lean:154:100: This line exceeds the 100 character limit, please shorten it!
+ℹ [8925/8928] Built LeanProofs.Slit236.Report (121s)
+✔ [8926/8928] Built LeanProofs.Slit236 (114s)
+✔ [8927/8928] Built LeanProofs (105s)
+Build completed successfully (8928 jobs).

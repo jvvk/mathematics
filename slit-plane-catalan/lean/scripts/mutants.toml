@@ -1,0 +1,64 @@
+# Mutation suite for the Stanley Problems 236-237 finite identities (LeanProofs/Slit236/Basic.lean). Each mutant
+# changes one stated result to a stronger, false one; every one must be rejected.
+#   cd scripts && python3 mutate.py mutants.toml
+[check]
+cmd = ["lake", "env", "lean", "{file}"]
+cwd = ".."
+timeout = 900
+fail_markers = ["error"]
+fail_pattern = '^(?P<file>\S+\.lean):\d+:\d+: error\b'
+log_dir = "mutation-logs"
+
+[[mutant]]
+name = "balanced words: C(2r, r) + 1"
+file = "../LeanProofs/Slit236/Basic.lean"
+old = "    ∑ j ∈ range (s + 1), 2 * (s + j).choose s = (2 * (s + 1)).choose (s + 1) := by"
+new = "    ∑ j ∈ range (s + 1), 2 * (s + j).choose s = (2 * (s + 1)).choose (s + 1) + 1 := by"
+
+[[mutant]]
+name = "forest step without the factor 2"
+file = "../LeanProofs/Slit236/Basic.lean"
+old = "    2 * r * (2 * r - k).choose r = 2 * (2 * r - k) * (2 * r - k - 1).choose (r - 1) := by"
+new = "    2 * r * (2 * r - k).choose r = (2 * r - k) * (2 * r - k - 1).choose (r - 1) := by"
+
+[[mutant]]
+name = "endpoint (0,1) gives H + K"
+file = "../LeanProofs/Slit236/Basic.lean"
+old = "    (hL : L = H - K) (hC : C1 = H + K) : a = H := by"
+new = "    (hL : L = H - K) (hC : C1 = H + K) : a = H + K := by"
+
+[[mutant]]
+name = "236(d) binomial with C_{2n+1} in full"
+file = "../LeanProofs/Slit236/Basic.lean"
+old = "    ((4 * (m + 1)).choose (2 * (m + 1) - 2) : ℚ) / (2 * (m + 1)) = cat (2 * m + 3) / 2 - cat (2 * m + 2) := by"
+new = "    ((4 * (m + 1)).choose (2 * (m + 1) - 2) : ℚ) / (2 * (m + 1)) = cat (2 * m + 3) - cat (2 * m + 2) := by"
+
+[[mutant]]
+name = "236(d) elimination with H in full"
+file = "../LeanProofs/Slit236/Basic.lean"
+old = "    (hc : c = C1 / 2 - C2) (hsplit : C1 = H + K) : 2 * a11 = H / 2 + C2 := by"
+new = "    (hc : c = C1 / 2 - C2) (hsplit : C1 = H + K) : 2 * a11 = H + C2 := by"
+
+[[mutant]]
+name = "237(d) cycle weight with C(2r, r)"
+file = "../LeanProofs/Slit236/Basic.lean"
+old = "      = 4 ^ r / (2 * r) * ((2 * r).choose (r + j) : ℚ) := by"
+new = "      = 4 ^ r / (2 * r) * ((2 * r).choose r : ℚ) := by"
+
+[[mutant]]
+name = "237(d) count with i/(n+1)"
+file = "../LeanProofs/Slit236/Basic.lean"
+old = "      = (i : ℚ) / n * (2 * i).choose i * (2 * n).choose (n - i) * 4 ^ (n - i) := by"
+new = "      = (i : ℚ) / (n + 1) * (2 * i).choose i * (2 * n).choose (n - i) * 4 ^ (n - i) := by"
+
+[[mutant]]
+name = "diagonal sum 4^n C_n"
+file = "../LeanProofs/Slit236/Basic.lean"
+old = "    b11 + bm11 = 2 * 4 ^ n * Cn := by"
+new = "    b11 + bm11 = 4 ^ n * Cn := by"
+
+[[mutant]]
+name = "237(b) plus C_{2n+1}"
+file = "../LeanProofs/Slit236/Basic.lean"
+old = "    bm11 = 2 * 4 ^ n * Cn - C1 := by"
+new = "    bm11 = 2 * 4 ^ n * Cn + C1 := by"

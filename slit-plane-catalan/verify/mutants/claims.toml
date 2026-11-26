@@ -1,0 +1,73 @@
+# Mutation suite: each mutant states a false variant of a claim of the note; every one must be rejected.
+#   python3 mutants/mutate.py mutants/claims.toml      (from verify/)
+[check]
+cmd = ["python3", "{file}"]
+cwd = ".."
+timeout = 600
+mode = "copy"
+
+[[mutant]]
+name = "236(a) as the odd-index convolution"
+file = "../independent.py"
+old = "H = [sum(C(2 * k) * C(2 * n - 2 * k) for k in range(n + 1)) for n in range(N + 1)]"
+new = "H = [sum(C(2 * k + 1) * C(2 * n - 2 * k - 1) for k in range(n)) + 1 for n in range(N + 1)]"
+
+[[mutant]]
+name = "Proposition 8 without the sign (-1)^|B|"
+file = "../independent.py"
+old = "assert Lm(m) == sum((-1) ** j * C(j) * C(m - j) for j in range(m + 1))"
+new = "assert Lm(m) == sum(C(j) * C(m - j) for j in range(m + 1))"
+
+[[mutant]]
+name = "Lemma 9 with P_2r = C_(2r-1) + L_(2r-2)"
+file = "../independent.py"
+old = "assert primitive(2 * n) == 2 * C(2 * n - 1) + Lm(2 * n - 2)"
+new = "assert primitive(2 * n) == C(2 * n - 1) + Lm(2 * n - 2)"
+
+[[mutant]]
+name = "closing step without the reflection factor 2"
+file = "../independent.py"
+old = "assert primitive(2 * n + 2) == S[2 * n + 1][(1, 0)] + 2 * a01"
+new = "assert primitive(2 * n + 2) == S[2 * n + 1][(1, 0)] + a01"
+
+[[mutant]]
+name = "236(c) as a_{-1,1}(2n) = C_2n"
+file = "../independent.py"
+old = "assert S[2 * n].get((-1, 1), 0) * 2 == C(2 * n)"
+new = "assert S[2 * n].get((-1, 1), 0) == C(2 * n)"
+
+[[mutant]]
+name = "236(d) with 4^n C_n"
+file = "../independent.py"
+old = "assert S[2 * n].get((1, 1), 0) == 4 ** (n - 1) * C(n) + C(2 * n) // 2"
+new = "assert S[2 * n].get((1, 1), 0) == 4 ** n * C(n) + C(2 * n) // 2"
+
+[[mutant]]
+name = "236(e) with C_2n in place of C_(2n+1)"
+file = "../independent.py"
+old = "assert Lm(2 * n) == H[n] - K[n] == 2 * 4 ** n * C(n) - C(2 * n + 1)"
+new = "assert Lm(2 * n) == H[n] - K[n] == 2 * 4 ** n * C(n) - C(2 * n)"
+
+[[mutant]]
+name = "Lemma 6 with 1/(m+1)"
+file = "../independent.py"
+old = "want = Fr(comb(2 * m, m - i), m) if (m - i) % 2 == 0 else Fr(0)"
+new = "want = Fr(comb(2 * m, m - i), m + 1) if (m - i) % 2 == 0 else Fr(0)"
+
+[[mutant]]
+name = "237(e) given the square-lattice formula"
+file = "../independent.py"
+old = "assert DB[2 * n].get((0, 0), 0) == 4 ** n * C(n)"
+new = "assert DB[2 * n].get((0, 0), 0) == 2 * 4 ** n * C(n) - C(2 * n + 1)"
+
+[[mutant]]
+name = "237(d) with i/(n+1)"
+file = "../independent.py"
+old = "assert D[2 * n].get((2 * i, 0), 0) * n == i * comb(2 * i, i)"
+new = "assert D[2 * n].get((2 * i, 0), 0) * (n + 1) == i * comb(2 * i, i)"
+
+[[mutant]]
+name = "diagonal sum b_{1,1} + b_{-1,1} = 4^n C_n"
+file = "../independent.py"
+old = "D[2 * n + 1].get((-1, 1), 0) == 2 * 4 ** n * C(n)"
+new = "D[2 * n + 1].get((-1, 1), 0) == 4 ** n * C(n)"

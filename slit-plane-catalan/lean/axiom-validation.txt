@@ -1,0 +1,29 @@
+Slit236.balanced_stop : ∀ (s : ℕ), ∑ j ∈ Finset.range (s + 1), 2 * (s + j).choose s = (2 * (s + 1)).choose (s + 1)
+'Slit236.balanced_stop' depends on axioms: [propext, Classical.choice, Quot.sound]
+Slit236.return_count_step : ∀ (r k : ℕ),
+  1 ≤ k → k ≤ r → 2 * r * (2 * r - k).choose r = 2 * (2 * r - k) * (2 * r - k - 1).choose (r - 1)
+'Slit236.return_count_step' depends on axioms: [propext, Quot.sound]
+Slit236.endpoint01 : ∀ (a T P L H K C1 : ℤ), T = C1 → P = 2 * C1 + L → P = T + 2 * a → L = H - K → C1 = H + K → a = H
+'Slit236.endpoint01' depends on axioms: [propext, Classical.choice, Quot.sound]
+Slit236.binom_236d : ∀ (m : ℕ),
+  ↑((4 * (m + 1)).choose (2 * (m + 1) - 2)) / (2 * (↑m + 1)) = Slit236.cat (2 * m + 3) / 2 - Slit236.cat (2 * m + 2)
+'Slit236.binom_236d' depends on axioms: [propext, Classical.choice, Quot.sound]
+Slit236.endpoint11 : ∀ (a20 a11 c K H C1 C2 : ℚ),
+  C1 = a20 + 2 * a11 → a20 = c + K / 2 → c = C1 / 2 - C2 → C1 = H + K → 2 * a11 = H / 2 + C2
+'Slit236.endpoint11' depends on axioms: [propext, Classical.choice, Quot.sound]
+Slit236.cycle_weight_237d : ∀ (r j : ℕ),
+  1 ≤ j →
+    j ≤ r →
+      4 ^ j / (2 * ↑j) * 4 ^ (r - j) * Slit236.forest (2 * j) (r - j) = 4 ^ r / (2 * ↑r) * ↑((2 * r).choose (r + j))
+'Slit236.cycle_weight_237d' depends on axioms: [propext, Classical.choice, Quot.sound]
+Slit236.count_237d : ∀ (n i : ℕ),
+  1 ≤ i →
+    i ≤ n →
+      ↑((2 * i).choose i) * Slit236.forest (2 * i) (n - i) * 4 ^ (n - i) =
+        ↑i / ↑n * ↑((2 * i).choose i) * ↑((2 * n).choose (n - i)) * 4 ^ (n - i)
+'Slit236.count_237d' depends on axioms: [propext, Classical.choice, Quot.sound]
+Slit236.diagonal_sum : ∀ (n : ℕ) (P b11 bm11 Cn : ℚ),
+  P = 4 ^ (n + 1) * Cn → P = 2 * b11 + 2 * bm11 → b11 + bm11 = 2 * 4 ^ n * Cn
+'Slit236.diagonal_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+Slit236.diag_237b : ∀ (n : ℕ) (b11 bm11 Cn C1 : ℚ), b11 + bm11 = 2 * 4 ^ n * Cn → b11 = C1 → bm11 = 2 * 4 ^ n * Cn - C1
+'Slit236.diag_237b' depends on axioms: [propext, Classical.choice, Quot.sound]
