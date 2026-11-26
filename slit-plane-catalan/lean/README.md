@@ -16,7 +16,7 @@ Lean 4 with Mathlib, pinned by `lean-toolchain` and `lake-manifest.json`. The st
 | `diagonal_sum` | Section 7, 237(b): the closing step gives `b_{1,1} + b_{−1,1} = 2·4^n C_n` |
 | `diag_237b` | Section 7, 237(b) from 237(a) |
 
-Not formalised (argued in the note and checked by the programs in `../verify/`): the cycle-sorting bijections
+Not formalised (argued in the note; their numerical consequences are checked by the programs in `../verify/`): the cycle-sorting bijections
 (Lemma 3) and the counting formula (Lemma 4), the free-word count `∑ 2^(k+1) C(2r−k−1, r−1) = 4^r` of Lemma 5, the
 marking argument and the pair-splitting sum of Lemma 6, the sign-reversing involutions of Proposition 8 and Lemma 9,
 and Shapiro's identity (a cited theorem; bijective proof by Hajnal and Nagy).

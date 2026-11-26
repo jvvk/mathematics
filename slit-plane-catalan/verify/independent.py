@@ -6,7 +6,8 @@ import sys
 from fractions import Fraction as Fr
 from functools import lru_cache
 from math import comb
-assert __debug__, "run without -O"
+if not __debug__:
+    sys.exit("refusing to run under python -O: the checks are assertions")
 
 SQ = [(1, 0), (-1, 0), (0, 1), (0, -1)]
 DG = [(1, 1), (1, -1), (-1, 1), (-1, -1)]

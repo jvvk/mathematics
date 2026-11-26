@@ -23,7 +23,8 @@ A walk on the slit plane starts at the origin and never returns to the half-line
 walks of length $2n+1$ on the slit plane that end at $(0,1)$ number $4^nC_n$, and several neighbouring endpoints give
 similar Catalan formulas. These were found by Bousquet-M\'elou and Schaeffer by solving functional equations, and
 Stanley lists them among his bijective proof problems as ones for which a combinatorial proof may not be known. We give
-combinatorial proofs of all of them except one, which we reduce to a known combinatorial result. The tools are a
+combinatorial proofs of six of the seven formulas so marked, and reduce the seventh, 237(b), to 237(a), whose
+combinatorial proof we have not located. The tools are a
 classical way of sorting a sequence into cycles, applied to the pieces of a walk between its visits to the
 horizontal axis, and a few sign-reversing involutions on pairs of Dyck paths. None of the proofs is a direct
 bijection; each is a count of finite sets.
@@ -48,16 +49,17 @@ proof problems \cite[Problems 236, 237]{Bij} collects the following counts, foun
 \begin{align*}
   &\text{236(a) } a_{0,1}(2n+1)=4^nC_n, &&\text{(b) } a_{1,0}(2n+1)=C_{2n+1}, &&\text{(c) } a_{-1,1}(2n)=\tfrac12C_{2n},\\
   &\text{(d) } a_{1,1}(2n)=4^{n-1}C_n+\tfrac12C_{2n}, &&\text{(e) } \abar_{0,0}(2n)=2\cdot4^nC_n-C_{2n+1};\\
-  &\text{237(a) } b_{1,1}(2n+1)=C_{2n+1}, &&\text{(b) } b_{-1,1}(2n+1)=2\cdot4^nC_n-C_{2n+1}, &&\text{(c) } b_{0,2}(2n)=C_{2n},\\
-  &\text{(d) } b_{2i,0}(2n)=\tfrac in\tbinom{2i}i\tbinom{2n}{n-i}4^{n-i}\ (i\ge1), &&\text{(e) } \bbar_{0,0}(2n)=4^nC_n.
+  &\text{237(a) } b_{1,1}(2n+1)=C_{2n+1}, &&\text{(b) } b_{-1,1}(2n+1)=2\cdot4^nC_n-C_{2n+1}, &&\text{(c) } b_{0,2}(2n)=C_{2n}\ (n\ge1),\\
+  &\text{(d) } b_{2i,0}(2n)=\tfrac in\tbinom{2i}i\tbinom{2n}{n-i}4^{n-i}\ (1\le i\le n), &&\text{(e) } \bbar_{0,0}(2n)=4^nC_n.
 \end{align*}
-Here (c) and (d) of 236 hold for $n\ge1$. Stanley marks 236(a), (c), (d), (e) and 237(b), (d), (e) with $[?]$:
+Here (c) and (d) of 236 hold for $n\ge1$, and $b_{2i,0}(2n)=0$ for $i>n$. Stanley marks 236(a), (c), (d), (e) and 237(b), (d), (e) with $[?]$:
 ``uncertain whether a combinatorial proof is known''. Item 236(b) has a bijective proof by Barcucci, Pergola, Pinzani
-and Rinaldi \cite{BPPR}, and 237(d) with $i=1$ follows from the cycle lemma \cite[Prop.~7]{BM}. Items 237(a) and (c)
+and Rinaldi \cite{BPPR}, and 237(d) with $i=1$ follows from the cycle lemma \cite[Prop.~7]{BM}; Nadeau gave a general bijection for the
+smallest endpoint on the positive axis, which covers both \cite{Nad}. Items 237(a) and (c)
 carry no $[?]$ in the list; we have not located their combinatorial proofs, and Bousquet-M\'elou and Schaeffer asked
 for a combinatorial explanation of the diagonal count $C_{2n+1}$ \cite[remark after Thm.~8]{BMS}. Bousquet-M\'elou wrote
 that ``Algebraic generating functions and Catalan numbers call for `classical' (if not bijective) combinatorial
-explanations'' \cite[p.~2]{BM}, and that the cycle lemma ``usually only works for walks ending at a specific
+proofs'' \cite[Sect.~1]{BM}, and that the cycle lemma ``usually only works for walks ending at a specific
 position''.
 
 \begin{theorem}\label{thm:main}
@@ -69,11 +71,14 @@ There are combinatorial proofs, by finite bijections, sign-reversing involutions
 Together with any combinatorial proof of 237(a), the identity gives 237(b).
 \end{theorem}
 
-The formulas are not new; only the proofs are. They are not bijections from walks to Catalan objects. The main tool
+The formulas are not new, and neither are several of the steps: Corollary~\ref{cor:T} is Bousquet-M\'elou's
+cycle-lemma proof of 236(b) \cite[Prop.~2]{BM}, cycle sorting is classical, and the odd-cycle recolouring in
+Proposition~\ref{prop:loops} is Spivey's involution \cite{Sp}. What is new is their use for the endpoints marked $[?]$.
+The proofs are not bijections from walks to Catalan objects. The main tool
 counts walks by cutting them at their visits to the horizontal axis and sorting the pieces into cycles, with weight $1/k$
 for a cycle of $k$ pieces. This is a combinatorial form of the factorisation that Bousquet-M\'elou uses with logarithms
 of generating functions \cite[Props.~8, 9]{BM}, and of an old idea of Spitzer \cite{St}; we say more about the relation
-in Section~\ref{sec:remarks}. The new ingredient is the identification, by sign-reversing involutions, of the loops
+in Section~\ref{sec:remarks}. The new ingredient is the identification, by a sign-reversing involution, of the loops
 on the barred slit plane with signed pairs of Dyck paths (Proposition~\ref{prop:loops}). From it, $a_{0,1}(2n+1)$ turns
 out to be the even-index Catalan convolution $\sum_kC_{2k}C_{2n-2k}$, which equals $4^nC_n$ by Shapiro's identity, and
 Hajnal and Nagy \cite{HN} gave that identity a bijective proof.
@@ -235,7 +240,7 @@ slit plane, or on the barred slit plane, exactly when its partial increments are
 (Figure~\ref{fig:loop}). Let $c_s(m,i)$ be the cyclic weight of bilateral atoms.
 
 \begin{lemma}\label{lem:cs}
-$c_s(m,i)=\frac1m\binom{2m}{m-i}$ if $m-i$ is even and $|i|\le m$, and $c_s(m,i)=0$ otherwise.
+For $m\ge1$, $c_s(m,i)=\frac1m\binom{2m}{m-i}$ if $m-i$ is even and $|i|\le m$, and $c_s(m,i)=0$ otherwise.
 \end{lemma}
 
 \begin{proof}
@@ -268,6 +273,7 @@ A word of bilateral atoms with increment $1$ has exactly one rotation, up to equ
 increments: start after the last position where the running increment is minimal, and no second start works, since the
 increments between two good starts would be two positive integers adding to $1$. Such a word is not periodic. So $T_m$
 is the number of unlabelled cycles of increment $1$, which is $c_s(m,1)=\frac1m\binom{2m}{m-1}=C_m$ for odd $m$.
+This is Bousquet-M\'elou's argument \cite[Prop.~2]{BM}.
 \end{proof}
 
 \begin{proposition}\label{prop:loops}
@@ -281,7 +287,8 @@ $0$ for odd $r$ and $\frac1r\binom{2r}r=2g_r$ for even $r$. Now take the pairs $
 pieces, colour each piece by the path it came from, and sort all pieces into cycles by Lemma~\ref{lem:sort}(i) (every
 piece has increment $0$, and the two paths are recovered by sorting each colour separately). A cycle of total semilength
 $r$ in one colour carries sign $+1$ or $(-1)^r$, so cycles have total weight $g_r(1+(-1)^r)$. Cancel the cycles of odd
-size: among all cycles of odd size, take the one containing the least label and switch its colour. This changes the sign
+size: among all cycles of odd size, take the one containing the least label and switch its colour (Spivey's involution for the alternating convolution of
+central binomial coefficients \cite{Sp}). This changes the sign
 and keeps the set of odd cycles, so it is a sign-reversing involution, and its fixed points use only even cycles, each in
 two colours of sign $+1$. Their cyclic weight is $2g_r$ for even $r$ and $0$ for odd $r$, the same as for loops, and
 Lemma~\ref{lem:count} gives equal counts.
@@ -420,11 +427,15 @@ by labelling and the counts compared through Lemma~\ref{lem:count}. A direct bij
 for 236(a), and a combinatorial proof of 237(a) within this framework, remain open.
 
 \emph{Verification.} Two programs sharing no code check the argument. The first (Claude) counts walks by transfer
-matrices and asserts every identity used above for $n\le7$, recomputes the cyclic weights $c_s(m,i)$ from atom words for
-$m\le10$, and rebuilds the loop counts from them through Lemma~\ref{lem:count}. The second (Codex) enumerates all square
-step words up to length $8$, runs the bijections of Lemma~\ref{lem:sort} and their inverses on all increment lists of
-length at most $5$ and all labellings, and checks the involution of Lemma~\ref{lem:prim}, the marking argument of
-Lemma~\ref{lem:cs}, and a tree bijection for Shapiro's identity. Planted errors in the claims are rejected by both.
+matrices and asserts the numerical statements of the theorem, Corollary~\ref{cor:T}, Proposition~\ref{prop:loops},
+Lemma~\ref{lem:prim} and the closing steps for $n\le7$; it recomputes the cyclic weights $c_s(m,i)$ from atom words for
+$m\le10$ and rebuilds the loop counts from them through Lemma~\ref{lem:count}. The second (Codex) checks the endpoint
+formulas for $n\le8$ and the first-passage count for $n\le9$, enumerates all square step words up to length $8$, runs
+the bijections of Lemma~\ref{lem:sort} and their inverses on all increment lists with entries in $\{-2,\dots,2\}$ of
+length at most $5$ with all labellings, enumerates the involution on $\mathcal D\cdot\mathcal J$ of
+Lemma~\ref{lem:prim} up to size $8$ and the marking argument of Lemma~\ref{lem:cs} up to length $7$, and checks a tree
+bijection for Shapiro's identity for $n\le5$. The odd-cycle involution of Proposition~\ref{prop:loops} is not run as
+a map; only its numerical consequence is checked. Planted errors in the claims are rejected by both programs.
 
 \emph{Use of AI.} The argument was found by OpenAI's Codex (GPT-6.1) from a brief prepared with Claude, after earlier
 unsuccessful attempts recorded with Claude. Claude Opus 5.5 (Anthropic) checked every step by hand, wrote the
@@ -443,6 +454,10 @@ independent verification program and the Lean formalisation of the finite identi
 \textbf{21}(2) (2014), \#P2.42.
 \bibitem{N} G.~V.~Nagy, A combinatorial proof of Shapiro's Catalan convolution, \emph{Adv. in Appl. Math.} \textbf{49}
 (2012), 391--396.
+\bibitem{Nad} P.~Nadeau, A general bijection for a class of walks on the slit plane, \emph{Formal Power Series
+and Algebraic Combinatorics (FPSAC 2006)}, San Diego, 2006.
+\bibitem{Sp} M.~Z.~Spivey, A combinatorial proof for the alternating convolution of the central binomial
+coefficients, \emph{Amer. Math. Monthly} \textbf{121} (2014), 537--540.
 \bibitem{Bij} R.~P.~Stanley, Bijective proof problems, \url{https://math.mit.edu/~rstan/bij.pdf} (2009), Problems 236
 and 237.
 \bibitem{St} J.~M.~Steele, The Bohnenblust--Spitzer algorithm and its applications, \emph{J. Comput. Appl. Math.}
