@@ -1,6 +1,6 @@
 """Independent check (Claude) of Codex route r1 for Stanley 236-237. Shares no code with codex_route_r1/.
-Brute-force transfer counts of slit-plane walks plus exact cyclic weights from atom words; asserts every
-identity the proof uses. Exits nonzero on failure; refuses python -O."""
+Brute-force transfer counts of slit-plane walks plus exact cyclic weights from atom words; asserts the
+numerical statements of the proof's main steps (scope: README.md and the note's Verification paragraph). Exits nonzero on failure; refuses python -O."""
 from __future__ import annotations
 import sys
 from fractions import Fraction as Fr

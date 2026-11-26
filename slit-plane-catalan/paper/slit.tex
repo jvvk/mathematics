@@ -52,7 +52,7 @@ proof problems \cite[Problems 236, 237]{Bij} collects the following counts, foun
   &\text{237(a) } b_{1,1}(2n+1)=C_{2n+1}, &&\text{(b) } b_{-1,1}(2n+1)=2\cdot4^nC_n-C_{2n+1}, &&\text{(c) } b_{0,2}(2n)=C_{2n}\ (n\ge1),\\
   &\text{(d) } b_{2i,0}(2n)=\tfrac in\tbinom{2i}i\tbinom{2n}{n-i}4^{n-i}\ (1\le i\le n), &&\text{(e) } \bbar_{0,0}(2n)=4^nC_n.
 \end{align*}
-Here (c) and (d) of 236 hold for $n\ge1$, and $b_{2i,0}(2n)=0$ for $i>n$. Stanley marks 236(a), (c), (d), (e) and 237(b), (d), (e) with $[?]$:
+Here (c) and (d) of 236 hold for $n\ge1$, while $b_{0,2}(0)=0$, and $b_{2i,0}(2n)=0$ for $i>n$. Stanley marks 236(a), (c), (d), (e) and 237(b), (d), (e) with $[?]$:
 ``uncertain whether a combinatorial proof is known''. Item 236(b) has a bijective proof by Barcucci, Pergola, Pinzani
 and Rinaldi \cite{BPPR}, and 237(d) with $i=1$ follows from the cycle lemma \cite[Prop.~7]{BM}; Nadeau gave a general bijection for the
 smallest endpoint on the positive axis, which covers both \cite{Nad}. Items 237(a) and (c)
@@ -73,7 +73,10 @@ Together with any combinatorial proof of 237(a), the identity gives 237(b).
 
 The formulas are not new, and neither are several of the steps: Corollary~\ref{cor:T} is Bousquet-M\'elou's
 cycle-lemma proof of 236(b) \cite[Prop.~2]{BM}, cycle sorting is classical, and the odd-cycle recolouring in
-Proposition~\ref{prop:loops} is Spivey's involution \cite{Sp}. What is new is their use for the endpoints marked $[?]$.
+Proposition~\ref{prop:loops} adapts Spivey's involution \cite{Sp}, with the parity of a cycle's total semilength in
+place of its length. What is new is the identification of barred loops with signed pairs of Dyck paths
+(Proposition~\ref{prop:loops}), which gives 236(a), (c), (e), and the cycle-sorting proofs of 236(d), of 237(e), of
+237(d) with $i\ge2$ and of the identity behind 237(b); the case $i=1$ of 237(d) was already covered \cite{BM,Nad}.
 The proofs are not bijections from walks to Catalan objects. The main tool
 counts walks by cutting them at their visits to the horizontal axis and sorting the pieces into cycles, with weight $1/k$
 for a cycle of $k$ pieces. This is a combinatorial form of the factorisation that Bousquet-M\'elou uses with logarithms
@@ -287,8 +290,9 @@ $0$ for odd $r$ and $\frac1r\binom{2r}r=2g_r$ for even $r$. Now take the pairs $
 pieces, colour each piece by the path it came from, and sort all pieces into cycles by Lemma~\ref{lem:sort}(i) (every
 piece has increment $0$, and the two paths are recovered by sorting each colour separately). A cycle of total semilength
 $r$ in one colour carries sign $+1$ or $(-1)^r$, so cycles have total weight $g_r(1+(-1)^r)$. Cancel the cycles of odd
-size: among all cycles of odd size, take the one containing the least label and switch its colour (Spivey's involution for the alternating convolution of
-central binomial coefficients \cite{Sp}). This changes the sign
+size: among all cycles of odd size, take the one containing the least label and switch its colour (an adaptation of Spivey's involution for the alternating
+convolution of central binomial coefficients \cite{Sp}, with the parity of the total semilength of a cycle in place of
+its length). This changes the sign
 and keeps the set of odd cycles, so it is a sign-reversing involution, and its fixed points use only even cycles, each in
 two colours of sign $+1$. Their cyclic weight is $2g_r$ for even $r$ and $0$ for odd $r$, the same as for loops, and
 Lemma~\ref{lem:count} gives equal counts.
