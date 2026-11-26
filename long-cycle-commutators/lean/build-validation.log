@@ -1,0 +1,15 @@
+Isolated build 2026-11-26: fresh copy of lean/, lake exe cache get, lake build LeanProofs
+⚠ [8924/8928] Built LeanProofs.Commutator84.Basic (102s)
+warning: LeanProofs/Commutator84/Basic.lean:6:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Commutator84/Basic.lean:7:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Commutator84/Basic.lean:13:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Commutator84/Basic.lean:14:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Commutator84/Basic.lean:16:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Commutator84/Basic.lean:25:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Commutator84/Basic.lean:30:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Commutator84/Basic.lean:31:100: This line exceeds the 100 character limit, please shorten it!
+warning: LeanProofs/Commutator84/Basic.lean:42:100: This line exceeds the 100 character limit, please shorten it!
+ℹ [8925/8928] Built LeanProofs.Commutator84.Report (116s)
+✔ [8926/8928] Built LeanProofs.Commutator84 (99s)
+✔ [8927/8928] Built LeanProofs (119s)
+Build completed successfully (8928 jobs).

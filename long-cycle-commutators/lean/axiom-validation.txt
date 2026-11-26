@@ -1,0 +1,13 @@
+Commutator84.choose_bridge : ∀ (i r s : ℕ),
+  1 ≤ r → 1 ≤ s → 1 ≤ i → r * s * (i.choose r * i.choose s) = i * i * ((i - 1).choose (r - 1) * (i - 1).choose (s - 1))
+'Commutator84.choose_bridge' depends on axioms: [propext, Quot.sound]
+Commutator84.V_closed : ∀ (n : ℕ),
+  ∑ a ∈ Finset.range (n + 1), n.choose a * n.choose (n - a) * a.factorial * (n - a).factorial = 2 ^ n * n.factorial
+'Commutator84.V_closed' depends on axioms: [propext, Classical.choice, Quot.sound]
+Commutator84.endpoint_sign : ∀ (n : ℕ), Odd n → -(-1) ^ n = 1
+'Commutator84.endpoint_sign' depends on axioms: [propext]
+Commutator84.eliminate : ∀ (n F : ℕ),
+  1 ≤ n →
+    (n + 1) * 2 ^ (n + 1) * (n - 1).factorial * F = 4 * n.factorial * (2 ^ n * n.factorial) →
+      (n + 1) * F = 2 * n * n.factorial
+'Commutator84.eliminate' depends on axioms: [propext, Classical.choice, Quot.sound]

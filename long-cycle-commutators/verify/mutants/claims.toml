@@ -1,0 +1,51 @@
+# Mutation suite: each mutant states a false variant of a claim of the note; every one must be rejected.
+#   python3 -I ~/.claude/skills/mutation-harness/mutate.py verify/mutants/claims.toml
+[check]
+cmd = ["python3", "{file}", "1", "3", "5"]
+cwd = ".."
+timeout = 900
+mode = "copy"
+
+[[mutant]]
+name = "Theorem: |F| = 2n n!/(n+2)"
+file = "../independent.py"
+old = "assert F == 2 * n * factorial(n) // (n + 1) and (n + 1) * F == 2 * n * factorial(n)"
+new = "assert F == 2 * n * factorial(n) // (n + 2) and (n + 2) * F == 2 * n * factorial(n)"
+
+[[mutant]]
+name = "Lemma 5: (n+1) W = 2^(n+1) n!"
+file = "../independent.py"
+old = "assert (n + 1) * W == 2 ** n * factorial(n)"
+new = "assert (n + 1) * W == 2 ** (n + 1) * factorial(n)"
+
+[[mutant]]
+name = "Lemma 4: O_n = 2 n! W"
+file = "../independent.py"
+old = "assert O == 4 * factorial(n) * W"
+new = "assert O == 2 * factorial(n) * W"
+
+[[mutant]]
+name = "Lemma 3: O_n = 2^n (n-1)! |F|"
+file = "../independent.py"
+old = "assert O == 2 ** (n + 1) * factorial(n - 1) * F"
+new = "assert O == 2 ** n * factorial(n - 1) * F"
+
+[[mutant]]
+name = "Proposition 2 with 3^l signs"
+file = "../independent.py"
+old = "    return n * 4 ** l * tot"
+new = "    return n * 3 ** l * tot"
+
+# (A mutant counting marks LEFT of the cut was dropped: by reversing the word it gives the same W, so it is a true
+# statement, not a wrong one.)
+[[mutant]]
+name = "W without the cut at the right end"
+file = "../independent.py"
+old = "        for k in range(m + 1):"
+new = "        for k in range(m):"
+
+[[mutant]]
+name = "O_n with even intersections"
+file = "../independent.py"
+old = "                if any(len(As.intersection(c)) % 2 == 0 for c in cs): continue"
+new = "                if any(len(As.intersection(c)) % 2 == 1 for c in cs): continue"

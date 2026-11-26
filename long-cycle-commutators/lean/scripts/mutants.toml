@@ -1,0 +1,40 @@
+# Mutation suite for the Stanley Problem 84 elementary identities (LeanProofs/Commutator84/Basic.lean). Each mutant
+# changes one stated result to a stronger, false one; every one must be rejected.
+#   cd scripts && python3 mutate.py mutants.toml
+[check]
+cmd = ["lake", "env", "lean", "{file}"]
+cwd = ".."
+timeout = 900
+fail_markers = ["error"]
+fail_pattern = '^(?P<file>\S+\.lean):\d+:\d+: error\b'
+log_dir = "mutation-logs"
+
+[[mutant]]
+name = "bridge with i*(i+1)"
+file = "../LeanProofs/Commutator84/Basic.lean"
+old = "    r * s * (i.choose r * i.choose s) = i * i * ((i - 1).choose (r - 1) * (i - 1).choose (s - 1)) := by"
+new = "    r * s * (i.choose r * i.choose s) = i * (i + 1) * ((i - 1).choose (r - 1) * (i - 1).choose (s - 1)) := by"
+
+[[mutant]]
+name = "V_n = 2^(n+1) n!"
+file = "../LeanProofs/Commutator84/Basic.lean"
+old = "      = 2 ^ n * n.factorial := by"
+new = "      = 2 ^ (n + 1) * n.factorial := by"
+
+[[mutant]]
+name = "endpoint sign holds for every n"
+file = "../LeanProofs/Commutator84/Basic.lean"
+old = "theorem endpoint_sign (n : ℕ) (hn : Odd n) : -((-1 : ℤ) ^ n) = 1 := by"
+new = "theorem endpoint_sign (n : ℕ) (hn : Even n) : -((-1 : ℤ) ^ n) = 1 := by"
+
+[[mutant]]
+name = "eliminate gives (n+1)F = 2(n+1) n!"
+file = "../LeanProofs/Commutator84/Basic.lean"
+old = "    (n + 1) * F = 2 * n * n.factorial := by"
+new = "    (n + 1) * F = 2 * (n + 1) * n.factorial := by"
+
+[[mutant]]
+name = "eliminate with prefactor 2^n instead of 2^(n+1)"
+file = "../LeanProofs/Commutator84/Basic.lean"
+old = "    (h : (n + 1) * 2 ^ (n + 1) * (n - 1).factorial * F = 4 * n.factorial * (2 ^ n * n.factorial)) :"
+new = "    (h : (n + 1) * 2 ^ n * (n - 1).factorial * F = 4 * n.factorial * (2 ^ n * n.factorial)) :"

@@ -1,0 +1,21 @@
+{
+  "source_commit": "4573cd6 (lean-proofs)",
+  "lean_toolchain": "leanprover/lean4:v4.34.0",
+  "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
+  "uncommitted_overrides": [
+    "LeanProofs.lean (root imports Commutator84 only)",
+    "CheckClaims.lean (generated)",
+    "scripts/mutants.toml (copy of lean-proofs scripts/commutator84.toml) and scripts/mutate.py (runner)"
+  ],
+  "files": {
+    "CheckClaims.lean": "583210719a8b07fdf41bb43914642b34209e36f5d4b02552514df2e373463d4d",
+    "LeanProofs/Commutator84/Basic.lean": "bd2d911dbcae64ba6ce9f96af1419a61f3acc1008802ea1c0fa73d4c736998a5",
+    "LeanProofs/Commutator84/Report.lean": "94d393ad07ab4349ba2f84ee631374f19c985479575d9d26e5e772fdd7ccf93b",
+    "LeanProofs/Commutator84.lean": "3c4785b065824d64548796f4adecdd6db4b65458858f4a4f13467f7fcd250779",
+    "LeanProofs.lean": "d80579752fefc9e5e2f77eec6aa0be59e6f686422cbdb27500a78bc55a9d7e94",
+    "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
+    "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
+    "scripts/mutants.toml": "11b9827d664906e44a7de959540b7bf89c71a3a37211b55ac6dbe93b769b2dbf",
+    "scripts/mutate.py": "742a3c8834e82d19f9f161d1428936b454136e00a410cf5b5491e6061a37be51"
+  }
+}
