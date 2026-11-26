@@ -42,3 +42,70 @@ NonNested.noSNN4_G9 : NonNested.NoSNN 4 NonNested.G9
 @NonNested.strong_conjecture_fails : ∀ {n : ℕ},
   9 ≤ n → ¬∀ (G : Finset NonNested.Edge), NonNested.IsGraph n G → NonNested.NoSNN 4 G → G.card ≤ 3 * n
 'NonNested.strong_conjecture_fails' depends on axioms: [propext, Classical.choice, Quot.sound]
+@NonNested.lemmaE : ∀ {n z p q r : ℕ} {G : Finset NonNested.Edge} {a b : NonNested.Edge},
+  NonNested.NoNN 4 G →
+    (z, z + 3) ∈ G →
+      (z + 3, z + 5) ∈ G →
+        a ∈ G →
+          b ∈ G →
+            NonNested.OK a b →
+              z + 7 ≤ a.1 ∧ a.1 < a.2 →
+                z + 7 ≤ b.1 ∧ b.1 < b.2 →
+                  NonNested.StarPos n (z + 2) p q r → NonNested.StarLongIn G (z + 2) p q r → False
+'NonNested.lemmaE' depends on axioms: [propext, Classical.choice, Quot.sound]
+@NonNested.endWindowA : ∀ {n z p q r : ℕ} {G : Finset NonNested.Edge} {a b : NonNested.Edge},
+  NonNested.NoNN 4 G →
+    (z, z + 3) ∈ G →
+      (z + 3, z + 5) ∈ G →
+        a ∈ G →
+          b ∈ G →
+            NonNested.OK a b →
+              z + 6 ≤ a.1 ∧ a.1 < a.2 →
+                z + 6 ≤ b.1 ∧ b.1 < b.2 →
+                  NonNested.StarPos n (z + 1) p q r → NonNested.StarLongIn G (z + 1) p q r → False
+'NonNested.endWindowA' depends on axioms: [propext, Classical.choice, Quot.sound]
+@NonNested.endWindowB : ∀ {n z p q r : ℕ} {G : Finset NonNested.Edge} {a b : NonNested.Edge},
+  NonNested.NoNN 4 G →
+    (z + 1, z + 3) ∈ G →
+      (z + 3, z + 6) ∈ G →
+        a ∈ G →
+          b ∈ G →
+            NonNested.OK a b →
+              z + 7 ≤ a.1 ∧ a.1 < a.2 →
+                z + 7 ≤ b.1 ∧ b.1 < b.2 →
+                  NonNested.StarPos n (z + 2) p q r → NonNested.StarLongIn G (z + 2) p q r → False
+'NonNested.endWindowB' depends on axioms: [propext, Classical.choice, Quot.sound]
+@NonNested.lemmaM : ∀ {n z p q r : ℕ} {G : Finset NonNested.Edge} {a b : NonNested.Edge},
+  NonNested.NoNN 4 G →
+    (z, z + 3) ∈ G →
+      (z + 3, z + 6) ∈ G →
+        a ∈ G →
+          b ∈ G →
+            a.1 < a.2 ∧ a.2 < z →
+              z + 7 ≤ b.1 ∧ b.1 < b.2 → NonNested.StarPos n (z + 2) p q r → NonNested.StarLongIn G (z + 2) p q r → False
+'NonNested.lemmaM' depends on axioms: [propext, Classical.choice, Quot.sound]
+@NonNested.closePair1 : ∀ {n z p q r : ℕ} {G : Finset NonNested.Edge} {b : NonNested.Edge},
+  NonNested.NoNN 4 G →
+    (z + 1, z + 3) ∈ G →
+      (z + 3, z + 6) ∈ G →
+        (z + 4, z + 7) ∈ G →
+          b ∈ G →
+            z + 8 ≤ b.1 ∧ b.1 < b.2 → NonNested.StarPos n (z + 2) p q r → NonNested.StarLongIn G (z + 2) p q r → False
+'NonNested.closePair1' depends on axioms: [propext, Classical.choice, Quot.sound]
+@NonNested.closePair2 : ∀ {n z p q r : ℕ} {G : Finset NonNested.Edge} {b : NonNested.Edge},
+  NonNested.NoNN 4 G →
+    (z, z + 3) ∈ G →
+      (z + 3, z + 6) ∈ G →
+        (z + 5, z + 7) ∈ G →
+          b ∈ G →
+            z + 9 ≤ b.1 ∧ b.1 < b.2 → NonNested.StarPos n (z + 1) p q r → NonNested.StarLongIn G (z + 1) p q r → False
+'NonNested.closePair2' depends on axioms: [propext, Classical.choice, Quot.sound]
+@NonNested.exceptional : ∀ {n z q r : ℕ} {G : Finset NonNested.Edge},
+  NonNested.NoNN 4 G →
+    (z + 10, z + 11) ∈ G →
+      NonNested.StarPos n (z + 4) z q r →
+        (∀ e ∈ NonNested.star3 (z + 4) z q r, NonNested.Long e → e ≠ (z, z + 4) → e ∈ G) → False
+'NonNested.exceptional' depends on axioms: [propext, Classical.choice, Quot.sound]
+NonNested.card_le_two_mul : ∀ (F : Finset (Finset NonNested.Edge)) (X : Finset NonNested.Edge),
+  (∀ s ∈ F, ∃ e ∈ X, e ∈ s) → (∀ e ∈ X, {s ∈ F | e ∈ s}.card ≤ 2) → F.card ≤ 2 * X.card
+'NonNested.card_le_two_mul' depends on axioms: [propext, Classical.choice, Quot.sound]

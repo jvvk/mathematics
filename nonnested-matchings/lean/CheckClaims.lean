@@ -26,3 +26,19 @@ import LeanProofs
 #print axioms NonNested.theorem2
 #check @NonNested.strong_conjecture_fails
 #print axioms NonNested.strong_conjecture_fails
+#check @NonNested.lemmaE
+#print axioms NonNested.lemmaE
+#check @NonNested.endWindowA
+#print axioms NonNested.endWindowA
+#check @NonNested.endWindowB
+#print axioms NonNested.endWindowB
+#check @NonNested.lemmaM
+#print axioms NonNested.lemmaM
+#check @NonNested.closePair1
+#print axioms NonNested.closePair1
+#check @NonNested.closePair2
+#print axioms NonNested.closePair2
+#check @NonNested.exceptional
+#print axioms NonNested.exceptional
+#check @NonNested.card_le_two_mul
+#print axioms NonNested.card_le_two_mul

@@ -1,5 +1,5 @@
 {
-  "source_commit": "5f5bda8 (lean-proofs)",
+  "source_commit": "af9cd69 (lean-proofs)",
   "lean_toolchain": "leanprover/lean4:v4.34.0",
   "mathlib_revision": "5ed2965256430c3649e86755f9576b54eca72435",
   "uncommitted_overrides": [
@@ -8,18 +8,19 @@
     "scripts/mutants.toml (copy of lean-proofs scripts/nonnested.toml) and scripts/mutate.py (runner)"
   ],
   "files": {
-    "CheckClaims.lean": "a83936bc633e4ed765e2433819c56ac01e5263bda123d521aadcc7c6a000978b",
+    "CheckClaims.lean": "4f121acb8ba343dce6df4705bca288084fbda10fe2f62af35dd03bdfa86e6fc4",
     "LeanProofs/NonNested/Defs.lean": "6d21347db9aedd11bed9660d674a981bdf795a89f4ac3aee2eb9c6337125412c",
     "LeanProofs/NonNested/Fence.lean": "50f7bd267c97e28e722bb4f4ce1b9e14c37aee561daa6c18ed9ad544cde5f810",
     "LeanProofs/NonNested/K3.lean": "28dabb3ca77d1c71ed25ced8c19a08421395c162184ff849d3cbaac5223f8f39",
     "LeanProofs/NonNested/K4.lean": "1056aea44cef17859a9e3dbd9abbf1a128fb37ba8537cac2889fe3e1844d7cd8",
-    "LeanProofs/NonNested/Report.lean": "5a356f04ef4f7e8749745909bb82f0029b9fa2b32df17761d4f6f9e93becb0b3",
+    "LeanProofs/NonNested/K4Plain.lean": "133b7b27a69e36925cacc7b77cbba0e925da4946f070619e24c3f6244dfb6424",
+    "LeanProofs/NonNested/Report.lean": "13efb6a22bc1a34e50b59af0907b17a104bfefd9e02a2be2b2de9c0b2718a9e9",
     "LeanProofs/NonNested/Short.lean": "0270932770a0bd7aef830983df2bb06a3005020404522991eabc8d38eefd3dc6",
-    "LeanProofs/NonNested.lean": "146a6dad5b5652368a6b47e79cf069cb04351b979a4277e62cee3810605a23dc",
+    "LeanProofs/NonNested.lean": "5581ccd55309f73142bd3fc60c1d5fb47fa94096856cbed2abe0737f19b61c9e",
     "LeanProofs.lean": "f66c5ce1671579479c0ede872020458345d64d7c734a895effc00253fc099de5",
     "lake-manifest.json": "a4627d0f4ad44a8871645c216343ea3e318254983c117edbd4b235dadfeefb25",
     "lakefile.toml": "1ef0a9d70bbd93b93f4a8bd793f7c858f91ef42e80bdaf1a29cb8a9a6ab7fdf6",
-    "scripts/mutants.toml": "629461a74bf4706e9e801a4b0b36696d50c03f081f3e38489932898f6c046cbc",
+    "scripts/mutants.toml": "c8979ad7b9415ec46ae0ad8f32a15404092693cdb4df0d45e3b70c9caec3d8e7",
     "scripts/mutate.py": "742a3c8834e82d19f9f161d1428936b454136e00a410cf5b5491e6061a37be51"
   }
 }

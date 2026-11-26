@@ -1,0 +1,18 @@
+g1=1: 2664 leftovers; g1=1 subsets16=14416 nn4free=14416 E*=0 mirE*=11752 M=0 left=2664 no_near_good=0 no_good=0 triples=7808366
+g1=2: 2728 leftovers; g1=2 subsets16=14480 nn4free=14480 E*=0 mirE*=11752 M=0 left=2728 no_near_good=0 no_good=0 triples=5596454
+g1=3: 2792 leftovers; g1=3 subsets16=14544 nn4free=14544 E*=0 mirE*=11752 M=0 left=2792 no_near_good=0 no_good=0 triples=6906966
+g1=4: 600 leftovers; g1=4 subsets16=134365 nn4free=134365 E*=91632 mirE*=5200 M=36933 left=600 no_near_good=0 no_good=0 triples=577762
+g1=5: 600 leftovers; g1=5 subsets16=134365 nn4free=134365 E*=91632 mirE*=5200 M=36933 left=600 no_near_good=0 no_good=0 triples=733538
+g1=6: 600 leftovers; g1=6 subsets16=134365 nn4free=134365 E*=91632 mirE*=5200 M=36933 left=600 no_near_good=0 no_good=0 triples=908874
+g1=7: 600 leftovers; g1=7 subsets16=134365 nn4free=134365 E*=91632 mirE*=5200 M=36933 left=600 no_near_good=0 no_good=0 triples=1104970
+g1=8: 600 leftovers; g1=8 subsets16=134365 nn4free=134365 E*=91632 mirE*=5200 M=36933 left=600 no_near_good=0 no_good=0 triples=1323026
+g1=9: 600 leftovers; g1=9 subsets16=134365 nn4free=134365 E*=91632 mirE*=5200 M=36933 left=600 no_near_good=0 no_good=0 triples=1564242
+g1=10: 600 leftovers; g1=10 subsets16=134365 nn4free=134365 E*=91632 mirE*=5200 M=36933 left=600 no_near_good=0 no_good=0 triples=1829818
+g1=11: 600 leftovers; g1=11 subsets16=134365 nn4free=134365 E*=91632 mirE*=5200 M=36933 left=600 no_near_good=0 no_good=0 triples=2120954
+g1=12: 600 leftovers; g1=12 subsets16=134365 nn4free=134365 E*=91632 mirE*=5200 M=36933 left=600 no_near_good=0 no_good=0 triples=2438850
+g1=13: 600 leftovers; g1=13 subsets16=134365 nn4free=134365 E*=91632 mirE*=5200 M=36933 left=600 no_near_good=0 no_good=0 triples=2784706
+g1=14: 600 leftovers; g1=14 subsets16=134365 nn4free=134365 E*=91632 mirE*=5200 M=36933 left=600 no_near_good=0 no_good=0 triples=3159722
+g1=15: 600 leftovers; g1=15 subsets16=134365 nn4free=134365 E*=91632 mirE*=5200 M=36933 left=600 no_near_good=0 no_good=0 triples=3565098
+g1=16: 600 leftovers; g1=16 subsets16=134365 nn4free=134365 E*=91632 mirE*=5200 M=36933 left=600 no_near_good=0 no_good=0 triples=4002034
+leftovers: 15984; without a good near-centre window: 0
+ALL CHECKS PASSED

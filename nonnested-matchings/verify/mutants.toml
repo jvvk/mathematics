@@ -53,3 +53,39 @@ name = "g9: no NON-nested 4-matching (false: 9 exist)"
 file = "recheck_g9.py"
 old = "    return all(not (R(i, j) == \"crossing\""
 new = "    return True or all(not (R(i, j) == \"crossing\""
+
+# --- version 2 (Theorem 3) ---
+# False: Table 1 part (a) with A, B allowed to start at c+2 (the end-window certificate breaks).
+[[mutant]]
+name = "k4_windows: part (a) from c+2"
+file = "k4_windows.py"
+old = "    lambda n, c: list(pairs(short_edges(c + 3, n))),"
+new = "    lambda n, c: list(pairs(short_edges(c + 2, n))),"
+
+# False: Lemma 9(d) with A reaching c-3.
+[[mutant]]
+name = "k4_windows: part (d) A up to c-3"
+file = "k4_windows.py"
+old = "    lambda n, c: [(A, B) for A in short_edges(1, c - 4) for B in short_edges(c + 4, n)],"
+new = "    lambda n, c: [(A, B) for A in short_edges(1, c - 3) for B in short_edges(c + 4, n)],"
+
+# False: Lemma 9(e) with B starting at c+4.
+[[mutant]]
+name = "k4_windows: part (e) B from c+4"
+file = "k4_windows.py"
+old = "    lambda n, c: [(None, B) for B in short_edges(c + 5, n)],"
+new = "    lambda n, c: [(None, B) for B in short_edges(c + 4, n)],"
+
+# False: Computation 1 finds exactly 16 close-gap uncovered families, not 15.
+[[mutant]]
+name = "k4_uncovered: 15 close-gap families"
+file = "k4_uncovered.py"
+old = "assert len(fams) == 16, len(fams)"
+new = "assert len(fams) == 15, len(fams)"
+
+# False: windows at offset -3 alone do not serve every leftover family of Computation 2.
+[[mutant]]
+name = "k4_covered: only windows at c-3"
+file = "k4_covered.py"
+old = "                            for o in (-3, -2, -1, 0)"
+new = "                            for o in (-3,)"

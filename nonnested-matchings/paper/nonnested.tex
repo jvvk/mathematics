@@ -8,17 +8,18 @@
 \theoremstyle{remark}\newtheorem*{remark}{Remark}
 \title{Non-nested matchings in ordered graphs: the cases $k=3$ and $k=4$}
 \author{Vamshi Jandhyala}
-\date{25 November 2026}
+\date{26 November 2026 (version 2; version 1: 25 November 2026)}
 \begin{document}
 \begin{abstract}
 Two disjoint edges of a graph on $[n]$ are nested when one lies strictly inside the other. Bar\'at, Freschi and
 T\'oth conjectured that an ordered graph on $n\ge 2k$ vertices with no $k$ pairwise disjoint, pairwise non-nested
 edges has at most $(k-1)n$ edges, and that the same bound holds when only the more restricted \emph{strongly}
 non-nested matchings are forbidden. De Castro disproved the conjecture for every $k\ge5$. We prove both forms for
-$k=3$, and we show that the strong form fails for $k=4$: there is an ordered graph on $9$ vertices with $28$ edges and
-no strongly non-nested $4$-matching, and the excess persists for every $n\ge9$. The proof for $k=3$ studies the
-equality case of the Bar\'at--Freschi--T\'oth count and closes it with the star polygons of $2$-triangulations. The
-plain form for $k=4$ remains open; we verify it for $n\le 13$.
+$k=3$, we prove the plain form for $k=4$, and we show that the strong form fails for $k=4$: there is an ordered graph
+on $9$ vertices with $28$ edges and no strongly non-nested $4$-matching, and the excess persists for every $n\ge9$.
+So the plain form of the conjecture holds exactly for $k\le4$ and the strong form exactly for $k\le3$. Both upper
+bounds study the equality case of the Bar\'at--Freschi--T\'oth count and close it with the star polygons of
+multitriangulations; for $k=4$ two finite configuration checks are done by computer.
 \end{abstract}
 \maketitle
 
@@ -90,9 +91,15 @@ For every $n\ge6$, $f_3(n)=f^*_3(n)=2n$.
 For every $n\ge9$, $f^*_4(n)\ge 3n+1$. In particular the strong form of \cite[Conjecture~2.6]{BFT} fails for $k=4$.
 \end{theorem}
 
-Theorem~\ref{thm:k3} is the case of the conjecture that survives, and Theorem~\ref{thm:k4} separates the two forms:
-together with \cite{dC}, the strong form holds exactly for $k\le3$. For the plain form with $k=4$ we have only
-computational evidence (Section~\ref{sec:k4plain}).
+\begin{theorem}\label{thm:k4plain}
+For every $n\ge8$, $f_4(n)=3n$.
+\end{theorem}
+
+Together with \cite{dC}, the plain form of the conjecture holds exactly for $k\le4$ and the strong form exactly for
+$k\le3$; Theorem~\ref{thm:k4} is what separates the two forms at $k=4$. Theorem~\ref{thm:k4plain} is proved in
+Section~\ref{sec:k4plain}. Its proof follows the same plan as that of Theorem~\ref{thm:k3}, with $3$-triangulations
+in place of $2$-triangulations, but the equality case is far richer and two finite parts of it are checked by
+computer.
 
 \section{Proof of Theorem~\ref{thm:k3}}
 By (1) it suffices to show that an ordered graph $G$ on $[n]$, $n\ge6$, with no strongly non-nested $3$-matching has
@@ -254,25 +261,376 @@ A SAT computation gives $f^*_4(n)=3n+1,\,3n+1,\,3n+2,\,3n+2,\,3n+2$ for $n=9,\do
 from (1).
 \end{remark}
 
-\section{The plain form for $k=4$}\label{sec:k4plain}
-A SAT computation, with each forbidden non-nested $4$-matching as a clause, gives $f_4(n)=3n$ for $8\le n\le13$. As a
-control, the same program finds de Castro's excess at $k=5$: $f_5(11)=45=4\cdot11+1$. The argument of Section~2 does not
-carry over directly. With short edges now of length at most $3$, the count (2) becomes $e(G)\le 3n-15+s$ with $s\le18$,
-by \cite[Lemma~2.8]{BFT}, so only $s\ge16$ needs an argument. The difficulty is that, unlike the short edges in
-Lemma~\ref{lem:short}, short edges of length up to $3$ can be nested inside one another and can form chains of
-crossings, so dense short configurations no longer reduce to a single family.
+\section{Proof of Theorem~\ref{thm:k4plain}}\label{sec:k4plain}
+The lower bound is (1). For the upper bound let $G$ be an ordered graph on $[n]$, $n\ge8$, with no non-nested
+$4$-matching. Now an edge is \emph{short} if its length is at most $3$ and \emph{long} otherwise; $S$ is the set of
+short edges of $G$, $s=|S|$, and $L$ is the number of long edges. The route is the one of Section~2. A count bounds
+$e(G)$ by $3n$ unless $s\ge16$ (Section~4.1). The short edges then have a rigid structure (Section~4.2). Every
+remaining long edge of a $3$-triangulation completing $G$ must be present, and a single star polygon of that
+triangulation, placed next to a dense short star, forces a non-nested $4$-matching (Sections~4.3--4.5). When a few long
+edges may be missing, several such stars are needed and a counting argument shows they cannot all be spoiled
+(Section~4.6).
 
-\begin{problem}
-Is $f_4(n)=3n$ for every $n\ge8$?
-\end{problem}
+\subsection{The count}
+The \emph{cyclic length} of $ij$ is $\min(j-i,\,n-j+i)$, its length when $[n]$ is drawn on a circle. An edge of
+cyclic length at most $3$ has at most two vertices strictly on one side, so it lies in no set of four pairwise
+crossing edges. Let $H$ be $G$ together with all $3n$ edges of cyclic length at most $3$. Four pairwise crossing edges
+of $G$ form a non-nested $4$-matching, so $H$ has no four pairwise crossing edges, and by the theorem of Capoyleas
+and Pach \cite{CP} (at most $k(2n-2k-1)$ chords with no $k+1$ pairwise crossing, here $k=3$) it has at most $6n-21$
+edges. The edges of cyclic length at most $3$ are the $3n-6$ short edges and the six \emph{wrap} edges $(1,n)$,
+$(1,n-1)$, $(2,n)$, $(1,n-2)$, $(2,n-1)$, $(3,n)$, which are long. Every long edge of $G$ is among the
+$6n-21-(3n-6)=3n-15$ long edges of $H$, so
+\[
+L\le 3n-15,\qquad e(G)=s+L\le 3n-15+s. \tag{3}
+\]
+The \emph{deficit} is $d=3n-15-L\ge0$. A graph with $e(G)\ge3n+1$ has $d\le s-16$, so it suffices to rule out
+$s\ge16$ with $d\le s-16$.
 
-\section*{Reproducibility and acknowledgement}
-The computations, a verification of Theorem~\ref{thm:k4} independent of the search code, and the checks of each step
-are available with this note. The proof of Theorem~\ref{thm:k3} was found with Codex (OpenAI): its route, the
-classification of Lemma~\ref{lem:short} and the use of Theorem PS. Claude (Anthropic, Claude Opus 5.5) did the
-computations, found the reduction to the case $s=8$ and the two-star structure numerically, found the graph $G_9$ and
-the proof of Theorem~\ref{thm:k4}, checked every step of the proof of Theorem~\ref{thm:k3} against the sources, and
-drafted the text. The author is responsible for the content.
+\subsection{Short edges}
+\begin{lemma}\label{lem:len}
+Let $F$ be a set of short edges with no non-nested $(r+1)$-matching. Then $F$ has at most $2r$ edges of each length.
+If $F$ has $2r$ edges of length $2$, or $2r$ of length $3$, then some $r$ vertices meet every edge of $F$. Hence if no
+$r$ vertices meet every edge of $F$, then $|F|\le 6r-2$, with at most $2r-1$ edges of length $2$ and of length $3$.
+\end{lemma}
+
+\begin{proof}
+The edges of one length form vertex-disjoint paths, and equal-length disjoint edges are never nested; a union of
+paths with $m$ edges contains $\lceil m/2\rceil$ disjoint edges. This gives the first bound.
+
+Let $D$ be $2r$ edges of length $\delta\in\{2,3\}$. The bound $\sum\lceil m_P/2\rceil\le r$ over the path components
+$P$ forces every component to have an even number of edges. Write each component as $b_0,c_1,b_1,\dots,c_t,b_t$ in
+label order and let $C$ be the set of all its vertices $c_j$, over all components; $|C|=r$. An even path keeps a
+matching that saturates its $c$-vertices after deleting any one $b$-vertex, or any one edge. Suppose $e\in F$ avoids
+$C$. Two $b$-vertices of one component differ by a multiple of $2\delta\ge4$, so the endpoints of $e$ delete at most
+one $b$-vertex from each component. If $\delta=2$ no edge of $D$ is nested with $e$, and the remaining $r$-matching of
+$D$ extends by $e$. If $\delta=3$ the only possible nested pair is $e=(i+1,i+2)$ inside $f=(i,i+3)\in D$; the
+component of $f$ consists of labels $\equiv i\pmod3$ and the endpoints of $e$ have the other two residues, so we may
+delete $f$ in its own component and the endpoints of $e$ in theirs, and again find $r$ edges of $D$ disjoint from and
+non-nested with $e$. Either way $F$ has a non-nested $(r+1)$-matching, a contradiction. The last statement follows.
+\end{proof}
+
+For $r=3$: every $G$ has $s\le18$; if $s\ge17$, three vertices meet every short edge; and if $s=16$ with no such
+three vertices, the short edges of lengths $1,2,3$ number $6,5,5$. We say $S$ is \emph{covered by} $C=\{c_1<c_2<c_3\}$
+when every short edge meets $C$; then $S$ lies in the union of the \emph{short stars} at the $c_i$ (the at most six
+short edges at each $c_i$), and $c_1,c_2,c_3$ are the \emph{centres}.
+
+\begin{lemma}\label{lem:pair}
+Let $F$ be a set of short edges, no two of them disjoint and non-nested, and with no common vertex. Then $|F|\le4$,
+and $|F|=4$ only for $F=\{ad,bc,x,y\}$ on consecutive vertices $a<b<c<d$ with $x\in\{ab,cd\}$ and $y\in\{ac,bd\}$.
+\end{lemma}
+
+\begin{proof}
+Four pairwise intersecting edges form a star (an edge meeting $ab$ and $ac$ but not $a$ is $bc$, and no fourth edge
+meets all of $ab,ac,bc$). So $F$ has a disjoint pair, which must be nested: $ad,bc$ on consecutive vertices. Every
+other edge meets both (otherwise it would be the unique short edge nested with one of them), so lies in
+$\{ab,ac,bd,cd\}$, and $ab,cd$ and $ac,bd$ are disjoint non-nested pairs.
+\end{proof}
+
+\begin{lemma}\label{lem:uncov}
+Let $s=16$ with no three vertices meeting every short edge. Then the six length-$1$ edges are $(c-1,c),(c,c+1)$ for
+three \emph{centres} $c_1<c_2<c_3$ with $c_{i+1}-c_i\ge2$, and every short edge that avoids the centres is
+$(c-1,c+1)$, $(c-2,c+1)$ or $(c-1,c+2)$ for a centre $c$. If some gap $c_{i+1}-c_i$ is at least $4$, then after
+reversing the order of $[n]$ if necessary, $c_2-c_1\ge4$, $c_1\ge4$, and $S$ contains all six short edges at $c_1$.
+\end{lemma}
+
+\begin{proof}
+By Lemma~\ref{lem:len} there are six length-$1$ edges, with no four disjoint; as there, they form even paths, and the
+centres are the second, fourth, $\dots$ vertices of each path. A length-$2$ edge avoiding the centres cannot be nested
+with a length-$1$ edge, so deleting its ends must destroy every $3$-matching of length-$1$ edges; this happens only if
+both ends are non-centres of one path, that is the edge is $(c-1,c+1)$. For $(u,u+3)$ avoiding the centres, its ends
+are not two non-centres of one path (they differ by an odd number), so a $3$-matching of length-$1$ edges avoids them,
+and it must contain the one length-$1$ edge nested inside, $(u+1,u+2)$; one of $u+1,u+2$ is a centre.
+
+Assign every short edge to a centre it meets, or to the centre $c$ named above; the edges of the centre $c$ (its
+\emph{bucket}) lie in $[c-3,c+3]$. Reversing the order if necessary, suppose $c_2-c_1\ge4$. If $c_3-c_2\ge4$ as
+well, each bucket has no two disjoint
+non-nested edges: such a pair together with the length-$1$ edges at the other two centres that point away from it is a
+non-nested $4$-matching. A bucket with a common vertex has at most six edges, and one without has at most four by
+Lemma~\ref{lem:pair}. Three buckets with common vertices would give three vertices meeting every short edge, so the
+sizes are $6,6,4$ and two buckets are full short stars at their centres; one of them is at $c_1$ or at $c_3$, and
+we reverse the order if it is at $c_3$ (both gaps are at least $4$). If $c_3-c_2\le3$, let $A$ be
+the bucket of $c_1$ and $R$ the union of the other two. As before $A$ has no two disjoint non-nested edges and $R$ has
+no non-nested $3$-matching (add the length-$1$ edge at $c_1$ pointing left). So $|A|\le6$, and by
+Lemma~\ref{lem:len} with $r=2$, $|R|\le12$. If $|R|=12$, then $R$ has four length-$2$ edges and Lemma~\ref{lem:len}
+gives two vertices meeting all of $R$, whose full short stars are disjoint, so the two vertices are at least $4$ apart;
+but the length-$1$ edges of $R$ are those at $c_2,c_3$, and their only cover by two vertices is $\{c_2,c_3\}$, which
+are at most $3$ apart. So $|R|\le11$, $|A|\ge5$, and $A$ has a common vertex, namely $c_1$. If $|A|=5$, then $|R|=11>10$
+and Lemma~\ref{lem:len} gives two vertices meeting $R$, which with $c_1$ meet every short edge. Hence $|A|=6$ is the
+full short star at $c_1$, and $c_1\ge4$.
+\end{proof}
+
+\subsection{Stars of a $3$-triangulation}
+Extend $H$ to a maximal set $T$ of chords with no four pairwise crossing, a \emph{$3$-triangulation}. It has exactly
+$6n-21$ edges \cite{CP,PS}, among them all $3n-6$ short edges, so it has $3n-15$ long edges. These include all long
+edges of $G$, and the set $X$ of long edges of $T$ not in $G$ has exactly $|X|=d$ elements. A \emph{$3$-star} is the
+star polygon on seven vertices $v_0,\dots,v_6$ in cyclic order with the seven chords $v_jv_{j+3}$ (indices mod $7$).
+
+\begin{ps}[Pilaud and Santos {\cite[Theorem~1.4(2), Corollary~4.2]{PS}}]
+In a $3$-triangulation of the $n$-gon, $n\ge7$, every chord of cyclic length $3$ belongs to exactly one $3$-star, every
+chord of cyclic length at least $4$ to exactly two, and the other chords to none.
+\end{ps}
+
+Let $1\le i\le n-3$. The chord $(i,i+3)$ has cyclic length $3$, so it lies in a $3$-star of $T$. A chord of a $3$-star
+has two star vertices strictly on one side and three on the other, and the short side of $(i,i+3)$ holds only
+$i+1,i+2$. So the star has vertices $i,i+1,i+2,i+3,p,q,r$ in cyclic order, with $p,q,r$ in the cyclic interval from
+$i+4$ to $i-1$ (first the vertices after $i+3$, then those before $i$), and its other six chords are
+\[
+(i+1,p),\ (i+2,q),\ (i+3,r),\ (i,p),\ (i+1,q),\ (i+2,r). \tag{4}
+\]
+Every chord of this star has an endpoint in the \emph{window} $[i,i+3]$ (Figure~\ref{fig:star}). Its chords of length
+at least $4$ are long edges of $T$, so they lie in $G$ unless they lie in $X$. Call the window $[i,i+3]$ \emph{good} if,
+whatever the positions of $p,q,r$, the set consisting of $S$ and of the chords (4) of length at least $4$ contains a
+non-nested $4$-matching. Then:
+\begin{quote}
+\emph{the star of $T$ on a good window contains an edge of $X$.}
+\end{quote}
+In particular, if $d=0$ no window is good.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[x=0.8cm,y=0.8cm,v/.style={circle,fill,inner sep=1.2pt}]
+\fill[gray!15] (2.7,-0.2) rectangle (6.3,0.2);
+\foreach \x/\l in {1/r,3/i,4/i+1,5/i+2,6/i+3,9/p,12/q}
+  \node[v,label=below:{\scriptsize$\l$}] at (\x,0) {};
+\foreach \x in {0,2,7,8,10,11,13} \node[v,fill=gray] at (\x,0) {};
+\draw[gray,thick,dashed] (3,0) to[out=80,in=100] (6,0);
+\draw[thick] (4,0) to[out=60,in=120] (9,0);
+\draw[thick] (5,0) to[out=60,in=120] (12,0);
+\draw[thick] (1,0) to[out=60,in=120] (6,0);
+\draw[thick] (3,0) to[out=60,in=120] (9,0);
+\draw[thick] (4,0) to[out=60,in=120] (12,0);
+\draw[thick] (1,0) to[out=60,in=120] (5,0);
+\end{tikzpicture}
+\caption{The $3$-star of a $3$-triangulation on the window $[i,i+3]$ (shaded), here with $p,q$ to the right and $r$ to
+the left. The dashed chord $(i,i+3)$ is short; the six other chords (4) all have an endpoint in the window. Placed next
+to a dense short star, these chords complete a non-nested $4$-matching whatever $p,q,r$ are.}
+\label{fig:star}
+\end{figure}
+
+\subsection{Good windows}
+The next lemma lists the good windows we use. In each part, Table~\ref{tab:windows} gives one non-nested $4$-matching
+for each position of $p,q,r$. In every row the four edges are present (an edge of length at most $3$ is one of the
+edges assumed to be in $S$, and every other edge listed is a chord (4) whose length the row's inequalities make at least
+$4$), they have eight distinct ends, and their left ends and right ends increase together, so no two are nested. The
+rows of each part are exhaustive, because a vertex among $p,q,r$ that lies before $i$ is followed in the cyclic order
+only by vertices before $i$. Reversing the order of $[n]$ preserves nesting, so each part also holds in mirror image.
+
+\begin{lemma}\label{lem:windows}
+Let $c$ be a vertex, and let $A,B$ be disjoint, non-nested edges of $S$. The window $W$ is good in each of the
+following cases.
+\begin{enumerate}
+\item[(a)] $W=[c-2,c+1]$, $(c-3,c),(c,c+2)\in S$, and all ends of $A,B$ are at least $c+3$.
+\item[(b)] $W=[c-1,c+2]$, $(c-2,c),(c,c+3)\in S$, and all ends of $A,B$ are at least $c+4$.
+\item[(c)] $W=[c-1,c+2]$, $(c-3,c),(c,c+2)\in S$, and all ends of $A,B$ are at least $c+4$.
+\item[(d)] $W=[c-1,c+2]$, $(c-3,c),(c,c+3)\in S$, both ends of $A$ are at most $c-4$, and both ends of $B$ are at
+least $c+4$ (here $A,B$ need not be non-nested).
+\item[(e)] $W=[c-1,c+2]$, $(c-2,c),(c,c+3),(c+1,c+4)\in S$, and both ends of $B$ are at least $c+5$.
+\item[(f)] $W=[c-2,c+1]$, $(c-3,c),(c,c+3),(c+2,c+4)\in S$, and both ends of $B$ are at least $c+6$.
+\end{enumerate}
+\end{lemma}
+
+\begin{table}[ht]
+\centering\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+Part & Position of $p<q<r$ (cyclic order) & Non-nested $4$-matching\\
+\midrule
+(a) & $r\le c-3$ & $(r,c+1),\ (c,c+2),\ A,\ B$\\
+    & all right, $r=c+4$ (so $p=c+2$, $q=c+3$) & $(c-3,c),\ (c-2,c+2),\ A,\ B$\\
+    & all right, $r\ge c+5$ & $(c-3,c),\ (c-2,p),\ (c-1,q),\ (c+1,r)$\\
+\midrule
+(b) & $r\le c-2$ & $(r,c+2),\ (c,c+3),\ A,\ B$\\
+    & all right, $p=c+3$ & $(c-2,c),\ (c-1,c+3),\ A,\ B$\\
+    & all right, $p\ge c+4$ & $(c-2,c),\ (c-1,p),\ (c+1,q),\ (c+2,r)$\\
+\midrule
+(c) & $p$ right, $p$ before every end of $A,B$ & $(c-1,p),\ (c-3,c),\ A,\ B$\\
+    & $r\le c-3$ & $(r,c+1),\ (c,c+2),\ A,\ B$\\
+    & $r=c-2$, $q\le c-3$ & $(q,c),\ (c-2,c+2),\ A,\ B$\\
+    & $r=c-2$, $p,q$ right, $p$ not before every end & $(c-1,p),\ (c+1,q),\ (c-2,c+2),\ (c-3,c)$\\
+    & all right, $p$ not before every end & $(c-1,p),\ (c+1,q),\ (c+2,r),\ (c-3,c)$\\
+\midrule
+(d) & all right & $A,\ (c-1,p),\ (c,q),\ (c+1,r)$\\
+    & $q,r$ left & $(q,c+1),\ (r,c+2),\ (c,c+3),\ B$\\
+    & $p,q$ right, $r$ left, $q\ge c+5$ & $A,\ (c-3,c),\ (c-1,p),\ (c+1,q)$\\
+    & $p,q$ right, $r$ left, $q=c+4$ (so $p=c+3$) & $A,\ (c-3,c),\ (c-1,c+3),\ B$\\
+\midrule
+(e) & $r\le c-2$ & $(r,c+2),\ (c,c+3),\ (c+1,c+4),\ B$\\
+    & all right, $p=c+3$ & $(c-2,c),\ (c-1,c+3),\ (c+1,c+4),\ B$\\
+    & all right, $p\ge c+4$ & $(c-2,c),\ (c-1,p),\ (c+1,q),\ (c+2,r)$\\
+\midrule
+(f) & $r\le c-3$ & $(r,c+1),\ (c,c+3),\ (c+2,c+4),\ B$\\
+    & all right, $r=c+4$ (so $p=c+2$, $q=c+3$) & $(c-3,c),\ (c-1,c+3),\ (c+2,c+4),\ B$\\
+    & all right, $r\ge c+5$ & $(c-3,c),\ (c-2,p),\ (c-1,q),\ (c+1,r)$\\
+\bottomrule
+\end{tabular}
+\caption{The certificates of Lemma~\ref{lem:windows}. ``Right'' means after the window and ``left'' before it. In part
+(c), if $q=c-3$ the edge $(q,c)$ is the short edge $(c-3,c)$.}
+\label{tab:windows}
+\end{table}
+
+\begin{proof}
+Each row is checked as described above; for instance in the last row of (a), $p\ge c+2$, $q\ge c+3$ and $r\ge c+5$
+give lengths $p-c+2$, $q-c+1$, $r-c-1\ge4$, the left ends $c-3<c-2<c-1<c+1$ and the right ends $c<p<q<r$ increase
+together. In part (c), the fourth and fifth rows have $q>p\ge c+4$, so $(c+1,q)$ is long. In part (d), the second row
+has $q\le c-3$, so $(q,c+1)$ is long. The other rows are similar.
+\end{proof}
+
+\subsection{Sixteen short edges}
+If $s=16$ then $d=0$ by (3), so it suffices to find a good window. Two finite checks are needed, and they rest on the
+following reduction. Fix centres $c_1<c_2<c_3$ for which every short edge lies in $[c-3,c+3]$ for a centre $c$ (true for
+covered $S$, and for uncovered $S$ by Lemma~\ref{lem:uncov}). Call a vertex \emph{far} if it is at distance at least
+$4$ from every centre; no short edge has a far end or a far vertex strictly inside it.
+
+\begin{lemma}\label{lem:far}
+Suppose four consecutive vertices are far, and let $S'$ on $[n-1]$ arise by deleting one of them and relabelling. If
+$S'$ has a good window within distance $3$ of a centre, then so does $S$.
+\end{lemma}
+
+\begin{proof}
+Let $W$ be the corresponding window of $S$; it contains no far vertex. Given $p,q,r$ for $W$, choose one of the four far
+vertices outside $\{p,q,r\}$ and delete it. This turns $S$ into $S'$ (no short edge contains it) and keeps the cyclic
+order of the star. The non-nested $4$-matching found for $S'$ lifts: its short edges are edges of $S$, a chord of length
+at least $4$ after the deletion had length at least $4$ before, and the order of all endpoints is unchanged.
+\end{proof}
+
+\begin{lemma}\label{lem:sixteen}
+If $s=16$, then some window is good.
+\end{lemma}
+
+\begin{proof}
+Suppose first that no three vertices meet every short edge, and take the centres of Lemma~\ref{lem:uncov}. If a gap
+between consecutive centres is at least $4$, then after reversing the order if necessary $S$ contains all six short
+edges at $c_1$ and $c_2\ge c_1+4$, and Lemma~\ref{lem:windows}(c) applies with $c=c_1$, $A=(c_2,c_2+1)$ and
+$B=(c_3,c_3+1)$. If both gaps are at most $3$, there are sixteen such families up to translation, on $11$ to $13$
+consecutive vertices; this list is part of Computation~1 below. By Lemma~\ref{lem:far} it suffices to place them with
+at most seven free vertices on each side, and Computation~1 finds a good window in every case.
+
+Suppose now that $S$ is covered by $C$. Then $S$ is the union of the short stars at the centres with some edges omitted
+(and with the stars cut off at $1$ and $n$). If Lemma~\ref{lem:windows}(c), its mirror image, or (d) applies, we are
+done; these windows lie within distance $2$ of a centre. Otherwise, by Lemma~\ref{lem:far}, applied repeatedly, it
+suffices to treat families with at most three far vertices in each run, that is with gaps $c_{i+1}-c_i\le10$ and at
+most three far vertices at each end. Computation~2 lists all of them (with gaps up to $16$ and up to seven free vertices
+at each end) and finds a good window within distance $3$ of a centre in each.
+\end{proof}
+
+\begin{description}
+\item[Computation 1] All sets of $16$ short edges with no non-nested $4$-matching and no three vertices meeting all of
+them were enumerated (spans up to $26$); exactly $16$ families up to translation have both centre gaps at most $3$.
+Each was placed with $0$ to $7$ free vertices on each side; for every placement and every position of $p,q,r$ the
+window $[c-1,c+2]$ at an end centre $c$ carrying all six short edges at $c$ (after reversing the order if needed) is
+good. No failures.
+\item[Computation 2] All covered families with $s=16$ (gaps $1$ to $16$, each end either cut off or with up to seven
+free vertices) were enumerated: $15{,}984$ are not handled by Lemma~\ref{lem:windows}(c) with the extra edge $(c-2,c)$,
+by its mirror image, or by (d). Each has a good window $[i,i+3]$ with $c-3\le i\le c$ for a centre $c$. No failures.
+\end{description}
+Both computations were run by two programs that share no code (see the section on reproducibility).
+
+\subsection{Seventeen and eighteen short edges}
+Now $s\in\{17,18\}$, so $S$ is covered by centres $c_1<c_2<c_3$, and it remains to show $|X|\ge s-15$. Let
+$s=18-\beta-t-o$, where $\beta$ counts the short edges lost at the two ends ($c_1\le3$ or $c_3\ge n-2$), $t$ the pairs of
+centres at distance at most $3$ (whose joining edge is counted twice), and $o$ the omitted short edges at the centres.
+
+At a centre $c$ write $W_c^-=[c-2,c+1]$ and $W_c^+=[c-1,c+2]$, let $T_c^\pm$ be the stars of $T$ on them, and call
+$E_c=(c-2,c+2)$ the \emph{ear} at $c$. If $T_c^-=T_c^+$, this star contains the five consecutive vertices
+$c-2,\dots,c+2$, hence the chord $E_c$. Two windows that are disjoint cannot lie in one star (that would need eight
+vertices).
+
+\begin{lemma}\label{lem:eighteen}
+If $s=18$, then $|X|\ge3$.
+\end{lemma}
+
+\begin{proof}
+Here $\beta=t=o=0$: $S$ consists of the full short stars at the centres, $c_1\ge4$, $c_3\le n-3$ and $c_{i+1}-c_i\ge4$.
+All six windows are good: at $c_1$ by Lemma~\ref{lem:windows}(a) and (b) with $A=(c_2,c_2+1)$, $B=(c_3,c_3+1)$; at
+$c_3$ by their mirror images with $(c_1-1,c_1)$, $(c_2-1,c_2)$; at $c_2$ by Lemma~\ref{lem:windows}(d) and its mirror
+image with $A=(c_1-1,c_1)$ and $B=(c_3,c_3+1)$. Next, the interval strictly between the neighbours of a centre $c$ (or
+from $1$, or to $n$) contains no two disjoint non-nested edges of $G$, since such a pair together with the length-$1$
+edges at the other two centres pointing away from it would be a non-nested $4$-matching. The edges $E_c$,
+$(c-1,c+3)$ and $(c-3,c+1)$ lie in that interval and form such a pair with $(c-3,c)$, $(c-3,c)$ and $(c,c+3)$
+respectively, so none of them is in $G$; when one of them is in $T$, it is in $X$.
+
+Suppose $|X|\le2$. Two of the six windows can share a star only if they overlap: $W_c^-$ and $W_c^+$ (an
+\emph{internal} identification), or $W_c^+$ and $W_{c'}^-$ for consecutive centres with $c'=c+4$ (a \emph{bridge}). No
+three share a star, since any three of the windows span at least eight vertices. A bridge star has exactly the seven
+consecutive vertices $c-1,\dots,c+5$, so it contains $(c-1,c+3)$ and $(c+1,c+5)=(c'-3,c'+1)$; both are in $X$, so
+$X$ consists of these two, which have no endpoint in a window at the third centre, so by (4) they lie in neither star
+there, contradicting goodness. Hence there are no bridges. If $r$ centres have an internal identification, there are
+$6-r$ distinct good stars, each containing an edge of $X$, and each edge lies in at most two stars, so $6-r\le2|X|\le4$.
+If $r=3$ the three ears are in $X$; so $r=2$ and $X$ consists of the two ears at those centres. The two stars at the
+third centre $j$ are distinct and each contains an ear. An ear $E_c$ with $c<c_j$ has its right end $c+2\le c_j-2$, so
+by (4) it can lie only in $T^-_{c_j}$, and only if $c_j=c+4$; symmetrically on the right. Hence $j$ is the middle
+centre and the centres are $a,a+4,a+8$, with $X=\{(a-2,a+2),(a+6,a+10)\}$.
+
+The star $T^-_{a+4}$ on the window $[a+2,a+5]$ must contain $(a-2,a+2)$, the only edge of $X$ with an end in that
+window. In (4) with $i=a+2$ the vertex $i$ has the star neighbours $i+3$ and $p$, so $p=a-2$, and then $q<r$ lie in
+$\{a-1,a,a+1\}$. The chords $(a-2,a+3)$, $(q,a+4)$, $(r,a+5)$ have length at least $4$ and are not in $X$, so they are
+in $G$; they cross pairwise, and with $(a+8,a+9)$ they form a non-nested $4$-matching. This contradiction proves
+$|X|\ge3$.
+\end{proof}
+
+\begin{lemma}\label{lem:seventeen}
+If $s=17$, then $|X|\ge2$.
+\end{lemma}
+
+\begin{proof}
+Now $\beta+t+o=1$. We find a centre $c$ whose two windows are good and whose ear is not in $G$, and a good window $J$
+disjoint from $[c-2,c+2]$. This suffices: if $T^-_c\ne T^+_c$, the stars $T^-_c$, $T^+_c$ and the star on $J$ are three
+distinct stars each containing an edge of $X$, and no edge lies in three stars; if $T^-_c=T^+_c$, this star contains
+the ear, which is then in $X$, and if $X$ were just the ear, the star on $J$ would contain it, which is impossible since
+the ear has no end in $J$.
+
+If all gaps are at least $4$ ($\beta$ or $o$ is $1$), the defect touches at most one end centre, so the other end
+centre $c$ carries all six short edges, and both its windows are good by Lemma~\ref{lem:windows}(a), (b) (or their
+mirror images), with $A,B$ the length-$1$ edges at the other two centres pointing away from $c$, or the length-$2$ edge
+in the same direction where the defect removes one. Its ear, with $(c-3,c)$ and $A,B$, would be a non-nested
+$4$-matching, so it is not in $G$. At the other end centre at least one of the two pairs $\{(c'-3,c'),(c',c'+2)\}$,
+$\{(c'-2,c'),(c',c'+3)\}$ (or their mirror images) survives the one defect, so one of its windows is good by the same
+lemma; it is disjoint from $[c-2,c+2]$ because the end centres are at least $8$ apart.
+
+Otherwise $t=1$: all three short stars are full and two consecutive centres are close. Reverse the order so that the
+close centres are $a$ and $a+h$, $h\in\{1,2,3\}$, and the other centre is $b\ge a+h+4$. Both windows at $b$ are good by
+the mirror images of Lemma~\ref{lem:windows}(a), (b), using $(a-2,a),(a-1,a+1)$ if $h=1$ and $(a-1,a),(a+h-1,a+h)$ if
+$h=2,3$; and the ear at $b$ is not in $G$ as before. Let $B=(b,b+1)$. For $h=3$ take $J=[a-2,a+1]$, good by
+Lemma~\ref{lem:windows}(a) with $c=a$ and $A=(a+3,a+4)$; for $h=2$ take $J=[a-2,a+1]$, good by (f) with $c=a$; for
+$h=1$ take $J=[a-1,a+2]$, good by (e) with $c=a$. In each case $J\subseteq[a-2,a+2]$ is disjoint from $[b-2,b+2]$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:k4plain}]
+Suppose $e(G)\ge3n+1$. By (3), $s\ge16$ and $d\le s-16$. If $s=16$ then $d=0$, so $X$ is empty and no window is good,
+contradicting Lemma~\ref{lem:sixteen}. If $s=17$ or $18$, then $d=|X|\ge s-15$ by Lemmas~\ref{lem:seventeen}
+and~\ref{lem:eighteen}, contradicting $d\le s-16$. Hence $e(G)\le3n$, and with (1), $f_4(n)=3n$.
+\end{proof}
+
+\begin{remark}
+Lemma~\ref{lem:eighteen} is sharp. For centres with $c_1\ge4$, $c_3\le n-3$ and gaps at least $4$, all $3n-6$ edges
+at the three centres together with the six wrap edges form an ordered graph with $3n$ edges, eighteen short edges and
+$L=3n-18$. It has no non-nested $4$-matching: a matching contains at most three edges at the centres, and a wrap edge
+$(u,v)$ lies in none, since a disjoint edge not nested in it must use one of the at most two vertices outside $[u,v]$.
+\end{remark}
+
+\section*{Reproducibility, formal verification and acknowledgement}
+All computations, with the scripts and their recorded outputs, are archived with this note (repository folder and
+Zenodo record below). For Theorem~\ref{thm:k4plain}: every row of Table~\ref{tab:windows} was checked mechanically
+for all positions of $p,q,r$ and all admissible $A,B$ with $n\le 19$, and checks with weakened hypotheses fail, as they
+should. Computation~1 was run by two programs, and Computation~2 by a Python program and by an independent program in
+C; the two lists of $15{,}984$ families agree. A SAT computation confirms $f_4(n)=3n$ for $8\le n\le13$ (two independent
+encodings).
+
+The case analyses of Lemma~\ref{lem:windows}, the exceptional arrangement in the proof of Lemma~\ref{lem:eighteen} and
+the counting step $6-r\le2|X|$ are formalised in Lean~4 with Mathlib, as are Theorems~\ref{thm:k3} and~\ref{thm:k4}
+(with the theorems of Capoyleas and Pach and of Pilaud and Santos as stated hypotheses); every formalised statement
+depends only on the standard axioms, and planted false variants are rejected. The short-edge lemmas, the star
+identification and the two computations are not formalised in this version.
+
+The work was done with three AI models, credited by the steps they originated. Codex (OpenAI) found the proof of
+Theorem~\ref{thm:k3} (its route, Lemma~\ref{lem:short} and the use of Theorem PS), Lemmas~\ref{lem:len},
+\ref{lem:pair} and~\ref{lem:uncov}, parts (a), (b), (e), (f) of Lemma~\ref{lem:windows}, and the proofs of
+Lemmas~\ref{lem:eighteen} and~\ref{lem:seventeen}. Claude Opus~5.5 (Anthropic) found the graph $G_9$ and
+Theorem~\ref{thm:k4}, the method of single good windows and parts (c), (d) of Lemma~\ref{lem:windows}, the reduction
+of the case $s=16$ to Computation~2, ran the computations and the Lean formalisation, and drafted the text. Claude
+Fable~5.2 (Anthropic) checked every step independently, supplied the gap in the proof of Lemma~\ref{lem:uncov} for
+$|R|=12$, the weakening of part (c), and Lemma~\ref{lem:far}, and wrote the independent programs. The author is
+responsible for the content.
 
 \begin{thebibliography}{9}
 \bibitem{BFT} J.~Bar\'at, A.~Freschi and G.~T\'oth, Matchings avoiding ordered patterns, arXiv:2512.15461v2 (2025).

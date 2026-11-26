@@ -1,5 +1,6 @@
 import LeanProofs.NonNested.K3
 import LeanProofs.NonNested.K4
+import LeanProofs.NonNested.K4Plain
 
 /-! Axiom report for the non-nested matchings formalisation. -/
 
@@ -16,3 +17,11 @@ import LeanProofs.NonNested.K4
 #print axioms NonNested.noSNN4_addVertex
 #print axioms NonNested.theorem2
 #print axioms NonNested.strong_conjecture_fails
+#print axioms NonNested.lemmaE
+#print axioms NonNested.endWindowA
+#print axioms NonNested.endWindowB
+#print axioms NonNested.lemmaM
+#print axioms NonNested.closePair1
+#print axioms NonNested.closePair2
+#print axioms NonNested.exceptional
+#print axioms NonNested.card_le_two_mul

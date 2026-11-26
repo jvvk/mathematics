@@ -1,10 +1,26 @@
-Isolated build 2026-11-25: fresh copy of lean/, lake exe cache get, lake build LeanProofs
-✔ [8924/8932] Built LeanProofs.NonNested.Defs (50s)
-✔ [8925/8932] Built LeanProofs.NonNested.Short (74s)
-✔ [8926/8932] Built LeanProofs.NonNested.K4 (94s)
-✔ [8927/8932] Built LeanProofs.NonNested.Fence (52s)
-✔ [8928/8932] Built LeanProofs.NonNested.K3 (52s)
-ℹ [8929/8932] Built LeanProofs.NonNested.Report (47s)
-✔ [8930/8932] Built LeanProofs.NonNested (39s)
-✔ [8931/8932] Built LeanProofs (47s)
-Build completed successfully (8932 jobs).
+Isolated build 2026-11-26: fresh copy of lean/, lake exe cache get, lake build LeanProofs
+✔ [8924/8933] Built LeanProofs.NonNested.Defs (179s)
+✔ [8925/8933] Built LeanProofs.NonNested.Short (275s)
+⚠ [8926/8933] Built LeanProofs.NonNested.K4Plain (275s)
+warning: LeanProofs/NonNested/K4Plain.lean:158:11: this tactic is never executed
+warning: LeanProofs/NonNested/K4Plain.lean:159:11: this tactic is never executed
+warning: LeanProofs/NonNested/K4Plain.lean:160:11: this tactic is never executed
+warning: LeanProofs/NonNested/K4Plain.lean:157:11: Unused tactic linter: `have hF := hS.mem (star3_3 _ p q (z + 1)) (by omega)` does nothing
+warning: LeanProofs/NonNested/K4Plain.lean:158:11: Unused tactic linter: `by_cases hq : q = z` does nothing
+warning: LeanProofs/NonNested/K4Plain.lean:159:11: Unused tactic linter: `· subst hq; omega` does nothing
+warning: LeanProofs/NonNested/K4Plain.lean:160:11: Unused tactic linter: `·
+warning: LeanProofs/NonNested/K4Plain.lean:277:36: this tactic is never executed
+warning: LeanProofs/NonNested/K4Plain.lean:278:56: this tactic is never executed
+warning: LeanProofs/NonNested/K4Plain.lean:279:56: this tactic is never executed
+warning: LeanProofs/NonNested/K4Plain.lean:278:32: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+warning: LeanProofs/NonNested/K4Plain.lean:279:32: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+warning: LeanProofs/NonNested/K4Plain.lean:277:36: Unused tactic linter: `omega` does nothing
+warning: LeanProofs/NonNested/K4Plain.lean:278:56: Unused tactic linter: `omega` does nothing
+warning: LeanProofs/NonNested/K4Plain.lean:279:56: Unused tactic linter: `omega` does nothing
+✔ [8927/8933] Built LeanProofs.NonNested.K4 (284s)
+✔ [8928/8933] Built LeanProofs.NonNested.Fence (48s)
+✔ [8929/8933] Built LeanProofs.NonNested.K3 (89s)
+ℹ [8930/8933] Built LeanProofs.NonNested.Report (95s)
+✔ [8931/8933] Built LeanProofs.NonNested (114s)
+✔ [8932/8933] Built LeanProofs (111s)
+Build completed successfully (8933 jobs).

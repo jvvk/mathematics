@@ -1,0 +1,5 @@
+span 11: 8 uncovered families, 8 with both centre gaps <= 3
+span 12: 20 uncovered families, 4 with both centre gaps <= 3
+span 13: 32 uncovered families, 4 with both centre gaps <= 3
+16 families x margins 0..7: 1024 placements, window [c-1, c+2] good in each
+ALL CHECKS PASSED

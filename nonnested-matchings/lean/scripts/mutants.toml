@@ -89,3 +89,71 @@ name = "strong conjecture fails at 3n + 1"
 file = "../LeanProofs/NonNested/K4.lean"
 old = "    ¬ ∀ G : Finset Edge, IsGraph n G → NoSNN 4 G → G.card ≤ 3 * n := by"
 new = "    ¬ ∀ G : Finset Edge, IsGraph n G → NoSNN 4 G → G.card ≤ 3 * n + 1 := by"
+
+# False: r3/lemmaM_cases.py --mutate finds 276,618 failing placements.
+[[mutant]]
+name = "Lemma M: a may reach c-3"
+file = "../LeanProofs/NonNested/K4Plain.lean"
+old = """    (ha' : a.1 < a.2 ∧ a.2 < z) (hb' : z + 7 ≤ b.1 ∧ b.1 < b.2)"""
+new = """    (ha' : a.1 < a.2 ∧ a.2 < z + 1) (hb' : z + 7 ≤ b.1 ∧ b.1 < b.2)"""
+
+# False: r2/lemmaE_cases.py --mutate (ends >= c+3) finds 28,929 failures.
+[[mutant]]
+name = "Lemma E: a, b from c+3"
+file = "../LeanProofs/NonNested/K4Plain.lean"
+old = """    (ha' : z + 7 ≤ a.1 ∧ a.1 < a.2) (hb' : z + 7 ≤ b.1 ∧ b.1 < b.2)
+    (hpos : StarPos n (z + 2) p q r) (hS : StarLongIn G (z + 2) p q r) : False := by
+  obtain ⟨a1, a2⟩ := a; obtain ⟨b1, b2⟩ := b; simp only at ha' hb'
+  unfold OK Disj Nested at hab; simp only at hab
+  by_cases hp"""
+new = """    (ha' : z + 6 ≤ a.1 ∧ a.1 < a.2) (hb' : z + 6 ≤ b.1 ∧ b.1 < b.2)
+    (hpos : StarPos n (z + 2) p q r) (hS : StarLongIn G (z + 2) p q r) : False := by
+  obtain ⟨a1, a2⟩ := a; obtain ⟨b1, b2⟩ := b; simp only at ha' hb'
+  unfold OK Disj Nested at hab; simp only at hab
+  by_cases hp"""
+
+# False: r4/tables_check.py --mutate (T1) finds 1,663,740 failures.
+[[mutant]]
+name = "End window A: a, b from c+2"
+file = "../LeanProofs/NonNested/K4Plain.lean"
+old = """    (ha' : z + 6 ≤ a.1 ∧ a.1 < a.2) (hb' : z + 6 ≤ b.1 ∧ b.1 < b.2)
+    (hpos : StarPos n (z + 1) p q r)"""
+new = """    (ha' : z + 5 ≤ a.1 ∧ a.1 < a.2) (hb' : z + 5 ≤ b.1 ∧ b.1 < b.2)
+    (hpos : StarPos n (z + 1) p q r)"""
+
+# False: r4/tables_check.py --mutate (T2) finds 1,709,640 failures.
+[[mutant]]
+name = "End window B: a, b from c+3"
+file = "../LeanProofs/NonNested/K4Plain.lean"
+old = """    (h1 : (z + 1, z + 3) ∈ G) (h2 : (z + 3, z + 6) ∈ G) (ha : a ∈ G) (hb : b ∈ G) (hab : OK a b)
+    (ha' : z + 7 ≤ a.1 ∧ a.1 < a.2) (hb' : z + 7 ≤ b.1 ∧ b.1 < b.2)"""
+new = """    (h1 : (z + 1, z + 3) ∈ G) (h2 : (z + 3, z + 6) ∈ G) (ha : a ∈ G) (hb : b ∈ G) (hab : OK a b)
+    (ha' : z + 6 ≤ a.1 ∧ a.1 < a.2) (hb' : z + 6 ≤ b.1 ∧ b.1 < b.2)"""
+
+# False: r4/tables_check.py --mutate (T4) finds 19,221 failures.
+[[mutant]]
+name = "Close pair 1: b from c+4"
+file = "../LeanProofs/NonNested/K4Plain.lean"
+old = """    (hb' : z + 8 ≤ b.1 ∧ b.1 < b.2)"""
+new = """    (hb' : z + 7 ≤ b.1 ∧ b.1 < b.2)"""
+
+# False: dropping (2,4) gives 44,391 failing placements (round-4 check).
+[[mutant]]
+name = "Close pair 2: without (c+2,c+4)"
+file = "../LeanProofs/NonNested/K4Plain.lean"
+old = """    (h1 : (z, z + 3) ∈ G) (h2 : (z + 3, z + 6) ∈ G) (h3 : (z + 5, z + 7) ∈ G) (hb : b ∈ G)"""
+new = """    (h1 : (z, z + 3) ∈ G) (h2 : (z + 3, z + 6) ∈ G) (h3 : (z + 5, z + 7) ∈ G ∨ True) (hb : b ∈ G)"""
+
+# False: the star chords and (z+4,z+5) use only 7 vertices, so G has no 4-matching.
+[[mutant]]
+name = "Exceptional: unit edge inside the window"
+file = "../LeanProofs/NonNested/K4Plain.lean"
+old = """    (hu : (z + 10, z + 11) ∈ G)"""
+new = """    (hu : (z + 4, z + 5) ∈ G)"""
+
+# False: two stars sharing one edge of X.
+[[mutant]]
+name = "Counting: |F| <= |X|"
+file = "../LeanProofs/NonNested/K4Plain.lean"
+old = """    F.card ≤ 2 * X.card := by"""
+new = """    F.card ≤ X.card := by"""
