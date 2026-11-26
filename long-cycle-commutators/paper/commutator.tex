@@ -42,14 +42,16 @@ v & (1\,2) & (1\,2\,3) & (1\,2\,3) & (1\,3) & (2\,3) & (1\,2) & (1\,3) & (2\,3) 
 \]
 and $9=2\cdot 3\cdot 3!/4$. The general count follows from a theorem of Frobenius: the number of solutions of
 $uvu^{-1}v^{-1}=g$ in a finite group $G$ is $|G|\sum_\chi \chi(g)/\chi(1)$. For $g=c$ only the hook characters of $S_n$
-are nonzero on $c$, they take the values $\pm1$ there, and the sum is $\sum_k(-1)^k/\binom{n-1}{k}=2n/(n+1)$.
-Stanley asks for a combinatorial proof \cite[Problem~84]{Bij}, marking the problem [$*$]:
+are nonzero on $c$, they take the values $\pm1$ there, and the sum is $\sum_k(-1)^k/\binom{n-1}{k}=2n/(n+1)$. The count
+is Exercise~7.68(d) of \cite{EC2} (recorded in OEIS A052145), so only the proof below is new. Stanley asks for a
+combinatorial proof \cite[Problem~84]{Bij}, marking the problem [$*$]:
 ``a combinatorial proof of the problem is not known.''
 
 The example already shows what such a proof has to explain. Among the nine pairs, the first coordinate $u$ is a
-$3$-cycle in exactly three, a third of them. In general the solutions with $u$ an $n$-cycle make up exactly a
-fraction $1/n$ of all solutions; in the character computation this is the statement that the class of $n$-cycles
-contributes like every other class. A combinatorial argument has to produce that fraction.
+$3$-cycle in exactly three, a third of them. In general, if $u$ is an $n$-cycle then so is $\beta=vu^{-1}v^{-1}$, and
+the solutions with $u$ an $n$-cycle number $n\,B$, where $B=2(n-1)!/(n+1)$ is the number of factorisations of $c$ into
+two $n$-cycles \cite{Boc}, a count with a combinatorial proof \cite{Chen}. By Theorem~\ref{thm:main} below this is
+exactly a fraction $1/n$ of all solutions. A combinatorial proof of the theorem has to produce that fraction.
 
 This note gives such an argument. Its one deep input is a formula of Goupil and Schaeffer \cite{GS} for bipartite
 unicellular maps, which Chapuy, F\'eray and Fusy \cite{CFF} proved bijectively. Everything after that is counting
@@ -115,8 +117,8 @@ $\binom{i_j-1}{r_j-1}$ ways; the tree then has $a$ white and $b$ black vertices,
 degree lists there are $n(a-1)!(b-1)!$ such bipartite plane trees by the cycle lemma; the signs of the
 $\ell+m$ cycles give $2^{\ell+m}$; and choosing which tree vertex in each cycle is first divides by
 $\prod r_j\prod s_k$. The last step of \cite[Thm.~5]{CFF} extracts a bijection from a regular bipartite
-correspondence with Hall's theorem, so the bijection is combinatorial but not explicit; we return to this in
-Section~\ref{sec:remarks}.
+correspondence with Hall's theorem; the matching can be found by exhaustive search, but no efficient construction
+is known \cite[\S2.5]{CFF}. We return to this in Section~\ref{sec:remarks}.
 
 \section{The objects $O_n$}\label{sec:bridge}
 
@@ -250,8 +252,9 @@ involution, and it leaves nothing unpaired because $n\ge1$.
 
 \noindent\emph{Class $L$.} Let $z$ be the extra point. By the colour table its total sign is
 $\epsilon^{A_z+1}\delta^{B_z+1}$, read off from its colour. If $A_z=0$, flip $\epsilon$; otherwise, if $B_z=0$, flip
-$\delta$. This changes the sign and is an involution. The unpaired tuples have $A_z=B_z=1$, and then all four colours
-give sign $+1$.
+$\delta$. This changes the sign and is an involution. The unpaired tuples have $A_z=B_z=1$; then the factor
+$\epsilon^{A_z+1}\delta^{B_z+1}$ of the extra point is $+1$ for all four colours, and the sign of the tuple is
+$(-1)$ to the number of marks on $V$.
 
 \begin{lemma}\label{lem:cancel}
 $O_n=4\,n!\,W_{n-1}$, where $W_m$ is defined in (\ref{eq:W}).
@@ -313,7 +316,7 @@ $n-a$ marks $B$, placed on any sets of positions of these sizes and ordered in $
 \begin{figure}[ht]
 \centering
 \begin{tikzpicture}[scale=1.0]
-  \foreach \x/\lab in {1/{AB},2/{A},3/{},4/{B},5/{AB}} {
+  \foreach \x/\lab in {1/{AB},2/{A},3/{},4/{B},5/{A}} {
     \draw (\x,0) rectangle (\x+0.8,0.6);
     \node at (\x+0.4,0.3) {\small $\lab$};
     \node at (\x+0.4,-0.3) {\scriptsize $\x$};
@@ -330,7 +333,8 @@ $n-a$ marks $B$, placed on any sets of positions of these sizes and ordered in $
 \end{tikzpicture}
 \caption{The first count of $\mathcal T$ for a word of length $5$. Each flag $L$ at position $j$ cancels the flag
 $R$ at position $j+1$; only $R$ at $1$ and $L$ at $n$ (shaded) survive. In the second count a flag is paired with the
-other flag at its own position unless that position carries exactly one mark, as positions $2$ and $4$ do here.}
+other flag at its own position unless that position carries exactly one mark, as positions $2$, $4$ and $5$ do
+here.}
 \label{fig:telescope}
 \end{figure}
 
@@ -346,9 +350,10 @@ so $|F_n|=2n\cdot n!/(n+1)$.
 
 \emph{What is explicit.} Every step after Proposition~\ref{prop:GS} is an explicit sign-reversing involution or an
 explicit insertion, and the bridge of Lemma~\ref{lem:bridge} is a term-by-term comparison of two finite counts. The
-bijection behind Proposition~\ref{prop:GS} is not explicit, because Chapuy, F\'eray and Fusy extract it from a
-$2g$-to-$2g$ correspondence with Hall's theorem \cite[\S2.4--2.5]{CFF}. So the proof is combinatorial throughout, but
-it does not yet give a bijection between the solutions and a simpler set. A direct bijection, for instance between
+bijection behind Proposition~\ref{prop:GS} is obtained from a $2g$-to-$2g$ correspondence by Hall's theorem
+\cite[\S2.4--2.5]{CFF}: a perfect matching can be found by exhaustive search, but no efficient or direct description is
+known. So the proof is combinatorial throughout, but it does not give a direct bijection between the solutions and a
+simpler set. A direct bijection, for instance between
 the solutions with $u$ an $n$-cycle and a $1/n$ share of all solutions, is still open.
 
 \emph{Why the count is not obvious.} The natural symmetries of the solution set do not explain the factor $n$. The
@@ -356,10 +361,12 @@ moves $(u,v)\mapsto(u,vu)$, $(u,v)\mapsto(uv,v)$ and $(u,v)\mapsto(cv,u^{-1})$ p
 orbits do not contain the solutions with $v$ an $n$-cycle in proportion $1/n$ (for $n=5$ the orbits have sizes $15$, $50$, $60$, $75$ and contain $5$, $25$, $10$, $0$ of them). This is
 part of why we went through maps.
 
-\emph{Verification.} The three identities (\ref{eq:three}) were checked by two independent programs for $n\le7$
-(and $n\le9$ for the first program): $|F_n|$ by direct enumeration of solutions, $O_n$ and $W_{n-1}$ by brute force
-from their definitions, and Proposition~\ref{prop:GS} with $J=I$ against brute-force counts of factorisations for every
-composition. The elementary identities used in Lemmas~\ref{lem:bridge} and~\ref{lem:W} are formalised in Lean 4.
+\emph{Verification.} Two programs that share no code check the identities (\ref{eq:three}). The first (Claude)
+computes $|F_n|$ from all factorisations $c=\alpha\beta$ through (\ref{eq:zBi}), checks Proposition~\ref{prop:GS}
+with $J=I$ against these factorisations for every composition, and computes $O_n$ and $W_{n-1}$ by brute force from
+their definitions, for $n\le7$. The second (Codex) enumerates the solution pairs $(u,v)$ for $n\le9$, computes $O_n$
+by cycle types for $n\le9$ and by direct enumeration for $n\le5$, evaluates $W_{n-1}$ over every marked word, and
+checks the local sign maps and involutions exhaustively on small cases. The elementary identities used in Lemmas~\ref{lem:bridge} and~\ref{lem:W} are formalised in Lean 4.
 
 \emph{Use of AI.} The cancellation argument of Sections~\ref{sec:cancel} and~\ref{sec:W} was found by OpenAI's Codex (model
 GPT-6.1), working from a brief prepared in this project; Anthropic's Claude (Opus 5.5) prepared the earlier reductions, checked
@@ -369,6 +376,11 @@ is responsible for its content.
 \begin{thebibliography}{9}
 \bibitem{CFF} G.~Chapuy, V.~F\'eray and \'E.~Fusy, A simple model of trees for unicellular maps, \emph{J. Combin.
 Theory Ser.~A} 120 (2013), 2064--2092; arXiv:1202.3252.
+\bibitem{Boc} G.~Boccara, Nombre de repr\'esentations d'une permutation comme produit de deux cycles de
+longueurs donn\'ees, \emph{Discrete Math.} 29 (1980), 105--134.
+\bibitem{Chen} R.~X.~F.~Chen, A versatile combinatorial approach of studying products of long cycles in symmetric
+groups, \emph{Adv. in Appl. Math.} 133 (2022), 102283; arXiv:1910.03571.
+\bibitem{EC2} R.~P.~Stanley, \emph{Enumerative Combinatorics, Volume 2}, Cambridge University Press, 1999.
 \bibitem{GS} A.~Goupil and G.~Schaeffer, Factoring $n$-cycles and counting maps of given genus, \emph{European J.
 Combin.} 19 (1998), 819--834.
 \bibitem{Bij} R.~P.~Stanley, Bijective proof problems, \url{https://math.mit.edu/~rstan/bij.pdf} (2009, revised
