@@ -8,9 +8,10 @@ family it finds a window [i, i+3] with c-3 <= i <= c for a centre c that is good
 after i+3 gives a non-nested 4-matching inside S and the star chords (4) of length >= 4. The paper reports 15,984
 such families and no failure; Lemma 10 reduces every n to this range.
 
-The work is split into 16 units (first gap g1 = 1..16). Each finished unit is saved in k4_covered_progress.tsv and
-skipped on a rerun; the status line shows progress. Usage:
-  python3 k4_covered.py            full run, about an hour; resumable
+The work is split into 16 units (first gap g1 = 1..16). Each finished unit is saved in k4_covered_progress.tsv; a
+run with --resume skips the units recorded there (a plain run starts afresh); the status line shows progress. Usage:
+  python3 k4_covered.py            full run from scratch, about an hour
+  python3 k4_covered.py --resume   continue an interrupted full run
   python3 k4_covered.py --list-only   write the leftover identifiers (no window check) for recheck_k4/compare_lists.py
   python3 k4_covered.py --quick    units g1 = 1, 2 only (5,392 families), a few minutes; no progress file
 """
@@ -148,7 +149,9 @@ LIST = None
 
 done = {}
 QUICK = "--quick" in sys.argv  # quick runs (also used by the mutation suite) never read or write the progress file
-if not QUICK and os.path.exists(PROG):
+if not QUICK and "--resume" not in sys.argv and os.path.exists(PROG):
+    os.remove(PROG)  # a fresh run starts from scratch; only --resume reuses finished units
+if not QUICK and "--resume" in sys.argv and os.path.exists(PROG):  # cached progress is trusted only on --resume
     for line in open(PROG):
         g, k = line.split()
         done[int(g)] = int(k)
