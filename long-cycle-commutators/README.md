@@ -12,7 +12,7 @@ For odd `n`, the number of pairs `(u, v)` of permutations of `{1, …, n}` with 
 
 This note gives a combinatorial proof. It starts from the Goupil–Schaeffer formula for bipartite unicellular maps in the bijective form of Chapuy, Féray and Fusy (arXiv:1202.3252, Prop. 9), repackages the commutator count as a set `O_n` of permutations with marked points and decorated cycles, and cancels `O_n` by explicit sign-reversing involutions down to a signed count `W_{n−1}` of marked words with a cut, which a flagged telescope evaluates. The three identities are `O_n = 2^{n+1}(n−1)!|F_n|`, `O_n = 4·n!·W_{n−1}` and `(n+1)W_{n−1} = 2^n·n!`. No characters or generating functions are used. The proof is combinatorial but not a direct bijection: the Chapuy–Féray–Fusy step obtains its bijection from a regular correspondence by Hall's theorem (computable by exhaustive search, with no efficient construction known), and a direct bijection is still open.
 
-Preprint v1, 26 November 2026, not peer reviewed; released before the author's line-by-line reading. Zenodo: DOI to be added at release, identical to this folder at the tag `long-cycle-commutators-v1`.
+Preprint v1, 26 November 2026, not peer reviewed; released before the author's line-by-line reading. Zenodo: [doi:10.5281/zenodo.24572233](https://doi.org/10.5281/zenodo.24572233), identical to this folder at the tag `long-cycle-commutators-v1`.
 
 AI use: the cancellation argument (Sections 4 and 5 of the note) was found by OpenAI's Codex (GPT-6.1) from a brief prepared with Claude. Claude Opus 5.5 (Anthropic) did the earlier reductions, checked every step of the argument by hand, wrote the independent verification program and the Lean formalisation, and drafted the note.
 
